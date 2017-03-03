@@ -1,6 +1,20 @@
 \documentclass[conference]{template/IEEEtran}
 \usepackage{blindtext, graphicx}
 \usepackage[utf8]{inputenc}
+\usepackage[colorlinks]{hyperref}
+\usepackage[url=false,backend=biber]{biblatex}
+\addbibresource{expose.bib}
+\nocite{*}
+\newbibmacro{string+url}[1]{%
+  \iffieldundef{url}{%
+    #1%
+  }{%
+    \href{\thefield{url}}{#1}%
+  }%
+}
+\DeclareFieldFormat{title}{\usebibmacro{string+url}{\mkbibemph{#1}}}
+\DeclareFieldFormat[article,incollection,inproceedings]{title}%
+    {\usebibmacro{string+url}{\mkbibquote{#1}}}
 
 \def\contentsname{Inhalt}
 \def\listfigurename{Liste der Abbildungen}
@@ -46,9 +60,5 @@ Der Autor dankt...
 \ifCLASSOPTIONcaptionsoff
   \newpage
 \fi
-\begin{thebibliography}{1}
-\bibitem{IEEEhowto:kopka}
-H.~Kopka and P.~W. Daly, \emph{A Guide to \LaTeX}, 3rd~ed.\hskip 1em plus
-  0.5em minus 0.4em\relax Harlow, England: Addison-Wesley, 1999.
-\end{thebibliography}
+\printbibliography{}
 \end{document}
