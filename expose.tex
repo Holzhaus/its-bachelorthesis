@@ -2,6 +2,7 @@
 \usepackage{blindtext, graphicx}
 \usepackage[utf8]{inputenc}
 \usepackage[ngerman]{babel}
+\usepackage{amsmath}
 \usepackage[colorlinks]{hyperref}
 \usepackage[url=false,backend=biber]{biblatex}
 \addbibresource{expose.bib}
@@ -44,21 +45,186 @@ Matrikelnummer 108\,009\,215\,809\\
 }
 \maketitle
 \begin{abstract}
-\blindtext[1]
+Bei XML und JSON handelt es sich insbesondere im Mobile- und Web-Bereich um
+konkurrierende menschenlesbare Formate für die Speicherung und den
+Austausch hierarchisch strukturierter Daten. Je nach eingesetzter API,
+Programmiersprache oder Programmbiliothek kann es dabei sinnvoll sein, die
+Daten zunächst in das jeweils andere Format zu überführen. In der geplanten
+Bachelorarbeit soll sich mit der verlustfreien Translation von XML-Daten in
+JSON-Strukuren befasst werden. Dazu sollen bestehende Verfahren auf Genauigkeit
+und Sicherheit untersucht werden. Schlussendlich soll in der Arbeit ein
+verlustfreies Verfahren zur Übersetzung von XML-Daten in JSON sowie in
+Rückrichtung entwickelt und vorgestellt werden.
 \end{abstract}
 \begin{IEEEkeywords}
-XML, JSON, Konversion, Konvertierung, Sicherheit.
+XML, JSON, Konversion, Konvertierung, Datenstrukturen, Sicherheit.
 \end{IEEEkeywords}
 \IEEEpeerreviewmaketitle{}
 \section{Einleitung}
-\blindtext{}
-\subsection{Unterüberschrift hier}
-\blindtext{}
-\section{Fazit}
-\blindtext{}
-\appendices{}
-\section{Beweis der ersten Zonklar-Gleichung}
-\blindtext{}
+Für den implementationsunabhängigen Austausch von zugleich menschen- als auch
+maschinenlesbaren Daten hat sich die \emph{Extensible Markup Language (XML)}
+bewährt. Insbesondere im Bereich der Web-APIs hat die \emph{JavaScript Object
+Notation (JSON)} das bewährte XML-Format inzwischen jedoch überflügelt.
+
+% TODO: Add more content here
+
+\[
+\text{JSON} \rightarrow
+\text{JSONx (XML)\footnote{\url{https://www.ibm.com/support/knowledgecenter/SS9H2Y_7.5.0/com.ibm.dp.doc/web20-json.html}}}
+\rightarrow \text{JSON}\]
+
+\[\text{XML} \rightarrow \text{JSON} \rightarrow \text{JSON}\]
+
+\section{Motivation}
+Das Aufkommen des sogenannten \emph{Web 2.0} und die zunehmenden Vernetzung
+durch das \emph{Internet of Things (IoT)} ging auch mit einer erhöhten
+Verfügbarkeit von öffentlichen Web-APIs einher. Als Datenformat wird dabei
+häufig JSON- oder XML eingesetzt.
+
+Dabei gewinnt die \emph{JSON} vor allem im Mobile-
+und Web-Bereich immer mehr an Bedeutung. Laut dem API-Verzeichnis
+\emph{ProgrammableWeb} unterstützen im Jahr 2013 ca. 60\% aller neu
+hinzugefügten APIs das JSON-Format, während XML im selben Zeitraum lediglich
+von 37\% der neuen APIs unterstützt wurde.\cite{duvander2013convergence}
+
+JSON bei bestimmten Aufgaben in puncto Geschwindigkeit und Ressourcenauslastung
+deutlich effizienter\cite{nurseitov2009comparison} als XML\@. Inzwischen setzen
+auch einige populäre NoSQL-Datenbanken wie \emph{CouchDB} oder \emph{MongoDB}
+auf \emph{JSON} zur Speicherung.
+
+Zugleich ist XML weiterhin sehr relevant: Neben XML-basierten Webservices, die
+beispielsweise das SAML-Framework, SOAP oder XML-RPC verwenden, wird XML auch
+in einer Vielzahl weiterer Einsatzbereiche eingesetzt. So dient XML den
+Dateiformaten RSS/ASF, MathML, Scalable Vector Graphics (SVG) oder XHTML als
+Basis. Auch die gängigen Office-Dateiformate -- das \emph{Open % chktex 8
+Document Format}, Microsofts \emph{Office Open XML} und Apples
+\emph{iWorks} -- bauen auf XML auf. % chktex 8
+
+% TODO: Add use cases why you'd want to convert between them
+
+\section{Vorgehensweise}
+Im Verlaufe der Arbeit sollen verschiedene XML-zu-JSON-Konversionsverfahren
+miteinander verglichen werden. Anbieten würden sich dazu evtl.
+
+\begin{itemize}
+    \item die \emph{BadgerFish}-Konvention\footnote{\url{http://www.sklar.com/badgerfish/}},
+    \item die \emph{Parker}-Konvention\footnote{\url{https://github.com/open311/xml-tools/tree/master/Parker/xml2json-xslt}},
+    \item die \emph{Google Data (GData)}-Konvention\footnote{\url{https://developers.google.com/gdata/docs/json}},
+    \item die \emph{JSON Markup Language (JsonML)}\footnote{\url{http://www.jsonml.org/}},
+    \item die \emph{x2js}-Bibliothek\footnote{\url{https://github.com/abdmob/x2js}} (JavaScript, Apache 2.0-Lizenz),
+    \item die \emph{Apache camel-xmljson}-Bibliothek\footnote{\url{http://camel.apache.org/xmljson.html}} (Java, Apache 2.0-Lizenz),
+    \item die \emph{jxon}-Bibliothek\footnote{\url{https://github.com/tyrasd/jxon}} (JavaScript, GNU Public License 3.0) und
+    \item die \emph{pesterfish}-Bibliothek\footnote{\url{https://bitbucket.org/smulloni/pesterfish/overview}} (Python, MIT-Lizenz).
+\end{itemize}
+
+Auch der \emph{IBM DataPower}-Gateway unterstützt XML/JSON-Umwandlungen, jedoch scheint
+nur die Richtung
+\[
+\text{JSON} \rightarrow
+\text{JSONx (XML)\footnote{\url{https://www.ibm.com/support/knowledgecenter/SS9H2Y_7.5.0/com.ibm.dp.doc/web20-json.html}}}
+\rightarrow \text{JSON}\]
+möglich zu sein. Falls die Umwandlung auch mit dem Ausgangsformat XML
+möglich ist, wäre das proprietäre Übersetzungsverfahren des \emph{IBM
+DataPower}-Gateways ebenfalls Gegenstand der Untersuchung.
+
+\subsection{Durchführung}
+Um eine faire und objektive Bewertung aller Konversionsverfahren zu ermöglichen,
+werden vorab bestimmte Kriterien aufgestellt, anhand derer die Verfahren
+bewertet werden sollen. Geprüft werden könnte beispielsweise, ob
+\begin{itemize}
+    \item alle getesteten Dokumente umgewandelt werden, ohne das der Konverter
+          abstürzt,
+    \item die aus der Konversion resultierenden Daten valides JSON bzw. XML
+          sind,
+    \item die Umwandlung verlustfrei abläuft,
+    \item die Konversion ohne zusätzliche Angabe von Metadaten über das reine
+          XML- bzw. JSON-Dokument hinaus funktioniert und
+    \item die Konversion nicht anfällig für die bekannten Angriffe auf
+          XML-Parser ist.
+\end{itemize}
+
+Im Anschluss an das Aufstellen der Kriterien werden XML-Testdokumente erstellt,
+anhand derer deren Konversionsqualität bzw. Verlustlosigkeit überprüft werden
+sollen. Jedes XML-Dokument soll dabei die Abbildung bestimmter XML-Features in
+JSON testen (Attribute, Text-Node-Reihenfolge, etc.).
+
+Indem die Test-XML-Dokumente zunächst vor und nach einem XML-Round-Trip
+(Umwandlung von XML in JSON, danach Rückumwandlung des resultierenden JSON in
+XML) verglichen werden, lässt sich feststellen, ob das jeweilige XML-Merkmal
+fehlerfrei abgebildet wird. Um variierende Darstellungen logisch äquivalenter
+XML-Dokumente Rechnung zu tragen, werden die zu vergleichenden XML-Dokumente
+vor dem Vergleich mittels \emph{XML Canonicalization
+(C14N)}\cite{boyer01canonicalization} in eine einheitliche Form gebracht.
+
+Auch die Sicherheit der Konversionsverfahren soll getestet werden. Dazu werde
+ich Testdokumente erstellen, die die Verwundbarkeit gegenüber den gängigen
+XML-Schwachstellen
+\begin{itemize}
+\item Exponential Entity Expansion (\enquote{Billion Laughs}),
+\item Quadratic Blowup Entity Expansion,
+\item External Entity Expansion (\enquote{XXE}, sowohl lokal als auch remote) und
+\item DTD Retrieval
+\end{itemize}
+überprüfen.
+
+Zuletzt soll mithilfe eines umfangreichen und komplexen XML-Dokuments
+(ggf.~auch mehrerer Test-Dokumente) die Performance der Umwandlung getestet
+werden. Dies werde ich testen, indem ich das selbe Test-Dokument mehrmals
+umwandle und im Anschluss das arithmetische Mittel der Zeitdauer für die
+Konvertierung von XML zu JSON bzw. JSON zu XML ermittle.
+
+Indem die Umwandlungsergebnisse mit einem Prüfprogramm
+(einem sog.\ \enquote{Linter}) analysiert werden, wird sichergestellt, das es
+sich dabei um wohlgeformte oder valide XML- bzw. JSON-Dokumente handelt. Als
+Programme kämen dabei z.~B.\ Tools wie
+\emph{demjson/jsonlint}\footnote{\url{http://deron.meranda.us/python/demjson/}},
+\emph{xmllint}\footnote{\url{http://xmlsoft.org/xmllint.html}} oder
+\emph{XMLStarlet}\footnote{\url{http://xmlstar.sourceforge.net/}} in Betracht.
+
+\subsection{Erarbeitung eines Umwandlungsalgorithmus}
+
+Sollte sich bei der Durchführung der Tests herausstellen, das keines der
+getesteten XML-zu-JSON-Konversionsverfahren den zuvor aufgestellten Kriterien
+genügt, wird es notwendig, einen eigenen Abbildungsalgorithmus für
+XML-Datenstrukturen im JSON-Format zu erarbeiten.
+
+Dabei scheint es sinnvoll, das vielversprechendste der zurvor geprüften
+Verfahren als Basis zu nutzen und die fehlenden Features und Modifikationen
+zu ergänzen.
+
+\subsection{Vorläufige Gliederung}
+
+Nach der Einleitung werde ich zunächst eine Einführung in die Struktur der
+Formate XML und JSON geben (wobei ich die Formate allerdings selbstverständlich
+nicht erschöpfend darstellen kann, da dies den Rahmen sprengen würde). Im Zuge
+dessem werde ich ebenfalls die wichtigsten Unterschiede aufzeigen
+(z.~B.\ JSON-Arrays, XML-Attribute, Duck Typing, etc.).
+
+Daran anschließend werde ich zunächst das Ziel konkret definieren, d.~h.\ zu
+erläutern, welchen Kriterien ein Konversionsverfahren genügen sollte. Dazu
+gehört beispielsweise, Verlustlosigkeit genauer zu definieren (vor allem
+im Bezug auf Fragen wie \enquote{Sind Kommentare relevant?}). Hier werde auch
+ein Abschnitt zu Angriffen (XXE, Billion Laughs, Quadratic Blow Up) eingefügt
+werden, gegen den der jeweilige Konverter gewappnet sein soll.
+
+Dann werde ich die verschiedenen bestehenden Ansätze zur Umformung aufzählen
+und die zugrunde liegenden Konzepte kurz und grob beschreiben.
+
+Im folgenden Abschnitt erkläre ich dann den Versuchsaufbau (XML-Testdokumente)
+und prüfe die verschiedenen Konversionverfahren anhand des zuvor aufgestellten
+Anforderungskatalogs.
+
+Anschließend daran werden die Ergebnisse der Tests vorgestellt und diskutiert.
+Dabei wird erörtert, ob und welche Verfahren die zuvor genannten Bedingungen
+erfüllen können.
+
+Falls keines der Konversionsverfahren den zuvor aufgestellten Kriterien genügt,
+folgt dann der Abschnitt, der einen eigenen Umwandlungsalgorithmus entwickelt.
+
+% TODO: Related works, Conclusion, etc.?
+
+%\appendices{}
+
 \ifCLASSOPTIONcaptionsoff{}
   \newpage
 \fi
