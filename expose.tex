@@ -63,6 +63,7 @@ XML, JSON, Konversion, Konvertierung, Datenstrukturen, Sicherheit.
 \end{IEEEkeywords}
 \IEEEpeerreviewmaketitle{}
 \section{Einleitung}
+\label{sec:intro}
 Für den implementationsunabhängigen Austausch von zugleich menschen- als auch
 maschinenlesbaren Daten hat sich die \emph{Extensible Markup Language (XML)}
 bewährt. Insbesondere im Bereich der Web-APIs hat die \emph{JavaScript Object
@@ -78,6 +79,7 @@ Notation (JSON)} das bewährte XML-Format inzwischen jedoch überflügelt.
 \[\text{XML} \rightarrow \text{JSON} \rightarrow \text{JSON}\]
 
 \section{Motivation}
+\label{sec:motivation}
 Das Aufkommen des sogenannten \emph{Web 2.0} und die zunehmenden Vernetzung
 durch das \emph{Internet of Things (IoT)} ging auch mit einer erhöhten
 Verfügbarkeit von öffentlichen Web-APIs einher. Als Datenformat wird dabei
@@ -105,6 +107,7 @@ Document Format}, Microsofts \emph{Office Open XML} und Apples
 % TODO: Add use cases why you'd want to convert between them
 
 \section{Vorgehensweise}
+\label{sec:workingmethod}
 Im Verlaufe der Arbeit sollen verschiedene XML-zu-JSON-Konversionsverfahren
 miteinander verglichen werden. Anbieten würden sich dazu evtl.
 
@@ -130,6 +133,7 @@ möglich ist, wäre das proprietäre Übersetzungsverfahren des \emph{IBM
 DataPower}-Gateways ebenfalls Gegenstand der Untersuchung.
 
 \subsection{Durchführung}
+\label{subsec:execution}
 Um eine faire und objektive Bewertung aller Konversionsverfahren zu ermöglichen,
 werden vorab bestimmte Kriterien aufgestellt, anhand derer die Verfahren
 bewertet werden sollen. Geprüft werden könnte beispielsweise, ob
@@ -184,6 +188,7 @@ Programme kämen dabei z.~B.\ Tools wie
 \emph{XMLStarlet}\footnote{\url{http://xmlstar.sourceforge.net/}} in Betracht.
 
 \subsection{Erarbeitung eines Umwandlungsalgorithmus}
+\label{subsec:development}
 
 Sollte sich bei der Durchführung der Tests herausstellen, das keines der
 getesteten XML-zu-JSON-Konversionsverfahren den zuvor aufgestellten Kriterien
@@ -195,6 +200,7 @@ Verfahren als Basis zu nutzen und die fehlenden Features und Modifikationen
 zu ergänzen.
 
 \subsection{Vorläufige Gliederung}
+\label{subsec:structure}
 
 Nach der Einleitung werde ich zunächst eine Einführung in die Struktur der
 Formate XML und JSON geben (wobei ich die Formate allerdings selbstverständlich
@@ -221,7 +227,8 @@ Dabei wird erörtert, ob und welche Verfahren die zuvor genannten Bedingungen
 erfüllen können.
 
 Falls keines der Konversionsverfahren den zuvor aufgestellten Kriterien genügt,
-folgt dann der Abschnitt, der einen eigenen Umwandlungsalgorithmus entwickelt.
+folgt dann der Abschnitt, der einen eigenen Umwandlungsalgorithmus
+entwickelt\footnote{Siehe Abschnitt~\ref{subsec:development}.}.
 
 % TODO: Related works, Conclusion, etc.?
 
