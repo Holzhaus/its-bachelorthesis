@@ -47,14 +47,14 @@ Matrikelnummer 108\,009\,215\,809\\
 }
 \maketitle
 \begin{abstract}
-Bei XML und JSON handelt es sich insbesondere im Mobile- und Web-Bereich um
-konkurrierende menschenlesbare Formate für die Speicherung und den
+Bei XML und JSON handelt es sich um -- insbesondere im Mobile- und Web-Bereich
+konkurrierende -- menschenlesbare Formate für die Speicherung und den
 Austausch hierarchisch strukturierter Daten. Je nach eingesetzter API,
-Programmiersprache oder Programmbiliothek kann es dabei sinnvoll sein, die
+Programmiersprache oder Programmbibliothek kann es dabei sinnvoll sein, die
 Daten zunächst in das jeweils andere Format zu überführen. In der geplanten
 Bachelorarbeit soll sich mit der verlustfreien Translation von XML-Daten in
 JSON-Strukuren befasst werden. Dazu sollen bestehende Verfahren auf Genauigkeit
-und Sicherheit untersucht werden. Schlussendlich soll in der Arbeit ein
+und Sicherheit hin untersucht werden. Schlussendlich soll in der Arbeit ein
 verlustfreies Verfahren zur Übersetzung von XML-Daten in JSON sowie in
 Rückrichtung entwickelt und vorgestellt werden.
 \end{abstract}
@@ -69,17 +69,17 @@ maschinenlesbaren Daten hat sich die \emph{Extensible Markup Language (XML)}
 bewährt. In bestimmten Bereichen wie Web-APIs hat die \emph{JavaScript Object
 Notation (JSON)} das bewährte XML-Format inzwischen jedoch überflügelt.
 
-Dabei kann neben der spezifischen Situation auch dir eingesetzte
+Dabei kann neben der spezifischen Situation auch die eingesetzte
 Programmiersprache, die Unterstützung durch das zugrundeliegende Framework
-oder die persönliche Präferenz des Entwicklers Ausschlag geben, welches Format
-ein Webservice oder eine Programmbibliothek unterstützt.
+oder die persönliche Präferenz des Entwicklers den Ausschlag geben, welches
+Format ein Webservice oder eine Programmbibliothek unterstützt.
 
 Zwecks Interoperabilität zwischen verschiedenen Teilen einer Anwendung kann es
 daher notwendig werden, Daten von einem Format temporär in das jeweils andere
 zu überführen und später wieder in das ursprüngliche Format zu bringen.
 
 Dabei sollen Daten, die von der Anwendungslogik nicht verändert wurden, auch
-nach der Rückübersetzung ins Ursprungsformat unverändert sein. Damit dies
+nach der Rückübersetzung ins Ursprungsformat unverändert bleiben. Damit dies
 gewährleistet ist, darf das zugrunde liegende Konversionverfahren keine
 Informationen bei der Umwandlung verwerfen -- es muss also verlustlos % chktex 8
 arbeiten.
@@ -106,35 +106,41 @@ Abbildungsalgorithmus entwickelt, bei dem dies der Fall ist.
 \section{Motivation}
 \label{sec:motivation}
 Das Aufkommen des sogenannten \emph{Web 2.0} und die zunehmenden Vernetzung
-durch das \emph{Internet of Things (IoT)} ging auch mit einer erhöhten
+durch das \emph{Internet of Things (IoT)} ging mit einer erhöhten
 Verfügbarkeit von öffentlichen Web-APIs einher. Als Datenformat wird dabei
-häufig JSON- oder XML eingesetzt.
+häufig JSON oder XML verwendet.
 
-Dabei gewinnt die \emph{JSON} vor allem im Mobile-
+Neben XML-basierten Webservices, die beispielsweise das SAML-Framework, SOAP
+oder XML-RPC verwenden, wird XML auch in einer Vielzahl weiterer
+Einsatzbereiche eingesetzt. So dient XML den Dateiformaten RSS/ASF, MathML,
+Scalable Vector Graphics (SVG) oder XHTML als Basis. Auch die gängigen
+Office-Dateiformate -- das \emph{Open Document Format}, Microsofts % chktex 8
+\emph{Office Open XML} und Apples \emph{iWorks} -- bauen auf XML auf. % chktex 8
+
+Inzwischen gewinnt jedoch \emph{JSON} vor allem im Mobile-
 und Web-Bereich immer mehr an Bedeutung. Laut dem API-Verzeichnis
-\emph{ProgrammableWeb} unterstützen im Jahr 2013 ca. 60\% aller neu
+\emph{ProgrammableWeb} unterstützten im Jahr 2013 ca. 60\% aller neu
 hinzugefügten APIs das JSON-Format, während XML im selben Zeitraum lediglich
 von 37\% der neuen APIs unterstützt wurde.\cite{duvander2013convergence}
 
-JSON bei bestimmten Aufgaben in puncto Geschwindigkeit und Ressourcenauslastung
-deutlich effizienter\cite{nurseitov2009comparison} als XML\@. Inzwischen setzen
-auch einige populäre NoSQL-Datenbanken wie \emph{CouchDB} oder \emph{MongoDB}
-auf \emph{JSON} zur Speicherung.
+JSON ist bei bestimmten Aufgaben in puncto Geschwindigkeit und
+Ressourcenauslastung deutlich effizienter\cite{nurseitov2009comparison} als
+XML\@. Inzwischen setzen auch einige populäre NoSQL-Datenbanken wie
+\emph{CouchDB} oder \emph{MongoDB} auf \emph{JSON} zur Speicherung. Auch
+MySQL verfügt seit Version 5.7.8 über einen nativen JSON-Datentyp.
 
-Zugleich ist XML weiterhin sehr relevant: Neben XML-basierten Webservices, die
-beispielsweise das SAML-Framework, SOAP oder XML-RPC verwenden, wird XML auch
-in einer Vielzahl weiterer Einsatzbereiche eingesetzt. So dient XML den
-Dateiformaten RSS/ASF, MathML, Scalable Vector Graphics (SVG) oder XHTML als
-Basis. Auch die gängigen Office-Dateiformate -- das \emph{Open % chktex 8
-Document Format}, Microsofts \emph{Office Open XML} und Apples
-\emph{iWorks} -- bauen auf XML auf. % chktex 8
-
-% TODO: Add use cases why you'd want to convert between them
+Die Umwandlung zwischen den beiden Formaten kann aus vielen Gründen
+notwendig werden. Soll beispielsweise ein SOAP-Webservice als moderne
+JSON-REST-Ressource angeboten werden, muss zwischen XML und JSON konvertiert
+werden. Auch bei der Speicherung von XML-Daten in den o.g. NoSQL-Datenbanken
+ist dies der Fall. Zudem ist die Unterstützung der Formate durch
+Programmiersprachen, Frameworks und Applikationen nicht immer gleich gut.
 
 \section{Vorgehensweise}
 \label{sec:workingmethod}
-Im Verlaufe der Arbeit sollen verschiedene XML-zu-JSON-Konversionsverfahren
-miteinander verglichen werden. Anbieten würden sich dazu evtl.
+Im Verlauf der Arbeit sollen verschiedene generische
+XML-zu-JSON-Konversionsverfahren miteinander verglichen werden. Anbieten würden
+sich dazu evtl.
 
 \begin{itemize}
     \item die \emph{BadgerFish}-Konvention\footnote{\url{http://www.sklar.com/badgerfish/}},
@@ -165,8 +171,8 @@ bewertet werden sollen. Geprüft werden könnte beispielsweise, ob
 \begin{itemize}
     \item alle getesteten Dokumente umgewandelt werden, ohne das der Konverter
           abstürzt,
-    \item die aus der Konversion resultierenden Daten valides JSON bzw. XML
-          sind,
+    \item die aus der Konversion resultierenden Daten wohlgeformtes oder
+          valides JSON bzw. XML sind,
     \item die Umwandlung verlustfrei abläuft,
     \item die Konversion ohne zusätzliche Angabe von Metadaten über das reine
           XML- bzw. JSON-Dokument hinaus funktioniert und
@@ -187,23 +193,23 @@ XML-Dokumente Rechnung zu tragen, werden die zu vergleichenden XML-Dokumente
 vor dem Vergleich mittels \emph{XML Canonicalization
 (C14N)}\cite{boyer01canonicalization} in eine einheitliche Form gebracht.
 
-Auch die Sicherheit der Konversionsverfahren soll getestet werden. Dazu werde
-ich Testdokumente erstellen, die die Verwundbarkeit gegenüber den gängigen
+Auch die Sicherheit der Konversionsverfahren soll getestet werden. Dazu werden
+Testdokumente erstellt, die die Verwundbarkeit gegenüber gängigen
 XML-Schwachstellen\cite{morgan2014xml,spaeth2016sok} wie
 \begin{itemize}
-\item Exponential Entity Expansion (\enquote{Billion Laughs}),
-\item Quadratic Blowup Entity Expansion,
-\item External Entity Expansion (\enquote{XXE}, sowohl für lokale Pfade als auch
+    \item \emph{Exponential Entity Expansion} (\enquote{Billion Laughs}),
+    \item \emph{Quadratic Blowup Entity Expansion},
+    \item \emph{External Entity Expansion} (\enquote{XXE}, sowohl für lokale Pfade als auch
     URLs)\cite{steuck2002xxe} und
-\item DTD Retrieval
+\item \emph{DTD Retrieval}
 \end{itemize}
 überprüfen.
 
 Zuletzt soll mithilfe eines umfangreichen und komplexen XML-Dokuments
-(ggf.~auch mehrerer Test-Dokumente) die Performance der Umwandlung getestet
-werden. Dies wird getestet, indem das selbe Test-Dokument mehrmals
+(ggf.~auch mehrerer Test-Dokumente) die Performance der Umwandlung bestimmt
+werden. Dazu wird das selbe Test-Dokument mehrmals
 umgewandelt und im Anschluss das arithmetische Mittel der Zeitdauer für die
-Konvertierung von XML zu JSON bzw. JSON zu XML ermittelt wird.
+Konvertierung von XML zu JSON bzw. JSON zu XML ermittelt.
 
 Indem die Umwandlungsergebnisse mit einem Prüfprogramm
 (einem sog.\ \enquote{Linter}) analysiert werden, wird sichergestellt, das es
@@ -218,8 +224,8 @@ Programme kämen dabei z.~B.\ Tools wie
 
 Sollte sich bei der Durchführung der Tests herausstellen, das keines der
 getesteten XML-zu-JSON-Konversionsverfahren den zuvor aufgestellten Kriterien
-genügt, wird es notwendig, einen eigenen Abbildungsalgorithmus für
-XML-Datenstrukturen im JSON-Format zu erarbeiten.
+genügt, soll ein eigener Abbildungsalgorithmus für
+XML-Datenstrukturen im JSON-Format erarbeitet werden
 
 Dabei scheint es sinnvoll, das vielversprechendste der zurvor geprüften
 Verfahren als Basis zu nutzen und die fehlenden Features und Modifikationen
@@ -227,7 +233,7 @@ zu ergänzen.
 
 Falls es im gesetzten zeitlichen Rahmen einer Bachelorarbeit möglich ist, eine
 Referenzimplementierung des Algorithmus zu erstellen, soll diese wie alle
-anderen Verfahren zuvor getestet werden.
+anderen Verfahren evaluiert werden.
 
 \subsection{Vorläufige Gliederung}
 \label{subsec:structure}
@@ -241,28 +247,28 @@ etc.).
 
 Daran anschließend wird zunächst das Ziel konkret definiert, d.~h.\ es werden
 überprüfbaren Kriterien aufgestellt, denen ein Konversionsverfahren genügen
-sollte. Dazu gehört beispielsweise, Verlustlosigkeit genauer zu definieren (vor
-allem im Bezug auf Fragen wie \enquote{Sind Kommentare relevant?}). Hier werden
-auch ein Abschnitt zu Angriffen (XXE, Billion Laughs, Quadratic Blow Up)
+muss. Dazu gehört beispielsweise, Verlustlosigkeit genauer zu definieren (vor
+allem im Bezug auf Fragen wie \enquote{Sind Kommentare relevant?}). Hier wird
+auch ein Abschnitt zu Angriffen (\emph{XXE}, \emph{Billion Laughs}, etc.)
 eingefügt, gegen den der jeweilige Konverter gewappnet sein soll.
 
 Dann werden die verschiedenen bestehenden Ansätze zur Umformung aufgezählt
 und die zugrunde liegenden Konzepte kurz und grob beschrieben.
 
-Der folgende Abschnitt erklärt dann den Versuchsaufbau (XML-Testdokumente).
-Die verschiedenen Konversionverfahren werden dann anhand des zuvor
+Der folgende Abschnitt erklärt den Versuchsaufbau (XML-Testdokumente).
+Die verschiedenen Konversionsverfahren werden dann anhand des zuvor
 aufgestellten Anforderungskatalogs geprüft.
 
-Anschließend daran werden die Ergebnisse der Tests vorgestellt und diskutiert.
+Anschließend werden die Ergebnisse der Tests vorgestellt und diskutiert.
 Dabei wird erörtert, ob und welche Verfahren die zuvor genannten Bedingungen
-erfüllen können.
+erfüllen.
 
 Falls keines der Konversionsverfahren den zuvor aufgestellten Kriterien genügt,
-folgt dann der Abschnitt, der einen eigenen Umwandlungsalgorithmus
+folgt der Abschnitt, der einen eigenen Umwandlungsalgorithmus
 entwickelt\footnote{Siehe Abschnitt~\ref{subsec:development}.}.
 
 Im Diskussions-Abschnitt werden die aktuellen Möglichkeiten zur Umwandlung
-von XML in JSON und wieder zurück abschließend eigeschätzt und bewertet.
+von XML in JSON und wieder zurück abschließend eingeschätzt und bewertet.
 Dabei soll auch ein Ausblick auf weitere Verbesserungsmöglichkeiten oder
 alternative Wege zum Ziel erörtert werden.
 
