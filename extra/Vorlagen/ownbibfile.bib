@@ -1,0 +1,146 @@
+% An example of a IEEEtran control entry which can change some IEEEtran.bst
+% settings. An entry like this must be cited via \bstctlcite{} command
+% before the first real \cite{}. The same entry key cannot be called twice
+% (just like multiple \cite{} of the same entry key place only one entry
+% in the bibliography.)
+% The available control fields are:
+% 
+% CTLuse_article_number
+% "no" turns off the display of the number for articles.
+% "yes" enables
+%
+% CTLuse_paper
+% "no" turns off the display of the paper and type fields in inproceedings.
+% "yes" enables
+% 
+% CTLuse_forced_etal 
+% "no" turns off the forced use of "et al."
+% "yes" enables
+% 
+% CTLmax_names_forced_etal
+% The maximum number of names that can be present beyond which an "et al."
+% usage is forced. Be sure that CTLnames_show_etal (below)
+% is not greater than this value!
+% 
+% CTLnames_show_etal
+% The number of names that will be shown with a forced "et al.".
+% Must be less than or equal to CTLmax_names_forced_etal
+% 
+% CTLuse_alt_spacing 
+% "no" turns off the alternate interword spacing for entries with URLs.
+% "yes" enables
+% 
+% CTLalt_stretch_factor
+% If alternate interword spacing for entries with URLs is enabled, this is
+% the interword spacing stretch factor that will be used. For example, the
+% default "4" here means that the interword spacing in entries with URLs can
+% stretch to four times normal. Does not have to be an integer.
+% 
+% CTLdash_repeated_names
+% "no" turns off the "dashification" of repeated (i.e., identical to those
+% of the previous entry) names. IEEE normally does this.
+% "yes" enables
+% 
+% CTLname_format_string
+% The name format control string as explained in the BibTeX style hacking
+% guide.
+% IEEE style "{f.~}{vv~}{ll}{, jj}" is the default,
+% 
+% CTL_name_latex_cmd
+% A LaTeX command that each name will be fed to (e.g., "\textsc").
+% Leave empty if no special font is desired for the names.
+% The default is empty.
+% 
+% Those fields that are not to be changed can be left out or empty.
+@IEEEtranBSTCTL{IEEEexample:BSTcontrol,
+  CTLuse_article_number     = "yes",
+  CTLuse_paper              = "yes",
+  CTLuse_forced_etal        = "yes",
+  CTLmax_names_forced_etal  = "3",
+  CTLnames_show_etal        = "1",
+  CTLuse_alt_spacing        = "yes",
+  CTLalt_stretch_factor     = "4",
+  CTLdash_repeated_names    = "yes",
+  CTLname_format_string     = "{f.~}{vv~}{ll}{, jj}",
+  CTLname_latex_cmd         = ""
+};
+
+@manual{manual,
+  title         = "Smart Cards for Payment Systems: An Introductory Paper describing how Thales e-Security can help banks migrate to Smart Card Technology",
+  organization  = "Thales eSecurity",
+  url = "http://www.thales-esecurity.com/Whitepapers/documents/Smart_cards_for_payment_systems.pdf",
+};
+
+@inbook {inbook,
+   author    = {C. R. Murthy and B. S. Manoj},
+   title     = {{Ad Hoc Wireless Networks - Architectures and Protocols}},
+   year      = {2004},
+   pages     = {299--364},
+   publisher ={{Person Education}}
+}
+
+@misc{misc,
+  author     = {Y. Hu and A. Perrig and D. Johnson},
+  title      = {{Wormhole Detection in Wireless Ad Hoc Networks}},
+  text       = {Y. Hu, A. Perrig, and D. B. Johnson. Wormhole detection in wireless ad hoc networks. Technical report, Rice University Department of Computer Science, June 2002.},
+  month      = jun,
+  year       = {2002},
+  url        = {citeseer.ist.psu.edu/hu02wormhole.html}
+}
+
+@phdthesis{phdthesis,
+  author     = {Y. Amir},
+  title      = {{Replication Using Group Communication over a Partitioned Network}},
+  school     = {Institute of Computer Science, The Hebrew University of Jerusalem},
+  year       = {1995},
+  address    = {Jerusalem, Israel},
+}
+
+@inproceedings{inproceedings, 
+   author    = {Wenliang Du and Jing Deng and Yunghsiang S. Han and Pramod K. Varshney},
+   title     = {{A Pairwise Key Pre-Distribution Scheme for Wireless Sensor Networks}},
+   booktitle = {CCS '03: Proceedings of the 10th ACM conference on Computer and communications security},
+   year      = {2003},
+   isbn      = {1-58113-738-9},
+   pages     = {42--51},
+   location  = {Washington D.C., USA},
+   doi       = {http://doi.acm.org/10.1145/948109.948118},
+   publisher = {ACM Press},
+}
+
+@article{artice,
+author = {Harris Drucker and Donghui Wu and Vladimir N. Vapnik},
+title = {Support Vector Machines for Spam Categorization},
+journal = {IEEE Transactions On Neural Networks},
+year = {1999},
+volume = {10},
+number = {5},
+pages = {1048--1054},
+}
+
+@electronic{electronic,
+  title         = "The Legion of the Bouncy Castle Java Cryptography APIs",
+  url           = "http://bouncycastle.org/java.html",
+  month         = sep,
+  year          = "2007",
+  key           = "The Legion of the Bouncy Castle"
+};
+
+@standard {standard,
+author = {J. Galvin and S. Murphy and S. Crocker and N. Freed},
+title = {Security Multiparts for {MIME}: Multipart/Signed and Multipart/Encrypted},
+type   = "RFC",
+number ="1847",
+organization="IETF",
+month = oct,
+year = {1995},
+}
+
+@techreport{techreport,
+institution={Messaging Anti-Abuse Working Group(MAAWG)},
+title={Email Metrics Program: The Network Operators' PerspectiveReport \#3 - 2nd Quarter 2006},
+url={http://www.maawg.org/about/FINAL_2Q2006_Metrics_Report.pdf},
+month=nov,
+year={2006},
+}
+

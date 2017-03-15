@@ -1,0 +1,149 @@
+Description of this chapter.
+
+\section{Position of figures}
+\label{section:1.1}
+You can include the image as usual. You can include the image as usual.
+You can include the image as usual. You can include the image as usual.
+You can include the image as usual. You can include the image as usual.
+
+\begin{figure}[ht]
+\centering{\includegraphics [width=80mm]{images/NDS_Logo_HKS_42.pdf}}
+\caption{SubBytes(normal figure)} \label{fig:1}
+\end{figure}
+
+You can include the image as usual. You can include the image as usual.
+You can include the image as usual. You can include the image as usual.
+You can include the image as usual. You can include the image as usual.
+
+\begin{wrapfigure}{r}{80mm}
+\centering{\includegraphics [width=80mm]{images/NDS_Logo_HKS_42.pdf}}
+\caption{SubBytes(Normal figure (align right))} \label{fig:2}
+\end{wrapfigure}
+
+You can wrap the figure (align right). You can wrap the figure (align 
+right). You can wrap the figure (align right). You can wrap the figure
+(align right). You can wrap the figure (align right).
+
+You can wrap the figure (align right). You can wrap the figure (align 
+right). You can wrap the figure (align right). You can wrap the figure
+(align right). You can wrap the figure (align right).
+
+You can wrap the figure (align right). You can wrap the figure (align 
+right). You can wrap the figure (align right). You can wrap the figure
+(align right). You can wrap the figure (align right).
+
+\begin{wrapfigure}{l}{80mm}
+\centering{\includegraphics [width=80mm]{images/NDS_Logo_HKS_42.pdf}}
+\caption{SubBytes(Normal figure (align left))} \label{fig:3}
+\end{wrapfigure}
+
+You can wrap the figure (align left). You can wrap the figure (align 
+right). You can wrap the figure (align left). You can wrap the figure
+(align left). You can wrap the figure (align left).
+
+You can wrap the figure (align left). You can wrap the figure (align 
+right). You can wrap the figure (align left). You can wrap the figure
+(align left). You can wrap the figure (align left).
+
+You can wrap the figure (align left). You can wrap the figure (align 
+right). You can wrap the figure (align left). You can wrap the figure
+(align left). You can wrap the figure (align left).
+
+\section{Multiple Figures and Tables Parallel}
+\label{section:1.2}
+
+Two tables parallel.
+
+\begin{figure}[htb]
+  \centering
+  \begin{minipage}[b]{0.45\textwidth}\center
+  \begin{tabular}{|c|c|c|}\hline
+   A & B & C\\\hline
+  \end{tabular}
+  \captionof{table}{Caption of table}
+  \label{tbl:1}
+  \end{minipage}\hspace{0.05\textwidth}
+  \begin{minipage}[b]{0.45\textwidth}\center
+  \begin{tabular}{|c|c|c|}\hline
+  D & E & F\\\hline
+  \end{tabular}
+  \captionof{table}{Caption of table}
+  \label{tbl:2}
+  \end{minipage}
+\end{figure}
+
+Two figures parallel.
+
+\begin{figure}[htb]
+  \centering
+  \begin{minipage}[b]{0.45\textwidth}\center
+  \centering{\includegraphics [width=1.0\textwidth]{images/NDS_Logo_HKS_42.pdf}}
+  \caption{Caption of figure}
+  \label{fig:4}
+  \end{minipage}\hspace{0.05\textwidth}
+  \begin{minipage}[b]{0.45\textwidth}\center
+  \centering{\includegraphics [width=1.0\textwidth]{images/NDS_Logo_HKS_42.pdf}}
+  \caption{Caption of figure}
+  \label{fig:5}
+  \end{minipage}
+\end{figure}
+
+One figure and one table parallel
+
+\begin{figure}[htb]
+  \centering
+  \begin{minipage}[b]{0.45\textwidth}\center
+  \begin{tabular}{|c|c|c|}\hline
+  D & E & F\\\hline
+  \end{tabular}
+  \captionof{table}{Caption of table}
+  \label{tbl:3}
+  \end{minipage}\hspace{0.05\textwidth}
+  \begin{minipage}[b]{0.45\textwidth}\center
+  {\includegraphics [width=1.0\textwidth]{images/NDS_Logo_HKS_42.pdf}}
+  \caption{Caption of figure}
+  \label{fig:6}
+  \end{minipage}
+\end{figure}
+
+\newpage
+\section{Algorithms}
+\label{section:1.3}
+
+Algorithm
+
+\begin{algorithm}
+\caption{Key pair generation of ECDSA}
+\label{algo-crypto-6}
+
+\begin{algorithmic}
+\REQUIRE valid $PARAM$
+\ENSURE public key $Q$ and secret key $d$
+\WHILE{\TRUE}
+\STATE $d \Leftarrow_R [1, $n$-1]$
+\STATE $Q = (x_{_Q}, y_{_Q}) \Leftarrow dG$.
+\IF{$Q \neq O$} 
+\RETURN $(Q, d)$
+\ENDIF
+\ENDWHILE
+\end{algorithmic}
+\end{algorithm}
+
+\section{Citations}
+\label{section:1.4}
+
+artice \cite{artice}\\
+manual \cite[Section Nr.]{manual}\\
+book \cite[Section Nr.]{inbook}\\
+misc \cite[Section Nr.]{misc}\\
+phdthesis \cite[Section Nr.]{phdthesis}\\
+inproceedings \cite[Section Nr.]{inproceedings}\\
+standard \cite[Section Nr.]{standard}\\
+techreport \cite[Section Nr.]{techreport}\\
+
+
+
+
+
+
+

@@ -1,0 +1,164 @@
+% einkommentieren für Buchbindung mit zweiseitigem Druck:
+% \documentclass[11pt, twoside,openright] {scrreprt}
+
+% Einseitige Version für normalen Ausdruck und die digitale Version
+\documentclass[11pt] {scrreprt}
+
+%Papiermaße
+\setlength\paperheight {297mm}
+\setlength\paperwidth  {210mm}
+
+% Choose your language
+%\usepackage{ngerman}
+%\usepackage[ngerman]{babel}
+\usepackage[english]{babel}
+
+\usepackage{a4,german}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{multirow}
+\usepackage{latexsym}
+\usepackage{fullpage}
+\usepackage{times}
+\usepackage[standard]{ntheorem}
+\usepackage{algorithmic}
+\usepackage{algorithm}
+\usepackage{capt-of}
+\usepackage{listings}
+\usepackage{url}
+\usepackage{setspace}
+
+\usepackage[    %pdftex,
+        bookmarks=true,
+	colorlinks=true,
+        %bookmarksnumbered=false,
+        bookmarksopen=true,
+        bookmarksopenlevel=2,
+        linkcolor=black,
+        filecolor=black,
+        anchorcolor=black,
+        urlcolor=black,
+        citecolor=black,
+        pdfauthor={},
+        pdfkeywords={},
+	breaklinks=true,
+        linkbordercolor=white,
+        pdftitle={Titel der Arbeit}
+        ]{hyperref}
+
+\usepackage{vmargin}
+\setmarginsrb
+{25mm}{25mm} %% left top
+{20mm}{25mm} % right bottom
+{14pt}{20pt} % header: hight, gap
+{0pt}{10mm}  % foot: hight, top
+
+\parindent=0.4cm
+
+\author{Student name}
+\title{Master Thesis\\
+\vspace{1cm}Title of the Thesis}
+
+\date{
+\begin{tabular}{r l}
+Date:       & date \\
+Supervisor: & name\\
+\end{tabular}}
+
+\publishers {Ruhr-University Bochum, Germany\\\vspace{0.5cm}
+\begin{center}
+  \includegraphics [height=5.5cm]{images/Label_RUB_WEISS-BLAU_srgb.jpg}
+\end{center}
+Chair for Network and Data Security\\
+Prof. Dr. J\"org Schwenk\\
+Homepage: \url{www.nds.rub.de}
+\vspace{-4cm}}
+
+
+%% Define fancy headers
+\pagestyle{fancyplain}
+\renewcommand{\chaptermark}[1]{\markboth{#1}{#1}} % remember chapter title
+\renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}} % section number and title
+\lhead[\fancyplain{}{\thepage}]{\fancyplain{}{\sl \rightmark}}
+\rhead[\fancyplain{}{\sl \leftmark}]{\fancyplain{}{\thepage}}
+\cfoot{}
+\renewcommand{\headrulewidth}{0pt}
+
+%% here your document starts
+\begin{document}
+
+%% title page --- made out of expressions defined above
+\maketitle
+
+%% switch to roman paginating for the acknowledgements, table of contents etc.
+\pagenumbering{roman}
+
+%% include acknowledgement ("erklaerung.tex" is the one from RUB)
+\input{erklaerungAndAcknowledgement}
+\pagebreak
+
+
+%% optional: include abstract
+\input{abstract}
+\pagebreak
+
+%% generate table of contents
+\setcounter{tocdepth}{1}
+
+\tableofcontents
+
+\clearpage
+\addcontentsline{toc}{section}{List of Figures}
+\listoffigures
+
+\clearpage
+\addcontentsline{toc}{section}{List of Tables}
+\listoftables
+
+%%
+%% include all your chapters as .tex files,
+%% each file contains sections \section{name of section},
+%% subsections \subsections{...} and so on...
+%%
+\setcounter{secnumdepth}{3}
+
+\thispagestyle{empty}
+
+\onehalfspacing
+\chapter{Caption of Chapter 1}
+  \label{chapter:1}
+\pagenumbering{arabic} %switches to arabic numbers for the rest of the text
+  \input{chapter1}
+
+\chapter{Conclusions} 
+  \label{chapter:con}
+  \input{conclusion}
+
+\singlespacing
+%% include appendix
+\appendix
+\chapter{Caption of Appendix}
+\label{appendix}
+\input{appendix}
+
+%% generate bibliography with bibtex, the bibfile here is "biblist.bib"
+%% use alphanumerical style
+\clearpage
+\addcontentsline{toc}{chapter}{Bibliography}
+%
+% ---- Bibliography ----
+%
+\bibliographystyle{IEEEtran}
+%
+%\IEEEtriggeratref{17}
+\bibliography{IEEEabrv,ownbibfile}
+
+%% this is the end ;)
+\end{document}
