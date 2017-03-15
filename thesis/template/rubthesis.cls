@@ -107,6 +107,23 @@ BCOR=1cm, % Bindekorrektur: Change this accordingly, also read the KomaScript Gu
 % Acronyms
 \RequirePackage[printonlyused]{acronym}
 
+\RequirePackage[url=false,backend=biber]{biblatex}
+
+% Make bibliography titles clickable if URL is given
+\newbibmacro{string+url}[1]{%
+  \iffieldundef{url}{%
+    #1%
+  }{%
+    \href{\thefield{url}}{#1}%
+  }%
+}
+\DeclareFieldFormat{title}{\usebibmacro{string+url}{\mkbibemph{#1}}}
+\DeclareFieldFormat[article,incollection,inproceedings]{title}%
+    {\usebibmacro{string+url}{\mkbibquote{#1}}}
+\DefineBibliographyStrings{ngerman}{%
+   andothers = {{et\,al\adddot}},%
+}
+
 \makeatletter
 \newcommand{\acr}{\protect\@acr}%
 \newcommand{\@acr}[1]{%
