@@ -1,0 +1,73 @@
+\documentclass[alternativetitlepage=bild,cornerlogo=hgi_nds_logo2]{rubpresentation}
+
+\title%[foobar] (optional, only for long titles)
+{Titel des Vortrags}
+%\subtitle{Some subtitle}
+
+\author[Holthuis]{Jan~Holthuis}
+
+\institute[Ruhr-Uni Bochum]
+{%\inst{1}%
+Lehrstuhl für Netz- und Datensicherheit\\
+Ruhr-Universität Bochum
+}
+\date%[KPT 2004] (optional)
+{\today}
+\subject{Computer Science}
+
+\titlegraphic{titlepage.png}
+\sponsorlogo[height=7.6mm,interpolate=true]{hgi_nds_logo}
+
+\begin{document}
+
+\frame[plain]{\titlepage}
+
+%\begin{frame}{The \texttt{\textbackslash note}-Macro}
+%\begin{itemize}[<+->]
+%\item normal text for the presentation.
+%\note<1-2>[item]{Say something to the audience!}
+%\item and text for the presentation.
+%\item foo
+%\end{itemize}
+%\note<2>{Another note for you!}
+%\end{frame}
+
+%\note[enumerate]{\item foo \item bar \item baz \item foobar}
+
+\section[Section]{Ein Abschnitt}
+
+\begin{frame}[plain]
+    \frametitle{Eine Überschrift}
+\blindtext{}
+\end{frame}
+
+%%% Finally the last slide
+
+\begin{frame}[plain]
+\frametitle{Vielen Dank!}
+ \begin{center}
+ {\bfseries\fontsize{30pt}{1.2em}\selectfont Noch Fragen?}
+ \end{center}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \begin{center}
+        %\font\endfont = cmss10 at 25.40mm
+        %\color{Brown}
+        %\endfont
+        %\baselineskip 20.0mm
+        Auch per E-Mail an:
+        \begin{itemize}
+        \item \textbf{Jan Holthuis}\\
+              jan.holthuis@rub.de
+        \end{itemize}
+      \end{center}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \begin{center}
+        \pgfimage[width=\textwidth]{questions.jpg}
+      \end{center}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\end{document}
