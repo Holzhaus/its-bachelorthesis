@@ -5,7 +5,6 @@
 
 \RequirePackage[T1]{fontenc}
 \RequirePackage[utf8]{inputenc}
-\RequirePackage[ngerman]{babel}
 \RequirePackage{pgfpages}
 \RequirePackage[skip=2pt]{caption}
 \RequirePackage[subpreambles]{standalone}
@@ -35,10 +34,15 @@
     }%
 }
 
+\newcommand{\presentationlanguages}{ngerman,english}
+\DeclareOption{german}{\renewcommand{\presentationlanguages}{english,ngerman}}
+
 \ExecuteOptionsX{cornerlogo, alternativetitlepage}
 \ProcessOptionsX%
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{beamer}}
 \ProcessOptions\relax
+
+\RequirePackage[\presentationlanguages]{babel}
 
 \usetheme[alternativetitlepage=\alternativetitlepage]{Rub}
 %\setbeameroption{show notes}
