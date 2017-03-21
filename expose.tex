@@ -59,24 +59,49 @@ verlustfreies Verfahren zur Übersetzung von XML-Daten in JSON sowie in
 Rückrichtung entwickelt und vorgestellt werden.
 \end{abstract}
 \begin{IEEEkeywords}
-XML, JSON, Konversion, Konvertierung, Datenstrukturen, Sicherheit.
+XML, JSON, Konversion, Konvertierung, Abbildung, Datenstrukturen, Sicherheit.
 \end{IEEEkeywords}
 \IEEEpeerreviewmaketitle{}
 \section{Einleitung}
 \label{sec:intro}
 Für den implementationsunabhängigen Austausch von zugleich menschen- als auch
 maschinenlesbaren Daten hat sich die \emph{Extensible Markup Language (XML)}
-bewährt. Insbesondere im Bereich der Web-APIs hat die \emph{JavaScript Object
+bewährt. In bestimmten Bereichen wie Web-APIs hat die \emph{JavaScript Object
 Notation (JSON)} das bewährte XML-Format inzwischen jedoch überflügelt.
 
-% TODO: Add more content here
+Dabei kann neben der spezifischen Situation auch dir eingesetzte
+Programmiersprache, die Unterstützung durch das zugrundeliegende Framework
+oder die persönliche Präferenz des Entwicklers Ausschlag geben, welches Format
+ein Webservice oder eine Programmbibliothek unterstützt.
 
-\[
-\text{JSON} \rightarrow
-\text{JSONx (XML)\footnote{\url{https://www.ibm.com/support/knowledgecenter/SS9H2Y_7.5.0/com.ibm.dp.doc/web20-json.html}}}
-\rightarrow \text{JSON}\]
+Zwecks Interoperabilität zwischen verschiedenen Teilen einer Anwendung kann es
+daher notwendig werden, Daten von einem Format temporär in das jeweils andere
+zu überführen und später wieder in das ursprüngliche Format zu bringen.
 
-\[\text{XML} \rightarrow \text{JSON} \rightarrow \text{JSON}\]
+Dabei sollen Daten, die von der Anwendungslogik nicht verändert wurden, auch
+nach der Rückübersetzung ins Ursprungsformat unverändert sein. Damit dies
+gewährleistet ist, darf das zugrunde liegende Konversionverfahren keine
+Informationen bei der Umwandlung verwerfen -- es muss also verlustlos % chktex 8
+arbeiten.
+
+Das konkrete Konversionsverfahren ist dabei abhängig vom jeweiligen
+Ausgangsformat, d.~h.\ die Umwandlungsverfahren für die beiden Richtungen
+\begin{enumerate}
+    \item $\text{JSON} \rightarrow \text{XML} \rightarrow \text{JSON}$ und
+    \item $\text{XML} \rightarrow \text{JSON} \rightarrow \text{XML}$
+\end{enumerate}
+haben jeweils eigene Anforderungen und sind getrennt voneinander zu betrachten.
+
+Während Abbildung von beliebigen JSON-Datenstrukturen in XML zumindest bei
+oberflächlicher Betrachtung trivial erscheint, ist dies beim verlustlosen
+Transfer von XML-Daten ins JSON-Format keineswegs der Fall.
+
+Daher soll in der geplanten Bachelorarbeit verschiedene Verfahren analysiert
+werden, die beliebige XML-Daten in JSON abbilden und aus der resultieren
+JSON-Datenstruktur wieder XML-Dokument erstellen können. Sollte keines
+der analysierten Verfahren den vorher aufgestellten Kriterien für eine
+zuverlässige und sichere Umwandlung genügen, wird ein eigener
+Abbildungsalgorithmus entwickelt, bei dem dies der Fall ist.
 
 \section{Motivation}
 \label{sec:motivation}
@@ -164,20 +189,21 @@ vor dem Vergleich mittels \emph{XML Canonicalization
 
 Auch die Sicherheit der Konversionsverfahren soll getestet werden. Dazu werde
 ich Testdokumente erstellen, die die Verwundbarkeit gegenüber den gängigen
-XML-Schwachstellen
+XML-Schwachstellen\cite{morgan2014xml,spaeth2016sok} wie
 \begin{itemize}
 \item Exponential Entity Expansion (\enquote{Billion Laughs}),
 \item Quadratic Blowup Entity Expansion,
-\item External Entity Expansion (\enquote{XXE}, sowohl lokal als auch remote) und
+\item External Entity Expansion (\enquote{XXE}, sowohl für lokale Pfade als auch
+    URLs)\cite{steuck2002xxe} und
 \item DTD Retrieval
 \end{itemize}
 überprüfen.
 
 Zuletzt soll mithilfe eines umfangreichen und komplexen XML-Dokuments
 (ggf.~auch mehrerer Test-Dokumente) die Performance der Umwandlung getestet
-werden. Dies werde ich testen, indem ich das selbe Test-Dokument mehrmals
-umwandle und im Anschluss das arithmetische Mittel der Zeitdauer für die
-Konvertierung von XML zu JSON bzw. JSON zu XML ermittle.
+werden. Dies wird getestet, indem das selbe Test-Dokument mehrmals
+umgewandelt und im Anschluss das arithmetische Mittel der Zeitdauer für die
+Konvertierung von XML zu JSON bzw. JSON zu XML ermittelt wird.
 
 Indem die Umwandlungsergebnisse mit einem Prüfprogramm
 (einem sog.\ \enquote{Linter}) analysiert werden, wird sichergestellt, das es
@@ -199,28 +225,33 @@ Dabei scheint es sinnvoll, das vielversprechendste der zurvor geprüften
 Verfahren als Basis zu nutzen und die fehlenden Features und Modifikationen
 zu ergänzen.
 
+Falls es im gesetzten zeitlichen Rahmen einer Bachelorarbeit möglich ist, eine
+Referenzimplementierung des Algorithmus zu erstellen, soll diese wie alle
+anderen Verfahren zuvor getestet werden.
+
 \subsection{Vorläufige Gliederung}
 \label{subsec:structure}
 
-Nach der Einleitung werde ich zunächst eine Einführung in die Struktur der
-Formate XML und JSON geben (wobei ich die Formate allerdings selbstverständlich
-nicht erschöpfend darstellen kann, da dies den Rahmen sprengen würde). Im Zuge
-dessem werde ich ebenfalls die wichtigsten Unterschiede aufzeigen
-(z.~B.\ JSON-Arrays, XML-Attribute, Duck Typing, etc.).
+Nach der Einleitung wird zunächst eine Einführung in die Struktur der
+Formate XML und JSON gegeben (wobei die Formate allerdings selbstverständlich
+nicht erschöpfend dargestellt werden können, da dies den Rahmen sprengen
+würde). Im Zuge dessen werden ebenfalls die wichtigsten Unterschiede zwischen
+beiden Formaten aufgezeigt (z.~B.\ JSON-Arrays, XML-Attribute, Duck Typing,
+etc.).
 
-Daran anschließend werde ich zunächst das Ziel konkret definieren, d.~h.\ zu
-erläutern, welchen Kriterien ein Konversionsverfahren genügen sollte. Dazu
-gehört beispielsweise, Verlustlosigkeit genauer zu definieren (vor allem
-im Bezug auf Fragen wie \enquote{Sind Kommentare relevant?}). Hier werde auch
-ein Abschnitt zu Angriffen (XXE, Billion Laughs, Quadratic Blow Up) eingefügt
-werden, gegen den der jeweilige Konverter gewappnet sein soll.
+Daran anschließend wird zunächst das Ziel konkret definiert, d.~h.\ es werden
+überprüfbaren Kriterien aufgestellt, denen ein Konversionsverfahren genügen
+sollte. Dazu gehört beispielsweise, Verlustlosigkeit genauer zu definieren (vor
+allem im Bezug auf Fragen wie \enquote{Sind Kommentare relevant?}). Hier werden
+auch ein Abschnitt zu Angriffen (XXE, Billion Laughs, Quadratic Blow Up)
+eingefügt, gegen den der jeweilige Konverter gewappnet sein soll.
 
-Dann werde ich die verschiedenen bestehenden Ansätze zur Umformung aufzählen
-und die zugrunde liegenden Konzepte kurz und grob beschreiben.
+Dann werden die verschiedenen bestehenden Ansätze zur Umformung aufgezählt
+und die zugrunde liegenden Konzepte kurz und grob beschrieben.
 
-Im folgenden Abschnitt erkläre ich dann den Versuchsaufbau (XML-Testdokumente)
-und prüfe die verschiedenen Konversionverfahren anhand des zuvor aufgestellten
-Anforderungskatalogs.
+Der folgende Abschnitt erklärt dann den Versuchsaufbau (XML-Testdokumente).
+Die verschiedenen Konversionverfahren werden dann anhand des zuvor
+aufgestellten Anforderungskatalogs geprüft.
 
 Anschließend daran werden die Ergebnisse der Tests vorgestellt und diskutiert.
 Dabei wird erörtert, ob und welche Verfahren die zuvor genannten Bedingungen
@@ -230,7 +261,13 @@ Falls keines der Konversionsverfahren den zuvor aufgestellten Kriterien genügt,
 folgt dann der Abschnitt, der einen eigenen Umwandlungsalgorithmus
 entwickelt\footnote{Siehe Abschnitt~\ref{subsec:development}.}.
 
-% TODO: Related works, Conclusion, etc.?
+Im Diskussions-Abschnitt werden die aktuellen Möglichkeiten zur Umwandlung
+von XML in JSON und wieder zurück abschließend eigeschätzt und bewertet.
+Dabei soll auch ein Ausblick auf weitere Verbesserungsmöglichkeiten oder
+alternative Wege zum Ziel erörtert werden.
+
+Im letzten Kapitel zu verwandten Arbeiten werden weitere Arbeiten zum Thema
+beschrieben und Unterschiede zur eigenen Arbeit herausgearbeitet.
 
 %\appendices{}
 
