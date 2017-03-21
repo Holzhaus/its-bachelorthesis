@@ -193,6 +193,9 @@ pythontex-files-*/
 *.ttt
 *.fff
 
+# standalone package
+*.sta
+
 # Latexian
 TSWLatexianTemp*
 
