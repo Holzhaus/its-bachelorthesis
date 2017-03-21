@@ -34,7 +34,7 @@ BCOR=1cm, % Bindekorrektur: Change this accordingly, also read the KomaScript Gu
 \RequirePackage[utf8]{inputenc} % CHANGE HERE IF NECESSARY
 \RequirePackage[T1]{fontenc}
 
-\newcommand{\thesislanguages}{ngerman, english} % last language given is used (here: english)
+\newcommand{\thesislanguages}{ngerman,english} % last language given is used (here: english)
 \newcommand{\thesistype}{Master's Thesis}
 \newcommand{\thesischair}{Chair for Network and Data Security.}
 \newcommand{\thesissupervisortitle}{Supervisor}
@@ -49,7 +49,7 @@ BCOR=1cm, % Bindekorrektur: Change this accordingly, also read the KomaScript Gu
 \newcommand{\exampletitle}{Example}
 
 \DeclareOption{german}{
-  \renewcommand{\thesislanguages}{english, ngerman}
+  \renewcommand{\thesislanguages}{english,ngerman}
   \renewcommand{\thesischair}{Lehrstuhl für Netz- und Datensicherheit.}
   \renewcommand{\thesissupervisortitle}{Betreuer}
   \renewcommand{\thesisadvisortitle}{Berater}
@@ -67,7 +67,7 @@ BCOR=1cm, % Bindekorrektur: Change this accordingly, also read the KomaScript Gu
 %\RequirePackage{microtype}
 \RequirePackage{ifpdf}
 \RequirePackage{ifthen}
-\RequirePackage{titling}
+\RequirePackage{authoraftertitle}
 
 %%%%%% MACROS %%%%%%
 \RequirePackage{xspace} % Nur dann ein Leerzeichen, wenn das nächste Zeichen kein Satzzeichen ist.
@@ -226,9 +226,9 @@ BCOR=1cm, % Bindekorrektur: Change this accordingly, also read the KomaScript Gu
 \makeatletter
 \AtBeginDocument{
  \hypersetup{
-   pdftitle = {\thetitle},
-   pdfauthor = {\theauthor},
-   pdfsubject={\thetitle},
+   pdftitle = {\MyTitle},
+   pdfauthor = {\MyAuthor},
+   pdfsubject={\MyTitle},
    pdfkeywords={\thesiskeywords},
 %    unicode={true},
  }
@@ -279,13 +279,13 @@ BCOR=1cm, % Bindekorrektur: Change this accordingly, also read the KomaScript Gu
         \sffamily
         \hspace{-17.2mm}\includegraphics[scale=1.0]{images/rub_slogan}\\
 
-        \textbf{\LARGE {\thetitle}}\\
+        \textbf{\LARGE {\MyTitle}}\\
 
-        \Large{\theauthor}\\
+        \Large{\MyAuthor}\\
 
         \vspace{4cm}
         \normalsize{
-        \thesistype\hspace{0.2cm}--\hspace{0.2cm}\thedate.\\ % lacheck 246
+        \thesistype\hspace{0.2cm}--\hspace{0.2cm}\MyDate.\\ % lacheck 246
           \thesischair\\
         }
         \newline
