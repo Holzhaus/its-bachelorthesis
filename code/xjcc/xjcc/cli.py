@@ -46,3 +46,11 @@ def check_conversion(args):
         else:
             textresult = 'OK' if result else 'Failed'
         print('%s: %s' % (chk.name, textresult))
+
+
+def canonicalize(args):
+    # FIXME: We need this line due to Python Issue #14156
+    # See https://bugs.python.org/issue14156 for details.
+    args.file = args.file.buffer if hasattr(args.file, 'buffer') else args.file
+    xml_data = args.file.read()
+    print(check.canonicalize(xml_data).decode())
