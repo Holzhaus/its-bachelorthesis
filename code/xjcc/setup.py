@@ -19,6 +19,7 @@ setuptools.setup(
     ],
     keywords='xml json jxon conversion translation algorithm lossless security',
     packages=setuptools.find_packages(exclude=['contrib', 'docs', 'tests']),
+    include_package_data=True,
     entry_points={
         'console_scripts': [
             'xjcc=xjcc:main',
