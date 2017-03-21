@@ -44,6 +44,13 @@ def main(args=None):
     )
     parser_list.set_defaults(func=cli.list_converters)
 
+    # list-checks
+    parser_listchecks = subparsers.add_parser(
+        'list-checks',
+        help='list checks'
+    )
+    parser_listchecks.set_defaults(func=cli.list_checks)
+
     # Parse arguments and execute code
     p_args = parser.parse_args(args)
     logging.basicConfig(level=p_args.loglevel)
