@@ -59,6 +59,14 @@ def main(args=None):
     parser_checkconversion.add_argument('name')
     parser_checkconversion.set_defaults(func=cli.check_conversion)
 
+    # canonicalize
+    parser_canonicalize = subparsers.add_parser(
+        'canonicalize',
+        help='Canonicalize an XML document'
+    )
+    parser_canonicalize.add_argument('file', type=argparse.FileType('rb'))
+    parser_canonicalize.set_defaults(func=cli.canonicalize)
+
     # Parse arguments and execute code
     p_args = parser.parse_args(args)
     logging.basicConfig(level=p_args.loglevel)
