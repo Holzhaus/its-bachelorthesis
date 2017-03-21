@@ -30,4 +30,5 @@ setuptools.setup(
         'defusedxml>=0.5.0',
     ],
     python_requires='>=3.5.0',
+    test_suite='xjcc.tests',
 )
