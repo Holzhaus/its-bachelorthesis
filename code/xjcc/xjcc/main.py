@@ -4,7 +4,7 @@ import logging
 from . import cli
 
 
-def main(args=None):
+def parse_args(args=None):
     parser = argparse.ArgumentParser()
 
     loglevel = parser.add_mutually_exclusive_group()
@@ -67,7 +67,11 @@ def main(args=None):
     parser_canonicalize.add_argument('file', type=argparse.FileType('rb'))
     parser_canonicalize.set_defaults(func=cli.canonicalize)
 
-    # Parse arguments and execute code
-    p_args = parser.parse_args(args)
+    # Finally parse arguments
+    return parser.parse_args(args)
+
+
+def main(args=None):
+    p_args = parse_args(args)
     logging.basicConfig(level=p_args.loglevel)
-    p_args.func(p_args)
+    return p_args.func(p_args)
