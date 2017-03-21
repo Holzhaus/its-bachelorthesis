@@ -3,8 +3,8 @@
 Implementation of Mozilla's JavaScript XML Object Notation (JXON)
 https://github.com/tyrasd/jxon
 """
-
 import atexit
+import os
 import subprocess
 import tempfile
 import pkg_resources
@@ -13,7 +13,8 @@ atexit.register(pkg_resources.cleanup_resources)
 
 NODE_APP = pkg_resources.resource_filename(
     pkg_resources.Requirement(__package__),
-    'jxonconverter.js')
+    os.path.join(__package__, 'jxonconverter.js'),
+)
 
 
 def xml_to_json(xml_data):
