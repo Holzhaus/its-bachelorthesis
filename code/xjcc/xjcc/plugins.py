@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import itertools
 import collections
+import re
 import pkg_resources
 
 Plugin = collections.namedtuple('Plugin', [
@@ -33,6 +34,7 @@ def get_converter(name):
 
 def parse_docstring(docstring):
     desc, sep, metadatastring = docstring.strip().partition('\n\n')
+    desc = re.sub(r'\s*\n\s*', '\n', desc)
     metadata = {}
     for line in metadatastring.splitlines():
         key, value = (value.strip() for value in line.partition('=')[::2])
