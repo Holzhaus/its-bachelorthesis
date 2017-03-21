@@ -1,0 +1,99 @@
+%%% DOCUMENT-INFO
+%% AUTHOR		: Dennis Felsch [dennis.felsch@ruhr-uni-bochum.de]
+%% VERSION		: 0.1
+
+\documentclass[german]{rubthesis}
+\usepackage[url=false,backend=biber]{biblatex}
+%\addbibresource{expose.bib}
+\nocite{*}
+\newbibmacro{string+url}[1]{%
+  \iffieldundef{url}{%
+    #1%
+  }{%
+    \href{\thefield{url}}{#1}%
+  }%
+}
+\DeclareFieldFormat{title}{\usebibmacro{string+url}{\mkbibemph{#1}}}
+\DeclareFieldFormat[article,incollection,inproceedings]{title}%
+    {\usebibmacro{string+url}{\mkbibquote{#1}}}
+\DefineBibliographyStrings{ngerman}{%
+   andothers = {{et\,al\adddot}},%
+}
+
+\renewcommand{\thesistype}{Bacherlorarbeit}
+\renewcommand{\thesisadvisor}{B.~Sc.~Paul~Rösler}
+\renewcommand{\thesiskeywords}{XML, JSON, Konversion, Umwandlung, Abbildung}
+% Set date here
+%\day=6 \month=6 \year=2012
+
+% Set name and title
+\author{Jan~Holthuis}
+\title{%
+Bridging the Gap: Verlustfreie und sichere Umwandlung von XML-Datenstrukturen
+ins JSON-Format
+}
+\date{\today}
+
+\begin{document}
+
+%% switch to roman paginating for the acknowledgements, table of contents etc.
+\pagenumbering{roman} % uncomment this if you like it
+
+%% title page --- made out of expressions defined above
+\frontpage{}
+
+\input{chap_0}
+
+\pagenumbering{arabic} %switches to arabic numbers for the rest of the text
+\setcounter{page}{1}
+
+%%
+%% include all your chapters as .tex files,
+%% each file contains sections \section{name of section},
+%% subsections \subsections{...} and so on...
+%%
+
+\input{chap_1}
+
+\input{chap_2}
+
+\input{chap_3}
+
+\input{chap_4}
+
+\input{chap_5}
+
+%% include appendix
+
+\appendix
+
+% \chapter{Acronyms}
+\input{acronyms} % optional, remove it if you do not like it
+
+\pagestyle{scrplain} % turn off headers and footers
+%% generate list of figures, optional, remove it if you do not like it
+\listoffigures
+
+\KOMAoptions{open=any} % Plaziert Kapitel auch auf linken Seiten
+
+%% generate list of tables, optional, remove it if you do not like it
+\listoftables
+
+%% generate list of algorithms, optional, remove it if you do not like it
+\clearpage \phantomsection{}
+\addcontentsline{toc}{chapter}{Liste der Algorithmen}
+\listofalgorithmes{}
+
+%% generate list of listings, optional, remove it if you do not like it
+\renewcommand*{\lstlistlistingname}{Liste der Auflistungen}
+\lstlistoflistings{}
+
+%% generate bibliography with bibtex, the bibfile here is "paper.bib"
+\flushbottom
+\printbibliography{}
+
+\KOMAoptions{open=right} % Plaziert Kapitel wieder nur auf rechten Seiten
+
+\input{chap_appendix}
+
+\end{document}

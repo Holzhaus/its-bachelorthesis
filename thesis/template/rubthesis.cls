@@ -1,0 +1,287 @@
+%%% TEMPLATE-INFO
+%% AUTHOR		: johannes.hoffmann@rub.de (former: vincent.immler@rub.de)
+%% VERSION		: 0.03
+%% Please send comments and feedback (and donations ;-)) to author, thanks!
+
+%%% DOCUMENT-INFO
+%% AUTHOR		: Dennis Felsch [dennis.felsch@ruhr-uni-bochum.de]
+%% VERSION		: 0.1
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesClass{rubthesis}[2017/03/15 Customized RUB-themed presentation class]
+
+\RequirePackage{fix-cm,cmap}
+
+\LoadClass[
+fontsize=11pt,
+paper=a4,
+abstract=true,
+numbers=noenddot,
+listof=totoc,
+bibliography=totoc,
+twoside,
+open=right,
+cleardoublepage=plain,
+parskip=half+, % comment this out if you do not want an empty half line between paragraphs, but please read the KomaScript Guide and search for parskip (around page 82): ftp://ftp.dante.de/pub/tex/macros/latex/contrib/koma-script/scrguide.pdf
+BCOR=1cm, % Bindekorrektur: Change this accordingly, also read the KomaScript Guide! Make sure you read the guide.
+]{scrreprt}
+
+\setcounter{tocdepth}{3}  % Inhaltsverzeichnis bis Subsubsection
+\setcounter{secnumdepth}{3} % Nummerierung bis Subsubsection
+
+% General stuff
+\RequirePackage{fixltx2e}
+\RequirePackage[utf8]{inputenc} % CHANGE HERE IF NECESSARY
+\RequirePackage[T1]{fontenc}
+
+\newcommand{\thesislanguages}{ngerman, english} % last language given is used (here: english)
+\newcommand{\thesistype}{Master's Thesis}
+\newcommand{\thesischair}{Chair for Network and Data Security.}
+\newcommand{\thesissupervisortitle}{Supervisor}
+\newcommand{\thesissupervisor}{Prof.~Dr.~J\"{o}rg~Schwenk}
+\newcommand{\thesisadvisortitle}{Advisor}
+\newcommand{\thesisadvisor}{Dipl.-Ing.~Christopher Meyer}
+\newcommand{\thesiskeywords}{SAML, add more}
+
+\newcommand{\proposititontitle}{Proposition}
+\newcommand{\corollarytitle}{Corollary}
+\newcommand{\algorithmtitle}{Algorithm}
+\newcommand{\exampletitle}{Example}
+
+\DeclareOption{german}{
+  \renewcommand{\thesislanguages}{english, ngerman}
+  \renewcommand{\thesischair}{Lehrstuhl für Netz- und Datensicherheit.}
+  \renewcommand{\thesissupervisortitle}{Betreuer}
+  \renewcommand{\thesisadvisortitle}{Berater}
+
+  \renewcommand{\proposititontitle}{Satz}
+  \renewcommand{\corollarytitle}{Korollar}
+  \renewcommand{\algorithmtitle}{Algorithmus}
+  \renewcommand{\exampletitle}{Beispiel}
+}
+\ExecuteOptions{german}
+\ProcessOptions\relax
+
+\RequirePackage[\thesislanguages]{babel}
+
+%\RequirePackage{microtype}
+\RequirePackage{ifpdf}
+\RequirePackage{ifthen}
+\RequirePackage{titling}
+
+%%%%%% MACROS %%%%%%
+\RequirePackage{xspace} % Nur dann ein Leerzeichen, wenn das nächste Zeichen kein Satzzeichen ist.
+\newcommand{\SecII}{Sec\textsuperscript{2}\xspace}
+\newcommand{\SAML}{\acr{SAML}\xspace}
+\newcommand{\XML}{\acr{XML}\xspace}
+
+
+%%%%%% %%%%%%
+
+% Load packages ...
+
+% Corporate Design
+\RequirePackage{eso-pic}
+\RequirePackage{color}
+\RequirePackage{rubfonts2009}
+\newcommand{\setrubfontnormal}[1]{\fontfamily{rubscala}\fontsize{#1}{1}\selectfont}
+\newcommand{\setrubfontextra}[1]{\fontfamily{rubflama}\fontsize{#1}{1}\selectfont}
+\definecolor{rubgreen}{cmyk}{0.5,0,1,0}
+\definecolor{rubblue}{cmyk}{1,0.5,0,0.6}
+
+% Figures
+\RequirePackage{graphicx}
+\RequirePackage{subfig}
+\RequirePackage{placeins}
+
+% Tables
+\RequirePackage{booktabs}
+\RequirePackage{marvosym}
+\RequirePackage{multirow}
+
+% Math stuff and units
+\RequirePackage{latexsym,amsmath, amssymb, amsfonts, upgreek}
+\RequirePackage{siunitx}
+\newcommand{\mathup}{\mathrm}
+
+% Acronyms
+\RequirePackage[printonlyused]{acronym}
+
+\makeatletter
+\newcommand{\acr}{\protect\@acr}%
+\newcommand{\@acr}[1]{%
+	\expandafter\ifx\csname ac@#1\endcsname\AC@used % chktex 1
+		\acs{#1}%
+	\else
+		\acs{#1} (\acl{#1})%
+		\global\expandafter\let\csname ac@#1\endcsname\AC@used % chktex 1
+		\AC@addtoAC@clearlist{#1}
+		\AC@logged{#1}
+	\fi
+}
+\makeatother
+
+% Enable quotes by \enquote{}
+\RequirePackage[babel,english=american, german=quotes]{csquotes}
+
+% Necessary for frontpage, allows to create automata and fancy graphics
+\RequirePackage{tikz}
+
+% Protocols and bytefields
+\RequirePackage{protocol}
+\RequirePackage{bytefield}
+
+% Source code listings
+\newcommand{\code}[1]{\texttt{#1}}
+\definecolor{colIdentifier}{rgb}{0,0,0}
+\definecolor{colComments}{rgb}{0.5,0.5,0.5}
+\definecolor{colKeys}{rgb}{0,0,1}
+\definecolor{colString}{rgb}{0,0.6,0}
+
+\RequirePackage{caption}
+\RequirePackage{listings}
+\lstset{%
+	float=hbp,%
+	basicstyle=\ttfamily\scriptsize, %
+	identifierstyle=\color{colIdentifier}, %
+	keywordstyle=\color{colKeys}, %
+	stringstyle=\color{colString}, %
+	commentstyle=\color{colComments}, %
+	columns=flexible, %
+	tabsize=2, %
+	aboveskip={1.5\baselineskip}, %
+	frame=single, %
+	extendedchars=true, %
+	showspaces=false, %
+	showstringspaces=false, %
+	numberstyle=\tiny, %
+	breaklines=true, %
+	backgroundcolor=, %
+	breakautoindent=true, %
+	captionpos=b%
+}
+
+% Algorithms
+\RequirePackage[ruled, vlined, linesnumbered,algochapter,algo2e]{algorithm2e}
+
+% Format page foot and header
+\RequirePackage{scrpage2}
+\clearscrheadings{}
+\clearscrheadfoot{}
+\automark[section]{chapter}
+\ohead{\pagemark}
+\ihead{\headmark}
+\pagestyle{scrheadings}
+
+%% use some standards for mathematical expressions:
+
+\newcommand{\red}{{\rm red}}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{\propositiontitle}
+\newtheorem{corollary}[theorem]{\corollarytitle}
+% \newtheorem{definition}[theorem]{Definition}
+\newtheorem{algorithm}[theorem]{\algorithmtitle}
+\newenvironment{example}{\begin{quote}{\bf \exampletitle:}}{\end{quote}} 
+
+
+% BIBTEX, http://merkel.zoneo.net/Latex/natbib.php
+% if you uncomment this block, you'll get an english bibliography with alphanumerical references
+%\RequirePackage{bibgerm} % u. a. statt et al
+%\RequirePackage[square,numbers]{natbib} % eckige klammern, natbib-package
+% \setbibpreamble{{\large Seitenzahlen, auf denen ein Eintrag referenziert wird, werden am Ende eines jeden Eintrags angegeben.}\newline} % Wegen der pagebackref-Option des hyperref-Packets, wird vielen nicht direkt klar was das soll http://projekte.dante.de/DanteFAQ/Verzeichnisse#16
+
+% gray definition boxes, that whay you'll find them in the text
+\RequirePackage{shadethm}
+\newshadetheorem{sthm}[figure]{Definition}
+\newenvironment{definition}[1][]{
+   \definecolor{shadethmcolor}{rgb}{.9,.9,.9}
+   \begin{sthm}[#1]
+ }{\end{sthm}}
+
+% experimental
+%\RequirePackage{scrhack}
+
+% Hyperlinks and menu for your document
+\RequirePackage[breaklinks,hyperindex,colorlinks,anchorcolor=black,citecolor=black,filecolor=black,linkcolor=black,menucolor=black,urlcolor=black,pdftex]{hyperref} % pagebackref: Add page number to the references where they can be found
+% DO NOT LOAD ANY OF YOUR PACKAGES BEYOND THIS PACKAGE
+
+\makeatletter
+\AtBeginDocument{
+ \hypersetup{
+   pdftitle = {\thetitle},
+   pdfauthor = {\theauthor},
+   pdfsubject={\thetitle},
+   pdfkeywords={\thesiskeywords},
+%    unicode={true},
+ }
+}
+\makeatother
+
+% Use the same counter for tables and figures
+\makeatletter
+\AtBeginDocument{
+\let\c@table\c@figure{}
+\let\c@lstlisting\c@table{}
+\let\c@algocf\c@lstlisting{}
+}
+\makeatother
+
+\ifpdf % chktex 1
+	\hypersetup{linktocpage=false} 	% false=links are section names, true=links are page numbers, IMPORTANT: in dvi2ps mode, 'true' is required!
+\else
+	\hypersetup{linktocpage=true} 		% false=links are section names, true=links are page numbers, IMPORTANT: in dvi2ps mode, 'true' is required!
+	\RequirePackage[hyphenbreaks]{breakurl}
+\fi
+
+%%%%%% FRONTPAGE %%%%%%
+
+% Hintergrund-Makro
+\newcommand\BackgroundPic{
+\put(0,0){
+\parbox[b][\paperheight]{\paperwidth}{%
+\vfill
+\centering
+\includegraphics[width=\paperwidth,height=\paperheight]{images/front.png}%
+\vfill
+}}}
+
+\newcommand{\frontpage}{
+    \AddToShipoutPicture*{\BackgroundPic}
+    \begin{titlepage}
+    \makeatletter
+
+    \enlargethispage{3cm}
+
+    \begin{tikzpicture}[remember picture,overlay]
+    \node[shift={(10cm,-23.5cm)},opacity=1] {\includegraphics[scale=0.625]{images/hgi_nds_2.pdf}};
+    \end{tikzpicture}
+
+    \vspace*{10cm}
+    \begin{minipage}[b]{1\linewidth}
+        \sffamily
+        \hspace{-17.2mm}\includegraphics[scale=1.0]{images/rub_slogan}\\
+
+        \textbf{\LARGE {\thetitle}}\\
+
+        \Large{\theauthor}\\
+
+        \vspace{4cm}
+        \normalsize{
+        \thesistype\hspace{0.2cm}--\hspace{0.2cm}\thedate.\\ % lacheck 246
+          \thesischair\\
+        }
+        \newline
+        \normalsize{
+        \begin{tabular}{@{}ll@{}}
+        \thesissupervisortitle: & \thesissupervisor\\
+        \thesisadvisortitle: & \thesisadvisor\\
+        \end{tabular}
+        }
+    \end{minipage}
+
+
+    \makeatother%
+    \end{titlepage}%
+    \ClearShipoutPicture{}%
+}
