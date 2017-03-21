@@ -25,4 +25,9 @@ setuptools.setup(
             'xjcc=xjcc:main',
         ],
     },
+    install_requires=[
+        'setuptools==34.3.2',
+        'defusedxml>=0.5.0',
+    ],
+    python_requires='>=3.5.0',
 )
