@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import logging
 from . import check
 from . import plugins
 
@@ -10,9 +11,7 @@ def list_converters(args):
         return
 
     for conv in converters:
-        mod = conv.load()
-        desc = ' '.join(mod.__doc__.strip().split())
-        print(conv.name, desc)
+        print(conv.name, conv.desc)
 
 
 def list_checks(args):
@@ -23,3 +22,27 @@ def list_checks(args):
 
     for chk in checks:
         print(chk.name)
+
+
+def check_conversion(args):
+    logger = logging.getLogger(__name__)
+    checks = sorted(check.get_testdocs(), key=lambda x: x.name)
+    if not checks:
+        print('No checks available.')
+        return
+
+    converter = plugins.get_converter(args.name)
+    if not converter:
+        print('No converter named \'%s\' found.' % args.name)
+        return
+
+    print('Checking converter \'%s\'...' % converter.name)
+    for chk in checks:
+        try:
+            result = check.check_converter(converter.module, chk.content)
+        except Exception:
+            textresult = 'Error'
+            logger.debug('Error occured during conversion', exc_info=True)
+        else:
+            textresult = 'OK' if result else 'Failed'
+        print('%s: %s' % (chk.name, textresult))

@@ -51,6 +51,14 @@ def main(args=None):
     )
     parser_listchecks.set_defaults(func=cli.list_checks)
 
+    # check-conversion
+    parser_checkconversion = subparsers.add_parser(
+        'check-conversion',
+        help='check conversion'
+    )
+    parser_checkconversion.add_argument('name')
+    parser_checkconversion.set_defaults(func=cli.check_conversion)
+
     # Parse arguments and execute code
     p_args = parser.parse_args(args)
     logging.basicConfig(level=p_args.loglevel)
