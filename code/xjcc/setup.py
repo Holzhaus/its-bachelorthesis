@@ -22,7 +22,7 @@ setuptools.setup(
     include_package_data=True,
     entry_points={
         'console_scripts': [
-            'xjcc=xjcc:main',
+            'xjcc=xjcc.main:main',
         ],
     },
     install_requires=[
