@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 import collections
+import io
 import os
+import defusedxml.lxml
 import pkg_resources
 
 DOCDIR = 'testdocs'
@@ -19,7 +21,15 @@ def get_testdocs():
         yield TestDocument(name, content)
 
 
+def canonicalize(xml_data):
+    element = defusedxml.lxml.fromstring(xml_data)
+    tree = element.getroottree()
+    output = io.BytesIO()
+    tree.write_c14n(output)
+    return output.getvalue()
+
+
 def check_conversion(converter, xml_data):
     json_data = converter.xml_to_json(xml_data)
     new_xml_data = converter.json_to_xml(json_data)
-    return (xml_data == new_xml_data)
+    return (canonicalize(xml_data) == canonicalize(new_xml_data))
