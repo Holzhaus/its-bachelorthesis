@@ -22,7 +22,7 @@ def get_testdocs():
 
 
 def canonicalize(xml_data):
-    element = defusedxml.lxml.fromstring(xml_data)
+    element = defusedxml.lxml.XML(xml_data)
     tree = element.getroottree()
     output = io.BytesIO()
     tree.write_c14n(output)
