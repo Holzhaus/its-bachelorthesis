@@ -17,3 +17,9 @@ def get_testdocs():
         content = f.read()
         f.close()
         yield TestDocument(name, content)
+
+
+def check_conversion(converter, xml_data):
+    json_data = converter.xml_to_json(xml_data)
+    new_xml_data = converter.json_to_xml(json_data)
+    return (xml_data == new_xml_data)
