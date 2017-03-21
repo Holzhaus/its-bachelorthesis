@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import itertools
 import collections
 import pkg_resources
 
@@ -10,12 +11,24 @@ Plugin = collections.namedtuple('Plugin', [
     'meta'
 ])
 
+GROUP = 'xjcc.converters'
 
-def get_converters():
-    for entrypoint in pkg_resources.iter_entry_points('xjcc.converters'):
+
+def get_converters(name=None):
+    for entrypoint in pkg_resources.iter_entry_points(GROUP, name=name):
         module = entrypoint.load()
         desc, metadata = parse_docstring(module.__doc__)
         yield Plugin(entrypoint.name, module, entrypoint, desc, metadata)
+
+
+def get_converter(name):
+    converters = get_converters(name=name)
+    try:
+        converter = list(itertools.islice(converters, 1))[0]
+    except IndexError:
+        return None
+    else:
+        return converter
 
 
 def parse_docstring(docstring):
