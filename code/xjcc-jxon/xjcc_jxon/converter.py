@@ -27,8 +27,15 @@ def get_env():
     env = os.environ.copy()
     if not env.get('NODE_PATH', None):
         cmd = ['npm', 'root', '--global']
-        env['NODE_PATH'] = subprocess.check_output(cmd).decode().strip()
-    logger.debug('NODE_PATH = %s', env.get('NODE_PATH'))
+        try:
+            node_path = subprocess.check_output(cmd).decode().strip()
+        except Exception:
+            logger.warning('Unable to query the global nodejs module path! ' +
+                           'Is npm installed?')
+            logger.debug('Logging traceback...', exc_info=True)
+            node_path = ''
+        env['NODE_PATH'] = node_path
+    logger.debug('NODE_PATH = \'%s\'', env.get('NODE_PATH'))
     return env
 
 
