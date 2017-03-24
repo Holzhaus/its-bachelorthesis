@@ -31,21 +31,29 @@ def check_conversion(args):
         print('No checks available.')
         return
 
-    converter = plugins.get_converter(args.name)
-    if not converter:
-        print('No converter named \'%s\' found.' % args.name)
-        return
+    if not args.name:
+        converters = sorted(plugins.get_converters(), key=lambda x: x.name)
+        if not converters:
+            print('No converters available.')
+            return
+    else:
+        converter = plugins.get_converter(args.name)
+        if not converter:
+            print('No converter named \'%s\' found.' % args.name)
+            return
+        converters = [converter]
 
-    print('Checking converter \'%s\'...' % converter.name)
-    for chk in checks:
-        try:
-            result = check.check_conversion(converter.module, chk.content)
-        except Exception:
-            textresult = 'Error'
-            logger.debug('Error occured during conversion', exc_info=True)
-        else:
-            textresult = 'OK' if result else 'Failed'
-        print('%s: %s' % (chk.name, textresult))
+    for converter in converters:
+        print('Checking converter \'%s\'...' % converter.name)
+        for chk in checks:
+            try:
+                result = check.check_conversion(converter.module, chk.content)
+            except Exception:
+                textresult = 'Error'
+                logger.debug('Error occured during conversion', exc_info=True)
+            else:
+                textresult = 'OK' if result else 'Failed'
+            print('%s: %s' % (chk.name, textresult))
 
 
 def canonicalize(args):

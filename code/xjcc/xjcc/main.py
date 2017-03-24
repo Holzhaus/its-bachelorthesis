@@ -56,7 +56,7 @@ def parse_args(args=None):
         'check-conversion',
         help='check conversion'
     )
-    parser_checkconversion.add_argument('name')
+    parser_checkconversion.add_argument('name', nargs='?')
     parser_checkconversion.set_defaults(func=cli.check_conversion)
 
     # canonicalize
