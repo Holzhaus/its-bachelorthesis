@@ -31,5 +31,10 @@ setuptools.setup(
         'defusedxml>=0.5.0',
     ],
     python_requires='>=3.5.0',
+    extras_require={
+        'Colored terminal output': [
+            'blessings>=1.6',
+        ],
+    },
     test_suite='xjcc.tests',
 )

@@ -3,6 +3,11 @@ import logging
 from . import check
 from . import plugins
 
+try:
+    import blessings
+except ImportError:
+    blessings = None
+
 
 def list_converters(args):
     converters = sorted(plugins.get_converters(), key=lambda x: x.name)
@@ -25,7 +30,6 @@ def list_checks(args):
 
 
 def check_conversion(args):
-    logger = logging.getLogger(__name__)
     checks = sorted(check.get_testdocs(), key=lambda x: x.name)
     if not checks:
         print('No checks available.')
@@ -43,17 +47,46 @@ def check_conversion(args):
             return
         converters = [converter]
 
+    textresults = {
+        None: 'ERROR',
+        True: 'OK',
+        False: 'FAILED',
+    }
+
+    if blessings:
+        term = blessings.Terminal()
+        textresults = {
+            None: term.red('ERROR'),
+            True: term.green('OK'),
+            False: term.yellow('FAILED'),
+        }
+
+    width = max(len(x) for x in textresults.values()) + 2
+    fmt = '  [{{result:^{width}}}] {{name}}'.format(width=width)
+
     for converter in converters:
-        print('Checking converter \'%s\'...' % converter.name)
+        print('Converter \'%s\':' % converter.name)
+        for chk, result in run_checks(checks, converter):
+            textresult = textresults[result]
+            print(fmt.format(result=textresult, name=chk.name))
+        print('')
+
+
+def run_checks(checks, converter):
+        logger = logging.getLogger(__name__)
+        checks_passed = 0
         for chk in checks:
             try:
                 result = check.check_conversion(converter.module, chk.content)
             except Exception:
-                textresult = 'Error'
+                result = None
                 logger.debug('Error occured during conversion', exc_info=True)
             else:
-                textresult = 'OK' if result else 'Failed'
-            print('%s: %s' % (chk.name, textresult))
+                if result:
+                    checks_passed += 1
+            yield (chk, result)
+        logger.info('Converter \'%s\' passed %d out of %d checks',
+                    checks_passed, len(checks))
 
 
 def canonicalize(args):
