@@ -18,6 +18,23 @@ NODE_APP = pkg_resources.resource_filename(
 )
 
 
+def get_env():
+    """
+    Get an environment dict and ensure that the NODE_PATH variable is set, so
+    that globally installed node_modules can be found.
+    """
+    logger = logging.getLogger(__name__)
+    env = os.environ.copy()
+    if not env.get('NODE_PATH', None):
+        cmd = ['npm', 'root', '--global']
+        env['NODE_PATH'] = subprocess.check_output(cmd).decode().strip()
+    logger.debug('NODE_PATH = %s', env.get('NODE_PATH'))
+    return env
+
+
+ENV = get_env()
+
+
 def xml_to_json(xml_data):
     logger = logging.getLogger(__name__)
     cmd = ['node', NODE_APP]
@@ -26,7 +43,8 @@ def xml_to_json(xml_data):
         f.seek(0)
         with tempfile.SpooledTemporaryFile() as err_f:
             try:
-                output = subprocess.check_output(cmd, stdin=f, stderr=err_f)
+                output = subprocess.check_output(cmd, stdin=f, stderr=err_f,
+                                                 env=ENV)
             except subprocess.CalledProcessError as e:
                 err_f.seek(0)
                 errors = err_f.read().decode().strip()
@@ -43,7 +61,8 @@ def json_to_xml(json_data):
         f.seek(0)
         with tempfile.SpooledTemporaryFile() as err_f:
             try:
-                output = subprocess.check_output(cmd, stdin=f, stderr=err_f)
+                output = subprocess.check_output(cmd, stdin=f, stderr=err_f,
+                                                 env=ENV)
             except subprocess.CalledProcessError as e:
                 err_f.seek(0)
                 errors = err_f.read().decode().strip()
