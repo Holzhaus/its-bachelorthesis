@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
+import csv
+import json
 import logging
+import sys
 from . import check
 from . import plugins
 
@@ -53,23 +56,41 @@ def check_conversion(args):
         False: 'FAILED',
     }
 
-    if blessings:
-        term = blessings.Terminal()
-        textresults = {
-            None: term.red('ERROR'),
-            True: term.green('OK'),
-            False: term.yellow('FAILED'),
+    if args.format == 'text':
+        if blessings:
+            term = blessings.Terminal()
+            textresults = {
+                None: term.red('ERROR'),
+                True: term.green('OK'),
+                False: term.yellow('FAILED'),
+            }
+
+        width = max(len(x) for x in textresults.values()) + 2
+        fmt = '  [{{result:^{width}}}] {{name}}'.format(width=width)
+
+        for converter in converters:
+            print('Converter \'%s\':' % converter.name)
+            for chk, result in run_checks(checks, converter):
+                textresult = textresults[result]
+                print(fmt.format(result=textresult, name=chk.name))
+            print('')
+    else:
+        results = {
+            converter.name: {
+                chk.name: result
+                for chk, result in run_checks(checks, converter)
+            } for converter in converters
         }
 
-    width = max(len(x) for x in textresults.values()) + 2
-    fmt = '  [{{result:^{width}}}] {{name}}'.format(width=width)
-
-    for converter in converters:
-        print('Converter \'%s\':' % converter.name)
-        for chk, result in run_checks(checks, converter):
-            textresult = textresults[result]
-            print(fmt.format(result=textresult, name=chk.name))
-        print('')
+        if args.format == 'json':
+            print(json.dumps(results))
+        elif args.format == 'csv':
+            fieldnames = ['converter'] + list(list(results.values())[0].keys())
+            writer = csv.DictWriter(sys.stdout, fieldnames=fieldnames)
+            writer.writeheader()
+            for converter, tests in results.items():
+                result = {**{'converter': converter}, **tests}
+                writer.writerow(result)
 
 
 def run_checks(checks, converter):
@@ -86,7 +107,7 @@ def run_checks(checks, converter):
                     checks_passed += 1
             yield (chk, result)
         logger.info('Converter \'%s\' passed %d out of %d checks',
-                    checks_passed, len(checks))
+                    converter.name, checks_passed, len(checks))
 
 
 def canonicalize(args):

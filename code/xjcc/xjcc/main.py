@@ -56,6 +56,11 @@ def parse_args(args=None):
         'check-conversion',
         help='check conversion'
     )
+    parser_checkconversion.add_argument('-f', '--format', choices=[
+        'json',
+        'csv',
+        'text',
+    ], default='text')
     parser_checkconversion.add_argument('name', nargs='?')
     parser_checkconversion.set_defaults(func=cli.check_conversion)
 
