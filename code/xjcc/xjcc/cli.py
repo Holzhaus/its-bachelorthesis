@@ -39,7 +39,7 @@ def check_conversion(args):
     print('Checking converter \'%s\'...' % converter.name)
     for chk in checks:
         try:
-            result = check.check_converter(converter.module, chk.content)
+            result = check.check_conversion(converter.module, chk.content)
         except Exception:
             textresult = 'Error'
             logger.debug('Error occured during conversion', exc_info=True)
