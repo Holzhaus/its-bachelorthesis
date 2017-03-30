@@ -33,6 +33,7 @@ def list_checks(args):
 
 
 def check_conversion(args):
+    logger = logging.getLogger(__name__)
     checks = sorted(check.get_testdocs(), key=lambda x: x.name)
     if not checks:
         print('No checks available.')
@@ -50,6 +51,12 @@ def check_conversion(args):
             return
         converters = [converter]
 
+    results = {}
+    for converter in converters:
+        logger.debug('Testing converter  \'%s\'...', converter.name)
+        results[converter.name] = list(check.run_checks(converter, checks))
+        logger.debug('Testing converter  \'%s\' done.', converter.name)
+
     textresults = {
         None: 'ERROR',
         True: 'OK',
@@ -60,28 +67,28 @@ def check_conversion(args):
         if blessings:
             term = blessings.Terminal()
             textresults = {
-                None: term.red('ERROR'),
-                True: term.green('OK'),
-                False: term.yellow('FAILED'),
+                None: term.red(textresults[None]),
+                True: term.green(textresults[True]),
+                False: term.yellow(textresults[False]),
             }
 
         width = max(len(x) for x in textresults.values()) + 2
         fmt = '  [{{result:^{width}}}] {{name}}'.format(width=width)
 
-        for converter in converters:
+        for converter_name, resultlist in results.items():
             print('Converter \'%s\':' % converter.name)
-            for chk, result in run_checks(checks, converter):
-                textresult = textresults[result]
-                print(fmt.format(result=textresult, name=chk.name))
+            for result in resultlist:
+                textresult = textresults[result.passed]
+                print(fmt.format(result=textresult, name=result.check.name))
             print('')
     else:
-        results = {
-            converter.name: {
-                chk.name: result
-                for chk, result in run_checks(checks, converter)
-            } for converter in converters
+        jsonresults = {
+            converter_name: {
+                result.check.name: textresult[result.passed]
+                for result in resultlist
+            }
+            for converter_name, resultlist in results
         }
-
         if args.format == 'json':
             print(json.dumps(results))
         elif args.format == 'csv':
@@ -91,23 +98,6 @@ def check_conversion(args):
             for converter, tests in results.items():
                 result = {**{'converter': converter}, **tests}
                 writer.writerow(result)
-
-
-def run_checks(checks, converter):
-        logger = logging.getLogger(__name__)
-        checks_passed = 0
-        for chk in checks:
-            try:
-                result = check.check_conversion(converter.module, chk.content)
-            except Exception:
-                result = None
-                logger.debug('Error occured during conversion', exc_info=True)
-            else:
-                if result:
-                    checks_passed += 1
-            yield (chk, result)
-        logger.info('Converter \'%s\' passed %d out of %d checks',
-                    converter.name, checks_passed, len(checks))
 
 
 def canonicalize(args):
