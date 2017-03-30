@@ -44,25 +44,25 @@ def parse_args(args=None):
     )
     parser_list.set_defaults(func=cli.list_converters)
 
-    # list-checks
-    parser_listchecks = subparsers.add_parser(
-        'list-checks',
-        help='list checks'
+    # list-tests
+    parser_listtestcases = subparsers.add_parser(
+        'list-testcases',
+        help='list tests'
     )
-    parser_listchecks.set_defaults(func=cli.list_checks)
+    parser_listtestcases.set_defaults(func=cli.list_testcases)
 
-    # check-conversion
-    parser_checkconversion = subparsers.add_parser(
-        'check-conversion',
-        help='check conversion'
+    # test-conversion
+    parser_testconversion = subparsers.add_parser(
+        'test-conversion',
+        help='test conversion'
     )
-    parser_checkconversion.add_argument('-f', '--format', choices=[
+    parser_testconversion.add_argument('-f', '--format', choices=[
         'json',
         'csv',
         'text',
     ], default='text')
-    parser_checkconversion.add_argument('name', nargs='?')
-    parser_checkconversion.set_defaults(func=cli.check_conversion)
+    parser_testconversion.add_argument('name', nargs='?')
+    parser_testconversion.set_defaults(func=cli.test_conversion)
 
     # canonicalize
     parser_canonicalize = subparsers.add_parser(

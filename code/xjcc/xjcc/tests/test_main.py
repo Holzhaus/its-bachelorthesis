@@ -14,11 +14,11 @@ class TestArgParse(unittest.TestCase):
     def test_list_converters(self):
         self.command_test('list-converters')
 
-    def test_list_checks(self):
-        self.command_test('list-checks')
+    def test_list_testcases(self):
+        self.command_test('list-testcases')
 
     def test_check_conversion(self):
-        args = self.command_test('check-conversion', 'myconv')
+        args = self.command_test('test-conversion', 'myconv')
         self.assertEqual(args.name, 'myconv')
 
     def test_canonicalize(self):

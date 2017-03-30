@@ -3,7 +3,7 @@ import csv
 import json
 import logging
 import sys
-from . import check
+from . import testing
 from . import plugins
 
 try:
@@ -22,21 +22,21 @@ def list_converters(args):
         print(conv.name, conv.desc)
 
 
-def list_checks(args):
-    checks = sorted(check.get_testdocs(), key=lambda x: x.name)
-    if not checks:
-        print('No checks available.')
+def list_testcases(args):
+    tests = sorted(testing.get_tests(), key=lambda x: x.name)
+    if not tests:
+        print('No testcases available.')
         return
 
-    for chk in checks:
-        print(chk.name)
+    for test in tests:
+        print(test.name)
 
 
-def check_conversion(args):
+def test_conversion(args):
     logger = logging.getLogger(__name__)
-    checks = sorted(check.get_testdocs(), key=lambda x: x.name)
-    if not checks:
-        print('No checks available.')
+    tests = sorted(testing.get_tests(), key=lambda x: x.name)
+    if not tests:
+        print('No testcases available.')
         return
 
     if not args.name:
@@ -54,7 +54,7 @@ def check_conversion(args):
     results = {}
     for converter in converters:
         logger.debug('Testing converter  \'%s\'...', converter.name)
-        results[converter.name] = list(check.run_checks(converter, checks))
+        results[converter.name] = list(testing.run_tests(converter, tests))
         logger.debug('Testing converter  \'%s\' done.', converter.name)
 
     textresults = {
@@ -78,13 +78,13 @@ def check_conversion(args):
         for converter_name, resultlist in results.items():
             print('Converter \'%s\':' % converter.name)
             for result in resultlist:
-                textresult = textresults[result.passed]
-                print(fmt.format(result=textresult, name=result.check.name))
+                textresult = textresults[result.test_passed]
+                print(fmt.format(result=textresult, name=result.test.name))
             print('')
     else:
         jsonresults = {
             converter_name: {
-                result.check.name: textresult[result.passed]
+                result.test.name: textresult[result.test_passed]
                 for result in resultlist
             }
             for converter_name, resultlist in results
@@ -105,4 +105,4 @@ def canonicalize(args):
     # See https://bugs.python.org/issue14156 for details.
     args.file = args.file.buffer if hasattr(args.file, 'buffer') else args.file
     xml_data = args.file.read()
-    print(check.canonicalize(xml_data).decode())
+    print(testing.canonicalize(xml_data).decode())
