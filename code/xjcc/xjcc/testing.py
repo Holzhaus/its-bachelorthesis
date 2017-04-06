@@ -30,13 +30,12 @@ class TestCase(object):
         logger = logging.getLogger(__name__)
         try:
             json_output, xml_output = self.get_conversion_data(converter.module)
+            passed = (canonicalize(self.xml_data) == canonicalize(xml_output))
         except Exception:
             passed = None
             json_output = None
             xml_output = None
             logger.debug('Error occured during conversion', exc_info=True)
-        else:
-            passed = (canonicalize(self.xml_data) == canonicalize(xml_output))
         return TestResult(
             test=self,
             test_passed=passed,
