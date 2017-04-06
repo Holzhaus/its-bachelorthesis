@@ -1,2 +1,2 @@
 # -*- coding: utf-8 -*-
-from . import converter
+from .converter import *  # NOQA

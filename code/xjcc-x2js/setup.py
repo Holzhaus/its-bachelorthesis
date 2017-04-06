@@ -22,7 +22,7 @@ setuptools.setup(
     include_package_data=True,
     entry_points={
         'xjcc.converters': [
-            'x2js = xjcc_x2js.converter',
+            'x2js = xjcc_x2js:X2jsPlugin',
         ],
     },
 )

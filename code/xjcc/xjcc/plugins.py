@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import abc
 import atexit
 import itertools
 import logging
@@ -27,14 +28,15 @@ def get_converters(name=None):
     for entrypoint in pkg_resources.iter_entry_points(GROUP, name=name):
         logger.debug('Trying to load entrypoint \'%s\'...', entrypoint.name)
         try:
-            module = entrypoint.load()
+            plugin_class = entrypoint.load()
+            plugin = plugin_class(entrypoint.module_name)
         except Exception as e:
             logger.info('Unable to load entrypoint \'%s\'', entrypoint.name)
             logger.debug('Error occured!', exc_info=True)
         else:
             logger.info('Entrypoint \'%s\' loaded.', entrypoint.name)
-            desc, metadata = parse_docstring(module.__doc__)
-            yield Plugin(entrypoint.name, module, entrypoint, desc, metadata)
+            desc, metadata = parse_docstring(plugin_class.__doc__)
+            yield Plugin(entrypoint.name, plugin, entrypoint, desc, metadata)
 
 
 def get_converter(name):
@@ -58,30 +60,77 @@ def parse_docstring(docstring):
     return (desc, metadata)
 
 
-def get_package_name(name):
-    return name.rpartition('.')[0]
+class ConverterPlugin(object):
+    __metaclass__ = abc.ABCMeta
+
+    def __init__(self, name):
+        self.name = name
+
+    def get_package_name(self):
+        return self.name.rpartition('.')[0] if '.' in self.name else self.name
+
+    def get_package_filename(self, filename):
+        pkg = self.get_package_name()
+        return pkg_resources.resource_filename(
+            pkg_resources.Requirement(pkg),
+            os.path.join(pkg, filename),
+        )
+
+    def run_command(self, cmd, data, env=None):
+        logger = logging.getLogger(__name__)
+        with tempfile.SpooledTemporaryFile() as f:
+            f.write(data)
+            f.seek(0)
+            with tempfile.SpooledTemporaryFile() as err_f:
+                try:
+                    output = subprocess.check_output(cmd, stdin=f,
+                                                     stderr=err_f, env=env)
+                except subprocess.CalledProcessError as e:
+                    err_f.seek(0)
+                    errors = err_f.read().decode().strip()
+                    logger.debug('stderr contents: %s', errors)
+                    raise e
+        return output
+
+    @abc.abstractmethod
+    def xml_to_json(self, data):
+        pass
+
+    @abc.abstractmethod
+    def json_to_xml(self, data):
+        pass
 
 
-def get_package_filename(modulename, filename):
-    pkg = get_package_name(modulename)
-    return pkg_resources.resource_filename(
-        pkg_resources.Requirement(pkg),
-        os.path.join(pkg, filename),
-    )
+class NodejsConverterPlugin(ConverterPlugin):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.node_app = self.get_package_filename('converter.js')
+        self.node_env = self.get_env()
 
-
-def run_command(cmd, data, env=None):
-    logger = logging.getLogger(__name__)
-    with tempfile.SpooledTemporaryFile() as f:
-        f.write(data)
-        f.seek(0)
-        with tempfile.SpooledTemporaryFile() as err_f:
+    def get_env(self):
+        """
+        Get an environment dict and ensure that the NODE_PATH variable is set,
+        so that globally installed node_modules can be found.
+        """
+        logger = logging.getLogger(self.name)
+        env = os.environ.copy()
+        if not env.get('NODE_PATH', None):
+            cmd = ['npm', 'root', '--global']
             try:
-                output = subprocess.check_output(cmd, stdin=f, stderr=err_f,
-                                                 env=env)
-            except subprocess.CalledProcessError as e:
-                err_f.seek(0)
-                errors = err_f.read().decode().strip()
-                logger.debug('stderr contents: %s', errors)
-                raise e
-    return output
+                node_path = subprocess.check_output(cmd).decode().strip()
+            except Exception:
+                logger.warning('Unable to query the global nodejs module ' +
+                               'path! Is npm installed?')
+                logger.debug('Logging traceback...', exc_info=True)
+                node_path = ''
+            env['NODE_PATH'] = node_path
+        logger.debug('NODE_PATH = \'%s\'', env.get('NODE_PATH'))
+        return env
+
+    def xml_to_json(self, xml_data):
+        cmd = ['node', self.node_app]
+        return self.run_command(cmd, xml_data, env=self.node_env)
+
+    def json_to_xml(self, json_data):
+        cmd = ['node', self.node_app, '--decode']
+        return self.run_command(cmd, json_data, env=self.node_env)

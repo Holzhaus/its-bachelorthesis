@@ -22,7 +22,7 @@ setuptools.setup(
     include_package_data=True,
     entry_points={
         'xjcc.converters': [
-            'jxon = xjcc_jxon.converter',
+            'jxon = xjcc_jxon:JxonPlugin',
         ],
     },
 )

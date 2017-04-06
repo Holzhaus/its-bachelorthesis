@@ -21,7 +21,7 @@ setuptools.setup(
     packages=setuptools.find_packages(exclude=['contrib', 'docs', 'tests']),
     entry_points={
         'xjcc.converters': [
-            'pesterfish = xjcc_pesterfish.converter',
+            'pesterfish = xjcc_pesterfish:PesterfishPlugin',
         ],
     },
 )
