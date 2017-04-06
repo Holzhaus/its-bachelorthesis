@@ -24,4 +24,7 @@ setuptools.setup(
             'pesterfish = xjcc_pesterfish:PesterfishPlugin',
         ],
     },
+    install_requires=[
+        'simplejson>=3.10.0',
+    ]
 )
