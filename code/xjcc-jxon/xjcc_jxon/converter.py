@@ -3,19 +3,12 @@
 Implementation of Mozilla's JavaScript XML Object Notation (JXON)
 https://github.com/tyrasd/jxon
 """
-import atexit
 import logging
 import os
 import subprocess
-import tempfile
-import pkg_resources
+import xjcc.plugins
 
-atexit.register(pkg_resources.cleanup_resources)
-
-NODE_APP = pkg_resources.resource_filename(
-    pkg_resources.Requirement(__name__.rpartition('.')[0]),
-    os.path.join(__name__.rpartition('.')[0], 'jxonconverter.js'),
-)
+NODE_APP = xjcc.plugins.get_package_filename(__name__, 'jxonconverter.js')
 
 
 def get_env():
@@ -43,36 +36,10 @@ ENV = get_env()
 
 
 def xml_to_json(xml_data):
-    logger = logging.getLogger(__name__)
     cmd = ['node', NODE_APP]
-    with tempfile.SpooledTemporaryFile() as f:
-        f.write(xml_data)
-        f.seek(0)
-        with tempfile.SpooledTemporaryFile() as err_f:
-            try:
-                output = subprocess.check_output(cmd, stdin=f, stderr=err_f,
-                                                 env=ENV)
-            except subprocess.CalledProcessError as e:
-                err_f.seek(0)
-                errors = err_f.read().decode().strip()
-                logger.debug('stderr contents: %s', errors)
-                raise e
-    return output
+    return xjcc.plugins.run_command(cmd, xml_data, env=ENV)
 
 
 def json_to_xml(json_data):
-    logger = logging.getLogger(__name__)
     cmd = ['node', NODE_APP, '--decode']
-    with tempfile.SpooledTemporaryFile() as f:
-        f.write(json_data)
-        f.seek(0)
-        with tempfile.SpooledTemporaryFile() as err_f:
-            try:
-                output = subprocess.check_output(cmd, stdin=f, stderr=err_f,
-                                                 env=ENV)
-            except subprocess.CalledProcessError as e:
-                err_f.seek(0)
-                errors = err_f.read().decode().strip()
-                logger.debug('stderr contents: %s', errors)
-                raise e
-    return output
+    return xjcc.plugins.run_command(cmd, json_data, env=ENV)
