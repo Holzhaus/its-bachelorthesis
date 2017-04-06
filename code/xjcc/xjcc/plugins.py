@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import itertools
+import logging
 import collections
 import re
 import pkg_resources
@@ -16,10 +17,18 @@ GROUP = 'xjcc.converters'
 
 
 def get_converters(name=None):
+    logger = logging.getLogger(__name__)
     for entrypoint in pkg_resources.iter_entry_points(GROUP, name=name):
-        module = entrypoint.load()
-        desc, metadata = parse_docstring(module.__doc__)
-        yield Plugin(entrypoint.name, module, entrypoint, desc, metadata)
+        logger.debug('Trying to load entrypoint \'%s\'...', entrypoint.name)
+        try:
+            module = entrypoint.load()
+        except Exception as e:
+            logger.info('Unable to load entrypoint \'%s\'', entrypoint.name)
+            logger.debug('Error occured!', exc_info=True)
+        else:
+            logger.info('Entrypoint \'%s\' loaded.', entrypoint.name)
+            desc, metadata = parse_docstring(module.__doc__)
+            yield Plugin(entrypoint.name, module, entrypoint, desc, metadata)
 
 
 def get_converter(name):
