@@ -1,0 +1,3 @@
+include xjcc_jsonlib/jsonlib/pom.xml
+include xjcc_jsonlib/jsonlib/src/main/java/de/rub/xjcc/jsonlib/App.java
+include xjcc_jsonlib/jsonlib/src/test/java/de/rub/xjcc/jsonlib/AppTest.java

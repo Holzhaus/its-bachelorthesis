@@ -8,7 +8,7 @@ RUN mkdir /data
 RUN adduser -D -h /data xjcc
 
 # Install dependencies
-RUN apk add --update ca-certificates python3 nodejs py-setuptools py-lxml
+RUN apk add --update ca-certificates python3 nodejs py-setuptools py-lxml maven openjdk8
 RUN npm install -g xmldom@0.1.27 \
                    x2js@3.1.0 \
                    jxon@2.0.0-beta.4 \
@@ -33,6 +33,9 @@ RUN cd /opt/xjcc/xjcc-pesterfish && ./setup.py install
 
 COPY xjcc-jsonml /opt/xjcc/xjcc-jsonml
 RUN cd /opt/xjcc/xjcc-jsonml && ./setup.py install
+
+COPY xjcc-jsonlib /opt/xjcc/xjcc-jsonlib
+RUN cd /opt/xjcc/xjcc-jsonlib && ./setup.py install
 
 RUN rm -rf /opt/xjcc
 
