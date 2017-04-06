@@ -82,7 +82,7 @@ def test_conversion(args):
                 print(fmt.format(result=textresult, name=result.test.name))
             print('')
     else:
-        jsonresults = {
+        data = {
             converter_name: {
                 result.test.name: textresult[result.test_passed]
                 for result in resultlist
@@ -90,13 +90,13 @@ def test_conversion(args):
             for converter_name, resultlist in results
         }
         if args.format == 'json':
-            print(json.dumps(results))
+            print(json.dumps(data))
         elif args.format == 'csv':
-            fieldnames = ['converter'] + list(list(results.values())[0].keys())
+            fieldnames = ['converter'] + list(list(data.values())[0].keys())
             writer = csv.DictWriter(sys.stdout, fieldnames=fieldnames)
             writer.writeheader()
-            for converter, tests in results.items():
-                result = {**{'converter': converter}, **tests}
+            for converter, tests in data.items():
+                result = {**{'converer': converter}, **tests}
                 writer.writerow(result)
 
 
