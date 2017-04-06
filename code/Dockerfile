@@ -11,7 +11,8 @@ RUN adduser -D -h /data xjcc
 RUN apk add --update ca-certificates python3 nodejs py-setuptools py-lxml
 RUN npm install -g xmldom@0.1.27 \
                    x2js@3.1.0 \
-                   jxon@2.0.0-beta.4
+                   jxon@2.0.0-beta.4 \
+                   jsonml-tools@2.0.0
 
 RUN mkdir -p /opt/xjcc
 COPY requirements.txt /opt/xjcc/requirements.txt
@@ -29,6 +30,9 @@ RUN cd /opt/xjcc/xjcc-x2js && ./setup.py install
 
 COPY xjcc-pesterfish /opt/xjcc/xjcc-pesterfish
 RUN cd /opt/xjcc/xjcc-pesterfish && ./setup.py install
+
+COPY xjcc-jsonml /opt/xjcc/xjcc-jsonml
+RUN cd /opt/xjcc/xjcc-jsonml && ./setup.py install
 
 RUN rm -rf /opt/xjcc
 
