@@ -12,8 +12,8 @@ import pkg_resources
 atexit.register(pkg_resources.cleanup_resources)
 
 NODE_APP = pkg_resources.resource_filename(
-    pkg_resources.Requirement(__package__),
-    os.path.join(__package__, 'converter.js'),
+    pkg_resources.Requirement(__name__.rpartition('.')[0]),
+    os.path.join(__name__.rpartition('.')[0], 'converter.js'),
 )
 
 
