@@ -27,7 +27,7 @@ setuptools.setup(
     },
     install_requires=[
         'setuptools>=34.3.2',
-        'lxml>=3.7.3',
+        'lxml>=3.6.0',
         'defusedxml>=0.5.0',
     ],
     python_requires='>=3.5.0',
