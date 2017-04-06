@@ -76,7 +76,7 @@ def test_conversion(args):
         fmt = '  [{{result:^{width}}}] {{name}}'.format(width=width)
 
         for converter_name, resultlist in results.items():
-            print('Converter \'%s\':' % converter.name)
+            print('Converter \'%s\':' % converter_name)
             for result in resultlist:
                 textresult = textresults[result.test_passed]
                 print(fmt.format(result=textresult, name=result.test.name))
