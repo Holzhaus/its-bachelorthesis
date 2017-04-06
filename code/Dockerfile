@@ -37,6 +37,9 @@ RUN cd /opt/xjcc/xjcc-jsonml && ./setup.py install
 COPY xjcc-jsonlib /opt/xjcc/xjcc-jsonlib
 RUN cd /opt/xjcc/xjcc-jsonlib && ./setup.py install
 
+COPY xjcc-orgjsonxml /opt/xjcc/xjcc-orgjsonxml
+RUN cd /opt/xjcc/xjcc-orgjsonxml && ./setup.py install
+
 RUN rm -rf /opt/xjcc
 
 # Don't run as root inside container

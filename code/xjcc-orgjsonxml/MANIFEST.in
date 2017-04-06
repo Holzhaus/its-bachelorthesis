@@ -1,0 +1,3 @@
+include xjcc_orgjsonxml/orgjsonxml/pom.xml
+include xjcc_orgjsonxml/orgjsonxml/src/main/java/de/rub/xjcc/orgjsonxml/App.java
+include xjcc_orgjsonxml/orgjsonxml/src/test/java/de/rub/xjcc/orgjsonxml/AppTest.java
