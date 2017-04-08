@@ -6,6 +6,7 @@
 \RequirePackage[T1]{fontenc}
 \RequirePackage[utf8]{inputenc}
 \RequirePackage{pgfpages}
+\RequirePackage[babel,english=american, german=quotes]{csquotes}
 \RequirePackage[skip=2pt]{caption}
 \RequirePackage[subpreambles]{standalone}
 \RequirePackage{relsize}
@@ -28,7 +29,7 @@
 \DeclareOption{sectionoverview}{%
     \AtBeginSection[]{%
       \begin{frame}%
-        \frametitle{Überblick}%
+        \frametitle{\iflanguage{english}{Overview}{Überblick}}%
         \tableofcontents[currentsection]%
       \end{frame}%
     }%
