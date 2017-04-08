@@ -1,8 +1,14 @@
-\documentclass[alternativetitlepage=bild,cornerlogo=hgi_nds_logo2]{rubpresentation}
+\documentclass[
+    alternativetitlepage=bild,
+    cornerlogo=hgi_nds_logo2,
+    sectionoverview,
+]{rubpresentation}
+\usepackage[outline]{contour}
+\contourlength{0.08em}
 
 \title[XML/JSON conversions]
 {Secure XML/JSON conversions}
-\subtitle{Bachelor colloquium - Introduction}
+\subtitle{Bachelor colloquium --- Introduction}
 
 \author[Holthuis]{Jan~Holthuis}
 
@@ -34,12 +40,233 @@ Ruhr-University of Bochum
 
 %\note[enumerate]{\item foo \item bar \item baz \item foobar}
 
-\section[Section]{Section}
+\section{Introduction}
+
+\subsection{Scope}
+
+% TODO: Add content
+
+\subsection{Motivation}
+
+% TODO: Add content
+
+\section{Basics}
+
+\subsection{XML}
 
 \begin{frame}[plain]
-    \frametitle{Headline}
-\blindtext{}
+    \frametitle{XML}
+    \framesubtitle{Overview}
+    \begin{itemize}
+        \item{} \emph{\enquote{eXtensible Markup Language}}\\
+        \item{} Derived from SGML (ISO 8879)\\
+        \item{} First published by W3C in 1998\\
+        \item{} Currently two flavors:
+            \begin{itemize}
+                \item{} XML 1.0 (Fifth Edition), published November 26, 2008\\
+                \item{} XML 1.1 (Second Edition), published August 15, 2006\\
+            \end{itemize}
+    \end{itemize}
 \end{frame}
+
+\begin{frame}[plain]
+    \frametitle{XML}
+    \framesubtitle{Related specifications}
+    \begin{itemize}
+        \item{} XML Schema Definition (XSD)\\
+        \item{} XML Path Language (XPath)\\
+        \item{} XML Pointer Language (XPointer)\\
+        \item{} XML Query (XQuery)\\
+        \item{} XML Signature\\
+        \item{} XML Encryption\\
+        \item{} XML-RPC\\
+        \item{} XML Remote Procedure Call Protocol (XML-RPC)\\
+        \item{} Simple Object Access Protocol (SOAP)
+        %\item{} Extensible Stylesheet Language Transformations (XSLT)\\
+        \item{} and many more\ldots\\
+    \end{itemize}
+\end{frame}
+
+\subsection{JSON}
+
+\begin{frame}[plain]
+    \frametitle{JSON}
+    \framesubtitle{Overview}
+    \begin{itemize}
+        \item{} \emph{\enquote{JavaScript Object Notation}}\\
+        \item{} Popularized by Douglas Crockford in the early 2000s\\
+        \item{} First specified officially as RFC 4627 (2006)\\
+        \item{} Currently defined by:
+            \begin{itemize}
+                \item{} RFC 7159, published in March 2014\\
+                \item{} ECMA-404, published in October 2013\\
+            \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[plain]
+    \frametitle{JSON}
+    \framesubtitle{Related specifications}
+    \begin{itemize}
+        \item{} JSON Schema\\
+        \item{} XPath for JSON (JSONPath)\\
+        \item{} JSON Pointer\\
+        \item{} JSON Query Language (JSONiq)\\
+        \item{} JSON Web Signature (JWS)
+        \item{} JSON Web Encryption (JWE)
+        \item{} JSON Remote Procedure Call Protocol (JSON-RPC)\\
+        \item{} SOAP using JSON-RPC (SOAPjr)\\
+        %\item{} Internet JSON (I-JSON)\\
+        \item{} and many more\ldots{}\\
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}[plain,t]
+    \frametitle{XML and JSON}
+    \framesubtitle{Related specifications}
+    \begin{columns}[t]
+        \begin{column}{0.5\textwidth}
+            \begin{center}\textbf{\Large XML}\end{center}
+            \begin{itemize}
+                \item{} Schema Definition (XSD)\\
+                \item{} XPath\\
+                \item{} XPointer\\
+                \item{} XQuery\\
+                \item{} XML Signature\\
+                \item{} XML Encryption\\
+                \item{} XML-RPC\\
+                \item{} SOAP
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            \begin{center}\textbf{\Large JSON}\end{center}
+            \begin{itemize}
+                \item{} JSON Schema\\
+                \item{} JSONPath\\
+                \item{} JSON Pointer\\
+                \item{} JSONiq Query Language\\
+                \item{} JSON Web Signature (JWS)
+                \item{} JSON Web Encryption (JWE)
+                \item{} JSON-RPC\\
+                \item{} SOAPjr\\
+            \end{itemize}
+        \end{column}
+    \end{columns}
+    \hspace{1cm}\raisebox{0cm}[1cm][0pt]{%
+        %\makebox[\textwidth][r]{
+        %    \includegraphics[width=2cm]{images/i-see-what-you-did-there.pdf}\newline
+        %    {\Large \bf \color{white}\contour{black}{I SEE WHAT YOU DID THERE...}}
+        %}
+        \begin{tikzpicture}
+            \node (fig) {
+              \includegraphics[width=2cm]{images/i-see-what-you-did-there}
+            };
+            \node [anchor=north,inner sep=0]
+              at ([yshift=-2mm]fig.south) {\Large \color{white}\contour{black}{\bf I SEE WHAT YOU DID THERE...}};
+        \end{tikzpicture}
+    }
+\end{frame}
+
+\section{XML vs. JSON}
+
+\begin{frame}[plain]
+    \frametitle{XML vs. JSON}
+    \framesubtitle{Datatypes}
+    \begin{columns}[t]
+        \begin{column}{0.5\textwidth}
+            \begin{center}\textbf{\Large XML}\end{center}
+            No datatype support:
+            \begin{itemize}
+                \item{} Everything is a string\\
+                \item{} If you want to specify types, you need a %
+                        \emph{schema}\\
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            \begin{center}\textbf{\Large JSON}\end{center}
+            Syntactic datatype support for:
+            \begin{itemize}
+                \item{} Strings\\
+                \item{} Numbers
+                    \begin{itemize}
+                        \item{} Integers\\
+                        \item{} Fractions\\
+                        \item{} Exponents\\
+                    \end{itemize}
+                \item{} Arrays
+                \item{} Booleans (\texttt{true}, \texttt{false})\\
+                \item{} \texttt{null}\\
+            \end{itemize}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}[plain]
+    \frametitle{XML vs. JSON}
+    \framesubtitle{Datatypes}
+    \begin{columns}[t]
+        \begin{column}{0.5\textwidth}
+            \begin{center}\textbf{\Large XML}\end{center}
+            No datatype support:
+            \begin{itemize}
+                \item{} Everything is a string\\
+                \item{} If you want to specify types, you need a %
+                        \emph{schema}\\
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            \begin{center}\textbf{\Large JSON}\end{center}
+            Syntactic datatype support for:
+            \begin{itemize}
+                \item{} Strings\\
+                \item{} Numbers
+                    \begin{itemize}
+                        \item{} Integers\\
+                        \item{} Fractions\\
+                        \item{} Exponents\\
+                    \end{itemize}
+                \item{} Arrays
+                \item{} Booleans (\texttt{true}, \texttt{false})\\
+                \item{} \texttt{null}\\
+            \end{itemize}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}[plain]
+    \frametitle{XML vs. JSON}
+    \framesubtitle{Security Vulnerabilities}
+    \begin{columns}[t]
+        \begin{column}{0.5\textwidth}
+            \begin{center}\textbf{\Large XML}\end{center}
+            Various generic attacks on XML Parsers:
+            \begin{itemize}
+                \item{} Denial of Service Attacks %
+                        (\emph{\enquote{Billion Laughs}}, %
+                        \emph{Quadratic Blowup Entity Expansion})\\
+                \item{} Local/Remote File Inclusion (LFI/RFI) using %
+                        \emph{External Entity Expansion}\\
+                \item{} Server-Side-Request Forgery (SSRF) via DTD Retrieval\\
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            \begin{center}\textbf{\Large JSON}\end{center}
+            Several attacks target JavaScript:
+            \begin{itemize}
+                \item{} Cross-Site-Scripting (XSS) if JavaScript's %
+                        \texttt{eval()} is used instead of%
+                        \texttt{JSON.parse()}\\
+                \item{} In-browser XSS/CSRF attacks against JSON-P\\
+                \item{} XSS if a JSON web service does not set the
+                        \texttt{Content-Type}\\
+                \item{} \ldots{}but no attacks on JSON parsing itself!\\
+            \end{itemize}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+
 
 %%% Finally the last slide
 
