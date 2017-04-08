@@ -1,0 +1,100 @@
+Date: Wed, 5 Apr 2017 16:32:17 +0200
+From: jan.holthuis@ruhr-uni-bochum.de
+To: pbattley@gmail.com
+Subject: CobraVsMongoose bug when node has multiple text node children
+Message-ID: <20170405143217.3bbbddv74gwtclby@jan-laptop>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="oque4bz34k72kbwe"
+Content-Disposition: inline
+User-Agent: NeoMutt/20161126 (1.7.1)
+
+
+--oque4bz34k72kbwe
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+
+Hi,
+
+I'm currently looking into XML/JSON conversion as as part of my Bachelor
+thesis and also played around with your Ruby gem CobraVsMongoose.
+
+Unfortunately, It seems that I found a bug and I was unable to find a
+bug tracker, so I'm writing you an E-Mail: When a XML node has multiple
+text node children, the '$' hash key refers to an Array instead of a
+string. Because your library does not check that when passing it to the
+escape function, an error is raised. You can find an example below.
+
+
+Best regards
+
+Jan Holthuis
+
+----
+
+  $ cat whitespace.xml
+  <doc>
+     <clean>   </clean>
+     <dirty>   A   B   </dirty>
+     <mixed>
+        A
+        <clean>   </clean>
+        B
+        <dirty>   A   B   </dirty>
+        C
+     </mixed>
+  </doc>
+
+  $ cat converter.rb
+  require_relative 'cobravsmongoose'
+
+  data = STDIN.read
+  if ARGF.argv.include?('-d') || ARGF.argv.include?('--decode')
+      print CobraVsMongoose.json_to_xml(data)
+  else
+      print CobraVsMongoose.xml_to_json(data)
+  end
+
+  $ cat whitespace.xml | ruby converter.rb
+  {"doc":{"clean":{},"dirty":{"$":"A   B"},"mixed":{"$":["A","B","C"],"clean":{},"dirty":{"$":"A   B"}}}}
+
+  $ cat whitespace.xml | ruby converter.rb | ruby converter.rb -d
+  cobravsmongoose.rb:165:in `escapeHTML': no implicit conversion of Array into String (TypeError)
+      from cobravsmongoose.rb:165:in `escape'
+      from cobravsmongoose.rb:139:in `block (2 levels) in nested_data_to_xml'
+      from cobravsmongoose.rb:136:in `each'
+      from cobravsmongoose.rb:136:in `map'
+      from cobravsmongoose.rb:136:in `block in nested_data_to_xml'
+      from cobravsmongoose.rb:155:in `make_tag'
+      from cobravsmongoose.rb:135:in `nested_data_to_xml'
+      from cobravsmongoose.rb:141:in `block (2 levels) in nested_data_to_xml'
+      from cobravsmongoose.rb:136:in `each'
+      from cobravsmongoose.rb:136:in `map'
+      from cobravsmongoose.rb:136:in `block in nested_data_to_xml'
+      from cobravsmongoose.rb:155:in `make_tag'
+      from cobravsmongoose.rb:135:in `nested_data_to_xml'
+      from cobravsmongoose.rb:48:in `hash_to_xml'
+      from cobravsmongoose.rb:65:in `json_to_xml'
+      from converter.rb:5:in `<main>'
+
+--oque4bz34k72kbwe
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCAAdFiEERB3rF7HkXKsfEotzHyi4TWt81U8FAljk/+0ACgkQHyi4TWt8
+1U+44w/9GslB1lCOoem52DoFC99RnxFsjClhyEnxU8dam6Fc/zmSwXtYDH39GWNc
+n+EMw9WdZTZFYgJZPkkq5fCktCuhnABBeVjCF8iw5gTDDSzpoZE0kDo8j0csgE6H
+itGiKeH2Af1Co+JW2kJSiO8IYdSf/ltDfLA/AIn++T/IU8c9mYnkO9tixYwlbPTE
+zXxvSkWb5Z0YU2c/f4gExpqcB/4a59NSn9XRcCGYHNchbPoCWR1jgGvHgMBRMUrU
+l4KTkSo+l35GUlfejRzFV+q5PXcTfvfri3OOxanuquhH89bfuSAcM/4nYkgFLLsC
+GfiJbGnu+gNyK8INX0acF5M0fm/apV3++Y+wJlJAz55VuFvob0qoF8X41oLBC9py
+Tt60fgs+ualTe5O3N3YUry7M+Rx9oztE5p2azLqCZTKRYySxfwUIMYXQnExmXqAb
+ehCaUL4Jpbmn72KFptl/TGzeMu6Avf+0MBs4F8vTX6WlZ5c9LFYSK8VvJOiZqK5m
+yKrM4GDLA3ZrDi/Rm5YyfRzoqxxC/d0uq2BolLmv3skltm7Yla+oNdMa2tUnMolT
+zV0phRdeoO3NMa4soeBucybiW76MZL6fFa1X6JldguMHUUlu/mBv7IdeWehgICUd
+P2qSxNKMqfSzeM3oqx8/l4IJb5VqVn+PTlisR7r2QisZruyT0A0=
+=OtE2
+-----END PGP SIGNATURE-----
+
+--oque4bz34k72kbwe--
