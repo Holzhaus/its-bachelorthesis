@@ -1,0 +1,196 @@
+Return-Path: <paul@po-ru.com>
+Delivered-To: jan.holthuis@ruhr-uni-bochum.de
+Received: from mx2.mail.ruhr-uni-bochum.de ([134.147.42.228])
+	by mbx3.mail.ruhr-uni-bochum.de (Dovecot) with LMTP id ucB5DdEY5VjYAgAAeYMGsQ
+	for <jan.holthuis@ruhr-uni-bochum.de>; Wed, 05 Apr 2017 18:18:26 +0200
+Received: from mx2.mail.ruhr-uni-bochum.de (localhost [127.0.0.1])
+	by mx2.mail.ruhr-uni-bochum.de (Postfix mo-l) with ESMTP id 3vyrcJ157tz4y0T
+	for <jan.holthuis@ruhr-uni-bochum.de>; Wed,  5 Apr 2017 18:18:24 +0200 (CEST)
+Received: from mx2.mail.ruhr-uni-bochum.de (localhost [127.0.0.1])
+	by mx2.mail.ruhr-uni-bochum.de (Postfix idis) with ESMTP id 3vyrcC04d6z4xyP
+	for <jan.holthuis@ruhr-uni-bochum.de>; Wed,  5 Apr 2017 18:18:19 +0200 (CEST)
+X-Envelope-Sender: <paul@po-ru.com>
+X-RUB-Notes: External origin=66.111.4.25
+X-DSPAM-Result: Innocent
+X-DSPAM-Processed: Wed Apr  5 18:18:23 2017
+X-DSPAM-Confidence: 0.6000
+X-DSPAM-Probability: 0.0000
+X-DSPAM-Signature: 58e518cf9794138710088
+X-DSPAM-Factors: 27,
+	is, 0.01000,
+	is, 0.01000,
+	with, 0.01000,
+	with, 0.01000,
+	at, 0.01000,
+	at, 0.01000,
+	Subject*Re, 0.01000,
+	part, 0.01000,
+	and, 0.01000,
+	and, 0.01000,
+	Jan, 0.01000,
+	de, 0.03534,
+	Mail, 0.07054,
+	jan, 0.07556,
+	jan+holthuis, 0.07556,
+	holthuis, 0.07556,
+	bochum+de, 0.08134,
+	holthuis+ruhr, 0.08134,
+	uni, 0.08134,
+	bochum, 0.08134,
+	ruhr+uni, 0.08134,
+	ruhr, 0.08134,
+	uni+bochum, 0.08134,
+	E, 0.09605,
+	X-Spam-Relay-Countries*US, 0.10220,
+	E+Mail, 0.10559,
+	in, 0.12949
+X-DSPAM-ID: jan.holthuis@rub.de
+X-Spam-Checker-Version: SpamAssassin 3.4.1 (2015-04-28) on
+	sa1.mail.ruhr-uni-bochum.de
+X-Spam-Level:
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_PASS,TXREP
+	autolearn=ham autolearn_force=no version=3.4.1
+X-Spam-ASN: AS11403 66.111.0.0/20
+X-Spam-Relay-Countries: US ** **
+X-Spam-Language: en
+Received: from out1-smtp.messagingengine.com (out1-smtp.messagingengine.com [66.111.4.25])
+	by mx2.mail.ruhr-uni-bochum.de (Postfix mi-ext) with ESMTPS id 3vyrc93cBnz4xsd
+	for <jan.holthuis@ruhr-uni-bochum.de>; Wed,  5 Apr 2017 18:18:17 +0200 (CEST)
+X-Virus-Status: Clean
+X-Virus-Scanned: clamav-milter 0.99.2 at mx2.mail.ruhr-uni-bochum.de
+Authentication-Results: mx2.mail.ruhr-uni-bochum.de;
+    dkim=pass (2048-bit rsa key) header.d=messagingengine.com header.i=@messagingengine.com header.b=U2a7gfkZ;
+    dkim=pass (2048-bit rsa key) header.d=po-ru.com header.i=@po-ru.com header.b=H3rKDdn8;
+    dmarc=none (p=none) header.from=po-ru.com;
+    spf=pass smtp.mailfrom=paul@po-ru.com smtp.helo=out1-smtp.messagingengine.com
+Received-SPF: pass
+    (po-ru.com: Sender is authorized to use 'paul@po-ru.com' in 'mfrom' identity (mechanism 'include:spf.messagingengine.com' matched))
+    receiver=mx2.mail.ruhr-uni-bochum.de;
+    identity=mailfrom;
+    envelope-from="paul@po-ru.com";
+    helo=out1-smtp.messagingengine.com;
+    client-ip=66.111.4.25
+Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
+	by mailout.nyi.internal (Postfix) with ESMTP id 37AF720978
+	for <jan.holthuis@ruhr-uni-bochum.de>; Wed,  5 Apr 2017 12:18:03 -0400 (EDT)
+Received: from web5 ([10.202.2.215])
+  by compute1.internal (MEProxy); Wed, 05 Apr 2017 12:18:03 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=po-ru.com; h=
+	content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to:x-me-sender
+	:x-me-sender:x-sasl-enc; s=fm1; bh=CjZ4Ab5GY7DepaDjHx5NYlJQfN4pR
+	9CVn+kkNzTUTHA=; b=H3rKDdn8iVzFprnKTzPhUJ6wrhMQf1mPpZxPeTlRO0iEb
+	QwKR7Hd6qLdNjR5lQg/FZ/gBuOs3Kgoy8hfXJ2z5MsbCmKuVp/IIHpazp8kytDKz
+	RG2ry1E23v+1LFYx7XgSz0kzuYfPIKFjIqvaumwlCj/LAV83JmUdDTfKd2YAKk7h
+	Sncuiwff0OTd5mumHudoK30Cqzz73cHf+RzNb7vuCusT9IUVSN36IPa2BNBOkgDL
+	uLWIdVuGppPhjqWSjDnyuWlNBgFifQnb76Kc2E4C8gIo0HoumDAsP5dRC1+rPw3c
+	V/5jXJqxfXkhBC7noU6Q8PhvAv5pjHnaMvDkKz0qg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=content-transfer-encoding:content-type
+	:date:from:in-reply-to:message-id:mime-version:references
+	:subject:to:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=CjZ4Ab
+	5GY7DepaDjHx5NYlJQfN4pR9CVn+kkNzTUTHA=; b=U2a7gfkZrM5tJKU5KcCBfx
+	fIrCYeltFy+n/Rn7G76imRz84WUPauG2ot93RWWQx9QbMejJOlvRe29ooFTvC4OZ
+	ArINwcq6prZGZ8IK5wcFQuipZsfYy5gM/zEStRoFvjp00kL5bpUgz0yBTmn0p5Fi
+	+FYvjO9BQqeNm9LvQj0jkBwijyBfKQCO2qMt1n23OddTOTGwO/xAZftKagOM/KPq
+	4XV+DjLOLdI0gO7QXIetOvAxlOeehejalfSOj/Cwr+zWkh0juY8FoDDZU7U2Y4UI
+	LulTizg2l0qfCGG0VYqczzTsDRXLvPVLU3QdOnJW/90Vi8jl1g8tceOIAxdxlDOQ
+	==
+X-ME-Sender: <xms:uxjlWFbeAZk3SKhhWllgWC9LTJxavaLLhKYOxX6DD59U3x8VaQPNLw>
+Received: by mailuser.nyi.internal (Postfix, from userid 99)
+	id 1342A9E21D; Wed,  5 Apr 2017 12:18:03 -0400 (EDT)
+Message-Id: <1491409083.2682868.935240616.61E2781C@webmail.messagingengine.com>
+From: Paul Battley <paul@po-ru.com>
+To: jan.holthuis@ruhr-uni-bochum.de
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+X-Mailer: MessagingEngine.com Webmail Interface - ajax-8e6aa83c
+In-Reply-To: <20170405143217.3bbbddv74gwtclby@jan-laptop>
+Subject: Re: CobraVsMongoose bug when node has multiple text node children
+References: <20170405143217.3bbbddv74gwtclby@jan-laptop>
+Date: Wed, 05 Apr 2017 17:18:03 +0100
+X-TUID: 3wKoD+i08V+a
+
+Hi,
+
+Thanks for the report! That gem is pretty much moribund: the original
+spec on which it was based disappeared off the internet for a long time,
+and I don't think anyone's using it. To be honest, I'm surprised it even
+still works with Ruby 2+. You've been looking at this topic recently; do
+you think I should continue to maintain it?
+
+Cheers,
+Paul.
+
+On Wed, 5 Apr 2017, at 15:32, jan.holthuis@ruhr-uni-bochum.de wrote:
+> Hi,
+> 
+> I'm currently looking into XML/JSON conversion as as part of my Bachelor
+> thesis and also played around with your Ruby gem CobraVsMongoose.
+> 
+> Unfortunately, It seems that I found a bug and I was unable to find a
+> bug tracker, so I'm writing you an E-Mail: When a XML node has multiple
+> text node children, the '$' hash key refers to an Array instead of a
+> string. Because your library does not check that when passing it to the
+> escape function, an error is raised. You can find an example below.
+> 
+> 
+> Best regards
+> 
+> Jan Holthuis
+> 
+> ----
+> 
+>   $ cat whitespace.xml
+>   <doc>
+>      <clean>   </clean>
+>      <dirty>   A   B   </dirty>
+>      <mixed>
+>         A
+>         <clean>   </clean>
+>         B
+>         <dirty>   A   B   </dirty>
+>         C
+>      </mixed>
+>   </doc>
+> 
+>   $ cat converter.rb
+>   require_relative 'cobravsmongoose'
+> 
+>   data = STDIN.read
+>   if ARGF.argv.include?('-d') || ARGF.argv.include?('--decode')
+>       print CobraVsMongoose.json_to_xml(data)
+>   else
+>       print CobraVsMongoose.xml_to_json(data)
+>   end
+> 
+>   $ cat whitespace.xml | ruby converter.rb
+>   {"doc":{"clean":{},"dirty":{"$":"A  
+>   B"},"mixed":{"$":["A","B","C"],"clean":{},"dirty":{"$":"A   B"}}}}
+> 
+>   $ cat whitespace.xml | ruby converter.rb | ruby converter.rb -d
+>   cobravsmongoose.rb:165:in `escapeHTML': no implicit conversion of Array
+>   into String (TypeError)
+>       from cobravsmongoose.rb:165:in `escape'
+>       from cobravsmongoose.rb:139:in `block (2 levels) in
+>       nested_data_to_xml'
+>       from cobravsmongoose.rb:136:in `each'
+>       from cobravsmongoose.rb:136:in `map'
+>       from cobravsmongoose.rb:136:in `block in nested_data_to_xml'
+>       from cobravsmongoose.rb:155:in `make_tag'
+>       from cobravsmongoose.rb:135:in `nested_data_to_xml'
+>       from cobravsmongoose.rb:141:in `block (2 levels) in
+>       nested_data_to_xml'
+>       from cobravsmongoose.rb:136:in `each'
+>       from cobravsmongoose.rb:136:in `map'
+>       from cobravsmongoose.rb:136:in `block in nested_data_to_xml'
+>       from cobravsmongoose.rb:155:in `make_tag'
+>       from cobravsmongoose.rb:135:in `nested_data_to_xml'
+>       from cobravsmongoose.rb:48:in `hash_to_xml'
+>       from cobravsmongoose.rb:65:in `json_to_xml'
+>       from converter.rb:5:in `<main>'
+> Email had 1 attachment:
+> + signature.asc
+>   1k (application/pgp-signature)

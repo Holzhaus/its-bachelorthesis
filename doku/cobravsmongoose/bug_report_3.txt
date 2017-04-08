@@ -1,0 +1,151 @@
+Date: Sat, 8 Apr 2017 12:57:51 +0200
+From: jan.holthuis@ruhr-uni-bochum.de
+To: Paul Battley <paul@po-ru.com>
+Subject: Re: CobraVsMongoose bug when node has multiple text node children
+Message-ID: <20170408105751.wd22xxelbj3hukb5@jan-laptop>
+References: <20170405143217.3bbbddv74gwtclby@jan-laptop>
+ <1491409083.2682868.935240616.61E2781C@webmail.messagingengine.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="tuhmb2uvhtlmoywg"
+Content-Disposition: inline
+In-Reply-To: <1491409083.2682868.935240616.61E2781C@webmail.messagingengine.com>
+User-Agent: NeoMutt/20161126 (1.7.1)
+
+
+--tuhmb2uvhtlmoywg
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+
+Hi,
+
+thanks for the quick answer.
+
+It is my understanding that your gem is based on the badgerfish
+convention for converting XML into JSON and vice versa. I found
+CobraVsMongoose because it was mentioned as an implementation of said
+convention here: http://www.sklar.com/badgerfish/
+
+I compare different XML-to-JSON round-trip conversion methods and wanted
+to include Badgerfish in that comparison. I couldn't get the Lua script
+working and the PHP implementation can't convert JSON back to XML since it
+does not have a decode() method. Your ruby gem was the only one that did work
+at least for simple XML documents.
+
+Honestly, I can't tell you if you should continue to maintain it. My use
+of it would be rather superficial and limited, and thus I'm not sure if
+that'd be worth the effort if you neither use CobraVsMongoose yourself
+nor do know of anyone else who uses it.  I have my fair share of
+abandoned open-source projects myself, and can totally understand if you
+decide against it.
+
+
+Best regards
+
+Jan Holthuis
+
+
+On 05.04.2017 05:18, Paul Battley wrote:
+> Hi,
+>
+> Thanks for the report! That gem is pretty much moribund: the original
+> spec on which it was based disappeared off the internet for a long time,
+> and I don't think anyone's using it. To be honest, I'm surprised it even
+> still works with Ruby 2+. You've been looking at this topic recently; do
+> you think I should continue to maintain it?
+>
+> Cheers,
+> Paul.
+>
+> On Wed, 5 Apr 2017, at 15:32, jan.holthuis@ruhr-uni-bochum.de wrote:
+> > Hi,
+> >
+> > I'm currently looking into XML/JSON conversion as as part of my Bachelor
+> > thesis and also played around with your Ruby gem CobraVsMongoose.
+> >
+> > Unfortunately, It seems that I found a bug and I was unable to find a
+> > bug tracker, so I'm writing you an E-Mail: When a XML node has multiple
+> > text node children, the '$' hash key refers to an Array instead of a
+> > string. Because your library does not check that when passing it to the
+> > escape function, an error is raised. You can find an example below.
+> >
+> >
+> > Best regards
+> >
+> > Jan Holthuis
+> >
+> > ----
+> >
+> >   $ cat whitespace.xml
+> >   <doc>
+> >      <clean>   </clean>
+> >      <dirty>   A   B   </dirty>
+> >      <mixed>
+> >         A
+> >         <clean>   </clean>
+> >         B
+> >         <dirty>   A   B   </dirty>
+> >         C
+> >      </mixed>
+> >   </doc>
+> >
+> >   $ cat converter.rb
+> >   require_relative 'cobravsmongoose'
+> >
+> >   data = STDIN.read
+> >   if ARGF.argv.include?('-d') || ARGF.argv.include?('--decode')
+> >       print CobraVsMongoose.json_to_xml(data)
+> >   else
+> >       print CobraVsMongoose.xml_to_json(data)
+> >   end
+> >
+> >   $ cat whitespace.xml | ruby converter.rb
+> >   {"doc":{"clean":{},"dirty":{"$":"A
+> >   B"},"mixed":{"$":["A","B","C"],"clean":{},"dirty":{"$":"A   B"}}}}
+> >
+> >   $ cat whitespace.xml | ruby converter.rb | ruby converter.rb -d
+> >   cobravsmongoose.rb:165:in `escapeHTML': no implicit conversion of Array
+> >   into String (TypeError)
+> >       from cobravsmongoose.rb:165:in `escape'
+> >       from cobravsmongoose.rb:139:in `block (2 levels) in
+> >       nested_data_to_xml'
+> >       from cobravsmongoose.rb:136:in `each'
+> >       from cobravsmongoose.rb:136:in `map'
+> >       from cobravsmongoose.rb:136:in `block in nested_data_to_xml'
+> >       from cobravsmongoose.rb:155:in `make_tag'
+> >       from cobravsmongoose.rb:135:in `nested_data_to_xml'
+> >       from cobravsmongoose.rb:141:in `block (2 levels) in
+> >       nested_data_to_xml'
+> >       from cobravsmongoose.rb:136:in `each'
+> >       from cobravsmongoose.rb:136:in `map'
+> >       from cobravsmongoose.rb:136:in `block in nested_data_to_xml'
+> >       from cobravsmongoose.rb:155:in `make_tag'
+> >       from cobravsmongoose.rb:135:in `nested_data_to_xml'
+> >       from cobravsmongoose.rb:48:in `hash_to_xml'
+> >       from cobravsmongoose.rb:65:in `json_to_xml'
+> >       from converter.rb:5:in `<main>'
+> > Email had 1 attachment:
+> > + signature.asc
+> >   1k (application/pgp-signature)
+
+--tuhmb2uvhtlmoywg
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCAAdFiEERB3rF7HkXKsfEotzHyi4TWt81U8FAljowigACgkQHyi4TWt8
+1U/Tgg/9ECX7v+8dpmn9ZNl95WJw5ns2kQHbTqEAw/57gsWiO7xwy3oS7s9IjdLl
+DxM8ec2EwqaXwv7RjZZ3hGz5HBzdYJr2y+b7sw0H0Wz9+o0xgLqjhZDyZHPg3lta
+JXDEAemut2BOEgOFLBr/U2ao9QTAyDpw9TqigvLF3DVJcxw39JXoYlX8WN/jP3KB
+vJ5shyYy6PYJ+WSfpw77JA04izCAu8q6Nn3QVy/WgWKbw3wJVU+NDQU3zXso5YSW
+RzPwOihOwDdBZQU8ORfOK7IxkTVI5QLqzAENfrlgS7OoXhP73+ZK0+yXE87ZDeF1
+IVhcSHcH3y7NOE589XEPR/Cl49Xm+8OFT+gjo9EdVLm1wV7OpcwqRkBKyp0R8m3e
+gy2koktd59iVMhgwkfRE35DZ40MA9zQloVYGysmEkEY6vBFsMtfQ3hqbImWi3kDa
+OXu8XuRHX76DJGNzaqFdaj81bPVeiwzQ0eFZCixWfDwC+sO6hvy/0avj5QE9XaFa
+CJHqAzT0DTB9nxi0Nr8jE/K2CRT3nJmBiSPDhGrQpycJD6aLzp3tTAGkGYQvE9SU
+9LLFoBSmYTiqPIOL2jSoZ5vBVP97qReK1kY3LRw/hF1dZ6j5yPgLiGPwxlSNYgDD
+CuTFj4k2ZKAlAs7mqZD0DkQO4QT5mZG//vINvKRnTwmeKkXMqIc=
+=FJhv
+-----END PGP SIGNATURE-----
+
+--tuhmb2uvhtlmoywg--
