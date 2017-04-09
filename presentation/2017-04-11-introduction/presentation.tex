@@ -22,6 +22,7 @@
       \alt<#1>{\pgfkeysalso{#2}}{\pgfkeysalso{#3}} % \pgfkeysalso doesn't change the path
     },
 }
+
 \newcommand{\jsonlogo}{\tt \{js\includegraphics[width=0.5em]{images/json-logo}n\}}
 \newcommand{\xmllogo}{\tt <xml>}
 \def\framecrossout{%
@@ -77,7 +78,7 @@ Ruhr-University of Bochum
 \subsection{Motivation}
 
 \begin{frame}[plain]
-    \frametitle{Why convert between XML and JSON?}
+    \frametitle{Usage of JSON and XML}
     \framesubtitle{}
     \begin{itemize}
         \item{} Web APIs are booming since \emph{Web 2.0} and \emph{IoT} hype
@@ -87,25 +88,8 @@ Ruhr-University of Bochum
         \item{} Some \enquote{normal} websites are now based on these formats (e.g. \emph{AngularJS})\\
         \item{} Lots of file formats are XML-based (e.g. RSF/ASF, MathML, SVG, XHTML, ODT, OOXML, \ldots{})\\
         \item{} There are even JSON-based databases like \emph{CouchDB} and \emph{MongoDB}\\
-        \item{} Support by programming languages, frameworks and libraries is inconsistent\\
+        \item{} Countless industry standards in all sectors use XML
     \end{itemize}
-    \begin{center}
-        \bf $\Rightarrow$ plenty of use cases for converting between XML and JSON!
-    \end{center}
-\end{frame}
-
-\begin{frame}[plain]
-    \frametitle{Why convert between XML and JSON?}
-    \framesubtitle{}
-    \begin{itemize}
-        \item{} Support by programming languages, frameworks and libraries is inconsistent\\
-        \item{} Parsing JSON is usually less resource heavy and faster than XML\\
-        \item{} XML has more features and is widely support by the industry\\
-        \item{} XML has more features and is widely support by the industry\\
-    \end{itemize}
-    \begin{center}
-        \bf $\Rightarrow$ plenty of use cases for converting between XML and JSON!
-    \end{center}
 \end{frame}
 
 \begin{frame}[plain]
@@ -151,6 +135,20 @@ Ruhr-University of Bochum
         \end{axis}
         \node[below left, rotate=90, font=\tiny] {\tiny Data Source: ProgrammableWeb, Dec. 26 2013};
     \end{tikzpicture}
+\end{frame}
+
+\begin{frame}[plain]
+    \frametitle{Why convert between XML and JSON?}
+    \framesubtitle{}
+    \begin{itemize}
+        \item{} Parsing JSON is usually faster and less resource heavy than XML\\
+        \item{} XML has more features and is widely used by the industry\\
+        \item{} \dots{} but the complexity makes it harder for humans to read and adds more overhead\\
+        \item{} Support by programming languages, frameworks and libraries is inconsistent\\
+    \end{itemize}
+    \begin{center}
+        \bf $\Rightarrow$ plenty of reasons for converting between XML and JSON!
+    \end{center}
 \end{frame}
 
 \subsection{Scope}
@@ -327,35 +325,26 @@ Ruhr-University of Bochum
     }
 \end{frame}
 
-\section{XML vs. JSON}
+\section{Problems}
 
 \begin{frame}[plain]
     \frametitle{XML vs. JSON}
-    \framesubtitle{Datatypes}
+    \framesubtitle{Features}
     \begin{columns}[t]
         \begin{column}{0.5\textwidth}
             \begin{center}\textbf{\Large XML}\end{center}
-            No datatype support:
             \begin{itemize}
-                \item{} Everything is a string\\
-                \item{} If you want to specify types, you need a %
-                        \emph{schema}\\
+                \item{} Document based format\\
+                \item{} It's extensible!\\
+                \item{} Supports attributes, comments, namespaces, CDATA, etc.
             \end{itemize}
         \end{column}
         \begin{column}{0.5\textwidth}
             \begin{center}\textbf{\Large JSON}\end{center}
-            Syntactic datatype support for:
             \begin{itemize}
-                \item{} Strings\\
-                \item{} Numbers
-                    \begin{itemize}
-                        \item{} Integers\\
-                        \item{} Fractions\\
-                        \item{} Exponents\\
-                    \end{itemize}
-                \item{} Arrays
-                \item{} Booleans (\texttt{true}, \texttt{false})\\
-                \item{} \texttt{null}\\
+                \item{} Data based format\\
+                \item{} Not extensible\\
+                \item{} Does not support those features.
             \end{itemize}
         \end{column}
     \end{columns}
@@ -425,7 +414,83 @@ Ruhr-University of Bochum
     \end{columns}
 \end{frame}
 
+\section{Working method}
 
+\begin{frame}[plain]
+    \frametitle{Working Method}
+    \framesubtitle{}
+    \begin{enumerate}
+        \item{} Look at existing solutions
+        \item{} Establish criteria for conversion quality
+        \item{} Check which converters satisfy those criteria (if any)
+        \item{} If no converters tick all the boxes $\rightarrow$ develop custom algorithm that does this
+            \begin{itemize}
+                \item{} If possible, make necessary changes to existing solution instead of developing an algorithm from scratch
+            \end{itemize}
+    \end{enumerate}
+\end{frame}
+
+\section{Current status and next steps}
+
+\begin{frame}[plain]
+    \frametitle{Current Status}
+    \framesubtitle{Existing solutions}
+    Already found some ways to convert between XML and JSON, e.g.
+    \begin{itemize}
+        \item{} \emph{BadgerFish} convention (+ Ruby implementation, MIT License),
+        \item{} \emph{Parker} convention,
+        \item{} \emph{JSON Markup Language (JsonML)} (+ JavaScript implementation, MIT License),
+        \item{} \emph{x2js} (JavaScript, Apache 2.0 License),
+        \item{} \emph{json-lib} (Java, Apache 2.0 License),
+        \item{} \emph{\texttt{org.json}} package (Java, MIT License),
+        \item{} \emph{jxon} library (JavaScript, GNU Public License 3.0),
+        \item{} \emph{pesterfish} library (Python, MIT License).
+        \item{} \dots
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[plain]
+    \frametitle{Current Status}
+    \framesubtitle{XML/JSON Conversion Checker (xjcc)}
+    \begin{itemize}
+        \item{} Started development of Python tool to test conversion quality
+        \item{} Currently $\approx 1100$ LOC and 72\% unittest coverage
+        \item{} Converts XML documents to JSON and back, then compares XML output using \emph{XML Canonicalization}
+        \item{} Runs inside a docker container for easy setup
+        \item{} Already created plugins to invoke most of the converters
+        \item{} Can output results as CSV or JSON, too
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[plain,fragile]
+    \frametitle{Current Status}
+    \framesubtitle{XJCC Tool demo}
+
+    \begin{lstlisting}
+$ xjcc test-conversion
+
+Converter 'x2js':
+  [ FAILED ] complex-document
+  [   OK   ] element-order
+  [ FAILED ] whitespace
+Converter 'jsonml':
+  [   OK   ] complex-document
+  [   OK   ] element-order
+  [   OK   ] whitespace
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}[plain]
+    \frametitle{Next Steps}
+    \begin{itemize}
+        \item{} Add a way to check for security vulnerabilies to tool
+        \item{} Tool does not check if output is well-formed XML/JSON yet
+        \item{} Research and establish conversion criteria
+        \item{} Create test documents
+        \item{} \dots
+        \item{} Profit!
+    \end{itemize}
+\end{frame}
 
 %%% Finally the last slide
 
