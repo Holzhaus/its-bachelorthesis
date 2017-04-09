@@ -6,6 +6,36 @@
 \usepackage[outline]{contour}
 \contourlength{0.08em}
 
+\usepackage{pgfplots}
+\usepgfplotslibrary{dateplot}
+
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{shadows.blur}
+\usetikzlibrary{arrows.meta}
+\tikzset{
+    square/.style={regular polygon,regular polygon sides=4},
+    icon/.style={draw=none, shade, shading=axis,left color=black!10!white,right color=black!20!white, shading angle=45,square,rounded corners=0.1cm,blur shadow={shadow blur steps=5, shadow xshift=0.5mm, shadow yshift=-0.5mm},outer sep=2mm, inner sep=0,text width=11mm, align=center},
+    scopearrow/.style={thick, arrowhead=6mm},
+    invisible/.style={opacity=0},
+    visible on/.style={alt=#1{}{invisible}},
+    alt/.code args={<#1>#2#3}{%
+      \alt<#1>{\pgfkeysalso{#2}}{\pgfkeysalso{#3}} % \pgfkeysalso doesn't change the path
+    },
+}
+\newcommand{\jsonlogo}{\tt \{js\includegraphics[width=0.5em]{images/json-logo}n\}}
+\newcommand{\xmllogo}{\tt <xml>}
+\def\framecrossout{%
+    \begin{tikzpicture}[remember picture,overlay]%
+        \node[draw=none,yshift=-1cm] at (current page.center) {\includegraphics[width=6cm]{images/checkmark-no}};%
+    \end{tikzpicture}%
+}
+\def\framecheckmark{%
+    \begin{tikzpicture}[remember picture,overlay]%
+        \node[draw=none,yshift=-1cm] at (current page.center) {\includegraphics[width=6cm]{images/checkmark-yes}};%
+    \end{tikzpicture}%
+}
+\setbeamercovered{invisible}
+
 \title[XML/JSON conversions]
 {Secure XML/JSON conversions}
 \subtitle{Bachelor colloquium --- Introduction}
@@ -40,13 +70,142 @@ Ruhr-University of Bochum
 
 %\note[enumerate]{\item foo \item bar \item baz \item foobar}
 
+
 \section{Introduction}
+
+
+\subsection{Motivation}
+
+\begin{frame}[plain]
+    \frametitle{Why convert between XML and JSON?}
+    \framesubtitle{}
+    \begin{itemize}
+        \item{} Web APIs are booming since \emph{Web 2.0} and \emph{IoT} hype
+            \begin{itemize}
+                \item{} most of them use XML, JSON or both as data format
+            \end{itemize}
+        \item{} Some \enquote{normal} websites are now based on these formats (e.g. \emph{AngularJS})\\
+        \item{} Lots of file formats are XML-based (e.g. RSF/ASF, MathML, SVG, XHTML, ODT, OOXML, \ldots{})\\
+        \item{} There are even JSON-based databases like \emph{CouchDB} and \emph{MongoDB}\\
+        \item{} Support by programming languages, frameworks and libraries is inconsistent\\
+    \end{itemize}
+    \begin{center}
+        \bf $\Rightarrow$ plenty of use cases for converting between XML and JSON!
+    \end{center}
+\end{frame}
+
+\begin{frame}[plain]
+    \frametitle{Why convert between XML and JSON?}
+    \framesubtitle{}
+    \begin{itemize}
+        \item{} Support by programming languages, frameworks and libraries is inconsistent\\
+        \item{} Parsing JSON is usually less resource heavy and faster than XML\\
+        \item{} XML has more features and is widely support by the industry\\
+        \item{} XML has more features and is widely support by the industry\\
+    \end{itemize}
+    \begin{center}
+        \bf $\Rightarrow$ plenty of use cases for converting between XML and JSON!
+    \end{center}
+\end{frame}
+
+\begin{frame}[plain]
+    \frametitle{Support by Web APIs}
+    \framesubtitle{From mid 2005 until end of 2013}
+    \pgfplotstableread{xml-json-apis-2005-to-2013.csv}{\tabledata}
+    \begin{tikzpicture}
+            \begin{axis}[
+                ymajorgrids,
+                grid style={line width=.1pt, draw=black!40},
+                minor tick num=5,
+                set layers,
+                anchor=north east,
+                smooth, area style, enlarge x limits=false,
+                date coordinates in=x,
+                xtick = {
+                  {2005-01-01},
+                  {2006-01-01},
+                  {2006-01-01},
+                  {2007-01-01},
+                  {2008-01-01},
+                  {2009-01-01},
+                  {2010-01-01},
+                  {2011-01-01},
+                  {2012-01-01},
+                  {2013-01-01}
+                },
+                ytick = {0, 10, 20, 30, 40, 50, 60, 70, 80},
+                xticklabel=\year,
+                yticklabel={\pgfmathprintnumber\tick\%},
+                xtick pos=left,
+                ytick pos=left,
+                height=8cm,
+                width=12cm,
+            ]
+            \addplot[green,fill=green,fill opacity=0.4,thick,on layer=axis foreground] table[x=date,y=xml] {\tabledata} \closedcycle;
+            \addplot[blue,fill=blue,fill opacity=0.4,thick,on layer=axis foreground] table[x=date,y=json] {\tabledata} \closedcycle;
+
+            \begin{pgfonlayer}{axis foreground}
+                \node[draw=none,font=\Large,on layer=axis foreground] at (axis cs: 2008-01-01,40) {XML};
+                \node[draw=none,font=\Large,on layer=axis foreground,text=white] at (axis cs: 2012-01-01,20) {JSON};
+            \end{pgfonlayer}
+        \end{axis}
+        \node[below left, rotate=90, font=\tiny] {\tiny Data Source: ProgrammableWeb, Dec. 26 2013};
+    \end{tikzpicture}
+\end{frame}
 
 \subsection{Scope}
 
-% TODO: Add content
+\begin{frame}[plain]
+    \frametitle{Conversion \texttt{!=} Conversion}
+    \framesubtitle{Converting arbitrary JSON into XML-based format}
+    \begin{tikzpicture}
+        \visible<1>{\node[draw=none,align=center] at (5,0) (dir1) {unidirectional};}
+        \visible<2->{\node[draw=none,align=center] at (5,0) (dir2) {bidirectional};}
+        \node[icon] at ( 0, 0) (json) {\jsonlogo};
+        \node[icon] at (10, 0)  (xml) {\xmllogo};
+        \draw[->] (json.north east) to[bend left] node[midway,above] {1.} (xml.north west);
+        \visible<2->{\draw[<-,dashed] (json.south east) to[bend right] node[midway,above] {(2.)} (xml.south west);}
+    \end{tikzpicture}
+    \visible<3>{\framecrossout{}}
+\end{frame}
 
-\subsection{Motivation}
+\begin{frame}[plain]
+    \frametitle{Conversion \texttt{!=} Conversion}
+    \framesubtitle{Converting XML into JSON-based format}
+    \begin{tikzpicture}
+        \visible<1>{\node[draw=none,align=center] at (5,0) (dir1) {unidirectional};}
+        \visible<2->{\node[draw=none,align=center] at (5,0) (dir2) {bidirectional};}
+        \node[icon] at (10, 0) (json) {\jsonlogo};
+        \node[icon] at ( 0, 0)  (xml) {\xmllogo};
+        \draw[->] (xml.north east) to[bend left] node[midway,above] {1.} (json.north west);
+        \visible<2->{\draw[<-,dashed] (xml.south east) to[bend right] node[midway,above] {(2.)} (json.south west);}
+    \end{tikzpicture}
+    \visible<3>{\framecheckmark{}}
+\end{frame}
+
+\begin{frame}[plain]
+    \frametitle{Scope of thesis}
+    \framesubtitle{}
+    \begin{itemize}
+        \item{} Find a way to convert arbitrary XML documents into JSON\\
+        \item{} Be able to convert the JSON documents back to XML\\
+        \item{} The conversion should \ldots\
+            \begin{itemize}
+                \item{} result in \textbf{well-formed JSON/XML},
+                \item{} \textbf{require no additional metadata} (type hints, etc.),\\
+                \item{} be \textbf{lossless} and
+                    \begin{itemize}
+                        \item{} XML documents before and after %
+                                $\text{XML}\rightarrow\text{JSON}\rightarrow\text{XML}$ %
+                                round-trip should be (logically) equivalent\\
+                    \end{itemize}
+                \item{} be \textbf{secure}.
+                    \begin{itemize}
+                        \item{} Not vulnerable to known attacks against parsers\\
+                    \end{itemize}
+            \end{itemize}
+    \end{itemize}
+\end{frame}
 
 % TODO: Add content
 
