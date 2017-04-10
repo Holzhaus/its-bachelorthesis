@@ -326,6 +326,47 @@ Ruhr-University of Bochum
 \end{frame}
 
 \section{Problems}
+\begin{frame}[plain,fragile]
+    \frametitle{Converting XML to JSON}
+    \framesubtitle{It's complicated...}
+    \begin{columns}[t]
+        \begin{column}{0.5\textwidth}
+            \begin{center}\textbf{\Large XML}\end{center}
+                \begin{lstlisting}[language=xml,basicstyle=\fontsize{8.5}{11}\ttfamily,numbers=none]
+<albums>
+  <album id="1">
+    <title>Courts the Count</title>
+    <artist>Shorty Rogers</artist>
+    <year>1954</year>
+  </album>
+  <album id="2">
+    <title>Birth of the Cool</title>
+    <artist>Miles Davis</artist>
+    <year>1949</year>
+  </album>
+</albums>
+\end{lstlisting}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            \begin{center}\textbf{\Large JSON}\end{center}
+                \begin{lstlisting}[language=json,basicstyle=\fontsize{8.5}{11}\ttfamily,numbers=none]
+{ "albums": [
+  { "id": 1,
+    "title": "Courts the Count",
+    "artist": "Shorty Rogers",
+    "year": 1954
+  },
+  { "id": 2,
+    "title": "Birth of the Cool",
+    "artist": "Miles Davis",
+    "year": 1949
+  }
+]}
+\end{lstlisting}
+        \end{column}
+    \end{columns}
+    \visible<2->{\framecrossout{}}
+\end{frame}
 
 \begin{frame}[plain]
     \frametitle{XML vs. JSON}
