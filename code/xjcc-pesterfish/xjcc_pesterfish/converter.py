@@ -11,7 +11,7 @@ class PesterfishPlugin(xjcc.plugins.ConverterPlugin):
     """
     def xml_to_json(self, xml_data):
         element = defusedxml.ElementTree.XML(xml_data)
-        return pesterfish.to_pesterfish(element)
+        return pesterfish.to_pesterfish(element).encode('utf-8')
 
     def json_to_xml(self, json_data):
         tree = pesterfish.from_pesterfish(json_data)
