@@ -1,7 +1,18 @@
 # -*- coding: utf-8 -*-
 import argparse
 import logging
+import os
 from . import cli
+
+
+def writable_directory(path):
+    if not os.path.isdir(path):
+        raise argparse.ArgumentTypeError(
+                'The directory {} does not exist!'.format(path))
+    if not os.access(path, os.W_OK):
+        raise argparse.ArgumentTypeError(
+                'The directory {} is not writable!'.format(path))
+    return path
 
 
 def parse_args(args=None):
@@ -61,6 +72,10 @@ def parse_args(args=None):
         'csv',
         'text',
     ], default='text')
+    parser_testconversion.add_argument('-w', '--write-data',
+        action='store_true')
+    parser_testconversion.add_argument('-o', '--output-dir', default='.',
+        type=writable_directory)
     parser_testconversion.add_argument('name', nargs='?')
     parser_testconversion.set_defaults(func=cli.test_conversion)
 

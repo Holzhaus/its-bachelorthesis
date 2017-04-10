@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 import csv
+import datetime
 import json
 import logging
+import os
 import sys
 from . import testing
 from . import plugins
@@ -56,6 +58,28 @@ def test_conversion(args):
         logger.debug('Testing converter  \'%s\'...', converter.name)
         results[converter.name] = list(testing.run_tests(converter, tests))
         logger.debug('Testing converter  \'%s\' done.', converter.name)
+
+    output_dir = args.output_dir if args.write_data else None
+    if output_dir:
+        output_root = os.path.join(
+                output_dir, 'xjcc-%s' % datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S'))
+        os.mkdir(output_root)
+        for converter_name, testresults in results.items():
+            path = os.path.join(output_root, converter_name)
+            os.mkdir(path)
+            for testresult in testresults:
+                if testresult.json_output is not None:
+                    json_file = os.path.join(
+                            path, '%s.json' % testresult.test.name)
+                    with open(json_file, mode='wb') as f:
+                        f.write(testresult.json_output)
+
+                if testresult.xml_output is not None:
+                    xml_file = os.path.join(
+                            path, '%s.xml' % testresult.test.name)
+                    with open(xml_file, mode='wb') as f:
+                        f.write(testresult.xml_output)
+        logger.info('Output written to \'%s\'.', output_root)
 
     textresults = {
         None: 'ERROR',
