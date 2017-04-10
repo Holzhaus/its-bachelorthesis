@@ -21,6 +21,8 @@ push @generated_exts, "brf";
 push @generated_exts, "nlg";
 push @generated_exts, "nlo";
 push @generated_exts, "nls";
+push @generated_exts, "fls";
+push @generated_exts, "vrb";
 push @generated_exts, "synctex.gz";
 push @generated_exts, "tex.latexmain";
 push @generated_exts, "run.xml";
