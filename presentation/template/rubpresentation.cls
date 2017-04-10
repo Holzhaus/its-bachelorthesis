@@ -68,6 +68,11 @@
 \captionsetup{format=rub,labelformat=empty}
 \setbeamercolor{caption}{fg=black}
 
+% Add some colors
+\definecolor{gray}{rgb}{0.4,0.4,0.4}
+\definecolor{darkblue}{rgb}{0.0,0.0,0.6}
+\definecolor{cyan}{rgb}{0.0,0.6,0.6}
+
 %% Nice look for lstlistings
 \lstset{
   basicstyle=\ttfamily\upshape,
@@ -93,4 +98,30 @@
   linewidth=\textwidth,
   basewidth=0.5em,
   literate={Ö}{{\"O}}1{Ä}{{\"A}}1{Ü}{{\"U}}1{ß}{{\ss}}2{ü}{{\"u}}1{ä}{{\"a}}1{ö}{{\"o}}1,
+}
+
+\lstdefinelanguage{xml}
+{
+  morestring=[b]",
+  morestring=[s]{>}{<},
+  morecomment=[s]{<?}{?>},
+  stringstyle=\color{black},
+  identifierstyle=\color{darkblue},
+  keywordstyle=\color{cyan},
+  morekeywords={xmlns,version,type}% list your attributes here
+}
+\lstdefinelanguage{json}{
+    stringstyle=\color{darkblue},
+    morestring=[b]",
+    literate=
+     *{0}{{{\color{cyan}0}}}{1}
+      {1}{{{\color{cyan}1}}}{1}
+      {2}{{{\color{cyan}2}}}{1}
+      {3}{{{\color{cyan}3}}}{1}
+      {4}{{{\color{cyan}4}}}{1}
+      {5}{{{\color{cyan}5}}}{1}
+      {6}{{{\color{cyan}6}}}{1}
+      {7}{{{\color{cyan}7}}}{1}
+      {8}{{{\color{cyan}8}}}{1}
+      {9}{{{\color{cyan}9}}}{1}
 }
