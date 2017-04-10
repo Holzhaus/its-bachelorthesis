@@ -157,28 +157,24 @@ Ruhr-University of Bochum
     \frametitle{Conversion \texttt{!=} Conversion}
     \framesubtitle{Converting arbitrary JSON into XML-based format}
     \begin{tikzpicture}
-        \visible<1>{\node[draw=none,align=center] at (5,0) (dir1) {unidirectional};}
-        \visible<2->{\node[draw=none,align=center] at (5,0) (dir2) {bidirectional};}
         \node[icon] at ( 0, 0) (json) {\jsonlogo};
         \node[icon] at (10, 0)  (xml) {\xmllogo};
         \draw[->] (json.north east) to[bend left] node[midway,above] {1.} (xml.north west);
-        \visible<2->{\draw[<-,dashed] (json.south east) to[bend right] node[midway,above] {(2.)} (xml.south west);}
+        \draw[<-,dashed] (json.south east) to[bend right] node[midway,above] {(2.)} (xml.south west);
     \end{tikzpicture}
-    \visible<3>{\framecrossout{}}
+    \visible<2>{\framecrossout{}}
 \end{frame}
 
 \begin{frame}[plain]
     \frametitle{Conversion \texttt{!=} Conversion}
     \framesubtitle{Converting XML into JSON-based format}
     \begin{tikzpicture}
-        \visible<1>{\node[draw=none,align=center] at (5,0) (dir1) {unidirectional};}
-        \visible<2->{\node[draw=none,align=center] at (5,0) (dir2) {bidirectional};}
         \node[icon] at (10, 0) (json) {\jsonlogo};
         \node[icon] at ( 0, 0)  (xml) {\xmllogo};
         \draw[->] (xml.north east) to[bend left] node[midway,above] {1.} (json.north west);
-        \visible<2->{\draw[<-,dashed] (xml.south east) to[bend right] node[midway,above] {(2.)} (json.south west);}
+        \draw[<-,dashed] (xml.south east) to[bend right] node[midway,above] {(2.)} (json.south west);
     \end{tikzpicture}
-    \visible<3>{\framecheckmark{}}
+    \visible<2>{\framecheckmark{}}
 \end{frame}
 
 \begin{frame}[plain]
@@ -324,7 +320,7 @@ Ruhr-University of Bochum
     }
 \end{frame}
 
-\section{Problems}
+\section{Conversion problems}
 \begin{frame}[plain,fragile]
     \frametitle{Converting XML to JSON}
     \framesubtitle{It's complicated...}
@@ -470,7 +466,7 @@ Ruhr-University of Bochum
     \end{enumerate}
 \end{frame}
 
-\section{Current status and next steps}
+\subsection{Current status}
 
 \begin{frame}[plain]
     \frametitle{Current Status}
@@ -520,15 +516,17 @@ Converter 'jsonml':
     \end{lstlisting}
 \end{frame}
 
+\subsection{Next steps}
+
 \begin{frame}[plain]
     \frametitle{Next Steps}
     \begin{itemize}
-        \item{} Add a way to check for security vulnerabilies to tool
+        \item{} Add a way to check for security vulnerabilies
         \item{} Tool does not check if output is well-formed XML/JSON yet
         \item{} Research and establish conversion criteria
         \item{} Create test documents
-        \item{} \dots
-        \item{} Profit!
+        \item{} Evaluate current solutions using the test documents.
+        \item{} Possibly develop custom algorithm
     \end{itemize}
 \end{frame}
 
