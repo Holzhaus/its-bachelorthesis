@@ -2,6 +2,8 @@ $pdf_mode = 1;                    # Use PDF output format instead of DVI/PS
 $bibtex_use = 2;                  # We're using biblatex, delete *.bbl files
 @default_files = ('presentation.tex');  # Specifies the main tex file
 
+$jobname = '2017-04-11-holthuis-xml-json-conversion-EINFUEHRUNG';
+
 # Add template folder to the search path
 $ENV{'TEXINPUTS'} = '' unless defined $ENV{'TEXINPUTS'};
 $ENV{'TEXINPUTS'} = $ENV{'TEXINPUTS'} . $search_path_separator . '../template/';
