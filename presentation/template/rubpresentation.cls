@@ -11,7 +11,7 @@
 \RequirePackage[subpreambles]{standalone}
 \RequirePackage{relsize}
 \RequirePackage{listings}
-\RequirePackage{inconsolata}
+\RequirePackage{droidmono}
 \RequirePackage{multicol}
 \RequirePackage{blindtext}
 \RequirePackage{xkeyval}
