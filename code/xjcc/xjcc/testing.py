@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import abc
 import collections
 import io
 import logging
@@ -17,10 +18,18 @@ TestResult = collections.namedtuple('TestResult', [
 
 
 class TestCase(object):
+    __meta__ = abc.ABCMeta
+
     def __init__(self, name, xml_data):
         self.name = name
         self.xml_data = xml_data
 
+    @abc.abstractmethod
+    def run(self, converter):
+        pass
+
+
+class ConversionTestCase(TestCase):
     def get_conversion_data(self, converter):
         json_output = converter.xml_to_json(self.xml_data)
         xml_output = converter.json_to_xml(json_output)
@@ -54,7 +63,7 @@ def get_tests():
         f = pkg_resources.resource_stream(req, os.path.join(docdir, filename))
         content = f.read()
         f.close()
-        yield TestCase(name, content)
+        yield ConversionTestCase(name, content)
 
 
 def canonicalize(xml_data):
