@@ -6,6 +6,7 @@ import logging
 import os
 import defusedxml.lxml
 import pkg_resources
+from . import requestlogger
 
 DOCDIR = 'testdocs'
 
@@ -24,17 +25,17 @@ class TestCase(object):
         self.name = name
         self.xml_data = xml_data
 
+    def get_conversion_data(self, converter):
+        json_output = converter.xml_to_json(self.xml_data)
+        xml_output = converter.json_to_xml(json_output)
+        return (json_output, xml_output)
+
     @abc.abstractmethod
     def run(self, converter):
         pass
 
 
 class ConversionTestCase(TestCase):
-    def get_conversion_data(self, converter):
-        json_output = converter.xml_to_json(self.xml_data)
-        xml_output = converter.json_to_xml(json_output)
-        return (json_output, xml_output)
-
     def run(self, converter):
         logger = logging.getLogger(__name__)
         try:
@@ -53,8 +54,30 @@ class ConversionTestCase(TestCase):
         )
 
 
+class URLInvocationTestCase(TestCase):
+    def run(self, converter):
+        logger = logging.getLogger(__name__)
+        with requestlogger.run(server_address=('localhost', 56789)) as server:
+            try:
+                json_output, xml_output = self.get_conversion_data(
+                        converter.module)
+            except Exception:
+                json_output = None
+                xml_output = None
+                logger.debug('Error occured during conversion', exc_info=True)
+            requests = server.get_requests()
+            passed = (len(requests) == 0)
+        return TestResult(
+            test=self,
+            test_passed=passed,
+            json_output=json_output,
+            xml_output=xml_output,
+        )
+
+
 TESTCASE_CATEGORIES = {
     'conversion': ConversionTestCase,
+    'urlinvocation': URLInvocationTestCase,
 }
 
 
