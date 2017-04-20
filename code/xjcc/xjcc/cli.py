@@ -26,7 +26,8 @@ def list_converters(args):
 
 
 def list_testcases(args):
-    tests = sorted(testing.get_tests(), key=lambda x: x.name)
+    tests = sorted(testing.get_tests(category=args.category),
+                   key=lambda x: x.name)
     if not tests:
         print('No testcases available.')
         return
@@ -37,7 +38,8 @@ def list_testcases(args):
 
 def test_conversion(args):
     logger = logging.getLogger(__name__)
-    tests = sorted(testing.get_tests(), key=lambda x: x.name)
+    tests = sorted(testing.get_tests(category=args.category),
+                   key=lambda x: x.name)
     if not tests:
         print('No testcases available.')
         return

@@ -87,9 +87,14 @@ TESTCASE_CATEGORIES = {
 }
 
 
-def get_tests():
+def get_tests(category=None):
     req = pkg_resources.Requirement(__package__)
-    for category, category_class in TESTCASE_CATEGORIES.items():
+    if category:
+        category_map = [(category, TESTCASE_CATEGORIES[category])]
+    else:
+        category_map = TESTCASE_CATEGORIES.items()
+
+    for category, category_class in category_map:
         docdir = os.path.join(__package__, DOCDIR, category)
         for filename in pkg_resources.resource_listdir(req, docdir):
             name, ext = os.path.splitext(filename)
