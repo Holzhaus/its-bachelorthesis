@@ -53,17 +53,24 @@ class ConversionTestCase(TestCase):
         )
 
 
+TESTCASE_CATEGORIES = {
+    'conversion': ConversionTestCase,
+}
+
+
 def get_tests():
     req = pkg_resources.Requirement(__package__)
-    docdir = os.path.join(__package__, DOCDIR)
-    for filename in pkg_resources.resource_listdir(req, docdir):
-        name, ext = os.path.splitext(filename)
-        if ext != '.xml':
-            continue
-        f = pkg_resources.resource_stream(req, os.path.join(docdir, filename))
-        content = f.read()
-        f.close()
-        yield ConversionTestCase(name, content)
+    for category, category_class in TESTCASE_CATEGORIES.items():
+        docdir = os.path.join(__package__, DOCDIR, category)
+        for filename in pkg_resources.resource_listdir(req, docdir):
+            name, ext = os.path.splitext(filename)
+            if ext != '.xml':
+                continue
+            filepath = os.path.join(docdir, filename)
+            f = pkg_resources.resource_stream(req, filepath)
+            content = f.read()
+            f.close()
+            yield category_class(name, content)
 
 
 def canonicalize(xml_data):
