@@ -6,6 +6,7 @@ import logging
 import os
 import defusedxml.lxml
 import pkg_resources
+import demjson
 from . import requestlogger
 
 DOCDIR = 'testdocs'
@@ -46,6 +47,11 @@ class ConversionTestCase(TestCase):
             json_output = None
             xml_output = None
             logger.debug('Error occured during conversion', exc_info=True)
+        else:
+            json_errors = demjson.decode(json_output, strict=True, return_errors=True, return_stats=False, write_errors=False)[1]
+            if json_errors:
+                passed = False
+                logger.info('Erroneous JSON: %r', json_errors)
         return TestResult(
             test=self,
             test_passed=passed,
