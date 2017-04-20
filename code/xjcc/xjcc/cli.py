@@ -5,6 +5,7 @@ import json
 import logging
 import os
 import sys
+import concurrent.futures
 from . import testing
 from . import plugins
 
@@ -53,11 +54,19 @@ def test_conversion(args):
             return
         converters = [converter]
 
-    results = {}
-    for converter in converters:
-        logger.debug('Testing converter  \'%s\'...', converter.name)
-        results[converter.name] = list(testing.run_tests(converter, tests))
-        logger.debug('Testing converter  \'%s\' done.', converter.name)
+    with concurrent.futures.ThreadPoolExecutor(max_workers=4) as executor:
+        future_to_converter = {}
+        for converter in converters:
+            logger.debug('Queued testing converter  \'%s\'...', converter.name)
+            future = executor.submit(testing.run_tests, converter, tests)
+            future_to_converter[future] = converter.name
+
+        results = {}
+        for future in concurrent.futures.as_completed(future_to_converter):
+            logger.debug('Testing converter  \'%s\' done.', converter.name)
+            fs_result = future.result()
+            converter_name = future_to_converter[future]
+            results[converter_name] = list(fs_result)
 
     output_dir = args.output_dir if args.write_data else None
     if output_dir:
