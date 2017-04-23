@@ -1,12 +1,16 @@
 # -*- coding: utf-8 -*-
 import abc
 import collections
+import functools
 import io
 import logging
+import multiprocessing
 import os
+import signal
 import defusedxml.lxml
 import pkg_resources
 import demjson
+from . import process
 from . import requestlogger
 
 DOCDIR = 'testdocs'
@@ -81,9 +85,34 @@ class URLInvocationTestCase(TestCase):
         )
 
 
+class DenialOfServiceTestCase(TestCase):
+    def run(self, converter):
+        logger = logging.getLogger(__name__)
+        conv = functools.partial(self.get_conversion_data, converter.module)
+        proc = process.WorkerProcess(conv)
+        logger.info('Running in separate thread...')
+        exitcode, retval = proc.execute()
+        json_output, xml_output = retval if retval else (None, None)
+        if exitcode < 0:
+            # Process killed by signal
+            sig = signal.Signals(-exitcode)
+            logger.info('Process terminated, caught signal %r!', sig)
+            passed = False
+        else:
+            logger.info('Process terminated with exit code %d!', exitcode)
+            passed = True
+        return TestResult(
+            test=self,
+            test_passed=passed,
+            json_output=json_output,
+            xml_output=xml_output,
+        )
+
+
 TESTCASE_CATEGORIES = {
     'conversion': ConversionTestCase,
     'urlinvocation': URLInvocationTestCase,
+    'dos': DenialOfServiceTestCase,
 }
 
 
@@ -125,4 +154,3 @@ def run_tests(converter, tests):
         yield result
     logger.info('Converter \'%s\' passed %d out of %d tests',
                 converter.name, tests_passed, len(tests))
-
