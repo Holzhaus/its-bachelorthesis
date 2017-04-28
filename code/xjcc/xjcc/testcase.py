@@ -7,6 +7,7 @@ import io
 import logging
 import multiprocessing
 import os
+import pathlib
 import re
 import signal
 import tempfile
@@ -39,25 +40,30 @@ def get_conversion_data(xml_data, converter):
     return (json_output, xml_output)
 
 
-def parse_responses(cp):
+def parse_responses(cp, path='.'):
     for section in cp.sections():
-        match = re.fullmatch(r'ServerResponse (?P<path>.+)', section)
+        match = re.fullmatch(r'ServerResponse (?P<url_path>.+)', section)
         if not match:
             continue
-        path = match.group('path')
+        url_path = match.group('url_path')
 
         filename = cp[section].get('content', None)
         if not filename:
             content = None
         else:
-            with open(filename) as f:
+            with open(os.path.join(path, filename)) as f:
                 content = f.read()
         status = cp[section].get('status', None)
 
-        yield (path, httpserver.PathInfo(status, content))
+        headers = None
+        content_type = cp[section].get('content', None)
+        if content_type is not None:
+            headers = {'Content-Type': content_type}
+
+        yield (url_path, httpserver.PathInfo(status, content, headers))
 
 
-def parse_files(cp):
+def parse_files(cp, path='.'):
     for section in cp.sections():
         match = re.fullmatch(r'File (?P<ref>[\w-]+)', section)
         if not match:
@@ -69,7 +75,7 @@ def parse_files(cp):
         except configparser.Error:
             continue
 
-        with open(filename) as f:
+        with open(os.path.join(path, filename)) as f:
             content = f.read()
         yield (ref, content)
 
@@ -84,9 +90,11 @@ class ConversionTestCase(object):
         self.name = general.get('name')
         self.description = general.get('description', '')
 
+        self.path = os.path.dirname(os.path.abspath(info_file))
         raw_name = os.path.splitext(info_file)[0]
         default_filename = os.extsep.join([raw_name, 'xml'])
-        self.filename = general.get('path', default_filename)
+        self.filename = general.get('filename', default_filename)
+        self.filename = os.path.join(self.path, self.filename)
         self.basename = os.path.basename(raw_name)
         with open(self.filename) as f:
             self.content = f.read()
@@ -130,8 +138,8 @@ class ConversionTestCase(object):
 class SecurityTestCase(ConversionTestCase):
     def __init__(self, *args):
         super().__init__(*args)
-        self.files = dict(parse_files(self._cp))
-        self.responses = dict(parse_responses(self._cp))
+        self.files = dict(parse_files(self._cp, path=self.path))
+        self.responses = dict(parse_responses(self._cp, path=self.path))
 
     @contextlib.contextmanager
     def create_context(self, host='localhost', port=0, requestlog=None):
@@ -139,10 +147,15 @@ class SecurityTestCase(ConversionTestCase):
             # Create references
             files = {}
             for fileref, content in self.files.items():
-                files[fileref] = os.path.join(tmpdir, fileref)
+                absolute_path = os.path.abspath(os.path.join(tmpdir, fileref))
+                files[fileref] = fileref
+                files[fileref].path = absolute_path
+                files[fileref].url = pathlib.Path(absolute_path).as_uri()
 
             refs = {
-                'files': files,
+                'files': collections.namedtuple('FileList', files.keys())(
+                    *files.values()
+                ),
             }
 
             # Create "remote" files
@@ -203,5 +216,7 @@ class SecurityTestCase(ConversionTestCase):
 
 CATEGORIES = {
     'conversion': ConversionTestCase,
-    'security': SecurityTestCase,
+    'denial-of-service': SecurityTestCase,
+    'file-system-access': SecurityTestCase,
+    'server-side-request-forgery': SecurityTestCase,
 }

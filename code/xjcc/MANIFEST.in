@@ -1,1 +1,1 @@
-recursive-include xjcc/testdocs *.xml *.testcase
+recursive-include xjcc/testdocs *.dtd *.testcase *.txt *.xml *.xsl
