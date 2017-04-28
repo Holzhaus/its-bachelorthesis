@@ -33,14 +33,14 @@ def list_testcases(args):
         return
 
     for test in tests:
-        print(test.name)
+        print('%s [%s] - %s' % (test.name, test.basename, test.description))
 
 
 def test_conversion(args):
     logger = logging.getLogger(__name__)
-    tests = sorted(testing.get_tests(category=args.category),
-                   key=lambda x: x.name)
-    if not tests:
+    testcases = sorted(testing.get_tests(category=args.category),
+                       key=lambda x: x.name)
+    if not testcases:
         print('No testcases available.')
         return
 
@@ -56,19 +56,21 @@ def test_conversion(args):
             return
         converters = [converter]
 
-    with concurrent.futures.ThreadPoolExecutor(max_workers=4) as executor:
-        future_to_converter = {}
-        for converter in converters:
-            logger.debug('Queued testing converter  \'%s\'...', converter.name)
-            future = executor.submit(testing.run_tests, converter, tests)
-            future_to_converter[future] = converter.name
+    with concurrent.futures.ThreadPoolExecutor(max_workers=1) as executor:
+        futures = []
+        for testcase in testcases:
+            logger.debug('Queued testcase  \'%s\'...', testcase.name)
+            future = executor.submit(testcase.test_all_converters, converters)
+            futures.append(future)
 
         results = {}
-        for future in concurrent.futures.as_completed(future_to_converter):
-            logger.debug('Testing converter  \'%s\' done.', converter.name)
-            fs_result = future.result()
-            converter_name = future_to_converter[future]
-            results[converter_name] = list(fs_result)
+        for future in concurrent.futures.as_completed(futures):
+            for testresult in future.result():
+                logger.debug('Testcase  \'%s\' done.', testresult.test.name)
+                converter_name = testresult.converter.name
+                if converter_name not in results:
+                    results[converter_name] = []
+                results[converter_name].append(testresult)
 
     output_dir = args.output_dir if args.write_data else None
     if output_dir:

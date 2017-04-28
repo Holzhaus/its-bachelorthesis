@@ -3,7 +3,7 @@ import argparse
 import logging
 import os
 from . import cli
-from . import testing
+from . import testcase
 
 
 def writable_directory(path):
@@ -62,7 +62,7 @@ def parse_args(args=None):
         help='list tests'
     )
     parser_listtestcases.add_argument('-c', '--category', default=None,
-            action='store', choices=testing.TESTCASE_CATEGORIES.keys(),
+            action='store', choices=testcase.CATEGORIES.keys(),
             help='Only use testcases from a single category')
     parser_listtestcases.set_defaults(func=cli.list_testcases)
 
@@ -72,7 +72,7 @@ def parse_args(args=None):
         help='test conversion'
     )
     parser_testconversion.add_argument('-c', '--category', default=None,
-            action='store', choices=testing.TESTCASE_CATEGORIES.keys(),
+            action='store', choices=testcase.CATEGORIES.keys(),
             help='Only use testcases from a single category')
     parser_testconversion.add_argument('-f', '--format', choices=[
         'json',

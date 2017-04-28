@@ -8,60 +8,66 @@ import subprocess
 import os
 
 
-class WorkerProcess(multiprocessing.Process):
-    def __init__(self, target):
-        super().__init__()
-        self.daemon = True
-        self._output_queue = multiprocessing.Queue()
-        self.max_secs = 10
-        self.max_cpu_secs = 10
-        self.max_vmem_size = 750*1024**2  # 300 MiB should suffice
-        self.target = target
+def work(target, ctx, output_queue, max_cpu_secs, max_vmem_size):
+    logger = ctx.log_to_stderr()
+    logger.setLevel(logging.DEBUG)
 
-    def run(self):
-        logger = multiprocessing.log_to_stderr()
-        logger.setLevel(logging.DEBUG)
+    if max_cpu_secs:
+        resource.setrlimit(resource.RLIMIT_CPU, (max_cpu_secs,)*2)
+        logger.info('RLIMIT_CPU = %d seconds', max_cpu_secs)
 
-        resource.setrlimit(resource.RLIMIT_CPU, (self.max_cpu_secs,)*2)
-        logger.info('RLIMIT_CPU = %d seconds', self.max_cpu_secs)
-        resource.setrlimit(resource.RLIMIT_AS, (self.max_vmem_size,)*2)
-        logger.info('RLIMIT_RSS set to %d bytes', self.max_vmem_size)
-        rusage = resource.getrusage(resource.RUSAGE_SELF)
-        logger.info('Memory info: %r', rusage)
-        logger.info('Page size: %d', resource.getpagesize())
-        logger.info('Maximum Resident Set Size: %d * %d = %d',
-                    rusage.ru_maxrss, resource.getpagesize(),
-                    rusage.ru_maxrss*resource.getpagesize())
+    if max_vmem_size:
+        resource.setrlimit(resource.RLIMIT_AS, (max_vmem_size,)*2)
+        logger.info('RLIMIT_RSS set to %d bytes', max_vmem_size)
 
-        try:
-            result = self.target()
-        except subprocess.CalledProcessError as e:
-            result = None
-            if e.returncode < 0:
-                logger.info('Child process died, committing suicide using ' +
-                            'signal %s (%d).',
-                            signal.Signals(-e.returncode).name, -e.returncode)
-                os.kill(os.getpid(), -e.returncode)
-                signal.pause()
+    rusage = resource.getrusage(resource.RUSAGE_SELF)
+    logger.info('Memory info: %r', rusage)
+    logger.info('Page size: %d', resource.getpagesize())
+    logger.info('Maximum Resident Set Size: %d * %d = %d',
+                rusage.ru_maxrss, resource.getpagesize(),
+                rusage.ru_maxrss*resource.getpagesize())
 
-        self._output_queue.put_nowait(result)
-        logger.info('Maximum Resident Set Size: %r',
-                    rusage.ru_maxrss*resource.getpagesize())
+    try:
+        result = target()
+    except subprocess.CalledProcessError as e:
+        result = None
+        if e.returncode < 0:
+            logger.info('Child process died, committing suicide using ' +
+                        'signal %s (%d).',
+                        signal.Signals(-e.returncode).name, -e.returncode)
+            os.kill(os.getpid(), -e.returncode)
+            signal.pause()
 
-    def get_result(self):
-        try:
-            retval = self._output_queue.get_nowait()
-        except queue.Empty:
-            retval = None
-        exitcode = self.exitcode
-        return (exitcode, retval)
+    output_queue.put_nowait(result)
+    logger.info('Maximum Resident Set Size: %r',
+                rusage.ru_maxrss*resource.getpagesize())
 
-    def execute(self, timeout=None):
-        logger = logging.getLogger(__name__)
-        self.start()
-        logger.info('PID of spawned process: %d', self.pid)
-        self.join(timeout)
-        if self.is_alive():
-            self.terminate()
-            self.join()
-        return self.get_result()
+
+def execute(target, ctx=None, timeout=30):
+    logger = logging.getLogger(__name__)
+
+    max_cpu_secs = 10
+    max_vmem_size = 750*1024**2  # 300 MiB should suffice
+
+    if not ctx:
+        logger.debug('No multiprocessing context given, using default one...')
+        ctx = multiprocessing.get_context()
+
+    output_queue = ctx.Queue()
+    process = ctx.Process(target=work, args=(target, ctx, output_queue, max_cpu_secs, max_vmem_size))
+    process.daemon = True
+    process.start()
+
+    logger.info('PID of spawned process: %d', process.pid)
+    process.join(timeout)
+    if process.is_alive():
+        process.terminate()
+        process.join()
+    logger.info('Process terminated.')
+
+    try:
+        retval = output_queue.get_nowait()
+    except queue.Empty:
+        retval = None
+    exitcode = process.exitcode
+    return (exitcode, retval)

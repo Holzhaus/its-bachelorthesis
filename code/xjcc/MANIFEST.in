@@ -1,1 +1,1 @@
-include xjcc/testdocs/*/*.xml
+recursive-include xjcc/testdocs *.xml *.testcase
