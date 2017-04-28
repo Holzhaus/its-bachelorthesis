@@ -132,7 +132,7 @@ class SecurityTestCase(ConversionTestCase):
         self.responses = dict(parse_responses(self._cp))
 
     @contextlib.contextmanager
-    def create_context(self, host='localhost', port=56789, requestlog=None):
+    def create_context(self, host='localhost', port=0, requestlog=None):
         with tempfile.TemporaryDirectory(prefix='xjcc') as tmpdir:
             # Create references
             files = {}
@@ -141,22 +141,27 @@ class SecurityTestCase(ConversionTestCase):
 
             refs = {
                 'files': files,
-                'server_addr': ('%s:%d' % (host, port)) if port != 80 else host,
-                'server_host': host,
-                'server_port': port,
             }
-
-            # Create "local" files
-            for fileref, content in self.files.items():
-                filename = files[fileref]
-                with open(filename, mode='w+', dir=tmpdir) as f:
-                    f.write(content.format_map(refs).encode('utf-8'))
 
             # Create "remote" files
             with httpserver.run((host, port), requestlog=requestlog) as server:
+                host, port = server.server_address
+                netloc = ('%s:%d' % (host, port)) if port != 80 else host,
+                refs.update({
+                    'server_addr': netloc,
+                    'server_host': host,
+                    'server_port': port,
+                })
+
                 for path, r in self.responses.items():
                     data = r.content.format_map(refs).encode('utf-8')
                     server.add_path(path, status=r.status, content=data)
+
+                # Create "local" files
+                for fileref, content in self.files.items():
+                    filename = files[fileref]
+                    with open(filename, mode='w+', dir=tmpdir) as f:
+                        f.write(content.format_map(refs).encode('utf-8'))
 
                 yield self.content.format_map(refs).encode('utf-8')
 

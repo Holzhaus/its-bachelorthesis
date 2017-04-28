@@ -92,8 +92,10 @@ def run(server_address, *args, **kwargs):
         try:
             t = threading.Thread(target=httpd.serve_forever, daemon=True)
             t.start()
-            logger.debug('Started HTTP server on %s:%d...', *server_address)
+            logger.debug('Started HTTP server on %s:%d...',
+                         *httpd.server_address)
             yield httpd
         finally:
             httpd.shutdown()
-            logger.debug('HTTP server on %s:%d shut down.', *server_address)
+            logger.debug('HTTP server on %s:%d shut down.',
+                         *httpd.server_address)
