@@ -105,7 +105,9 @@ class ConversionTestCase(object):
                 xml_output = None
                 logger.debug('Error occured during conversion', exc_info=True)
             else:
-                json_errors = demjson.decode(json_output, strict=True, return_errors=True, return_stats=False, write_errors=False)[1]
+                json_errors = demjson.decode(
+                        json_output, strict=True, return_errors=True,
+                        return_stats=False, write_errors=False)[1]
                 if json_errors:
                     passed = False
                     logger.info('Erroneous JSON: %r', json_errors)
