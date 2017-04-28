@@ -1,0 +1,7 @@
+[General]
+name: XSLT FSA Attack
+description: File System Access via XML Stylesheet Language Transformation (XSLT)
+filename: xslt.xsl
+
+[File secret_xml]
+path: ../secret.xml

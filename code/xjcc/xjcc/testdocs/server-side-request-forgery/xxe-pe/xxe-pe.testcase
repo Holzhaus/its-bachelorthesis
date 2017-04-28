@@ -1,0 +1,3 @@
+[General]
+name: XXE URL Invocation (PE)
+description: Server Side Request Forgery Attack via External Entity Expansion (XXE) (Parameter Entity Version)

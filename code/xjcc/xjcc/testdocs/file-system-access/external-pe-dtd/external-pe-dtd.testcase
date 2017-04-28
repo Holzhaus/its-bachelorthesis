@@ -1,0 +1,6 @@
+[General]
+name: External PE DTD FSA Attack
+description: File System Access via External Parameter Entity DTD
+
+[File secret_dtd]
+path: ../secret.dtd

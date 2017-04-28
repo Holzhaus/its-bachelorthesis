@@ -1,0 +1,3 @@
+[General]
+name: Quadratic Blowup Attack (PE)
+description: Quadratic Blowup Denial of Service Attack that uses fewer but much bigger entities than the Billion Laughs attack (Parameter Entity Version)

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE data [
+  <!ELEMENT data (#PCDATA)>
+  <!ENTITY % external SYSTEM "{secret_dtd.url}">
+  %external;
+]>
+<data>&secret;</data>

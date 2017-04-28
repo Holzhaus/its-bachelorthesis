@@ -1,0 +1,3 @@
+[General]
+name: SchemaLocation NoNamespace URL Invocation
+description: Server Side Request Forgery Attack via SchemaLocation noNamespace-Attribute
