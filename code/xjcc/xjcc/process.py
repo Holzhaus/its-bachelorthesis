@@ -37,7 +37,13 @@ def work(target, ctx, output_queue, max_cpu_secs, max_vmem_size):
                         signal.Signals(-e.returncode).name, -e.returncode)
             os.kill(os.getpid(), -e.returncode)
             signal.pause()
-
+    except MemoryError:
+            sgn = signal.SIGSEGV
+            logger.info('Child process ran out of memory, committing suicide' +
+                        ' using signal %s (%d).',
+                        sgn.name, sgn)
+            os.kill(os.getpid(), sgn)
+            signal.pause()
     output_queue.put_nowait(result)
     logger.info('Maximum Resident Set Size: %r',
                 rusage.ru_maxrss*resource.getpagesize())
