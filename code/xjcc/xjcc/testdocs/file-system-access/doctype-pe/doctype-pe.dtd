@@ -1,5 +1,5 @@
 <!ELEMENT data (#PCDATA)>
 <!ENTITY % start "<![CDATA[">
-<!ENTITY % goodies SYSTEM "{secret_txt.url}">
+<!ENTITY % goodies SYSTEM "{files.secret_txt.url}">
 <!ENTITY % end "]]>">
 <!ENTITY all '%start;%goodies;%end;'>

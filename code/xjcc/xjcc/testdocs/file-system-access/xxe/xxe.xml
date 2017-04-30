@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE data [
 <!ELEMENT data (#PCDATA)>
-  <!ENTITY file SYSTEM "{secret_txt.url}">
+  <!ENTITY file SYSTEM "{files.secret_txt.url}">
 ]>
 <data>&file;</data>
