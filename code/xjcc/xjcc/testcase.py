@@ -26,6 +26,16 @@ TestResult = collections.namedtuple('TestResult', [
 ])
 
 
+class FilePath(str):
+    @property
+    def url(self):
+        return pathlib.Path(self).as_uri()
+
+    @property
+    def filename(self):
+        return os.path.basename(self)
+
+
 def canonicalize(xmldata):
     element = defusedxml.lxml.XML(xmldata)
     tree = element.getroottree()
@@ -60,7 +70,8 @@ def parse_responses(cp, path='.'):
         if content_type is not None:
             headers = {'Content-Type': content_type}
 
-        yield (url_path, httpserver.PathInfo(status, content, headers))
+        yield (url_path, httpserver.PathInfo(content=content, status=status,
+                                             headers=headers))
 
 
 def parse_files(cp, path='.'):
@@ -143,27 +154,27 @@ class SecurityTestCase(ConversionTestCase):
 
     @contextlib.contextmanager
     def create_context(self, host='localhost', port=0, requestlog=None):
+        refs = {
+            'magic_fsa_string': 'THIS_IS_TOP_SECRET_STUFF',
+        }
+
         with tempfile.TemporaryDirectory(prefix='xjcc') as tmpdir:
             # Create references
             files = {}
             for fileref, content in self.files.items():
                 absolute_path = os.path.abspath(os.path.join(tmpdir, fileref))
-                files[fileref] = fileref
-                files[fileref].path = absolute_path
-                files[fileref].url = pathlib.Path(absolute_path).as_uri()
+                files[fileref] = FilePath(absolute_path)
 
-            refs = {
-                'files': collections.namedtuple('FileList', files.keys())(
-                    *files.values()
-                ),
-            }
+            refs['files'] = collections.namedtuple('FileList', files.keys())(
+                *files.values()
+            )
 
             # Create "remote" files
             with httpserver.run((host, port), requestlog=requestlog) as server:
                 host, port = server.server_address
-                netloc = ('%s:%d' % (host, port)) if port != 80 else host,
+                netloc = '%s:%d' % (host, port) if port != 80 else host
                 refs.update({
-                    'server_addr': netloc,
+                    'server_address': netloc,
                     'server_host': host,
                     'server_port': port,
                 })
@@ -175,8 +186,9 @@ class SecurityTestCase(ConversionTestCase):
                 # Create "local" files
                 for fileref, content in self.files.items():
                     filename = files[fileref]
-                    with open(filename, mode='w+', dir=tmpdir) as f:
-                        f.write(content.format_map(refs).encode('utf-8'))
+                    filepath = os.path.join(tmpdir, filename)
+                    with open(filepath, mode='w+', encoding='utf-8') as f:
+                        f.write(content.format_map(refs))
 
                 yield self.content.format_map(refs).encode('utf-8')
 
