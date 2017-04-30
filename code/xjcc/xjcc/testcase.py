@@ -215,8 +215,8 @@ class SecurityTestCase(ConversionTestCase):
                     logger.info('Process terminated with exit code %d!',
                                 exitcode)
 
-                requests = log.get_requests()
-                passed = (len(requests) == 0)
+                    requests = log.get_requests()
+                    passed = (len(requests) == 0)
                 yield TestResult(
                     test=self,
                     converter=converter,
