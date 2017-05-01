@@ -89,14 +89,15 @@ class HTTPRequestHandler(http.server.BaseHTTPRequestHandler):
 @contextlib.contextmanager
 def run(server_address, *args, **kwargs):
     logger = logging.getLogger(__name__)
-    with HTTPServer(server_address, *args, **kwargs) as httpd:
-        try:
-            t = threading.Thread(target=httpd.serve_forever, daemon=True)
-            t.start()
-            logger.debug('Started HTTP server on %s:%d...',
-                         *httpd.server_address)
-            yield httpd
-        finally:
-            httpd.shutdown()
-            logger.debug('HTTP server on %s:%d shut down.',
-                         *httpd.server_address)
+    httpd = HTTPServer(server_address, *args, **kwargs)
+    try:
+        t = threading.Thread(target=httpd.serve_forever, daemon=True)
+        t.start()
+        logger.debug('Started HTTP server on %s:%d...',
+                     *httpd.server_address)
+        yield httpd
+    finally:
+        httpd.shutdown()
+        httpd.server_close()
+        logger.debug('HTTP server on %s:%d shut down.',
+                     *httpd.server_address)
