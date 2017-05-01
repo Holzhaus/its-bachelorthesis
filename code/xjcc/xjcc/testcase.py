@@ -116,6 +116,8 @@ class ConversionTestCase(object):
         xmldata = self.content.encode('utf-8')
         convert = functools.partial(get_conversion_data, xmldata)
         for converter in converters:
+            logger.info('Started testcase \'%s\' for converter \'%s\'',
+                        self.name, converter.name)
             try:
                 json_output, xml_output = convert(converter.module)
             except Exception:
@@ -141,6 +143,8 @@ class ConversionTestCase(object):
                 json_output=json_output,
                 xml_output=xml_output,
             )
+            logger.info('Finished testcase \'%s\' for converter \'%s\'',
+                        self.name, converter.name)
 
     def test_all_converters(self, converters):
         return list(self.test_converters(converters))
@@ -199,6 +203,8 @@ class SecurityTestCase(ConversionTestCase):
         ctx = multiprocessing.get_context('spawn')
         with self.create_context(requestlog=log) as xmldata:
             for converter in converters:
+                logger.info('Started testcase \'%s\' for converter \'%s\'',
+                            self.name, converter.name)
                 log.clear()
 
                 convert = functools.partial(get_conversion_data, xmldata,
@@ -224,6 +230,8 @@ class SecurityTestCase(ConversionTestCase):
                     json_output=json_output,
                     xml_output=xml_output,
                 )
+                logger.info('Finished testcase \'%s\' for converter \'%s\'',
+                            self.name, converter.name)
 
 
 CATEGORIES = {
