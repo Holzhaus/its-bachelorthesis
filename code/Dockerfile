@@ -22,23 +22,26 @@ RUN pip3 install -r /opt/xjcc/requirements.txt
 COPY xjcc /opt/xjcc/xjcc
 RUN cd /opt/xjcc/xjcc && ./setup.py install
 
-COPY xjcc-jxon /opt/xjcc/xjcc-jxon
-RUN cd /opt/xjcc/xjcc-jxon && ./setup.py install
-
-COPY xjcc-x2js /opt/xjcc/xjcc-x2js
-RUN cd /opt/xjcc/xjcc-x2js && ./setup.py install
-
-COPY xjcc-pesterfish /opt/xjcc/xjcc-pesterfish
-RUN cd /opt/xjcc/xjcc-pesterfish && ./setup.py install
+COPY xjcc-jsonlib /opt/xjcc/xjcc-jsonlib
+RUN cd /opt/xjcc/xjcc-jsonlib && ./setup.py install
 
 COPY xjcc-jsonml /opt/xjcc/xjcc-jsonml
 RUN cd /opt/xjcc/xjcc-jsonml && ./setup.py install
 
-COPY xjcc-jsonlib /opt/xjcc/xjcc-jsonlib
-RUN cd /opt/xjcc/xjcc-jsonlib && ./setup.py install
+COPY xjcc-jxon /opt/xjcc/xjcc-jxon
+RUN cd /opt/xjcc/xjcc-jxon && ./setup.py install
 
 COPY xjcc-orgjsonxml /opt/xjcc/xjcc-orgjsonxml
 RUN cd /opt/xjcc/xjcc-orgjsonxml && ./setup.py install
+
+COPY xjcc-pesterfish /opt/xjcc/xjcc-pesterfish
+RUN cd /opt/xjcc/xjcc-pesterfish && ./setup.py install
+
+COPY xjcc-x2js /opt/xjcc/xjcc-x2js
+RUN cd /opt/xjcc/xjcc-x2js && ./setup.py install
+
+COPY xjcc-xmljson /opt/xjcc/xjcc-xmljson
+RUN cd /opt/xjcc/xjcc-xmljson && ./setup.py install
 
 RUN rm -rf /opt/xjcc
 
