@@ -22,6 +22,7 @@ setuptools.setup(
     entry_points={
         'xjcc.converters': [
             'pesterfish = xjcc_pesterfish:PesterfishPlugin',
+            'pesterfishdefused = xjcc_pesterfish:PesterfishDefusedPlugin',
         ],
     },
     install_requires=[
