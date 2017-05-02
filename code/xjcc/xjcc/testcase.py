@@ -17,6 +17,9 @@ from . import httpserver
 from . import process
 
 
+MAGIC_FSA_STRING = 'THIS_IS_TOP_SECRET_STUFF'
+
+
 TestResult = collections.namedtuple('TestResult', [
     'test',
     'converter',
@@ -157,10 +160,9 @@ class SecurityTestCase(ConversionTestCase):
         self.responses = dict(parse_responses(self._cp, path=self.path))
 
     @contextlib.contextmanager
-    def create_context(self, host='localhost', port=0, requestlog=None):
-        refs = {
-            'magic_fsa_string': 'THIS_IS_TOP_SECRET_STUFF',
-        }
+    def create_context(self, host='localhost', port=0, requestlog=None,
+                       references={}):
+        refs = references.copy()
 
         with tempfile.TemporaryDirectory(prefix='xjcc') as tmpdir:
             # Create references
@@ -201,7 +203,10 @@ class SecurityTestCase(ConversionTestCase):
 
         log = httpserver.RequestLog()
         ctx = multiprocessing.get_context('spawn')
-        with self.create_context(requestlog=log) as xmldata:
+        refs = {
+            'magic_fsa_string': MAGIC_FSA_STRING,
+        }
+        with self.create_context(requestlog=log, references=refs) as xmldata:
             for converter in converters:
                 logger.info('Started testcase \'%s\' for converter \'%s\'',
                             self.name, converter.name)
@@ -220,9 +225,32 @@ class SecurityTestCase(ConversionTestCase):
                 else:
                     logger.info('Process terminated with exit code %d!',
                                 exitcode)
+                    passed = True
 
-                    requests = log.get_requests()
-                    passed = (len(requests) == 0)
+                requests = log.get_requests()
+                logger.info('Converter made %d HTTP requests', len(requests))
+
+                if len(requests) > 0:
+                    logger.debug('Requests were: %r', requests)
+                    passed = False
+
+                logger.debug('Checking if MAGIC_FSA_STRING is part ' +
+                             'of output...')
+                searchstr = MAGIC_FSA_STRING.encode('utf-8')
+                if json_output and searchstr in json_output:
+                    logger.info('MAGIC_FSA_STRING is part of JSON output!')
+                    passed = False
+                if xml_output and searchstr in xml_output:
+                    logger.info('MAGIC_FSA_STRING is part of XML output!')
+                    passed = False
+
+                if passed:
+                    logger.info('Converter \'%s\' passed testcase \'%s\'!',
+                                converter.name, self.name)
+                else:
+                    logger.info('Converter \'%s\' failed testcase \'%s\'!',
+                                converter.name, self.name)
+
                 yield TestResult(
                     test=self,
                     converter=converter,
