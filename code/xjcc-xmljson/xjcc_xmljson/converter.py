@@ -20,10 +20,11 @@ class XmlJsonBasePlugin(xjcc.plugins.ConverterPlugin):
 
     def xml_to_json(self, xml_data):
         data = self.convention.data(defusedxml.lxml.XML(xml_data))
-        return json.dumps(data)
+        return json.dumps(data).encode('utf-8')
 
     def json_to_xml(self, json_data):
-        data = json.loads(json_data, object_pairs_hook=collections.OrderedDict)
+        json_str = json_data.decode('utf-8')
+        data = json.loads(json_str, object_pairs_hook=collections.OrderedDict)
         tree = self.convention.etree(data)[0]
         return defusedxml.ElementTree.tostring(tree, encoding='utf-8')
 
