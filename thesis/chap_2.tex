@@ -1,45 +1,83 @@
-\chapter{Background} \label{chap:background}
+\chapter{Hintergrund} \label{chap:background}
 
-Lorem ipsum dolor sit amet consectetuer parturient ac pulvinar magna porttitor. Accumsan vel ac eros laoreet Nulla leo Nulla vel Pellentesque Quisque. Adipiscing penatibus Phasellus egestas leo id neque nec quis est orci. Porta tellus ligula ut ridiculus eros eget ut Vivamus dictum nulla. Dui wisi enim vitae nulla Fusce Curabitur congue consectetuer urna Quisque. Felis Vestibulum Quisque sed Vestibulum et malesuada ac id tristique vitae. Aliquam Suspendisse mattis et libero et tincidunt quis tellus eget consectetuer. Libero Morbi cursus augue eget dapibus tincidunt nunc parturient id arcu. Donec sapien enim Aenean convallis Donec elit tincidunt dolor vitae tellus. Ac consectetuer at tortor malesuada ac dui ligula habitant habitasse congue. 
+\section{\acrfull{xml}}
 
-Mauris interdum sit sem Sed pharetra enim pede nulla auctor ipsum. Tincidunt habitasse auctor Integer non ut laoreet facilisis nibh nunc dictum. Iaculis wisi Praesent hendrerit magnis accumsan massa arcu senectus Vestibulum nibh. Congue et volutpat ipsum pretium in vitae justo ipsum Mauris Pellentesque. Volutpat malesuada parturient ligula Nulla Donec nunc sed tempus urna wisi. Hendrerit metus cursus et auctor nonummy nisl libero mauris purus mollis. Sem justo fringilla pharetra In elit Donec habitasse et semper congue. Pulvinar Curabitur et Integer et convallis convallis in fames mollis Curabitur. Convallis et sapien risus ut Sed rhoncus ac Sed et interdum. Non fermentum justo Nullam nunc habitant ut malesuada nec id Nullam. Et quis lobortis massa volutpat eleifend interdum wisi auctor pede orci. Urna.
+\subsection{\acrfull{c14n}}
 
-Id malesuada eu est nec nec tellus pretium pede condimentum nunc. Malesuada quam enim Curabitur lorem nulla Quisque semper Fusce auctor in. Id wisi pretium parturient tempus Aenean accumsan interdum pellentesque adipiscing scelerisque. Et Nunc tempus Sed quis et semper amet nibh et tempor. Pretium neque consectetuer dignissim ut Sed Proin Ut diam fringilla leo. Condimentum gravida aliquet turpis Sed eu non adipiscing Suspendisse cursus pretium. Urna semper eget Nulla enim Sed tincidunt consequat pellentesque tortor iaculis. Laoreet orci arcu a adipiscing justo Phasellus Sed Nullam mollis tincidunt. Nam Lorem elit condimentum tincidunt elit enim Curabitur Nulla In pretium. Fermentum odio suscipit nibh nec pede justo nec ipsum leo Aliquam. Adipiscing wisi interdum Pellentesque sem ipsum Nulla.
+Logisch äquivalente \acrshort{xml}-Dokumente können sich in der konkreten Darstellung
+stark unterscheiden. Das \gls{w3c} hat daher Richtlinien zur Umwandlung in eine
+einheitliche Darstellungsweise---die sogenannte \emph{Kanonische Form}---
+festgelegt.
 
-\section{Some text}
-Quis convallis fermentum accumsan Ut Nulla libero Morbi quis Nam at. Mi suscipit cursus mus eu Curabitur elit commodo at volutpat turpis. Tristique Sed orci id Aenean tempus quis Nunc ligula lacinia sagittis. In vitae ipsum quis tincidunt id Vivamus tincidunt volutpat ut venenatis. Nullam Nunc accumsan pellentesque et augue sem Integer auctor Nam ac. Hendrerit laoreet tellus urna faucibus pellentesque Nulla turpis wisi pede porta. Felis malesuada Vestibulum amet Curabitur lacinia wisi cursus habitasse Nam massa. Porttitor consequat Sed tempus interdum Donec Vestibulum a Curabitur ante eget. Et nec et Nullam nunc non ligula dignissim sit velit Curabitur. Rhoncus wisi et pretium vestibulum metus fringilla pede nibh volutpat vel. Pellentesque mattis Nullam dolor Vestibulum elit sapien tellus tristique aliquam ligula. Ac sed amet ac Aenean urna amet.
+\begin{example}[Kanonisierung]
+\label{ex:c14n}
 
-Et pharetra tristique Sed laoreet a risus Suspendisse nibh Mauris ac. Porta vitae Curabitur id quis Curabitur malesuada sed leo urna ac. Augue id augue pulvinar vitae lorem montes Aenean Pellentesque wisi consectetuer. Nec amet mauris Donec condimentum ac eu dapibus semper hendrerit augue. Ante Integer in leo adipiscing et Proin tortor sodales lorem Quisque. Sagittis at ac Integer justo sociis In elit id Vestibulum at. Auctor sociis est faucibus Phasellus quam ac vitae quis tempor ligula. Nec massa ante aliquam elit Aenean scelerisque id leo Nulla ullamcorper. Elit Cum tellus morbi nibh consectetuer Curabitur pellentesque at Aenean ornare. Quis risus Morbi lobortis ullamcorper auctor nisl sit eget lorem eget. Ante Fusce egestas id Sed Phasellus laoreet cursus ridiculus eros adipiscing. Pretium Phasellus tellus laoreet congue condimentum venenatis tempus In pellentesque tempor. Et sed ante id tincidunt porta facilisi Suspendisse congue justo.
+Ein \acrshort{xml}-Dokument vor und nach der Kanonisierung. Beide Versionen sind
+logisch äquivalent.
 
-Suspendisse dolor sed et feugiat Nunc malesuada justo pulvinar tortor nunc. Turpis nunc mauris interdum id Curabitur Sed elit metus id nibh. Cras elit Praesent metus id platea augue nunc volutpat wisi et. Auctor pellentesque elit Vivamus leo Lorem sollicitudin vitae est Phasellus habitasse. Malesuada In condimentum dolor vitae eget elit Phasellus urna justo elit. Integer Curabitur Sed vitae Nam Nullam ac tempor pretium Morbi id. A venenatis volutpat Pellentesque eleifend Quisque Vestibulum faucibus elit Curabitur semper. Feugiat mattis Maecenas laoreet hendrerit diam Lorem ultrices platea quis consequat. Laoreet ante augue id Vestibulum laoreet Vivamus lacinia libero urna Sed. Tempus Ut Vestibulum Curabitur leo Curabitur laoreet egestas Sed ac cursus. Ante justo tempus dapibus penatibus.
+\begin{lstlisting}[language=xml]
+<?xml version="1.0"?>
+<entries>
+  <entry     foo = "bar" />
+  <entry foo='baz'  ></entry>
+</entries>
+\end{lstlisting}
+\captionof{figure}{Unkanonisiertes \acrshort{xml}-Dokument}
+\begin{lstlisting}[language=xml]
+<entries>
+  <entry foo="bar"></entry>
+  <entry foo="baz"></entry>
+</entries>
+\end{lstlisting}
+\captionof{figure}{Kanonisiertes \acrshort{xml}-Dokument}
+\end{example}
 
-Dui felis tellus quis et vel Aenean Donec adipiscing nibh natoque. Porttitor pellentesque turpis faucibus ante orci Nunc sagittis libero Sed mauris. Phasellus magna a dignissim Pellentesque Sed in quis id lobortis quis. Nulla ut urna nunc nibh et lobortis Sed scelerisque et ante. Dolor Maecenas lacinia nunc fringilla lorem malesuada congue ut sagittis Sed. Feugiat cursus Maecenas vitae vitae semper cursus at et Vivamus elit. Et Morbi elit Quisque lacinia sed magna mauris dapibus Aenean odio. Vestibulum quis eu sit lacinia est penatibus Integer nibh Quisque enim. Velit tristique massa Cras nisl ligula Phasellus quis auctor In eu. Leo Donec elit convallis tincidunt aliquam quis ac neque urna Maecenas. Consectetuer semper dolor wisi pede Vestibulum lacinia condimentum tempor In cursus. Mattis In felis metus porta et Integer congue elit Nam Donec. Sed tempus porta accumsan orci Curabitur augue laoreet Aenean augue.
+Dieser Prozess wird \acrfull{c14n} genannt.
 
-\section{Some more text}
-Aenean id mauris a tellus interdum condimentum tellus interdum volutpat condimentum. Semper pretium justo tincidunt dolor vitae vel Cum Nam auctor auctor. Nulla libero Curabitur auctor pede pretium lorem porttitor laoreet tincidunt adipiscing. Fringilla accumsan vitae montes pede Integer semper cursus justo vel tincidunt. Duis tellus pretium convallis Sed magna molestie faucibus tortor et Nam. Porttitor platea nibh wisi Maecenas dignissim lacus in lobortis orci interdum. Sollicitudin orci elit consequat a ac ante amet quis at pede. Sed ac orci auctor ultrices laoreet id ullamcorper pretium leo semper. Parturient id Vestibulum porttitor fringilla Curabitur Curabitur at ligula turpis ligula. Donec sapien at pretium faucibus et parturient eros volutpat eget a. Augue a Curabitur iaculis quis Sed id Aenean Mauris Nullam odio. Arcu pretium semper Aliquam sed dignissim ipsum malesuada massa Aenean urna. Consectetuer sed tincidunt sagittis Ut platea semper consequat faucibus nibh Quisque. 
-
-Pharetra vel augue magna montes Nam nec eros Vestibulum dui mi. Non mauris Nam nibh Nulla Lorem netus nulla ipsum adipiscing ut. Laoreet fringilla In orci eros magna dui Vestibulum Maecenas dictumst cursus. Lorem tristique Nam volutpat ac nunc lorem commodo id Vestibulum ligula. Nunc velit congue velit eget orci dictum congue laoreet et tortor. Sapien tellus id arcu Sed molestie nascetur gravida dolor dolor pede. Orci orci consequat mattis id Morbi dignissim lorem tincidunt nulla orci. Justo ac vestibulum et Mauris quis adipiscing venenatis ullamcorper Maecenas wisi. Pede fermentum ipsum metus leo fames Nunc Nam et adipiscing sociis. Eget justo lorem at lorem at non cursus dictum tellus Nunc. Tempus felis elit faucibus Vestibulum pede volutpat in Integer commodo tortor. Et dis nec Curabitur scelerisque pede dui libero urna facilisi massa. Elit nibh vitae Nulla venenatis et justo leo Vestibulum nec venenatis. 
-
-Et eros tristique sem elit condimentum Fusce enim tortor pellentesque neque. Tristique massa sit montes Lorem dignissim justo eros eu dictum Nulla. Dictum augue dictum Vestibulum urna elit rhoncus purus facilisi id lacinia. Consectetuer facilisi elit Vivamus et platea pellentesque lorem pretium Aenean eros. Ipsum id ut pharetra Quisque consequat feugiat dignissim id tortor pretium. Praesent Quisque cursus ut et felis ut quis sed wisi parturient. Lorem Donec lobortis sociis consequat sed hendrerit tincidunt tincidunt id rutrum. Quisque sociis aliquet pretium penatibus nec consequat at libero eget habitasse. Fringilla congue accumsan tempor malesuada eleifend aliquam ligula In et sit. Nunc laoreet sociis neque consectetuer nibh massa neque amet elit et. Porttitor Cras at ligula amet tellus morbi porta.
+\subsubsection{Motivation}
 
 
-Lorem ipsum dolor sit amet consectetuer parturient ac pulvinar magna porttitor. Accumsan vel ac eros laoreet Nulla leo Nulla vel Pellentesque Quisque. Adipiscing penatibus Phasellus egestas leo id neque nec quis est orci. Porta tellus ligula ut ridiculus eros eget ut Vivamus dictum nulla. Dui wisi enim vitae nulla Fusce Curabitur congue consectetuer urna Quisque. Felis Vestibulum Quisque sed Vestibulum et malesuada ac id tristique vitae. Aliquam Suspendisse mattis et libero et tincidunt quis tellus eget consectetuer. Libero Morbi cursus augue eget dapibus tincidunt nunc parturient id arcu. Donec sapien enim Aenean convallis Donec elit tincidunt dolor vitae tellus. Ac consectetuer at tortor malesuada ac dui ligula habitant habitasse congue. 
+\cite{siddiqui2002c14n}
 
-Mauris interdum sit sem Sed pharetra enim pede nulla auctor ipsum. Tincidunt habitasse auctor Integer non ut laoreet facilisis nibh nunc dictum. Iaculis wisi Praesent hendrerit magnis accumsan massa arcu senectus Vestibulum nibh. Congue et volutpat ipsum pretium in vitae justo ipsum Mauris Pellentesque. Volutpat malesuada parturient ligula Nulla Donec nunc sed tempus urna wisi. Hendrerit metus cursus et auctor nonummy nisl libero mauris purus mollis. Sem justo fringilla pharetra In elit Donec habitasse et semper congue. Pulvinar Curabitur et Integer et convallis convallis in fames mollis Curabitur. Convallis et sapien risus ut Sed rhoncus ac Sed et interdum. Non fermentum justo Nullam nunc habitant ut malesuada nec id Nullam. Et quis lobortis massa volutpat eleifend interdum wisi auctor pede orci. Urna.
+\subsubsection{Arbeitsschritte}
 
-Id malesuada eu est nec nec tellus pretium pede condimentum nunc. Malesuada quam enim Curabitur lorem nulla Quisque semper Fusce auctor in. Id wisi pretium parturient tempus Aenean accumsan interdum pellentesque adipiscing scelerisque. Et Nunc tempus Sed quis et semper amet nibh et tempor. Pretium neque consectetuer dignissim ut Sed Proin Ut diam fringilla leo. Condimentum gravida aliquet turpis Sed eu non adipiscing Suspendisse cursus pretium. Urna semper eget Nulla enim Sed tincidunt consequat pellentesque tortor iaculis. Laoreet orci arcu a adipiscing justo Phasellus Sed Nullam mollis tincidunt. Nam Lorem elit condimentum tincidunt elit enim Curabitur Nulla In pretium. Fermentum odio suscipit nibh nec pede justo nec ipsum leo Aliquam. Adipiscing wisi interdum Pellentesque sem ipsum Nulla.
+Bei der \acrlong{c14n} werden grob folgende Änderungen am
+\acrshort{xml}-Dokument vorgenommen\cite[Abschnitt 1.1]{boyer01c14n}:
 
-\section{Even more text}
-Quis convallis fermentum accumsan Ut Nulla libero Morbi quis Nam at. Mi suscipit cursus mus eu Curabitur elit commodo at volutpat turpis. Tristique Sed orci id Aenean tempus quis Nunc ligula lacinia sagittis. In vitae ipsum quis tincidunt id Vivamus tincidunt volutpat ut venenatis. Nullam Nunc accumsan pellentesque et augue sem Integer auctor Nam ac. Hendrerit laoreet tellus urna faucibus pellentesque Nulla turpis wisi pede porta. Felis malesuada Vestibulum amet Curabitur lacinia wisi cursus habitasse Nam massa. Porttitor consequat Sed tempus interdum Donec Vestibulum a Curabitur ante eget. Et nec et Nullam nunc non ligula dignissim sit velit Curabitur. Rhoncus wisi et pretium vestibulum metus fringilla pede nibh volutpat vel. Pellentesque mattis Nullam dolor Vestibulum elit sapien tellus tristique aliquam ligula. Ac sed amet ac Aenean urna amet.
+\begin{enumerate}
+    \item{} {Kodierung der Eingabe mit dem UTF-8-Zeichensatz}
+    \item{} {Normalisieren der Zeilenumbrüche}\\\\
+        Die Konventionen für die Speicherung von Zeilenenden (\texttt{EOL})
+        sind je nach Betriebssystem unterschiedlich. So nutzen unixode
+        Betriebssysteme wie Linux und BSD beispielsweise einen
+        Zeilenumbruch\footnote{Unicode Code-Point \texttt{U+000A}:
+        \texttt{LINE FEED (LF)}} (\texttt{{\textbackslash}n}), Windows und DOS hingegen
+        nutzen die Kombination Wagenrücklauf\footnote{Unicode Code-Point
+        \texttt{U+000D}: \texttt{CARRIAGE RETURN (CR)}} und Zeilenumbruch
+        (\texttt{{\textbackslash}r{\textbackslash}n}). Ältere Mac-OS-Versionen setzen hingegen die
+        Kombination Zeilenumbruch und Wagenrücklauf (\texttt{{\textbackslash}n{\textbackslash}r})
+        ein.\cite[S.~212]{unicode9}
+        Bei der Kanonisierung werden alle Varianten durch einen einfachen
+        Zeilenumbruch ohne Wagenrücklauf (\texttt{{\textbackslash}n}) ersetzt.
+    \item{} {Normalisieren der Attributwerte}\\\\
+        Dabei werden einzelne oder mehrere aufeinanderfolgende Whitespace-Zeichen wie Leerzeichen, Tabulatoren und Zeilenumbrüche in Attributwerten zu einem einzelnen Leerzeichen zusammengefasst.
+    \item{} {Zeichen- und Entity-Referenzen werden ersetzt}
+    \item{} \texttt{CDATA}-Abschnitte werden in normale Text-Nodes umgewandelt
+    \item{} \acrshort{xml}-Deklaration und \gls{dtd} werden entfernt
+    \item{} Keere Elemente werden in Paare bestehend aus Start-End-Tags umgewandelt
+    \item{} Whitespace außerhalb des Wurzelelements und innerhalb von Start- und End-Tags wird normalisiert
+    \item{} Jeglicher Whitespace innerhalb Wurzelelements wird (mit Ausnahme der o.g. normalisierten Zeilenenden) unverändert belassen
+    \item{} Alle Attributwert-Trennzeichen werden in Anführungszeichen (\enquote{double quotes})\footnote{Unicode Code-Point \texttt{U+0022}: \texttt{QUOTATION MARK}} umgewandelt
+    \item{} Sonderzeichen in Attributwerten und Zeicheninhalt werden durch \acrshort{xml} Character References ersetzt.
+    \item{} Überflüssige Namespace-Deklarationen werden entfernt.
+    \item{} In der \texttt{ATTLIST} angegebene Vorgabeattribute werden zu allen Elementen hinzugefügt.
+    \item{} Attribute und Namespace-Deklarationen aller Elemente werden in lexikographische Ordnung gebracht
+\end{enumerate}
 
-Et pharetra tristique Sed laoreet a risus Suspendisse nibh Mauris ac. Porta vitae Curabitur id quis Curabitur malesuada sed leo urna ac. Augue id augue pulvinar vitae lorem montes Aenean Pellentesque wisi consectetuer. Nec amet mauris Donec condimentum ac eu dapibus semper hendrerit augue. Ante Integer in leo adipiscing et Proin tortor sodales lorem Quisque. Sagittis at ac Integer justo sociis In elit id Vestibulum at. Auctor sociis est faucibus Phasellus quam ac vitae quis tempor ligula. Nec massa ante aliquam elit Aenean scelerisque id leo Nulla ullamcorper. Elit Cum tellus morbi nibh consectetuer Curabitur pellentesque at Aenean ornare. Quis risus Morbi lobortis ullamcorper auctor nisl sit eget lorem eget. Ante Fusce egestas id Sed Phasellus laoreet cursus ridiculus eros adipiscing. Pretium Phasellus tellus laoreet congue condimentum venenatis tempus In pellentesque tempor. Et sed ante id tincidunt porta facilisi Suspendisse congue justo.
+\subsubsection{Kommentare}
 
-Suspendisse dolor sed et feugiat Nunc malesuada justo pulvinar tortor nunc. Turpis nunc mauris interdum id Curabitur Sed elit metus id nibh. Cras elit Praesent metus id platea augue nunc volutpat wisi et. Auctor pellentesque elit Vivamus leo Lorem sollicitudin vitae est Phasellus habitasse. Malesuada In condimentum dolor vitae eget elit Phasellus urna justo elit. Integer Curabitur Sed vitae Nam Nullam ac tempor pretium Morbi id. A venenatis volutpat Pellentesque eleifend Quisque Vestibulum faucibus elit Curabitur semper. Feugiat mattis Maecenas laoreet hendrerit diam Lorem ultrices platea quis consequat. Laoreet ante augue id Vestibulum laoreet Vivamus lacinia libero urna Sed. Tempus Ut Vestibulum Curabitur leo Curabitur laoreet egestas Sed ac cursus. Ante justo tempus dapibus penatibus.
+Die \gls{w3c}-Empfehlung für kanonisches XML erlaubt sowohl das ersatzlose Entfernen als auch das Beibehalten der Kommentare, wobei das Resultat in letzterem Fall als \emph{Kanonisches XML mit Kommentaren} (engl. \enquote{canonical XML with comments})\cite[Abschnitt 2.1]{boyer2001c14n}. Implementierung müssen in der Lage sein, kanonisches XML ohne Kommentare zu erstellen, während die Ünterstützung für kanonisches XML mit Kommentaren zwar empfohlen, jedoch nicht vorgeschrieben ist.
 
-Dui felis tellus quis et vel Aenean Donec adipiscing nibh natoque. Porttitor pellentesque turpis faucibus ante orci Nunc sagittis libero Sed mauris. Phasellus magna a dignissim Pellentesque Sed in quis id lobortis quis. Nulla ut urna nunc nibh et lobortis Sed scelerisque et ante. Dolor Maecenas lacinia nunc fringilla lorem malesuada congue ut sagittis Sed. Feugiat cursus Maecenas vitae vitae semper cursus at et Vivamus elit. Et Morbi elit Quisque lacinia sed magna mauris dapibus Aenean odio. Vestibulum quis eu sit lacinia est penatibus Integer nibh Quisque enim. Velit tristique massa Cras nisl ligula Phasellus quis auctor In eu. Leo Donec elit convallis tincidunt aliquam quis ac neque urna Maecenas. Consectetuer semper dolor wisi pede Vestibulum lacinia condimentum tempor In cursus. Mattis In felis metus porta et Integer congue elit Nam Donec. Sed tempus porta accumsan orci Curabitur augue laoreet Aenean augue.
+\subsubsection{Exklusive \acrlong{c14n}}
 
-Aenean id mauris a tellus interdum condimentum tellus interdum volutpat condimentum. Semper pretium justo tincidunt dolor vitae vel Cum Nam auctor auctor. Nulla libero Curabitur auctor pede pretium lorem porttitor laoreet tincidunt adipiscing. Fringilla accumsan vitae montes pede Integer semper cursus justo vel tincidunt. Duis tellus pretium convallis Sed magna molestie faucibus tortor et Nam. Porttitor platea nibh wisi Maecenas dignissim lacus in lobortis orci interdum. Sollicitudin orci elit consequat a ac ante amet quis at pede. Sed ac orci auctor ultrices laoreet id ullamcorper pretium leo semper. Parturient id Vestibulum porttitor fringilla Curabitur Curabitur at ligula turpis ligula. Donec sapien at pretium faucibus et parturient eros volutpat eget a. Augue a Curabitur iaculis quis Sed id Aenean Mauris Nullam odio. Arcu pretium semper Aliquam sed dignissim ipsum malesuada massa Aenean urna. Consectetuer sed tincidunt sagittis Ut platea semper consequat faucibus nibh Quisque. 
-
-Pharetra vel augue magna montes Nam nec eros Vestibulum dui mi. Non mauris Nam nibh Nulla Lorem netus nulla ipsum adipiscing ut. Laoreet fringilla In orci eros magna dui Vestibulum Maecenas dictumst cursus. Lorem tristique Nam volutpat ac nunc lorem commodo id Vestibulum ligula. Nunc velit congue velit eget orci dictum congue laoreet et tortor. Sapien tellus id arcu Sed molestie nascetur gravida dolor dolor pede. Orci orci consequat mattis id Morbi dignissim lorem tincidunt nulla orci. Justo ac vestibulum et Mauris quis adipiscing venenatis ullamcorper Maecenas wisi. Pede fermentum ipsum metus leo fames Nunc Nam et adipiscing sociis. Eget justo lorem at lorem at non cursus dictum tellus Nunc. Tempus felis elit faucibus Vestibulum pede volutpat in Integer commodo tortor. Et dis nec Curabitur scelerisque pede dui libero urna facilisi massa. Elit nibh vitae Nulla venenatis et justo leo Vestibulum nec venenatis. 
-
-Et eros tristique sem elit condimentum Fusce enim tortor pellentesque neque. Tristique massa sit montes Lorem dignissim justo eros eu dictum Nulla. Dictum augue dictum Vestibulum urna elit rhoncus purus facilisi id lacinia. Consectetuer facilisi elit Vivamus et platea pellentesque lorem pretium Aenean eros. Ipsum id ut pharetra Quisque consequat feugiat dignissim id tortor pretium. Praesent Quisque cursus ut et felis ut quis sed wisi parturient. Lorem Donec lobortis sociis consequat sed hendrerit tincidunt tincidunt id rutrum. Quisque sociis aliquet pretium penatibus nec consequat at libero eget habitasse. Fringilla congue accumsan tempor malesuada eleifend aliquam ligula In et sit. Nunc laoreet sociis neque consectetuer nibh massa neque amet elit et. Porttitor Cras at ligula amet tellus morbi porta.
+Einen Sonderfall stellt die Exklusive \acrlong{c14n} dar, die in einer separaten Empfehlung des \gls{w3c} beschrieben ist.\cite{boyer2002excc14n} Während bei der regulären (inklusiven) \acrlong{c14n} der Vorfahren-Kontext (z.B. Namespaces und Attribute im \acrshort{xml}-Namensraum) von Teildokumente eines XML-Dokuments erhalten bleibt, wird dieser bei der exklusiven \acrshort{c14n} verworfen.\cite[Abschnitt~18]{siddiqui2002c14n2} Dies kann insbesondere dann sinnvoll sein, wenn Teildokumente aus dem Quelldokumente herausgelöst und ggf. andere Dokumente eingebettet werden sollen (Re-Enveloping), ohne dass sich ihre digitale Signatur ändert.
