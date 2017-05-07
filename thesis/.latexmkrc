@@ -24,3 +24,13 @@ push @generated_exts, "tex.latexmain";
 push @generated_exts, "run.xml";
 push @generated_exts, "loa";
 push @generated_exts, "lol";
+
+add_cus_dep('glo', 'gls', 0, 'makeglossaries');
+add_cus_dep('glo-abr', 'gls-abr', 0, 'makeglossaries');
+sub makeglossaries {
+   my ($base_name, $path) = fileparse( $_[0] );
+   pushd $path;
+   my $return = system "makeglossaries $base_name";
+   popd;
+   return $return;
+}

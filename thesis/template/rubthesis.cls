@@ -105,7 +105,15 @@ BCOR=1cm, % Bindekorrektur: Change this accordingly, also read the KomaScript Gu
 \newcommand{\mathup}{\mathrm}
 
 % Acronyms
-\RequirePackage[printonlyused]{acronym}
+\RequirePackage[abbreviations,nomain,stylemods=longbooktabs]{glossaries-extra}
+\makeglossaries{}
+% \glscurrentfieldvalue only works with glossaries v4.23 (and above)
+\renewcommand{\glsxtrpostdescacronym}{%
+ \ifglshasfield{\glsxtruserfield}{\glscurrententrylabel}%
+ { (\glscurrentfieldvalue)}%
+ {}%
+}
+\setabbreviationstyle[acronym]{long-short-user}
 
 \RequirePackage[url=false,backend=biber]{biblatex}
 
