@@ -105,7 +105,7 @@ BCOR=1cm, % Bindekorrektur: Change this accordingly, also read the KomaScript Gu
 \newcommand{\mathup}{\mathrm}
 
 % Acronyms
-\RequirePackage[abbreviations,nomain,stylemods=longbooktabs]{glossaries-extra}
+\RequirePackage[abbreviations,stylemods=longbooktabs,xindy]{glossaries-extra}
 \makeglossaries{}
 % \glscurrentfieldvalue only works with glossaries v4.23 (and above)
 \renewcommand{\glsxtrpostdescacronym}{%
