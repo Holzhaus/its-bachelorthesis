@@ -198,7 +198,12 @@ BCOR=1cm, % Bindekorrektur: Change this accordingly, also read the KomaScript Gu
 \ihead{\headmark}
 \pagestyle{scrheadings}
 
+% Nicer Theorems
+\RequirePackage{mdframed}
+\RequirePackage{amsthm}
+
 %% use some standards for mathematical expressions:
+\definecolor{light-gray}{gray}{0.9}
 
 \newcommand{\red}{{\rm red}}
 \newtheorem{theorem}{Theorem}[section]
@@ -207,7 +212,18 @@ BCOR=1cm, % Bindekorrektur: Change this accordingly, also read the KomaScript Gu
 \newtheorem{corollary}[theorem]{\corollarytitle}
 % \newtheorem{definition}[theorem]{Definition}
 \newtheorem{algorithm}[theorem]{\algorithmtitle}
-\newenvironment{example}{\begin{quote}{\bf \exampletitle:}}{\end{quote}} 
+%\newenvironment{example}{\begin{quote}{\textbf \exampletitle:}}{\end{quote}}
+\theoremstyle{definition}
+\newtheorem{mdexample}[theorem]{\exampletitle}
+\newenvironment{example}%
+  {\begin{mdframed}[hidealllines=true,backgroundcolor=light-gray]\begin{mdexample}}%
+  {\end{mdexample}\end{mdframed}}
+
+% gray definition boxes, that whay you'll find them in the text
+\newtheorem{mddefinition}[figure]{Definition}
+\newenvironment{definition}%
+  {\begin{mdframed}[hidealllines=true,backgroundcolor=light-gray]\begin{mddefinition}}%
+  {\end{mddefinition}\end{mdframed}}
 
 
 % BIBTEX, http://merkel.zoneo.net/Latex/natbib.php
@@ -215,14 +231,6 @@ BCOR=1cm, % Bindekorrektur: Change this accordingly, also read the KomaScript Gu
 %\RequirePackage{bibgerm} % u. a. statt et al
 %\RequirePackage[square,numbers]{natbib} % eckige klammern, natbib-package
 % \setbibpreamble{{\large Seitenzahlen, auf denen ein Eintrag referenziert wird, werden am Ende eines jeden Eintrags angegeben.}\newline} % Wegen der pagebackref-Option des hyperref-Packets, wird vielen nicht direkt klar was das soll http://projekte.dante.de/DanteFAQ/Verzeichnisse#16
-
-% gray definition boxes, that whay you'll find them in the text
-\RequirePackage{shadethm}
-\newshadetheorem{sthm}[figure]{Definition}
-\newenvironment{definition}[1][]{
-   \definecolor{shadethmcolor}{rgb}{.9,.9,.9}
-   \begin{sthm}[#1]
- }{\end{sthm}}
 
 % experimental
 %\RequirePackage{scrhack}
