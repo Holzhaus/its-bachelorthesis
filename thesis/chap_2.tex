@@ -7,7 +7,7 @@
 Logisch äquivalente \acrshort{xml}-Dokumente können sich in der konkreten Darstellung
 stark unterscheiden. Das \gls{w3c} hat daher Richtlinien zur Umwandlung in eine
 einheitliche Darstellungsweise---die sogenannte \emph{Kanonische Form}---
-festgelegt.
+festgelegt. Der Umwandlungprozess wird \acrfull{c14n} genannt.
 
 \begin{example}[Kanonisierung]
 \label{ex:c14n}
@@ -22,20 +22,17 @@ logisch äquivalent.
   <entry foo='baz'  ></entry>
 </entries>
 \end{lstlisting}
-\captionof{figure}{Unkanonisiertes \acrshort{xml}-Dokument}
+\captionof{figure}{Das unkanonisiertes \acrshort{xml}-Dokument enthält überflüssigen Whitespace und z.T. einfache Hochkommas als Attributwert-Trennzeichen.}
 \begin{lstlisting}[language=xml]
 <entries>
   <entry foo="bar"></entry>
   <entry foo="baz"></entry>
 </entries>
 \end{lstlisting}
-\captionof{figure}{Kanonisiertes \acrshort{xml}-Dokument}
+\captionof{figure}{Im kanonisierten \acrshort{xml}-Dokument wurde überflüssiger Whitespace entfernt, durchgehend das Anführungszeichen als Attributtrennzeichen verwendet und lediglich aus einem Start-Tag bestehende leere Elemente durch das entsprechende Start-End-Tag-Paar ersetzt.}
 \end{example}
 
-Dieser Prozess wird \acrfull{c14n} genannt.
-
 \subsubsection{Motivation}
-
 
 \cite{siddiqui2002c14n}
 
