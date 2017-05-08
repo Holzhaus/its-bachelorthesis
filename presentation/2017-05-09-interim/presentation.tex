@@ -1,0 +1,159 @@
+\documentclass[
+    alternativetitlepage=alternativ,
+    cornerlogo=hgi_nds_logo2,
+    sectionoverview,
+]{rubpresentation}
+\setbeamercovered{invisible}
+
+\title[XML/JSON conversions]
+{Bridging the Gap: Secure and lossless conversion\\ of XML data structures to the JSON format}
+\subtitle{\small Bachelor thesis \hspace{3mm}{\scriptsize $\blacksquare$}\hspace{3mm} March 30, 2017 -- June 29, 2017}
+
+\author[Holthuis]{Jan~Holthuis}
+
+\institute[Advisors]
+{%\inst{1}%
+Advisors: Dennis Felsch \& Paul Rösler
+}
+\date{May 09, 2017}
+\subject{Computer Science}
+
+\titlegraphic{titlepage.png}
+\sponsorlogo[height=7.6mm,interpolate=true]{hgi_nds_logo}
+
+\begin{document}
+
+\frame[plain]{\titlepage}
+
+%\begin{frame}{The \texttt{\textbackslash note}-Macro}
+%\begin{itemize}[<+->]
+%\item normal text for the presentation.
+%\note<1-2>[item]{Say something to the audience!}
+%\item and text for the presentation.
+%\item foo
+%\end{itemize}
+%\note<2>{Another note for you!}
+%\end{frame}
+
+%\note[enumerate]{\item foo \item bar \item baz \item foobar}
+
+
+\section{Quick Recap}
+
+\begin{frame}
+    \frametitle{Last time we learned that...}
+    \framesubtitle{}
+    \begin{itemize}
+        \item{} XML parsers can be vulnerable to attacks from these areas:
+        \begin{itemize}
+            \item{} Denial of Service (Billion Laughs, Quadratic Blowup)
+            \item{} File System Access (XXE, XInclude, ...)
+            \item{} Server-Side Request Forgery (DTD Retrieval, Schema Location, etc.)
+        \end{itemize}
+        \item{} I implemented a framework for automatic testing and added security testcases for these vulnerabilities
+    \end{itemize}
+
+\end{frame}
+
+
+\section{Progress report}
+
+\begin{frame}
+    \frametitle{Progress made in the last two weeks}
+    \framesubtitle{\texttt{xjcc} Tool Development}
+    \begin{itemize}
+        \item{} Added some minor improvements on checking tool and some more
+            security testcases
+        \item{} Spent a lot of time reading W3C recommendations
+        \item{} Started establishing conversion quality criteria
+    \end{itemize}
+\end{frame}
+
+\section{Conversion}
+
+\begin{frame}
+    \frametitle{Conversion}
+    \begin{itemize}
+        \item{} Make sure that document content and logical structure stays the same\dots{}
+        \item{} \dots{}but the physical structure is not important.
+        \item{} Thus we can use the XPath Data Model and Canonicalization for abstraction
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Conversion criteria examples}
+    \framesubtitle{Comments}
+    \begin{foreigndisplayquote}{english}[{Extensible Markup Language (XML) 1.0 (Fifth Edition), W3C, 26 November 2008, Section~2.5]}]
+        They are not part of the document's character data; an XML processor may, but need not, make it possible for an application to retrieve the text of comments.
+    \end{foreigndisplayquote}
+%    \begin{itemize}
+%        \item{}
+%    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Conversion criteria examples}
+    \framesubtitle{Document Order: Elements}
+    \begin{foreigndisplayquote}{english}[{XML Path Language 1.0, W3C, 19 November 1999, Section~5]}]
+There is an ordering, document order, defined on all the nodes in the document corresponding to the order in which the first character of the XML representation of each node occurs in the XML representation of the document after expansion of general entities. Thus, the root node will be the first node. Element nodes occur before their children. Thus, document order orders element nodes in order of the occurrence of their start-tag in the XML (after expansion of entities).
+    \end{foreigndisplayquote}
+%    \begin{itemize}
+%        \item{}
+%    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Conversion criteria examples}
+    \framesubtitle{Document Order: Attributes}
+    \begin{foreigndisplayquote}{english}[{Extensible Markup Language (XML) 1.0 (Fifth Edition), W3C, 26 November 2008, Section~2.5]}]
+Note that the order of attribute specifications in a start-tag or empty-element tag is not significant.
+    \end{foreigndisplayquote}
+    \begin{foreigndisplayquote}{english}[{XML Path Language 1.0, W3C, 19 November 1999, Section~5]}]
+The relative order of namespace nodes is implementation-dependent. The relative order of attribute nodes is implementation-dependent.
+    \end{foreigndisplayquote}
+%    \begin{itemize}
+%        \item{}
+%    \end{itemize}
+\end{frame}
+
+\section{Next steps}
+
+\begin{frame}
+    \frametitle{Next Steps}
+    \begin{itemize}
+        \item{} Research and establish more conversion criteria and add test docs
+        \item{} Evaluate current solutions using the test documents
+        \item{} Possibly develop custom algorithm
+    \end{itemize}
+\end{frame}
+
+%%% Finally the last slide
+
+\begin{frame}[plain]
+\frametitle{Thanks!}
+ \begin{center}
+ {\bfseries\fontsize{30pt}{1.2em}\selectfont Questions?}
+ \end{center}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \begin{center}
+        %\font\endfont = cmss10 at 25.40mm
+        %\color{Brown}
+        %\endfont
+        %\baselineskip 20.0mm
+        Reach out via email:
+        \begin{itemize}
+        \item \textbf{Jan Holthuis}\\
+              jan.holthuis@rub.de
+        \end{itemize}
+      \end{center}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \begin{center}
+        \pgfimage[width=\textwidth]{questions.jpg}
+      \end{center}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\end{document}
