@@ -158,33 +158,25 @@ BCOR=1cm, % Bindekorrektur: Change this accordingly, also read the KomaScript Gu
 
 % Source code listings
 \newcommand{\code}[1]{\texttt{#1}}
-\definecolor{colIdentifier}{rgb}{0,0,0}
-\definecolor{colComments}{rgb}{0.5,0.5,0.5}
-\definecolor{colKeys}{rgb}{0,0,1}
-\definecolor{colString}{rgb}{0,0.6,0}
 
 \RequirePackage{caption}
-\RequirePackage{listings}
-\lstset{%
-	float=hbp,%
-	basicstyle=\ttfamily\scriptsize, %
-	identifierstyle=\color{colIdentifier}, %
-	keywordstyle=\color{colKeys}, %
-	stringstyle=\color{colString}, %
-	commentstyle=\color{colComments}, %
-	columns=flexible, %
-	tabsize=2, %
-	aboveskip={1.5\baselineskip}, %
-	frame=single, %
-	extendedchars=true, %
-	showspaces=false, %
-	showstringspaces=false, %
-	numberstyle=\tiny, %
-	breaklines=true, %
-	backgroundcolor=, %
-	breakautoindent=true, %
-	captionpos=b%
+\RequirePackage{morewrites}
+\RequirePackage{inconsolata}
+\RequirePackage[chapter]{minted}
+\usemintedstyle{autumn}
+% Customize line numbers
+\renewcommand{\theFancyVerbLine}{\ttfamily\textcolor{black!50}{\scriptsize{\arabic{FancyVerbLine}}}}
+\setminted{
+   mathescape=false,
+   linenos=true,
+   xleftmargin=2em,
+   numbersep=5pt,
+   frame=leftline,
+   framerule=2pt,
+   framesep=2mm,
+   rulecolor=\color{black!50},
 }
+
 
 % Algorithms
 \RequirePackage[ruled, vlined, linesnumbered,algochapter,algo2e]{algorithm2e}

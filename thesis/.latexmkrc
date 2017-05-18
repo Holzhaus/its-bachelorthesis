@@ -1,5 +1,8 @@
 $pdf_mode = 1;                    # Use PDF output format instead of DVI/PS
 $bibtex_use = 2;                  # We're using biblatex, delete *.bbl files
+$latex = 'latex --shell-escape';
+$pdflatex = 'pdflatex --shell-escape';
+
 @default_files = ('thesis.tex');  # Specifies the main tex file
 
 # Add template folder to the search path
