@@ -33,3 +33,13 @@ verwendet werden, damit sichergestellt wird, dass genügend Durchläufe zum
 Auflösen aller Querverweise gemacht werden. Zudem befinden sich
 `.latexmkrc`-Dateien in den jeweiligen Dokumentordnern, die sinnvolle
 Einstellungen für den Kompiliervorgang enthalten.
+
+## Testcases
+
+Die [Sicherheits-Testdokumente](code/test-documents) in den Ordnern
+"denial-of-service", "file-system-access" und "server-side-request-forgery"
+basieren auf der Arbeit von
+[Christopher Späth](https://www.nds.rub.de/chair/people/spaetc1k/). Die
+ursprünglichen Versionen der Testdokumente befinden sich im
+["DTD-Attacks"-Repository](https://github.com/RUB-NDS/DTD-Attacks) des
+NDS-Lehrstuhls auf Github.
