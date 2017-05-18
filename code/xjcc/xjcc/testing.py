@@ -1,30 +1,35 @@
 # -*- coding: utf-8 -*-
 import logging
 import os
-import pkg_resources
 from . import testcase
 
-DOCDIR = 'testdocs'
+DOCDIRS = [
+    '/usr/share/xjcc/test-documents',
+    '/etc/xjcc/test-documents',
+    '~/.xjcc/test-documents',
+    '~/.local/share/xjcc/test-documents',
+]
 
 
 def get_tests(category=None):
-    req = pkg_resources.Requirement(__package__)
     if category:
         category_map = [(category, testcase.CATEGORIES[category])]
     else:
         category_map = testcase.CATEGORIES.items()
 
-    for category, category_class in category_map:
-        docdir = os.path.join(__package__, DOCDIR, category)
-        path = os.path.abspath(pkg_resources.resource_filename(req, docdir))
-        for root, dirs, files in os.walk(path):
-            for filename in files:
-                name, ext = os.path.splitext(filename)
-                if ext != '.testcase':
-                    continue
-                filepath = os.path.join(root, filename)
-                tc = category_class(filepath)
-                yield tc
+    for searchdir in DOCDIRS:
+        for category, category_class in category_map:
+            path = os.path.join(os.path.expanduser(searchdir), category)
+            if not os.path.isdir(path):
+                continue
+            for root, dirs, files in os.walk(path):
+                for filename in files:
+                    name, ext = os.path.splitext(filename)
+                    if ext != '.testcase':
+                        continue
+                    filepath = os.path.join(root, filename)
+                    tc = category_class(filepath)
+                    yield tc
 
 
 def run_tests(converter, tests):
