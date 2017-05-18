@@ -7,7 +7,7 @@
 Logisch äquivalente \acrshort{xml}-Dokumente können sich in der konkreten Darstellung
 stark unterscheiden. Das \gls{w3c} hat daher Richtlinien zur Umwandlung in eine
 einheitliche Darstellungsweise---die sogenannte \emph{Kanonische Form}---
-festgelegt. Der Umwandlungprozess wird \acrfull{c14n} genannt.
+festgelegt. Der Umwandlungprozess wird \acrfull{c14n} genannt.\cite{boyer2001c14n}
 
 \begin{example}[Kanonisierung]
 \label{ex:c14n}
@@ -32,14 +32,18 @@ logisch äquivalent.
 \captionof{figure}{Im kanonisierten \acrshort{xml}-Dokument wurde überflüssiger Whitespace entfernt, durchgehend das Anführungszeichen als Attributtrennzeichen verwendet und lediglich aus einem Start-Tag bestehende leere Elemente durch das entsprechende Start-End-Tag-Paar ersetzt.}
 \end{example}
 
-\subsubsection{Motivation}
+\subsubsection{Motivation und Anwendungsbereich}
 
-\cite{siddiqui2002c14n}
+Durch die Flexibilität des \acrshort{xml}-Standards besteht die MöglichkeitInformationen durch eine Vielzahl \acrshort{xml}-Dokumente darzustellen.\cite{siddiqui2002c14n} Die im Beispiel \ref{ex:c14n} abgebildeten \acrshort{xml}-Dokumente haben einen identischen Informationsgehalt, lediglich die Darstellungsweisen unterscheiden sich. Allein die Möglichkeit, innerhalb eines Start-Tags eine beliebe Anzahl von Whitespace einzusetzen\cite[Produktionsregeln 3 und 40] führt bereits zu einer unendlichen Anzahl von logisch äquivalenten XML-Darstellungen einer Information.
+
+Um die verschiedenden XML-Dokumenten enthaltene Logik vergleichbar zu machen, muss daher von der konkreten Darstellung abstrahiert werden.  \acrlong{c14n} überführt daher beliebige XML-Dokumente in eine \emph{Kanonische Form}, indem eine Reihe von Arbeitsschritten abgearbeitet werden, die in Abschnitt \ref{sec:c14nsteps} beschrieben sind.
+
+\acrlong{c14n} wird vor allem im Bereich der Signaturerstellung und -verifikation eingesetzt. Dabei wird nicht das zu siginierende Datenobjekt selbst, sondern lediglich ein \emph{Digest} d.h. ein Hashwert des Objekts) signiert.\cite[Abschnitt 2.0]{bartel2008xmlsig} Subtile und für die Dokumentlogik irrelevante Unterschiede wie der Einsatz von abweichenden Zeilenumbrüchen oder die Nutzung von einfachen statt doppelten Hochkomma als Trennzeichen für Attribute würden dabei den Hashwert ändern und die Signatur ungültig werden lassen. Daher werden die Datenobjekte standardmäßig mittels \acrlong{c14n} transformiert.\cite[Abschnitt 4.3.3.2]{bartel2008xmlsig}
 
 \subsubsection{Arbeitsschritte}
 
 Bei der \acrlong{c14n} werden grob folgende Änderungen am
-\acrshort{xml}-Dokument vorgenommen\cite[Abschnitt 1.1]{boyer01c14n}:
+\acrshort{xml}-Dokument vorgenommen\cite[Abschnitt 1.1]{boyer2001c14n}:
 
 \begin{enumerate}
     \item{} {Kodierung der Eingabe mit dem UTF-8-Zeichensatz}
