@@ -24,6 +24,12 @@ push @generated_exts, "tex.latexmain";
 push @generated_exts, "run.xml";
 push @generated_exts, "loa";
 push @generated_exts, "lol";
+push @generated_exts, "glg";
+push @generated_exts, "glo";
+push @generated_exts, "gls";
+push @generated_exts, "glg-abr";
+push @generated_exts, "glo-abr";
+push @generated_exts, "gls-abr";
 
 add_cus_dep('glo', 'gls', 0, 'makeglossaries');
 add_cus_dep('glo-abr', 'gls-abr', 0, 'makeglossaries');
