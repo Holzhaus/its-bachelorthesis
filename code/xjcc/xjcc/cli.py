@@ -1,60 +1,81 @@
 # -*- coding: utf-8 -*-
-import csv
 import datetime
-import json
 import logging
 import os
 import sys
 import concurrent.futures
 from . import testing
 from . import plugins
+from . import output
 
 try:
     import blessings
 except ImportError:
     blessings = None
 
+TEXTRESULTS = {
+    None: 'ERROR',
+    True: 'OK',
+    False: 'FAILED',
+}
+
+
+def get_converters(name=None):
+    for converter in sorted(plugins.get_converters(), key=lambda x: x.name):
+        if name is None or name == converter.name:
+            yield converter
+
+
+def get_testcases(name=None, category=None):
+    for testcase in sorted(
+            testing.get_tests(category=category), key=lambda x: x.name):
+        if name is None or name == testcase.name:
+            yield testcase
+
+
+def sort_testresults(row):
+    return '-'.join([row['converter'], row['testcase']])
+
 
 def list_converters(args):
-    converters = sorted(plugins.get_converters(), key=lambda x: x.name)
+    converters = list(get_converters())
     if not converters:
         print('No converters available.')
         return
 
+    outtable = output.OutputTable(['Name', 'Description'])
     for conv in converters:
-        print(conv.name, conv.desc)
+        outtable.add({'Name': conv.name, 'Description': conv.desc})
+
+    outtable.output(fmt=args.format, title='Converters')
 
 
 def list_testcases(args):
-    tests = sorted(testing.get_tests(category=args.category),
-                   key=lambda x: x.name)
-    if not tests:
-        print('No testcases available.')
-        return
-
-    for test in tests:
-        print('%s [%s] - %s' % (test.name, test.basename, test.description))
-
-
-def test_conversion(args):
-    logger = logging.getLogger(__name__)
-    testcases = sorted(testing.get_tests(category=args.category),
-                       key=lambda x: x.name)
+    testcases = list(get_testcases(category=args.category))
     if not testcases:
         print('No testcases available.')
         return
 
-    if not args.name:
-        converters = sorted(plugins.get_converters(), key=lambda x: x.name)
-        if not converters:
-            print('No converters available.')
-            return
-    else:
-        converter = plugins.get_converter(args.name)
-        if not converter:
+    outtable = output.OutputTable(['Name', 'Basename', 'Description'])
+    for test in testcases:
+        outtable.add({'Name': test.name, 'Basename': test.basename, 'Description': test.description})
+
+    outtable.output(fmt=args.format, title='Converters')
+
+def test_conversion(args):
+    logger = logging.getLogger(__name__)
+    testcases = list(get_testcases(category=args.category))
+    if not testcases:
+        print('No testcases available.')
+        return
+
+    converters = list(get_converters(name=args.name))
+    if not converters:
+        if args.name:
             print('No converter named \'%s\' found.' % args.name)
-            return
-        converters = [converter]
+        else:
+            print('No converters available.')
+        return
 
     with concurrent.futures.ThreadPoolExecutor(max_workers=1) as executor:
         futures = []
@@ -64,6 +85,7 @@ def test_conversion(args):
             futures.append(future)
 
         results = {}
+        outtable = output.OutputTable(['Converter', 'Testcase', 'Result'])
         for future in concurrent.futures.as_completed(futures):
             for testresult in future.result():
                 logger.debug('Testcase  \'%s\' done.', testresult.test.name)
@@ -71,6 +93,11 @@ def test_conversion(args):
                 if converter_name not in results:
                     results[converter_name] = []
                 results[converter_name].append(testresult)
+                outtable.add({
+                    'Converter': converter_name,
+                    'Testcase': testresult.test.name,
+                    'Result': TEXTRESULTS[testresult.test_passed],
+                })
 
     output_dir = args.output_dir if args.write_data else None
     if output_dir:
@@ -94,47 +121,8 @@ def test_conversion(args):
                         f.write(testresult.xml_output)
         logger.info('Output written to \'%s\'.', output_root)
 
-    textresults = {
-        None: 'ERROR',
-        True: 'OK',
-        False: 'FAILED',
-    }
-
-    if args.format == 'text':
-        if blessings:
-            term = blessings.Terminal()
-            textresults = {
-                None: term.red(textresults[None]),
-                True: term.green(textresults[True]),
-                False: term.yellow(textresults[False]),
-            }
-
-        width = max(len(x) for x in textresults.values()) + 2
-        fmt = '  [{{result:^{width}}}] {{name}}'.format(width=width)
-
-        for converter_name, resultlist in results.items():
-            print('Converter \'%s\':' % converter_name)
-            for result in resultlist:
-                textresult = textresults[result.test_passed]
-                print(fmt.format(result=textresult, name=result.test.name))
-            print('')
-    else:
-        data = {
-            converter_name: {
-                result.test.name: textresult[result.test_passed]
-                for result in resultlist
-            }
-            for converter_name, resultlist in results
-        }
-        if args.format == 'json':
-            print(json.dumps(data))
-        elif args.format == 'csv':
-            fieldnames = ['converter'] + list(list(data.values())[0].keys())
-            writer = csv.DictWriter(sys.stdout, fieldnames=fieldnames)
-            writer.writeheader()
-            for converter, tests in data.items():
-                result = {**{'converer': converter}, **tests}
-                writer.writerow(result)
+    outtable.output(fmt=args.format, title='Test result',
+                    sort_key=sort_testresults)
 
 
 def canonicalize(args):
@@ -143,3 +131,27 @@ def canonicalize(args):
     args.file = args.file.buffer if hasattr(args.file, 'buffer') else args.file
     xml_data = args.file.read()
     print(testing.canonicalize(xml_data).decode())
+
+
+def convert_file(args):
+    # FIXME: We need this line due to Python Issue #14156
+    # See https://bugs.python.org/issue14156 for details.
+    args.file = args.file.buffer if hasattr(args.file, 'buffer') else args.file
+    input_data = args.file.read()
+
+    try:
+        converter = list(get_converters(name=args.converter))[0].module
+    except IndexError:
+        print('No converter named \'%s\' found.' % args.name)
+        return
+
+    if args.direction == 'xml-to-json':
+        output = converter.xml_to_json(input_data)
+    elif args.direction == 'json-to-xml':
+        output = converter.json_to_xml(input_data)
+    else:
+        json_data = converter.xml_to_json(input_data)
+        output = converter.json_to_xml(json_data)
+
+    sys.stdout.buffer.write(output)
+

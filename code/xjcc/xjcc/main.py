@@ -6,6 +6,13 @@ from . import cli
 from . import testcase
 
 
+OUTPUT_FORMATS = [
+    'text',
+    'json',
+    'csv',
+]
+
+
 def writable_directory(path):
     if not os.path.isdir(path):
         raise argparse.ArgumentTypeError(
@@ -49,11 +56,30 @@ def parse_args(args=None):
         )
     subparsers.required = True
 
+    # convert-file
+    parser_convert = subparsers.add_parser(
+        'convert-file',
+        help='convert file'
+    )
+    parser_convert.add_argument('converter')
+    parser_convert.add_argument('file', type=argparse.FileType('rb'))
+    parser_convert_dir = parser_convert.add_mutually_exclusive_group()
+    parser_convert_dir.add_argument('--xml-to-json', action='store_const',
+                                    dest='direction', const='xml-to-json',
+                                    default='xml-to-json')
+    parser_convert_dir.add_argument('--json-to-xml', action='store_const',
+                                    dest='direction', const='json-to-xml')
+    parser_convert_dir.add_argument('--roundtrip', action='store_const',
+                                    dest='direction', const='roundtrip')
+    parser_convert.set_defaults(func=cli.convert_file)
+
     # list-converters
     parser_list = subparsers.add_parser(
         'list-converters',
         help='list database contents'
     )
+    parser_list.add_argument('-f', '--format',
+                                       choices=OUTPUT_FORMATS, default='text')
     parser_list.set_defaults(func=cli.list_converters)
 
     # list-tests
@@ -64,6 +90,8 @@ def parse_args(args=None):
     parser_listtestcases.add_argument('-c', '--category', default=None,
             action='store', choices=testcase.CATEGORIES.keys(),
             help='Only use testcases from a single category')
+    parser_listtestcases.add_argument('-f', '--format',
+                                       choices=OUTPUT_FORMATS, default='text')
     parser_listtestcases.set_defaults(func=cli.list_testcases)
 
     # test-conversion
@@ -74,11 +102,8 @@ def parse_args(args=None):
     parser_testconversion.add_argument('-c', '--category', default=None,
             action='store', choices=testcase.CATEGORIES.keys(),
             help='Only use testcases from a single category')
-    parser_testconversion.add_argument('-f', '--format', choices=[
-        'json',
-        'csv',
-        'text',
-    ], default='text')
+    parser_testconversion.add_argument('-f', '--format',
+                                       choices=OUTPUT_FORMATS, default='text')
     parser_testconversion.add_argument('-w', '--write-data',
         action='store_true')
     parser_testconversion.add_argument('-o', '--output-dir', default='.',
