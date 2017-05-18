@@ -45,6 +45,9 @@ RUN cd /opt/xjcc/xjcc-xmljson && ./setup.py install
 
 RUN rm -rf /opt/xjcc
 
+RUN mkdir -p /usr/share/xjcc
+COPY test-documents /usr/share/xjcc/test-documents
+
 # Don't run as root inside container
 USER xjcc
 
