@@ -4,6 +4,7 @@
 
 \documentclass[german]{rubthesis}
 \usepackage{tabularx}
+\usepackage{keyval}
 \addbibresource{literature.bib}
 
 \renewcommand{\thesistype}{Bacherlorarbeit}
@@ -24,6 +25,44 @@ ins JSON-Format
 % Load acronyms in preamble
 %\loadglsentries{glossary}
 \loadglsentries{acronyms}
+
+\makeatletter
+\define@key{convtool}{url}{\def\conv@url{#1}}
+\define@key{convtool}{license}{\def\conv@license{#1}}
+\define@key{convtool}{author}{\def\conv@author{#1}}
+\define@key{convtool}{version}{\def\conv@version{#1}}
+\define@key{convtool}{language}{\def\conv@language{#1}}
+\define@key{convtool}{version}{\def\conv@version{#1}}
+\setkeys{convtool}{url={},license={},author={},language={},version={Unbekannt}}%
+\newcommand{\convtool}[2][]{%
+    \begingroup%
+    \setkeys{convtool}{#1}% Set new keys
+    \begin{tabular}{p{3.6cm}l}
+    \ifx\conv@author\@empty
+    \else
+        {\fontfamily{rubflama}\selectfont{}\textbf{Autor:}} & \conv@author\\
+    \fi
+    \ifx\conv@url\@empty
+    \else
+        {\fontfamily{rubflama}\selectfont{}\textbf{URL:}} & \url{\conv@url}\\
+    \fi
+    \ifx\conv@license\@empty
+    \else
+        {\fontfamily{rubflama}\selectfont{}\textbf{Lizenz:}} & \conv@license\\
+    \fi
+    \ifx\conv@language\@empty
+    \else
+        {\fontfamily{rubflama}\selectfont{}\textbf{Programmiersprache:}} & \conv@language\\
+    \fi
+    \ifx\conv@version\@empty
+    \else
+        {\fontfamily{rubflama}\selectfont{}\textbf{Gestete Version:}} & \conv@version\\
+    \fi
+    \end{tabular}
+    \endgroup%
+}
+\makeatother
+
 
 \begin{document}
 
