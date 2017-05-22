@@ -115,7 +115,8 @@ BCOR=1cm, % Bindekorrektur: Change this accordingly, also read the KomaScript Gu
 }
 \setabbreviationstyle[acronym]{long-short-user}
 
-\RequirePackage[url=false,backend=biber]{biblatex}
+\RequirePackage[url=true,backend=biber,style=alphabetic,maxalphanames=1]{biblatex}
+\renewcommand*{\labelalphaothers}{}
 
 % Make bibliography titles clickable if URL is given
 \newbibmacro{string+url}[1]{%
@@ -126,7 +127,7 @@ BCOR=1cm, % Bindekorrektur: Change this accordingly, also read the KomaScript Gu
   }%
 }
 \DeclareFieldFormat{title}{\usebibmacro{string+url}{\mkbibemph{#1}}}
-\DeclareFieldFormat[article,incollection,inproceedings]{title}%
+\DeclareFieldFormat[article,incollection,inproceedings,report]{title}%
     {\usebibmacro{string+url}{\mkbibquote{#1}}}
 \DefineBibliographyStrings{ngerman}{%
    andothers = {{et\,al\adddot}},%
@@ -167,6 +168,7 @@ BCOR=1cm, % Bindekorrektur: Change this accordingly, also read the KomaScript Gu
 % Customize line numbers
 \renewcommand{\theFancyVerbLine}{\ttfamily\textcolor{black!50}{\scriptsize{\arabic{FancyVerbLine}}}}
 \setminted{
+   breaklines=true,
    mathescape=false,
    linenos=true,
    xleftmargin=2em,
