@@ -82,3 +82,105 @@ Die \gls{w3c}-Empfehlung für kanonisches XML erlaubt sowohl das ersatzlose Entf
 \subsubsection{Exklusive \acrlong{c14n}}
 
 Einen Sonderfall stellt die Exklusive \acrlong{c14n} dar, die in einer separaten Empfehlung des \gls{w3c} beschrieben ist.\cite{boyer2002excc14n} Während bei der regulären (inklusiven) \acrlong{c14n} der Vorfahren-Kontext (z.B. Namespaces und Attribute im \acrshort{xml}-Namensraum) von Teildokumente eines XML-Dokuments erhalten bleibt, wird dieser bei der exklusiven \acrshort{c14n} verworfen.\cite[Abschnitt~18]{siddiqui2002c14n2} Dies kann insbesondere dann sinnvoll sein, wenn Teildokumente aus dem Quelldokumente herausgelöst und ggf. andere Dokumente eingebettet werden sollen (Re-Enveloping), ohne dass sich ihre digitale Signatur ändert.
+
+\section{\acrfull{json}}
+
+Vor allem im Bereich des Datenaustausch hat sich die \acrfull{json} als Alternative zum gängigen \acrshort{xml}-Format etabliert. Im Gegensatz zum dokumentorientierten Auszeichnungssprache \acrshort{xml} wird \acrshort{json} häufig als \emph{datenorientiert} bezeichnet.\cite{gupta2007xmljson}
+
+\subsection{Datenmodell und Syntax}
+
+Das \acrshort{json}-Format verfügt über mehrere verschiedene Datentypen, darunter die Containertypen \emph{Objekt} und \emph{Array}:\cite{ecma404}
+
+\begin{description}
+    \item[Objekte] werden mit geschweiften Klammern \texttt{\{\}}angegeben und enhalten eine kommaseparierten ungeordneten Liste von beliebig vielen Schlüssel-Wert-Paaren. Die Schlüssel müssen vom Typ Strings sein und dürfen im Objekt nur einmal vorkommen. Die Werte dürfen beliebigen Typs sein (auch weitere Objekte).
+    \item[Arrays] sind neben \emph{Objekten} die zweite Containerklasse des \acrshort{json}-Formats und enhalten eine kommaseparierte geordnete Liste von Werten beliebigen Typs. Diese Liste wird von eckigen Klammern (\texttt{[]} umschlossen darf auch leer sein.
+    \item[Strings] sind einfache Zeichenketten, die aus beliebig vielen Zeichen bestehen und von doppelten Anführungszeichen (\texttt{"}) umschlossen sind. Kontrollzeichen, doppelte Anführungszeichen und der Backslash (\texttt{\textbackslash})  müssen mit einem Backslash quotiert werden.
+    \item[Zahlen] werden als Dezimalwert ohne führende Null dargestellt. Für negativen Werte kann ein Minuszeichen vorangestellt werden. Bei der Angabe von Nachkommastellen werden diese mittels eines Punkts (\texttt{.}) vom Ganzzahlteil getrennt. Auch die wissenschaftliche \enquote{E-Notation} ist erlaubt.
+    \item[\texttt{true} / \texttt{false}] bezeichnet die Booleschen Werte \enquote{wahr} und \enquote{falsch}.
+    \item[\texttt{null}] steht für den Nullwert.
+\end{description}
+
+\begin{definition}Formale Syntax der \acrfull{json}
+\label{def:json}
+
+Unerheblicher Whitespace (Tabulator\footnote{Unicode-Codepoint \texttt{U+0009}: \texttt{CHARACTER TABULATION}}, Zeilenumbruch\footnote{Unicode-Codepoint \texttt{U+000A}: \texttt{LINE FEED (LF)}}, Wagenrücklauf\footnote{Unicode-Codepoint \texttt{U+000D}: \texttt{CARRIAGE RETURN (CR)}} und Leerzeichen\footnote{Unicode-Codepoint \texttt{U+0020}: \texttt{SPACE}}) kann vor oder nach allen Token (\lit{\{}\footnote{Unicode-Codepoint \texttt{U+007B}: \texttt{LEFT CURLY BRACKET}}, \lit{\}}\footnote{Unicode-Codepoint \texttt{U+007D}: \texttt{RIGHT CURLY BRACKET}}, \lit{[}\footnote{Unicode-Codepoint \texttt{U+005B}: \texttt{LEFT SQUARE BRACKET}}, \lit{]}\footnote{Unicode-Codepoint \texttt{U+005D}: \texttt{RIGHT SQUARE BRACKET}}, \lit{:}\footnote{Unicode-Codepoint \texttt{U+003A}: \texttt{COLON}}, \lit{,}\footnote{Unicode-Codepoint \texttt{U+002C}: \texttt{COMMA}}) eingefügt werden.
+
+\begin{grammar}
+    <value> ::= \[[ \begin{stack}
+                <object>\\
+                <array>\\
+                <string>\\
+                <number>\\
+                'true'\\
+                'false'\\
+                'null'
+            \end{stack} \]]
+
+    <object> ::= \[[ ‘\{’ \begin{stack}
+                \begin{rep}
+                    <string> ':' <value>\\
+                    ','
+                \end{rep}\\
+        \end{stack} ‘\}’ \]]
+
+    <array> ::= \[[ '[' \begin{stack}
+                \begin{rep}
+                    <value>\\
+                    ','
+                \end{rep}\\
+        \end{stack} ‘]’ \]]
+
+    <number> ::= \[[
+        \begin{stack}
+            \\'-'
+        \end{stack}
+        \begin{stack}
+            '0'\\
+            '1' - '9'
+            \begin{rep}
+                \\'0' - '9'
+            \end{rep}
+        \end{stack}
+        \begin{stack}\\
+            '.' \begin{rep}
+                    '0' - '9'
+                \end{rep}
+        \end{stack}
+        \begin{stack}\\
+            \begin{stack}
+                'e'\\
+                'E'
+            \end{stack}
+            \begin{stack}
+                \\
+                '+'\\
+                '-'\\
+            \end{stack}
+            \begin{rep}
+                '0' - '9'
+            \end{rep}
+        \end{stack}
+        \]]
+
+    <string> ::= \[[
+        '\textquotedbl' \begin{stack}\\
+                \begin{rep}
+                    \begin{stack}
+                        \tok{\normalfont Any Unicode char except \texttt{\textquotedbl}, \texttt{\textbackslash} or control char}\\
+                        '\textbackslash' \begin{stack}
+                            '\textquotedbl'\\
+                            '\textbackslash'\\
+                            '/'\\
+                            'b'\\
+                            'f'\\
+                            'n'\\
+                            'r'\\
+                            't'\\
+                            'u' \tok{\normalfont 4 hexadecimal digits}
+                        \end{stack}
+                    \end{stack}
+                \end{rep}
+        \end{stack} '\textquotedbl'
+        \]]
+\end{grammar}
+\end{definition}
