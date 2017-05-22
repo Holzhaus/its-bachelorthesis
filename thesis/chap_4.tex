@@ -1,2 +1,33 @@
 \chapter{Results} \label{chap:results}
 Lorem ipsum dolor sit amet consectetuer parturient ac pulvinar magna porttitor. Accumsan vel ac eros laoreet Nulla leo Nulla vel Pellentesque Quisque. Adipiscing penatibus Phasellus egestas leo id neque nec quis est orci. Porta tellus ligula ut ridiculus eros eget ut Vivamus dictum nulla. Dui wisi enim vitae nulla Fusce Curabitur congue consectetuer urna Quisque. Felis Vestibulum Quisque sed Vestibulum et malesuada ac id tristique vitae. Aliquam Suspendisse mattis et libero et tincidunt quis tellus eget consectetuer. Libero Morbi cursus augue eget dapibus tincidunt nunc parturient id arcu. Donec sapien enim Aenean convallis Donec elit tincidunt dolor vitae tellus. Ac consectetuer at tortor malesuada ac dui ligula habitant habitasse congue. 
+
+
+\begin{definition} Formale Syntax der \acrfull{jsonml} mit \emph{Processing Instructions}
+\label{def:jsonmlpi}
+
+Die um Unterstützung von \emph{Processing Instructions} erweitere Syntax ist mit Ausname der Produktionsregeln für \synt{element} identisch zu der Syntax aus Definition~\ref{def:jsonml}.
+\synt{tag-name}, \synt{pi-target} und \synt{pi-data} sind \acrshort{json}-Werte vom Typ String.
+
+\begin{grammar}
+    <element> ::= \[[
+            \begin{stack}
+                '[' \begin{stack}
+                        <tag-name>
+                        \begin{stack}
+                            ',' <attributes>\\
+                        \end{stack}
+                        \begin{stack}
+                            ',' \begin{rep}
+                                    <element>\\
+                                    ','
+                                \end{rep}\\
+                        \end{stack}\\
+                        '?' <pi-target> <pi-value>
+                    \end{stack} ']'\\
+                \tok{string}
+            \end{stack}
+        \]]
+\end{grammar}
+
+Enthält das Dokument \emph{Processing Instructions} auf Dokument-Ebene (d.h. als Top-Level-Konstrukt), dann ist das \acrshort{jsonml}-Wurzelelement ein \synt{element} mit einem leeren String als \synt{tag-name}, das die Child-Nodes des Dokuments (d.h. \emph{Processing Instructions} auf Dokumentebene und das Wurzelelement des Dokuments) als Unterelemente enthält.
+\end{definition}
