@@ -5,6 +5,19 @@
 \documentclass[german]{rubthesis}
 \usepackage{tabularx}
 \usepackage{keyval}
+\usepackage[nounderscore,rounded]{syntax}
+\renewcommand{\sdsize}{\scriptsize\ttfamily}
+\renewcommand{\sdlengths}{%
+  \setlength{\sdstartspace}{1em}%
+  \setlength{\sdendspace}{1em}%
+  \setlength{\sdmidskip}{0.5em}%
+  \setlength{\sdtokskip}{0.25em}%
+  \setlength{\sdfinalskip}{0.5em plus 10000fil}%
+  \setlength{\sdrulewidth}{0.2pt}%
+  \setlength{\sdcirclediam}{12pt}%
+  \setlength{\sdindent}{0pt}%
+}
+
 \addbibresource{literature.bib}
 
 \renewcommand{\thesistype}{Bacherlorarbeit}
