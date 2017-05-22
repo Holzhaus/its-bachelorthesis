@@ -63,6 +63,21 @@ Whitespace innerhalb des Wurzelelements des Dokumentens muss beibehalten werden,
     All whitespace within the root document element MUST be preserved (except for any \texttt{\#xD} characters deleted by line delimiter normalization). This includes all whitespace in external entities. Whitespace outside of the root document element MUST be discarded.
 \end{foreigndisplayquote}
 
+\subsubsection{Mixed Content}
+
+Eine Besonderheit von \acrshort{xml} und auch \acrshort{sgml} ist, dass die Spezifikation sogenannten \emph{Mixed Content} erlaubt. Dieser liegt vor, wenn ein Element sowohl Character Data als auch Kindelement enthält:
+
+\begin{foreigndisplayquote}{english}[{\cite[Abschnitt 3.2.2]{maler2008xml}}]
+    An element type has mixed content when elements of that type may contain character data, optionally interspersed with child elements.
+\end{foreigndisplayquote}
+
+\begin{example} Mixed Content
+    \begin{minted}{xml}
+<mixed>This is an element<br /> containing <emph>mixed content</emph>.<mixed>
+    \end{minted}
+\end{example}
+
+\emph{Mixed Content} stellt \acrshort{xml}-Parser vor besondere Herausforderungen\cite{mcgrath2002mixedcontent}. Zudem existiert kein \acrshort{json}-Äquivalent von \emph{Mixed Content}, was eine Konversion erschwert.
 
 \section{XML-JSON-Konversionsverfahren}
 
