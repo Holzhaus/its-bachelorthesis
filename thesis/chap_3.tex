@@ -99,6 +99,51 @@ Eine Besonderheit von \acrshort{xml} und auch \acrshort{sgml} ist, dass die Spez
     version=2.0.0 (2016-04-09),
 ]{jsonml}
 
+\begin{definition}Formale Syntax der \acrfull{jsonml}
+\label{def:jsonml}
+
+Sowohl \synt{tag-name} als auch \synt{attribute-name} sind \acrshort{json}-Werte vom Typ String. Die Whitespace-Regeln sind identisch wie bei \acrshort{json} (Vgl. Definition~\ref{def:json}).
+
+\begin{grammar}
+    <element> ::= \[[
+            \begin{stack}
+                '[' <tag-name>
+                    \begin{stack}
+                        ',' <attributes>\\
+                    \end{stack}
+                    \begin{stack}
+                        ',' \begin{rep}
+                                <element>\\
+                                ','
+                            \end{rep}\\
+                    \end{stack}
+                ']'\\
+                \tok{string}
+            \end{stack}
+        \]]
+
+    <attributes> ::= \[[
+        '\{' \begin{stack}
+                \begin{rep}
+                    <attribute-name> ':' <attribute-value>\\
+                    ','
+                \end{rep}\\
+            \end{stack} '\}'
+        \]]
+
+    <attribute-value> ::= \[[
+            \begin{stack}
+                \tok{string}\\
+                \tok{number}\\
+                'true'\\
+                'false'\\
+                'null'\\
+            \end{stack}
+        \]]
+
+\end{grammar}
+\end{definition}
+
 \subsection{JXON}
 \convtool[
     author={MDN / Martin Raifer},
