@@ -1,0 +1,212 @@
+\documentclass[
+    alternativetitlepage=alternativ,
+    cornerlogo=hgi_nds_logo2,
+    sectionoverview,
+]{rubpresentation}
+\setbeamercovered{invisible}
+
+\title[XML/JSON conversions]
+{Bridging the Gap: Secure and lossless conversion\\ of XML data structures to the JSON format}
+\subtitle{\small Bachelor thesis \hspace{3mm}{\scriptsize $\blacksquare$}\hspace{3mm} March 30, 2017 -- June 29, 2017}
+
+\author[Holthuis]{Jan~Holthuis}
+
+\institute[Advisors]
+{%\inst{1}%
+Advisors: Dennis Felsch \& Paul Rösler
+}
+\date{May 23, 2017}
+\subject{Computer Science}
+
+\titlegraphic{titlepage.png}
+\sponsorlogo[height=7.6mm,interpolate=true]{hgi_nds_logo}
+
+\begin{document}
+
+\frame[plain]{\titlepage}
+
+%\begin{frame}{The \texttt{\textbackslash note}-Macro}
+%\begin{itemize}[<+->]
+%\item normal text for the presentation.
+%\note<1-2>[item]{Say something to the audience!}
+%\item and text for the presentation.
+%\item foo
+%\end{itemize}
+%\note<2>{Another note for you!}
+%\end{frame}
+
+%\note[enumerate]{\item foo \item bar \item baz \item foobar}
+
+
+\section{Quick Recap}
+
+\begin{frame}
+    \frametitle{Last time we learned that\dots{}}
+    \framesubtitle{}
+    \begin{itemize}
+        \item{} During conversion, we want to make sure that document content and logical structure stays the same\dots{}
+        \item{} \dots{}but the physical structure is not important.
+        \item{} Thus we can use the XPath Data Model and Canonicalization for abstraction
+        \item{} I gave some conversion critera examples:
+        \begin{itemize}
+            \item{} Comments are \emph{not} important ($\rightarrow$ XML 1.0, Sec~2.5)
+            \item{} Element Order \emph{is} important ($\rightarrow$ XPath 1.0, Sec~5)
+            \item{} Arribute Order is \emph{not} important ($\rightarrow$ XML 1.0, Sec~2.5)
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+
+\section{Progress report}
+
+\begin{frame}
+    \frametitle{Progress made in the last two weeks}
+    \framesubtitle{Progress Report I}
+    \begin{itemize}
+        \item{} Spent a lot of time reading W3C recommendations
+        \item{} Added more conversion criteria
+        \item{} \dots{}and continued writing my thesis.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Progress made in the last two weeks}
+    \framesubtitle{Progress Report II}
+    \begin{itemize}
+        \item{} Based on my current conversion critera, \emph{no existing solution} allows lossless XML$\rightarrow$JSON$\rightarrow$XML roundtrips\dots{}
+        \item<2->{} \dots{}but I found a promising candidate that \emph{almost} gets it right: \textbf{JsonML}
+    \end{itemize}
+\end{frame}
+
+\section{Currently leading solution}
+
+\begin{frame}[fragile]
+    \frametitle{JsonML}
+    \begin{itemize}
+        \item{} JsonML $=$ \enquote{JSON Markup Language}
+        \item{} Originally written in JavaScript, but there are also other implementations (e.g. Java: \texttt{org.json.JSONML})
+        \item{} Fairly mature: Github repo dates back to November 2006
+        \item{} Nicely documented grammar (Backus-Naur form)
+        \item{} Downsides:
+            \begin{itemize}
+                \item{} Resulting \emph{JSON} is not really \enquote{friendly}
+                \item{} No support for XML Processing Instructions (no tested solution supports them) $\rightarrow$ I already wrote a patch to fix this
+            \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{JsonML}
+    \framesubtitle{Example Transformation}
+    \begin{columns}[t]
+        \begin{column}{0.45\textwidth}
+                \begin{lstlisting}[language=xml,basicstyle=\fontsize{7}{11}\ttfamily,numbers=none]
+<albums>
+  <?my-pi with some data ?>
+  <album catno="ARGO LP-667">
+    <artist>The Ahmad Jamal Trio</artist>
+    <title>Jamal At The Pershing/Vol. 2</title>
+    <recording>Recorded <date>January 17, 1958</date>, in live performance at the <location>Pershing Lounge, Chicago</location>.</recording>
+  </album>
+</albums>
+\end{lstlisting}
+        \end{column}
+        \begin{column}{0.55\textwidth}
+                \begin{lstlisting}[language=json,basicstyle=\fontsize{7}{11}\ttfamily,numbers=none]
+[ "albums", "\n  ", [
+  "album", { "catno": "ARGO LP-667" }, "\n    ",
+  [ "artist", "The Ahmad Jamal Trio" ], "\n    ",
+  [ "title", "Jamal At The Pershing/Vol. 2" ], "\n    ",
+  [ "year", "1960" ], "\n    ",
+  [ "recording",
+    "Recorded ",
+    [ "date", "January 17, 1958" ],
+    ", in live performance at the ",
+    [ "location", "Pershing Lounge, Chicago" ],
+    "."
+  ], "\n  "
+], "\n" ]
+\end{lstlisting}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+
+\begin{frame}[fragile]
+    \frametitle{xmljson-Badgerfish}
+    \framesubtitle{Example Transformation (for comparison)}
+    \begin{columns}[t]
+        \begin{column}{0.45\textwidth}
+                \begin{lstlisting}[language=xml,basicstyle=\fontsize{7}{11}\ttfamily,numbers=none]
+<albums>
+  <?my-pi with some data ?>
+  <album catno="ARGO LP-667">
+    <artist>The Ahmad Jamal Trio</artist>
+    <title>Jamal At The Pershing/Vol. 2</title>
+    <recording>Recorded <date>January 17, 1958</date>, in live performance at the <location>Pershing Lounge, Chicago</location>.</recording>
+  </album>
+</albums>
+\end{lstlisting}
+        \end{column}
+        \begin{column}{0.55\textwidth}
+                \begin{lstlisting}[language=json,basicstyle=\fontsize{7}{11}\ttfamily,numbers=none]
+{ "albums": {
+    "album": {
+      "@catno": "ARGO LP-667",
+      "artist": { "$": "The Ahmad Jamal Trio" },
+      "title": { "$": "Jamal At The Pershing/Vol. 2" },
+      "year": { "$": 1960 },
+      "recording": {
+        "$": "Recorded",
+        "date": { "$": "January 17, 1958" },
+        "location": { "$": "Pershing Lounge, Chicago" }
+      }
+    }
+} }
+\end{lstlisting}
+        \end{column}
+    \end{columns}
+\end{frame}
+\section{Next steps}
+
+\begin{frame}
+    \frametitle{Next Steps}
+    \begin{itemize}
+        \item{} Overcome my Writer's Block ;-)
+        \item{} Complete checking tool unittests
+        \item{} Look for more conversion criteria and recheck everything (Did I miss any edge cases?)
+        \item{} ???
+        \item{} Profit!
+    \end{itemize}
+\end{frame}
+
+%%% Finally the last slide
+
+\begin{frame}[plain]
+\frametitle{Thanks!}
+ \begin{center}
+ {\bfseries\fontsize{30pt}{1.2em}\selectfont Questions?}
+ \end{center}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \begin{center}
+        %\font\endfont = cmss10 at 25.40mm
+        %\color{Brown}
+        %\endfont
+        %\baselineskip 20.0mm
+        Reach out via email:
+        \begin{itemize}
+        \item \textbf{Jan Holthuis}\\
+              jan.holthuis@rub.de
+        \end{itemize}
+      \end{center}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \begin{center}
+        \pgfimage[width=\textwidth]{questions.jpg}
+      \end{center}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\end{document}
