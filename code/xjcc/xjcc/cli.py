@@ -77,6 +77,19 @@ def test_conversion(args):
             print('No converters available.')
         return
 
+    output_dir = args.output_dir if args.write_data else None
+    if output_dir:
+        output_root = os.path.join(
+                output_dir, 'xjcc-%s' % datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S'))
+        os.mkdir(output_root)
+
+        handler = logging.FileHandler(os.path.join(output_root, 'xjcc.log'))
+        handler.setFormatter(logging.Formatter(
+            '%(asctime)s %(name)20s:%(lineno)-3d %(levelname)-8s %(message)s'
+        ))
+        root_logger = logging.getLogger()
+        root_logger.addHandler(handler)
+
     with concurrent.futures.ThreadPoolExecutor(max_workers=1) as executor:
         futures = []
         for testcase in testcases:
@@ -99,11 +112,7 @@ def test_conversion(args):
                     'Result': TEXTRESULTS[testresult.test_passed],
                 })
 
-    output_dir = args.output_dir if args.write_data else None
     if output_dir:
-        output_root = os.path.join(
-                output_dir, 'xjcc-%s' % datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S'))
-        os.mkdir(output_root)
         for converter_name, testresults in results.items():
             path = os.path.join(output_root, converter_name)
             os.mkdir(path)
@@ -119,10 +128,19 @@ def test_conversion(args):
                             path, '%s.xml' % testresult.test.name)
                     with open(xml_file, mode='wb') as f:
                         f.write(testresult.xml_output)
-        logger.info('Output written to \'%s\'.', output_root)
 
-    outtable.output(fmt=args.format, title='Test result',
-                    sort_key=sort_testresults)
+        for fmt in ['text', 'json', 'xml']:
+            output = outtable.output(fmt=fmt.format, title='Test result',
+                                     sort_key=sort_testresults)
+            fname = os.path.join(output_root, os.extsep.join(['results', fmt]))
+            with open(fname, mode="w", encoding="utf-8") as f:
+                f.write(output)
+
+        logger.info('Output written to \'%s\'.', output_root)
+        root_logger.removeHandler(handler)
+
+    print(outtable.output(fmt=args.format, title='Test result',
+                          sort_key=sort_testresults))
 
 
 def canonicalize(args):
