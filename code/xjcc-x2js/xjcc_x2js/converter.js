@@ -1,16 +1,11 @@
 let X2JS = require('x2js')
+let xjcc = require('xjcc')
 
-let to_xml = process.argv.includes("-d") || process.argv.includes("--decode")
-
-process.stdin.setEncoding('utf8');
-process.stdin.on('readable', () => {
-    let chunk = process.stdin.read();
-    if (chunk !== null) {
-        let x2js = new X2JS()
-        if (to_xml) {
-            process.stdout.write(x2js.js2xml(JSON.parse(chunk)));
-        } else {
-            process.stdout.write(JSON.stringify(x2js.xml2js(chunk)));
-        }
+xjcc.process_input(function(data, encoding) {
+    let x2js = new X2JS()
+    if (xjcc.to_xml()) {
+        return x2js.js2xml(JSON.parse(data));
+    } else {
+        return JSON.stringify(x2js.xml2js(data));
     }
 });
