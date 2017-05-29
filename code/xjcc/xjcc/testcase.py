@@ -70,7 +70,7 @@ def parse_responses(cp, path='.'):
         status = cp[section].get('status', None)
 
         headers = None
-        content_type = cp[section].get('content', None)
+        content_type = cp[section].get('content-type', None)
         if content_type is not None:
             headers = {'Content-Type': content_type}
 
