@@ -1,15 +1,10 @@
 let JXON = require('jxon')
+let xjcc = require('xjcc')
 
-let to_xml = process.argv.includes("-d") || process.argv.includes("--decode")
-
-process.stdin.setEncoding('utf8');
-process.stdin.on('readable', () => {
-    let chunk = process.stdin.read();
-    if (chunk !== null) {
-        if (to_xml) {
-            process.stdout.write(JXON.jsToString(JSON.parse(chunk)));
-        } else {
-            process.stdout.write(JSON.stringify(JXON.stringToJs(chunk)));
-        }
+xjcc.process_input(function(data, encoding) {
+    if (xjcc.to_xml()) {
+        return JXON.jsToString(JSON.parse(data));
+    } else {
+        return JSON.stringify(JXON.stringToJs(data));
     }
 });
