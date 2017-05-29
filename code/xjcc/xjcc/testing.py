@@ -31,8 +31,13 @@ def get_tests(category=None):
                     if ext != '.testcase':
                         continue
                     filepath = os.path.join(root, filename)
-                    tc = category_class(filepath)
-                    yield tc
+                    try:
+                        tc = category_class(filepath)
+                    except Exception:
+                        logger.warning('Failed to instantiate testcase \'%s\'',
+                                       filepath)
+                    else:
+                        yield tc
 
 
 def run_tests(converter, tests):
