@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--;testcase
+[General]
+name: Entity Recursion Attack
+description: Entity Expansion Attack that causes an endless loop
+-->
+<!DOCTYPE data [
+  <!ENTITY a "a&b;">
+  <!ENTITY b "b&a;">
+]>
+<data>&a;</data>
