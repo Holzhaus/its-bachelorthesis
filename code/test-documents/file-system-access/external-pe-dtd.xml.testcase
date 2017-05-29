@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--;testcase
+[General]
+name: External PE DTD FSA Attack
+description: File System Access via External Parameter Entity DTD
+
+[File secret_dtd]
+path: secret.dtd
+-->
+<!DOCTYPE data [
+  <!ELEMENT data (#PCDATA)>
+  <!ENTITY % external SYSTEM "{files.secret_dtd.url}">
+  %external;
+]>
+<data>&secret;</data>

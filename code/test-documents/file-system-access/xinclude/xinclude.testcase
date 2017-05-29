@@ -1,6 +1,0 @@
-[General]
-name: XInclude FSA Attack
-description: File System Access via XInclude
-
-[File secret_xml]
-path: ../secret.xml
