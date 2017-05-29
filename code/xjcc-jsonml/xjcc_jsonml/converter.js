@@ -11,9 +11,11 @@ const ctx = {
     "document": (new xmldom.DOMParser()).parseFromString("<x/>", "text/xml"),
     "window": {
         "DOMParser": xmldom.DOMParser,
-        "XMLSerializer": xmldom.XMLSerializer
-    }
+        "XMLSerializer": xmldom.XMLSerializer,
+        "console": xjcc.logger,
+    },
 };
+
 
 /* Run code in fake browser context */
 let filename = require.resolve("jsonml-tools/jsonml-xml.js")
