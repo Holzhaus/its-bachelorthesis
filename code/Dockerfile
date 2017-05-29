@@ -55,5 +55,4 @@ USER xjcc
 #     $ docker run -it -v /path/on/host:/data
 VOLUME /data
 WORKDIR /data
-ENTRYPOINT ["xjcc"]
-CMD ["--help"]
+CMD ["/bin/sh"]
