@@ -81,15 +81,23 @@ class ConverterPlugin(object):
         with tempfile.SpooledTemporaryFile() as f:
             f.write(data)
             f.seek(0)
-            with tempfile.SpooledTemporaryFile() as err_f:
-                try:
-                    output = subprocess.check_output(cmd, stdin=f,
-                                                     stderr=err_f, env=env)
-                except subprocess.CalledProcessError as e:
-                    err_f.seek(0)
-                    errors = err_f.read().decode().strip()
-                    logger.debug('stderr contents: %s', errors)
-                    raise e
+            with tempfile.SpooledTemporaryFile() as out_f:
+                logger.debug('Invoking: %s', subprocess.list2cmdline(cmd))
+                with subprocess.Popen(cmd, stdin=f, stdout=out_f,
+                                      stderr=subprocess.PIPE, env=env) as proc:
+
+                    for line in iter(proc.stderr.readline, b''):
+                        logger.debug(line.decode().strip())
+
+                    returncode = proc.wait()
+                    logger.debug('Process ended with status %d', returncode)
+
+                    out_f.seek(0)
+                    output = out_f.read()
+
+                    if returncode != 0:
+                        raise subprocess.CalledProcessError(returncode, cmd,
+                                                            output=output)
         return output
 
     @abc.abstractmethod
