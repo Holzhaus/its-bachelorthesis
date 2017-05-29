@@ -29,12 +29,28 @@ class XmlJsonBasePlugin(xjcc.plugins.ConverterPlugin):
         return defusedxml.ElementTree.tostring(tree, encoding='utf-8')
 
 
+class XmlJsonAbderaPlugin(XmlJsonBasePlugin):
+    """
+    Converts XML into JSON/Python dicts/arrays and vice-versa
+    (Abdera convention)
+    """
+    CONVENTION = xmljson.Abdera
+
+
 class XmlJsonBadgerfishPlugin(XmlJsonBasePlugin):
     """
     Converts XML into JSON/Python dicts/arrays and vice-versa
     (Badgerfish convention)
     """
     CONVENTION = xmljson.BadgerFish
+
+
+class XmlJsonCobraPlugin(XmlJsonBasePlugin):
+    """
+    Converts XML into JSON/Python dicts/arrays and vice-versa
+    (Cobra convention)
+    """
+    CONVENTION = xmljson.Cobra
 
 
 class XmlJsonGDataPlugin(XmlJsonBasePlugin):

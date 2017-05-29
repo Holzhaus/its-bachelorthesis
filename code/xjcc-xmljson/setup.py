@@ -21,7 +21,9 @@ setuptools.setup(
     packages=setuptools.find_packages(exclude=['contrib', 'docs', 'tests']),
     entry_points={
         'xjcc.converters': [
+            'xmljson-abdera = xjcc_xmljson:XmlJsonAbderaPlugin',
             'xmljson-badgerfish = xjcc_xmljson:XmlJsonBadgerfishPlugin',
+            'xmljson-cobra = xjcc_xmljson:XmlJsonCobraPlugin',
             'xmljson-gdata = xjcc_xmljson:XmlJsonGDataPlugin',
             'xmljson-yahoo = xjcc_xmljson:XmlJsonYahooPlugin',
             'xmljson-parker = xjcc_xmljson:XmlJsonParkerPlugin',
