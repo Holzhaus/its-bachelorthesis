@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--;testcase
+[General]
+name: Chars u05FFFE-05FFFF (Discouraged by XML spec)
+description: Checks if characters in the range U+5FFFE to U+5FFFF (Discouraged by XML spec) are handled correctly
+--><root><u5FFFE>񟿾</u5FFFE></root>

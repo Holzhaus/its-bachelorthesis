@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--;testcase
+[General]
+name: Chars u000020-00007E (Basic latin printable)
+description: Checks if characters in the range U+20 to U+7E (Basic latin printable) are handled correctly
+--><root><u20> </u20><u21>!</u21><u22>"</u22><u23>#</u23><u24>$</u24><u25>%</u25><u26>&amp;</u26><u27>'</u27><u28>(</u28><u29>)</u29><u2A>*</u2A><u2B>+</u2B><u2C>,</u2C><u2D>-</u2D><u2E>.</u2E><u2F>/</u2F><u30>0</u30><u31>1</u31><u32>2</u32><u33>3</u33><u34>4</u34><u35>5</u35><u36>6</u36><u37>7</u37><u38>8</u38><u39>9</u39><u3A>:</u3A><u3B>;</u3B><u3C>&lt;</u3C><u3D>=</u3D><u3E>&gt;</u3E><u3F>?</u3F><u40>@</u40><u41>A</u41><u42>B</u42><u43>C</u43><u44>D</u44><u45>E</u45><u46>F</u46><u47>G</u47><u48>H</u48><u49>I</u49><u4A>J</u4A><u4B>K</u4B><u4C>L</u4C><u4D>M</u4D><u4E>N</u4E><u4F>O</u4F><u50>P</u50><u51>Q</u51><u52>R</u52><u53>S</u53><u54>T</u54><u55>U</u55><u56>V</u56><u57>W</u57><u58>X</u58><u59>Y</u59><u5A>Z</u5A><u5B>[</u5B><u5C>\</u5C><u5D>]</u5D><u5E>^</u5E><u5F>_</u5F><u60>`</u60><u61>a</u61><u62>b</u62><u63>c</u63><u64>d</u64><u65>e</u65><u66>f</u66><u67>g</u67><u68>h</u68><u69>i</u69><u6A>j</u6A><u6B>k</u6B><u6C>l</u6C><u6D>m</u6D><u6E>n</u6E><u6F>o</u6F><u70>p</u70><u71>q</u71><u72>r</u72><u73>s</u73><u74>t</u74><u75>u</u75><u76>v</u76><u77>w</u77><u78>x</u78><u79>y</u79><u7A>z</u7A><u7B>{</u7B><u7C>|</u7C><u7D>}</u7D></root>

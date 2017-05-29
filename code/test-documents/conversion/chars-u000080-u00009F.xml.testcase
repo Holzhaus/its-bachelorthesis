@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--;testcase
+[General]
+name: Chars u000080-00009F (C1 set)
+description: Checks if characters in the range U+80 to U+9F (C1 set) are handled correctly
+--><root><u80></u80><u81></u81><u82></u82><u83></u83><u84></u84><u85></u85><u86></u86><u87></u87><u88></u88><u89></u89><u8A></u8A><u8B></u8B><u8C></u8C><u8D></u8D><u8E></u8E><u8F></u8F><u90></u90><u91></u91><u92></u92><u93></u93><u94></u94><u95></u95><u96></u96><u97></u97><u98></u98><u99></u99><u9A></u9A><u9B></u9B><u9C></u9C><u9D></u9D><u9E></u9E></root>
