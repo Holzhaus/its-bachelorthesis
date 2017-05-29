@@ -120,41 +120,50 @@ class ConversionTestCase(object):
         logger = logging.getLogger(__name__)
 
         xmldata = self.content.encode('utf-8')
-        convert = functools.partial(get_conversion_data, xmldata)
         for converter in converters:
             logger.info('Started testcase \'%s\' for converter \'%s\'',
                         self.name, converter.name)
             try:
-                json_output, xml_output = convert(converter.module)
+                json_output = converter.module.xml_to_json(xmldata)
             except Exception:
                 passed = None
                 json_output = None
                 xml_output = None
-                logger.debug('Error occured during conversion', exc_info=True)
+                logger.debug('Error occured during xml-to-json conversion',
+                             exc_info=True)
             else:
-                json_errors = demjson.decode(
-                        json_output,
-                        strict=True,
-                        return_errors=True,
-                        return_stats=False,
-                        write_errors=False,
-                        forbid_bom=True,
-                        allow_zero_byte=True,
-                        allow_non_portable=True,
-                    )[1]
-                if json_errors:
-                    passed = False
-                    logger.info('Erroneous JSON: %r', json_errors)
+                try:
+                    xml_output = converter.module.json_to_xml(json_output)
+                except Exception:
+                    passed = None
+                    xml_output = None
+                    logger.debug('Error occured during json-to-xml conversion',
+                                 exc_info=True)
                 else:
-                    try:
-                        xmldata_c14n = canonicalize(xmldata)
-                        xmloutput_c14n = canonicalize(xml_output)
-                        passed = (xmldata_c14n == xmloutput_c14n)
-                    except Exception:
-                        logger.warning(
-                                'Failed to canonicalize xml!',
-                                exc_info=logger.isEnabledFor(logging.DEBUG))
+                    json_errors = demjson.decode(
+                            json_output,
+                            strict=True,
+                            return_errors=True,
+                            return_stats=False,
+                            write_errors=False,
+                            forbid_bom=True,
+                            allow_zero_byte=True,
+                            allow_non_portable=True,
+                        )[1]
+                    if json_errors:
                         passed = False
+                        logger.info('Erroneous JSON: %r', json_errors)
+                    else:
+                        try:
+                            xmldata_c14n = canonicalize(xmldata)
+                            xmloutput_c14n = canonicalize(xml_output)
+                            passed = (xmldata_c14n == xmloutput_c14n)
+                        except Exception:
+                            logger.warning(
+                                    'Failed to canonicalize xml!',
+                                    exc_info=logger.isEnabledFor(
+                                        logging.DEBUG))
+                            passed = False
             yield TestResult(
                 test=self,
                 converter=converter,
