@@ -34,7 +34,7 @@ def get_testcases(name=None, category=None):
 
 
 def sort_testresults(row):
-    return '-'.join([row['converter'], row['testcase']])
+    return '-'.join([row['Converter'], row['Testcase']])
 
 
 def list_converters(args):
