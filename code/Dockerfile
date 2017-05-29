@@ -22,6 +22,10 @@ RUN pip3 install -r /opt/xjcc/requirements.txt
 COPY xjcc /opt/xjcc/xjcc
 RUN cd /opt/xjcc/xjcc && ./setup.py install
 
+# Install nodejs helper library
+COPY node-xjcc /opt/xjcc/node-xjcc
+RUN npm install -g /opt/xjcc/node-xjcc
+
 COPY xjcc-jsonlib /opt/xjcc/xjcc-jsonlib
 RUN cd /opt/xjcc/xjcc-jsonlib && ./setup.py install
 
