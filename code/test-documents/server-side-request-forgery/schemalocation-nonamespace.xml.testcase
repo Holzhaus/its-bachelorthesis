@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--;testcase
+[General]
+name: SchemaLocation NoNamespace URL Invocation
+description: Server Side Request Forgery Attack via SchemaLocation noNamespace-Attribute
+-->
+<data xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://{server_address}/schemalocation-nonamespace.xsd">This is a test.</data>
