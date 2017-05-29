@@ -1,0 +1,12 @@
+{
+  "name": "xjcc",
+  "description": "Helper functions for NodeJS xjcc plugins",
+  "version": "0.0.1",
+  "license": "MIT",
+  "author": {
+    "name" : "Jan Holthuis",
+    "email" : "jan.holthuis@ruhr-uni-bochum.de",
+    "url" : "http://homepage.rub.de/jan.holthuis/"
+  },
+  "main": "xjcc.js"
+}
