@@ -32,6 +32,7 @@ public class App
     {
         XMLSerializer xmlserializer = new XMLSerializer();
         xmlserializer.setTypeHintsEnabled(false);
+        xmlserializer.setRootName("root");
         if (to_xml(args)) {
             JSON json = JSONSerializer.toJSON(readString(System.in));
             System.out.println(xmlserializer.write(json));
