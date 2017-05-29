@@ -12,14 +12,17 @@ DOCDIRS = [
 
 
 def get_tests(category=None):
+    logger = logging.getLogger(__name__)
     if category:
         category_map = [(category, testcase.CATEGORIES[category])]
     else:
         category_map = testcase.CATEGORIES.items()
 
-    for searchdir in DOCDIRS:
+    for raw_dir in DOCDIRS:
+        searchdir = os.path.abspath(os.path.expanduser(raw_dir))
+        logger.debug('Searching for testcases in \'%s\'...', searchdir)
         for category, category_class in category_map:
-            path = os.path.join(os.path.expanduser(searchdir), category)
+            path = os.path.join(searchdir, category)
             if not os.path.isdir(path):
                 continue
             for root, dirs, files in os.walk(path):

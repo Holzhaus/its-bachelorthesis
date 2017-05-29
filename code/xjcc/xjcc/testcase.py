@@ -18,6 +18,7 @@ from . import process
 
 
 MAGIC_FSA_STRING = 'THIS_IS_TOP_SECRET_STUFF'
+INFO_PATTERN = re.compile(rb'<!--;testcase(?P<info>.*)-->', re.DOTALL)
 
 
 TestResult = collections.namedtuple('TestResult', [
@@ -95,23 +96,25 @@ def parse_files(cp, path='.'):
 
 
 class ConversionTestCase(object):
-    def __init__(self, info_file):
+    def __init__(self, filename):
+        logger = logging.getLogger(__name__)
+        logger.debug('Possible testcase found at \'%s\'', filename)
+        with open(filename, mode='rb') as f:
+            fcontent = f.read()
+        matchobj = INFO_PATTERN.search(fcontent)
+        if not matchobj:
+            raise ValueError('Testcase info section not found')
+        self.content = INFO_PATTERN.sub(b'', fcontent, count=1).decode('utf-8')
+
         self._cp = configparser.ConfigParser()
-        with open(info_file) as f:
-            self._cp.readfp(f)
+        self._cp.read_string(matchobj.group('info').decode())
 
         general = self._cp['General']
         self.name = general.get('name')
         self.description = general.get('description', '')
 
-        self.path = os.path.dirname(os.path.abspath(info_file))
-        raw_name = os.path.splitext(info_file)[0]
-        default_filename = os.extsep.join([raw_name, 'xml'])
-        self.filename = general.get('filename', default_filename)
-        self.filename = os.path.join(self.path, self.filename)
-        self.basename = os.path.basename(raw_name)
-        with open(self.filename) as f:
-            self.content = f.read()
+        self.filename = filename
+        self.basename = os.path.splitext(os.path.splitext(filename)[0])[0]
 
     def test_converters(self, converters):
         logger = logging.getLogger(__name__)
