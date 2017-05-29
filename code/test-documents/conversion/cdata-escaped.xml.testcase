@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--;testcase
+[General]
+name: Escaped CDATA section
+description: Checks if escaped CDATA sections will still be text nodes after conversion.
+ -->
+<root>&lt;![CDATA[This is a test.]]&gt;</root>

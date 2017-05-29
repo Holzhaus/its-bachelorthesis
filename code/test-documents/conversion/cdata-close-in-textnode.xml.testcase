@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--;testcase
+[General]
+name: CDATA close in Text Node
+description: Checks if CDATA close in Text Nodes is properly escaped
+ -->
+<root>]]&gt;</root>
