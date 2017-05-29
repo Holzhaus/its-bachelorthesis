@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--;testcase
+[General]
+name: Processing Instructions III
+description: Checks if Processing Instructions with data in arbitrary form are retained
+-->
+<root><?processing-instruction with data in arbitrary form?></root>

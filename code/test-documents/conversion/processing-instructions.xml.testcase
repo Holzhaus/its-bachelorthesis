@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--;testcase
+[General]
+name: Processing Instructions I
+description: Checks if Processing Instructions are retained
+-->
+<root><?foobar?></root>
