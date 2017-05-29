@@ -104,7 +104,10 @@ class ConversionTestCase(object):
         matchobj = INFO_PATTERN.search(fcontent)
         if not matchobj:
             raise ValueError('Testcase info section not found')
-        self.content = INFO_PATTERN.sub(b'', fcontent, count=1).decode('utf-8')
+        binary_content = INFO_PATTERN.sub(b'', fcontent, count=1)
+        self.content = binary_content.decode('utf-8')
+        logger.debug('Testcase primary file length: (%d chars / %d bytes)',
+                     len(self.content), len(binary_content))
 
         self._cp = configparser.ConfigParser()
         self._cp.read_string(matchobj.group('info').decode())
