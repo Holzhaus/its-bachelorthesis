@@ -74,8 +74,11 @@ def parse_responses(cp, path='.'):
         if content_type is not None:
             headers = {'Content-Type': content_type}
 
-        yield (url_path, httpserver.PathInfo(content=content, status=status,
-                                             headers=headers))
+        log_request = cp[section].getboolean('log-request', True)
+
+        yield (url_path, httpserver.PathInfo(
+                    content=content, status=status,
+                    headers=headers, log_request=log_request))
 
 
 def parse_files(cp, path='.'):

@@ -6,7 +6,7 @@ import queue
 import threading
 import http.server
 
-PathInfo = collections.namedtuple('PathInfo', 'content status headers')
+PathInfo = collections.namedtuple('PathInfo', 'content status headers log_request')
 
 
 def first(iterable, default=None):
@@ -58,6 +58,8 @@ class HTTPServer(http.server.HTTPServer):
     def add_path(self, path, content, status=None, headers=None):
         self.paths[path] = PathInfo(content, status, headers)
 
+    def get_pathinfo(self, path):
+        return self.paths.get(path, PathInfo(None, None, None, True))
 
 class HTTPRequestHandler(http.server.BaseHTTPRequestHandler):
     def do_GET(self):
@@ -70,10 +72,11 @@ class HTTPRequestHandler(http.server.BaseHTTPRequestHandler):
         return self.do_all(output=False)
 
     def do_all(self, output=True):
-        if self.server.requestlog is not None:
+        pathinfo = self.server.get_pathinfo(self.path)
+
+        if self.server.requestlog is not None and pathinfo.log_request:
             self.server.requestlog.put_request(self.requestline)
 
-        pathinfo = self.server.paths.get(self.path, PathInfo(None, None, None))
         self.send_response(first(pathinfo.status, self.server.default_status))
 
         headers = first(pathinfo.headers, self.server.default_headers)
