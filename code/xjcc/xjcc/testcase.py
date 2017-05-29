@@ -143,9 +143,15 @@ class ConversionTestCase(object):
                     passed = False
                     logger.info('Erroneous JSON: %r', json_errors)
                 else:
-                    xmldata_c14n = canonicalize(xmldata)
-                    xmloutput_c14n = canonicalize(xml_output)
-                    passed = (xmldata_c14n == xmloutput_c14n)
+                    try:
+                        xmldata_c14n = canonicalize(xmldata)
+                        xmloutput_c14n = canonicalize(xml_output)
+                        passed = (xmldata_c14n == xmloutput_c14n)
+                    except Exception:
+                        logger.warning(
+                                'Failed to canonicalize xml!',
+                                exc_info=logger.isEnabledFor(logging.DEBUG))
+                        passed = False
             yield TestResult(
                 test=self,
                 converter=converter,
