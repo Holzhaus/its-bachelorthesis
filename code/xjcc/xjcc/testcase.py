@@ -163,8 +163,9 @@ class ConversionTestCase(object):
                         xml_output = converter.module.json_to_xml(json_input)
                     except Exception:
                         passed = None
-                        logger.debug('Error occured during json-to-xml conversion',
-                                     exc_info=True)
+                        logger.debug('Error occured during json-to-xml ' +
+                                     'conversion', exc_info=True)
+                    else:
                         try:
                             xmldata_c14n = canonicalize(xmldata)
                             xmloutput_c14n = canonicalize(xml_output)
@@ -175,6 +176,8 @@ class ConversionTestCase(object):
                                     exc_info=logger.isEnabledFor(
                                         logging.DEBUG))
                             passed = False
+                        else:
+                            passed = True
             yield TestResult(
                 test=self,
                 converter=converter,
