@@ -119,7 +119,7 @@ def test_conversion(args):
             for testresult in testresults:
                 if testresult.json_output is not None:
                     json_file = os.path.join(
-                            path, '%s.json' % testresult.test.name)
+                            path, '%s.json' % testresult.test.shortname)
                     with open(json_file, mode='wb') as f:
                         f.write(testresult.json_output)
 
