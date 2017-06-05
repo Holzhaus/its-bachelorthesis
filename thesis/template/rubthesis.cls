@@ -161,7 +161,7 @@ BCOR=1cm, % Bindekorrektur: Change this accordingly, also read the KomaScript Gu
 % Source code listings
 \newcommand{\code}[1]{\texttt{#1}}
 
-\RequirePackage{caption}
+\RequirePackage[singlelinecheck=false]{caption}
 \RequirePackage{morewrites}
 \RequirePackage{inconsolata}
 \RequirePackage[chapter]{minted}
