@@ -81,8 +81,8 @@ BCOR=1cm, % Bindekorrektur: Change this accordingly, also read the KomaScript Gu
 % Load packages ...
 
 % Corporate Design
+\RequirePackage{xcolor}
 \RequirePackage{eso-pic}
-\RequirePackage{color}
 \RequirePackage{rubfonts2009}
 \newcommand{\setrubfontnormal}[1]{\fontfamily{rubscala}\fontsize{#1}{1}\selectfont}
 \newcommand{\setrubfontextra}[1]{\fontfamily{rubflama}\fontsize{#1}{1}\selectfont}
