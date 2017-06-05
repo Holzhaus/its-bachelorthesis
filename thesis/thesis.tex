@@ -6,6 +6,9 @@
 \usepackage[mode=buildnew]{standalone}
 \usepackage{tabularx}
 \usepackage{keyval}
+\usepackage[useregional]{datetime2}
+\DTMsetup{showdow=true}
+
 \usepackage[nounderscore,rounded]{syntax}
 
 \usepackage{mathtools}
@@ -57,7 +60,8 @@ ins JSON-Format
 \define@key{convtool}{version}{\def\conv@version{#1}}
 \define@key{convtool}{language}{\def\conv@language{#1}}
 \define@key{convtool}{version}{\def\conv@version{#1}}
-\setkeys{convtool}{url={},license={},author={},language={},version={Unbekannt}}%
+\define@key{convtool}{versiondate}{\def\conv@versiondate{#1}}
+\setkeys{convtool}{url={},license={},author={},language={},version={Unbekannt}, versiondate={}}%
 \newcommand{\convtool}[2][]{%
     \begingroup%
     \setkeys{convtool}{#1}% Set new keys
@@ -80,7 +84,11 @@ ins JSON-Format
     \fi
     \ifx\conv@version\@empty
     \else
-        {\fontfamily{rubflama}\selectfont{}\textbf{Gestete Version:}} & \conv@version\\
+        {\fontfamily{rubflama}\selectfont{}\textbf{Gestete Version:}} & \conv@version
+        \ifx\conv@versiondate\@empty
+        \else
+            ~(\DTMdate{\conv@versiondate})
+        \fi\\
     \fi
     \end{tabular}
     \endgroup%
