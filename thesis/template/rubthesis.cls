@@ -86,8 +86,9 @@ BCOR=1cm, % Bindekorrektur: Change this accordingly, also read the KomaScript Gu
 \RequirePackage{rubfonts2009}
 \newcommand{\setrubfontnormal}[1]{\fontfamily{rubscala}\fontsize{#1}{1}\selectfont}
 \newcommand{\setrubfontextra}[1]{\fontfamily{rubflama}\fontsize{#1}{1}\selectfont}
-\definecolor{rubgreen}{cmyk}{0.5,0,1,0}
-\definecolor{rubblue}{cmyk}{1,0.5,0,0.6}
+\definecolor{rubblue}{HTML}{003660}
+\definecolor{rubgreen}{HTML}{8dae10}
+\definecolor{rubgray}{HTML}{e7e7e7}
 
 % Figures
 \RequirePackage{graphicx}
@@ -197,8 +198,6 @@ BCOR=1cm, % Bindekorrektur: Change this accordingly, also read the KomaScript Gu
 \RequirePackage{amsthm}
 
 %% use some standards for mathematical expressions:
-\definecolor{light-gray}{gray}{0.9}
-
 \newcommand{\red}{{\rm red}}
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{lemma}[theorem]{Lemma}
@@ -210,13 +209,13 @@ BCOR=1cm, % Bindekorrektur: Change this accordingly, also read the KomaScript Gu
 \theoremstyle{definition}
 \newtheorem{mdexample}[theorem]{\exampletitle}
 \newenvironment{example}%
-  {\begin{mdframed}[hidealllines=true,backgroundcolor=light-gray]\begin{mdexample}}%
+  {\begin{mdframed}[hidealllines=true,backgroundcolor=rubgray!50]\begin{mdexample}}%
   {\end{mdexample}\end{mdframed}}
 
 % gray definition boxes, that whay you'll find them in the text
 \newtheorem{mddefinition}[figure]{Definition}
 \newenvironment{definition}%
-  {\begin{mdframed}[hidealllines=true,backgroundcolor=light-gray]\begin{mddefinition}}%
+  {\begin{mdframed}[hidealllines=true,backgroundcolor=rubgray!50]\begin{mddefinition}}%
   {\end{mddefinition}\end{mdframed}}
 
 
