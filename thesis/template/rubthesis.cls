@@ -165,7 +165,7 @@ BCOR=1cm, % Bindekorrektur: Change this accordingly, also read the KomaScript Gu
 \RequirePackage{morewrites}
 \RequirePackage{inconsolata}
 \RequirePackage[chapter]{minted}
-\usemintedstyle{autumn}
+\usemintedstyle{rub}
 % Customize line numbers
 \renewcommand{\theFancyVerbLine}{\ttfamily\textcolor{black!50}{\scriptsize{\arabic{FancyVerbLine}}}}
 \setminted{

@@ -34,6 +34,22 @@ Auflösen aller Querverweise gemacht werden. Zudem befinden sich
 `.latexmkrc`-Dateien in den jeweiligen Dokumentordnern, die sinnvolle
 Einstellungen für den Kompiliervorgang enthalten.
 
+Da das [LaTeX-Paket `minted`](https://www.ctan.org/pkg/minted) für die
+Einfärbung der Quelltexte eingesetzt wird, müssen zudem die dazu notwendigen
+Python-Pakete installiert sein:
+
+- [Pygments](http://pygments.org), sowie
+- der Einfärbungsstil
+  [pygments-style-rub](https://github.com/Holzhaus/pygments-style-rub), der
+  das Farbschema der Ruhr-Uni Bochum adaptiert.
+
+Mittels [pip](https://pip.pypa.io/) können die beiden Pakete einfach
+installiert werden:
+
+```shell-session
+$ pip install pygments pygments-style-rub
+```
+
 ## Testcases
 
 Die [Sicherheits-Testdokumente](code/test-documents) in den Ordnern
