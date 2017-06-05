@@ -35,7 +35,8 @@ def get_tests(category=None):
                         tc = category_class(filepath)
                     except Exception:
                         logger.warning('Failed to instantiate testcase \'%s\'',
-                                       filepath)
+                                       filepath, exc_info=logger.isEnabledFor(
+                                           logging.DEBUG))
                     else:
                         yield tc
 
