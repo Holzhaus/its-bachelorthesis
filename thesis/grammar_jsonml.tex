@@ -1,0 +1,35 @@
+<element> ::= \[[
+        \begin{stack}
+            `[' <tag-name>
+                \begin{stack}
+                    `,' <attributes>\\
+                \end{stack}
+                \begin{stack}
+                    `,' \begin{rep}
+                            <element>\\
+                            `,'
+                        \end{rep}\\
+                \end{stack}
+            `]'\\
+            \tok{\color{black} string}
+        \end{stack}
+    \]]
+
+<attributes> ::= \[[
+    `\{' \begin{stack}
+            \begin{rep}
+                <attribute-name> `:' <attribute-value>\\
+                `,'
+            \end{rep}\\
+        \end{stack} `\}'
+    \]]
+
+<attribute-value> ::= \[[
+        \begin{stack}
+            \tok{\color{black} string}\\
+            \tok{\color{black} number}\\
+            `true'\\
+            `false'\\
+            `null'
+        \end{stack}
+    \]]

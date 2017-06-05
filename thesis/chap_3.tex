@@ -177,42 +177,7 @@ Zahlen außerhalb dieses Wertebereichs können nicht mehr fehlerfrei eingesetzt 
 Sowohl \synt{tag-name} als auch \synt{attribute-name} sind \acrshort{json}-Werte vom Typ String. Die Whitespace-Regeln sind identisch wie bei \acrshort{json} (Vgl. Definition~\ref{def:json}).
 
 \begin{grammar}
-    <element> ::= \[[
-            \begin{stack}
-                '[' <tag-name>
-                    \begin{stack}
-                        ',' <attributes>\\
-                    \end{stack}
-                    \begin{stack}
-                        ',' \begin{rep}
-                                <element>\\
-                                ','
-                            \end{rep}\\
-                    \end{stack}
-                ']'\\
-                \tok{string}
-            \end{stack}
-        \]]
-
-    <attributes> ::= \[[
-        '\{' \begin{stack}
-                \begin{rep}
-                    <attribute-name> ':' <attribute-value>\\
-                    ','
-                \end{rep}\\
-            \end{stack} '\}'
-        \]]
-
-    <attribute-value> ::= \[[
-            \begin{stack}
-                \tok{string}\\
-                \tok{number}\\
-                'true'\\
-                'false'\\
-                'null'\\
-            \end{stack}
-        \]]
-
+    \input{grammar_jsonml.tex}
 \end{grammar}
 \end{definition}
 
