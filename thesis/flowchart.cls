@@ -1,6 +1,8 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{flowchart}[2017/06/92 Customized Standalone TIKZ flowchart class]
 \LoadClass[tikz]{standalone}
+\RequirePackage[T1]{fontenc}
+\RequirePackage{rubfonts2009}
 % FIXME: Blue should be #003560, but that'd conflict with the front page colors
 \definecolor{rubblue}{HTML}{003660}
 \definecolor{rubgreen}{HTML}{8dae10}
@@ -15,11 +17,16 @@
     fit,
 }
 \tikzset{%
+    every label/.style={
+        text=rubblue,
+        font=\fontfamily{rubflama}\selectfont\bfseries,
+    },
     flowchartbase/.style = {
         minimum width=4cm,
         minimum height=1cm,
         text centered,
         text width=3cm,
+        font=\fontfamily{rubflama}\selectfont,
         %draw=black!60,
         line width=0.1mm,
         %shading=axis,
@@ -79,5 +86,8 @@
         thick,
         ->,
         >=stealth,
+        nodes={
+            font=\fontfamily{rubscala}\selectfont,
+        },
     },
 }
