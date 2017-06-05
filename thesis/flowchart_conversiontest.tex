@@ -1,0 +1,42 @@
+\documentclass{flowchart}
+\begin{document}
+\begin{tikzpicture}[node distance=15mm and 10mm]
+
+\node (start) [flowchartterminal] {Start};
+\node (inputxml) [flowchartio, below=of start] {Input XML document};
+\node (xmltojson) [flowchartsubroutine, below=of inputxml] {\nodepart{two}Transform XML to JSON};
+
+\node (dec1) [flowchartdecision, right=of xmltojson, yshift=-12.5mm] {Did an error occur?};
+
+\node (jsonlint) [flowchartprocess, below=of xmltojson] {Check and reformat JSON};
+\node (dec2) [flowchartdecision, right=of jsonlint, yshift=-12.5mm] {Valid JSON?};
+
+\node (jsontoxml) [flowchartsubroutine, below=of jsonlint] {\nodepart{two}Transform JSON to XML};
+\node (dec3) [flowchartdecision, right=of jsontoxml, yshift=-12.5mm] {Did an error occur?};
+
+\node (c14noutput) [flowchartprocess, below=of jsontoxml, yshift=-10mm] {Canonicalize output XML};
+\node (c14ninput) [flowchartprocess, below=of c14noutput] {Canonicalize original XML};
+\node (dec4) [flowchartdecision, right=of c14noutput, yshift=-12.5mm] {XMLs equal?};
+
+\node (failed) [flowchartterminal, right=of dec2] {Test failed};
+\node (passed) [flowchartterminal, below=of dec4] {Test passed};
+
+\draw[flowchartarrow] (start)      -- (inputxml);
+\draw[flowchartarrow] (inputxml)   -- (xmltojson);
+\draw[flowchartarrow] (xmltojson)  -| (dec1);
+\draw[flowchartarrow] (dec1)       -| (jsonlint) node[midway, fill=white] {No};
+\draw[flowchartarrow] (dec1)       -| (failed) node[midway, fill=white] {Yes};
+\draw[flowchartarrow] (jsonlint)   -| (dec2);
+\draw[flowchartarrow] (dec2)       -| (jsontoxml) node[midway, fill=white] {Yes};
+\draw[flowchartarrow] (dec2)       -- (failed) node[midway, fill=white] {No};
+\draw[flowchartarrow] (jsontoxml)  -| (dec3);
+\draw[flowchartarrow] (dec3)       -| (c14noutput) node[midway, fill=white] {No};
+\draw[flowchartarrow] (dec3)       -| (failed) node[midway, fill=white] {Yes};
+\draw[flowchartarrow] (c14noutput) -| (dec4);
+\draw[flowchartarrow, dotted] (inputxml.west) -- +(-1,0) |- (c14ninput);
+\draw[flowchartarrow, dotted] (c14ninput) |- (dec4);
+\draw[flowchartarrow] (dec4.east)  -- +(6,0) |- (failed) node[near start, fill=white] {No};
+\draw[flowchartarrow] (dec4)       -- (passed) node[midway, fill=white] {Yes};
+\end{tikzpicture}
+\end{document}
+

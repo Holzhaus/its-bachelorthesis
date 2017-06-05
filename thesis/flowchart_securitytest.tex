@@ -1,0 +1,51 @@
+\documentclass{flowchart}
+\begin{document}
+\begin{tikzpicture}[node distance=10mm and 20mm]
+
+\node (start) [flowchartterminal] {Start};
+\node (inputxml) [flowchartio, right=of start] {Input XML document};
+\node (runserver) [flowchartprocess, below=of inputxml] {Run Webserver};
+\node (dec1) [flowchartdecision, below=of runserver] {XML references files?};
+\node (loadref) [flowchartio, right=of dec1] {Load referenced files};
+\node (updatepaths) [flowchartprocess, below=of loadref] {Update paths and URLs in files};
+\node (writefs) [flowchartio, below=of updatepaths] {Temporarily write files to FS};
+\node (spawnprocess) [flowchartsubroutine, below=of dec1, yshift=-25mm] {\nodepart{two}Spawn Process};
+
+\node (xmltojson) [flowchartsubroutine] at (spawnprocess -| start) {\nodepart{two}Transform JSON to XML};
+\node (limitresources) [flowchartprocess, above=of xmltojson] {Limit CPU/RAM resource usage};
+\node (procinput) [flowchartio, above=of limitresources] {Input XML document};
+\node (jsontoxml) [flowchartsubroutine, below=of xmltojson] {\nodepart{two}Transform JSON to XML};
+\node (procoutput) [flowchartio, below=of jsontoxml] {Output XML document};
+
+\node (process) [fit=(procinput)(limitresources)(xmltojson)(jsontoxml)(procoutput),draw=rubgray,label={Process}] {};
+
+\node (dec2) [flowchartdecision, below=of spawnprocess] {Process exit status $>= 0$?};
+\node (dec3) [flowchartdecision, below=of dec2] {Webserver request log empty?};
+\node (dec4) [flowchartdecision, below=of dec3] {Output contains \texttt{MAGIC\_STRING}?};
+\node (failed) [flowchartterminal, right=of dec3] {Test failed};
+\node (passed) [flowchartterminal] at (dec4 -| start) {Test passed};
+
+\draw[flowchartarrow] (start)          -- (inputxml);
+\draw[flowchartarrow] (inputxml)       -- (runserver);
+\draw[flowchartarrow] (runserver)      -- (dec1);
+\draw[flowchartarrow] (dec1)           -- (spawnprocess) node[midway, fill=white] {No};
+\draw[flowchartarrow] (dec1)           -- (loadref) node[midway, fill=white] {Yes};
+\draw[flowchartarrow] (loadref)        -- (updatepaths);
+\draw[flowchartarrow] (updatepaths)    -- (writefs);
+\draw[flowchartarrow] (writefs)        |- (spawnprocess);
+\draw[flowchartarrow,dashed,<->] (spawnprocess) -- (spawnprocess-|process.east);
+
+\draw[flowchartarrow] (procinput)      -- (limitresources);
+\draw[flowchartarrow] (limitresources) -- (xmltojson);
+\draw[flowchartarrow] (xmltojson)      -- (jsontoxml);
+\draw[flowchartarrow] (jsontoxml)      -- (procoutput);
+
+\draw[flowchartarrow] (spawnprocess)   -- (dec2);
+\draw[flowchartarrow] (dec2)           -| (failed) node[midway, fill=white] {No (Killed by signal)};
+\draw[flowchartarrow] (dec2)           -- (dec3) node[midway, fill=white] {Yes};
+\draw[flowchartarrow] (dec3)           -- (failed) node[midway, fill=white] {No};
+\draw[flowchartarrow] (dec3)           -- (dec4) node[midway, fill=white] {Yes};
+\draw[flowchartarrow] (dec4)           -| (failed) node[midway, fill=white] {Yes};
+\draw[flowchartarrow] (dec4)           -- (passed) node[midway, fill=white] {No};
+\end{tikzpicture}
+\end{document}
