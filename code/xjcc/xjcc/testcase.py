@@ -158,6 +158,7 @@ class ConversionTestCase(object):
                     logger.info('Erroneous JSON: %r', json_errors)
                 else:
                     json_input = demjson.encode(json_data, strict=True,
+                                                encoding='utf-8',
                                                 sort_keys=demjson.SORT_SMART)
                     try:
                         xml_output = converter.module.json_to_xml(json_input)
