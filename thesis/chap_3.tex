@@ -135,7 +135,7 @@ Darf eine Text Node beispielsweise eigentlich beliebigen Zeicheninhalt enthalten
 
 \paragraph{Einschränkungen durch Wertebereiche}
 
-Ein weiteres Problem bei der \emph{Type Inference} kann durch die unterschiedlichen Wertebereichsgrenzen der verschiedenen Datentypen entstehen.  Während Zeichenketten in vielen Programmiersprachen mehrere tausend Zeichen lang sein dürfen, ist der Wertebereich von numerischen Datentypen in der Regel deutlich eingeschränkter.
+Ein weiteres Problem bei der \emph{Type Inference} kann durch die unterschiedlichen Wertebereichsgrenzen der verschiedenen Datentypen entstehen.  Während Zeichenketten in vielen Programmiersprachen mehrere tausend Zeichen lang sein dürfen, ist der Wertebereich von numerischen Datentypen in der Regel deutlich eingeschränkter. Wird ein Zahlenwert vom Konversionsprogramm also in einen nativen Datentyp umgewandelt, für den kleinerer Wertebereich gilt als durch Strings darstellbar sind, führt dies zu Fehlern oder Informationsverlust.
 
 \begin{example} Informationsverlust durch Typumwandlung in JavaScript
 
@@ -148,6 +148,8 @@ Zahlen außerhalb dieses Wertebereichs können nicht mehr fehlerfrei eingesetzt 
     \inputminted[firstline=2,firstnumber=1,mathescape]{javascript}{typeinference.js}
     \captionof{figure}{Die Umwandlung von numerischen Zeichenketten in den \texttt{Number}-Typ kann in JavaScript bei Zahlen $> 2^{53}-1$ zu Problemen führen.}
 \end{example}
+
+Ähnliches gilt für Konversionsverfahren, die aus Werten wie \mintinline{plain}{yes} und \mintinline{plain}{true} den Boole'schen Datentyp ableiten: Nach dem Konversion ist nicht mehr feststellbar, ob der Ursprungswert nun \mintinline{plain}{yes} oder \mintinline{plain}{true} lautete.
 
 \section{XML-JSON-Konversionsverfahren}
 
