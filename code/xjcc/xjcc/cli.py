@@ -58,7 +58,7 @@ def list_testcases(args):
 
     outtable = output.OutputTable(['Name', 'Basename', 'Description'])
     for test in testcases:
-        outtable.add({'Name': test.name, 'Basename': test.basename, 'Description': test.description})
+        outtable.add({'Name': test.name, 'Basename': test.shortname, 'Description': test.description})
 
     outtable.output(fmt=args.format, title='Converters')
 
