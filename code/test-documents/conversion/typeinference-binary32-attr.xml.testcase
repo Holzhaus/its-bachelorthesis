@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--;testcase
+[General]
+name: Type Inference with floats (Attr)
+description: Checks if type inference hinders the conversion of single precision floats in attributes
+ -->
+<root><biga value="1e+39"></biga><bigb value="0E+39"></bigb><bigc value="1e39"></bigc><bigd value="1E39"></bigd><bige value="1000000000000000000000000000000000000000.0"></bige><smalla value="1e-46"></smalla><smallb value="1E-46"></smallb><smallc value="0.0000000000000000000000000000000000000000000001"></smallc></root>

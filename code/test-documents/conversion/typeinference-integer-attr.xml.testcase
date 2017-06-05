@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--;testcase
+[General]
+name: Type Inference with Big Integers (Attr)
+description: Checks if type inference hinders the conversion of big numbers in attributes
+ -->
+<root><javalong value="9223372036854775808"></javalong><jsnumber value="9007199254740993"></jsnumber></root>

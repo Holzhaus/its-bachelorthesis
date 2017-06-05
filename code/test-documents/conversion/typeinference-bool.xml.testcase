@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--;testcase
+[General]
+name: Type Inference with Boolean values
+description: Checks if type inference hinders the conversion of Boolean values
+ -->
+<root><trueelement>true</trueelement><yelement>y</yelement><yeselement>yes</yeselement><okelement>ok</okelement><onelement>on</onelement><oneelement>1</oneelement><falseelement>false</falseelement><nelement>n</nelement><noelement>no</noelement><offelement>off</offelement><zeroelement>0</zeroelement></root>

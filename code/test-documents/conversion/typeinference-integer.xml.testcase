@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--;testcase
+[General]
+name: Type Inference with Big Integers
+description: Checks if type inference hinders the conversion of big numbers
+ -->
+<root><s32small>-2147483649</s32small><s32big>-2147483648</s32big><s64small>-9223372036854775809</s64small><s64big>9223372036854775808</s64big><ieee754small>-9007199254740993</ieee754small><ieee754big>9007199254740992</ieee754big></root>
