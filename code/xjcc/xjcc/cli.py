@@ -85,7 +85,6 @@ def test_conversion(args):
         os.mkdir(output_root)
 
         handler = logging.FileHandler(os.path.join(output_root, 'xjcc.log'))
-        handler.setFormatter(output.TestcaseFormatter())
         root_logger = logging.getLogger()
         root_logger.addHandler(handler)
 
