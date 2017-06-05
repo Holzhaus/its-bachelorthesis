@@ -119,8 +119,12 @@ class ConversionTestCase(object):
         self.name = general.get('name')
         self.description = general.get('description', '')
 
-        self.filename = filename
+        self.filename = os.path.abspath(filename)
         self.shortname = os.path.basename(os.path.splitext(self.filename)[0])
+
+    @property
+    def path(self):
+        return os.path.dirname(self.filename)
 
     def test_converters(self, converters):
         logger = logging.getLogger(__name__)
