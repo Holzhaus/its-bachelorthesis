@@ -90,6 +90,65 @@ Eine Besonderheit von \acrshort{xml} und auch \acrshort{sgml} ist, dass die Spez
 
 \emph{Mixed Content} stellt \acrshort{xml}-Parser vor besondere Herausforderungen\cite{mcgrath2002mixedcontent}. Zudem existiert kein \acrshort{json}-Äquivalent von \emph{Mixed Content}, was eine Konversion erschwert.
 
+\subsubsection{Typinferenz bei der Konversion zu JSON}
+
+Zwar ist es möglich, mittels einer \acrfull{xsd} die in einem \acrshort{xml}-Dokument enthaltenten Datentypen genauer festzulegen, direkte syntaktische Unterstützung für Zahlen bietet \acrshort{xml} jedoch im Gegensatz zur \acrlong{json} nicht.
+
+Wird kein Schema verwendet bzw. legt ein Schema den Datentyp eines Elements nicht anderweitig fest, so ist es standardmäßig vom Typ \texttt{xsd:anyType}:
+
+\begin{foreigndisplayquote}{english}[{\cite[Abschnitt 2.2.1.1]{xmlschema11-1}}]
+    A special complex type definition, (referred to in earlier versions of this specification as `the ur-type definition') whose name is \textbf{anyType} in the XSD namespace, is present in each ·\emph{XSD schema}·. The \textbf{definition of anyType} serves as default type definition for element declarations whose XML representation does not specify one.
+\end{foreigndisplayquote}
+
+Elemente dieses Typs unterliegen keinen Beschänkungen. Daher ist es ohne Zuhilfenahme eines Schemas nicht möglich, Aussagen über den Wertebereich eines Elements, eines Attributs oder einer Text Node zu treffen.
+
+\begin{example} Type Inference
+    \begin{minted}[linenos=false]{xml}
+<price>5.99</price>
+    \end{minted}
+    \captionof{figure}{Dieses \acrshort{xml}-Dokument enthält einen numerischen Wert.}
+    \label{fig:typeinferxml}
+
+    \begin{minted}[linenos=false]{json}
+{ "price": "5.99" }
+    \end{minted}
+    \captionof{figure}{\acrshort{json}-Entsprechung des \acrshort{xml}-Dokuments aus Abb.~\ref{fig:typeinferxml} \emph{ohne} Typinferenz enthält den Zahlenwert als String.}
+    \label{fig:typeinferjson1}
+
+    \begin{minted}[linenos=false]{json}
+{ "price": 5.99 }
+    \end{minted}
+    \captionof{figure}{\acrshort{json}-Entsprechung des \acrshort{xml}-Dokuments aus Abb.~\ref{fig:typeinferxml} \emph{mit} Typinferenz enthält den Zahlenwert als \texttt{Number}.}
+    \label{fig:typeinferjson2}
+
+\end{example}
+
+Ist das Schema eines \acrshort{xml}-Dokuments nicht bekannt, scheint es daher naheliegend, die Datentypen aus den im Dokument enthaltenen Werten abzuleiten. Enthält eine Text Node oder ein Attribut beispielsweise die Zeichenkette \mintinline{text}{123}, könnte daraus auf einen numerischer Datentyp geschlossen werden. Dieses Prinzip der \emph{Type Inference} nutzt beispielweise Microsoft im Rahmen des \emph{.NET Frameworks} um das \acrshort{xml}-Schema auf Basis von einem oder mehreren XML-Dokumenten zu \enquote{erraten}.\cite{msdn2017inferxmlschema}
+
+Im Rahmen der \acrshort{xml} zu \acrshort{json}-Konversion ist es zwar wünschenswert, die nativen Datentypen der \acrshort{json}-Spezifikation voll auszunutzen, ein solches Vorgehen bringt jedoch mehrere Probleme mit sich:
+
+\paragraph{Fehlerkennung von Typen}
+
+Die oben beschriebene Vorgehensweise zur Typableitung kann zur Fehlerkennung von Datentypen führen.
+
+Darf eine Text Node beispielsweise eigentlich beliebigen Zeicheninhalt enthalten, enthält aber \emph{zufälligerweise} ausschließlich Ziffern, würde fälschlicherweise ein Zahlentyp erkannt werden. Dies könnte zu Problemen mit der verarbeitetenden Applikation führen, die stattdessen eine Zeichenkette erwartet.
+
+\paragraph{Einschränkungen durch Wertebereiche}
+
+Ein weiteres Problem bei der \emph{Type Inference} kann durch die unterschiedlichen Wertebereichsgrenzen der verschiedenen Datentypen entstehen.  Während Zeichenketten in vielen Programmiersprachen mehrere tausend Zeichen lang sein dürfen, ist der Wertebereich von numerischen Datentypen in der Regel deutlich eingeschränkter.
+
+\begin{example} Informationsverlust durch Typumwandlung in JavaScript
+
+    Die Programmiersprache \emph{JavaScript} erlaubt beispielsweise Strings mit einer Länge von bis zu $n=2^{53}-1 \approx 9 \cdot 10^{15}$ Zeichen, d.h. als Strings abgelegte Zahlen können rund 9 Billarden Stellen haben.\cite[Abschnitt 6.1.4]{ecma262} Für Zahlen im Dezimalsystem entspräche dies dem Wertebereich $\left\{x \in \mathbb{Z} \mid -\left(10^{n-1}-1\right) \leq x \leq 10^{n}-1\right\}$.
+
+    Für den Datentyp \texttt{Number} nutzt JavaScript 64-bit-Fließkommazahlen nach dem IEEE-754-Standard (Doppelte Genauigkeit, \texttt{binary64}).\cite[Abschnitt 4.3.20]{ecma262}. Für Ganzzahlen gilt daher der \enquote{sichere} Wertebereich $\left\{x \in \mathbb{Z} \mid \abs{x} \leq 2^{53}-1\right\}$\cite[Abschnitt 20.1.2.5]{ecma262}. Dies entspricht einer Zahl mit lediglich $\floor{\log_{10}\left(2^{53}-1\right)}+1 = 16$ Ziffern im Dezimalsystem.
+
+Zahlen außerhalb dieses Wertebereichs können nicht mehr fehlerfrei eingesetzt werden.
+
+    \inputminted[firstline=2,firstnumber=1,mathescape]{javascript}{typeinference.js}
+    \captionof{figure}{Die Umwandlung von numerischen Zeichenketten in den \texttt{Number}-Typ kann in JavaScript bei Zahlen $> 2^{53}-1$ zu Problemen führen.}
+\end{example}
+
 \section{XML-JSON-Konversionsverfahren}
 
 \subsection{Json-lib}
