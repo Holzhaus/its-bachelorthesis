@@ -17,7 +17,7 @@
 \node (jsontoxml) [flowchartsubroutine, below=of xmltojson] {\nodepart{two}Transform JSON to XML};
 \node (procoutput) [flowchartio, below=of jsontoxml] {Output XML document};
 
-\node (process) [fit=(procinput)(limitresources)(xmltojson)(jsontoxml)(procoutput),draw=rubgray,label={Process}] {};
+\node (process) [fit=(procinput)(limitresources)(xmltojson)(jsontoxml)(procoutput),draw=rubgray,thick,inner sep=5mm,label={Process}] {};
 
 \node (dec2) [flowchartdecision, below=of spawnprocess] {Process exit status $>= 0$?};
 \node (dec3) [flowchartdecision, below=of dec2] {Webserver request log empty?};
@@ -33,7 +33,7 @@
 \draw[flowchartarrow] (loadref)        -- (updatepaths);
 \draw[flowchartarrow] (updatepaths)    -- (writefs);
 \draw[flowchartarrow] (writefs)        |- (spawnprocess);
-\draw[flowchartarrow,dashed,<->] (spawnprocess) -- (spawnprocess-|process.east);
+\draw[flowchartarrow,dashed,-] (spawnprocess) -- (spawnprocess-|process.east);
 
 \draw[flowchartarrow] (procinput)      -- (limitresources);
 \draw[flowchartarrow] (limitresources) -- (xmltojson);
