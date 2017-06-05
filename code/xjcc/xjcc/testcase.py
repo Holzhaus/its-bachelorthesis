@@ -18,7 +18,7 @@ from . import process
 
 
 MAGIC_FSA_STRING = 'THIS_IS_TOP_SECRET_STUFF'
-INFO_PATTERN = re.compile(rb'<!--;testcase(?P<info>.*)-->', re.DOTALL)
+INFO_PATTERN = re.compile(rb'<!--;testcase(?P<info>.*?)-->', re.DOTALL)
 
 
 TestResult = collections.namedtuple('TestResult', [
