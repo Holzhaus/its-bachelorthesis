@@ -46,3 +46,11 @@ sub makeglossaries {
    popd;
    return $return;
 }
+
+my $pplatex_exe = 'pplatex';
+$pplatex_output = `$pplatex_exe -V`;
+if ($? == 0) {
+    $failure_cmd = $pplatex_exe . ' -q -i "%R.log"';
+    $latex .= ' -interaction=nonstopmode';
+    $pdflatex .= ' -interaction=nonstopmode';
+}
