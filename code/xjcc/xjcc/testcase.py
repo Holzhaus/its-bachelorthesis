@@ -303,6 +303,8 @@ class SecurityTestCase(ConversionTestCase):
 
 CATEGORIES = {
     'conversion': ConversionTestCase,
+    'charsupport': ConversionTestCase,
+    'complex': ConversionTestCase,
     'denial-of-service': SecurityTestCase,
     'file-system-access': SecurityTestCase,
     'server-side-request-forgery': SecurityTestCase,
