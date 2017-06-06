@@ -129,38 +129,37 @@ class ConversionTestCase(object):
         for converter in converters:
             logger.info('Started testcase \'%s\' for converter \'%s\'',
                         self.name, converter.name)
-
-            xml_output = None
-            json_output = None
             try:
                 json_output = converter.module.xml_to_json(xmldata)
             except Exception:
                 passed = None
+                json_output = None
+                xml_output = None
                 logger.debug('Error occured during xml-to-json conversion',
                              exc_info=True)
             else:
-                json_data, json_errors = demjson.decode(
-                        json_output,
-                        strict=True,
-                        return_errors=True,
-                        return_stats=False,
-                        write_errors=False,
-                        forbid_bom=True,
-                        allow_zero_byte=True,
-                        allow_non_portable=True,
-                    )[:2]
-                if json_errors:
-                    passed = False
-                    logger.info('Erroneous JSON: %r', json_errors)
+                try:
+                    xml_output = converter.module.json_to_xml(json_output)
+                except Exception:
+                    passed = None
+                    xml_output = None
+                    logger.debug('Error occured during json-to-xml conversion',
+                                 exc_info=True)
                 else:
-                    json_input = demjson.encode(json_data, strict=True,
-                                                sort_keys=demjson.SORT_SMART)
-                    try:
-                        xml_output = converter.module.json_to_xml(json_input)
-                    except Exception:
-                        passed = None
-                        logger.debug('Error occured during json-to-xml conversion',
-                                     exc_info=True)
+                    json_errors = demjson.decode(
+                            json_output,
+                            strict=True,
+                            return_errors=True,
+                            return_stats=False,
+                            write_errors=False,
+                            forbid_bom=True,
+                            allow_zero_byte=True,
+                            allow_non_portable=True,
+                        )[1]
+                    if json_errors:
+                        passed = False
+                        logger.info('Erroneous JSON: %r', json_errors)
+                    else:
                         try:
                             xmldata_c14n = canonicalize(xmldata)
                             xmloutput_c14n = canonicalize(xml_output)

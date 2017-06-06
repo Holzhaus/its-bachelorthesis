@@ -111,77 +111,76 @@ Unerheblicher Whitespace (Tabulator\footnote{Unicode-Codepoint \texttt{U+0009}: 
                 <array>\\
                 <string>\\
                 <number>\\
-                `true'\\
-                `false'\\
-                `null'
+                'true'\\
+                'false'\\
+                'null'
             \end{stack} \]]
 
-    <object> ::= \[[ `\{' \begin{stack}
+    <object> ::= \[[ ‘\{’ \begin{stack}
                 \begin{rep}
-                    <string> `:' <value>\\
-                    `,'
+                    <string> ':' <value>\\
+                    ','
                 \end{rep}\\
-        \end{stack} `\}' \]]
+        \end{stack} ‘\}’ \]]
 
-    <array> ::= \[[ `[' \begin{stack}
+    <array> ::= \[[ '[' \begin{stack}
                 \begin{rep}
                     <value>\\
-                    `,'
+                    ','
                 \end{rep}\\
-        \end{stack} `]' \]]
+        \end{stack} ‘]’ \]]
 
     <number> ::= \[[
         \begin{stack}
-            \\`-'
+            \\'-'
         \end{stack}
         \begin{stack}
-            `0'\\
-            "\lit1 - \lit9"
+            '0'\\
+            '1' - '9'
             \begin{rep}
-                \\"\lit0 - \lit9"
+                \\'0' - '9'
             \end{rep}
         \end{stack}
         \begin{stack}\\
-            `.' \begin{rep}
-                    "\lit0 - \lit9"
+            '.' \begin{rep}
+                    '0' - '9'
                 \end{rep}
         \end{stack}
         \begin{stack}\\
             \begin{stack}
-                `e'\\
-                `E'
+                'e'\\
+                'E'
             \end{stack}
             \begin{stack}
                 \\
-                `+'\\
-                `-'\\
+                '+'\\
+                '-'\\
             \end{stack}
             \begin{rep}
-                "\lit0 - \lit9"
+                '0' - '9'
             \end{rep}
         \end{stack}
         \]]
 
     <string> ::= \[[
-        `\textquotedbl' \begin{stack}\\
+        '\textquotedbl' \begin{stack}\\
                 \begin{rep}
                     \begin{stack}
-                        \tok{\color{black} Any Unicode char except \texttt{\textquotedbl}, \texttt{\textbackslash} or control char}\\
-                        `\textbackslash' \begin{stack}
-                            `\textquotedbl'\\
-                            `\textbackslash'\\
-                            `/'\\
-                            `b'\\
-                            `f'\\
-                            `n'\\
-                            `r'\\
-                            `t'\\
-                            `u' \tok{\color{black} 4 hexadecimal digits}
+                        \tok{\normalfont Any Unicode char except \texttt{\textquotedbl}, \texttt{\textbackslash} or control char}\\
+                        '\textbackslash' \begin{stack}
+                            '\textquotedbl'\\
+                            '\textbackslash'\\
+                            '/'\\
+                            'b'\\
+                            'f'\\
+                            'n'\\
+                            'r'\\
+                            't'\\
+                            'u' \tok{\normalfont 4 hexadecimal digits}
                         \end{stack}
                     \end{stack}
                 \end{rep}
-        \end{stack} `\textquotedbl'
+        \end{stack} '\textquotedbl'
         \]]
 \end{grammar}
 \end{definition}
-
