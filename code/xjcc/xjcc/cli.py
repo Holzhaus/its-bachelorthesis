@@ -100,17 +100,20 @@ def test_conversion(args):
         futures = []
         for tc in testcases:
             logger.debug('Queued testcase  \'%s\'...', tc.name)
-            future = executor.submit(testcase.test_all_converters, converters)
+            future = executor.submit(tc.test_all_converters, converters)
             futures.append(future)
 
         outtable = output.OutputTable(['Converter', 'Testcase', 'Result'])
         for future in concurrent.futures.as_completed(futures):
             for testresult in future.result():
-                logger.debug('Testcase  \'%s\' done.', testresult.test.name)
+                resultstr = TEXTRESULTS[testresult.test_passed]
+                logger.debug('Testcase  \'%s\' ended with result: %s.',
+                             testresult.test.name,
+                             resultstr)
                 outtable.add({
                     'Converter': testresult.converter.name,
                     'Testcase': testresult.test.name,
-                    'Result': TEXTRESULTS[testresult.test_passed],
+                    'Result': resultstr,
                 })
                 if output_dir:
                     output.write_results(testresult, output_root)
