@@ -1,10 +1,12 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!--;testcase
+; The entity references have been expanded manually.
 [General]
 name: Complex XML
 description: Checks if complex XML documents can be converted
 -->
 <!DOCTYPE spec SYSTEM "xmlspec.dtd" [
+	<!--
 	<!ENTITY base.uri "http://www.w3.org/TR/2008/">
 	<!ENTITY maturity.level "REC">
 	<!ENTITY doc.shortname "xml">
@@ -12,15 +14,15 @@ description: Checks if complex XML documents can be converted
 	<!ENTITY draft.month.name "November">
 	<!ENTITY draft.month "11">
 	<!ENTITY draft.day "26">
-	<!ENTITY iso6.doc.date "&draft.year;&draft.month;&draft.day;">
-	<!ENTITY doc.ident "&maturity.level;-&doc.shortname;-&iso6.doc.date;">
-	<!ENTITY this.version "&base.uri;&doc.ident;">
-	<!ENTITY xml.version "&doc.ident;.xml">
-	<!ENTITY review.version "&doc.ident;-review.html">
-	<!ENTITY pdf.version "&doc.ident;.pdf">
+	<!ENTITY iso6.doc.date "20081126">
+	<!ENTITY doc.ident "REC-xml-20081126">
+	<!ENTITY this.version "http://www.w3.org/TR/2008/REC-xml-20081126">
+	<!ENTITY xml.version "REC-xml-20081126.xml">
+	<!ENTITY review.version "REC-xml-20081126-review.html">
+	<!ENTITY pdf.version "REC-xml-20081126.pdf">
 	<!ENTITY errataloc "http://www.w3.org/XML/xml-V10-5e-errata">
 	<!ENTITY preverrataloc "http://www.w3.org/XML/xml-V10-4e-errata">
-	<!ENTITY translationloc "http://www.w3.org/2003/03/Translations/byTechnology?technology=&doc.shortname;">
+	<!ENTITY translationloc "http://www.w3.org/2003/03/Translations/byTechnology?technology=xml">
 	<!ENTITY impreploc "http://www.w3.org/XML/2008/01/xml10-5e-implementation.html">
 	<!ENTITY versionOfXML "1.0">
 	<!ENTITY WebSGML "WebSGML Adaptations Annex to ISO 8879">
@@ -34,6 +36,7 @@ description: Checks if complex XML documents can be converted
 	<!ENTITY may "may">
 	<!ENTITY MAY "<rfc2119>MAY</rfc2119>">
 	<!ENTITY % local.common.att "xml:lang    CDATA  #IMPLIED">
+	-->
 ]>
 <?xml-stylesheet type="text/xsl" href="REC-xml.xsl"?>
 <spec w3c-doctype="rec" xml:lang="en">
@@ -124,24 +127,24 @@ Notes on preparation of the Second Edition:
 -->
 	<header>
 		<title>Extensible Markup Language (XML)</title>
-		<version>&versionOfXML; (Fifth Edition)</version>
-		<w3c-designation>&doc.ident;</w3c-designation>
+		<version>1.0 (Fifth Edition)</version>
+		<w3c-designation>REC-xml-20081126</w3c-designation>
 		<w3c-doctype>W3C Recommendation</w3c-doctype>
 		<pubdate>
-			<day>&draft.day;</day>
-			<month>&draft.month.name;</month>
-			<year>&draft.year;</year>
+			<day>26</day>
+			<month>November</month>
+			<year>2008</year>
 		</pubdate>
 		<publoc>
-			<loc href="&this.version;/">&this.version;/</loc>
+			<loc href="http://www.w3.org/TR/2008/REC-xml-20081126/">http://www.w3.org/TR/2008/REC-xml-20081126/</loc>
 		</publoc>
 		<altlocs>
-			<loc href="&xml.version;">XML</loc>
-			<!--loc href="&pdf.version;">PDF</loc-->
-			<loc href="&review.version;">XHTML with color-coded revision indicators</loc>
+			<loc href="REC-xml-20081126.xml">XML</loc>
+			<!--loc href="REC-xml-20081126.pdf">PDF</loc-->
+			<loc href="REC-xml-20081126-review.html">XHTML with color-coded revision indicators</loc>
 		</altlocs>
 		<latestloc>
-			<loc href="http://www.w3.org/TR/&doc.shortname;/">http://www.w3.org/TR/&doc.shortname;/</loc>
+			<loc href="http://www.w3.org/TR/xml/">http://www.w3.org/TR/xml/</loc>
 		</latestloc>
 		<prevlocs>
    <loc href="http://www.w3.org/TR/2008/PER-xml-20080205/">http://www.w3.org/TR/2008/PER-xml-20080205/</loc>
@@ -172,9 +175,9 @@ Notes on preparation of the Second Edition:
 				<name>François Yergeau</name>
 			</author>
 		</authlist>
-		<errataloc href="&errataloc;"/>
-		<preverrataloc href="&preverrataloc;"/>
-		<translationloc href="&translationloc;"/>
+		<errataloc href="http://www.w3.org/XML/xml-V10-5e-errata"/>
+		<preverrataloc href="http://www.w3.org/XML/xml-V10-4e-errata"/>
+		<translationloc href="http://www.w3.org/2003/03/Translations/byTechnology?technology=xml"/>
 		<abstract>
 			<p>The Extensible Markup Language (XML) is a subset of SGML that is completely
 described in this document. Its goal is to enable generic SGML to be served,
@@ -194,12 +197,12 @@ with both SGML and HTML.</p>
 				It is a product of the <loc href="http://www.w3.org/XML/Core/">XML Core Working Group</loc>
 				as part of the <loc href="http://www.w3.org/XML/Activity">XML Activity</loc>.
 				The English version of this specification is the only normative version. However,
-				for translations of this document, see <loc href="&translationloc;">&translationloc;</loc>.</p>
+				for translations of this document, see <loc href="http://www.w3.org/2003/03/Translations/byTechnology?technology=xml">http://www.w3.org/2003/03/Translations/byTechnology?technology=xml</loc>.</p>
 
 			<p>This document is a <loc href="http://www.w3.org/2005/10/Process-20051014/tr.html#q74">W3C Recommendation</loc>. This fifth edition is <emph>not</emph> a new version of XML. As a convenience to readers,
 				it incorporates the changes dictated by the accumulated errata (available at
-				<loc href="&preverrataloc;">&preverrataloc;</loc>) to the <loc href="http://www.w3.org/TR/2006/REC-xml-20060816/">Fourth
-				Edition of XML 1.0, dated 16 August 2006</loc>.  In particular, erratum <loc href="&preverrataloc;#E09">[E09]</loc>
+				<loc href="http://www.w3.org/XML/xml-V10-4e-errata">http://www.w3.org/XML/xml-V10-4e-errata</loc>) to the <loc href="http://www.w3.org/TR/2006/REC-xml-20060816/">Fourth
+				Edition of XML 1.0, dated 16 August 2006</loc>.  In particular, erratum <loc href="http://www.w3.org/XML/xml-V10-4e-errata#E09">[E09]</loc>
 				relaxes the restrictions on element and attribute names, thereby providing in XML 1.0 the major end user benefit
 				currently achievable only by using XML
 1.1.  As a consequence, many possible
@@ -213,15 +216,15 @@ attributes, are now valid.</p>
 			<p>Please report errors in this document to
 the public <loc href="mailto:xml-editor@w3.org">xml-editor@w3.org</loc> mail list; public
 				<loc href="http://lists.w3.org/Archives/Public/xml-editor/">archives</loc> are available. For the convenience of readers,
-				an <loc href="&review.version;">XHTML version with color-coded revision indicators</loc> is
+				an <loc href="REC-xml-20081126-review.html">XHTML version with color-coded revision indicators</loc> is
 				also provided; this version highlights each change due to an erratum published in the
-				<loc href="&preverrataloc;">errata
+				<loc href="http://www.w3.org/XML/xml-V10-4e-errata">errata
 list</loc> for the previous edition, together with a link to the particular
 				erratum in that list. Most of the
 errata in the list provide a rationale for the change.  The errata
-list for this fifth edition is available at <loc href="&errataloc;">&errataloc;</loc>.</p>
+list for this fifth edition is available at <loc href="http://www.w3.org/XML/xml-V10-5e-errata">http://www.w3.org/XML/xml-V10-5e-errata</loc>.</p>
 			
-			<p>An implementation report is available at <loc href="&impreploc;">&impreploc;</loc>.
+			<p>An implementation report is available at <loc href="http://www.w3.org/XML/2008/01/xml10-5e-implementation.html">http://www.w3.org/XML/2008/01/xml10-5e-implementation.html</loc>.
 				A <loc href="http://www.w3.org/XML/Test/">Test Suite</loc> is maintained to help assessing conformance to this specification.</p>
 
 <p>This document has been reviewed by W3C Members, by software developers, and by other W3C groups and interested parties, and is endorsed by the Director as a W3C Recommendation. It is a stable document and may be used as reference material or cited from another document. W3C's role in making the Recommendation is to draw attention to the specification and to promote its widespread deployment. This enhances the functionality and interoperability of the Web.</p>
@@ -321,7 +324,7 @@ minimum, ideally zero.</p>
 					<bibref ref="RFC1766"/> <phrase diff="add"><loc role="erratumref" href="E01"/>and the Language Subtag Registry <bibref ref="IANA-LANGCODES"/></phrase> for language
 					identification tags<phrase diff="del"><loc role="erratumref" href="E01"/>, ISO 639 <bibref ref="ISO639"/>
 					for language name codes, and ISO 3166 <bibref ref="ISO3166"/> for country name codes</phrase>), provides
-all the information necessary to understand XML Version &versionOfXML; and
+all the information necessary to understand XML Version 1.0 and
 construct computer programs to process it.</p>
 				<p>This version of the XML specification may be distributed freely, as long as
 all text and legal notices remain intact.</p>
@@ -332,7 +335,7 @@ all text and legal notices remain intact.</p>
 this specification. The key words <rfc2119>MUST</rfc2119>, <rfc2119>MUST NOT</rfc2119>,
 <rfc2119>REQUIRED</rfc2119>, <rfc2119>SHALL</rfc2119>, <rfc2119>SHALL NOT</rfc2119>,
 <rfc2119>SHOULD</rfc2119>, <rfc2119>SHOULD NOT</rfc2119>, <rfc2119>RECOMMENDED</rfc2119>,
-&MAY;, and <rfc2119>OPTIONAL</rfc2119>, when <rfc2119>EMPHASIZED</rfc2119>,
+<rfc2119>MAY</rfc2119>, and <rfc2119>OPTIONAL</rfc2119>, when <rfc2119>EMPHASIZED</rfc2119>,
 are to be interpreted as described in <bibref ref="rfc2119"/>. In addition, the terms defined
 in the following list are used in building
 those definitions and in describing the actions of an XML processor:<glist>
@@ -341,8 +344,8 @@ those definitions and in describing the actions of an XML processor:<glist>
 							<def>
 								<p>
 									<termdef id="dt-error" term="Error">A violation of the rules of this specification;
-results are undefined. Unless otherwise specified, failure to observe a prescription of this specification indicated by one of the keywords <rfc2119>MUST</rfc2119>, <rfc2119>REQUIRED</rfc2119>, <rfc2119>MUST NOT</rfc2119>, <rfc2119>SHALL</rfc2119> and <rfc2119>SHALL NOT</rfc2119> is an error.  Conforming software &MAY; detect and report an error
-and &MAY; recover from it.</termdef>
+results are undefined. Unless otherwise specified, failure to observe a prescription of this specification indicated by one of the keywords <rfc2119>MUST</rfc2119>, <rfc2119>REQUIRED</rfc2119>, <rfc2119>MUST NOT</rfc2119>, <rfc2119>SHALL</rfc2119> and <rfc2119>SHALL NOT</rfc2119> is an error.  Conforming software <rfc2119>MAY</rfc2119> detect and report an error
+and <rfc2119>MAY</rfc2119> recover from it.</termdef>
 								</p>
 							</def>
 						</gitem>
@@ -352,9 +355,9 @@ and &MAY; recover from it.</termdef>
 								<p>
 									<termdef id="dt-fatal" term="Fatal Error">An error which a conforming <termref def="dt-xml-proc">XML processor</termref>
 										<rfc2119>MUST</rfc2119> detect and report to the application.
-After encountering a fatal error, the processor &MAY; continue processing the
-data to search for further errors and &MAY; report such errors to the application.
-In order to support correction of errors, the processor &MAY; make unprocessed
+After encountering a fatal error, the processor <rfc2119>MAY</rfc2119> continue processing the
+data to search for further errors and <rfc2119>MAY</rfc2119> report such errors to the application.
+In order to support correction of errors, the processor <rfc2119>MAY</rfc2119> make unprocessed
 data from the document (with intermingled character data and markup) available
 to the application. Once a fatal error is detected, however, the processor
 <rfc2119>MUST NOT</rfc2119> continue normal processing (i.e., it <rfc2119>MUST NOT</rfc2119> continue to pass character
@@ -368,7 +371,7 @@ in the normal way).</termdef>
 							<def>
 								<p>
 									<termdef id="dt-atuseroption" term="At user option">Conforming software
-&MAY; or <rfc2119>MUST</rfc2119> (depending on the modal verb in the sentence) behave as described;
+<rfc2119>MAY</rfc2119> or <rfc2119>MUST</rfc2119> (depending on the modal verb in the sentence) behave as described;
 if it does, it <rfc2119>MUST</rfc2119> provide users a means to enable or disable the behavior
 described.</termdef>
 								</p>
@@ -427,7 +430,7 @@ that XML remains compatible with SGML.</termdef>
 									<termdef id="dt-interop" term="For interoperability">Marks
 a sentence describing a non-binding recommendation included to increase
 the chances that XML documents can be processed by the existing installed
-base of SGML processors which predate the &WebSGML;.</termdef>
+base of SGML processors which predate the "WebSGML Adaptations Annex to ISO 879.</termdef>
 								</p>
 							</def>
 						</gitem>
@@ -446,7 +449,7 @@ as defined in this specification. In addition, the XML document is
 			</p>
 			<p>Each XML document has both a logical and a physical structure. Physically,
 the document is composed of units called <termref def="dt-entity">entities</termref>.
-An entity &may;
+An entity may
 				<termref def="dt-entref">refer</termref> to other entities to
 cause their inclusion in the document. A document begins in a <quote>root</quote>
 or <termref def="dt-docent">document entity</termref>. Logically, the document
@@ -541,7 +544,7 @@ to these standards by amendments or new editions. Consequently, XML processors
 						</prod>
 					</prodgroup>
 				</scrap>
-				<p>The mechanism for encoding character code points into bit patterns &may;
+				<p>The mechanism for encoding character code points into bit patterns may
 vary from entity to entity. All XML processors <rfc2119>MUST</rfc2119> accept the UTF-8 and UTF-16
 encodings of Unicode<phrase diff="del"><loc role="erratumref" href="E11"/> 3.1</phrase> <phrase diff="chg"><loc role="erratumref" href="E11"/><bibref ref="Unicode"/></phrase>;
 the mechanisms for signaling which of the two is in use,
@@ -691,18 +694,18 @@ can be parsed without scanning for markup.</p>
 						<lhs>EntityValue</lhs>
 						<rhs>'"' ([^%&amp;"] | <nt def="NT-PEReference">PEReference</nt>
 | <nt def="NT-Reference">Reference</nt>)* '"' </rhs>
-						<rhs>|&nbsp; "'" ([^%&amp;'] | <nt def="NT-PEReference">PEReference</nt> | <nt def="NT-Reference">Reference</nt>)* "'"</rhs>
+						<rhs>|&#160; "'" ([^%&amp;'] | <nt def="NT-PEReference">PEReference</nt> | <nt def="NT-Reference">Reference</nt>)* "'"</rhs>
 					</prod>
 					<prod id="NT-AttValue" num="10">
 						<lhs>AttValue</lhs>
 						<rhs>'"' ([^&lt;&amp;"] | <nt def="NT-Reference">Reference</nt>)*
 '"' </rhs>
-						<rhs>|&nbsp; "'" ([^&lt;&amp;'] | <nt def="NT-Reference">Reference</nt>)*
+						<rhs>|&#160; "'" ([^&lt;&amp;'] | <nt def="NT-Reference">Reference</nt>)*
 "'"</rhs>
 					</prod>
 					<prod id="NT-SystemLiteral" num="11">
 						<lhs>SystemLiteral</lhs>
-						<rhs>('"' [^"]* '"') |&nbsp;("'" [^']* "'") </rhs>
+						<rhs>('"' [^"]* '"') |&#160;("'" [^']* "'") </rhs>
 					</prod>
 					<prod id="NT-PubidLiteral" num="12">
 						<lhs>PubidLiteral</lhs>
@@ -711,7 +714,7 @@ can be parsed without scanning for markup.</p>
 					</prod>
 					<prod id="NT-PubidChar" num="13">
 						<lhs>PubidChar</lhs>
-						<rhs>#x20 | #xD | #xA |&nbsp;[a-zA-Z0-9] |&nbsp;[-'()+,./:=?;!*#@$_%]</rhs>
+						<rhs>#x20 | #xD | #xA |&#160;[a-zA-Z0-9] |&#160;[-'()+,./:=?;!*#@$_%]</rhs>
 					</prod>
 				</scrap>
 				<note>
@@ -749,7 +752,7 @@ or the strings <quote>
 					</quote> and <quote>
 						<code>&amp;lt;</code>
 					</quote>
-respectively. The right angle bracket (>) &may; be represented using the string <quote>
+respectively. The right angle bracket (>) may be represented using the string <quote>
 						<code>&amp;gt;</code>
 					</quote>,
 and <rfc2119>MUST</rfc2119>, <termref def="dt-compat">for compatibility</termref>, be escaped
@@ -771,7 +774,7 @@ delimiter, <quote>
 						<code>]]&gt;</code>
 					</quote>.</p>
 				<p>To allow attribute values to contain both single and double quotes, the
-apostrophe or single-quote character (') &may; be represented as <quote>
+apostrophe or single-quote character (') may be represented as <quote>
 						<code>&amp;apos;</code>
 					</quote>,
 and the double-quote character (") as <quote>
@@ -789,11 +792,11 @@ and the double-quote character (") as <quote>
 				<head>Comments</head>
 				<p>
 					<termdef id="dt-comment" term="Comment">
-						<term>Comments</term> &may; appear
+						<term>Comments</term> may appear
 anywhere in a document outside other <termref def="dt-markup">markup</termref>;
-in addition, they &may; appear within the document type declaration at places
+in addition, they may appear within the document type declaration at places
 allowed by the grammar. They are not part of the document's <termref def="dt-chardata">character
-data</termref>; an XML processor &MAY;, but need not, make it possible for an
+data</termref>; an XML processor <rfc2119>MAY</rfc2119>, but need not, make it possible for an
 application to retrieve the text of comments. <termref def="dt-compat">For
 compatibility</termref>, the string <quote>
 							<code>--</code>
@@ -846,14 +849,14 @@ to which the instruction is directed. The target names <quote>
 					</quote>,
 and so on are reserved for standardization in this or future versions of this
 specification. The XML <termref def="dt-notation">Notation</termref> mechanism
-&may; be used for formal declaration of PI targets. Parameter
+may be used for formal declaration of PI targets. Parameter
 entity references <rfc2119>MUST NOT</rfc2119> be recognized within processing instructions.</p>
 			</div2>
 			<div2 id="sec-cdata-sect">
 				<head>CDATA Sections</head>
 				<p>
 					<termdef id="dt-cdsection" term="CDATA Section">
-						<term>CDATA sections</term> &may; occur anywhere character data may occur; they are used to escape blocks
+						<term>CDATA sections</term> may occur anywhere character data may occur; they are used to escape blocks
 of text containing characters which would otherwise be recognized as markup.
 CDATA sections begin with the string <quote>
 							<code>&lt;![CDATA[</code>
@@ -913,15 +916,15 @@ XML being used.</termdef> For example, the following is a complete XML document,
 				<p>and so is this:</p>
 				<eg><![CDATA[<greeting>Hello, world!</greeting>]]></eg>
 				<!--p>The version number <quote>
-						<code>&versionOfXML;</code>
+						<code>1.0</code>
 					</quote> should be used to
 				 indicate conformance to this version of this specification; it is an error for a document
 to use the value <quote>
-						<code>&versionOfXML;</code>
+						<code>1.0</code>
 					</quote> if it does not conform to
 this version of this specification. It is the intent of the XML working group
 to give later versions of this specification numbers other than <quote>
-						<code>&versionOfXML;</code>
+						<code>1.0</code>
 					</quote>,
 but this intent does not indicate a commitment to produce any future versions
 of XML, nor if any are produced, to use any particular numbering scheme. Since
@@ -1004,7 +1007,7 @@ can do both. The DTD for a document consists of both subsets taken together.</te
 					<termdef id="dt-markupdecl" term="markup declaration"> A <term>markup declaration</term>
 is an <termref def="dt-eldecl">element type declaration</termref>, an <termref def="dt-attdecl">attribute-list declaration</termref>, an <termref def="dt-entdecl">entity
 declaration</termref>, or a <termref def="dt-notdecl">notation declaration</termref>.</termdef>
-These declarations &may; be contained in whole or in part within <termref def="dt-PE">parameter
+These declarations may be contained in whole or in part within <termref def="dt-PE">parameter
 entities</termref>, as described in the well-formedness and validity constraints
 below. For further
 information, see <specref ref="sec-physical-struct"/>.</p>
@@ -1046,7 +1049,7 @@ information, see <specref ref="sec-physical-struct"/>.</p>
 				<p>Note
 that it is possible to construct a well-formed document containing a <nt def="NT-doctypedecl">doctypedecl</nt>
 that neither points to an external subset nor contains an internal subset.</p>
-				<p>The markup declarations &may; be made up in whole or in part of the <termref def="dt-repltext">replacement text</termref> of <termref def="dt-PE">parameter
+				<p>The markup declarations may be made up in whole or in part of the <termref def="dt-repltext">replacement text</termref> of <termref def="dt-PE">parameter
 entities</termref>. The productions later in this specification for individual
 nonterminals (<nt def="NT-elementdecl">elementdecl</nt>, <nt def="NT-AttlistDecl">AttlistDecl</nt>,
 and so on) describe the declarations <emph>after</emph> all the parameter
@@ -1074,7 +1077,7 @@ reference</termref>, both <rfc2119>MUST</rfc2119> be contained in the same repla
 					<head>PEs in Internal Subset</head>
 					<p>In
 the internal DTD subset, <termref def="dt-PERef">parameter-entity references</termref>
-						<rfc2119>MUST NOT</rfc2119> occur within markup declarations; they &may; occur where markup declarations can occur.
+						<rfc2119>MUST NOT</rfc2119> occur within markup declarations; they may occur where markup declarations can occur.
 (This does not apply to references that occur in external parameter entities
 or to the external subset.)</p>
 				</wfcnote>
@@ -1094,7 +1097,7 @@ in a <nt def="NT-DeclSep">DeclSep</nt>
 					<rfc2119>MUST</rfc2119> consist of a series of
 complete markup declarations of the types allowed by the non-terminal symbol <nt def="NT-markupdecl">markupdecl</nt>, interspersed with white space or <termref def="dt-PERef">parameter-entity references</termref>. However, portions of
 the contents of the external subset or of these
-external parameter entities &may; conditionally be ignored by using the <termref def="dt-cond-section">conditional section</termref> construct; this is not
+external parameter entities may conditionally be ignored by using the <termref def="dt-cond-section">conditional section</termref> construct; this is not
 allowed in the internal subset but is
 allowed in external parameter entities referenced in the internal subset.</p>
 				<scrap id="ext-Subset" lang="ebnf">
@@ -1141,7 +1144,7 @@ subset take precedence over those in the external subset.</p>
 				<p>Markup declarations can affect the content of the document, as passed from
 an <termref def="dt-xml-proc">XML processor</termref> to an application; examples
 are attribute defaults and entity declarations. The standalone document declaration,
-which &may; appear as a component of the XML declaration, signals whether or
+which may appear as a component of the XML declaration, signals whether or
 not there are such declarations which appear external to the <termref def="dt-docent">document
 entity</termref>
 or in parameter entities. <termdef id="dt-extmkpdecl" term="External Markup Declaration">An <term>external
@@ -1188,7 +1191,7 @@ if elements to which these attributes apply appear in the document without
 specifications of values for these attributes, or</p>
 						</item>
 						<item>
-							<p>entities (other than &magicents;), if <termref def="dt-entref">references</termref>
+							<p>entities (other than <code>amp</code>, <code>lt</code>, <code>gt</code>, <code>apos</code>, <code>quot</code>), if <termref def="dt-entref">references</termref>
 to those entities appear in the document, or</p>
 						</item>
 						<item>
@@ -1206,7 +1209,7 @@ if white space occurs directly within any instance of those types.</p>
 					</ulist>
 				</vcnote>
 				<p>An example XML declaration with a standalone document declaration:</p>
-				<eg>&lt;?xml version="&versionOfXML;" standalone='yes'?></eg>
+				<eg>&lt;?xml version="1.0" standalone='yes'?></eg>
 			</div2>
 			<div2 id="sec-white-space">
 				<head>White Space Handling</head>
@@ -1223,7 +1226,7 @@ A <termref def="dt-validating"> validating XML processor</termref>
 					<rfc2119>MUST</rfc2119> also
 inform the application which of these characters constitute white space appearing
 in <termref def="dt-elemcontent">element content</termref>.</p>
-				<p>A special <termref def="dt-attr">attribute</termref> named <att>xml:space</att> &may; be attached to an element to signal an intention that in that element,
+				<p>A special <termref def="dt-attr">attribute</termref> named <att>xml:space</att> may be attached to an element to signal an intention that in that element,
 white space should be preserved by applications. In valid documents, this
 attribute, like any other, <rfc2119>MUST</rfc2119> be <termref def="dt-attdecl">declared</termref>
 if it is used. When declared, it <rfc2119>MUST</rfc2119> be given as an <termref def="dt-enumerated">enumerated
@@ -1238,7 +1241,7 @@ processing modes are acceptable for this element; the value <attval>preserve</at
 indicates the intent that applications preserve all the white space. This
 declared intent is considered to apply to all elements within the content
 of the element where it is specified, unless overridden with
-another instance of the <att>xml:space</att> attribute. This specification does not give meaning to any value of <att>xml:space</att> other than <attval>default</attval> and <attval>preserve</attval>. It is an error for other values to be specified; the XML processor &MAY; report the error or &MAY; recover by ignoring the attribute specification or by reporting the (erroneous) value to the application. Applications may ignore or reject erroneous values.</p>
+another instance of the <att>xml:space</att> attribute. This specification does not give meaning to any value of <att>xml:space</att> other than <attval>default</attval> and <attval>preserve</attval>. It is an error for other values to be specified; the XML processor <rfc2119>MAY</rfc2119> report the error or <rfc2119>MAY</rfc2119> recover by ignoring the attribute specification or by reporting the (erroneous) value to the application. Applications may ignore or reject erroneous values.</p>
 				<p>The <termref def="dt-root">root element</termref> of any document is considered
 to have signaled no intentions as regards application space handling, unless
 it provides a value for this attribute or the attribute is declared with a
@@ -1263,12 +1266,12 @@ both the two-character sequence #xD #xA and any #xD that is not followed by
 				<head>Language Identification</head>
 				<p>In document processing, it is often useful to identify the natural or formal
 language in which the content is written. A special <termref def="dt-attr">attribute</termref>
-named <att>xml:lang</att> &may; be inserted in documents to specify the language
+named <att>xml:lang</att> may be inserted in documents to specify the language
 used in the contents and attribute values of any element in an XML document.
 In valid documents, this attribute, like any other, <rfc2119>MUST</rfc2119> be <termref def="dt-attdecl">declared</termref>
 if it is used. The
 values of the attribute are language identifiers as defined by <bibref ref="RFC1766"/>, <titleref>Tags
-for the Identification of Languages</titleref><phrase diff="del">, or its successor</phrase>; in addition, the empty string &may; be specified.</p>
+for the Identification of Languages</titleref><phrase diff="del">, or its successor</phrase>; in addition, the empty string may be specified.</p>
 				<p>(Productions 33 through 38 have been removed.)</p>
 				<p>For example:</p>
 				<eg><![CDATA[<p xml:lang="en">The quick brown fox jumps over the lazy dog.</p>
@@ -1314,7 +1317,7 @@ inheritance' of attribute values.
 				</note>
 				<p>A simple declaration for <att>xml:lang</att> might take the form</p>
 				<eg>xml:lang CDATA #IMPLIED</eg>
-				<p>but specific default values &may; also be given, if appropriate. In a collection
+				<p>but specific default values may also be given, if appropriate. In a collection
 of French poems for English students, with glosses and notes in English, the <att>xml:lang</att>
 attribute might be declared this way:</p>
 				<eg>&lt;!ATTLIST poem   xml:lang CDATA 'fr'>
@@ -1332,7 +1335,7 @@ of which are either delimited by <termref def="dt-stag">start-tags</termref>
 and <termref def="dt-etag">end-tags</termref>, or, for <termref def="dt-empty">empty</termref>
 elements, by an <termref def="dt-eetag">empty-element tag</termref>. Each
 element has a type, identified by name, sometimes called its <quote>generic
-identifier</quote> (GI), and &may; have a set of attribute specifications.</termdef>
+identifier</quote> (GI), and may have a set of attribute specifications.</termdef>
 Each attribute specification has a <termref def="dt-attrname">name</termref>
 and a <termref def="dt-attrval">value</termref>.</p>
 			<scrap lang="ebnf">
@@ -1519,7 +1522,7 @@ tag</term> takes a special form:</termdef>
 						</prod>
 					</prodgroup>
 				</scrap>
-				<p>Empty-element tags &may; be used for any element which has no content, whether
+				<p>Empty-element tags may be used for any element which has no content, whether
 or not it is declared using the keyword <kw>EMPTY</kw>. <termref def="dt-interop">For
 interoperability</termref>, the empty-element tag <rfc2119>SHOULD</rfc2119>
 be used, and <rfc2119>SHOULD</rfc2119> only be used, for elements which are declared
@@ -1532,12 +1535,12 @@ EMPTY.</p>
 			</div2>
 			<div2 id="elemdecls">
 				<head>Element Type Declarations</head>
-				<p>The <termref def="dt-element">element</termref> structure of an <termref def="dt-xml-doc">XML document</termref> &may;, for <termref def="dt-valid">validation</termref>
+				<p>The <termref def="dt-element">element</termref> structure of an <termref def="dt-xml-doc">XML document</termref> may, for <termref def="dt-valid">validation</termref>
 purposes, be constrained using element type and attribute-list declarations.
 An element type declaration constrains the element's <termref def="dt-content">content</termref>.</p>
 				<p>Element type declarations often constrain which element types can appear
 as <termref def="dt-parentchild">children</termref> of the element. At user
-option, an XML processor &MAY; issue a warning when a declaration mentions an
+option, an XML processor <rfc2119>MAY</rfc2119> issue a warning when a declaration mentions an
 element type for which no declaration is provided, but this is not an error.</p>
 				<p>
 					<termdef id="dt-eldecl" term="Element Type declaration">An <term>element
@@ -1613,8 +1616,8 @@ content particles:</p>
 						</prodgroup>
 					</scrap>
 					<p>where each <nt def="NT-Name">Name</nt> is the type of an element which
-&may; appear as a <termref def="dt-parentchild">child</termref>. Any content
-particle in a choice list &may; appear in the <termref def="dt-elemcontent">element
+may appear as a <termref def="dt-parentchild">child</termref>. Any content
+particle in a choice list may appear in the <termref def="dt-elemcontent">element
 content</termref> at the location where the choice list appears in the grammar;
 content particles occurring in a sequence list <rfc2119>MUST</rfc2119> each appear in the <termref def="dt-elemcontent">element content</termref> in the order given in the list.
 The optional character following a name or list governs whether the element
@@ -1655,9 +1658,9 @@ of the replacement text <rfc2119>SHOULD</rfc2119> be a connector (<code>|</code>
 					<head>Mixed Content</head>
 					<p>
 						<termdef id="dt-mixed" term="Mixed Content">An element <termref def="dt-stag">type</termref>
-has <term>mixed content</term> when elements of that type &may; contain character
+has <term>mixed content</term> when elements of that type may contain character
 data, optionally interspersed with <termref def="dt-parentchild">child</termref>
-elements.</termdef> In this case, the types of the child elements &may; be constrained,
+elements.</termdef> In this case, the types of the child elements may be constrained,
 but not their order or their number of occurrences:</p>
 					<scrap lang="ebnf">
 						<head>Mixed-content Declaration</head>
@@ -1696,7 +1699,7 @@ same name <rfc2119>MUST NOT</rfc2119> appear more than once in a single mixed-co
 pairs with <termref def="dt-element">elements</termref>. Attribute specifications
 <rfc2119>MUST NOT</rfc2119> appear outside of <termref def="dt-stag">start-tags</termref> and <termref def="dt-eetag">empty-element tags</termref>; thus, the productions used to
 recognize them appear in <specref ref="sec-starttags"/>. Attribute-list declarations
-&may; be used:</p>
+may be used:</p>
 				<ulist>
 					<item>
 						<p>To define the set of attributes pertaining to a given element type.</p>
@@ -1736,18 +1739,18 @@ of each attribute associated with a given element type:</termdef>
 					</prod>
 				</scrap>
 				<p>The <nt def="NT-Name">Name</nt> in the <nt def="NT-AttlistDecl">AttlistDecl</nt>
-rule is the type of an element. At user option, an XML processor &MAY; issue
+rule is the type of an element. At user option, an XML processor <rfc2119>MAY</rfc2119> issue
 a warning if attributes are declared for an element type not itself declared,
 but this is not an error. The <nt def="NT-Name">Name</nt> in the <nt def="NT-AttDef">AttDef</nt>
 rule is the name of the attribute.</p>
 				<p>When more than one <nt def="NT-AttlistDecl">AttlistDecl</nt> is provided
 for a given element type, the contents of all those provided are merged. When
 more than one definition is provided for the same attribute of a given element
-type, the first declaration is binding and later declarations are ignored. <termref def="dt-interop">For interoperability,</termref> writers of DTDs &may; choose
+type, the first declaration is binding and later declarations are ignored. <termref def="dt-interop">For interoperability,</termref> writers of DTDs may choose
 to provide at most one attribute-list declaration for a given element type,
 at most one attribute definition for a given attribute name in an attribute-list
 declaration, and at least one attribute definition in each attribute-list
-declaration. For interoperability, an XML processor &MAY; at user option
+declaration. For interoperability, an XML processor <rfc2119>MAY</rfc2119> at user option
 issue a warning when more than one attribute-list declaration is provided
 for a given element type, or more than one attribute definition is provided
 for a given attribute, but this is not an error.</p>
@@ -1916,7 +1919,7 @@ is to react if a declared attribute is absent in a document.</p>
 						<prodgroup pcw4="14" pcw5="11.5">
 							<prod id="NT-DefaultDecl" num="60">
 								<lhs>DefaultDecl</lhs>
-								<rhs>'#REQUIRED' |&nbsp;'#IMPLIED' </rhs>
+								<rhs>'#REQUIRED' |&#160;'#IMPLIED' </rhs>
 								<rhs>| (('#FIXED' <nt def="NT-S">S</nt>)? <nt def="NT-AttValue">AttValue</nt>)</rhs>
 								<vc def="RequiredAttr"/>
 								<vc def="defattrvalid"/>
@@ -2334,7 +2337,7 @@ entity, the <nt def="NT-Name">Name</nt> given in the entity reference <rfc2119>M
 						<termref def="dt-match">match</termref> that in an <titleref href="#sec-entity-decl">entity
 declaration</titleref> that does not occur within the external subset or a
 parameter entity, except that well-formed documents need not declare
-any of the following entities: &magicents;. The
+any of the following entities: <code>amp</code>, <code>lt</code>, <code>gt</code>, <code>apos</code>, <code>quot</code>. The
 declaration of a general entity <rfc2119>MUST</rfc2119> precede any reference to it which appears
 in a default value in an attribute-list declaration.</p>
 					<p>Note that non-validating processors are <titleref href="#include-if-valid">not
@@ -2351,7 +2354,7 @@ if <titleref href="#sec-rmd">standalone='yes'</titleref>.</p>
 the <nt def="NT-Name">Name</nt> given in the entity reference <rfc2119>MUST</rfc2119>
 						<termref def="dt-match">match</termref> that in an <titleref href="#sec-entity-decl">entity
 declaration</titleref>. For interoperability, valid documents <rfc2119>SHOULD</rfc2119> declare
-the entities &magicents;, in the form specified in <specref ref="sec-predefined-ent"/>.
+the entities <code>amp</code>, <code>lt</code>, <code>gt</code>, <code>apos</code>, <code>quot</code>, in the form specified in <specref ref="sec-predefined-ent"/>.
 The declaration of a parameter entity <rfc2119>MUST</rfc2119> precede any reference to it. Similarly,
 the declaration of a general entity <rfc2119>MUST</rfc2119> precede any attribute-list
 declaration containing a default value with a direct or indirect reference
@@ -2443,7 +2446,7 @@ thus:</termdef>
 reference</termref> or, in the case of an unparsed entity, in the value of
 an <kw>ENTITY</kw> or <kw>ENTITIES</kw> attribute. If the same entity is declared
 more than once, the first declaration encountered is binding; at user option,
-an XML processor &MAY; issue a warning if entities are declared multiple times.</p>
+an XML processor <rfc2119>MAY</rfc2119> issue a warning if entities are declared multiple times.</p>
 				<div3 id="sec-internal-ent">
 					<head>Internal Entities</head>
 					<p>
@@ -2514,7 +2517,7 @@ A URI might thus be relative to the <termref def="dt-docent">document
 entity</termref>, to the entity containing the <termref def="dt-doctype">external
 DTD subset</termref>, or to some other <termref def="dt-extent">external parameter
 entity</termref>. Attempts to
-retrieve the resource identified by a URI &may; be redirected at the parser
+retrieve the resource identified by a URI may be redirected at the parser
 level (for example, in an entity resolver) or below (at the protocol level,
 for example, via an HTTP <code>Location:</code> header). In the absence of additional
 information outside the scope of this specification within the resource,
@@ -2522,7 +2525,7 @@ the base URI of a resource is always the URI of the actual resource returned.
 In other words, it is the URI of the resource retrieved after all redirection
 has occurred.</p>
 					<p>System
-identifiers (and other XML strings meant to be used as URI references) &may; contain
+identifiers (and other XML strings meant to be used as URI references) may contain
 characters that, according to <bibref ref="rfc3986"/>,
 must be escaped before a URI can be used to retrieve the referenced resource. The
 characters to be escaped are the control characters #x0 to #x1F and #x7F (most of
@@ -2559,8 +2562,8 @@ where HH is the hexadecimal notation of the byte value).</p>
 					
 					<p>
 						<termdef id="dt-pubid" term="Public identifier"> In addition to a system
-identifier, an external identifier &may; include a <term>public identifier</term>.</termdef>
-An XML processor attempting to retrieve the entity's content &may; use
+identifier, an external identifier may include a <term>public identifier</term>.</termdef>
+An XML processor attempting to retrieve the entity's content may use
 any combination of
 the public and system identifiers as well as additional information outside the
 scope of this specification to try to generate an alternative URI reference.
@@ -2629,7 +2632,7 @@ can begin in one entity and end in another.</p>
 				</div3>
 				<div3 id="charencoding">
 					<head>Character Encoding in Entities</head>
-					<p>Each external parsed entity in an XML document &may; use a different encoding
+					<p>Each external parsed entity in an XML document may use a different encoding
 for its characters. All XML processors <rfc2119>MUST</rfc2119> be able to read entities in both
 the UTF-8 and UTF-16 encodings. The terms <quote>UTF-8</quote>
 and <quote>UTF-16</quote> in this specification do not apply to 
@@ -2637,7 +2640,7 @@ and <quote>UTF-16</quote> in this specification do not apply to
 <phrase diff="add"><loc role="erratumref" href="E05"/>related character encodings, including but not limited to UTF-16BE, UTF-16LE, or CESU-8.</phrase></p>
 
 					<p>Entities encoded in UTF-16 <rfc2119>MUST</rfc2119> and entities
-encoded in UTF-8 &MAY; begin with the Byte Order Mark described by
+encoded in UTF-8 <rfc2119>MAY</rfc2119> begin with the Byte Order Mark described by
 Annex H of <bibref ref="ISO10646-2000"/>, section
 <phrase diff="chg"><loc role="erratumref" href="E11"/>16.8</phrase> of <bibref ref="Unicode"/><phrase diff="del"><loc role="erratumref" href="E11"/>, and section 2.7 of <bibref ref="Unicode3"/></phrase>
 (the ZERO WIDTH NO-BREAK SPACE character, #xFEFF). This is an encoding signature,
@@ -2916,7 +2919,7 @@ declared attribute.</p>
 when its <termref def="dt-repltext">replacement text</termref> is retrieved
 and processed, in place of the reference itself, as though it were part of
 the document at the location the reference was recognized.</termdef> The replacement
-text &may; contain both <termref def="dt-chardata">character data</termref>
+text may contain both <termref def="dt-chardata">character data</termref>
 and (except for parameter entities) <termref def="dt-markup">markup</termref>,
 which <rfc2119>MUST</rfc2119> be recognized in the usual way. (The string <quote>
 							<code>AT&amp;amp;T;</code>
@@ -2935,7 +2938,7 @@ to <termref def="dt-valid">validate</termref> the document, the processor
 <rfc2119>MUST</rfc2119>
 						<termref def="dt-include">include</termref> its replacement text. If
 the entity is external, and the processor is not attempting to validate the
-XML document, the processor &MAY;, but need
+XML document, the processor <rfc2119>MAY</rfc2119>, but need
 not, include the entity's replacement text. If a non-validating processor
 does not include the replacement text, it <rfc2119>MUST</rfc2119> inform the application that
 it recognized, but did not read, the entity.</p>
@@ -3033,7 +3036,7 @@ after stripping the text declaration (leaving any surrounding whitespace) if the
 is one but without any replacement of character references or parameter-entity
 references.</termdef>
 				</p>
-				<p>The literal entity value as given in an internal entity declaration (<nt def="NT-EntityValue">EntityValue</nt>) &may; contain character, parameter-entity,
+				<p>The literal entity value as given in an internal entity declaration (<nt def="NT-EntityValue">EntityValue</nt>) may contain character, parameter-entity,
 and general-entity references. Such references <rfc2119>MUST</rfc2119> be contained entirely
 within the literal entity value. The actual replacement text that is <termref def="dt-include">included</termref> (or <termref def="inliteral">included in literal</termref>) as described above
 <rfc2119>MUST</rfc2119> contain the <emph>replacement
@@ -3064,16 +3067,16 @@ of a difficult example, see <specref ref="sec-entexpand"/>.</p>
 			<div2 id="sec-predefined-ent">
 				<head>Predefined Entities</head>
 				<p>
-					<termdef id="dt-escape" term="escape">Entity and character references &may;
+					<termdef id="dt-escape" term="escape">Entity and character references may
 both be used to <term>escape</term> the left angle bracket, ampersand, and
-other delimiters. A set of general entities (&magicents;) is specified for
-this purpose. Numeric character references &may; also be used; they are expanded
+other delimiters. A set of general entities (<code>amp</code>, <code>lt</code>, <code>gt</code>, <code>apos</code>, <code>quot</code>) is specified for
+this purpose. Numeric character references may also be used; they are expanded
 immediately when recognized and <rfc2119>MUST</rfc2119> be treated as character data, so the
 numeric character references <quote>
 							<code>&amp;#60;</code>
 						</quote> and <quote>
 							<code>&amp;#38;</code>
-						</quote> &may; be used to escape <code>&lt;</code> and <code>&amp;</code> when they occur
+						</quote> may be used to escape <code>&lt;</code> and <code>&amp;</code> when they occur
 in character data.</termdef>
 				</p>
 				<p>All XML processors <rfc2119>MUST</rfc2119> recognize these entities whether they are declared
@@ -3135,7 +3138,7 @@ application capable of processing data in the given notation.</termdef>
 				</vcnote>
 				<p>XML processors <rfc2119>MUST</rfc2119> provide applications with the name and external identifier(s)
 of any notation declared and referred to in an attribute value, attribute
-definition, or entity declaration. They &MAY; additionally resolve the external
+definition, or entity declaration. They <rfc2119>MAY</rfc2119> additionally resolve the external
 identifier into the <termref def="dt-sysid">system identifier</termref>, file
 name, or other information needed to allow the application to call a processor
 for data in the notation described. (It is not an error, however, for XML
@@ -3420,15 +3423,15 @@ Scott Bradner, 1997.</bibl>
 					<bibl id="rfc3986" href="http://www.ietf.org/rfc/rfc3986.txt" key="IETF RFC 3986">IETF (Internet Engineering Task Force). <titleref>RFC 3986: Uniform Resource Identifier (URI): Generic Syntax</titleref>. T. Berners-Lee, R. Fielding, L. Masinter. 2005.</bibl>
 					<bibl id="ISO10646" key="ISO/IEC 10646">ISO (International
 Organization for Standardization). <titleref>ISO/IEC 10646-1:2000. Information
-technology &mdash; Universal Multiple-Octet Coded Character Set (UCS) &mdash;
+technology &#x2014; Universal Multiple-Octet Coded Character Set (UCS) &#x2014;
 Part 1: Architecture and Basic Multilingual Plane</titleref> and <titleref>ISO/IEC 10646-2:2001.
-Information technology &mdash; Universal Multiple-Octet Coded Character Set (UCS) &mdash; Part 2:
+Information technology &#x2014; Universal Multiple-Octet Coded Character Set (UCS) &#x2014; Part 2:
 Supplementary Planes</titleref>, as, from time to time, amended, replaced by a new edition or
 expanded by the addition of new parts. [Geneva]: International Organization for Standardization.
 (See <loc href="http://www.iso.org/iso/home.htm">http://www.iso.org/iso/home.htm</loc> for the latest version.)</bibl>
 					<bibl id="ISO10646-2000" key="ISO/IEC 10646:2000">ISO (International
 Organization for Standardization). <titleref>ISO/IEC 10646-1:2000. Information
-technology &mdash; Universal Multiple-Octet Coded Character Set (UCS) &mdash;
+technology &#x2014; Universal Multiple-Octet Coded Character Set (UCS) &#x2014;
 Part 1: Architecture and Basic Multilingual Plane.</titleref> [Geneva]: International
 Organization for Standardization, 2000.</bibl>
 					<bibl id="Unicode" key="Unicode">The Unicode Consortium. <emph>The Unicode
@@ -3489,21 +3492,21 @@ Code for the representation of names of languages.</titleref> [Geneva]: Internat
 Organization for Standardization, 1988.</bibl>
 					<bibl id="ISO3166" key="ISO 3166">(International Organization for Standardization).
 <titleref>ISO 3166-1:1997
-(E). Codes for the representation of names of countries and their subdivisions &mdash;
+(E). Codes for the representation of names of countries and their subdivisions &#x2014;
 Part 1: Country codes</titleref> [Geneva]: International Organization for
 Standardization, 1997.</bibl>
 					<bibl id="ISO8879" key="ISO 8879">ISO (International Organization for Standardization). <titleref>ISO
-8879:1986(E). Information processing &mdash; Text and Office Systems &mdash;
-Standard Generalized Markup Language (SGML).</titleref> First edition &mdash;
+8879:1986(E). Information processing &#x2014; Text and Office Systems &#x2014;
+Standard Generalized Markup Language (SGML).</titleref> First edition &#x2014;
 1986-10-15. [Geneva]: International Organization for Standardization, 1986. </bibl>
 					<bibl id="ISO10744" key="ISO/IEC 10744">ISO (International Organization for
-Standardization). <titleref>ISO/IEC 10744-1992 (E). Information technology &mdash;
+Standardization). <titleref>ISO/IEC 10744-1992 (E). Information technology &#x2014;
 Hypermedia/Time-based Structuring Language (HyTime). </titleref> [Geneva]:
 International Organization for Standardization, 1992. <emph>Extended Facilities
 Annexe.</emph> [Geneva]: International Organization for Standardization, 1996. </bibl>
 					<bibl id="websgml" href="http://www.sgmlsource.com/8879/n0029.htm" key="WEBSGML">ISO
 (International Organization for Standardization). <titleref>ISO 8879:1986
-TC2. Information technology &mdash; Document Description and Processing Languages</titleref>.
+TC2. Information technology &#x2014; Document Description and Processing Languages</titleref>.
 [Geneva]: International Organization for Standardization, 1998.</bibl>
 					<bibl id="xml-names" href="http://www.w3.org/TR/xml-names/" key="XML Names">Tim Bray,
 Dave Hollander, and Andrew Layman, editors. <titleref>Namespaces in XML</titleref>.
@@ -3538,100 +3541,100 @@ distinguished.</p>
 					</prod>
 					<prod id="NT-BaseChar" num="85">
 						<lhs>BaseChar</lhs>
-						<rhs>[#x0041-#x005A] |&nbsp;[#x0061-#x007A] |&nbsp;[#x00C0-#x00D6]
-|&nbsp;[#x00D8-#x00F6] |&nbsp;[#x00F8-#x00FF] |&nbsp;[#x0100-#x0131] |&nbsp;[#x0134-#x013E]
-|&nbsp;[#x0141-#x0148] |&nbsp;[#x014A-#x017E] |&nbsp;[#x0180-#x01C3] |&nbsp;[#x01CD-#x01F0]
-|&nbsp;[#x01F4-#x01F5] |&nbsp;[#x01FA-#x0217] |&nbsp;[#x0250-#x02A8] |&nbsp;[#x02BB-#x02C1]
-|&nbsp;#x0386 |&nbsp;[#x0388-#x038A] |&nbsp;#x038C |&nbsp;[#x038E-#x03A1]
-|&nbsp;[#x03A3-#x03CE] |&nbsp;[#x03D0-#x03D6] |&nbsp;#x03DA |&nbsp;#x03DC
-|&nbsp;#x03DE |&nbsp;#x03E0 |&nbsp;[#x03E2-#x03F3] |&nbsp;[#x0401-#x040C]
-|&nbsp;[#x040E-#x044F] |&nbsp;[#x0451-#x045C] |&nbsp;[#x045E-#x0481] |&nbsp;[#x0490-#x04C4]
-|&nbsp;[#x04C7-#x04C8] |&nbsp;[#x04CB-#x04CC] |&nbsp;[#x04D0-#x04EB] |&nbsp;[#x04EE-#x04F5]
-|&nbsp;[#x04F8-#x04F9] |&nbsp;[#x0531-#x0556] |&nbsp;#x0559 |&nbsp;[#x0561-#x0586]
-|&nbsp;[#x05D0-#x05EA] |&nbsp;[#x05F0-#x05F2] |&nbsp;[#x0621-#x063A] |&nbsp;[#x0641-#x064A]
-|&nbsp;[#x0671-#x06B7] |&nbsp;[#x06BA-#x06BE] |&nbsp;[#x06C0-#x06CE] |&nbsp;[#x06D0-#x06D3]
-|&nbsp;#x06D5 |&nbsp;[#x06E5-#x06E6] |&nbsp;[#x0905-#x0939] |&nbsp;#x093D
-|&nbsp;[#x0958-#x0961] |&nbsp;[#x0985-#x098C] |&nbsp;[#x098F-#x0990] |&nbsp;[#x0993-#x09A8]
-|&nbsp;[#x09AA-#x09B0] |&nbsp;#x09B2 |&nbsp;[#x09B6-#x09B9] |&nbsp;[#x09DC-#x09DD]
-|&nbsp;[#x09DF-#x09E1] |&nbsp;[#x09F0-#x09F1] |&nbsp;[#x0A05-#x0A0A] |&nbsp;[#x0A0F-#x0A10]
-|&nbsp;[#x0A13-#x0A28] |&nbsp;[#x0A2A-#x0A30] |&nbsp;[#x0A32-#x0A33] |&nbsp;[#x0A35-#x0A36]
-|&nbsp;[#x0A38-#x0A39] |&nbsp;[#x0A59-#x0A5C] |&nbsp;#x0A5E |&nbsp;[#x0A72-#x0A74]
-|&nbsp;[#x0A85-#x0A8B] |&nbsp;#x0A8D |&nbsp;[#x0A8F-#x0A91] |&nbsp;[#x0A93-#x0AA8]
-|&nbsp;[#x0AAA-#x0AB0] |&nbsp;[#x0AB2-#x0AB3] |&nbsp;[#x0AB5-#x0AB9] |&nbsp;#x0ABD
-|&nbsp;#x0AE0 |&nbsp;[#x0B05-#x0B0C] |&nbsp;[#x0B0F-#x0B10] |&nbsp;[#x0B13-#x0B28]
-|&nbsp;[#x0B2A-#x0B30] |&nbsp;[#x0B32-#x0B33] |&nbsp;[#x0B36-#x0B39] |&nbsp;#x0B3D
-|&nbsp;[#x0B5C-#x0B5D] |&nbsp;[#x0B5F-#x0B61] |&nbsp;[#x0B85-#x0B8A] |&nbsp;[#x0B8E-#x0B90]
-|&nbsp;[#x0B92-#x0B95] |&nbsp;[#x0B99-#x0B9A] |&nbsp;#x0B9C |&nbsp;[#x0B9E-#x0B9F]
-|&nbsp;[#x0BA3-#x0BA4] |&nbsp;[#x0BA8-#x0BAA] |&nbsp;[#x0BAE-#x0BB5] |&nbsp;[#x0BB7-#x0BB9]
-|&nbsp;[#x0C05-#x0C0C] |&nbsp;[#x0C0E-#x0C10] |&nbsp;[#x0C12-#x0C28] |&nbsp;[#x0C2A-#x0C33]
-|&nbsp;[#x0C35-#x0C39] |&nbsp;[#x0C60-#x0C61] |&nbsp;[#x0C85-#x0C8C] |&nbsp;[#x0C8E-#x0C90]
-|&nbsp;[#x0C92-#x0CA8] |&nbsp;[#x0CAA-#x0CB3] |&nbsp;[#x0CB5-#x0CB9] |&nbsp;#x0CDE
-|&nbsp;[#x0CE0-#x0CE1] |&nbsp;[#x0D05-#x0D0C] |&nbsp;[#x0D0E-#x0D10] |&nbsp;[#x0D12-#x0D28]
-|&nbsp;[#x0D2A-#x0D39] |&nbsp;[#x0D60-#x0D61] |&nbsp;[#x0E01-#x0E2E] |&nbsp;#x0E30
-|&nbsp;[#x0E32-#x0E33] |&nbsp;[#x0E40-#x0E45] |&nbsp;[#x0E81-#x0E82] |&nbsp;#x0E84
-|&nbsp;[#x0E87-#x0E88] |&nbsp;#x0E8A |&nbsp;#x0E8D |&nbsp;[#x0E94-#x0E97]
-|&nbsp;[#x0E99-#x0E9F] |&nbsp;[#x0EA1-#x0EA3] |&nbsp;#x0EA5 |&nbsp;#x0EA7
-|&nbsp;[#x0EAA-#x0EAB] |&nbsp;[#x0EAD-#x0EAE] |&nbsp;#x0EB0 |&nbsp;[#x0EB2-#x0EB3]
-|&nbsp;#x0EBD |&nbsp;[#x0EC0-#x0EC4] |&nbsp;[#x0F40-#x0F47] |&nbsp;[#x0F49-#x0F69]
-|&nbsp;[#x10A0-#x10C5] |&nbsp;[#x10D0-#x10F6] |&nbsp;#x1100 |&nbsp;[#x1102-#x1103]
-|&nbsp;[#x1105-#x1107] |&nbsp;#x1109 |&nbsp;[#x110B-#x110C] |&nbsp;[#x110E-#x1112]
-|&nbsp;#x113C |&nbsp;#x113E |&nbsp;#x1140 |&nbsp;#x114C |&nbsp;#x114E |&nbsp;#x1150
-|&nbsp;[#x1154-#x1155] |&nbsp;#x1159 |&nbsp;[#x115F-#x1161] |&nbsp;#x1163
-|&nbsp;#x1165 |&nbsp;#x1167 |&nbsp;#x1169 |&nbsp;[#x116D-#x116E] |&nbsp;[#x1172-#x1173]
-|&nbsp;#x1175 |&nbsp;#x119E |&nbsp;#x11A8 |&nbsp;#x11AB |&nbsp;[#x11AE-#x11AF]
-|&nbsp;[#x11B7-#x11B8] |&nbsp;#x11BA |&nbsp;[#x11BC-#x11C2] |&nbsp;#x11EB
-|&nbsp;#x11F0 |&nbsp;#x11F9 |&nbsp;[#x1E00-#x1E9B] |&nbsp;[#x1EA0-#x1EF9]
-|&nbsp;[#x1F00-#x1F15] |&nbsp;[#x1F18-#x1F1D] |&nbsp;[#x1F20-#x1F45] |&nbsp;[#x1F48-#x1F4D]
-|&nbsp;[#x1F50-#x1F57] |&nbsp;#x1F59 |&nbsp;#x1F5B |&nbsp;#x1F5D |&nbsp;[#x1F5F-#x1F7D]
-|&nbsp;[#x1F80-#x1FB4] |&nbsp;[#x1FB6-#x1FBC] |&nbsp;#x1FBE |&nbsp;[#x1FC2-#x1FC4]
-|&nbsp;[#x1FC6-#x1FCC] |&nbsp;[#x1FD0-#x1FD3] |&nbsp;[#x1FD6-#x1FDB] |&nbsp;[#x1FE0-#x1FEC]
-|&nbsp;[#x1FF2-#x1FF4] |&nbsp;[#x1FF6-#x1FFC] |&nbsp;#x2126 |&nbsp;[#x212A-#x212B]
-|&nbsp;#x212E |&nbsp;[#x2180-#x2182] |&nbsp;[#x3041-#x3094] |&nbsp;[#x30A1-#x30FA]
-|&nbsp;[#x3105-#x312C] |&nbsp;[#xAC00-#xD7A3] </rhs>
+						<rhs>[#x0041-#x005A] |&#160;[#x0061-#x007A] |&#160;[#x00C0-#x00D6]
+|&#160;[#x00D8-#x00F6] |&#160;[#x00F8-#x00FF] |&#160;[#x0100-#x0131] |&#160;[#x0134-#x013E]
+|&#160;[#x0141-#x0148] |&#160;[#x014A-#x017E] |&#160;[#x0180-#x01C3] |&#160;[#x01CD-#x01F0]
+|&#160;[#x01F4-#x01F5] |&#160;[#x01FA-#x0217] |&#160;[#x0250-#x02A8] |&#160;[#x02BB-#x02C1]
+|&#160;#x0386 |&#160;[#x0388-#x038A] |&#160;#x038C |&#160;[#x038E-#x03A1]
+|&#160;[#x03A3-#x03CE] |&#160;[#x03D0-#x03D6] |&#160;#x03DA |&#160;#x03DC
+|&#160;#x03DE |&#160;#x03E0 |&#160;[#x03E2-#x03F3] |&#160;[#x0401-#x040C]
+|&#160;[#x040E-#x044F] |&#160;[#x0451-#x045C] |&#160;[#x045E-#x0481] |&#160;[#x0490-#x04C4]
+|&#160;[#x04C7-#x04C8] |&#160;[#x04CB-#x04CC] |&#160;[#x04D0-#x04EB] |&#160;[#x04EE-#x04F5]
+|&#160;[#x04F8-#x04F9] |&#160;[#x0531-#x0556] |&#160;#x0559 |&#160;[#x0561-#x0586]
+|&#160;[#x05D0-#x05EA] |&#160;[#x05F0-#x05F2] |&#160;[#x0621-#x063A] |&#160;[#x0641-#x064A]
+|&#160;[#x0671-#x06B7] |&#160;[#x06BA-#x06BE] |&#160;[#x06C0-#x06CE] |&#160;[#x06D0-#x06D3]
+|&#160;#x06D5 |&#160;[#x06E5-#x06E6] |&#160;[#x0905-#x0939] |&#160;#x093D
+|&#160;[#x0958-#x0961] |&#160;[#x0985-#x098C] |&#160;[#x098F-#x0990] |&#160;[#x0993-#x09A8]
+|&#160;[#x09AA-#x09B0] |&#160;#x09B2 |&#160;[#x09B6-#x09B9] |&#160;[#x09DC-#x09DD]
+|&#160;[#x09DF-#x09E1] |&#160;[#x09F0-#x09F1] |&#160;[#x0A05-#x0A0A] |&#160;[#x0A0F-#x0A10]
+|&#160;[#x0A13-#x0A28] |&#160;[#x0A2A-#x0A30] |&#160;[#x0A32-#x0A33] |&#160;[#x0A35-#x0A36]
+|&#160;[#x0A38-#x0A39] |&#160;[#x0A59-#x0A5C] |&#160;#x0A5E |&#160;[#x0A72-#x0A74]
+|&#160;[#x0A85-#x0A8B] |&#160;#x0A8D |&#160;[#x0A8F-#x0A91] |&#160;[#x0A93-#x0AA8]
+|&#160;[#x0AAA-#x0AB0] |&#160;[#x0AB2-#x0AB3] |&#160;[#x0AB5-#x0AB9] |&#160;#x0ABD
+|&#160;#x0AE0 |&#160;[#x0B05-#x0B0C] |&#160;[#x0B0F-#x0B10] |&#160;[#x0B13-#x0B28]
+|&#160;[#x0B2A-#x0B30] |&#160;[#x0B32-#x0B33] |&#160;[#x0B36-#x0B39] |&#160;#x0B3D
+|&#160;[#x0B5C-#x0B5D] |&#160;[#x0B5F-#x0B61] |&#160;[#x0B85-#x0B8A] |&#160;[#x0B8E-#x0B90]
+|&#160;[#x0B92-#x0B95] |&#160;[#x0B99-#x0B9A] |&#160;#x0B9C |&#160;[#x0B9E-#x0B9F]
+|&#160;[#x0BA3-#x0BA4] |&#160;[#x0BA8-#x0BAA] |&#160;[#x0BAE-#x0BB5] |&#160;[#x0BB7-#x0BB9]
+|&#160;[#x0C05-#x0C0C] |&#160;[#x0C0E-#x0C10] |&#160;[#x0C12-#x0C28] |&#160;[#x0C2A-#x0C33]
+|&#160;[#x0C35-#x0C39] |&#160;[#x0C60-#x0C61] |&#160;[#x0C85-#x0C8C] |&#160;[#x0C8E-#x0C90]
+|&#160;[#x0C92-#x0CA8] |&#160;[#x0CAA-#x0CB3] |&#160;[#x0CB5-#x0CB9] |&#160;#x0CDE
+|&#160;[#x0CE0-#x0CE1] |&#160;[#x0D05-#x0D0C] |&#160;[#x0D0E-#x0D10] |&#160;[#x0D12-#x0D28]
+|&#160;[#x0D2A-#x0D39] |&#160;[#x0D60-#x0D61] |&#160;[#x0E01-#x0E2E] |&#160;#x0E30
+|&#160;[#x0E32-#x0E33] |&#160;[#x0E40-#x0E45] |&#160;[#x0E81-#x0E82] |&#160;#x0E84
+|&#160;[#x0E87-#x0E88] |&#160;#x0E8A |&#160;#x0E8D |&#160;[#x0E94-#x0E97]
+|&#160;[#x0E99-#x0E9F] |&#160;[#x0EA1-#x0EA3] |&#160;#x0EA5 |&#160;#x0EA7
+|&#160;[#x0EAA-#x0EAB] |&#160;[#x0EAD-#x0EAE] |&#160;#x0EB0 |&#160;[#x0EB2-#x0EB3]
+|&#160;#x0EBD |&#160;[#x0EC0-#x0EC4] |&#160;[#x0F40-#x0F47] |&#160;[#x0F49-#x0F69]
+|&#160;[#x10A0-#x10C5] |&#160;[#x10D0-#x10F6] |&#160;#x1100 |&#160;[#x1102-#x1103]
+|&#160;[#x1105-#x1107] |&#160;#x1109 |&#160;[#x110B-#x110C] |&#160;[#x110E-#x1112]
+|&#160;#x113C |&#160;#x113E |&#160;#x1140 |&#160;#x114C |&#160;#x114E |&#160;#x1150
+|&#160;[#x1154-#x1155] |&#160;#x1159 |&#160;[#x115F-#x1161] |&#160;#x1163
+|&#160;#x1165 |&#160;#x1167 |&#160;#x1169 |&#160;[#x116D-#x116E] |&#160;[#x1172-#x1173]
+|&#160;#x1175 |&#160;#x119E |&#160;#x11A8 |&#160;#x11AB |&#160;[#x11AE-#x11AF]
+|&#160;[#x11B7-#x11B8] |&#160;#x11BA |&#160;[#x11BC-#x11C2] |&#160;#x11EB
+|&#160;#x11F0 |&#160;#x11F9 |&#160;[#x1E00-#x1E9B] |&#160;[#x1EA0-#x1EF9]
+|&#160;[#x1F00-#x1F15] |&#160;[#x1F18-#x1F1D] |&#160;[#x1F20-#x1F45] |&#160;[#x1F48-#x1F4D]
+|&#160;[#x1F50-#x1F57] |&#160;#x1F59 |&#160;#x1F5B |&#160;#x1F5D |&#160;[#x1F5F-#x1F7D]
+|&#160;[#x1F80-#x1FB4] |&#160;[#x1FB6-#x1FBC] |&#160;#x1FBE |&#160;[#x1FC2-#x1FC4]
+|&#160;[#x1FC6-#x1FCC] |&#160;[#x1FD0-#x1FD3] |&#160;[#x1FD6-#x1FDB] |&#160;[#x1FE0-#x1FEC]
+|&#160;[#x1FF2-#x1FF4] |&#160;[#x1FF6-#x1FFC] |&#160;#x2126 |&#160;[#x212A-#x212B]
+|&#160;#x212E |&#160;[#x2180-#x2182] |&#160;[#x3041-#x3094] |&#160;[#x30A1-#x30FA]
+|&#160;[#x3105-#x312C] |&#160;[#xAC00-#xD7A3] </rhs>
 					</prod>
 					<prod id="NT-Ideographic" num="86">
 						<lhs>Ideographic</lhs>
-						<rhs>[#x4E00-#x9FA5] |&nbsp;#x3007 |&nbsp;[#x3021-#x3029] </rhs>
+						<rhs>[#x4E00-#x9FA5] |&#160;#x3007 |&#160;[#x3021-#x3029] </rhs>
 					</prod>
 					<prod id="NT-CombiningChar" num="87">
 						<lhs>CombiningChar</lhs>
-						<rhs>[#x0300-#x0345] |&nbsp;[#x0360-#x0361] |&nbsp;[#x0483-#x0486]
-|&nbsp;[#x0591-#x05A1] |&nbsp;[#x05A3-#x05B9] |&nbsp;[#x05BB-#x05BD] |&nbsp;#x05BF
-|&nbsp;[#x05C1-#x05C2] |&nbsp;#x05C4 |&nbsp;[#x064B-#x0652] |&nbsp;#x0670
-|&nbsp;[#x06D6-#x06DC] |&nbsp;[#x06DD-#x06DF] |&nbsp;[#x06E0-#x06E4] |&nbsp;[#x06E7-#x06E8]
-|&nbsp;[#x06EA-#x06ED] |&nbsp;[#x0901-#x0903] |&nbsp;#x093C |&nbsp;[#x093E-#x094C]
-|&nbsp;#x094D |&nbsp;[#x0951-#x0954] |&nbsp;[#x0962-#x0963] |&nbsp;[#x0981-#x0983]
-|&nbsp;#x09BC |&nbsp;#x09BE |&nbsp;#x09BF |&nbsp;[#x09C0-#x09C4] |&nbsp;[#x09C7-#x09C8]
-|&nbsp;[#x09CB-#x09CD] |&nbsp;#x09D7 |&nbsp;[#x09E2-#x09E3] |&nbsp;#x0A02
-|&nbsp;#x0A3C |&nbsp;#x0A3E |&nbsp;#x0A3F |&nbsp;[#x0A40-#x0A42] |&nbsp;[#x0A47-#x0A48]
-|&nbsp;[#x0A4B-#x0A4D] |&nbsp;[#x0A70-#x0A71] |&nbsp;[#x0A81-#x0A83] |&nbsp;#x0ABC
-|&nbsp;[#x0ABE-#x0AC5] |&nbsp;[#x0AC7-#x0AC9] |&nbsp;[#x0ACB-#x0ACD] |&nbsp;[#x0B01-#x0B03]
-|&nbsp;#x0B3C |&nbsp;[#x0B3E-#x0B43] |&nbsp;[#x0B47-#x0B48] |&nbsp;[#x0B4B-#x0B4D]
-|&nbsp;[#x0B56-#x0B57] |&nbsp;[#x0B82-#x0B83] |&nbsp;[#x0BBE-#x0BC2] |&nbsp;[#x0BC6-#x0BC8]
-|&nbsp;[#x0BCA-#x0BCD] |&nbsp;#x0BD7 |&nbsp;[#x0C01-#x0C03] |&nbsp;[#x0C3E-#x0C44]
-|&nbsp;[#x0C46-#x0C48] |&nbsp;[#x0C4A-#x0C4D] |&nbsp;[#x0C55-#x0C56] |&nbsp;[#x0C82-#x0C83]
-|&nbsp;[#x0CBE-#x0CC4] |&nbsp;[#x0CC6-#x0CC8] |&nbsp;[#x0CCA-#x0CCD] |&nbsp;[#x0CD5-#x0CD6]
-|&nbsp;[#x0D02-#x0D03] |&nbsp;[#x0D3E-#x0D43] |&nbsp;[#x0D46-#x0D48] |&nbsp;[#x0D4A-#x0D4D]
-|&nbsp;#x0D57 |&nbsp;#x0E31 |&nbsp;[#x0E34-#x0E3A] |&nbsp;[#x0E47-#x0E4E]
-|&nbsp;#x0EB1 |&nbsp;[#x0EB4-#x0EB9] |&nbsp;[#x0EBB-#x0EBC] |&nbsp;[#x0EC8-#x0ECD]
-|&nbsp;[#x0F18-#x0F19] |&nbsp;#x0F35 |&nbsp;#x0F37 |&nbsp;#x0F39 |&nbsp;#x0F3E
-|&nbsp;#x0F3F |&nbsp;[#x0F71-#x0F84] |&nbsp;[#x0F86-#x0F8B] |&nbsp;[#x0F90-#x0F95]
-|&nbsp;#x0F97 |&nbsp;[#x0F99-#x0FAD] |&nbsp;[#x0FB1-#x0FB7] |&nbsp;#x0FB9
-|&nbsp;[#x20D0-#x20DC] |&nbsp;#x20E1 |&nbsp;[#x302A-#x302F] |&nbsp;#x3099
-|&nbsp;#x309A </rhs>
+						<rhs>[#x0300-#x0345] |&#160;[#x0360-#x0361] |&#160;[#x0483-#x0486]
+|&#160;[#x0591-#x05A1] |&#160;[#x05A3-#x05B9] |&#160;[#x05BB-#x05BD] |&#160;#x05BF
+|&#160;[#x05C1-#x05C2] |&#160;#x05C4 |&#160;[#x064B-#x0652] |&#160;#x0670
+|&#160;[#x06D6-#x06DC] |&#160;[#x06DD-#x06DF] |&#160;[#x06E0-#x06E4] |&#160;[#x06E7-#x06E8]
+|&#160;[#x06EA-#x06ED] |&#160;[#x0901-#x0903] |&#160;#x093C |&#160;[#x093E-#x094C]
+|&#160;#x094D |&#160;[#x0951-#x0954] |&#160;[#x0962-#x0963] |&#160;[#x0981-#x0983]
+|&#160;#x09BC |&#160;#x09BE |&#160;#x09BF |&#160;[#x09C0-#x09C4] |&#160;[#x09C7-#x09C8]
+|&#160;[#x09CB-#x09CD] |&#160;#x09D7 |&#160;[#x09E2-#x09E3] |&#160;#x0A02
+|&#160;#x0A3C |&#160;#x0A3E |&#160;#x0A3F |&#160;[#x0A40-#x0A42] |&#160;[#x0A47-#x0A48]
+|&#160;[#x0A4B-#x0A4D] |&#160;[#x0A70-#x0A71] |&#160;[#x0A81-#x0A83] |&#160;#x0ABC
+|&#160;[#x0ABE-#x0AC5] |&#160;[#x0AC7-#x0AC9] |&#160;[#x0ACB-#x0ACD] |&#160;[#x0B01-#x0B03]
+|&#160;#x0B3C |&#160;[#x0B3E-#x0B43] |&#160;[#x0B47-#x0B48] |&#160;[#x0B4B-#x0B4D]
+|&#160;[#x0B56-#x0B57] |&#160;[#x0B82-#x0B83] |&#160;[#x0BBE-#x0BC2] |&#160;[#x0BC6-#x0BC8]
+|&#160;[#x0BCA-#x0BCD] |&#160;#x0BD7 |&#160;[#x0C01-#x0C03] |&#160;[#x0C3E-#x0C44]
+|&#160;[#x0C46-#x0C48] |&#160;[#x0C4A-#x0C4D] |&#160;[#x0C55-#x0C56] |&#160;[#x0C82-#x0C83]
+|&#160;[#x0CBE-#x0CC4] |&#160;[#x0CC6-#x0CC8] |&#160;[#x0CCA-#x0CCD] |&#160;[#x0CD5-#x0CD6]
+|&#160;[#x0D02-#x0D03] |&#160;[#x0D3E-#x0D43] |&#160;[#x0D46-#x0D48] |&#160;[#x0D4A-#x0D4D]
+|&#160;#x0D57 |&#160;#x0E31 |&#160;[#x0E34-#x0E3A] |&#160;[#x0E47-#x0E4E]
+|&#160;#x0EB1 |&#160;[#x0EB4-#x0EB9] |&#160;[#x0EBB-#x0EBC] |&#160;[#x0EC8-#x0ECD]
+|&#160;[#x0F18-#x0F19] |&#160;#x0F35 |&#160;#x0F37 |&#160;#x0F39 |&#160;#x0F3E
+|&#160;#x0F3F |&#160;[#x0F71-#x0F84] |&#160;[#x0F86-#x0F8B] |&#160;[#x0F90-#x0F95]
+|&#160;#x0F97 |&#160;[#x0F99-#x0FAD] |&#160;[#x0FB1-#x0FB7] |&#160;#x0FB9
+|&#160;[#x20D0-#x20DC] |&#160;#x20E1 |&#160;[#x302A-#x302F] |&#160;#x3099
+|&#160;#x309A </rhs>
 					</prod>
 					<prod id="NT-Digit" num="88">
 						<lhs>Digit</lhs>
-						<rhs>[#x0030-#x0039] |&nbsp;[#x0660-#x0669] |&nbsp;[#x06F0-#x06F9]
-|&nbsp;[#x0966-#x096F] |&nbsp;[#x09E6-#x09EF] |&nbsp;[#x0A66-#x0A6F] |&nbsp;[#x0AE6-#x0AEF]
-|&nbsp;[#x0B66-#x0B6F] |&nbsp;[#x0BE7-#x0BEF] |&nbsp;[#x0C66-#x0C6F] |&nbsp;[#x0CE6-#x0CEF]
-|&nbsp;[#x0D66-#x0D6F] |&nbsp;[#x0E50-#x0E59] |&nbsp;[#x0ED0-#x0ED9] |&nbsp;[#x0F20-#x0F29] </rhs>
+						<rhs>[#x0030-#x0039] |&#160;[#x0660-#x0669] |&#160;[#x06F0-#x06F9]
+|&#160;[#x0966-#x096F] |&#160;[#x09E6-#x09EF] |&#160;[#x0A66-#x0A6F] |&#160;[#x0AE6-#x0AEF]
+|&#160;[#x0B66-#x0B6F] |&#160;[#x0BE7-#x0BEF] |&#160;[#x0C66-#x0C6F] |&#160;[#x0CE6-#x0CEF]
+|&#160;[#x0D66-#x0D6F] |&#160;[#x0E50-#x0E59] |&#160;[#x0ED0-#x0ED9] |&#160;[#x0F20-#x0F29] </rhs>
 					</prod>
 					<prod id="NT-Extender" num="89">
 						<lhs>Extender</lhs>
-						<rhs>#x00B7 |&nbsp;#x02D0 |&nbsp;#x02D1 |&nbsp;#x0387 |&nbsp;#x0640
-|&nbsp;#x0E46 |&nbsp;#x0EC6 |&nbsp;#x3005 |&nbsp;[#x3031-#x3035] |&nbsp;[#x309D-#x309E]
-|&nbsp;[#x30FC-#x30FE] </rhs>
+						<rhs>#x00B7 |&#160;#x02D0 |&#160;#x02D1 |&#160;#x0387 |&#160;#x0640
+|&#160;#x0E46 |&#160;#x0EC6 |&#160;#x3005 |&#160;[#x3031-#x3035] |&#160;[#x309D-#x309E]
+|&#160;[#x30FC-#x30FE] </rhs>
 					</prod>
 				</prodgroup>
 			</scrap>
@@ -3841,7 +3844,7 @@ Brüggemann-Klein 1991 <bibref ref="ABK"/>.</p>
 			<p>The XML encoding declaration functions as an internal label on each entity,
 indicating which character encoding is in use. Before an XML processor can
 read the internal label, however, it apparently has to know what character
-encoding is in use&mdash;which is what the internal label is trying to indicate.
+encoding is in use&#x2014;which is what the internal label is trying to indicate.
 In the general case, this is a hopeless situation. It is not entirely hopeless
 in XML, however, because XML limits the general case in two ways: each implementation
 is assumed to support only a finite set of character encodings, and the XML
@@ -3925,7 +3928,7 @@ FE 00 00</code>
 					<tbody>
 						<tr>
 							<td>
-								<code>00&nbsp;00&nbsp;00&nbsp;3C</code>
+								<code>00&#160;00&#160;00&#160;3C</code>
 							</td>
 							<td rowspan="4">UCS-4 or other encoding with a 32-bit code unit and ASCII
 characters encoded as ASCII values, in respectively big-endian (1234), little-endian
