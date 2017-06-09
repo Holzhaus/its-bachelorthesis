@@ -2,6 +2,40 @@
 \label{chap:impl}
 \section{Versuchsaufbau}
 
+Ziel ist die Prüfung die Suche nach einem Konversionsverfahren, dass sowohl \emph{sicher} als auch \emph{verlustlos} arbeitet. Dazu müssen beide Anforderungen zunächst genauer definiert werden.
+
+\subsection{Sicherheit}
+
+Die Sicherheit eines Konverters von hängt in erster Linie von der Sicherheit des eingesetzten XML-Prozessors ab. Dieser darf gegen keinen der im Abschnitt \ref{sec:xmlattacks} beschriebenen Angriffe auf XML-Parser verwundbar sein.
+
+% TODO: Stuff still missing here
+
+\subsection{Verlustlosigkeit}
+
+Damit dieser Konversionsprozess als \emph{verlustlos} angesehen werden kann, müssen mehrere Bedingungen erfüllt sein:
+\begin{enumerate}
+    \item{} Eingabedokument und Ausgabedokument müssen logisch äquivalent sein.\label{item:ioequal}
+    \item{} Sowohl das \acrshort{json}-Zwischenprodukt als auch das \acrshort{xml}-Ausgabedokument müssen gültige Dokumente sein.\label{item:outputwellf}
+\end{enumerate}
+
+Bedingung \ref{item:ioequal} heißt jedoch nicht, dass das \acrshort{xml}-Dokument nach dem Konversions-Round-Trip bitidentisch mit dem Ursprungsdokument sein muss -- es ist ausreichend, dass die Struktur der beiden Dokumente übereinstimmt. Daher werden beide Dokumente zunächst kanonisiert\footnote{Vgl. Abschnitt \ref{sec:c14n}} und im Anschluss verglichen. Stimmt die kanonische Form beider \acrshort{xml}-Dokumente überein, war die Konversion verlustlos.
+
+\begin{definition}[Verlustlosigkeit von Konversion]
+    Sei $V \coloneqq \{x \mid x\text{ ist ein valider }\allowbreak{}\text{\acrshort{json}-Wert}\}$ und $W \coloneqq \{x \mid x\text{ ist ein wohlgeformtes \acrshort{xml}-Dokument}\}$.
+
+    Ein Konversionverfahren $K = (f_{enc}, f_{dec})$ mit $f_{enc}: W \mapsto V$ und $f_{dec}: V \mapsto W$ heißt \emph{verlustlos} genau dann wenn
+    \begin{equation}
+        (f_{dec}\mathrel{\circ} f_{enc})(x) \mathbin{\stackrel{c14n}{=}} x
+    \end{equation}
+    für alle $x \in W$.
+\end{definition}
+
+Zur Überprüfung der Konversionsqualität wurden für alle der in Abschnitt~\ref{sec:criteria} festgelegten Kriterien ein oder mehrere Testfälle erstellt. Jeder der Testfälle besteht aus einer \acrshort{xml}-Datei, die dann mit einem Konverter in das \acrshort{json}-Format umgewandelt wird. Die daraus resultierenden \acrshort{json}-Daten werden im Anschluss wieder zurück in das \acrshort{xml}-Format konvertiert, d.h. es wird ein kompletter Round-Trip vollzogen.
+
+Es muss zudem sichergestellt sein, dass bei der Konversion auch tatsächlich valides \acrshort{json} bzw. wohlgeformtes \acrshort{xml} zurückgegeben sei. Daher werden beide Ausgabedokumente mithilfe analysiert und auf Korrektheit überprüft.
+
+Für \acrshort{json}-Daten wurde dazu das Python-Modul \emph{demjson} eingesetzt. Die Wohlgeformtheit der \acrshort{xml}-Daten wurde durch das Parsing mittels \emph{lxml} sichergestellt.
+
 \begin{figure}
     \includestandalone{flowchart_conversiontest}
     \caption{Ablauf der Konversionstests}
