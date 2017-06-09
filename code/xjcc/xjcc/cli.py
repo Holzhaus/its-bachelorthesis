@@ -116,24 +116,10 @@ def test_conversion(args):
                     'Testcase': testresult.test.name,
                     'Result': TEXTRESULTS[testresult.test_passed],
                 })
+                if output_dir:
+                    output.write_results(testresult, output_root)
 
     if output_dir:
-        for converter_name, testresults in results.items():
-            path = os.path.join(output_root, converter_name)
-            os.mkdir(path)
-            for testresult in testresults:
-                if testresult.json_output is not None:
-                    json_file = os.path.join(
-                            path, '%s.json' % testresult.test.shortname)
-                    with open(json_file, mode='wb') as f:
-                        f.write(testresult.json_output)
-
-                if testresult.xml_output is not None:
-                    xml_file = os.path.join(
-                            path, '%s.xml' % testresult.test.shortname)
-                    with open(xml_file, mode='wb') as f:
-                        f.write(testresult.xml_output)
-
         for fmt in ['text', 'json', 'csv']:
             outdata = outtable.output(fmt=fmt, title='Test result',
                                       sort_key=sort_testresults)

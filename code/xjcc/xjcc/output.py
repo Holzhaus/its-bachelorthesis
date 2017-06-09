@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+import os
+import os.path
 import csv
 import io
 import json
@@ -55,3 +57,20 @@ class OutputTable(object):
         else:
             raise ValueError('Unknown output format \'%s\'!' % fmt)
         return data
+
+
+def write_results(testresult, output_root):
+    path = os.path.join(output_root, testresult.converter.name)
+    try:
+        os.mkdir(path)
+    except FileExistsError:
+        pass
+    if testresult.json_output is not None:
+        json_file = os.path.join(path, '%s.json' % testresult.test.shortname)
+        with open(json_file, mode='wb') as f:
+            f.write(testresult.json_output)
+
+    if testresult.xml_output is not None:
+        xml_file = os.path.join(path, '%s.xml' % testresult.test.shortname)
+        with open(xml_file, mode='wb') as f:
+            f.write(testresult.xml_output)
