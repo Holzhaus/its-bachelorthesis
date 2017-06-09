@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import multiprocessing
-import queue
 import logging
 import resource
 import signal
