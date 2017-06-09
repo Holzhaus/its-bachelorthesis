@@ -53,5 +53,5 @@ class OutputTable(object):
         elif fmt == 'csv':
             data = self.to_csv(**kwargs)
         else:
-            raise ValueError('Unknown output format \'%s\'!', fmt)
-        print(data)
+            raise ValueError('Unknown output format \'%s\'!' % fmt)
+        return data
