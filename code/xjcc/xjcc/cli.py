@@ -102,7 +102,7 @@ def test_conversion(args):
     with concurrent.futures.ThreadPoolExecutor(max_workers=1) as executor:
         futures = []
         for tc in testcases:
-            logger.debug('Queued testcase  \'%s\'...', tc.name)
+            logger.debug('Queued testcase \'%s\'...', tc.name)
             future = executor.submit(tc.test_all_converters, converters)
             futures.append(future)
 
