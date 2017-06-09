@@ -17,7 +17,7 @@
 ; to
 ;     xmlns:dt="urn:uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"
 ; because relative namespace URIs are deprecated and cause errors when trying
-: to canonicalize documents containing them.
+; to canonicalize documents containing them.
 ; See W3C's "Canonical XML, Version 1.0", Section 2.1 for details.
 
 [General]
