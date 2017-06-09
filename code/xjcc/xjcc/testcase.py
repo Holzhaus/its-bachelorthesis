@@ -130,6 +130,7 @@ class ConversionTestCase(object):
         logger = logging.getLogger(__name__)
 
         xmldata = self.content.encode('utf-8')
+        xmldata_c14n = canonicalize(xmldata)
         for converter in converters:
             logger.info('Started testcase \'%s\' for converter \'%s\'',
                         self.name, converter.name)
@@ -168,7 +169,6 @@ class ConversionTestCase(object):
                                      'conversion', exc_info=True)
                     else:
                         try:
-                            xmldata_c14n = canonicalize(xmldata)
                             xmloutput_c14n = canonicalize(xml_output)
                             passed = (xmldata_c14n == xmloutput_c14n)
                         except Exception:
