@@ -20,13 +20,13 @@ name: DocBook V5.0 transition guide
 description: Checks if the DocBook V5.0 transition guide can be converted.
 -->  <!-- -*- nxml -*- -->
 <!DOCTYPE article [
-<!ENTITY version "5.0">
 <!--
+<!ENTITY version "5.0">
 <!ENTITY yes "<phrase role='unicode yes'>✔</phrase>">
 <!ENTITY no "<phrase role='unicode no'>✘</phrase>">
--->
 <!ENTITY yes "<phrase role='unicode yes'>YES</phrase>">
 <!ENTITY no "<phrase role='unicode no'>NO</phrase>">
+-->
 ]>
 <article xmlns="http://docbook.org/ns/docbook"
 	 xmlns:xl="http://www.w3.org/1999/xlink"
@@ -72,7 +72,7 @@ also a section devoted to conversion of legacy documents from DocBook
 4.x to DocBook V5.0.</para>
 
 <para>At the time this was written the current version of DocBook V5.0
-was &version;. However, almost all of the information in this document is
+was 5.0. However, almost all of the information in this document is
 general and applies to any newer version of DocBook V5.0.
 </para>
 
@@ -232,8 +232,8 @@ than it would be using a DTD (see <xref linkend="customizations"/>).</para>
 <title>Schema jungle</title>
 
 <para>Schemas for DocBook V5.0 are available in several formats at
-<link xl:href="http://www.oasis-open.org/docbook/xml/&version;/"/> (or the
-mirror at <link xl:href="http://docbook.org/xml/&version;/"/>).
+<link xl:href="http://www.oasis-open.org/docbook/xml/5.0/"/> (or the
+mirror at <link xl:href="http://docbook.org/xml/5.0/"/>).
 Only the RELAX NG schema is normative
 and it is preferred over the other schema languages.  However, for your
 convenience there are also DTD and W3C XML Schema versions provided for DocBook
@@ -278,19 +278,19 @@ Schematron schemas.</para>
     <tbody>
       <row>
 	<entry>Basic document structure</entry>
-	<entry>&yes;</entry>
-	<entry>&yes;</entry>
-	<entry>&yes;</entry>
-	<entry>&yes;</entry>
-	<entry>&yes;</entry>
+	<entry>YES</entry>
+	<entry>YES</entry>
+	<entry>YES</entry>
+	<entry>YES</entry>
+	<entry>YES</entry>
       </row>
       <row>
 	<entry>ID/IDREF datatypes</entry>
-	<entry>&yes;</entry>
-	<entry>&yes;</entry>
-	<entry>&yes;</entry>
-	<entry>&yes;</entry>
-	<entry>&yes;</entry>
+	<entry>YES</entry>
+	<entry>YES</entry>
+	<entry>YES</entry>
+	<entry>YES</entry>
+	<entry>YES</entry>
       </row>
       <row>
 	<entry>Datatypes<footnote>
@@ -303,11 +303,11 @@ Schematron schemas.</para>
 	  from DTD which lacks datatype information.</para>
 	</footnote>
 	</entry>
-	<entry>&no;</entry>
-	<entry>&no;</entry>
-	<entry>&no;</entry>
-	<entry>&yes;</entry>
-	<entry>&yes;</entry>
+	<entry>NO</entry>
+	<entry>NO</entry>
+	<entry>NO</entry>
+	<entry>YES</entry>
+	<entry>YES</entry>
       </row>
       <row>
 	<entry>Co-occurrences<footnote>
@@ -327,19 +327,19 @@ Schematron schemas.</para>
 	only for validation, whereas grammar based schemas like
 	RELAX NG are useful also for other purposes like guided editing.</para>
 	</footnote></entry>
-	<entry>&no;</entry>
-	<entry>&no;</entry>
-	<entry>&no;</entry>
-	<entry>&yes;</entry>
-	<entry>&yes;</entry>
+	<entry>NO</entry>
+	<entry>NO</entry>
+	<entry>NO</entry>
+	<entry>YES</entry>
+	<entry>YES</entry>
       </row>
       <row>
 	<entry>Hooks for MathML and SVG content</entry>
-	<entry>&no;</entry>
-	<entry>&no;</entry>
-	<entry>&no;</entry>
-	<entry>&yes;</entry>
-	<entry>&yes;</entry>
+	<entry>NO</entry>
+	<entry>NO</entry>
+	<entry>NO</entry>
+	<entry>YES</entry>
+	<entry>YES</entry>
       </row>
       <row>
 	<entry>Link type integrity<footnote>
@@ -347,40 +347,40 @@ Schematron schemas.</para>
 	of corresponding type. For example that
 	<tag>footnoteref</tag> points to
 	<tag>footnote</tag>.</para></footnote></entry>
-	<entry>&no;</entry>
-	<entry>&no;</entry>
-	<entry>&yes;</entry>
-	<entry>&no;</entry>
-	<entry>&yes;</entry>
+	<entry>NO</entry>
+	<entry>NO</entry>
+	<entry>YES</entry>
+	<entry>NO</entry>
+	<entry>YES</entry>
       </row>
       <row>
 	<entry>Presence of <tag class="attribute">version</tag>
 	attribute on the root element</entry>
-	<entry>&no;</entry>
-	<entry>&no;</entry>
-	<entry>&yes;</entry>
-	<entry>&no;</entry>
-	<entry>&yes;</entry>
+	<entry>NO</entry>
+	<entry>NO</entry>
+	<entry>YES</entry>
+	<entry>NO</entry>
+	<entry>YES</entry>
       </row>
       <row>
 	<entry>Miscellaneous checks<footnote>
 	<para>For example consistency of segmented lists, only one
 	term inside term definition etc.</para></footnote></entry>
-	<entry>&no;</entry>
-	<entry>&no;</entry>
-	<entry>&yes;</entry>
-	<entry>&no;</entry>
-	<entry>&yes;</entry>
+	<entry>NO</entry>
+	<entry>NO</entry>
+	<entry>YES</entry>
+	<entry>NO</entry>
+	<entry>YES</entry>
       </row>
       <row>
 	<entry>Element exclusions<footnote>
 	<para>Prevents improper nesting of elements, like admonition
 	inside admonition.</para></footnote></entry>
-	<entry>&no;</entry>
-	<entry>&no;</entry>
-	<entry>&yes;</entry>
-	<entry>&no;</entry>
-	<entry>&yes;</entry>
+	<entry>NO</entry>
+	<entry>NO</entry>
+	<entry>YES</entry>
+	<entry>NO</entry>
+	<entry>YES</entry>
       </row>        
     </tbody>
   </tgroup>
@@ -391,34 +391,34 @@ Schematron schemas.</para>
 
 <para>The latest versions of schemas can be obtained from <link
 xl:href="http://docbook.org/schemas/5x.html"/>. At the time this was
-written the latest version was &version;. Individual schemas are
+written the latest version was 5.0. Individual schemas are
 available at the following locations:</para>
 
 <variablelist>
 <varlistentry>
 <term>RELAX NG schema</term>
-<listitem><para><link xl:href="http://docbook.org/xml/&version;/rng/docbook.rng"/></para></listitem>
+<listitem><para><link xl:href="http://docbook.org/xml/5.0/rng/docbook.rng"/></para></listitem>
 </varlistentry>
 <varlistentry>
 <term>RELAX NG schema in compact syntax</term>
-<listitem><para><link xl:href="http://docbook.org/xml/&version;/rng/docbook.rnc"/></para></listitem>
+<listitem><para><link xl:href="http://docbook.org/xml/5.0/rng/docbook.rnc"/></para></listitem>
 </varlistentry>
 <varlistentry>
 <term>DTD</term>
-<listitem><para><link xl:href="http://docbook.org/xml/&version;/dtd/docbook.dtd"/></para></listitem>
+<listitem><para><link xl:href="http://docbook.org/xml/5.0/dtd/docbook.dtd"/></para></listitem>
 </varlistentry>
 <varlistentry>
 <term>W3C XML Schema</term>
-<listitem><para><link xl:href="http://docbook.org/xml/&version;/xsd/docbook.xsd"/></para></listitem>
+<listitem><para><link xl:href="http://docbook.org/xml/5.0/xsd/docbook.xsd"/></para></listitem>
 </varlistentry>
 <varlistentry>
 <term>Schematron schema with additional checks</term>
-<listitem><para><link xl:href="http://docbook.org/xml/&version;/sch/docbook.sch"/></para></listitem>
+<listitem><para><link xl:href="http://docbook.org/xml/5.0/sch/docbook.sch"/></para></listitem>
 </varlistentry>
 </variablelist>
 
 <para>These schemas are also available from the mirror at
-<link xl:href="http://www.oasis-open.org/docbook/xml/&version;/"/>.</para>
+<link xl:href="http://www.oasis-open.org/docbook/xml/5.0/"/>.</para>
 
 </section>
 
@@ -1410,7 +1410,7 @@ linkend="convert4to5"/>.
     <filename>docbook.rng</filename> as the schema location. If you want
     to create a portable schema customization you should use a standard
     web-accessible location like
-    <uri>http://docbook.org/xml/&version;/rng/docbook.rng</uri> and
+    <uri>http://docbook.org/xml/5.0/rng/docbook.rng</uri> and
     then use <link
     xl:href="http://www.oasis-open.org/committees/download.php/14809/xml-catalogs.html">XML
     catalogs</link> to resolve this location to your local copy of the
