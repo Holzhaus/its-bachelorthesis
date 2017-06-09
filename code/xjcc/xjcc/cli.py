@@ -5,6 +5,7 @@ import os
 import sys
 import concurrent.futures
 from . import testing
+from . import testcase
 from . import plugins
 from . import output
 
@@ -139,7 +140,7 @@ def canonicalize(args):
     # See https://bugs.python.org/issue14156 for details.
     args.file = args.file.buffer if hasattr(args.file, 'buffer') else args.file
     xml_data = args.file.read()
-    print(testing.canonicalize(xml_data).decode())
+    print(testcase.canonicalize(xml_data).decode())
 
 
 def convert_file(args):
