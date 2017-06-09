@@ -93,6 +93,9 @@ def test_conversion(args):
         os.mkdir(output_root)
 
         handler = logging.FileHandler(os.path.join(output_root, 'xjcc.log'))
+        handler.setFormatter(logging.Formatter(
+            fmt='%(asctime)s %(levelname)-8s %(name)s - %(message)s'))
+
         root_logger = logging.getLogger()
         root_logger.addHandler(handler)
 
