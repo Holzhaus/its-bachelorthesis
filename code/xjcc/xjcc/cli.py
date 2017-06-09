@@ -103,17 +103,12 @@ def test_conversion(args):
             future = executor.submit(testcase.test_all_converters, converters)
             futures.append(future)
 
-        results = {}
         outtable = output.OutputTable(['Converter', 'Testcase', 'Result'])
         for future in concurrent.futures.as_completed(futures):
             for testresult in future.result():
                 logger.debug('Testcase  \'%s\' done.', testresult.test.name)
-                converter_name = testresult.converter.name
-                if converter_name not in results:
-                    results[converter_name] = []
-                results[converter_name].append(testresult)
                 outtable.add({
-                    'Converter': converter_name,
+                    'Converter': testresult.converter.name,
                     'Testcase': testresult.test.name,
                     'Result': TEXTRESULTS[testresult.test_passed],
                 })
