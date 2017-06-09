@@ -67,6 +67,12 @@ Es existieren jedoch auch abweichende Datenmodelle um die logische Strukur von \
 
 \gls{dom}, \acrshort{xdm} und XML Information Set kennen noch eine Vielzahl weiterer Konstrukte, die Teil eines \acrshort{xml}-Dokuments sein können, beispielseweise \acrfull{dtd}, Notation-Knoten, Entities bzw. Entity-Referenzen, etc. Für eine detaillierte Beschreibung empfiehlt es sich, die jeweiligen Spezifikationen zurate zu ziehen.\cite{dom,xmlinfoset,xdm,xml}
 
+\subsection{\acrfull{xsd}}
+
+Um die Struktur von \acrshort{xml}-Dokumenten beschreiben und festzulegen, können sogenannte Schemata eingesetzt werden. Diese legen fest, welche Elemente in einem Dokument vorhanden sein dürfen oder müssen. Ebenso definieren sie Anzahl und Reihenfolge von Elementen, aber auch die Datentypen von Attributwerten und Textknoten. Attributen eines Elements können mithilfe eines Schemas auch Standardwerte zugewiesen oder als unveränderbar deklariert werden.
+
+Neben der vom \gls{w3c} spezifizierten \acrfull{xsd} gibt es noch eine Reihe ähnlicher Technologien wie \acrshort{relaxng}, Schematron, \gls{dsd}, etc.
+
 \subsection{\acrfull{c14n}}
 
 Logisch äquivalente \acrshort{xml}-Dokumente können sich in der konkreten Darstellung
