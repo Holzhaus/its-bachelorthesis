@@ -15,20 +15,9 @@ festgelegt. Der Umwandlungprozess wird \acrfull{c14n} genannt.\cite{boyer2001c14
 Ein \acrshort{xml}-Dokument vor und nach der Kanonisierung. Beide Versionen sind
 logisch äquivalent.
 
-\begin{minted}{xml}
-<?xml version="1.0"?>
-<entries>
-  <entry     foo = "bar" />
-  <entry foo='baz'  ></entry>
-</entries>
-\end{minted}
-\captionof{figure}{Das unkanonisiertes \acrshort{xml}-Dokument enthält überflüssigen Whitespace und z.T. einfache Hochkommas als Attributwert-Trennzeichen.}
-\begin{minted}{xml}
-<entries>
-  <entry foo="bar"></entry>
-  <entry foo="baz"></entry>
-</entries>
-\end{minted}
+\inputminted{xml}{ex-c14n-pre.xml}
+\captionof{figure}{Das unkanonisierte \acrshort{xml}-Dokument enthält überflüssigen Whitespace und z.T. einfache Hochkommas als Attributwert-Trennzeichen.}
+\inputminted{xml}{ex-c14n-post.xml}
 \captionof{figure}{Im kanonisierten \acrshort{xml}-Dokument wurde überflüssiger Whitespace entfernt, durchgehend das Anführungszeichen als Attributtrennzeichen verwendet und lediglich aus einem Start-Tag bestehende leere Elemente durch das entsprechende Start-End-Tag-Paar ersetzt.}
 \end{example}
 
