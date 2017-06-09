@@ -253,3 +253,23 @@ Unerheblicher Whitespace (Tabulator\footnote{Unicode-Codepoint \texttt{U+0009}: 
         \]]
 \end{grammar}
 \end{definition}
+
+\subsection{Angriffe}
+
+Das \acrshort{json}-Format ist sehr einfach aufgebaut -- komplexere Features wie die beispielsweise die Referenzierung von internen oder externen Werten und Dateien fehlen in der Spezifikation. Damit gibt es kein Äquivalent zu den \emph{Entities} des \acrshort{xml}-Formats, die Grundlage der meisten Angriffe auf \acrshort{xml}-Parser sind.
+
+Ein \acrfull{idraft} der \gls{ietf} von September 2012 schlug eine solche Funktionalität unter dem Titel \enquote{\acrshort{json} Reference} zwar vor, diese kam aber aber nie über das Entwurfsstadium hinaus.\cite{jsonref}
+
+Eine Spezifikation für die Nutzung von Schemas ist aktuell im Entwurfsstadium. Sie beschreibt ebenfalls eine Möglichkeit zur Referenzierung von Schemata und \acrshort{json}-Werten.\cite[Abschnitt 8]{jsonschema}. Im Gegensatz zu \acrshort{xml} sieht die Spezifikation allerdings zur Zeit keine Möglichkeit zur Einbettung eines Schemas in ein Datendokument vor. Auch der Verweis auf ein Schema im Datendokument selbst nicht vorgesehen, stattdessen können aber HTTP-Header \cite[Abschnitt 10.1]{jsonschema} verwendet werden, um auf ein Schema zu verweisen. Daher werden die Sicherheitsaspekte von \emph{\acrshort{json} Schema} im Rahmen dieser Bacherlorarbeit nicht betrachtet.
+
+\begin{figure}[h]
+\begin{example}[Unsicheres \acrshort{json}-Parsing] Wird \acrshort{json} mittels \mintinline{javascript}{eval()}-Funktion geparst, kann ein Angreifer u.U. Schadcode ausführen.
+\inputminted{javascript}{json-eval.js}
+\begin{center}
+\frame{\includegraphics[width=\textwidth]{json-eval-alert}}
+\end{center}
+\caption{Der im String eingebetten Funktionsaufruf öffnet ein \mintinline{javascript}{alert()}-Benachrichtungsfenster im Browser.}
+\end{example}
+\end{figure}
+
+Ein möglicher Angriffspunkt beim Einsatz von \acrshort{json}-verarbeitenden Applikationen auf JavaScript-Basis kann der Einsatz der \mintinline{javascript}{eval()}-Funktion\cite[Abschnitt 18.2.1]{ecma262}. Als Teilmenge von JavaScript\footnote{Auch wenn diese Aussage vom \acrshort{json}-Entwickler selbst stammt\cite{crockford2006fatfree}, ist sie umstritten, da JavaScript auf Zahlen im IEEE-754 binary64-Format\cite[Abschnitt 6.1.6]{ecma262} beschränkt ist. Im Gegensatz dazu enthält die \acrshort{json}-Spezifikation keinerlei Einschränkungen bezüglich der Fließkommagenauigkeit\cite[Abschnitt 8]{ecma404} -- \acrshort{json}-Dokumente können daher auch Zahlen enthalten, die in JavaScript nicht darstellbar sind.} ist die Nutzung der Funktion zwar möglich, kann jedoch ohne weitergehende Validierung die Einschleusung von Schadcode ermöglichen.
