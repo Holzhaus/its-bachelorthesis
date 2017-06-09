@@ -134,8 +134,8 @@ def test_conversion(args):
                     with open(xml_file, mode='wb') as f:
                         f.write(testresult.xml_output)
 
-        for fmt in ['text', 'json', 'xml']:
-            outdata = outtable.output(fmt=fmt.format, title='Test result',
+        for fmt in ['text', 'json', 'csv']:
+            outdata = outtable.output(fmt=fmt, title='Test result',
                                       sort_key=sort_testresults)
             fname = os.path.join(output_root, os.extsep.join(['results', fmt]))
             with open(fname, mode="w", encoding="utf-8") as f:
