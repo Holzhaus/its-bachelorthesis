@@ -65,7 +65,7 @@ def list_testcases(args):
             'Description': test.description,
         })
 
-    outtable.output(fmt=args.format, title='Converters')
+    print(outtable.output(fmt=args.format, title='Converters'))
 
 
 def test_conversion(args):
