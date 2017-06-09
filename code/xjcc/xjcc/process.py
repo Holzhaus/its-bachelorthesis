@@ -70,6 +70,9 @@ def execute(target, ctx=None, timeout=30):
     logger.info('PID of spawned process: %d', process.pid)
     process.join(timeout)
     if process.is_alive():
+        if timeout:
+            logger.info('Process is taking longer than %d seconds, ' +
+                        'sending SIGTERM...', timeout)
         process.terminate()
         process.join()
     logger.info('Process terminated.')
