@@ -38,6 +38,24 @@ Zudem ist auch bei der Implementierung von \acrlong{c14n} die Unterstützung von
 
 Folglich ist es nicht nötig, dass sich die Kommentare im XML-Eingabedokument nach dem $XML\rightarrow{}JSON\rightarrow{}XML$ Roundtrip auch in der Ausgabe wiederfinden.
 
+\subsubsection{\acrfullpl{pi}}
+
+Wie bereits \acrshort{sgml} unterstützt \acrshort{xml} die Einbettung von Anweisungen, die für die verarbeitetende Applikation bestimmt sind. Diese werden \acrfull{pi} genannt. 
+
+In der Praxis ist werden \glspl{pi} eher selten eingesetzt. Genutzt werden sie unter anderem um Darstellungsinformationen in Form von Stylesheets mit \acrshort{xml}-Dokumenten zu verknüpfen.\cite[Abschnitt 4]{xmlstylesheet}
+
+Ein weiteres prominentes Beispiel für eine Praxisanwendung ist die Microsoft Office Suite, die seit der Version 2003 Office-Dokumente als einzelne XML-Datei speichern kann. Diese setzen die unspezifische Dateiendung \texttt{*.xml} ein und würden daher mit einem generisch XML-Anzeigeprogramm geöffnet werden. Mithilfe der Processing Instruction \mintinline{XML}{<?mso-application progid="Word.Document"?>} werden Windows- bzw. Internet Explorer angewiesen, diese als Microsoft Word-Document zu behandeln.\cite[Abschnitt 3.2]{tverskov2008understandingpi}.
+
+Auch die XSLT-Stylesheets des DocBook-Formats nutzen Processing Instructions, um spezielle Formatierungen für die verschiedenen Ausgabeformate festzulegen.\cite[{Kapitel \enquote{User Reference: PIs}}]{docbookxsl}
+
+Die Unterstützung durch \acrshort{xml}-Parser ist von der Spezifikation zwingend vorgeschrieben.
+
+\begin{foreigndisplayquote}{english}[{\cite[Abschnitt~2.6]{maler2008xml}}]
+\acrshortpl{pi} are not part of the document's character data, but \emph{must} be passed through to the application. 
+\end{foreigndisplayquote}
+
+Auch bei der \acrlong{c14n} bleiben die \glspl{pi} erhalten.\cite[Abschnitt 2.3]{boyer2001c14n}.
+
 \subsubsection{Dokumentordnung}
 
 \paragraph{Elementordnung}
