@@ -8,7 +8,7 @@ import subprocess
 import os
 
 
-def work(target, ctx, output_queue, max_cpu_secs, max_vmem_size):
+def work(target, ctx, send_conn, max_cpu_secs, max_vmem_size):
     logger = ctx.log_to_stderr()
     logger.setLevel(logging.DEBUG)
 
@@ -44,7 +44,7 @@ def work(target, ctx, output_queue, max_cpu_secs, max_vmem_size):
                         sgn.name, sgn)
             os.kill(os.getpid(), sgn)
             signal.pause()
-    output_queue.put_nowait(result)
+    send_conn.send(result)
     logger.info('Maximum Resident Set Size: %r',
                 rusage.ru_maxrss*resource.getpagesize())
 
@@ -59,8 +59,8 @@ def execute(target, ctx=None, timeout=30):
         logger.debug('No multiprocessing context given, using default one...')
         ctx = multiprocessing.get_context()
 
-    output_queue = ctx.Queue()
-    process = ctx.Process(target=work, args=(target, ctx, output_queue, max_cpu_secs, max_vmem_size))
+    recv_conn, send_conn = ctx.Pipe(duplex=False)
+    process = ctx.Process(target=work, args=(target, ctx, send_conn, max_cpu_secs, max_vmem_size))
     process.daemon = True
     process.start()
 
@@ -71,9 +71,15 @@ def execute(target, ctx=None, timeout=30):
         process.join()
     logger.info('Process terminated.')
 
+    send_conn.close()
+    logger.info('Send conn closed.')
     try:
-        retval = output_queue.get_nowait()
-    except queue.Empty:
+        if recv_conn.poll():
+            raise ValueError('No result found')
+        retval = recv_conn.recv()
+    except (IOError, ValueError):
+        logger.info('No output data received.')
         retval = None
     exitcode = process.exitcode
+    logger.info('Exitcode was %r', exitcode)
     return (exitcode, retval)
