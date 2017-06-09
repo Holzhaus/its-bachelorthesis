@@ -22,6 +22,7 @@ logisch äquivalent.
 \end{example}
 
 \subsubsection{Motivation und Anwendungsbereich}
+\label{sec:c14nscope}
 
 Durch die Flexibilität des \acrshort{xml}-Standards besteht die MöglichkeitInformationen durch eine Vielzahl \acrshort{xml}-Dokumente darzustellen.\cite{siddiqui2002c14n} Die im Beispiel \ref{ex:c14n} abgebildeten \acrshort{xml}-Dokumente haben einen identischen Informationsgehalt, lediglich die Darstellungsweisen unterscheiden sich. Allein die Möglichkeit, innerhalb eines Start-Tags eine beliebe Anzahl von Whitespace einzusetzen\cite[Produktionsregeln 3 und 40] führt bereits zu einer unendlichen Anzahl von logisch äquivalenten XML-Darstellungen einer Information.
 
@@ -30,6 +31,7 @@ Um die verschiedenden XML-Dokumenten enthaltene Logik vergleichbar zu machen, mu
 \acrlong{c14n} wird vor allem im Bereich der Signaturerstellung und -verifikation eingesetzt. Dabei wird nicht das zu siginierende Datenobjekt selbst, sondern lediglich ein \emph{Digest} d.h. ein Hashwert des Objekts) signiert.\cite[Abschnitt 2.0]{bartel2008xmlsig} Subtile und für die Dokumentlogik irrelevante Unterschiede wie der Einsatz von abweichenden Zeilenumbrüchen oder die Nutzung von einfachen statt doppelten Hochkomma als Trennzeichen für Attribute würden dabei den Hashwert ändern und die Signatur ungültig werden lassen. Daher werden die Datenobjekte standardmäßig mittels \acrlong{c14n} transformiert.\cite[Abschnitt 4.3.3.2]{bartel2008xmlsig}
 
 \subsubsection{Arbeitsschritte}
+\label{sec:c14nsteps}
 
 Bei der \acrlong{c14n} werden grob folgende Änderungen am
 \acrshort{xml}-Dokument vorgenommen\cite[Abschnitt 1.1]{boyer2001c14n}:
@@ -65,18 +67,22 @@ Bei der \acrlong{c14n} werden grob folgende Änderungen am
 \end{enumerate}
 
 \subsubsection{Kommentare}
+\label{sec:c14ncomments}
 
 Die \gls{w3c}-Empfehlung für kanonisches XML erlaubt sowohl das ersatzlose Entfernen als auch das Beibehalten der Kommentare, wobei das Resultat in letzterem Fall als \emph{Kanonisches XML mit Kommentaren} (engl. \enquote{canonical XML with comments})\cite[Abschnitt 2.1]{boyer2001c14n}. Implementierung müssen in der Lage sein, kanonisches XML ohne Kommentare zu erstellen, während die Ünterstützung für kanonisches XML mit Kommentaren zwar empfohlen, jedoch nicht vorgeschrieben ist.
 
 \subsubsection{Exklusive \acrlong{c14n}}
+\label{sec:excc14n}
 
 Einen Sonderfall stellt die Exklusive \acrlong{c14n} dar, die in einer separaten Empfehlung des \gls{w3c} beschrieben ist.\cite{boyer2002excc14n} Während bei der regulären (inklusiven) \acrlong{c14n} der Vorfahren-Kontext (z.B. Namespaces und Attribute im \acrshort{xml}-Namensraum) von Teildokumente eines XML-Dokuments erhalten bleibt, wird dieser bei der exklusiven \acrshort{c14n} verworfen.\cite[Abschnitt~18]{siddiqui2002c14n2} Dies kann insbesondere dann sinnvoll sein, wenn Teildokumente aus dem Quelldokumente herausgelöst und ggf. andere Dokumente eingebettet werden sollen (Re-Enveloping), ohne dass sich ihre digitale Signatur ändert.
 
 \section{\acrfull{json}}
+\label{sec:json}
 
 Vor allem im Bereich des Datenaustausch hat sich die \acrfull{json} als Alternative zum gängigen \acrshort{xml}-Format etabliert. Im Gegensatz zum dokumentorientierten Auszeichnungssprache \acrshort{xml} wird \acrshort{json} häufig als \emph{datenorientiert} bezeichnet.\cite{gupta2007xmljson}
 
 \subsection{Datenmodell und Syntax}
+\label{sec:jsontypes}
 
 Das \acrshort{json}-Format verfügt über mehrere verschiedene Datentypen, darunter die Containertypen \emph{Objekt} und \emph{Array}:\cite{ecma404}
 
