@@ -99,7 +99,11 @@ def parse_args(args=None):
         'test-conversion',
         help='test conversion'
     )
-    parser_testconversion.add_argument('-c', '--category', default=None,
+
+    limittestcases = parser_testconversion.add_mutually_exclusive_group()
+    limittestcases.add_argument('-t', '--testcase', default=None,
+            action='store', help='Only use a single testcase')
+    limittestcases.add_argument('-c', '--category', default=None,
             action='store', choices=testcase.CATEGORIES.keys(),
             help='Only use testcases from a single category')
     parser_testconversion.add_argument('-f', '--format',

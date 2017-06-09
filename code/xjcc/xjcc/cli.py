@@ -73,6 +73,8 @@ def test_conversion(args):
     if not testcases:
         print('No testcases available.')
         return
+    if args.testcase:
+        testcases = filter(lambda x: x.shortname == args.testcase, testcases)
 
     converters = list(get_converters(name=args.name))
     if not converters:
