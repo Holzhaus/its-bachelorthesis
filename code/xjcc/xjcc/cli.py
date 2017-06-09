@@ -58,9 +58,14 @@ def list_testcases(args):
 
     outtable = output.OutputTable(['Name', 'Basename', 'Description'])
     for test in testcases:
-        outtable.add({'Name': test.name, 'Basename': test.shortname, 'Description': test.description})
+        outtable.add({
+            'Name': test.name,
+            'Basename': test.shortname,
+            'Description': test.description,
+        })
 
     outtable.output(fmt=args.format, title='Converters')
+
 
 def test_conversion(args):
     logger = logging.getLogger(__name__)
@@ -80,7 +85,8 @@ def test_conversion(args):
     output_dir = args.output_dir if args.write_data else None
     if output_dir:
         output_root = os.path.join(
-                output_dir, 'xjcc-%s' % datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S'))
+                output_dir, 'xjcc-%s' % (
+                    datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S')))
         os.mkdir(output_root)
 
         handler = logging.FileHandler(os.path.join(output_root, 'xjcc.log'))
@@ -128,7 +134,7 @@ def test_conversion(args):
 
         for fmt in ['text', 'json', 'xml']:
             outdata = outtable.output(fmt=fmt.format, title='Test result',
-                                     sort_key=sort_testresults)
+                                      sort_key=sort_testresults)
             fname = os.path.join(output_root, os.extsep.join(['results', fmt]))
             with open(fname, mode="w", encoding="utf-8") as f:
                 f.write(outdata)
@@ -169,4 +175,3 @@ def convert_file(args):
         output = converter.json_to_xml(json_data)
 
     sys.stdout.buffer.write(output)
-
