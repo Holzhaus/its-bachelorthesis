@@ -62,7 +62,6 @@ def list_testcases(args):
 
     outtable.output(fmt=args.format, title='Converters')
 
-
 def test_conversion(args):
     logger = logging.getLogger(__name__)
     testcases = list(get_testcases(category=args.category))
@@ -126,11 +125,19 @@ def test_conversion(args):
                             path, '%s.xml' % testresult.test.name)
                     with open(xml_file, mode='wb') as f:
                         f.write(testresult.xml_output)
+
+        for fmt in ['text', 'json', 'xml']:
+            output = outtable.output(fmt=fmt.format, title='Test result',
+                                     sort_key=sort_testresults)
+            fname = os.path.join(output_root, os.extsep.join(['results', fmt]))
+            with open(fname, mode="w", encoding="utf-8") as f:
+                f.write(output)
+
         logger.info('Output written to \'%s\'.', output_root)
         root_logger.removeHandler(handler)
 
-    outtable.output(fmt=args.format, title='Test result',
-                    sort_key=sort_testresults)
+    print(outtable.output(fmt=args.format, title='Test result',
+                          sort_key=sort_testresults))
 
 
 def canonicalize(args):
