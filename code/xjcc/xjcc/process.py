@@ -6,6 +6,7 @@ import resource
 import signal
 import subprocess
 import os
+import zlib
 
 
 def work(target, ctx, send_conn, max_cpu_secs, max_vmem_size):
@@ -44,7 +45,9 @@ def work(target, ctx, send_conn, max_cpu_secs, max_vmem_size):
                         sgn.name, sgn)
             os.kill(os.getpid(), sgn)
             signal.pause()
-    send_conn.send(result)
+
+    zresult = [zlib.compress(x) for x in result]
+    send_conn.send(zresult)
     logger.info('Maximum Resident Set Size: %r',
                 rusage.ru_maxrss*resource.getpagesize())
 
@@ -76,10 +79,21 @@ def execute(target, ctx=None, timeout=30):
     try:
         if not recv_conn.poll():
             raise ValueError('No result found')
-        retval = recv_conn.recv()
+        zretval = recv_conn.recv()
     except (IOError, ValueError):
         logger.info('No output data received.')
         retval = None
+    else:
+        try:
+            retval = []
+            for zvalue in zretval:
+                value = zlib.decompress(zvalue)
+                logger.debug('Received value: %d bytes (%d bytes compressed)',
+                             len(value), len(zvalue))
+                retval.append(value)
+        except zlib.error:
+            logger.info('Decompression error')
+            retval = None
     exitcode = process.exitcode
     logger.info('Exitcode was %r', exitcode)
     return (exitcode, retval)
