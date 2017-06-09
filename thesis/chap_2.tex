@@ -2,6 +2,71 @@
 
 \section{\acrfull{xml}}
 
+Bei der \acrfull{xml} handelt es sich um eine weit verbreitete Auszeichnungssprache. Die Entwicklung von \acrshort{xml} begann im Jahr 1996, zwei Jahre später wurde die die Spezifikation erstmals als Empfehlung des \acrshort{w3c} veröffentlicht.
+
+\acrshort{xml} ist eine plattformunabhängige Metasprache, die für den Einsatz im Internet und den Datenaustausch zwischen Anwendungen konzipiert wurde und kann als Basis für neue Datenformate genutzt werden.
+
+Die Auszeichnungsprache basiert auf der im ISO-Standard 8879 beschriebenen \acrfull{sgml} und stellt eine Teilmenge von \acrshort{sgml} dar, weshalb \acrshort{xml}-Dokumente zugleich immer auch \acrshort{sgml}-Dokumente sind. Eines der Designziele war die Reduzierung der Komplexität im Vergleich zu \acrshort{sgml}, denn optionale Zusatzfeatures und das vom Standard erlaubte Auslassen von Teilen des Marksup macht das korrekte Parsing von \acrshort{sgml}-Dokumenten vergleichsweise schwierig. Im Gegensatz dazu soll \acrshort{xml} einfacher zu verarbeiten sein -- auch wenn das zu Lasten der Dateigröße geht.\cite[Abschnitt 1.1]{maler2008xml,bray1998axml}
+
+Aktuell steht \acrshort{xml} in zwei unterschiedlichen Versionen zu Verfügung:
+\begin{itemize}
+    \item{} \acrshort{xml} 1.0 (Fifth Edition), veröffentlicht am \DTMdate{2008-11-26}
+    \item{} \acrshort{xml} 1.1 (Second Edition), veröffentlicht am \DTMdate{2006-08-15}
+\end{itemize}
+
+\acrshort{xml} 1.1 ist in der Praxis kaum verbreitet und wird daher in der vorliegenden Arbeit nicht betrachtet.
+
+Als Metasprache bildet \acrshort{xml} die Grundlage für eine große Anzahl von Dateiformaten wie \gls{svg}, \gls{odf} und \gls{ooxml} und wird in Protokollen wie SOAP und \acrshort{ebics} zum Einsatz.
+
+Neben XML-basierten Webservices, die beispielsweise das SAML-Framework, SOAP
+oder XML-RPC verwenden, wird XML auch in einer Vielzahl weiterer
+Einsatzbereiche eingesetzt. So dient XML den Dateiformaten RSS/ASF, MathML,
+Scalable Vector Graphics (SVG) oder XHTML als Basis. Auch die gängigen
+Office-Dateiformate -- das \emph{Open Document Format}, Microsofts % chktex 8
+\emph{Office Open XML} und Apples \emph{iWorks} -- bauen auf XML auf. % chktex 8
+\subsection{Grundlagen}
+
+\begin{figure}[h!]
+    \begin{example}[\acrshort{xml}-Dokument] Ein  einfaches \acrshort{xml}-Dokument, das verschiedene Knoten-Typen enthält.
+
+    \label{ex:xmldoc}
+    \inputminted{xml}{xmltree.xml}
+    \end{example}
+\end{figure}
+
+\begin{figure}[h!]
+    \begin{example}[\acrshort{xml}-Nodes] Die verschiedenen \acrshort{xml}-Nodes und ihre Eltern-Kind-Beziehungen stellen eine Braumstruktur dar.
+
+        \begin{captionbeside}%
+            {Das \acrshort{xml}-Dokument aus Beispiel \ref{ex:xmldoc} kann als Baumstruktur dargestellt werden.}
+            \label{ex:xmltree}
+            \includestandalone[width=0.5\textwidth]{xmltree}
+        \end{captionbeside}
+    \end{example}
+\end{figure}
+
+\acrshort{xml}-Daten bestehen aus Text, deren Struktur durch die Produktionsregeln der \acrshort{xml}-Spezifikation vorgegeben ist. Der Text eines \acrshort{xml}-Dokuments besteht aus einem Gemisch von \emph{Markup} und \emph{Character Data}, wobei das Markup eine Vielzahl von Formen annehmen kann. Text der \emph{kein} Markup enthält, nennt man \emph{Character Data}.
+
+Auf die in \acrshort{xml}-Dokumenten enthaltenen Informationen in der Regel über Schnittstellen zugegriffen, die das Markup auswerten und das Dokument in Form einer baumartigen Datenstruktur darstellen. Ein prominentes Beispiel dafür ist das \acrfull{dom}, das u.a. von \emph{JavaScript}-Programmen in Webbrowsern eingesetzt wird, um  \acrshort{html}-Seiten auszuwerden und zu manipulieren.
+
+Das Beispiel \ref{ex:xmldoc} zeigt ein \acrshort{xml}-Dokument, das mehrere verschiedene Knotentypen enthält:
+
+\begin{description}
+    \item[Document] ist der Wurzelknoten der Baumstruktur und kommt daher genau ein Mal im Baum vor. Es repräsentiert das \acrshort{xml}-Dokument selbst und macht die darin enthaltenen Informationen über seine Kindknoten zugänglich.\cite[Abschnitt 2.1]{xmlinfoset}
+    \item[Elemente] sind Knoten, die weitere Elemente oder andere Knoten als Kinder enthalten können. Auf der Dokumentebene muss es immer genau ein Element (das \emph{Document Element}) geben. Zudem könne sie mit Attributen versehen werden. Elemente bestehen entweder aus einem Paar von Start- und End-Tags (z.B. \mintinline{xml}{<foo>} und \mintinline{xml}{</foo>} oder können -- falls sie keine Kindknoten enthalten -- aus einem einzelnem leeren Element-Tag (z.B. \mintinline{xml}{<foo />}).
+    \item[Attribute] sind Schlüssel-Wert-Paare, die einem einzelnen Element-Knoten zugeordnet ist. Sie werden im Start-Tag eines Elements angegeben. So enthält das \mintinline{xml}{<album>}-Tag im Beispiel \ref{ex:xmldoc} enthält das Attribut \mintinline{xml}{catno="ARGO LP 628"}.
+    \item[\glspl{pi}] sind Steueranweisungen an ein bestimmtes, das \acrshort{xml}-Dokument verarbeitendes Programm. Sie bestehen aus einem \emph{Ziel} (einer Zeichenkette, die nicht \texttt{xml} sein darf) und \emph{Daten}, die häufig in einer Attributen nachempfundenen Form angegeben sind. \glspl{pi} werden mit den Zeichenfolgen {\emph{<?}} und {\emph{?>}} eingeleitet und beendet.
+    \item[Text] sind Blattknoten, die Zeichendaten (Character Data) enthalten. Im Beispiel \ref{ex:xmldoc} enthält das \mintinline{xml}{<artist>}-Element den einen Textknoten, der den Text \enquote{Ahmad Jamal Trio} repräsentiert.
+\end{description}
+
+Es existieren jedoch auch abweichende Datenmodelle um die logische Strukur von \acrshort{xml}-Daten zu beschreiben, beispielsweise das \acrfull{xdm} oder das \acrshort{xml} Information Set\cite{xmlinfoset}. Die verschiedenenen Modelle unterscheidenen sich dabei vor allem im Abstraktionsgrad -- so stellt das \gls{dom} Textknoten und CDATA-Sektionen als separate Knotentypen dar, während das XML Information Set Zeichendaten beide Knotentypen unter \emph{Character Information Data} subsumiert\cite[Abschnitt 2.6]{xmlinfoset}.
+
+\begin{description}
+    \item[CDATA-Abschnitte] kennzeichnen größere Bereiche von Text, die Markup-Zeichen wie \enquote{\texttt{<}} oder \enquote{\texttt{\&}} enthalten dürfen, ohne dass diese quotiert werden müssten. Sie werden mit der Zeichenkette \enquote{\texttt{<![CDATA[}} eingeleitet und mit \enquote{\texttt{]]>}} beendet.
+\end{description}
+
+\gls{dom}, \acrshort{xdm} und XML Information Set kennen noch eine Vielzahl weiterer Konstrukte, die Teil eines \acrshort{xml}-Dokuments sein können, beispielseweise \acrfull{dtd}, Notation-Knoten, Entities bzw. Entity-Referenzen, etc. Für eine detaillierte Beschreibung empfiehlt es sich, die jeweiligen Spezifikationen zurate zu ziehen.\cite{dom,xmlinfoset,xdm,xml}
+
 \subsection{\acrfull{c14n}}
 
 Logisch äquivalente \acrshort{xml}-Dokumente können sich in der konkreten Darstellung
@@ -9,6 +74,7 @@ stark unterscheiden. Das \gls{w3c} hat daher Richtlinien zur Umwandlung in eine
 einheitliche Darstellungsweise---die sogenannte \emph{Kanonische Form}---
 festgelegt. Der Umwandlungprozess wird \acrfull{c14n} genannt.\cite{boyer2001c14n}
 
+\begin{figure}[h!]
 \begin{example}[Kanonisierung]
 \label{ex:c14n}
 
@@ -20,13 +86,14 @@ logisch äquivalent.
 \inputminted{xml}{ex-c14n-post.xml}
 \captionof{figure}{Im kanonisierten \acrshort{xml}-Dokument wurde überflüssiger Whitespace entfernt, durchgehend das Anführungszeichen als Attributtrennzeichen verwendet und lediglich aus einem Start-Tag bestehende leere Elemente durch das entsprechende Start-End-Tag-Paar ersetzt.}
 \end{example}
+\end{figure}
 
 \subsubsection{Motivation und Anwendungsbereich}
 \label{sec:c14nscope}
 
-Durch die Flexibilität des \acrshort{xml}-Standards besteht die MöglichkeitInformationen durch eine Vielzahl \acrshort{xml}-Dokumente darzustellen.\cite{siddiqui2002c14n} Die im Beispiel \ref{ex:c14n} abgebildeten \acrshort{xml}-Dokumente haben einen identischen Informationsgehalt, lediglich die Darstellungsweisen unterscheiden sich. Allein die Möglichkeit, innerhalb eines Start-Tags eine beliebe Anzahl von Whitespace einzusetzen\cite[Produktionsregeln 3 und 40] führt bereits zu einer unendlichen Anzahl von logisch äquivalenten XML-Darstellungen einer Information.
+Durch die Flexibilität des \acrshort{xml}-Standards besteht die MöglichkeitInformationen durch eine Vielzahl \acrshort{xml}-Dokumente darzustellen.\cite{siddiqui2002c14n} Die im Beispiel~\ref{ex:c14n} abgebildeten \acrshort{xml}-Dokumente haben einen identischen Informationsgehalt, lediglich die Darstellungsweisen unterscheiden sich. Allein die Möglichkeit, innerhalb eines Start-Tags eine beliebe Anzahl von Whitespace einzusetzen\cite[Produktionsregeln 3 und 40] führt bereits zu einer unendlichen Anzahl von logisch äquivalenten XML-Darstellungen einer Information.
 
-Um die verschiedenden XML-Dokumenten enthaltene Logik vergleichbar zu machen, muss daher von der konkreten Darstellung abstrahiert werden.  \acrlong{c14n} überführt daher beliebige XML-Dokumente in eine \emph{Kanonische Form}, indem eine Reihe von Arbeitsschritten abgearbeitet werden, die in Abschnitt \ref{sec:c14nsteps} beschrieben sind.
+Um die verschiedenden XML-Dokumenten enthaltene Logik vergleichbar zu machen, muss daher von der konkreten Darstellung abstrahiert werden. \acrlong{c14n} überführt daher beliebige XML-Dokumente in eine \emph{Kanonische Form}, indem eine Reihe von Arbeitsschritten abgearbeitet werden, die in Abschnitt~\ref{sec:c14nsteps} beschrieben sind.
 
 \acrlong{c14n} wird vor allem im Bereich der Signaturerstellung und -verifikation eingesetzt. Dabei wird nicht das zu siginierende Datenobjekt selbst, sondern lediglich ein \emph{Digest} d.h. ein Hashwert des Objekts) signiert.\cite[Abschnitt 2.0]{bartel2008xmlsig} Subtile und für die Dokumentlogik irrelevante Unterschiede wie der Einsatz von abweichenden Zeilenumbrüchen oder die Nutzung von einfachen statt doppelten Hochkomma als Trennzeichen für Attribute würden dabei den Hashwert ändern und die Signatur ungültig werden lassen. Daher werden die Datenobjekte standardmäßig mittels \acrlong{c14n} transformiert.\cite[Abschnitt 4.3.3.2]{bartel2008xmlsig}
 
