@@ -48,7 +48,7 @@ def list_converters(args):
     for conv in converters:
         outtable.add({'Name': conv.name, 'Description': conv.desc})
 
-    outtable.output(fmt=args.format, title='Converters')
+    print(outtable.output(fmt=args.format, title='Converters'))
 
 
 def list_testcases(args):
