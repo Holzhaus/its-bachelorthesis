@@ -127,11 +127,11 @@ def test_conversion(args):
                         f.write(testresult.xml_output)
 
         for fmt in ['text', 'json', 'xml']:
-            output = outtable.output(fmt=fmt.format, title='Test result',
+            outdata = outtable.output(fmt=fmt.format, title='Test result',
                                      sort_key=sort_testresults)
             fname = os.path.join(output_root, os.extsep.join(['results', fmt]))
             with open(fname, mode="w", encoding="utf-8") as f:
-                f.write(output)
+                f.write(outdata)
 
         logger.info('Output written to \'%s\'.', output_root)
         root_logger.removeHandler(handler)
