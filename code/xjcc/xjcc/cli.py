@@ -28,10 +28,10 @@ def get_converters(name=None):
 
 
 def get_testcases(name=None, category=None):
-    for testcase in sorted(
+    for tc in sorted(
             testing.get_tests(category=category), key=lambda x: x.name):
-        if name is None or name == testcase.name:
-            yield testcase
+        if name is None or name == tc.name:
+            yield tc
 
 
 def sort_testresults(row):
