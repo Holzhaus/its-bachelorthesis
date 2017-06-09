@@ -129,5 +129,10 @@ def parse_args(args=None):
 
 def main(args=None):
     p_args = parse_args(args)
-    logging.basicConfig(level=p_args.loglevel)
+    logger = logging.getLogger()
+    logger.setLevel(logging.DEBUG)
+    handler = logging.StreamHandler()
+    handler.setFormatter(logging.Formatter(fmt=logging.BASIC_FORMAT))
+    handler.setLevel(p_args.loglevel)
+    logger.addHandler(handler)
     return p_args.func(p_args)
