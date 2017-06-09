@@ -55,8 +55,9 @@ class HTTPServer(http.server.HTTPServer):
         self._logger = logging.getLogger(__name__)
         self.paths = {}
 
-    def add_path(self, path, content, status=None, headers=None):
-        self.paths[path] = PathInfo(content, status, headers)
+    def add_path(self, path, content, status=None, headers=None,
+                 log_request=True):
+        self.paths[path] = PathInfo(content, status, headers, log_request)
 
     def get_pathinfo(self, path):
         return self.paths.get(path, PathInfo(None, None, None, True))
