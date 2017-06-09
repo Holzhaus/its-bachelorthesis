@@ -74,7 +74,7 @@ def execute(target, ctx=None, timeout=30):
     send_conn.close()
     logger.info('Send conn closed.')
     try:
-        if recv_conn.poll():
+        if not recv_conn.poll():
             raise ValueError('No result found')
         retval = recv_conn.recv()
     except (IOError, ValueError):
