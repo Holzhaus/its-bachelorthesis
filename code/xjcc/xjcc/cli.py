@@ -122,7 +122,7 @@ def test_conversion(args):
 
                 if testresult.xml_output is not None:
                     xml_file = os.path.join(
-                            path, '%s.xml' % testresult.test.name)
+                            path, '%s.xml' % testresult.test.shortname)
                     with open(xml_file, mode='wb') as f:
                         f.write(testresult.xml_output)
 
