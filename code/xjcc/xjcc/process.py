@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import multiprocessing
+import pickle
 import logging
 import resource
 import signal
@@ -45,8 +46,8 @@ def work(target, ctx, send_conn, max_cpu_secs, max_vmem_size):
             os.kill(os.getpid(), sgn)
             signal.pause()
 
-    zresult = [zlib.compress(x) for x in result]
-    send_conn.send(zresult)
+    zresult = zlib.compress(pickle.dumps(result))
+    send_conn.send_bytes(zresult)
     logger.info('Maximum Resident Set Size: %r',
                 rusage.ru_maxrss*resource.getpagesize())
 
@@ -81,21 +82,23 @@ def execute(target, ctx=None, timeout=30):
     try:
         if not recv_conn.poll():
             raise ValueError('No result found')
-        zretval = recv_conn.recv()
+        zretval = recv_conn.recv_bytes()
     except (IOError, ValueError):
         logger.info('No output data received.')
         retval = None
     else:
         try:
-            retval = []
-            for zvalue in zretval:
-                value = zlib.decompress(zvalue)
-                logger.debug('Received value: %d bytes (%d bytes compressed)',
-                             len(value), len(zvalue))
-                retval.append(value)
+            pretval = zlib.decompress(zretval)
+            logger.debug('Received value: %d bytes (%d bytes compressed)',
+                         len(pretval), len(zretval))
+            retval = pickle.loads(pretval)
         except zlib.error:
-            logger.info('Decompression error')
+            logger.info('Decompression error', exc_info=True)
             retval = None
+        except Exception:
+            logger.info('Unpickling error', exc_info=True)
+            retval = None
+
     exitcode = process.exitcode
     logger.info('Exitcode was %r', exitcode)
     return (exitcode, retval)
