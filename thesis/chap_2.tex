@@ -74,6 +74,29 @@ Um die Struktur von \acrshort{xml}-Dokumenten beschreiben und festzulegen, könn
 
 Neben der vom \gls{w3c} spezifizierten \acrfull{xsd} gibt es noch eine Reihe ähnlicher Technologien wie \acrshort{relaxng}, Schematron, \gls{dsd}, etc.
 
+\subsection{\acrshort{xml}-Namespaces}
+\label{sec:xmlns}
+
+\acrshort{xml}-Dokumente beinhalten häufige eine Vielzahl verschiedener Element- und Attributnamen, die die verschiedenen Inhalte des Dokuments strukturieren und semantisch voneinander unterscheidbar machen sollen. Namensräume bieten die Möglichkeit, logisch verwandte Namen zu gruppieren -- ein Namensraum ist also eine Menge von Element- und Attributnamen, die innerhalb des Namensraums eindeutig sein müssen.
+
+Namensräume werden mittels des eines Bezeichners -- dem Namespace-Namen -- identifiziert, der die Form eines \glspl{uri} vorliegt. Dieser ist allerdings nur als Name zu verstehen -- eine Nutzung des \gls{uri} zum Abruf von Daten (z.B aus dem Internet) ist nicht vorgesehen.
+
+\begin{figure}[h]
+    \begin{example}[\acrshort{xml}-Namespaces]
+        \label{ex:c14n}
+        Anhand des Namenraum kann die semantische Bedeutung verscheidener Elemente trotz gleichen Tag-Namens unterschieden werden.
+        \inputminted[firstline=2,firstnumber=1]{xml}{ex-xmlns.xml}
+        \captionof{figure}{Ein \acrshort{xml}-Dokument, das mehrere verschiedene Namensräume enthält.}
+    \end{example}
+\end{figure}
+
+Um in einem \acrshort{xml}-Dokument zu deklarieren, kann das \mintinline{xml}{xmlns}-Attribut verwendet werden. Dabei gibt es zwei Formen:
+
+\begin{description}
+    \item[Deklaration eines Namespace Prefix] Durch Angabe eines Attributes in der Form \mintinline{xml}{xmlns:foo} kann einem Namensraum ein Prefix zugewiesen werden. Um zu signalisieren, dass das Element oder eines seiner Kindelemente zu diesem Namensraum gehört, wird der Tagname mit diesem Prefix versehen. Dies ermöglicht auch die Nutzung und Vermischung des Vokabulars verschiedener Namensräume in einem einzelnen Dokument.
+    \item[Deklaration des Vorganenamensraums] Sind Tags mit keinem Prefix versehen, gehören diese zum Vorgabenamensraum. Dieser kann mithilfe des \mintinline{xml}{xmlns}-Attribut eines Elements für das Element und seiner Kindelemente festgelegt werden.
+\end{description}
+
 \subsection{\acrfull{c14n}}
 
 Logisch äquivalente \acrshort{xml}-Dokumente können sich in der konkreten Darstellung
