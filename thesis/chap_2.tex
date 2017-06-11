@@ -176,6 +176,16 @@ Einen Sonderfall stellt die Exklusive \acrlong{c14n} dar, die in einer separaten
 \subsection{Angriffe}
 \label{sec:xmlattacks}
 
+Einige der Features des \acrshort{xml}-Ökosystems können für Angriffe auf Parser mißbraucht werden und insbesondere \glspl{dtd} haben sich in der Vergangenheit als potentiell gefährtlich herausgestellt.\cite[S.~4]{morgan2014xml}
+
+Angriffe aus \acrshort{xml}-Parser lassen sich grob in drei Kategorien aufteilen:
+
+\begin{description}
+    \item[\acrlong{dos}] Angriffe dieser Kategorie zielen drauf ab, einen Dienst unerreichbar für andere Nutzer zu machen, indem er -- oder der Server auf dem er läuft -- überlastet wird.
+    \item[File System Access] Hierbei soll der \acrshort{xml}-Parser dazu gebracht werden, eine normalerweise nicht zugängliche Datei auf dem lokalen Dateisystem in ein \acrshort{xml}-Dokument einzubetten.
+    \item[\acrlong{ssrf}] Durch manipulierte \acrshort{xml}-Dateien soll ein Parser dazu gebracht werden, einen Request an einen anderen Netzwerkteilnehmer zu senden. Dies ist üblicherweise ein Dienst, auf dem der Angreifer aufgrund einer Firewall keinen direkten Zugriff hat, der sich aber in der gleichen Firewall-Zone wie die \acrshort{xml}-Applikation befindet.
+\end{description}
+
 % TODO: Add stuff here
 
 \section{\acrfull{json}}
