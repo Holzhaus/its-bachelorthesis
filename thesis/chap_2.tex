@@ -6,7 +6,7 @@ Bei der \acrfull{xml} handelt es sich um eine weit verbreitete Auszeichnungsspra
 
 \acrshort{xml} ist eine plattformunabhängige Metasprache, die für den Einsatz im Internet und den Datenaustausch zwischen Anwendungen konzipiert wurde und kann als Basis für neue Datenformate genutzt werden.
 
-Die Auszeichnungsprache basiert auf der im ISO-Standard 8879 beschriebenen \acrfull{sgml} und stellt eine Teilmenge von \acrshort{sgml} dar, weshalb \acrshort{xml}-Dokumente zugleich immer auch \acrshort{sgml}-Dokumente sind. Eines der Designziele war die Reduzierung der Komplexität im Vergleich zu \acrshort{sgml}, denn optionale Zusatzfeatures und das vom Standard erlaubte Auslassen von Teilen des Marksup macht das korrekte Parsing von \acrshort{sgml}-Dokumenten vergleichsweise schwierig. Im Gegensatz dazu soll \acrshort{xml} einfacher zu verarbeiten sein -- auch wenn das zu Lasten der Dateigröße geht.\cite[Abschnitt 1.1]{maler2008xml,bray1998axml}
+Die Auszeichnungsprache basiert auf der im \acrshort{iso}-Standard 8879 beschriebenen \acrfull{sgml} und stellt eine Teilmenge von \acrshort{sgml} dar, weshalb \acrshort{xml}-Dokumente zugleich immer auch \acrshort{sgml}-Dokumente sind. Eines der Designziele war die Reduzierung der Komplexität im Vergleich zu \acrshort{sgml}, denn optionale Zusatzfeatures und das vom Standard erlaubte Auslassen von Teilen des Marksup macht das korrekte Parsing von \acrshort{sgml}-Dokumenten vergleichsweise schwierig. Im Gegensatz dazu soll \acrshort{xml} einfacher zu verarbeiten sein -- auch wenn das zu Lasten der Dateigröße geht.\cite[Abschnitt 1.1]{maler2008xml,bray1998axml}
 
 Aktuell steht \acrshort{xml} in zwei unterschiedlichen Versionen zu Verfügung:
 \begin{itemize}
@@ -18,12 +18,11 @@ Aktuell steht \acrshort{xml} in zwei unterschiedlichen Versionen zu Verfügung:
 
 Als Metasprache bildet \acrshort{xml} die Grundlage für eine große Anzahl von Dateiformaten wie \gls{svg}, \gls{odf} und \gls{ooxml} und wird in Protokollen wie SOAP und \acrshort{ebics} zum Einsatz.
 
-Neben XML-basierten Webservices, die beispielsweise das SAML-Framework, SOAP
-oder XML-RPC verwenden, wird XML auch in einer Vielzahl weiterer
-Einsatzbereiche eingesetzt. So dient XML den Dateiformaten RSS/ASF, MathML,
-Scalable Vector Graphics (SVG) oder XHTML als Basis. Auch die gängigen
-Office-Dateiformate -- das \emph{Open Document Format}, Microsofts % chktex 8
-\emph{Office Open XML} und Apples \emph{iWorks} -- bauen auf XML auf. % chktex 8
+Neben \acrshort{xml}-basierten Webservices, die beispielsweise das \acrshort{saml}-Framework, SOAP
+oder \acrshort{xmlrpc} verwenden, wird \acrshort{xml} auch in einer Vielzahl weiterer
+Einsatzbereiche eingesetzt. So dient \acrshort{xml} den Dateiformaten \acrshort{rss}/\acrshort{asf}, \acrshort{mathml}, \gls{svg} oder \acrshort{xhtml} als Basis. Auch die gängigen
+Office-Dateiformate -- das \acrfull{odf}, Microsofts % chktex 8
+\acrlong{ooxml} und Apples iWorks -- bauen auf \acrshort{xml} auf. % chktex 8
 \subsection{Grundlagen}
 
 \begin{figure}[h!]
@@ -60,13 +59,13 @@ Das Beispiel \ref{ex:xmldoc} zeigt ein \acrshort{xml}-Dokument, das mehrere vers
     \item[Text] sind Blattknoten, die Zeichendaten (Character Data) enthalten. Im Beispiel \ref{ex:xmldoc} enthält das \mintinline{xml}{<artist>}-Element den einen Textknoten, der den Text \enquote{Ahmad Jamal Trio} repräsentiert.
 \end{description}
 
-Es existieren jedoch auch abweichende Datenmodelle um die logische Strukur von \acrshort{xml}-Daten zu beschreiben, beispielsweise das \acrfull{xdm} oder das \acrshort{xml} Information Set\cite{xmlinfoset}. Die verschiedenenen Modelle unterscheidenen sich dabei vor allem im Abstraktionsgrad -- so stellt das \gls{dom} Textknoten und CDATA-Sektionen als separate Knotentypen dar, während das XML Information Set Zeichendaten beide Knotentypen unter \emph{Character Information Data} subsumiert\cite[Abschnitt 2.6]{xmlinfoset}.
+Es existieren jedoch auch abweichende Datenmodelle um die logische Strukur von \acrshort{xml}-Daten zu beschreiben, beispielsweise das \acrfull{xdm} oder das \acrshort{xml} Information Set\cite{xmlinfoset}. Die verschiedenenen Modelle unterscheidenen sich dabei vor allem im Abstraktionsgrad -- so stellt das \gls{dom} Textknoten und CDATA-Sektionen als separate Knotentypen dar, während das \acrshort{xml} Information Set Zeichendaten beide Knotentypen unter \emph{Character Information Data} subsumiert\cite[Abschnitt 2.6]{xmlinfoset}.
 
 \begin{description}
     \item[CDATA-Abschnitte] kennzeichnen größere Bereiche von Text, die Markup-Zeichen wie \enquote{\texttt{<}} oder \enquote{\texttt{\&}} enthalten dürfen, ohne dass diese quotiert werden müssten. Sie werden mit der Zeichenkette \enquote{\texttt{<![CDATA[}} eingeleitet und mit \enquote{\texttt{]]>}} beendet.\cite[Abschnitt 2.7]{maler2008xml}
 \end{description}
 
-\gls{dom}, \acrshort{xdm} und XML Information Set kennen noch eine Vielzahl weiterer Konstrukte, die Teil eines \acrshort{xml}-Dokuments sein können, beispielseweise \acrfull{dtd}, Notation-Knoten, Entities bzw. Entity-Referenzen, etc. Für eine detaillierte Beschreibung empfiehlt es sich, die jeweiligen Spezifikationen zurate zu ziehen.\cite{dom,xmlinfoset,xdm,maler2008xml}
+\gls{dom}, \acrshort{xdm} und \acrshort{xml} Information Set kennen noch eine Vielzahl weiterer Konstrukte, die Teil eines \acrshort{xml}-Dokuments sein können, beispielseweise \acrfull{dtd}, Notation-Knoten, Entities bzw. Entity-Referenzen, etc. Für eine detaillierte Beschreibung empfiehlt es sich, die jeweiligen Spezifikationen zurate zu ziehen.\cite{dom,xmlinfoset,xdm,maler2008xml}
 
 \subsection{\acrfull{xsd}}
 
@@ -122,9 +121,9 @@ logisch äquivalent.
 \subsubsection{Motivation und Anwendungsbereich}
 \label{sec:c14nscope}
 
-Durch die Flexibilität des \acrshort{xml}-Standards besteht die MöglichkeitInformationen durch eine Vielzahl \acrshort{xml}-Dokumente darzustellen.\cite{siddiqui2002c14n} Die im Beispiel~\ref{ex:c14n} abgebildeten \acrshort{xml}-Dokumente haben einen identischen Informationsgehalt, lediglich die Darstellungsweisen unterscheiden sich. Allein die Möglichkeit, innerhalb eines Start-Tags eine beliebe Anzahl von Whitespace einzusetzen\cite[Produktionsregeln 3 und 40]{maler2008xml} führt bereits zu einer unendlichen Anzahl von logisch äquivalenten XML-Darstellungen einer Information.
+Durch die Flexibilität des \acrshort{xml}-Standards besteht die MöglichkeitInformationen durch eine Vielzahl \acrshort{xml}-Dokumente darzustellen.\cite{siddiqui2002c14n} Die im Beispiel~\ref{ex:c14n} abgebildeten \acrshort{xml}-Dokumente haben einen identischen Informationsgehalt, lediglich die Darstellungsweisen unterscheiden sich. Allein die Möglichkeit, innerhalb eines Start-Tags eine beliebe Anzahl von Whitespace einzusetzen\cite[Produktionsregeln 3 und 40]{maler2008xml} führt bereits zu einer unendlichen Anzahl von logisch äquivalenten \acrshort{xml}-Darstellungen einer Information.
 
-Um die verschiedenden XML-Dokumenten enthaltene Logik vergleichbar zu machen, muss daher von der konkreten Darstellung abstrahiert werden. \acrlong{c14n} überführt daher beliebige XML-Dokumente in eine \emph{Kanonische Form}, indem eine Reihe von Arbeitsschritten abgearbeitet werden, die in Abschnitt~\ref{sec:c14nsteps} beschrieben sind.
+Um die verschiedenden \acrshort{xml}-Dokumenten enthaltene Logik vergleichbar zu machen, muss daher von der konkreten Darstellung abstrahiert werden. \acrlong{c14n} überführt daher beliebige \acrshort{xml}-Dokumente in eine \emph{Kanonische Form}, indem eine Reihe von Arbeitsschritten abgearbeitet werden, die in Abschnitt~\ref{sec:c14nsteps} beschrieben sind.
 
 \acrlong{c14n} wird vor allem im Bereich der Signaturerstellung und -verifikation eingesetzt. Dabei wird nicht das zu siginierende Datenobjekt selbst, sondern lediglich ein \emph{Digest} d.h. ein Hashwert des Objekts) signiert.\cite[Abschnitt 2.0]{bartel2008xmlsig} Subtile und für die Dokumentlogik irrelevante Unterschiede wie der Einsatz von abweichenden Zeilenumbrüchen oder die Nutzung von einfachen statt doppelten Hochkomma als Trennzeichen für Attribute würden dabei den Hashwert ändern und die Signatur ungültig werden lassen. Daher werden die Datenobjekte standardmäßig mittels \acrlong{c14n} transformiert.\cite[Abschnitt 4.3.3.2]{bartel2008xmlsig}
 
@@ -167,12 +166,12 @@ Bei der \acrlong{c14n} werden grob folgende Änderungen am
 \subsubsection{Kommentare}
 \label{sec:c14ncomments}
 
-Die \gls{w3c}-Empfehlung für kanonisches XML erlaubt sowohl das ersatzlose Entfernen als auch das Beibehalten der Kommentare, wobei das Resultat in letzterem Fall als \emph{Kanonisches XML mit Kommentaren} (engl. \enquote{canonical XML with comments})\cite[Abschnitt 2.1]{boyer2001c14n}. Implementierung müssen in der Lage sein, kanonisches XML ohne Kommentare zu erstellen, während die Ünterstützung für kanonisches XML mit Kommentaren zwar empfohlen, jedoch nicht vorgeschrieben ist.
+Die \gls{w3c}-Empfehlung für kanonisches \acrshort{xml} erlaubt sowohl das ersatzlose Entfernen als auch das Beibehalten der Kommentare, wobei das Resultat in letzterem Fall als \emph{Kanonisches \acrshort{xml} mit Kommentaren} (engl. \enquote{canonical \acrshort{xml} with comments})\cite[Abschnitt 2.1]{boyer2001c14n}. Implementierung müssen in der Lage sein, kanonisches \acrshort{xml} ohne Kommentare zu erstellen, während die Ünterstützung für kanonisches \acrshort{xml} mit Kommentaren zwar empfohlen, jedoch nicht vorgeschrieben ist.
 
 \subsubsection{Exklusive \acrlong{c14n}}
 \label{sec:excc14n}
 
-Einen Sonderfall stellt die Exklusive \acrlong{c14n} dar, die in einer separaten Empfehlung des \gls{w3c} beschrieben ist.\cite{boyer2002excc14n} Während bei der regulären (inklusiven) \acrlong{c14n} der Vorfahren-Kontext (z.B. Namespaces und Attribute im \acrshort{xml}-Namensraum) von Teildokumente eines XML-Dokuments erhalten bleibt, wird dieser bei der exklusiven \acrshort{c14n} verworfen.\cite[Abschnitt~18]{siddiqui2002c14n2} Dies kann insbesondere dann sinnvoll sein, wenn Teildokumente aus dem Quelldokumente herausgelöst und ggf. andere Dokumente eingebettet werden sollen (Re-Enveloping), ohne dass sich ihre digitale Signatur ändert.
+Einen Sonderfall stellt die Exklusive \acrlong{c14n} dar, die in einer separaten Empfehlung des \gls{w3c} beschrieben ist.\cite{boyer2002excc14n} Während bei der regulären (inklusiven) \acrlong{c14n} der Vorfahren-Kontext (z.B. Namespaces und Attribute im \acrshort{xml}-Namensraum) von Teildokumente eines \acrshort{xml}-Dokuments erhalten bleibt, wird dieser bei der exklusiven \acrshort{c14n} verworfen.\cite[Abschnitt~18]{siddiqui2002c14n2} Dies kann insbesondere dann sinnvoll sein, wenn Teildokumente aus dem Quelldokumente herausgelöst und ggf. andere Dokumente eingebettet werden sollen (Re-Enveloping), ohne dass sich ihre digitale Signatur ändert.
 
 \subsection{Angriffe}
 \label{sec:xmlattacks}
