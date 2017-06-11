@@ -40,11 +40,13 @@ class FilePath(str):
         return os.path.basename(self)
 
 
-def canonicalize(xmldata):
+def canonicalize(xmldata, **kwargs):
     element = defusedxml.lxml.XML(xmldata)
     tree = element.getroottree()
     output = io.BytesIO()
-    tree.write_c14n(output)
+    logger = logging.getLogger(__name__)
+    logger.debug('Canonicalization with settings: %r', kwargs)
+    tree.write_c14n(output, **kwargs)
     return output.getvalue()
 
 
@@ -119,6 +121,11 @@ class ConversionTestCase(object):
         self.name = general.get('name')
         self.description = general.get('description', '')
 
+        self.c14n_kwargs = {
+            'with_comments': self._cp.getboolean('C14N', 'with-comments',
+                                                 fallback=False),
+        }
+
         self.filename = os.path.abspath(filename)
         self.shortname = os.path.basename(os.path.splitext(self.filename)[0])
 
@@ -130,7 +137,7 @@ class ConversionTestCase(object):
         logger = logging.getLogger(__name__)
 
         xmldata = self.content.encode('utf-8')
-        xmldata_c14n = canonicalize(xmldata)
+        xmldata_c14n = canonicalize(xmldata, **self.c14n_kwargs)
         for converter in converters:
             logger.info('Started testcase \'%s\' for converter \'%s\'',
                         self.name, converter.name)
@@ -173,7 +180,8 @@ class ConversionTestCase(object):
                     else:
                         logger.info('Canonicalizing XML...')
                         try:
-                            xmloutput_c14n = canonicalize(xml_output)
+                            xmloutput_c14n = canonicalize(xml_output,
+                                                          **self.c14n_kwargs)
                             passed = (xmldata_c14n == xmloutput_c14n)
                         except Exception:
                             logger.warning(
