@@ -18,7 +18,13 @@ const ctx = {
 
 
 /* Run code in fake browser context */
-let filename = require.resolve("jsonml-tools/jsonml-xml.js")
+let filename;
+if (process.argv.includes("--patched")) {
+    filename = path.join(__dirname, 'jsonml-xml-patched.js');
+} else {
+    filename = require.resolve("jsonml-tools/jsonml-xml.js");
+}
+
 let code = fs.readFileSync(filename, "utf-8");
 vm.runInNewContext(code, ctx);
 

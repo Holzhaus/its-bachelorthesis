@@ -24,6 +24,7 @@ setuptools.setup(
     entry_points={
         'xjcc.converters': [
             'jsonml = xjcc_jsonml:JsonMLPlugin',
+            'jsonmlpatched = xjcc_jsonml:JsonMLPatchedPlugin',
         ],
     },
 )
