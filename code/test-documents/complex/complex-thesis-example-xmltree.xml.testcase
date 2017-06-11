@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?><!--;testcase
+[General]
+name: XML tree Example (Thesis)
+description: This is the example XML document used in chapter 2 of the thesis.
+-->
+<?xml-stylesheet href="style.css"?>
+<!-- Nice album! -->
+<albums>
+  <album catno="ARGO LP-628">
+    <artist>Ahmad Jamal Trio</artist>
+    <title>At The Pershing</title>
+    <recording>Recorded <date>January 16, 1958</date>.</recording>
+  </album>
+</albums>
