@@ -140,10 +140,10 @@ class NodejsConverterPlugin(ConverterPlugin):
 
     def xml_to_json(self, xml_data):
         cmd = ['node', self.node_app]
-        cmd.extend(ENCODE_ARGS)
+        cmd.extend(self.ENCODE_ARGS)
         return self.run_command(cmd, xml_data, env=self.node_env)
 
     def json_to_xml(self, json_data):
         cmd = ['node', self.node_app]
-        cmd.extend(DECODE_ARGS)
+        cmd.extend(self.DECODE_ARGS)
         return self.run_command(cmd, json_data, env=self.node_env)
