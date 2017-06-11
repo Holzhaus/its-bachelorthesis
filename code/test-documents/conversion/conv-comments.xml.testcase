@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--;testcase
+[General]
+name: Comments [OPTIONAL]
+description: Checks if comments are lost during conversion
+
+[C14N]
+with-comments: yes
+-->
+<root><hello><!-- somecomment --></hello></root>
