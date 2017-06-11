@@ -85,6 +85,7 @@ def test_conversion(args):
             print('No converters available.')
         return
 
+    starttime = datetime.datetime.now()
     output_dir = args.output_dir if args.write_data else None
     if output_dir:
         output_root = os.path.join(
@@ -120,6 +121,9 @@ def test_conversion(args):
                 })
                 if output_dir:
                     output.write_results(testresult, output_root)
+
+    endtime = datetime.datetime.now()
+    logger.info('Total time elapsed: %s', (endtime-starttime))
 
     if output_dir:
         for fmt in ['text', 'json', 'csv']:
