@@ -11,18 +11,18 @@ Die um Unterstützung von \emph{Processing Instructions} erweitere Syntax ist mi
 \begin{grammar}
     <element> ::= \[[
             \begin{stack}
-                '[' \begin{stack}
+                `[' \begin{stack}
                         <tag-name>
                         \begin{stack}
-                            ',' <attributes>\\
+                            `,' <attributes>\\
                         \end{stack}
                         \begin{stack}
-                            ',' \begin{rep}
+                            `,' \begin{rep}
                                     <element>\\
-                                    ','
+                                    `,'
                                 \end{rep}\\
                         \end{stack}\\
-                        '?' <pi-target> <pi-value>
+                        `?' <pi-target> `,' <pi-value>
                     \end{stack} ']'\\
                 \tok{string}
             \end{stack}
