@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--;testcase
+[General]
+name: Duplicate child tag names
+description: Checks if one tag that has multiple child elements with the same tag name can be converted.
+ -->
+<root><foo>somevalue</foo><foo>anothervalue</foo><foo>athirdvalue</foo></root>

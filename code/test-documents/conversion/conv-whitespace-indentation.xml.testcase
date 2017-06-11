@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--;testcase
+[General]
+name: Whitespace (Indentation)
+description: Checks if indentation retained
+-->
+<doc>
+   <one>A</one>
+   <two>B</two>
+   <three>C</three>
+</doc>

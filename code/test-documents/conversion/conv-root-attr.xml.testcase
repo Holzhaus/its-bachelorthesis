@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--;testcase
+[General]
+name: Root Element Attribute
+description: Checks if the attributes of the document element are kept
+ -->
+<root foo="bar"><world>test</world></root>

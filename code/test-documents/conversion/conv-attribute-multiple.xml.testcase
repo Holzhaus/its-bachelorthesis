@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--;testcase
+[General]
+name: Attribute (multiple)
+description: Checks if an element with a two attributes can be converted.
+ -->
+<root><hello foo="bar" baz="lol">world</hello></root>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--;testcase
+[General]
+name: Attribute
+description: Checks if an element with a single attribute can be converted.
+ -->
+<root><hello foo="bar">world</hello></root>

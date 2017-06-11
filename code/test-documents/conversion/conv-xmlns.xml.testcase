@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--;testcase
+[General]
+name: Namespace declaration
+description: Checks if XML namespaces declaration can be converted.
+ -->
+<root><test xmlns="http://example.com/helloworld"><hello>world</hello></test></root>

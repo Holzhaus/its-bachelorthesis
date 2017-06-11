@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--;testcase
+[General]
+name: Root Element Tag Name
+description: Checks if the tag name of the document element is kept
+ -->
+<hello><world>test</world></hello>
