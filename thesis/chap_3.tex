@@ -2,11 +2,11 @@
 \label{chap:impl}
 \section{Versuchsaufbau}
 
-Ziel ist die Prüfung die Suche nach einem Konversionsverfahren, dass sowohl \emph{sicher} als auch \emph{verlustlos} arbeitet. Dazu müssen beide Anforderungen zunächst genauer definiert werden.
+Ziel ist die Suche nach einem Konversionsverfahren, dass sowohl \emph{sicher} als auch \emph{verlustlos} arbeitet. Dazu müssen beide Anforderungen zunächst genauer definiert werden.
 
 \subsection{Sicherheit}
 
-Die Sicherheit eines Konverters von hängt in erster Linie von der Sicherheit des eingesetzten XML-Prozessors ab. Dieser darf gegen keinen der im Abschnitt~\ref{sec:xmlattacks} beschriebenen Angriffe auf XML-Parser verwundbar sein.
+Die Sicherheit eines Konverters hängt in erster Linie von der Sicherheit des eingesetzten XML-Prozessors ab. Dieser darf gegen keinen der im Abschnitt~\ref{sec:xmlattacks} beschriebenen Angriffe auf XML-Parser verwundbar sein.
 
 % TODO: Stuff still missing here
 
@@ -18,8 +18,9 @@ Damit dieser Konversionsprozess als \emph{verlustlos} angesehen werden kann, mü
     \item{} Sowohl das \acrshort{json}-Zwischenprodukt als auch das \acrshort{xml}-Ausgabedokument müssen gültige Dokumente sein.\label{item:outputwellf}
 \end{enumerate}
 
-Bedingung \ref{item:ioequal} heißt jedoch nicht, dass das \acrshort{xml}-Dokument nach dem Konversions-Round-Trip bitidentisch mit dem Ursprungsdokument sein muss -- es ist ausreichend, dass die Struktur der beiden Dokumente übereinstimmt. Daher werden beide Dokumente zunächst kanonisiert\footnote{Vgl. Abschnitt \ref{sec:c14n}} und im Anschluss verglichen. Stimmt die kanonische Form beider \acrshort{xml}-Dokumente überein, war die Konversion verlustlos.
+Logisch äquivalent (vgl. Bed. \ref{item:ioequal}) heißt nicht, dass das \acrshort{xml}-Dokument nach dem Konversions-Round-Trip bitidentisch mit dem Ursprungsdokument sein muss -- es ist ausreichend, dass die Struktur der beiden Dokumente übereinstimmt. Daher werden beide Dokumente zunächst kanonisiert\footnote{Vgl. Abschnitt \ref{sec:c14n}} und im Anschluss verglichen. Stimmt die kanonische Form beider \acrshort{xml}-Dokumente überein, war die Konversion verlustlos.
 
+\begin{figure}[h!]
 \begin{definition}[Verlustlosigkeit von Konversion]
     Sei $V \coloneqq \{x \mid x\text{ ist ein valider }\allowbreak{}\text{\acrshort{json}-Wert}\}$ und $W \coloneqq \{x \mid x\text{ ist ein wohlgeformtes \acrshort{xml}-Dokument}\}$.
 
@@ -29,12 +30,13 @@ Bedingung \ref{item:ioequal} heißt jedoch nicht, dass das \acrshort{xml}-Dokume
     \end{equation}
     für alle $x \in W$.
 \end{definition}
+\end{figure}
 
 Zur Überprüfung der Konversionsqualität wurden für alle der in Abschnitt~\ref{sec:criteria} festgelegten Kriterien ein oder mehrere Testfälle erstellt. Jeder der Testfälle besteht aus einer \acrshort{xml}-Datei, die dann mit einem Konverter in das \acrshort{json}-Format umgewandelt wird. Die daraus resultierenden \acrshort{json}-Daten werden im Anschluss wieder zurück in das \acrshort{xml}-Format konvertiert, d.h. es wird ein kompletter Round-Trip vollzogen.
 
-Es muss zudem sichergestellt sein, dass bei der Konversion auch tatsächlich valides \acrshort{json} bzw. wohlgeformtes \acrshort{xml} zurückgegeben sei. Daher werden beide Ausgabedokumente mithilfe analysiert und auf Korrektheit überprüft.
+Es muss zudem sichergestellt sein, dass bei der Konversion auch tatsächlich valides \acrshort{json} bzw. wohlgeformtes \acrshort{xml} zurückgegeben wird. Daher werden beide Ausgabedokumente analysiert und auf Korrektheit überprüft.
 
-Für \acrshort{json}-Daten wurde dazu das Python-Modul \emph{demjson} eingesetzt. Die Wohlgeformtheit der \acrshort{xml}-Daten wurde durch das Parsing mittels \emph{lxml} sichergestellt.
+Für \acrshort{json}-Daten wurde dazu das Python-Modul \emph{demjson} eingesetzt, das über ein umfangreiches Analyseprogramm (einen sogenannten \emph{Linter}) verfügt. Die Wohlgeformtheit der \acrshort{xml}-Daten wurde durch das Parsing mittels \emph{lxml} sichergestellt.
 
 \begin{figure}
     \includestandalone[width=0.8\textwidth]{flowchart_conversiontest}
@@ -55,21 +57,21 @@ Für \acrshort{json}-Daten wurde dazu das Python-Modul \emph{demjson} eingesetzt
 
 Mithilfe von CDATA-Abschnitten lässt sich Text, der Markup-Zeichen wie beispielsweise das Kleiner-als-Zeichen\footnote{Unicode-Codepoint \texttt{U+003C}: \texttt{LESS-THAN SIGN}} enthält, direkt in ein XML-Dokument einbetten, ohne dass diese Zeichen als Markup interpretiert werden.
 
-Dies ist vor allem dann sinnvoll, wenn es unpraktikabel ist, alle Markup-Zeichen im Text einzeln durch die jeweilige Zeichen- oder Entity-Referenz zu ersetzen. CDATA stellt somit eine weitere Weg dar, Zeichendaten in einem XML-Dokument anzugeben.\cite[Abschnitt~2.4]{maler2008xml}
+Dies ist vor allem dann sinnvoll, wenn es unpraktikabel ist, alle Markup-Zeichen im Text einzeln durch die jeweilige Zeichen- oder Entity-Referenz zu ersetzen. CDATA stellt somit eine weitere Möglichkeit dar, Zeichendaten in einem XML-Dokument anzugeben.~\cite[Abschnitt~2.4]{maler2008xml}
 
-Der Unterschied zwischen Zeichendaten aus CDATA-Abschnitten und solchen, bei denen dies nicht der Fall ist, ist jedoch lediglich ein syntaktischer. Daher werden bei der \acrlong{c14n} alle CDATA-Abschnitte im Eingabedokument durch den entsprechenden \emph{Character Content} ersetzt\cite[Abschnitt~2.1]{boyer2001c14n}.
+Der Unterschied zwischen Zeichendaten aus CDATA-Abschnitten und solchen, bei denen dies nicht der Fall ist, ist jedoch lediglich ein syntaktischer. Daher werden bei der \acrlong{c14n} alle CDATA-Abschnitte im Eingabedokument durch den entsprechenden \emph{Character Content} ersetzt~\cite[Abschnitt~2.1]{boyer2001c14n}.
 
-Für die Verlustlosigkeit der Konversion ist es daher unerheblich, ob die CDATA-Abschnitte im Ursprungsdokument als solche erhalten bleiben, oder lediglich die Zeichendaten beibehalten werden.
+Für die Verlustlosigkeit der Konversion ist es somit unerheblich, ob die CDATA-Abschnitte im Ursprungsdokument als solche erhalten bleiben, oder lediglich die Zeichendaten beibehalten werden.
 
 \subsubsection{Kommentare}
 
 \acrshort{xml} verfügt über die Möglichkeit, Dokumente mit Kommentaren zu versehen. Allerdings müssen diese nicht durch den XML-Prozessor zugänglich gemacht werden. In der Empfehlung des \gls{w3c} heißt es dazu:
 
-\begin{foreigndisplayquote}{english}[{\cite[Abschnitt~2.5]{maler2008xml}}]
+\begin{foreigndisplayquote}{english}[{~\cite[Abschnitt~2.5]{maler2008xml}}]
 They are not part of the document's character data; an XML processor may, but need not, make it possible for an application to retrieve the text of comments.
 \end{foreigndisplayquote}
 
-Zudem ist auch bei der Implementierung von \acrlong{c14n} die Unterstützung von \emph{Kanonischem XML mit Kommentaren} lediglich empfohlen, während die Möglichkeit der Umwandlung in \emph{Kanonisches XML} ausschließlich aller Kommentare zwingend erforderlich ist.\cite[Abschnitt~2.1]{boyer2001c14n}
+Zudem ist auch bei der Implementierung der \acrlong{c14n} die Unterstützung von \emph{Kanonischem XML mit Kommentaren} lediglich empfohlen, während die Möglichkeit der Umwandlung in \emph{Kanonisches XML} ausschließlich aller Kommentare zwingend erforderlich ist.~\cite[Abschnitt~2.1]{boyer2001c14n}
 
 Folglich ist es nicht nötig, dass sich die Kommentare im XML-Eingabedokument nach dem $XML\rightarrow{}JSON\rightarrow{}XML$ Roundtrip auch in der Ausgabe wiederfinden.
 
@@ -77,27 +79,27 @@ Folglich ist es nicht nötig, dass sich die Kommentare im XML-Eingabedokument na
 
 Wie bereits \acrshort{sgml} unterstützt \acrshort{xml} die Einbettung von Anweisungen, die für die verarbeitetende Applikation bestimmt sind. Diese werden \acrfull{pi} genannt. 
 
-In der Praxis ist werden \glspl{pi} eher selten eingesetzt. Genutzt werden sie unter anderem um Darstellungsinformationen in Form von Stylesheets mit \acrshort{xml}-Dokumenten zu verknüpfen.\cite[Abschnitt 4]{xmlstylesheet}
+In der Praxis werden \glspl{pi} eher selten eingesetzt. Genutzt werden sie unter anderem um Darstellungsinformationen in Form von Stylesheets mit \acrshort{xml}-Dokumenten zu verknüpfen.~\cite[Abschnitt 4]{xmlstylesheet}
 
-Ein weiteres prominentes Beispiel für eine Praxisanwendung ist die Microsoft Office Suite, die seit der Version 2003 Office-Dokumente als einzelne XML-Datei speichern kann. Diese setzen die unspezifische Dateiendung \texttt{*.xml} ein und würden daher mit einem generisch XML-Anzeigeprogramm geöffnet werden. Mithilfe der Processing Instruction \mintinline{XML}{<?mso-application progid="Word.Document"?>} werden Windows- bzw. Internet Explorer angewiesen, diese als Microsoft Word-Document zu behandeln.\cite[Abschnitt 3.2]{tverskov2008understandingpi}.
+Ein weiteres prominentes Beispiel für eine Praxisanwendung ist die Microsoft Office Suite, die seit der Version 2003 Office-Dokumente als einzelne XML-Datei speichern kann. Diese setzen die unspezifische Dateiendung \texttt{*.xml} ein und würden daher mit einem generisch XML-Anzeigeprogramm geöffnet werden. Mithilfe der Processing Instruction \mintinline{XML}{<?mso-application progid="Word.Document"?>} werden Windows- bzw. Internet Explorer angewiesen, diese als Microsoft Word-Document zu behandeln.~\cite[Abschnitt 3.2]{tverskov2008understandingpi}
 
-Auch die XSLT-Stylesheets des DocBook-Formats nutzen Processing Instructions, um spezielle Formatierungen für die verschiedenen Ausgabeformate festzulegen.\cite[{Kapitel \enquote{User Reference: PIs}}]{docbookxsl}
+Auch die XSLT-Stylesheets des DocBook-Formats nutzen Processing Instructions, um spezielle Formatierungen für die verschiedenen Ausgabeformate festzulegen.~\cite[{Kapitel \enquote{User Reference: PIs}}]{docbookxsl}
 
 Die Unterstützung durch \acrshort{xml}-Parser ist von der Spezifikation zwingend vorgeschrieben.
 
-\begin{foreigndisplayquote}{english}[{\cite[Abschnitt~2.6]{maler2008xml}}]
+\begin{foreigndisplayquote}{english}[{~\cite[Abschnitt~2.6]{maler2008xml}}]
 \acrshortpl{pi} are not part of the document's character data, but \emph{must} be passed through to the application. 
 \end{foreigndisplayquote}
 
-Auch bei der \acrlong{c14n} bleiben die \glspl{pi} erhalten.\cite[Abschnitt 2.3]{boyer2001c14n}.
+Auch bei der \acrlong{c14n} bleiben die \glspl{pi} erhalten.~\cite[Abschnitt 2.3]{boyer2001c14n}
 
 \subsubsection{Dokumentordnung}
 
 \paragraph{Elementordnung}
 
-Die Spezifikation der \acrshort{c14n} bezieht sich bezüglich der Ordnung auf die \acrshort{w3c}-Empfehlung zur \acrfull{xpath}\cite[Abschnitt~2.2]{boyer2001c14n}.
+Die Spezifikation der \acrshort{c14n} bezieht sich bezüglich der Ordnung auf die \acrshort{w3c}-Empfehlung zur \acrfull{xpath}~\cite[Abschnitt~2.2]{boyer2001c14n}.
 
-\begin{foreigndisplayquote}{english}[{\cite[Abschnitt~5]{clark1999xpath1}}]
+\begin{foreigndisplayquote}{english}[{~\cite[Abschnitt~5]{clark1999xpath1}}]
 There is an ordering, document order, defined on all the nodes in the document corresponding to the order in which the first character of the XML representation of each node occurs in the XML representation of the document after expansion of general entities. Thus, the root node will be the first node. Element nodes occur before their children. Thus, document order orders element nodes in order of the occurrence of their start-tag in the XML (after expansion of entities).
 \end{foreigndisplayquote}
 
@@ -105,15 +107,15 @@ Folglich muss die Reihenfolge der Element-Nodes bei der Konversion beibehalten w
 
 \paragraph{Ordnung von Attributen und Namespaces}
 
-Laut dem \acrshort{xml}-Standard unwichtig kommen der Reihenfolge, in die Attribute eines Elements angegeben wurden, keine Bedeutung zu.
+Laut dem \acrshort{xml}-Standard kommen der Reihenfolge, in der die Attribute eines Elements angegeben wurden, keine Bedeutung zu.
 
-\begin{foreigndisplayquote}{english}[{\cite[Abschnitt~3.1]{maler2008xml}}]
+\begin{foreigndisplayquote}{english}[{~\cite[Abschnitt~3.1]{maler2008xml}}]
 Note that the order of attribute specifications in a start-tag or empty-element tag is not significant.
 \end{foreigndisplayquote}
 
 Dies wird auch von der \acrshort{xpath}-Spezifikation untermauert:
 
-\begin{foreigndisplayquote}{english}[{\cite[Abschnitt~5]{clark1999xpath1}}]
+\begin{foreigndisplayquote}{english}[{~\cite[Abschnitt~5]{clark1999xpath1}}]
 The relative order of namespace nodes is implementation-dependent. The relative order of attribute nodes is implementation-dependent.
 \end{foreigndisplayquote}
 
@@ -123,7 +125,7 @@ Die Reihenfolge der Attribute eines Elements nach einem $\text{\acrshort{xml}}\r
 
 Whitespace innerhalb des Wurzelelements des Dokumentens muss beibehalten werden, während 
 
-\begin{foreigndisplayquote}{english}[{\cite[Abschnitt~2.1]{boyer2001c14n}}]
+\begin{foreigndisplayquote}{english}[{~\cite[Abschnitt~2.1]{boyer2001c14n}}]
     All whitespace within the root document element MUST be preserved (except for any \texttt{\#xD} characters deleted by line delimiter normalization). This includes all whitespace in external entities. Whitespace outside of the root document element MUST be discarded.
 \end{foreigndisplayquote}
 
@@ -131,7 +133,7 @@ Whitespace innerhalb des Wurzelelements des Dokumentens muss beibehalten werden,
 
 Eine Besonderheit von \acrshort{xml} und auch \acrshort{sgml} ist, dass die Spezifikation sogenannten \emph{Mixed Content} erlaubt. Dieser liegt vor, wenn ein Element sowohl Character Data als auch Kindelement enthält:
 
-\begin{foreigndisplayquote}{english}[{\cite[Abschnitt 3.2.2]{maler2008xml}}]
+\begin{foreigndisplayquote}{english}[{~\cite[Abschnitt 3.2.2]{maler2008xml}}]
     An element type has mixed content when elements of that type may contain character data, optionally interspersed with child elements.
 \end{foreigndisplayquote}
 
@@ -141,7 +143,7 @@ Eine Besonderheit von \acrshort{xml} und auch \acrshort{sgml} ist, dass die Spez
     \end{minted}
 \end{example}
 
-\emph{Mixed Content} stellt \acrshort{xml}-Parser vor besondere Herausforderungen\cite{mcgrath2002mixedcontent}. Zudem existiert kein \acrshort{json}-Äquivalent von \emph{Mixed Content}, was eine Konversion erschwert.
+\emph{Mixed Content} stellt \acrshort{xml}-Parser vor besondere Herausforderungen~\cite{mcgrath2002mixedcontent}. Zudem existiert kein \acrshort{json}-Äquivalent von \emph{Mixed Content}, was eine Konversion erschwert.
 
 \subsubsection{Typinferenz bei der Konversion zu JSON}
 
@@ -149,7 +151,7 @@ Zwar ist es möglich, mittels einer \acrfull{xsd} die in einem \acrshort{xml}-Do
 
 Wird kein Schema verwendet bzw. legt ein Schema den Datentyp eines Elements nicht anderweitig fest, so ist es standardmäßig vom Typ \texttt{xsd:anyType}:
 
-\begin{foreigndisplayquote}{english}[{\cite[Abschnitt 2.2.1.1]{xmlschema11-1}}]
+\begin{foreigndisplayquote}{english}[{~\cite[Abschnitt 2.2.1.1]{xmlschema11-1}}]
     A special complex type definition, (referred to in earlier versions of this specification as `the ur-type definition') whose name is \textbf{anyType} in the XSD namespace, is present in each ·\emph{XSD schema}·. The \textbf{definition of anyType} serves as default type definition for element declarations whose XML representation does not specify one.
 \end{foreigndisplayquote}
 
@@ -176,7 +178,7 @@ Elemente dieses Typs unterliegen keinen Beschänkungen. Daher ist es ohne Zuhilf
 
 \end{example}
 
-Ist das Schema eines \acrshort{xml}-Dokuments nicht bekannt, scheint es daher naheliegend, die Datentypen aus den im Dokument enthaltenen Werten abzuleiten. Enthält eine Text Node oder ein Attribut beispielsweise die Zeichenkette \mintinline{text}{123}, könnte daraus auf einen numerischer Datentyp geschlossen werden. Dieses Prinzip der \emph{Type Inference} nutzt beispielweise Microsoft im Rahmen des \emph{.NET Frameworks} um das \acrshort{xml}-Schema auf Basis von einem oder mehreren XML-Dokumenten zu \enquote{erraten}.\cite{msdn2017inferxmlschema}
+Ist das Schema eines \acrshort{xml}-Dokuments nicht bekannt, scheint es daher naheliegend, die Datentypen aus den im Dokument enthaltenen Werten abzuleiten. Enthält eine Text Node oder ein Attribut beispielsweise die Zeichenkette \mintinline{text}{123}, könnte daraus auf einen numerischer Datentyp geschlossen werden. Dieses Prinzip der \emph{Type Inference} nutzt beispielweise Microsoft im Rahmen des \emph{.NET Frameworks} um das \acrshort{xml}-Schema auf Basis von einem oder mehreren XML-Dokumenten zu \enquote{erraten}.~\cite{msdn2017inferxmlschema}
 
 Im Rahmen der \acrshort{xml} zu \acrshort{json}-Konversion ist es zwar wünschenswert, die nativen Datentypen der \acrshort{json}-Spezifikation voll auszunutzen, ein solches Vorgehen bringt jedoch mehrere Probleme mit sich:
 
@@ -188,13 +190,13 @@ Darf eine Text Node beispielsweise eigentlich beliebigen Zeicheninhalt enthalten
 
 \paragraph{Einschränkungen durch Wertebereiche}
 
-Ein weiteres Problem bei der \emph{Type Inference} kann durch die unterschiedlichen Wertebereichsgrenzen der verschiedenen Datentypen entstehen.  Während Zeichenketten in vielen Programmiersprachen mehrere tausend Zeichen lang sein dürfen, ist der Wertebereich von numerischen Datentypen in der Regel deutlich eingeschränkter. Wird ein Zahlenwert vom Konversionsprogramm also in einen nativen Datentyp umgewandelt, für den kleinerer Wertebereich gilt als durch Strings darstellbar sind, führt dies zu Fehlern oder Informationsverlust.
+Ein weiteres Problem bei der \emph{Type Inference} kann durch die unterschiedlichen Wertebereichsgrenzen der verschiedenen Datentypen entstehen.  Während Zeichenketten in vielen Programmiersprachen mehrere tausend Zeichen lang sein dürfen, ist der Wertebereich von numerischen Datentypen in der Regel deutlich eingeschränkter. Wird ein Zahlenwert vom Konversionsprogramm also in einen nativen Datentyp umgewandelt, für den ein kleinerer Wertebereich gilt als durch Strings darstellbar sind, führt dies zu Fehlern oder Informationsverlust.
 
 \begin{example} Informationsverlust durch Typumwandlung in JavaScript
 
-    Die Programmiersprache \emph{JavaScript} erlaubt beispielsweise Strings mit einer Länge von bis zu $n=2^{53}-1 \approx 9 \cdot 10^{15}$ Zeichen, d.h. als Strings abgelegte Zahlen können rund 9 Billarden Stellen haben.\cite[Abschnitt 6.1.4]{ecma262} Für Zahlen im Dezimalsystem entspräche dies dem Wertebereich $\left\{x \in \mathbb{Z} \mid -\left(10^{n-1}-1\right) \leq x \leq 10^{n}-1\right\}$.
+    Die Programmiersprache \emph{JavaScript} erlaubt beispielsweise Strings mit einer Länge von bis zu $n=2^{53}-1 \approx 9 \cdot 10^{15}$ Zeichen, d.h. als Strings abgelegte Zahlen können rund 9 Billarden Stellen haben.~\cite[Abschnitt 6.1.4]{ecma262} Für Zahlen im Dezimalsystem entspräche dies dem Wertebereich $\left\{x \in \mathbb{Z} \mid -\left(10^{n-1}-1\right) \leq x \leq 10^{n}-1\right\}$.
 
-    Für den Datentyp \texttt{Number} nutzt JavaScript 64-bit-Fließkommazahlen nach dem IEEE-754-Standard (Doppelte Genauigkeit, \texttt{binary64}).\cite[Abschnitt 4.3.20]{ecma262}. Für Ganzzahlen gilt daher der \enquote{sichere} Wertebereich $\left\{x \in \mathbb{Z} \mid \abs{x} \leq 2^{53}-1\right\}$\cite[Abschnitt 20.1.2.5]{ecma262}. Dies entspricht einer Zahl mit lediglich $\floor{\log_{10}\left(2^{53}-1\right)}+1 = 16$ Ziffern im Dezimalsystem.
+    Für den Datentyp \texttt{Number} nutzt JavaScript 64-bit-Fließkommazahlen nach dem IEEE-754-Standard (Doppelte Genauigkeit, \texttt{binary64}).~\cite[Abschnitt 4.3.20]{ecma262}. Für Ganzzahlen gilt daher der \enquote{sichere} Wertebereich $\left\{x \in \mathbb{Z} \mid \abs{x} \leq 2^{53}-1\right\}$~\cite[Abschnitt 20.1.2.5]{ecma262}. Dies entspricht einer Zahl mit lediglich $\floor{\log_{10}\left(2^{53}-1\right)}+1 = 16$ Ziffern im Dezimalsystem.
 
 Zahlen außerhalb dieses Wertebereichs können nicht mehr fehlerfrei eingesetzt werden.
 
