@@ -182,7 +182,6 @@ class ConversionTestCase(object):
                         try:
                             xmloutput_c14n = canonicalize(xml_output,
                                                           **self.c14n_kwargs)
-                            passed = (xmldata_c14n == xmloutput_c14n)
                         except Exception:
                             logger.warning(
                                     'Failed to canonicalize xml!',
@@ -190,7 +189,7 @@ class ConversionTestCase(object):
                                         logging.DEBUG))
                             passed = False
                         else:
-                            passed = True
+                            passed = (xmldata_c14n == xmloutput_c14n)
             yield TestResult(
                 test=self,
                 converter=converter,
