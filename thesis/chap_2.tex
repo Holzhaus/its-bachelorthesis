@@ -2,11 +2,11 @@
 
 \section{\acrfull{xml}}
 
-Bei der \acrfull{xml} handelt es sich um eine weit verbreitete Auszeichnungssprache. Die Entwicklung von \acrshort{xml} begann im Jahr 1996, zwei Jahre später wurde die die Spezifikation erstmals als Empfehlung des \acrshort{w3c} veröffentlicht.
+Bei der \acrfull{xml} handelt es sich um eine weit verbreitete Auszeichnungssprache. Die Entwicklung von \acrshort{xml} begann im Jahr 1996, zwei Jahre später wurde die Spezifikation erstmals als Empfehlung des \acrshort{w3c} veröffentlicht.
 
 \acrshort{xml} ist eine plattformunabhängige Metasprache, die für den Einsatz im Internet und den Datenaustausch zwischen Anwendungen konzipiert wurde und kann als Basis für neue Datenformate genutzt werden.
 
-Die Auszeichnungsprache basiert auf der im \acrshort{iso}-Standard 8879 beschriebenen \acrfull{sgml} und stellt eine Teilmenge von \acrshort{sgml} dar, weshalb \acrshort{xml}-Dokumente zugleich immer auch \acrshort{sgml}-Dokumente sind. Eines der Designziele war die Reduzierung der Komplexität im Vergleich zu \acrshort{sgml}, denn optionale Zusatzfeatures und das vom Standard erlaubte Auslassen von Teilen des Marksup macht das korrekte Parsing von \acrshort{sgml}-Dokumenten vergleichsweise schwierig. Im Gegensatz dazu soll \acrshort{xml} einfacher zu verarbeiten sein -- auch wenn das zu Lasten der Dateigröße geht.\cite[Abschnitt 1.1]{maler2008xml,bray1998axml}
+Die Auszeichnungsprache basiert auf der im \acrshort{iso}-Standard 8879 beschriebenen \acrfull{sgml} und stellt eine Teilmenge von \acrshort{sgml} dar, weshalb \acrshort{xml}-Dokumente zugleich immer auch \acrshort{sgml}-Dokumente sind. Eines der Designziele war die Reduzierung der Komplexität im Vergleich zu \acrshort{sgml}, denn optionale Zusatzfeatures und das vom Standard erlaubte Auslassen von Teilen des Marksup macht das korrekte Parsing von \acrshort{sgml}-Dokumenten vergleichsweise schwierig. Im Gegensatz dazu soll \acrshort{xml} einfacher zu verarbeiten sein -- auch wenn das zu Lasten der Dateigröße geht.~\cite[Abschnitt 1.1]{maler2008xml,bray1998axml}
 
 Aktuell steht \acrshort{xml} in zwei unterschiedlichen Versionen zu Verfügung:
 \begin{itemize}
@@ -16,7 +16,7 @@ Aktuell steht \acrshort{xml} in zwei unterschiedlichen Versionen zu Verfügung:
 
 \acrshort{xml} 1.1 ist in der Praxis kaum verbreitet und wird daher in der vorliegenden Arbeit nicht betrachtet.
 
-Als Metasprache bildet \acrshort{xml} die Grundlage für eine große Anzahl von Dateiformaten wie \gls{svg}, \gls{odf} und \gls{ooxml} und wird in Protokollen wie SOAP und \acrshort{ebics} zum Einsatz.
+Als Metasprache bildet \acrshort{xml} die Grundlage für eine große Anzahl von Dateiformaten wie \gls{svg}, \gls{odf} und \gls{ooxml} und wird in Protokollen wie SOAP und \acrshort{ebics} eingesetzt.
 
 Neben \acrshort{xml}-basierten Webservices, die beispielsweise das \acrshort{saml}-Framework, SOAP
 oder \acrshort{xmlrpc} verwenden, wird \acrshort{xml} auch in einer Vielzahl weiterer
@@ -46,30 +46,30 @@ Office-Dateiformate -- das \acrfull{odf}, Microsofts % chktex 8
 
 \acrshort{xml}-Daten bestehen aus Text, deren Struktur durch die Produktionsregeln der \acrshort{xml}-Spezifikation vorgegeben ist. Der Text eines \acrshort{xml}-Dokuments besteht aus einem Gemisch von \emph{Markup} und \emph{Character Data}, wobei das Markup eine Vielzahl von Formen annehmen kann. Text der \emph{kein} Markup enthält, nennt man \emph{Character Data}.
 
-Auf die in \acrshort{xml}-Dokumenten enthaltenen Informationen in der Regel über Schnittstellen zugegriffen, die das Markup auswerten und das Dokument in Form einer baumartigen Datenstruktur darstellen. Ein prominentes Beispiel dafür ist das \acrfull{dom}, das u.a. von \emph{JavaScript}-Programmen in Webbrowsern eingesetzt wird, um  \acrshort{html}-Seiten auszuwerden und zu manipulieren.
+Auf die in \acrshort{xml}-Dokumenten enthaltenen Informationen wird in der Regel über Schnittstellen zugegriffen, die das Markup auswerten und das Dokument in Form einer baumartigen Datenstruktur darstellen. Ein prominentes Beispiel dafür ist das \acrfull{dom}, das u.a. von \emph{JavaScript}-Programmen in Webbrowsern eingesetzt wird, um  \acrshort{html}-Seiten auszuwerden und zu manipulieren.
 
 Das Beispiel \ref{ex:xmldoc} zeigt ein \acrshort{xml}-Dokument, das mehrere verschiedene Knotentypen enthält:
 
 \begin{description}
-    \item[Document] ist der Wurzelknoten der Baumstruktur und kommt daher genau ein Mal im Baum vor. Es repräsentiert das \acrshort{xml}-Dokument selbst und macht die darin enthaltenen Informationen über seine Kindknoten zugänglich.\cite[Abschnitt 2.1]{xmlinfoset}
-    \item[Elemente] sind Knoten, die weitere Elemente oder andere Knoten als Kinder enthalten können. Auf der Dokumentebene muss es immer genau ein Element (das \emph{Document Element}) geben. Zudem könne sie mit Attributen versehen werden. Elemente bestehen entweder aus einem Paar von Start- und End-Tags (z.B. \mintinline{xml}{<foo>} und \mintinline{xml}{</foo>} oder können -- falls sie keine Kindknoten enthalten -- aus einem einzelnem leeren Element-Tag (z.B. \mintinline{xml}{<foo />}).
-    \item[Attribute] sind Schlüssel-Wert-Paare, die einem einzelnen Element-Knoten zugeordnet ist. Sie werden im Start-Tag eines Elements angegeben. So enthält das \mintinline{xml}{<album>}-Tag im Beispiel \ref{ex:xmldoc} enthält das Attribut \mintinline{xml}{catno="ARGO LP 628"}.
-    \item[Kommentare] können Text (z.B. Beschreibungen zu Teilen des \acrshort{xml}-Dokuments) enthalten, sind jedoch nicht Teil der \emph{Character Data} des Dokuments. Sie werden mit den Zeichenfolgen \texttt{<!--} und \texttt{-->} eingeleitet und beendet und dürfen die Zeichenfolge\texttt{--} nicht enthalten.\cite[Abschnitt 2.5]{maler2008xml}
-    \item[\glspl{pi}] sind Steueranweisungen an ein bestimmtes, das \acrshort{xml}-Dokument verarbeitendes Programm. Sie bestehen aus einem \emph{Ziel} (einer Zeichenkette, die nicht \texttt{xml} sein darf) und \emph{Daten}, die häufig in einer Attributen nachempfundenen Form angegeben sind. \glspl{pi} werden mit den Zeichenfolgen {\emph{<?}} und {\emph{?>}} eingeleitet und beendet.\cite[Abschnitt 2.6]{maler2008xml}
-    \item[Text] sind Blattknoten, die Zeichendaten (Character Data) enthalten. Im Beispiel \ref{ex:xmldoc} enthält das \mintinline{xml}{<artist>}-Element den einen Textknoten, der den Text \enquote{Ahmad Jamal Trio} repräsentiert.
+    \item[Document] ist der Wurzelknoten der Baumstruktur und kommt daher genau ein Mal im Baum vor. Es repräsentiert das \acrshort{xml}-Dokument selbst und macht die darin enthaltenen Informationen über seine Kindknoten zugänglich.~\cite[Abschnitt 2.1]{xmlinfoset}
+    \item[Elemente] sind Knoten, die weitere Elemente oder andere Knoten als Kinder enthalten können. Auf der Dokumentebene muss es immer genau ein Element (das \emph{Document Element}) geben. Zudem können sie mit Attributen versehen werden. Elemente bestehen entweder aus einem Start- und einem End-Tag (z.B. \mintinline{xml}{<foo>} und \mintinline{xml}{</foo>} oder -- falls sie keine Kindknoten enthalten -- aus einem einzelnem leeren Element-Tag (z.B. \mintinline{xml}{<foo />}).
+    \item[Attribute] sind Schlüssel-Wert-Paare, die einem einzelnen Element-Knoten zugeordnet sind. Sie werden im Start-Tag eines Elements angegeben. So enthält das \mintinline{xml}{<album>}-Tag im Beispiel \ref{ex:xmldoc} das Attribut \mintinline{xml}{catno="ARGO LP 628"}.
+    \item[Kommentare] können Text (z.B. Beschreibungen zu Teilen des \acrshort{xml}-Dokuments) enthalten, sind jedoch nicht Teil der \emph{Character Data} des Dokuments. Sie werden mit der Zeichenfolge \texttt{<!--} eingeleitet und mit \texttt{-->} beendet. Um die Rückwärtskompatibilität mit \acrshort{sgml} sicherzustellen, dürfen sie die Zeichenfolge\texttt{--} nicht enthalten.~\cite[Abschnitt 2.5]{maler2008xml}
+    \item[\glspl{pi}] sind Steueranweisungen an ein bestimmtes, das \acrshort{xml}-Dokument verarbeitendes Programm. Sie bestehen aus einem \emph{Ziel} (einer Zeichenkette, die nicht \texttt{xml} sein darf) und \emph{Daten}, die häufig in einer Attributen nachempfundenen Form angegeben sind. \glspl{pi} werden mit der Zeichenfolge {\emph{<?}} eingeleitet und mit {\emph{?>}} beendet.~\cite[Abschnitt 2.6]{maler2008xml}
+    \item[Text] sind Blattknoten, die Zeichendaten (Character Data) enthalten. Im Beispiel \ref{ex:xmldoc} enthält das \mintinline{xml}{<artist>}-Element einen Textknoten, der den Text \enquote{Ahmad Jamal Trio} repräsentiert.
 \end{description}
 
-Es existieren jedoch auch abweichende Datenmodelle um die logische Strukur von \acrshort{xml}-Daten zu beschreiben, beispielsweise das \acrfull{xdm} oder das \acrshort{xml} Information Set\cite{xmlinfoset}. Die verschiedenenen Modelle unterscheidenen sich dabei vor allem im Abstraktionsgrad -- so stellt das \gls{dom} Textknoten und CDATA-Sektionen als separate Knotentypen dar, während das \acrshort{xml} Information Set Zeichendaten beide Knotentypen unter \emph{Character Information Data} subsumiert\cite[Abschnitt 2.6]{xmlinfoset}.
+Es existieren jedoch auch abweichende Datenmodelle um die logische Strukur von \acrshort{xml}-Daten zu beschreiben, beispielsweise das \acrfull{xdm} oder das \acrshort{xml} Information Set~\cite{xmlinfoset}. Die verschiedenenen Modelle unterscheidenen sich dabei vor allem im Abstraktionsgrad -- so stellt das \gls{dom} Textknoten und CDATA-Sektionen als separate Knotentypen dar, während das \acrshort{xml} Information Set beide Knotentypen unter \emph{Character Information Data} subsumiert~\cite[Abschnitt 2.6]{xmlinfoset}.
 
 \begin{description}
-    \item[CDATA-Abschnitte] kennzeichnen größere Bereiche von Text, die Markup-Zeichen wie \enquote{\texttt{<}} oder \enquote{\texttt{\&}} enthalten dürfen, ohne dass diese quotiert werden müssten. Sie werden mit der Zeichenkette \enquote{\texttt{<![CDATA[}} eingeleitet und mit \enquote{\texttt{]]>}} beendet.\cite[Abschnitt 2.7]{maler2008xml}
+    \item[CDATA-Abschnitte] kennzeichnen größere Bereiche von Text, die Markup-Zeichen wie \enquote{\texttt{<}} oder \enquote{\texttt{\&}} enthalten dürfen, ohne dass diese quotiert werden müssten. Sie werden mit der Zeichenkette \enquote{\texttt{<![CDATA[}} eingeleitet und mit \enquote{\texttt{]]>}} beendet.~\cite[Abschnitt 2.7]{maler2008xml}
 \end{description}
 
-\gls{dom}, \acrshort{xdm} und \acrshort{xml} Information Set kennen noch eine Vielzahl weiterer Konstrukte, die Teil eines \acrshort{xml}-Dokuments sein können, beispielseweise \acrfull{dtd}, Notation-Knoten, Entities bzw. Entity-Referenzen, etc. Für eine detaillierte Beschreibung empfiehlt es sich, die jeweiligen Spezifikationen zurate zu ziehen.\cite{dom,xmlinfoset,xdm,maler2008xml}
+\gls{dom}, \acrshort{xdm} und \acrshort{xml} Information Set kennen noch eine Vielzahl weiterer Konstrukte, die Teil eines \acrshort{xml}-Dokuments sein können, beispielseweise \acrfull{dtd}, Notation-Knoten, Entities bzw. Entity-Referenzen, etc. Für eine detaillierte Beschreibung empfiehlt es sich, die jeweiligen Spezifikationen zurate zu ziehen.~\cite{dom,xmlinfoset,xdm,maler2008xml}
 
 \subsection{\acrfull{xsd}}
 
-Um die Struktur von \acrshort{xml}-Dokumenten beschreiben und festzulegen, können sogenannte Schemata eingesetzt werden. Diese legen fest, welche Elemente in einem Dokument vorhanden sein dürfen oder müssen. Ebenso definieren sie Anzahl und Reihenfolge von Elementen, aber auch die Datentypen von Attributwerten und Textknoten. Attributen eines Elements können mithilfe eines Schemas auch Standardwerte zugewiesen oder als unveränderbar deklariert werden.
+Um die Struktur von \acrshort{xml}-Dokumenten zu beschreiben und festzulegen, können sogenannte Schemata eingesetzt werden. Diese legen fest, welche Elemente in einem Dokument vorhanden sein dürfen oder müssen. Ebenso definieren sie Anzahl und Reihenfolge von Elementen, aber auch die Datentypen von Attributwerten und Textknoten. Attributen eines Elements können mithilfe eines Schemas auch Standardwerte zugewiesen werden. Zudem können Attributwerte als unveränderbar deklariert werden.
 
 Neben der vom \gls{w3c} spezifizierten \acrfull{xsd} gibt es noch eine Reihe ähnlicher Technologien wie \acrshort{relaxng}, Schematron, \gls{dsd}, etc.
 
@@ -78,12 +78,12 @@ Neben der vom \gls{w3c} spezifizierten \acrfull{xsd} gibt es noch eine Reihe äh
 
 \acrshort{xml}-Dokumente beinhalten häufige eine Vielzahl verschiedener Element- und Attributnamen, die die verschiedenen Inhalte des Dokuments strukturieren und semantisch voneinander unterscheidbar machen sollen. Namensräume bieten die Möglichkeit, logisch verwandte Namen zu gruppieren -- ein Namensraum ist also eine Menge von Element- und Attributnamen, die innerhalb des Namensraums eindeutig sein müssen.
 
-Namensräume werden mittels des eines Bezeichners -- dem Namespace-Namen -- identifiziert, der die Form eines \glspl{uri} vorliegt. Dieser ist allerdings nur als Name zu verstehen -- eine Nutzung des \gls{uri} zum Abruf von Daten (z.B aus dem Internet) ist nicht vorgesehen.
+Namensräume werden mittels eines Bezeichners -- dem Namespace-Namen -- identifiziert, der die Form eines \gls{uri} haben muss. Dieser ist allerdings nur als Name zu verstehen -- eine Nutzung des \gls{uri} zum Abruf von Daten (z.B aus dem Internet) ist nicht vorgesehen.
 
 \begin{figure}[h]
     \begin{example}[\acrshort{xml}-Namespaces]
         \label{ex:xmlns}
-        Anhand des Namenraum kann die semantische Bedeutung verscheidener Elemente trotz gleichen Tag-Namens unterschieden werden.
+        Anhand des Namenraum kann die semantische Bedeutung verschiedener Elemente trotz gleichen Tag-Namens unterschieden werden.
         \inputminted[firstline=2,firstnumber=1]{xml}{ex-xmlns.xml}
         \captionof{figure}{Ein \acrshort{xml}-Dokument, das mehrere verschiedene Namensräume enthält.}
     \end{example}
@@ -92,8 +92,8 @@ Namensräume werden mittels des eines Bezeichners -- dem Namespace-Namen -- iden
 Um in einem \acrshort{xml}-Dokument zu deklarieren, kann das \mintinline{xml}{xmlns}-Attribut verwendet werden. Dabei gibt es zwei Formen:
 
 \begin{description}
-    \item[Deklaration eines Namespace Prefix] Durch Angabe eines Attributes in der Form \mintinline{xml}{xmlns:foo} kann einem Namensraum ein Prefix zugewiesen werden. Um zu signalisieren, dass das Element oder eines seiner Kindelemente zu diesem Namensraum gehört, wird der Tagname mit diesem Prefix versehen. Dies ermöglicht auch die Nutzung und Vermischung des Vokabulars verschiedener Namensräume in einem einzelnen Dokument.
-    \item[Deklaration des Vorganenamensraums] Sind Tags mit keinem Prefix versehen, gehören diese zum Vorgabenamensraum. Dieser kann mithilfe des \mintinline{xml}{xmlns}-Attribut eines Elements für das Element und seiner Kindelemente festgelegt werden.
+    \item[Deklaration eines Namespace Prefix] Durch Angabe eines Attributes in der Form \mintinline{xml}{xmlns:prefix} kann einem Namensraum ein Prefix zugewiesen werden. Um zu signalisieren, dass das Element oder eines seiner Kindelemente zu diesem Namensraum gehört, wird der Tagname mit diesem Prefix versehen (z.B. in Zeile~6 von Beispiel~\ref{ex:xmlns}). Dies ermöglicht auch die Nutzung und Vermischung des Vokabulars verschiedener Namensräume in einem einzelnen Dokument.
+    \item[Deklaration des Vorgabenamensraums] Sind Tags mit keinem Prefix versehen, gehören diese zum Vorgabenamensraum. Dieser kann mithilfe des \mintinline{xml}{xmlns}-Attribut eines Elements für das Element und seiner Kindelemente festgelegt werden (z.B. in Zeile~9 von Beispiel~\ref{ex:xmlns}).
 \end{description}
 
 \subsection{\acrfull{c14n}}
@@ -102,7 +102,7 @@ Um in einem \acrshort{xml}-Dokument zu deklarieren, kann das \mintinline{xml}{xm
 Logisch äquivalente \acrshort{xml}-Dokumente können sich in der konkreten Darstellung
 stark unterscheiden. Das \gls{w3c} hat daher Richtlinien zur Umwandlung in eine
 einheitliche Darstellungsweise---die sogenannte \emph{Kanonische Form}---
-festgelegt. Der Umwandlungprozess wird \acrfull{c14n} genannt.\cite{boyer2001c14n}
+festgelegt. Der Umwandlungprozess wird \acrfull{c14n} genannt.~\cite{boyer2001c14n}
 
 \begin{figure}[h!]
 \begin{example}[Kanonisierung]
@@ -121,17 +121,17 @@ logisch äquivalent.
 \subsubsection{Motivation und Anwendungsbereich}
 \label{sec:c14nscope}
 
-Durch die Flexibilität des \acrshort{xml}-Standards besteht die MöglichkeitInformationen durch eine Vielzahl \acrshort{xml}-Dokumente darzustellen.\cite{siddiqui2002c14n} Die im Beispiel~\ref{ex:c14n} abgebildeten \acrshort{xml}-Dokumente haben einen identischen Informationsgehalt, lediglich die Darstellungsweisen unterscheiden sich. Allein die Möglichkeit, innerhalb eines Start-Tags eine beliebe Anzahl von Whitespace einzusetzen\cite[Produktionsregeln 3 und 40]{maler2008xml} führt bereits zu einer unendlichen Anzahl von logisch äquivalenten \acrshort{xml}-Darstellungen einer Information.
+Durch die Flexibilität des \acrshort{xml}-Standards besteht die Möglichkeit, Informationen durch eine Vielzahl von \acrshort{xml}-Dokumenten darzustellen~\cite{siddiqui2002c14n}. Die im Beispiel~\ref{ex:c14n} abgebildeten \acrshort{xml}-Dokumente haben einen identischen Informationsgehalt, lediglich die Darstellungsweisen unterscheiden sich. Allein die Möglichkeit, innerhalb eines Start-Tags eine beliebe Anzahl von Whitespace einzusetzen~\cite[Produktionsregeln 3 und 40]{maler2008xml} führt bereits zu einer unendlichen Anzahl von logisch äquivalenten \acrshort{xml}-Darstellungen einer Information.
 
-Um die verschiedenden \acrshort{xml}-Dokumenten enthaltene Logik vergleichbar zu machen, muss daher von der konkreten Darstellung abstrahiert werden. \acrlong{c14n} überführt daher beliebige \acrshort{xml}-Dokumente in eine \emph{Kanonische Form}, indem eine Reihe von Arbeitsschritten abgearbeitet werden, die in Abschnitt~\ref{sec:c14nsteps} beschrieben sind.
+Um die in verschiedenden \acrshort{xml}-Dokumenten enthaltene Logik vergleichbar zu machen, muss daher von der konkreten Darstellung abstrahiert werden. \acrlong{c14n} überführt daher beliebige \acrshort{xml}-Dokumente in eine \emph{Kanonische Form}, indem eine Reihe von Arbeitsschritten abgearbeitet werden, die in Abschnitt~\ref{sec:c14nsteps} beschrieben sind.
 
-\acrlong{c14n} wird vor allem im Bereich der Signaturerstellung und -verifikation eingesetzt. Dabei wird nicht das zu siginierende Datenobjekt selbst, sondern lediglich ein \emph{Digest} d.h. ein Hashwert des Objekts) signiert.\cite[Abschnitt 2.0]{bartel2008xmlsig} Subtile und für die Dokumentlogik irrelevante Unterschiede wie der Einsatz von abweichenden Zeilenumbrüchen oder die Nutzung von einfachen statt doppelten Hochkomma als Trennzeichen für Attribute würden dabei den Hashwert ändern und die Signatur ungültig werden lassen. Daher werden die Datenobjekte standardmäßig mittels \acrlong{c14n} transformiert.\cite[Abschnitt 4.3.3.2]{bartel2008xmlsig}
+\acrlong{c14n} wird vor allem im Bereich der Signaturerstellung und -verifikation eingesetzt. Dabei wird nicht das zu siginierende Datenobjekt selbst, sondern lediglich ein \emph{Digest} d.h. ein Hashwert des Objekts) signiert.~\cite[Abschnitt 2.0]{bartel2008xmlsig} Subtile und für die Dokumentlogik irrelevante Unterschiede wie der Einsatz von abweichenden Zeilenumbrüchen oder die Nutzung von einfachen statt doppelten Hochkomma als Trennzeichen für Attribute würden dabei den Hashwert ändern und die Signatur ungültig werden lassen. Daher werden die Datenobjekte standardmäßig mittels \acrlong{c14n} transformiert.~\cite[Abschnitt 4.3.3.2]{bartel2008xmlsig}
 
 \subsubsection{Arbeitsschritte}
 \label{sec:c14nsteps}
 
 Bei der \acrlong{c14n} werden grob folgende Änderungen am
-\acrshort{xml}-Dokument vorgenommen\cite[Abschnitt 1.1]{boyer2001c14n}:
+\acrshort{xml}-Dokument vorgenommen~\cite[Abschnitt 1.1]{boyer2001c14n}:
 
 \begin{enumerate}
     \item{} {Kodierung der Eingabe mit dem UTF-8-Zeichensatz}
@@ -145,7 +145,7 @@ Bei der \acrlong{c14n} werden grob folgende Änderungen am
         \texttt{U+000D}: \texttt{CARRIAGE RETURN (CR)}} und Zeilenumbruch
         (\texttt{{\textbackslash}r{\textbackslash}n}). Ältere Mac-OS-Versionen setzen hingegen die
         Kombination Zeilenumbruch und Wagenrücklauf (\texttt{{\textbackslash}n{\textbackslash}r})
-        ein.\cite[S.~212]{unicode9}
+        ein~\cite[S.~212]{unicode9}.
         Bei der Kanonisierung werden alle Varianten durch einen einfachen
         Zeilenumbruch ohne Wagenrücklauf (\texttt{{\textbackslash}n}) ersetzt.
     \item{} {Normalisieren der Attributwerte}\\\\
@@ -153,9 +153,9 @@ Bei der \acrlong{c14n} werden grob folgende Änderungen am
     \item{} {Zeichen- und Entity-Referenzen werden ersetzt}
     \item{} \texttt{CDATA}-Abschnitte werden in normale Text-Nodes umgewandelt
     \item{} \acrshort{xml}-Deklaration und \gls{dtd} werden entfernt
-    \item{} Keere Elemente werden in Paare bestehend aus Start-End-Tags umgewandelt
+    \item{} Leere Elemente werden in Paare bestehend aus Start- und End-Tags umgewandelt
     \item{} Whitespace außerhalb des Wurzelelements und innerhalb von Start- und End-Tags wird normalisiert
-    \item{} Jeglicher Whitespace innerhalb Wurzelelements wird (mit Ausnahme der o.g. normalisierten Zeilenenden) unverändert belassen
+    \item{} Jeglicher Whitespace innerhalb des Wurzelelements wird (mit Ausnahme der o.g. normalisierten Zeilenenden) unverändert belassen
     \item{} Alle Attributwert-Trennzeichen werden in Anführungszeichen (\enquote{double quotes})\footnote{Unicode Code-Point \texttt{U+0022}: \texttt{QUOTATION MARK}} umgewandelt
     \item{} Sonderzeichen in Attributwerten und Zeicheninhalt werden durch \acrshort{xml} Character References ersetzt.
     \item{} Überflüssige Namespace-Deklarationen werden entfernt.
@@ -166,19 +166,19 @@ Bei der \acrlong{c14n} werden grob folgende Änderungen am
 \subsubsection{Kommentare}
 \label{sec:c14ncomments}
 
-Die \gls{w3c}-Empfehlung für kanonisches \acrshort{xml} erlaubt sowohl das ersatzlose Entfernen als auch das Beibehalten der Kommentare, wobei das Resultat in letzterem Fall als \emph{Kanonisches \acrshort{xml} mit Kommentaren} (engl. \enquote{canonical \acrshort{xml} with comments})\cite[Abschnitt 2.1]{boyer2001c14n}. Implementierung müssen in der Lage sein, kanonisches \acrshort{xml} ohne Kommentare zu erstellen, während die Ünterstützung für kanonisches \acrshort{xml} mit Kommentaren zwar empfohlen, jedoch nicht vorgeschrieben ist.
+Die \gls{w3c}-Empfehlung für kanonisches \acrshort{xml} erlaubt sowohl das ersatzlose Entfernen als auch das Beibehalten der Kommentare, wobei das Resultat in letzterem Fall als \emph{Kanonisches \acrshort{xml} mit Kommentaren} (engl. \enquote{canonical \acrshort{xml} with comments})~\cite[Abschnitt 2.1]{boyer2001c14n} bezeichnet wird. Implementierungem müssen in der Lage sein, kanonisches \acrshort{xml} ohne Kommentare zu erstellen, während die Ünterstützung für kanonisches \acrshort{xml} mit Kommentaren zwar empfohlen, jedoch nicht vorgeschrieben ist.
 
 \subsubsection{Exklusive \acrlong{c14n}}
 \label{sec:excc14n}
 
-Einen Sonderfall stellt die Exklusive \acrlong{c14n} dar, die in einer separaten Empfehlung des \gls{w3c} beschrieben ist.\cite{boyer2002excc14n} Während bei der regulären (inklusiven) \acrlong{c14n} der Vorfahren-Kontext (z.B. Namespaces und Attribute im \acrshort{xml}-Namensraum) von Teildokumente eines \acrshort{xml}-Dokuments erhalten bleibt, wird dieser bei der exklusiven \acrshort{c14n} verworfen.\cite[Abschnitt~18]{siddiqui2002c14n2} Dies kann insbesondere dann sinnvoll sein, wenn Teildokumente aus dem Quelldokumente herausgelöst und ggf. andere Dokumente eingebettet werden sollen (Re-Enveloping), ohne dass sich ihre digitale Signatur ändert.
+Einen Sonderfall stellt die Exklusive \acrlong{c14n} dar, die in einer separaten Empfehlung des \gls{w3c} beschrieben ist~\cite{boyer2002excc14n}. Während bei der regulären (inklusiven) \acrlong{c14n} der Vorfahren-Kontext (z.B. Namespaces und Attribute im \acrshort{xml}-Namensraum) von Teildokumenten eines \acrshort{xml}-Dokuments erhalten bleibt, wird dieser bei der exklusiven \acrshort{c14n} verworfen.~\cite[Abschnitt~18]{siddiqui2002c14n2} Dies kann insbesondere dann sinnvoll sein, wenn Teildokumente aus dem Quelldokument herausgelöst und ggf. andere Dokumente eingebettet werden sollen (Re-Enveloping), ohne dass sich ihre digitale Signatur ändert.
 
 \subsection{Angriffe}
 \label{sec:xmlattacks}
 
-Einige der Features des \acrshort{xml}-Ökosystems können für Angriffe auf Parser mißbraucht werden und insbesondere \glspl{dtd} haben sich in der Vergangenheit als potentiell gefährtlich herausgestellt.\cite[S.~4]{morgan2014xml}
+Einige der Features des \acrshort{xml}-Ökosystems können für Angriffe auf Parser missbraucht werden und insbesondere \glspl{dtd} haben sich in der Vergangenheit als potentiell gefährlich herausgestellt.~\cite[S.~4]{morgan2014xml}
 
-Angriffe aus \acrshort{xml}-Parser lassen sich grob in drei Kategorien aufteilen:
+Obwohl Angriffe zum Teil seit Jahren bekannt sind, sind viele XML-Parser weiterhin verwundbar -- Forscher der Ruhr-Universität Bochum fanden Sicherheitslücken in den Standardkonfigurationen von 25 der 33 gestesteten \acrshort{xml}-Parser~\cite{spaeth2016sok}.
 
 \begin{description}
     \item[\acrlong{dos}] Angriffe dieser Kategorie zielen drauf ab, einen Dienst unerreichbar für andere Nutzer zu machen, indem er -- oder der Server auf dem er läuft -- überlastet wird.
@@ -191,18 +191,18 @@ Angriffe aus \acrshort{xml}-Parser lassen sich grob in drei Kategorien aufteilen
 \section{\acrfull{json}}
 \label{sec:json}
 
-Vor allem im Bereich des Datenaustausch hat sich die \acrfull{json} als Alternative zum gängigen \acrshort{xml}-Format etabliert. Im Gegensatz zum dokumentorientierten Auszeichnungssprache \acrshort{xml} wird \acrshort{json} häufig als \emph{datenorientiert} bezeichnet.\cite{gupta2007xmljson}
+Vor allem im Bereich des Datenaustauschs hat sich die \acrfull{json} als Alternative zum gängigen \acrshort{xml}-Format etabliert. Im Gegensatz zur dokumentorientierten Auszeichnungssprache \acrshort{xml} wird \acrshort{json} häufig als \emph{datenorientiert} bezeichnet.~\cite{gupta2007xmljson}
 
 \subsection{Datenmodell und Syntax}
 \label{sec:jsontypes}
 
-Das \acrshort{json}-Format verfügt über mehrere verschiedene Datentypen, darunter die Containertypen \emph{Objekt} und \emph{Array}:\cite{ecma404}
+Das \acrshort{json}-Format verfügt über mehrere verschiedene Datentypen, darunter die Containertypen \emph{Objekt} und \emph{Array}:~\cite{ecma404}
 
 \begin{description}
-    \item[Objekte] werden mit geschweiften Klammern \texttt{\{\}}angegeben und enhalten eine kommaseparierten ungeordneten Liste von beliebig vielen Schlüssel-Wert-Paaren. Die Schlüssel müssen vom Typ Strings sein und dürfen im Objekt nur einmal vorkommen. Die Werte dürfen beliebigen Typs sein (auch weitere Objekte).
-    \item[Arrays] sind neben \emph{Objekten} die zweite Containerklasse des \acrshort{json}-Formats und enhalten eine kommaseparierte geordnete Liste von Werten beliebigen Typs. Diese Liste wird von eckigen Klammern (\texttt{[]} umschlossen darf auch leer sein.
-    \item[Strings] sind einfache Zeichenketten, die aus beliebig vielen Zeichen bestehen und von doppelten Anführungszeichen (\texttt{"}) umschlossen sind. Kontrollzeichen, doppelte Anführungszeichen und der Backslash (\texttt{\textbackslash})  müssen mit einem Backslash quotiert werden.
-    \item[Zahlen] werden als Dezimalwert ohne führende Null dargestellt. Für negativen Werte kann ein Minuszeichen vorangestellt werden. Bei der Angabe von Nachkommastellen werden diese mittels eines Punkts (\texttt{.}) vom Ganzzahlteil getrennt. Auch die wissenschaftliche \enquote{E-Notation} ist erlaubt.
+    \item[Objekte] werden mit geschweiften Klammern angegeben und enhalten eine kommaseparierte ungeordnete Liste von beliebig vielen Schlüssel-Wert-Paaren. Die Schlüssel müssen vom Typ String sein und dürfen im Objekt nur einmal vorkommen. Die Werte dürfen beliebigen Typs sein (auch weitere Objekte).
+    \item[Arrays] sind neben \emph{Objekten} die zweite Containerklasse des \acrshort{json}-Formats und enhalten eine kommaseparierte geordnete Liste von Werten beliebigen Typs. Diese Liste wird von eckigen Klammern umschlossen und darf auch leer sein.
+    \item[Strings] sind einfache Zeichenketten, die aus beliebig vielen Zeichen bestehen und von doppelten Anführungszeichen umschlossen sind. Kontrollzeichen, doppelte Anführungszeichen und der Backslash müssen mit einem Backslash quotiert werden.
+    \item[Zahlen] werden als Dezimalwert ohne führende Null dargestellt. Für negative Werte kann ein Minuszeichen vorangestellt werden. Bei der Angabe von Nachkommastellen werden diese mittels eines Punkts vom Ganzzahlteil getrennt. Auch die wissenschaftliche \enquote{E-Notation} ist erlaubt.
     \item[\texttt{true} / \texttt{false}] bezeichnet die Booleschen Werte \enquote{wahr} und \enquote{falsch}.
     \item[\texttt{null}] steht für den Nullwert.
 \end{description}
@@ -294,11 +294,11 @@ Unerheblicher Whitespace (Tabulator\footnote{Unicode-Codepoint \texttt{U+0009}: 
 
 \subsection{Angriffe}
 
-Das \acrshort{json}-Format ist sehr einfach aufgebaut -- komplexere Features wie die beispielsweise die Referenzierung von internen oder externen Werten und Dateien fehlen in der Spezifikation. Damit gibt es kein Äquivalent zu den \emph{Entities} des \acrshort{xml}-Formats, die Grundlage der meisten Angriffe auf \acrshort{xml}-Parser sind.
+Das \acrshort{json}-Format ist sehr einfach aufgebaut -- komplexere Features wie die Referenzierung von internen oder externen Werten und Dateien fehlen in der Spezifikation. Damit gibt es kein Äquivalent zu den \emph{Entities} des \acrshort{xml}-Formats, die Grundlage der meisten Angriffe auf \acrshort{xml}-Parser sind.
 
-Ein \acrfull{idraft} der \gls{ietf} von September 2012 schlug eine solche Funktionalität unter dem Titel \enquote{\acrshort{json} Reference} zwar vor, diese kam aber aber nie über das Entwurfsstadium hinaus.\cite{jsonref}
+Ein \acrfull{idraft} der \gls{ietf} von September 2012 schlug eine solche Funktionalität unter dem Titel \enquote{\acrshort{json} Reference} zwar vor, diese kam aber aber nie über das Entwurfsstadium hinaus.~\cite{jsonref}
 
-Eine Spezifikation für die Nutzung von Schemas ist aktuell im Entwurfsstadium. Sie beschreibt ebenfalls eine Möglichkeit zur Referenzierung von Schemata und \acrshort{json}-Werten.\cite[Abschnitt 8]{jsonschema}. Im Gegensatz zu \acrshort{xml} sieht die Spezifikation allerdings zur Zeit keine Möglichkeit zur Einbettung eines Schemas in ein Datendokument vor. Auch der Verweis auf ein Schema im Datendokument selbst nicht vorgesehen, stattdessen können aber HTTP-Header \cite[Abschnitt 10.1]{jsonschema} verwendet werden, um auf ein Schema zu verweisen. Daher werden die Sicherheitsaspekte von \emph{\acrshort{json} Schema} im Rahmen dieser Bacherlorarbeit nicht betrachtet.
+Eine Spezifikation für die Nutzung von Schemas ist aktuell im Entwurfsstadium. Sie beschreibt ebenfalls eine Möglichkeit zur Referenzierung von Schemata und \acrshort{json}-Werten~\cite[Abschnitt 8]{jsonschema}. Im Gegensatz zu \acrshort{xml} sieht die Spezifikation allerdings zur Zeit keine Möglichkeit zur Einbettung eines Schemas in ein Datendokument vor. Auch der Verweis auf ein Schema im Datendokument selbst ist nicht vorgesehen. Stattdessen können aber HTTP-Header ~\cite[Abschnitt 10.1]{jsonschema} verwendet werden, um auf ein Schema zu verweisen. Daher werden die Sicherheitsaspekte von \emph{\acrshort{json} Schema} im Rahmen dieser Bacherlorarbeit nicht betrachtet.
 
 \begin{figure}[h]
 \begin{example}[Unsicheres \acrshort{json}-Parsing] Wird \acrshort{json} mittels \mintinline{javascript}{eval()}-Funktion geparst, kann ein Angreifer u.U. Schadcode ausführen.
@@ -310,4 +310,4 @@ Eine Spezifikation für die Nutzung von Schemas ist aktuell im Entwurfsstadium. 
 \end{example}
 \end{figure}
 
-Ein möglicher Angriffspunkt beim Einsatz von \acrshort{json}-verarbeitenden Applikationen auf JavaScript-Basis kann der Einsatz der \mintinline{javascript}{eval()}-Funktion\cite[Abschnitt 18.2.1]{ecma262}. Als Teilmenge von JavaScript\footnote{Auch wenn diese Aussage vom \acrshort{json}-Entwickler selbst stammt\cite{crockford2006fatfree}, ist sie umstritten, da JavaScript auf Zahlen im IEEE-754 binary64-Format\cite[Abschnitt 6.1.6]{ecma262} beschränkt ist. Im Gegensatz dazu enthält die \acrshort{json}-Spezifikation keinerlei Einschränkungen bezüglich der Fließkommagenauigkeit\cite[Abschnitt 8]{ecma404} -- \acrshort{json}-Dokumente können daher auch Zahlen enthalten, die in JavaScript nicht darstellbar sind.} ist die Nutzung der Funktion zwar möglich, kann jedoch ohne weitergehende Validierung die Einschleusung von Schadcode ermöglichen.
+Ein möglicher Angriffspunkt beim Einsatz von \acrshort{json}-verarbeitenden Applikationen auf JavaScript-Basis kann der Einsatz der \mintinline{javascript}{eval()}"~Funktion~\cite[Abschnitt 18.2.1]{ecma262} sein. Als Teilmenge von JavaScript\footnote{Auch wenn diese Aussage vom \acrshort{json}-Entwickler selbst stammt~\cite{crockford2006fatfree}, ist sie umstritten, da JavaScript auf Zahlen im IEEE-754 binary64-Format~\cite[Abschnitt 6.1.6]{ecma262} beschränkt ist. Im Gegensatz dazu enthält die \acrshort{json}-Spezifikation keinerlei Einschränkungen bezüglich der Fließkommagenauigkeit~\cite[Abschnitt 8]{ecma404} -- \acrshort{json}-Dokumente können daher auch Zahlen enthalten, die in JavaScript nicht darstellbar sind.} ist die Nutzung der Funktion zwar möglich, kann jedoch ohne weitergehende Validierung die Einschleusung von Schadcode ermöglichen.
