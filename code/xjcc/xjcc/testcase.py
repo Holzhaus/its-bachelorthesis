@@ -137,6 +137,7 @@ class ConversionTestCase(object):
 
             xml_output = None
             json_output = None
+            logger.info('Converting XML to JSON...')
             try:
                 json_output = converter.module.xml_to_json(xmldata)
             except Exception:
@@ -144,6 +145,7 @@ class ConversionTestCase(object):
                 logger.debug('Error occured during xml-to-json conversion',
                              exc_info=True)
             else:
+                logger.info('Checking resulting JSON data...')
                 json_data, json_errors = demjson.decode(
                         json_output,
                         strict=True,
@@ -161,6 +163,7 @@ class ConversionTestCase(object):
                     json_input = demjson.encode(json_data, strict=True,
                                                 encoding='utf-8',
                                                 sort_keys=demjson.SORT_SMART)
+                    logger.info('Converting JSON back to XML...')
                     try:
                         xml_output = converter.module.json_to_xml(json_input)
                     except Exception:
@@ -168,6 +171,7 @@ class ConversionTestCase(object):
                         logger.debug('Error occured during json-to-xml ' +
                                      'conversion', exc_info=True)
                     else:
+                        logger.info('Canonicalizing XML...')
                         try:
                             xmloutput_c14n = canonicalize(xml_output)
                             passed = (xmldata_c14n == xmloutput_c14n)
