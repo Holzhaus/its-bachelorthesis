@@ -102,7 +102,7 @@ BCOR=1cm, % Bindekorrektur: Change this accordingly, also read the KomaScript Gu
 
 % Math stuff and units
 \RequirePackage{latexsym,amsmath, amssymb, amsfonts, upgreek}
-\RequirePackage{siunitx}
+\RequirePackage[binary-units=true]{siunitx}
 \newcommand{\mathup}{\mathrm}
 
 % Acronyms
