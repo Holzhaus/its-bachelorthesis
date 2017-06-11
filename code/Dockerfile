@@ -12,7 +12,8 @@ RUN apk add --update ca-certificates python3 nodejs py-setuptools py-lxml maven 
 RUN npm install -g https://github.com/Holzhaus/xmldom/archive/6eb80978c15a869521fc82db44ff23bf10595f28.tar.gz  \
                    x2js@3.1.0 \
                    jxon@2.0.0-beta.4 \
-                   jsonml-tools@2.0.0
+                   jsonml-tools@2.0.0 \
+                   https://github.com/Holzhaus/jsonml/archive/c8c15cc276eda15a85b67a4883196efe4528b171.tar.gz
 
 RUN mkdir -p /opt/xjcc
 COPY requirements.txt /opt/xjcc/requirements.txt

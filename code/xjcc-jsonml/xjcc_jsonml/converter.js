@@ -20,7 +20,7 @@ const ctx = {
 /* Run code in fake browser context */
 let filename;
 if (process.argv.includes("--patched")) {
-    filename = path.join(__dirname, 'jsonml-xml-patched.js');
+    filename = require.resolve("jsonml-tools-patched/jsonml-xml.js");
 } else {
     filename = require.resolve("jsonml-tools/jsonml-xml.js");
 }
