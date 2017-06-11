@@ -4,8 +4,8 @@
 name: Whitespace (Indentation)
 description: Checks if indentation retained
 -->
-<doc>
+<root>
    <one>A</one>
    <two>B</two>
    <three>C</three>
-</doc>
+</root>

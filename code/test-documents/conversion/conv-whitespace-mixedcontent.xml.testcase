@@ -4,9 +4,7 @@
 name: Whitespace (Mixed Content)
 description: Checks if whitespace of mixed content is retained
 -->
-<doc>
-   <clean>   </clean>
-   <dirty>   A   B   </dirty>
+<root>
    <mixed>
       A
       <clean>   </clean>
@@ -14,4 +12,4 @@ description: Checks if whitespace of mixed content is retained
       <dirty>   A   B   </dirty>
       C
    </mixed>
-</doc>
+</root>

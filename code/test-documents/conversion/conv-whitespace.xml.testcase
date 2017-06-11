@@ -1,17 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--;testcase
 [General]
-name: Whitespace
+name: Whitespace (Clean/Dirty)
 description: Checks if whitespace is retained
 -->
-<doc>
-   <clean>   </clean>
-   <dirty>   A   B   </dirty>
-   <mixed>
-      A
-      <clean>   </clean>
-      B
-      <dirty>   A   B   </dirty>
-      C
-   </mixed>
-</doc>
+<root><clean>   </clean><dirty>   A   B   </dirty></root>
