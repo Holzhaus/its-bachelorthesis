@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--;testcase
+[General]
+name: Mixed Content
+description: Checks if intermingled elements and character data can be converted
+ -->
+<root>This is a <type>test</type>. We want to know if <subject>Mixed Content</subject> works.</root>
