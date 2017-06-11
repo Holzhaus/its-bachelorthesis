@@ -77,13 +77,16 @@ def execute(target, ctx=None, timeout=30):
         process.join()
     logger.info('Process terminated.')
 
-    send_conn.close()
+    try:
+        send_conn.close()
+    except Exception:
+        pass
     logger.info('Send conn closed.')
     try:
         if not recv_conn.poll():
             raise ValueError('No result found')
         zretval = recv_conn.recv_bytes()
-    except (IOError, ValueError):
+    except Exception:
         logger.info('No output data received.')
         retval = None
     else:
