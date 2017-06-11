@@ -110,6 +110,9 @@ class ConverterPlugin(object):
 
 
 class NodejsConverterPlugin(ConverterPlugin):
+    ENCODE_ARGS = []
+    DECODE_ARGS = ['--decode']
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.node_app = self.get_package_filename('converter.js')
@@ -137,8 +140,10 @@ class NodejsConverterPlugin(ConverterPlugin):
 
     def xml_to_json(self, xml_data):
         cmd = ['node', self.node_app]
+        cmd.extend(ENCODE_ARGS)
         return self.run_command(cmd, xml_data, env=self.node_env)
 
     def json_to_xml(self, json_data):
-        cmd = ['node', self.node_app, '--decode']
+        cmd = ['node', self.node_app]
+        cmd.extend(DECODE_ARGS)
         return self.run_command(cmd, json_data, env=self.node_env)
