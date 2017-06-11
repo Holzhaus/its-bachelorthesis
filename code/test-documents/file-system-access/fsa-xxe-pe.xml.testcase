@@ -8,8 +8,8 @@ description: File System Access via External Entity Expansion (Parameter Entity 
 path: secret.txt
 
 [ServerResponse /xxe-pe.dtd]
-access_allowed: True
 content: xxe-pe.dtd
+log-request: no
 -->
 <!DOCTYPE data [
   <!ELEMENT data (#PCDATA)>

