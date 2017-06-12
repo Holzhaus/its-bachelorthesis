@@ -35,7 +35,7 @@ def get_testcases(name=None, category=None):
 
 
 def sort_testresults(row):
-    return '-'.join([row['Converter'], row['Testcase']])
+    return '-'.join([row['Converter'], row['Basename']])
 
 
 def list_converters(args):
@@ -107,7 +107,7 @@ def test_conversion(args):
             future = executor.submit(tc.test_all_converters, converters)
             futures.append(future)
 
-        outtable = output.OutputTable(['Converter', 'Testcase', 'Result'])
+        outtable = output.OutputTable(['Converter', 'Basename', 'Testcase', 'Result'])
         for future in concurrent.futures.as_completed(futures):
             for testresult in future.result():
                 resultstr = TEXTRESULTS[testresult.test_passed]
@@ -116,6 +116,7 @@ def test_conversion(args):
                              resultstr)
                 outtable.add({
                     'Converter': testresult.converter.name,
+                    'Basename': testresult.test.shortname,
                     'Testcase': testresult.test.name,
                     'Result': resultstr,
                 })
