@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--;testcase
+[General]
+name: Processing Instructions (Attibute Data)
+description: Checks if Processing Instructions with data in pseudo-attribute form are retained
+-->
+<root><?foo attr1="bar" attr2="baz"?></root>
