@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--;testcase
+[General]
+name: Processing Instructions (Markup)
+description: Checks if markup chars in processing Instructions are handled properly
+-->
+<root><?pi <>&?<!--]]>--?></root>

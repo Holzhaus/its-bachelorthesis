@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--;testcase
+[General]
+name: Processing Instructions (Whitespace)
+description: Checks if whiteapace in Processing Instructions is retained
+-->
+<root><?pi   whitespace    
+  
+
+       
+  
+    ?></root>
