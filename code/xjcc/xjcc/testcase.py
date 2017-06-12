@@ -314,7 +314,7 @@ class SecurityTestCase(ConversionTestCase):
 
 
 CATEGORIES = {
-    'conversion': ConversionTestCase,
+    'basic': ConversionTestCase,
     'charsupport': ConversionTestCase,
     'complex': ConversionTestCase,
     'denial-of-service': SecurityTestCase,
