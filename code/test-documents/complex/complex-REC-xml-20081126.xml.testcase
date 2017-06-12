@@ -2,7 +2,7 @@
 <!--;testcase
 ; The entity references have been expanded manually.
 [General]
-name: Complex XML
+name: XML 1.0 5th Edition (XML version)
 description: Checks if complex XML documents can be converted
 -->
 <!DOCTYPE spec SYSTEM "xmlspec.dtd" [

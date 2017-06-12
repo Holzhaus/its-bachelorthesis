@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--;testcase
 [General]
-name: Complex XHTML
+name: XML 1.0 5th Edition (XHTML version)
 description: Checks if complex XHTML documents can be converted
 -->
 <!DOCTYPE html
