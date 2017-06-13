@@ -6,6 +6,7 @@ import queue
 import threading
 import http.server
 
+
 PathInfo = collections.namedtuple('PathInfo', 'content status headers log_request')
 
 
@@ -61,6 +62,7 @@ class HTTPServer(http.server.HTTPServer):
 
     def get_pathinfo(self, path):
         return self.paths.get(path, PathInfo(None, None, None, True))
+
 
 class HTTPRequestHandler(http.server.BaseHTTPRequestHandler):
     def do_GET(self):
