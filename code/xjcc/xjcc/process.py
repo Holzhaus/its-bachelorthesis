@@ -32,6 +32,9 @@ def work(target, ctx, send_conn, max_cpu_secs, max_vmem_size):
         result = target()
     except subprocess.CalledProcessError as e:
         result = None
+        if hasattr(e, 'stderr'):
+            logger.info('Child process stderr: %r', e.stderr)
+        logger.info('Child process stdout: %r', e.output)
         if e.returncode < 0:
             logger.info('Child process died, committing suicide using ' +
                         'signal %s (%d).',
@@ -87,7 +90,7 @@ def execute(target, ctx=None, timeout=30):
             raise ValueError('No result found')
         zretval = recv_conn.recv_bytes()
     except Exception:
-        logger.info('No output data received.')
+        logger.info('No output data received.', exc_info=True)
         retval = None
     else:
         try:
