@@ -269,6 +269,7 @@ class SecurityTestCase(ConversionTestCase):
                 logger.info('Running in separate process...')
                 exitcode, retval = process.execute(convert, ctx=ctx)
                 json_output, xml_output = retval if retval else (None, None)
+                logger.debug('Return value was: %r', retval)
                 if exitcode < 0:
                     # Process killed by signal
                     sig = signal.Signals(-exitcode)
