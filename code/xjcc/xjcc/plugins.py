@@ -86,8 +86,11 @@ class ConverterPlugin(object):
                 with subprocess.Popen(cmd, stdin=f, stdout=out_f,
                                       stderr=subprocess.PIPE, env=env) as proc:
 
+                    errors = []
                     for line in iter(proc.stderr.readline, b''):
-                        logger.debug(line.decode().strip())
+                        errmsg = line.decode().strip()
+                        errors.append(errmsg)
+                        logger.debug(errmsg)
 
                     returncode = proc.wait()
                     logger.debug('Process ended with status %d', returncode)
@@ -96,8 +99,10 @@ class ConverterPlugin(object):
                     output = out_f.read()
 
                     if returncode != 0:
-                        raise subprocess.CalledProcessError(returncode, cmd,
-                                                            output=output)
+                        e = subprocess.CalledProcessError(returncode, cmd,
+                                                          output=output)
+                        e.stderr = errors
+                        raise e
         return output
 
     @abc.abstractmethod
