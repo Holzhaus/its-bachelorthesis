@@ -238,7 +238,8 @@ class SecurityTestCase(ConversionTestCase):
 
                 for path, r in self.responses.items():
                     data = r.content.format_map(refs).encode('utf-8')
-                    server.add_path(path, status=r.status, content=data)
+                    server.add_path(path, status=r.status, content=data,
+                                    log_request=r.log_request)
 
                 # Create "local" files
                 for fileref, content in self.files.items():
