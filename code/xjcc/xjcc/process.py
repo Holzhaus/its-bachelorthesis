@@ -41,6 +41,9 @@ def work(target, ctx, send_conn, max_cpu_secs, max_vmem_size):
                         signal.Signals(-e.returncode).name, -e.returncode)
             os.kill(os.getpid(), -e.returncode)
             signal.pause()
+        else:
+            logger.info('Child process failed with status %s', e.returncode)
+            os._exit(e.returncode)
     except (OSError, MemoryError):
             sgn = signal.SIGSEGV
             logger.info('Child process ran out of memory, committing suicide' +
