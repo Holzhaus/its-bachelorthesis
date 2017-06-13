@@ -181,6 +181,7 @@ Einige der Features des \acrshort{xml}-Ökosystems können für Angriffe auf Par
 Obwohl Angriffe zum Teil seit Jahren bekannt sind, sind viele XML-Parser weiterhin verwundbar -- Forscher der Ruhr-Universität Bochum fanden Sicherheitslücken in den Standardkonfigurationen von 25 der 33 gestesteten \acrshort{xml}-Parser~\cite{spaeth2016sok}.
 
 \subsubsection{\acrlong{fsa}}
+\label{sec:xmlattacks-fsa}
 Hierbei soll der \acrshort{xml}-Parser dazu gebracht werden, eine normalerweise nicht zugängliche Datei auf dem lokalen Dateisystem in ein \acrshort{xml}-Dokument einzubetten. Kann der Angreifer die Zielapplikation dazu bringen, ihm Zugriff auf das Dokument zu gewähren, erlangt er Kenntnis vom Inhalt der Datei.
 
 \paragraph{\acrfull{xxe}}
@@ -222,7 +223,7 @@ Hierbei soll der \acrshort{xml}-Parser dazu gebracht werden, eine normalerweise 
 
 \paragraph{\acrshort{xinclude}}
 
-Auch bei Angriffen auf Basis von \gls{xinclude} enthält das zu parsende \acrshort{xml}-Dokument eine Anweisung zum Einbetten einer lokalen Datei. Im Gegensatz zu klassischen \acrshort{xxe}-Angriffen kann der eingebette Inhalt jedoch beliebiger Text sein, darf also z.B. auch ungültiges \acrshort{xml}-Markup enthalten.~\cite[S.~12]{morgan2014xml}
+Auch bei Angriffen auf Basis von \gls{xinclude} enthält das zu parsende \acrshort{xml}-Dokument eine Anweisung zum Einbetten einer lokalen Datei. Im Gegensatz zu klassischen \acrshort{xxe}-Angriffen kann der eingebette Inhalt jedoch beliebiger Text sein, darf also z.B. auch ungültiges \acrshort{xml}-Markup enthalten.~\cite[S.~80]{spaeth2015dtdattacks}
 
 \begin{example}[\acrshort{xinclude}-Angriff] Der \acrshort{xml}-Parser wird angewiesen, den Inhalt der Datei \texttt{/etc/passwd} in das Dokument einzubetten.
     \begin{minted}{xml}
@@ -233,7 +234,10 @@ Auch bei Angriffen auf Basis von \gls{xinclude} enthält das zu parsende \acrsho
     \end{minted}
 \end{example}
 
+Auch \acrfull{xslt} erlaubet die Einbindung von Dateien, beispielsweise über die \mintinline{xml}{fn:document}-Funktion~\cite[Abschn. 20.1]{xslt} und eigenet sich daher prinzipell für \acrshort{fsa}-Angriffe.
+
 \subsubsection{\acrfull{dos}}
+\label{sec:xmlattacks-dos}
 
 Angriffe dieser Kategorie zielen drauf ab, einen Dienst unerreichbar für andere Nutzer zu machen, indem er -- oder der Server, auf dem er läuft -- überlastet wird. Dazu wird in der Regel versucht, den zur Verfügung stehende Arbeitsspeicher zu füllen oder die \acrshort{cpu} über längere Zeit auszulasten. Zudem können Angriffsvektoren aus dem Bereich \acrlong{fsa} für \acrshort{dos}-Angriffe eingesetzt werden, indem der Parser angewiesen wird, extrem große bzw. niemals endende Dateien wie \texttt{/dev/random} zu lesen.
 
@@ -272,17 +276,23 @@ Indem interne Entities über mehrere Ebenen ineinander verschachtelt werden, wir
 Dieser Angriff ist eine Abwandlung der \emph{Billion Laughs Attack}. Es wird eine einzelne Entität angelegt, die einen extrem langem String enthält. Dieser wird nun mehrmals im Dokument referenziert, die Anzahl der verwendeten Referenzen ist jedoch im Vergleich zu \emph{Billion Laughs} gering, sodass eine mögliche Obergrenze für erlaubte Entity-Referenzen umgangen werden kann.
 
 \subsubsection{\acrlong{ssrf}}
+\label{sec:xmlattacks-ssrf}
+
 Durch manipulierte \acrshort{xml}-Dateien soll ein Parser dazu gebracht werden, eine Anfrage an einen anderen Netzwerkteilnehmer zu senden. Dies ist üblicherweise ein Dienst, auf den der Angreifer aufgrund einer Firewall keinen direkten Zugriff hat, der sich aber in der gleichen Firewall-Zone wie die \acrshort{xml}-Applikation befindet. So könnten beispielsweise \acrshort{http}-Requests an einen Webserver im Unternehmens-Intranet gesendet werden.
 
-\begin{example}[Klassische SSRF] Die expandierte Entity \mintinline{xml}{&x9;} belegt $\SI[parse-numbers=false]{3 \cdot 10^9}{\byte}\allowbreak{}\approx \SI{2.7939}{\gibi\byte}$ im Arbeitsspeicher.
-    \begin{minted}{xml}
+\begin{figure}[h]
+    \begin{example}[Klassische SSRF] Über den \texttt{SYSTEM}-Identifikator wird der \acrshort{xml}-Parser dazu gebracht, die \acrshort{url} \texttt{http://example.com/internal} aufzurufen.
+        \begin{minted}{xml}
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE root SYSTEM "http://example.com/">
+<!DOCTYPE root SYSTEM "http://example.com/internal">
 <root />
-    \end{minted}
-\end{example}
+        \end{minted}
+    \end{example}
+\end{figure}
 
-% TODO: Add stuff here
+Weitere \acrshort{ssrf}-Angriffsvektoren sind \acrshort{xsd}-Attribute\footnote{Die vollständige Namespace-\acrshort{uri} lautet: \url{http://www.w3.org/2001/XMLSchema-instance}.} \mintinline{xml}{schemaLocation} und \mintinline{xml}{noNamespaceSchemaLocation}. Auch sie erlauben die Angabe von URLs, die u.U. von einem Parser aufgerufen werden.\cite[S.~8f]{morgan2014xml}
+
+Zudem \acrshort{XInclude}- und \acrshort{xxe}-Angriffe aus dem Bereich \acrlong{fsa} können teilweise auch mit URLs durchgeführt und somit für \acrlong{ssrf} eingesetzt werden.
 
 \section{\acrfull{json}}
 \label{sec:json}
