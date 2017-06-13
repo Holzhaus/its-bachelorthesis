@@ -9,7 +9,7 @@ import http.server
 PathInfo = collections.namedtuple('PathInfo', 'content status headers log_request')
 
 
-def first(iterable, default=None):
+def first(*iterable):
     return next((el for el in iterable if el is not None), None)
 
 
