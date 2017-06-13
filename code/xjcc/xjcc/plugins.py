@@ -71,10 +71,12 @@ class ConverterPlugin(object):
 
     def get_package_filename(self, filename):
         pkg = self.get_package_name()
-        return pkg_resources.resource_filename(
+        filename = pkg_resources.resource_filename(
             pkg_resources.Requirement(pkg),
             os.path.join(pkg, filename),
         )
+        logging.getLogger(__name__).debug('Requested file path: %r', filename)
+        return filename
 
     def run_command(self, cmd, data, env=None):
         logger = logging.getLogger(__name__)
