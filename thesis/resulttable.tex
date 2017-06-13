@@ -1,0 +1,94 @@
+\usepackage{colortbl}
+\usepackage{makecell}
+\usepackage{booktabs}
+\usepackage{threeparttable}
+\usepackage{pifont}
+\newcommand{\cmark}{\ding{51}}%
+\newcommand{\xmark}{\ding{55}}%
+\usepackage[T1]{fontenc}
+\usepackage{rubfonts2009}
+% FIXME: Blue should be #003560, but that'd conflict with the front page colors
+\definecolor{rubblue}{HTML}{003660}
+\definecolor{rubgreen}{HTML}{8dae10}
+\definecolor{rubgray}{HTML}{e7e7e7}
+\begin{document}
+  \begin{threeparttable}
+\newcolumntype{C}{>{\raggedleft}p{22.5em}}% a centered fixed-width-column
+\pgfplotstabletypeset[
+    string type,
+    string replace*={ [OPTIONAL]}{$^1$},
+    string replace={FAILED}{},
+    string replace={ERROR}{\xmark},
+    string replace={OK}{\cmark},
+    postproc cell content/.style={%
+        @cell content/.add={
+            %\ifnum\pdfstrcmp{\unexpanded{#1}}{OK}=0
+            %    \cellcolor{rubgreen!80!white}
+            %\fi
+            \ifnum\pdfstrcmp{\unexpanded{#1}}{ERROR}=0
+                \cellcolor{rubblue}\color{white}
+            \fi
+            %\ifnum\pdfstrcmp{\unexpanded{#1}}{FAILED}=0
+            %    \cellcolor{red!20!white}
+            %\fi
+           }{}
+    },
+    columns/Testcase/.style={
+        column name=Testcase,
+        column type={C},
+    },
+    %every row no 34/.style={
+    %    before row=\midrule,
+    %},,
+    %every row no 70/.style={
+    %    before row=\midrule,
+    %},
+    %every row no 83/.style={
+    %    before row=\midrule,
+    %},,
+    columns/jsonmlpatched/.style={
+        column name={jsonml (patched)},
+        postproc cell content/.style={%
+            @cell content/.add={
+                %\ifnum\pdfstrcmp{\unexpanded{#1}}{OK}=0
+                %    \cellcolor{rubgreen!80!white}
+                %\fi
+            \cellcolor{rubgreen}
+                %\ifnum\pdfstrcmp{\unexpanded{#1}}{FAILED}=0
+                %    \cellcolor{red!20!white}
+                %\fi
+               }{}
+        },
+    },
+    columns/pesterfishdefused/.style={
+        column name={pesterfish (defusedxml)},
+    },
+    every head row/.style={
+        after row=\toprule,
+        font=\fontfamily{rubflama}\selectfont,
+    },
+    every last row/.style={
+        after row=\bottomrule,
+    },
+    every odd row/.style={
+        before row={\rowcolor{rubgray!80}},
+    },
+    typeset cell/.append code={%
+        \ifnum\pgfplotstablerow<0% Head Rows = -1
+            \ifnum\pgfplotstablecol<3
+                \pgfkeyssetvalue{/pgfplots/table/@cell content}{&}
+            \else
+                \ifnum\pgfplotstablecol=\pgfplotstablecols
+                    \pgfkeyssetvalue{/pgfplots/table/@cell content}{\makebox[1em][l]{\rotatebox{60}{\fontfamily{rubflama}\selectfont\bfseries#1}}\\}%
+                \else
+                    \pgfkeyssetvalue{/pgfplots/table/@cell content}{\makebox[1em][l]{\rotatebox{60}{\fontfamily{rubflama}\selectfont\bfseries#1}}&}%
+                \fi
+            \fi
+        \fi
+    },
+]\loadedtable
+    \begin{tablenotes}
+    \item[1] optional, included for informational purposes
+    \end{tablenotes}
+  \end{threeparttable}\hspace{2em}
+\end{document}
