@@ -32,6 +32,7 @@ def work(target, ctx, send_conn, max_cpu_secs, max_vmem_size):
         result = target()
     except subprocess.CalledProcessError as e:
         result = None
+        logger.info('Child process cmd: %r', e.cmd)
         if hasattr(e, 'stderr'):
             logger.info('Child process stderr: %r', e.stderr)
         logger.info('Child process stdout: %r', e.output)
