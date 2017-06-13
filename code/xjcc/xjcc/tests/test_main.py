@@ -28,19 +28,16 @@ class TestArgParse(unittest.TestCase):
 
 class TestMain(unittest.TestCase):
     @unittest.mock.patch.object(main, 'parse_args')
-    @unittest.mock.patch('logging.basicConfig')
-    def test_main(self, bc_func, pa_func):
+    def test_main(self, pa_func):
         mocked_loglevel = 123
         mocked_retval = 2
         mocked_args = ['foo']
         mocked_pargs = unittest.mock.Mock()
         mocked_pargs.loglevel = mocked_loglevel
         mocked_pargs.func.return_value = mocked_retval
-        bc_func.return_value = None
         pa_func.return_value = mocked_pargs
 
         retval = main.main(args=mocked_args)
         pa_func.assert_called_once_with(mocked_args)
-        bc_func.assert_called_once_with(level=mocked_loglevel)
         mocked_pargs.func.assert_called_once_with(mocked_pargs)
         self.assertEqual(retval, mocked_retval)
