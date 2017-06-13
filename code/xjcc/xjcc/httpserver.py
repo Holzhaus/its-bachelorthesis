@@ -51,7 +51,7 @@ class HTTPServer(http.server.HTTPServer):
         self.default_headers = default_headers
         self.default_content = default_content
 
-        self._requestlog = requestlog
+        self.requestlog = requestlog
         self._logger = logging.getLogger(__name__)
         self.paths = {}
 
