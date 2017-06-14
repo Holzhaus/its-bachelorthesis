@@ -2,7 +2,10 @@ let X2JS = require('x2js')
 let xjcc = require('xjcc')
 
 xjcc.process_input(function(data, encoding) {
-    let x2js = new X2JS()
+    let x2js = new X2JS({
+        "stripWhitespaces": false,
+        "skipEmptyTextNodesForObj": false
+    })
     if (xjcc.to_xml()) {
         return x2js.js2xml(JSON.parse(data));
     } else {
