@@ -4,4 +4,4 @@
 name: Type Inference with Boolean values (Attr)
 description: Checks if type inference hinders the conversion of Boolean values in attributes
  -->
-<root><trueelement value="true"></trueelement><yelement value="y"></yelement><yeselement value="yes"></yeselement><okelement value="ok"></okelement><onelement value="on"></onelement><oneelement value="1"></oneelement><falseelement value="false"></falseelement><nelement value="n"></nelement><noelement value="no"></noelement><offelement value="off"></offelement><zeroelement value="0"></zeroelement></root>
+<root><falseelement value="false"></falseelement><nelement value="n"></nelement><noelement value="no"></noelement><offelement value="off"></offelement><okelement value="ok"></okelement><oneelement value="1"></oneelement><onelement value="on"></onelement><trueelement value="true"></trueelement><yelement value="y"></yelement><yeselement value="yes"></yeselement><zeroelement value="0"></zeroelement></root>

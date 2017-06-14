@@ -4,4 +4,4 @@
 name: Basic elements
 description: Checks if extremely simple XML documents can be converted
  -->
-<root><hello>world</hello><this>is a test</this><good>luck</good></root>
+<root><a>hello world</a><b>this is a test</b><c>good luck</c></root>

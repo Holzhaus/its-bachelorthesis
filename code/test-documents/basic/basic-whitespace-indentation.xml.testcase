@@ -5,7 +5,7 @@ name: Whitespace (Indentation)
 description: Checks if indentation retained
 -->
 <root>
-   <one>A</one>
-   <two>B</two>
-   <three>C</three>
+   <a>A</a>
+   <b>B</b>
+   <c>C</c>
 </root>
