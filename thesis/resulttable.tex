@@ -68,6 +68,7 @@
         font=\fontfamily{rubflama}\selectfont,
     },
     every last row/.style={
+        before row=\midrule,
         after row=\bottomrule,
     },
     every odd row/.style={
@@ -85,10 +86,20 @@
                 \fi
             \fi
         \fi
+        \ifnum\numexpr\pgfplotstablerow+1=\pgfplotstablerows
+            \ifnum\pgfplotstablecol=\pgfplotstablecols
+                \pgfkeyssetvalue{/pgfplots/table/@cell content}{\fontfamily{rubflama}\selectfont\bfseries#1\\}%
+            \else
+                \pgfkeyssetvalue{/pgfplots/table/@cell content}{\fontfamily{rubflama}\selectfont\bfseries#1&}%
+            \fi
+        \fi
     },
 ]\loadedtable
-    \begin{tablenotes}
-    \item[1] optional, included for informational purposes
-    \end{tablenotes}
+    \ifx\hasfootnote\undefined
+    \else
+        \begin{tablenotes}
+            \item[1] optional, included for informational purposes
+        \end{tablenotes}
+    \fi
   \end{threeparttable}\hspace{2em}
 \end{document}
