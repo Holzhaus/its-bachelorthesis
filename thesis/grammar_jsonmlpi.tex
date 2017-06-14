@@ -1,0 +1,18 @@
+<element> ::= \[[
+        \begin{stack}
+            `[' \begin{stack}
+                    <tag-name>
+                    \begin{stack}
+                        `,' <attributes>\\
+                    \end{stack}
+                    \begin{stack}
+                        `,' \begin{rep}
+                                <element>\\
+                                `,'
+                            \end{rep}\\
+                    \end{stack}\\
+                    `?' <pi-target> `,' <pi-value>
+                \end{stack} ']'\\
+            \tok{string}
+        \end{stack}
+    \]]

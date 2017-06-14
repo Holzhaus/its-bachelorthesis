@@ -1,53 +1,98 @@
-\chapter{Results} \label{chap:results}
-Lorem ipsum dolor sit amet consectetuer parturient ac pulvinar magna porttitor. Accumsan vel ac eros laoreet Nulla leo Nulla vel Pellentesque Quisque. Adipiscing penatibus Phasellus egestas leo id neque nec quis est orci. Porta tellus ligula ut ridiculus eros eget ut Vivamus dictum nulla. Dui wisi enim vitae nulla Fusce Curabitur congue consectetuer urna Quisque. Felis Vestibulum Quisque sed Vestibulum et malesuada ac id tristique vitae. Aliquam Suspendisse mattis et libero et tincidunt quis tellus eget consectetuer. Libero Morbi cursus augue eget dapibus tincidunt nunc parturient id arcu. Donec sapien enim Aenean convallis Donec elit tincidunt dolor vitae tellus. Ac consectetuer at tortor malesuada ac dui ligula habitant habitasse congue. 
+\chapter{Ergebnisse} \label{chap:results}
+
+In diesem Abschnitt werden die Ergebnisse der verschiedenene Textfälle vorgestellt. Es wurden 101 Testfälle und 11 verschiedene Konverter überprüft.
 
 
 \begin{figure}[h!]
     \label{fig:results-basic}
     \includestandalone[width=\textwidth]{resulttable-basic}
+    \caption{Konversions-Testergebnisse bezüglich verschiedener Konversionprobleme.}
 \end{figure}
 
 \begin{figure}[h!]
     \label{fig:results-chars}
     \includestandalone[width=\textwidth]{resulttable-chars}
+    \caption{Ergebnisse der Tests bezüglich Unterstützung der von der XML-Spezifikation erlaubten Zeichen.}
 \end{figure}
 
 \begin{figure}[h!]
     \label{fig:results-complex}
     \includestandalone[width=\textwidth]{resulttable-complex}
+    \caption{Testergebnisse der Konverter bei komplexen Dokumenten.}
 \end{figure}
 
 \begin{figure}[h!]
     \label{fig:results-sec}
     \includestandalone[width=\textwidth]{resulttable-sec}
+    \caption{Ergebnisse der Tests auf Sicherheitlücken}
 \end{figure}
 
-\begin{definition} Formale Syntax der \acrfull{jsonml} mit \emph{Processing Instructions}
-\label{def:jsonmlpi}
 
-Die um Unterstützung von \emph{Processing Instructions} erweitere Syntax ist mit Ausname der Produktionsregeln für \synt{element} identisch zu der Syntax aus Definition~\ref{def:jsonml}.
-\synt{tag-name}, \synt{pi-target} und \synt{pi-data} sind \acrshort{json}-Werte vom Typ String.
+\chapter{\acrfull{jsonml}}
+
+Mit insgesamt XX von 101 bestandenen Testfällen ist die \acrfull{jsonml} durchaus vielversprechend.
+
+\begin{definition}Formale Syntax der \acrfull{jsonml}
+\label{def:jsonml}
+
+Sowohl \synt{tag-name} als auch \synt{attribute-name} sind \acrshort{json}-Werte vom Typ String. Die Whitespace-Regeln sind identisch wie bei \acrshort{json} (Vgl. Definition~\ref{def:json}).
 
 \begin{grammar}
-    <element> ::= \[[
-            \begin{stack}
-                `[' \begin{stack}
-                        <tag-name>
-                        \begin{stack}
-                            `,' <attributes>\\
-                        \end{stack}
-                        \begin{stack}
-                            `,' \begin{rep}
-                                    <element>\\
-                                    `,'
-                                \end{rep}\\
-                        \end{stack}\\
-                        `?' <pi-target> `,' <pi-value>
-                    \end{stack} ']'\\
-                \tok{string}
-            \end{stack}
-        \]]
+    \input{grammar_jsonml.tex}
 \end{grammar}
-
-Enthält das Dokument \emph{Processing Instructions} auf Dokument-Ebene (d.h. als Top-Level-Konstrukt), dann ist das \acrshort{jsonml}-Wurzelelement ein \synt{element} mit einem leeren String als \synt{tag-name}, das die Child-Nodes des Dokuments (d.h. \emph{Processing Instructions} auf Dokumentebene und das Wurzelelement des Dokuments) als Unterelemente enthält.
 \end{definition}
+
+\section{Unterstützung von Processing Instructions}
+
+Probleme hatte der Konverter jedoch mit der Umwandlung von \acrfullpl{pi}. Diese werdem in der aktuellen Version der einfach ignoriert. Stephen McKamey, der Entwickler von \acrshort{jsonml} begründet damit, das es keine sinnvolle Entsprechung von \acrshortpl{pi} in \acrshort{json} gäbe~\cite{mckamey2006xml}.
+
+Zwar ist bietet JSON tatsächlich keinen vergleichbaren Mechanismus, eine Unterstützung von \glspl{pi} für bestimmte Einsatzzwecke aber sinnvoll sein, da sonst beispielsweise Formatierungsinformationen in DocBook-Dokumente verloren gehen könnten. Daher wurde die \acrshort{jsonml}-Syntax um \acrshort{pi}-Unterstützung ergänzt.
+
+Processing Instructions bestehen aus einem \emph{Ziel} und \emph{Daten} (Vgl. Abschn. \ref{sec:xmltree}), bilden also das 2-Tupel $P \coloneqq \langle target, data \rangle$. Der Datenteil kann kann dabei auch der leer sein.
+
+Das Ziel muss ein gültiger Name im Sinne der \acrshort{xml}-Spezifikation sein~\cite[{Regel~[17]}]{maler2008xml}. Das heißt, dass der Name einer Processing-Instruction\ ebenso wie auch der Tag-Name vom Elementen~\cite[{Regel~[40]}]{maler2008xml} mit einem sog. \texttt{NameStartChar} beginnen muss. Dadurch wird ausgeschlossen, dass Tag-Namen mit bestimmten Zeichen beginnen -- darunter auch das Fragezeichen, da dies dazu führen würde, dass sich Start-Tags mit \glspl{pi} verwechselt werden könnten. Insbesondere in \acrshort{sgml} -- zu dem \acrshort{xml} vollständig kompatibel sein soll -- wären solche Tags nicht mehr von \glspl{pi} zu unterscheiden, da laut \acrshort{sgml}-Spezifikation lediglich ein einfaches Größerzeichen anstatt der Kombination aus Fragezeichen und Größerzeiche (\texttt{?>}) zum Schließen der \gls{pi} ausreicht.
+
+
+Dadurch wird es möglich, Processing Instuctions in \acrshort{jsonml} eindeutig in Form eines \acrshort{json}-Arrays \mintinline{json}{["?target", "data"]} darzustellen~(vgl. Definition \ref{def:jsonmlpi}), das dem 2-Tupel $P$ (s.o.) entspricht. Die Repräsentation von \glspl{pi} ähnelt damit der eines Elementknotens, der einen einzelnen Textknoten (\emph{Character Data}) enthält. Eine Verwechslung ist jedoch durch das dem Zielnamen vorangestellte Fragezeichen ausgeschlossen -- ein Tagname darfnicht mit einem Fragezeichen beginnen, wodurch die Kategorisierung als \gls{pi} eindeutig ist.
+
+\begin{figure}[h]
+    \begin{definition} Formale Syntax der \acrfull{jsonml} mit \emph{Processing Instructions}
+        \label{def:jsonmlpi}
+
+        Die um Unterstützung von \emph{Processing Instructions} erweitere Syntax ist mit Ausname der Produktionsregeln für \synt{element} identisch zu der Syntax aus Definition~\ref{def:jsonml}.
+        \synt{tag-name}, \synt{pi-target} und \synt{pi-data} sind \acrshort{json}-Werte vom Typ String.
+
+        \begin{grammar}
+            \input{grammar_jsonmlpi}
+        \end{grammar}
+
+        Enthält das Dokument \emph{Processing Instructions} auf Dokument-Ebene (d.h. als Top-Level-Konstrukt), dann ist das \acrshort{jsonml}-Wurzelelement ein \synt{element} mit einem leeren String als \synt{tag-name}, das die Child-Nodes des Dokuments (d.h. \emph{Processing Instructions} auf Dokumentebene und das Wurzelelement des Dokuments) als Unterelemente enthält.
+    \end{definition}
+\end{figure}
+
+\section{Überprüfung der Änderungen}
+
+Die syntaktischen Änderungen aus Definition~\ref{def:jsonmlpi} wurden in die JavaScript-Referenz\-implementierung von Stephen McKamey eingearbeitet. Entsprechende \emph{Unittests} zur Sicherstellung der korrekten Umwandlung von \glspl{pi} wurden ebenfalls hinzugefügt.
+
+\begin{figure}[h!]
+    \begin{example}[Processing Instructions] Die \acrshort{jsonml}-Repräsentation des \acrshort{xml}-Dokuments aus Beispiel \ref{ex:xmltree} kann nun die \gls{pi} darstellen -- auch solche, die sich außerhalb des Wurzelelements befinden.
+        \begin{minted}[autogobble]{json}
+            ["", "\n",
+                [ "?xml-stylesheet", "href=\"style.css\"" ],"\n","\n",
+                ["albums", "\n  ",
+                    ["album", {"catno": "ARGO LP-628"}, "\n    ",
+                        ["artist", "Ahmad Jamal Trio"], "\n    ",
+                        ["title", "At The Pershing"], "\n    ",
+                        ["recording", "Recorded ",
+                            ["date", "January 16, 1958"], "."
+                        ], "\n  "
+                    ], "\n"
+                ]
+            ]
+        \end{minted}
+    \end{example}
+\end{figure}
+
+Bei einer erneuten Überprüfung des \acrshort{jsonml}-Konverters unter Berücksichtigung der o. g. Änderungen wurden deren Korrektheit bestätigt: Alle Testdokumente, auch die zuvor fehlgeschlagenen, lassen sich nun verlustlos von \acrshort{xml} nach \acrshort{json} und wieder zurück konvertieren.
+
+Alle Änderungen wurdem dem \acrshort{jsonml}-Projekt zur Verfügung gestellt.\footnote{Vgl.~\url{https://github.com/mckamey/jsonml/pull/14}}
