@@ -8,12 +8,27 @@ RUN mkdir /data
 RUN adduser -D -h /data xjcc
 
 # Install dependencies
-RUN apk add --update ca-certificates python3 nodejs py-setuptools py-lxml maven openjdk8 ruby ruby-irb ruby-rdoc
-RUN npm install -g https://github.com/Holzhaus/xmldom/archive/b025df61e65536ddf5cf396fefbdded973108ba1.tar.gz  \
-                   x2js@3.1.0 \
-                   jxon@2.0.0-beta.4 \
-                   jsonml-tools@2.0.0 \
-                   https://github.com/Holzhaus/jsonml/archive/c8c15cc276eda15a85b67a4883196efe4528b171.tar.gz
+RUN apk add --update \
+    ca-certificates \
+    python3 \
+    nodejs \
+    py-setuptools \
+    py-lxml \
+    maven \
+    openjdk8 \
+    ruby \
+    ruby-irb \
+    ruby-rdoc
+
+# Install NodeJS dependencies
+RUN npm install -g \
+    https://github.com/Holzhaus/xmldom/archive/b025df61e65536ddf5cf396fefbdded973108ba1.tar.gz \
+    x2js@3.1.0 \
+    jxon@2.0.0-beta.4 \
+    jsonml-tools@2.0.0 \
+    https://github.com/Holzhaus/jsonml/archive/c8c15cc276eda15a85b67a4883196efe4528b171.tar.gz
+
+# Install Ruby dependencies
 RUN gem install cobravsmongoose --version '=0.0.2'
 
 RUN mkdir -p /opt/xjcc
