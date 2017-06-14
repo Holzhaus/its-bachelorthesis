@@ -31,11 +31,11 @@ categories.update({
     'all': tuple(item for sublist in categories.values() for item in sublist),
 })
 
-num_successes = {}
 outfile = 'results-%s.csv'
 for catname, catprefixes in categories.items():
     filename = outfile % catname
     print('Writing file: %s' % filename)
+    num_successes = {}
     with open(filename, mode='w') as f:
         writer = csv.DictWriter(f, fieldnames=['Index', 'Testcase']+converters)
         writer.writeheader()
