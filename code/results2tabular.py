@@ -1,10 +1,9 @@
 #!/usr/bin/env python3
 import csv
 import json
+import sys
 
-infile = 'results/results.json'
-with open(infile, mode='r') as f:
-    data = json.load(f)
+data = json.load(sys.stdin)
 
 testcases = set()
 converters = set()
@@ -32,9 +31,12 @@ categories.update({
     'all': tuple(item for sublist in categories.values() for item in sublist),
 })
 
+num_successes = {}
 outfile = 'results-%s.csv'
 for catname, catprefixes in categories.items():
-    with open(outfile % catname, mode='w') as f:
+    filename = outfile % catname
+    print('Writing file: %s' % filename)
+    with open(filename, mode='w') as f:
         writer = csv.DictWriter(f, fieldnames=['Index', 'Testcase']+converters)
         writer.writeheader()
         for i, tctuple in enumerate(testcases, start=1):
@@ -45,3 +47,14 @@ for catname, catprefixes in categories.items():
                     **{'Index': i, 'Testcase': testcase},
                     **results[testcase]
                 ))
+                for converter, result in results[testcase].items():
+                    success = 1 if result == 'OK' else 0
+                    if converter not in num_successes:
+                        num_successes[converter] = 0
+                    num_successes[converter] += success
+        if num_successes:
+            writer.writerow(dict(
+                **{'Index': '', 'Testcase': 'Gesamt'},
+                **num_successes
+            ))
+
