@@ -32,10 +32,11 @@ RUN npm install -g \
 # Install Ruby dependencies
 RUN gem install cobravsmongoose --version '=0.0.2'
 
+# Install Python requirements
 COPY requirements.txt /opt/xjcc/requirements.txt
 RUN pip3 install -r /opt/xjcc/requirements.txt
 
-# Install python packages
+# Install python package
 COPY xjcc /opt/xjcc/xjcc
 RUN cd /opt/xjcc/xjcc && ./setup.py install
 
@@ -43,6 +44,7 @@ RUN cd /opt/xjcc/xjcc && ./setup.py install
 COPY node-xjcc /opt/xjcc/node-xjcc
 RUN npm install -g /opt/xjcc/node-xjcc
 
+# Install converter wrappers
 COPY xjcc-jsonlib /opt/xjcc/xjcc-jsonlib
 RUN cd /opt/xjcc/xjcc-jsonlib && ./setup.py install
 
