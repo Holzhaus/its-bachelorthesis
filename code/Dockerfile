@@ -36,6 +36,9 @@ RUN gem install cobravsmongoose --version '=0.0.2'
 COPY requirements.txt /opt/xjcc/requirements.txt
 RUN pip3 install -r /opt/xjcc/requirements.txt
 
+# Clean up package cache
+RUN rm -rf /var/cache/apk/*
+
 # Install python package
 COPY xjcc /opt/xjcc/xjcc
 RUN cd /opt/xjcc/xjcc && ./setup.py install
