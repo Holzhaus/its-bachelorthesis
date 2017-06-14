@@ -4,4 +4,4 @@
 name: Root Element Attribute
 description: Checks if the attributes of the document element are kept
  -->
-<root foo="bar"><world>test</world></root>
+<root foo="bar"><hello>world</hello></root>
