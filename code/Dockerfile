@@ -6,6 +6,7 @@ MAINTAINER Jan Holthuis "jan.holthuis@ruhr-uni-bochum.de"
 # something)
 RUN mkdir /data
 RUN adduser -D -h /data xjcc
+RUN mkdir -p /opt/xjcc
 
 # Install dependencies
 RUN apk add --update \
@@ -31,7 +32,6 @@ RUN npm install -g \
 # Install Ruby dependencies
 RUN gem install cobravsmongoose --version '=0.0.2'
 
-RUN mkdir -p /opt/xjcc
 COPY requirements.txt /opt/xjcc/requirements.txt
 RUN pip3 install -r /opt/xjcc/requirements.txt
 
