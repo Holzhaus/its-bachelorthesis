@@ -19,7 +19,11 @@ RUN apk add --update \
     openjdk8 \
     ruby \
     ruby-irb \
-    ruby-rdoc
+    ruby-rdoc \
+    php5 \
+    php5-phar \
+    php5-json \
+    php5-openssl
 
 # Install NodeJS dependencies
 RUN npm install -g \
@@ -31,6 +35,16 @@ RUN npm install -g \
 
 # Install Ruby dependencies
 RUN gem install cobravsmongoose --version '=0.0.2'
+
+# Install PHP depencies
+ENV COMPOSER_HOME /user/local/share/composer_home
+COPY composer.json "${COMPOSER_HOME}/composer.json"
+RUN apk add --update curl openssl && \
+    curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer --version=1.4.2 && \
+    chmod +x /usr/local/bin/composer && \
+    apk del curl openssl && \
+    mkdir -p "${COMPOSER_HOME}" && \
+    /usr/local/bin/composer global install --prefer-dist
 
 # Install Python requirements
 COPY requirements.txt /opt/xjcc/requirements.txt
@@ -71,6 +85,9 @@ RUN cd /opt/xjcc/xjcc-xmljson && ./setup.py install
 
 COPY xjcc-cobravsmongoose /opt/xjcc/xjcc-cobravsmongoose
 RUN cd /opt/xjcc/xjcc-cobravsmongoose && ./setup.py install
+
+COPY xjcc-greencapexml /opt/xjcc/xjcc-greencapexml
+RUN cd /opt/xjcc/xjcc-greencapexml && ./setup.py install
 
 RUN rm -rf /opt/xjcc
 
