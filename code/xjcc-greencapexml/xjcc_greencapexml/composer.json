@@ -1,0 +1,11 @@
+{
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/Holzhaus/xml-converter"
+        }
+    ],
+    "require": {
+        "greencape/xml-converter": "dev-noindent#944b1bf386f6388afdef1442f9b0366213b5fef4"
+    }
+}
