@@ -9,7 +9,7 @@ RUN adduser -D -h /data xjcc
 
 # Install dependencies
 RUN apk add --update ca-certificates python3 nodejs py-setuptools py-lxml maven openjdk8 ruby ruby-irb ruby-rdoc
-RUN npm install -g https://github.com/Holzhaus/xmldom/archive/69f2c23fc743be701e185fcd3dfd0f73fa0095f6.tar.gz  \
+RUN npm install -g https://github.com/Holzhaus/xmldom/archive/b025df61e65536ddf5cf396fefbdded973108ba1.tar.gz  \
                    x2js@3.1.0 \
                    jxon@2.0.0-beta.4 \
                    jsonml-tools@2.0.0 \
