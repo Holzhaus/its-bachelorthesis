@@ -1,6 +1,16 @@
-\chapter{Umsetzung}
+\chapter{Versuchsaufbau}
 \label{chap:impl}
-\section{Versuchsaufbau}
+
+Im Folgenden wird wird der Versuchsaufbau, bestehend aus
+\begin{enumerate}
+    \item{} der Erstellung einer Reihe von Kriterien zur Bewertung der Verlustlosigkeit  und Sicherheit von Konversionverfahren,
+    \item{} einer Auswahl von zu überprüfenden Konverter, und
+    \item{} der Methodik zur Überprüfung der Konversionsverfahren auf Einhaltung der zuvor festgelegten Kriterien
+\end{enumerate}
+vorgestellt.
+
+\section{Bewertungskriterien für Konversionsverfahren}
+\label{sec:criteria}
 
 Ziel ist die Suche nach einem Konversionsverfahren, dass sowohl \emph{sicher} als auch \emph{verlustlos} arbeitet. Dazu müssen beide Anforderungen zunächst genauer definiert werden.
 
@@ -32,26 +42,7 @@ Logisch äquivalent (vgl. Bed. \ref{item:ioequal}) heißt nicht, dass das \acrsh
 \end{definition}
 \end{figure}
 
-Zur Überprüfung der Konversionsqualität wurden für alle der in Abschnitt~\ref{sec:criteria} festgelegten Kriterien ein oder mehrere Testfälle erstellt. Jeder der Testfälle besteht aus einer \acrshort{xml}-Datei, die dann mit einem Konverter in das \acrshort{json}-Format umgewandelt wird. Die daraus resultierenden \acrshort{json}-Daten werden im Anschluss wieder zurück in das \acrshort{xml}-Format konvertiert, d.h. es wird ein kompletter Round-Trip vollzogen.
-
-Es muss zudem sichergestellt sein, dass bei der Konversion auch tatsächlich valides \acrshort{json} bzw. wohlgeformtes \acrshort{xml} zurückgegeben wird. Daher werden beide Ausgabedokumente analysiert und auf Korrektheit überprüft.
-
-Für \acrshort{json}-Daten wurde dazu das Python-Modul \emph{demjson} eingesetzt, das über ein umfangreiches Analyseprogramm (einen sogenannten \emph{Linter}) verfügt. Die Wohlgeformtheit der \acrshort{xml}-Daten wurde durch das Parsing mittels \emph{lxml} sichergestellt.
-
-\begin{figure}
-    \includestandalone[width=0.8\textwidth]{flowchart_conversiontest}
-    \caption{Ablauf der Konversionstests}
-\end{figure}
-
-\begin{figure}
-    \includestandalone[width=0.8\textwidth]{flowchart_securitytest}
-    \caption{Ablauf der Sicherheitstests}
-\end{figure}
-
-\section{Bewertungskriterien}
-\label{sec:criteria}
-
-\subsection{Kriterien für verlustlose Konversion}
+% TODO: Add content here
 
 \subsubsection{CDATA-Abschnitt}
 
@@ -206,84 +197,129 @@ Zahlen außerhalb dieses Wertebereichs können nicht mehr fehlerfrei eingesetzt 
 
 Ähnliches gilt für Konversionsverfahren, die aus Werten wie \mintinline{text}{yes} und \mintinline{text}{true} den Boole'schen Datentyp ableiten: Nach dem Konversion ist nicht mehr feststellbar, ob der Ursprungswert nun \mintinline{text}{yes} oder \mintinline{text}{true} lautete.
 
-\section{XML-JSON-Konversionsverfahren}
+\section{Auswahl der XML-JSON-Konverter}
 
-\subsection{Json-lib}
-\convtool[
-    author={Andres Almiray (basierend auf Douglas Crockford)},
-    url={http://json-lib.sourceforge.net/},
-    license={Apache Software License 2.0},
-    language=Java,
-    version=2.4,
-    versiondate=2010-12-14,
-]{jsonlib}
+\begin{figure}[hb!]
+    \begin{threeparttable}
+        \caption{Liste der überprüften Konverter}
+        \begin{tabularx}{\textwidth}{p{2.65cm}Xp{1.6cm}p{1.5cm}p{2.1cm}}
+            \rowcolor{white} % strange hack
+            \toprule
+            {\fontfamily{rubflama}\selectfont{}\bfseries Konverter} &
+            {\fontfamily{rubflama}\selectfont{}\bfseries Autor} &
+            {\fontfamily{rubflama}\selectfont{}\bfseries Lizenz} &
+            {\fontfamily{rubflama}\selectfont{}\bfseries Sprache} &
+            {\fontfamily{rubflama}\selectfont{}\bfseries Version}\\
+            \midrule
+            Cobra vs\newline Mongoose\tnote{a} & {Paul Battley} & MIT & Ruby & \texttt{0.0.2}\newline 27.06.2016\\
+            \rowcolor{rubgray!80}
+            GreenCape XML Converter\tnote{b} & {Niels Braczek} & MIT & PHP & \texttt{a830542}\newline 02.07.2015\\
+            Json-lib\tnote{c} & {Andres Almiray\newline(basierend auf Douglas Crockford)} & Apache~2.0 & Java & \texttt{2.4}\newline 14.12.2010\\
+            \rowcolor{rubgray!80}
+            \acrshort{jsonml}\tnote{d} & {Stephen M. McKamey} & MIT & JavaScript & \texttt{2.0.0}\newline 09.04.2016\\
+            JXON\tnote{e} & {MDN / Martin Raifer} & GNU GPL~3.0 & JavaScript & \texttt{2.0.0-beta.4}\newline 22.11.2016\\
+            \rowcolor{rubgray!80}
+            org.json.XML\tnote{f} & {JSON.org / Sean Leary} & MIT & Java & \texttt{20160810}\newline 10.08.2016\\
+            Pesterfish\tnote{g} & {Jacob Smullyan} & MIT & Python & \texttt{1578db9}\newline 22.11.2010\\
+            \rowcolor{rubgray!80}
+            x2js\tnote{h} & {Axinom / Sander Saares (basierend auf Abdulla G. Abdurakhmanov)} & Apache~2.0 & JavaScript & \texttt{3.1.0}\newline 05.12.2016\\
+            xmljson\tnote{j} & {S. Anand} & MIT & Python & \texttt{0.1.7}\newline 13.09.2016\\
+            \rowcolor{rubgray!80}
+            \bottomrule
+        \end{tabularx}
+        {\footnotesize
+        \begin{tablenotes}[para]
+            \item[a] \url{https://rubygems.org/gems/cobravsmongoose}
+            \item[b] \url{https://github.com/GreenCape/xml-converter}
+            \item[c] \url{http://json-lib.sourceforge.net/}
+            \item[d] \url{http://www.jsonml.org/}
+            \item[e] \url{https://github.com/tyrasd/jxon}
+            \item[f] \url{https://github.com/stleary/JSON-java}
+            \item[g] \url{https://bitbucket.org/smulloni/pesterfish/}
+            \item[h] \url{https://github.com/x2js/x2js}
+            \item[i] \url{https://github.com/sanand0/xmljson}
+        \end{tablenotes}}
+    \end{threeparttable}
+\end{figure}
 
-\subsection{JsonML}
-\convtool[
-    author={Stephen M. McKamey},
-    url={http://www.jsonml.org/},
-    license=MIT,
-    language=JavaScript,
-    version=2.0.0,
-    versiondate=2016-04-09,
-]{jsonml}
+Inzwischen sind eine große Anzahl an Applikationen und Programmbiliotheken für die Umwandlung zwischen \acrshort{json} und \acrshort{xml} verfügbar. Dabei sind im Rahmen dieser Arbeit lediglich solche Konverter von Interesse, die
+\begin{enumerate}
+    \item{} XML-Dokumente zu JSON umwandeln können, und
+    \item{} aus den so erhaltenen JSON-Strukuren wieder XML-Dokumente erstellen können.
+\end{enumerate}
 
-\begin{definition}Formale Syntax der \acrfull{jsonml}
-\label{def:jsonml}
+Die Auswahl beinhaltet eine Reihe von Konvertern, die in verschiedenen populären Programmiersprachen implementiert sind. 
 
-Sowohl \synt{tag-name} als auch \synt{attribute-name} sind \acrshort{json}-Werte vom Typ String. Die Whitespace-Regeln sind identisch wie bei \acrshort{json} (Vgl. Definition~\ref{def:json}).
+\begin{description}
+    \item[Cobra vs Mongoose] Diese Implementierung ist in Form eines Ruby-Gems verfügbar und übersetzt \acrshort{xml}-Dokumente in Ruby-Datenstrukturen (Hashes), kann aber auch JSON-Daten ausgeben. Bei der Umwandlung setzt die  Konverter auf die sogenannte \emph{Badgerfish}-Konvention.
+    \item[GreenCape XML Converter] Der PHP XML Konverter kann XML-Daten in  assoziativen PHP-Arrays umwandeln. Diese können dann zu JSON-Werten serialisiert werden.
+    \item[Json-lib] Die Java-Bibliothek \texttt{net.sf.json-lib} baut auf Software des JSON-Entwicklers Douglas Crockford auf und wird laut Maven-Repository über 400 anderen Projekten eingesetzt und beinhaltet unter Anderem auch eine Klasse zum (De-)Serialisieren von XML-Daten.
+    \item[{\acrshort{jsonml}}] Die \acrfull{jsonml} ist JSON-basiertes Format zum Speicherung von XML-Markup. Neben der relativ populären\footnote{125 Sterne auf GitHub (Stand: \DTMdate{2017-06-14})} JavaScript-Bibliothek existieren auch Implementerungen in anderen Programmiersprache, z.B. in Java\footnote{Das \texttt{org.json}-Paket stellt eine entsprechende Klasse bereit.}  oder PHP\footnote{Als Teil des FluentDOM-Projekts, siehe: \url{https://github.com/FluentDOM/FluentDOM/blob/master/src/FluentDOM/Serializer/Json/JsonML.php}}.
+    \item[{\acrshort{jxon}}] Bei dem JavaScript-Modul handelt es sich um eine birdirektionale Bibliothek für die \acrlong{jxon}. Es handelt sich um eine eine Weiterentwicklung der ursprünglich von Mozilla veröffentlichten Implementierung.
+    \item[org.json.XML] Das Paket \texttt{org.json} ist die Referenzimplementierung des JSON-Format für Java und bietet auch eine Konversionsverfahren in Form einer dedizierten \acrshort{xml}-Klasse.
+    \item[Pesterfish] Das Python-Modul Pesterfish konvertiert zwischen XML und Python-Dictionaries, die dann zu JSON serialisiert werden können. Laut dem Autor wurde das Konversionsverfahren als \enquote{Reaktion auf die Badgerfish-Konvention} entwickelt. Für die Verarbeitung der XML-Daten baut das Modul auf die \texttt{ElementTree}-\acrshort{api} auf und erlaubt Entwicklern auch die Angabe eines eigenen Parsers, beispielsweise \texttt{defusedxml}.
+    \item[x2js] Bei der JavaScript-Modul handelt es um einen für die Verwendung mit NodeJS ausgelegten Fork des populären\footnote{467 Sterne auf GitHub (Stand: \DTMdate{2017-06-14})} xj2s-Bibliothek.
+    \item[xmljson] Das Python-Paket \emph{xmljson} wurde mehr als 11\,500 mal vom Python-Repository PyPI heruntergeladen\footnote{11691 Downloads von PyPI (Stand: \DTMdate{2017-06-14})} und unterstützt die Konversion vom XML-Daten in Python-Dictionaries/Lists bzw. JSON anhand von 6 verschiedenen Konventionen.
+\end{description}
 
-\begin{grammar}
-    \input{grammar_jsonml.tex}
-\end{grammar}
-\end{definition}
 
-\subsection{JXON}
-\convtool[
-    author={MDN / Martin Raifer},
-    url={https://github.com/tyrasd/jxon},
-    license=GNU General Public License 3.0,
-    language=JavaScript,
-    version=2.0.0-beta.4,
-    versiondate=2016-11-22,
-]{jxon}
+\section{Methodik}
+\label{sec:method}
 
-\subsection{org.json.XML}
-\convtool[
-    author={JSON.org / Sean Leary},
-    url={https://github.com/stleary/JSON-java},
-    license=MIT,
-    language=Java,
-    version=20160810,
-    versiondate=2016-08-10,
-]{orgjsonxml}
+\subsection{Überprüfung der Konversionqualität}
+\label{sec:method-conv}
 
-\subsection{Pesterfish}
-\convtool[
-    author={Jacob Smullyan},
-    url={https://bitbucket.org/smulloni/pesterfish/},
-    license=MIT,
-    language=Python,
-    version=1578db9,
-    versiondate=2010-11-22,
-]{pesterfish}
+\begin{figure}[t]
+    \begin{center}
+        \includestandalone[width=0.8\textwidth]{flowchart_conversiontest}
+        \caption{Ablauf der Konversionstests}
+    \end{center}
+\end{figure}
 
-\subsection{x2js}
-\convtool[
-    author={Axinom / Sander Saares (basierend auf Abdulla G. Abdurakhmanov)},
-    url={https://github.com/x2js/x2js},
-    license=Apache Software License 2.0,
-    language=JavaScript,
-    version=3.1.0,
-    versiondate=2016-12-05,
-]{x2js}
+Zur Überprüfung der Konversionsqualität wurden für alle der in Abschnitt~\ref{sec:criteria} festgelegten Kriterien ein oder mehrere Testfälle erstellt. Jeder der Testfälle besteht aus einer \acrshort{xml}-Datei, anhand derer verschiedene XML-Features oder Problemstellungen nachvollzogen werden können. Die Dateien werden dazu zunächst mit einem Konverter in das \acrshort{json}-Format umgewandelt. Die daraus resultierenden \acrshort{json}-Daten werden im Anschluss wieder zurück in das \acrshort{xml}-Format konvertiert, d.h. es wird ein kompletter Round-Trip vollzogen.
 
-\subsection{xmljson}
-\convtool[
-    author={S Anand},
-    url={https://github.com/sanand0/xmljson},
-    license=MIT,
-    language=Python,
-    version=0.1.7,
-    versiondate=2016-09-13,
-]{xmljson}
+Gemäß Definiton~\ref{def:lossless} gibt ein Abgleich zwischen den daraus resultierenden \acrshort{xml}-Daten und dem ursprünglichen XML-Dokument dann Aufschluss über den eventuellen Verlust signifikanter Informationen. Dazu wird wird überprüft, ob beide Dokumente logisch äquivalent sind, indem auf beide in \emph{kanonisches XML} umgewandelt. Ob Informationsverlust aufgetreten ist, kann dann mit simplen Vergleich geprüft werden.
+
+Es muss zudem sichergestellt sein, dass bei der Konversion auch tatsächlich valides \acrshort{json} bzw. wohlgeformtes \acrshort{xml} zurückgegeben wird. Da das von Konverter zurückgelieferte Dokument im Zuge der \acrlong{c14n} geparst wird, werden Verstöße gegen die Wohlgeformtheitsanforderungen der \acrshort{xml}-Spezifikation erkannt und führen zum Nichtbestehen des Tests.
+
+Die \acrshort{json}-Zwischendaten ebenfalls geparst und auf Verstöße gegen die JSON-Spezifikation untersucht. Zudem werden die Daten vor der Rückkonvertierung neu formatiert, sodass nur Informationen weitergegeben werden, die auch tatsächlich signifikant im Sinne der Spezifikation sind, d.h. dass beispielsweise Whitespace außerhalb von Zeichenketten oder die Reihenfolge von Wertpaaren innerhalb eines \acrshort{json}-Objekts verloren geht.
+
+\begin{figure}[b!]
+    \begin{center}
+        \includestandalone[width=0.8\textwidth]{flowchart_securitytest}
+        \caption{Ablauf der Sicherheitstests}
+    \end{center}
+\end{figure}
+
+\subsection{Überprüfung der Sicherheit}
+\label{sec:method-sec}
+
+Um die Sicherheit der Konversion zu überprüfen, wird eine modifizierte Vorgehensweise genutzt. Die auf Sicherheitslücken in \acrshort{xml}-Parsern abzielenden Test-Dokumente werden ebenfalls zunachst in das JSON-Format und im Anschluss wieder zurück in XML konvertiert. Allerdings ist dabei ausschließlich von belang, dass keine der in Abschnitt~\ref{sec:xmlattacks} beschriebenen Angriffe ausgelöst wird -- die Korrektheit der Konversion ist hierbei nicht von Belang.
+
+Stattdessen wird ein Sicherheitstest als Fehlschlag gewerten, wenn eine oder mehrere der folgenden Bedingungen zutrifft:
+\begin{enumerate}
+    \item[] Der Konversionsvorgang überschreitet zuvor festgelege Obergrenzen für die Allozierung von Arbeitsspeicher, verbraucht zuviel CPU-Zeit oder dauert zu lange.\label{itm:cond-dos}
+    \item[] Während der Konversion sendet der Konverter Anfragen an einen Webserver.\label{itm:cond-ssrf}
+    \item[] Die vom Konverter ausgegebenen \acrshort{json}- oder \acrshort{xml}-Dateien enthalten eine bestimmte Zeichenkette.\label{itm:cond-fsa}
+\end{enumerate}
+
+Ist der eingesetzte XML-Parser verwundbar gegenüber Angriffen aus dem Bereich \acrfull{dos}, führt das Parsen der Testdateien zu einem erhöhten Verbrauch an Systemressourcen. Die Obergrenzen für Arbeitsspeicherbelegung, CPU-Belastung und Zeitdauer sind so angelegt, dass ein erfolgreicher Angriff zwangsläufig gegen die erste Bedingung verstößt und damit zum Nichtbestehen des Tests führt.
+
+Um zu Prüfen, ob \acrfull{ssrf} möglich ist, wird ein \acrshort{http}-Server gestartet, der von den entsprechenden Testfällen referenziert wird. Ruft ein Konverter während des Parsings eine der URLs auf, wird die Anfrage vom Server aufgezeichnet. Sind bei dem Server bis zum Abschluss der Konversion keine Anfragen eingegangen (Bed.~\ref{itm:cond-ssrf}), ist der Konverter offenbar nicht anfällig für solche Angriffe.
+
+Die Testfälle für die Suche nach Schwachstellen der Kategorie \acrlong{fsa} verweisen auf Dateien, die eine bestimmte Zeichenkette enthalten. Ist diese Zeichenkette in den vom Konverter ausgegebenen \acrshort{json}- oder \acrshort{xml}-Daten enthalten, wurde vom Parser auf das Dateisystem zugegriffen und der Konverter ist verwundbar.
+
+\subsection{Technische Umsetzung}
+
+% SLOC calculated via:
+%     git ls-files | tr '\n' '\0' | wc -l --files0-from=- | grep -E ".*py$" | awk '{print $1}' | paste -sd+ | bc
+
+Zur einfacheren Durchführung der Testreihen wurde Evaluations-Framework auf Basis von Python 3.5 implementiert, das ca. 2200 SLOC umfasst. Der Testprozess wird dabei weitestgehend automatisiert.
+
+Um die die \acrlong{c14n} durchzuführen, nutzt das Framework die~\mintinline{python}{write_c14n()}-Methode aus der \emph{lxml}-Bibliothek\footnote{http://lxml.de/}. Die Kanonisierung erfolgt nicht-exklusiv (vgl. Abschn.~\ref{sec:exc-c14n}) und ohne Kommentare -- ausgenommen ist dabei der Testfall, der die Unterstützung für Kommentare überprüft.
+
+Für das \acrshort{xml}-Parsing selbst kommt \emph{defusedxml}\footnote{https://pypi.python.org/pypi/defusedxml} zu Einsatz, das die gängigen Python-APIs zum Parsen von \acrshort{xml}-Dokumenten einem Security-Hardening unterzieht und daher nicht anfällig gegenüber fast allen Angriffsvektoren ist.\cite[Abschn. 9.5]{spaeth2016sok}
+
+Zur Prüfung und Formatierung der \acrshort{json}-Daten wird das Python-Modul \emph{demjson}\footnote{http://deron.meranda.us/python/demjson/} eingesetzt, das über ein umfangreiches Möglichkeiten zum Finden von Verstößen gegen die \acrshort{json} (einen sogenannten \emph{Linter}) verfügt. Zusätzlich zum \texttt{strict}-Modus wurden einige besondere Einstellungen vorgenommen: Byte-Order-Marks wurden in Übereinstimmung mit der \acrshort{json}-Spezifikation explizit verboten. Null-Bytes und andere von der Spezifikation nicht verbotene, aber möglicherweise Kompatibilitätsprobleme verursachende Zeichen wurden erlaubt, da es sich hierbei um korrektes \acrshort{json} handelt.
+
+Für die Sicherheitstests wird ein eigener Prozess gestartet. Da als Host-System Linux zum Einsatz kommt, wurde die Begrenzung der Systemressourcen mithilfe des \texttt{setrlimit()}-Syscalls umgesetzt. Werden die so festgelegten Obergrenzen für die zur Verfügung stehende CPU-Zeit und Größe des adressierbaren Speichers des Prozesses überschritten, wird der Prozess vom Kernel durch das Signale \texttt{SIGXCPU} bzw. \texttt{SIGKILL} oder \texttt{SIGSEGV} beendet. Das Framework prüft nach Beendigung des Prozesses, ob der Exitcode auf die Terminierung durch ein Signal hinweist oder ob der Prozess normal beendet wurde.
