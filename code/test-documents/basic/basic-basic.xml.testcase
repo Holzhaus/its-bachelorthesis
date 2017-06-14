@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--;testcase
-[General]
-name: Basic elements
-description: Checks if extremely simple XML documents can be converted
- -->
-<root><a>hello world</a><b>this is a test</b><c>good luck</c></root>
