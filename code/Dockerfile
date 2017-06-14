@@ -9,7 +9,7 @@ RUN adduser -D -h /data xjcc
 RUN mkdir -p /opt/xjcc
 
 # Install dependencies
-RUN apk add --update \
+RUN apk add --no-cache --update \
     ca-certificates \
     python3 \
     nodejs \
@@ -39,7 +39,7 @@ RUN gem install cobravsmongoose --version '=0.0.2'
 # Install PHP depencies
 ENV COMPOSER_HOME /user/local/share/composer_home
 COPY composer.json "${COMPOSER_HOME}/composer.json"
-RUN apk add --update curl openssl && \
+RUN apk add --no-cache --update curl openssl && \
     curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer --version=1.4.2 && \
     chmod +x /usr/local/bin/composer && \
     apk del curl openssl && \
@@ -49,9 +49,6 @@ RUN apk add --update curl openssl && \
 # Install Python requirements
 COPY requirements.txt /opt/xjcc/requirements.txt
 RUN pip3 install -r /opt/xjcc/requirements.txt
-
-# Clean up package cache
-RUN rm -rf /var/cache/apk/*
 
 # Install python package
 COPY xjcc /opt/xjcc/xjcc
