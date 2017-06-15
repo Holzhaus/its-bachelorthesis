@@ -13,13 +13,15 @@ class XmlJsonBasePlugin(xjcc.plugins.ConverterPlugin):
     Base class.
     """
     CONVENTION = None
+    KWARGS = {}
 
     @property
     def convention(self):
         return self.CONVENTION(dict_type=collections.OrderedDict)
 
     def xml_to_json(self, xml_data):
-        data = self.convention.data(defusedxml.lxml.XML(xml_data))
+        data = self.convention.data(defusedxml.lxml.XML(xml_data),
+                                    **self.KWARGS)
         return json.dumps(data).encode('utf-8')
 
     def json_to_xml(self, json_data):
@@ -75,3 +77,4 @@ class XmlJsonParkerPlugin(XmlJsonBasePlugin):
     (Parker convention)
     """
     CONVENTION = xmljson.Parker
+    KWARGS = {'preserve_root': True}
