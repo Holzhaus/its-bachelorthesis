@@ -1,0 +1,78 @@
+From 944b1bf386f6388afdef1442f9b0366213b5fef4 Mon Sep 17 00:00:00 2001
+From: Jan Holthuis <jan.holthuis@ruhr-uni-bochum.de>
+Date: Tue, 13 Jun 2017 19:08:36 +0200
+Subject: [PATCH] Disable auto-indentation of XML content
+
+---
+ src/GreenCape/XML/Converter.php | 25 ++++++-------------------
+ 1 file changed, 6 insertions(+), 19 deletions(-)
+
+diff --git a/src/GreenCape/XML/Converter.php b/src/GreenCape/XML/Converter.php
+index d7290e7..f24e812 100644
+--- a/src/GreenCape/XML/Converter.php
++++ b/src/GreenCape/XML/Converter.php
+@@ -78,15 +78,13 @@ private function traverse($node, $level = 0)
+ 	{
+ 		$xml        = '';
+ 		$attributes = '';
+-		$indent     = str_repeat('    ', $level);
+ 
+ 		if (!empty($node['#comment']))
+ 		{
+ 			foreach ($node['#comment'] as $comment)
+ 			{
+-				$comment = "{$indent}<!-- {$comment} -->";
+-				$comment = $this->applyIndentation($comment, $indent);
+-				$xml .= "\n" . $comment . "\n";
++				$comment = "<!-- {$comment} -->";
++				$xml .= $comment;
+ 			}
+ 			unset($node['#comment']);
+ 		}
+@@ -111,7 +109,7 @@ private function traverse($node, $level = 0)
+ 			switch (gettype($data))
+ 			{
+ 				case 'array':
+-					$xml .= "{$indent}<{$tag}{$attributes}>\n";
++					$xml .= "<{$tag}{$attributes}>";
+ 					if ($this->isAssoc($data))
+ 					{
+ 						$xml .= $this->traverse($data, $level + 1);
+@@ -123,15 +121,15 @@ private function traverse($node, $level = 0)
+ 							$xml .= $this->traverse($child, $level + 1);
+ 						}
+ 					}
+-					$xml .= "{$indent}</{$tag}>\n";
++					$xml .= "</{$tag}>";
+ 					break;
+ 
+ 				case 'NULL':
+-					$xml .= "{$indent}<{$tag}{$attributes} />\n";
++					$xml .= "<{$tag}{$attributes} />";
+ 					break;
+ 
+ 				default:
+-					$xml .= "{$indent}<{$tag}{$attributes}>{$data}</{$tag}>\n";
++					$xml .= "<{$tag}{$attributes}>{$data}</{$tag}>";
+ 					break;
+ 			}
+ 		}
+@@ -386,15 +384,4 @@ private function isFile($data)
+ 	{
+ 		return file_exists($data);
+ 	}
+-
+-	/**
+-	 * @param $text
+-	 * @param $indent
+-	 *
+-	 * @return mixed
+-	 */
+-	private function applyIndentation($text, $indent)
+-	{
+-		return preg_replace('~\s*\n\s*~', "\n{$indent}", $text);
+-	}
+ }
+-- 
+2.13.1
+

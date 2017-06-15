@@ -1,0 +1,221 @@
+From 73e5650c3f6cc9337b32bb93ab11f91a3fbe0b62 Mon Sep 17 00:00:00 2001
+From: Jan Holthuis <jan.holthuis@ruhr-uni-bochum.de>
+Date: Thu, 11 May 2017 19:01:52 +0200
+Subject: [PATCH 1/5] Add support for ProcessingInstruction nodes
+
+---
+ jsonml-xml.js | 16 +++++++++++++++-
+ 1 file changed, 15 insertions(+), 1 deletion(-)
+
+diff --git a/jsonml-xml.js b/jsonml-xml.js
+index e8d48c2..3147cf7 100644
+--- a/jsonml-xml.js
++++ b/jsonml-xml.js
+@@ -62,6 +62,8 @@ if (typeof module === 'object') {
+ 
+ 		} else if (tag.charAt(0) === '!') {
+ 			return document.createComment(tag === '!' ? '' : tag.substr(1)+' ');
++		} else if (tag.charAt(0) === '?') {
++			return document.createProcessingInstruction(tag === '!' ? '' : tag.substr(1), '');
+ 		}
+ 
+ 		return document.createElement(tag);
+@@ -99,7 +101,8 @@ if (typeof module === 'object') {
+ 				if (child.nodeType === 3) { // text node
+ 					elem.nodeValue += child.nodeValue;
+ 				}
+-
++			} else if (elem.nodeType === 7) {
++				elem.data = child.data;
+ 			} else if (elem.canHaveChildren !== false) {
+ 				elem.appendChild(child);
+ 			}
+@@ -264,6 +267,17 @@ if (typeof module === 'object') {
+ 				// free references
+ 				elem = null;
+ 				return str;
++			case 7: // ProcessingInstruction node
++				var jml = ['?'+elem.target, elem.data]
++
++				// filter result
++				if ('function' === typeof filter) {
++					jml = filter(jml, elem);
++				}
++
++				// free references
++				elem = null;
++				return jml;
+ 			case 10: // doctype
+ 				jml = ['!'];
+ 
+-- 
+2.13.1
+
+
+From c6a0b50a17ba4134a8d868bf9c2a1b24f6199d12 Mon Sep 17 00:00:00 2001
+From: Jan Holthuis <jan.holthuis@ruhr-uni-bochum.de>
+Date: Thu, 11 May 2017 19:05:31 +0200
+Subject: [PATCH 2/5] Also use ProcessingInstructions outside the
+ documentElement
+
+Unfortunately, this introduces an ugly empty TextNode as parentElement,
+but it works for now.
+---
+ jsonml-xml.js | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/jsonml-xml.js b/jsonml-xml.js
+index 3147cf7..1a47c3a 100644
+--- a/jsonml-xml.js
++++ b/jsonml-xml.js
+@@ -375,7 +375,7 @@ if (typeof module === 'object') {
+ 	 */
+ 	JsonML.fromXMLText = function(xmlText, filter) {
+ 		var elem = parseXML(xmlText);
+-		elem = elem && (elem.ownerDocument || elem).documentElement;
++		elem = elem && (elem.ownerDocument || elem);
+ 
+ 		return fromXML(elem, filter);
+ 	};
+-- 
+2.13.1
+
+
+From 0a75a40d3a17009bac904e448e323e65bb8a7e98 Mon Sep 17 00:00:00 2001
+From: Jan Holthuis <jan.holthuis@ruhr-uni-bochum.de>
+Date: Fri, 12 May 2017 10:47:53 +0200
+Subject: [PATCH 3/5] Avoid empty text node parent if documentElement is the
+ only top-level node
+
+---
+ jsonml-xml.js | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/jsonml-xml.js b/jsonml-xml.js
+index 1a47c3a..9c508b1 100644
+--- a/jsonml-xml.js
++++ b/jsonml-xml.js
+@@ -253,6 +253,10 @@ if (typeof module === 'object') {
+ 
+ 				addChildren(elem, filter, jml);
+ 
++				if (jml[0] === '' && jml.length === 2) {
++					jml = jml[1]
++				}
++
+ 				// filter result
+ 				if ('function' === typeof filter) {
+ 					jml = filter(jml, elem);
+-- 
+2.13.1
+
+
+From edbbc2593943bfc805144076e83c39308eaee4f0 Mon Sep 17 00:00:00 2001
+From: Jan Holthuis <jan.holthuis@ruhr-uni-bochum.de>
+Date: Fri, 12 May 2017 10:49:28 +0200
+Subject: [PATCH 4/5] Add unittests for processing instructions
+
+---
+ test/xmlTests.js | 17 +++++++++++++++++
+ 1 file changed, 17 insertions(+)
+
+diff --git a/test/xmlTests.js b/test/xmlTests.js
+index 9b270bf..8561930 100644
+--- a/test/xmlTests.js
++++ b/test/xmlTests.js
+@@ -340,4 +340,21 @@ test('JsonML.fromXMLText/.toXMLText roundtrip, comments', function() {
+ 	same(actual, expected);
+ });
+ 
++test('JsonML.fromXMLText/.toXMLText roundtrip, processing instructions', function() {
++
++	var expected =
++		'<?some-pi and its data?>' +
++		'<foo>' +
++			'<?another-pi with data?>' +
++		'</foo>';
++
++	// JsonML will strip the XML Declaration
++	var input = '<?xml version="1.0"?>' + expected;
++
++	var jml = JsonML.fromXMLText(input);
++	var actual = JsonML.toXMLText(jml);
++
++	same(actual, expected);
++});
++
+ }catch(ex){alert(ex);}
+-- 
+2.13.1
+
+
+From aa601ae621cfc92435db38d0472304ea56962a5c Mon Sep 17 00:00:00 2001
+From: Jan Holthuis <jan.holthuis@ruhr-uni-bochum.de>
+Date: Mon, 22 May 2017 18:45:06 +0200
+Subject: [PATCH 5/5] Add support for Processing Instructions to
+ jsonml-utils.js
+
+---
+ jsonml-utils.js | 33 +++++++++++++++++++++++++++++++--
+ 1 file changed, 31 insertions(+), 2 deletions(-)
+
+diff --git a/jsonml-utils.js b/jsonml-utils.js
+index 76e352a..9e26a2f 100644
+--- a/jsonml-utils.js
++++ b/jsonml-utils.js
+@@ -84,13 +84,42 @@ if (typeof module === 'object') {
+ 	 * @return {boolean}
+ 	 */
+ 	var isElement = JsonML.isElement = function(jml) {
+-		return isArray(jml) && ('string' === typeof jml[0]);
++		return isArray(jml) && ('string' === typeof jml[0]) && (jml[0].charAt(0) !== '?');
+ 	};
+ 
+ 	/**
+ 	 * @param {*} jml
+ 	 * @return {boolean}
+ 	 */
++	var isProcessingInstruction = JsonML.isProcessingInstruction = function(jml) {
++		return isArray(jml) && ('string' === typeof jml[0]) && (jml[0].charAt(0) === '?');
++	};
++
++	/**
++	 * @param {*} jml
++	 * @return {string}
++	 */
++	var getTarget = JsonML.getTarget = function(jml) {
++		if (!isProcessingInstruction(jml)) {
++			throw new SyntaxError('invalid JsonML');
++		}
++		return jml[0].substring(1);
++	};
++
++	/**
++	 * @param {*} jml
++	 * @return {string}
++	 */
++	var getData = JsonML.getData = function(jml) {
++		if (!isProcessingInstruction(jml)) {
++			throw new SyntaxError('invalid JsonML');
++		}
++		return jml[1];
++	};
++	/**
++	 * @param {*} jml
++	 * @return {boolean}
++	 */
+ 	var isAttributes = JsonML.isAttributes = function(jml) {
+ 		return !!jml && ('object' === typeof jml) && !isArray(jml);
+ 	};
+@@ -196,7 +225,7 @@ if (typeof module === 'object') {
+ 
+ 		} else if (child && 'object' === typeof child) {
+ 			if (isArray(child)) {
+-				if (!isElement(child)) {
++				if (!isElement(child) && !isProcessingInstruction(child)) {
+ 					throw new SyntaxError('invalid JsonML');
+ 				}
+ 
+-- 
+2.13.1
+
