@@ -11,7 +11,7 @@ In diesem Abschnitt werden die Ergebnisse der verschiedenene Textfälle vorgeste
 \begin{figure}[b!]
     \label{fig:results-chars}
     \includestandalone[width=\textwidth]{resulttable-chars}
-    \caption{Ergebnisse der Tests bezüglich Unterstützung der von der XML-Spezifikation erlaubten Zeichen.}
+    \caption{Ergebnisse der Tests bezüglich Unterstützung der von der \acrshort{xml}-Spezifikation erlaubten Zeichen.}
 \end{figure}
 
 \begin{figure}[b!]
@@ -45,9 +45,9 @@ Sowohl \synt{tag-name} als auch \synt{attribute-name} sind \acrshort{json}-Werte
 
 Probleme hatte der Konverter jedoch mit der Umwandlung von \acrfullpl{pi}. Diese werdem in der aktuellen Version der einfach ignoriert. Stephen McKamey, der Entwickler von \acrshort{jsonml} begründet damit, das es keine sinnvolle Entsprechung von \acrshortpl{pi} in \acrshort{json} gäbe~\cite{mckamey2006xml}.
 
-Zwar ist bietet JSON tatsächlich keinen vergleichbaren Mechanismus, eine Unterstützung von \glspl{pi} für bestimmte Einsatzzwecke aber sinnvoll sein, da sonst beispielsweise Formatierungsinformationen in DocBook-Dokumente verloren gehen könnten. Daher wurde die \acrshort{jsonml}-Syntax um \acrshort{pi}-Unterstützung ergänzt.
+Zwar ist bietet \acrshort{json} tatsächlich keinen vergleichbaren Mechanismus, eine Unterstützung von \glspl{pi} für bestimmte Einsatzzwecke aber sinnvoll sein, da sonst beispielsweise Formatierungsinformationen in DocBook-Dokumente verloren gehen könnten. Daher wurde die \acrshort{jsonml}-Syntax um \acrshort{pi}-Unterstützung ergänzt.
 
-Processing Instructions bestehen aus einem \emph{Ziel} und \emph{Daten} (Vgl. Abschn. \ref{sec:xmltree}), bilden also das 2-Tupel $P \coloneqq \langle target, data \rangle$. Der Datenteil kann kann dabei auch der leer sein.
+Processing Instructions bestehen aus einem \emph{Ziel} und \emph{Daten} (Vgl. Abschn. \ref{sec:xmlbasics}), bilden also das 2-Tupel $P \coloneqq \langle target, data \rangle$. Der Datenteil kann kann dabei auch der leer sein.
 
 Das Ziel muss ein gültiger Name im Sinne der \acrshort{xml}-Spezifikation sein~\cite[{Regel~[17]}]{maler2008xml}. Das heißt, dass der Name einer Processing-Instruction\ ebenso wie auch der Tag-Name vom Elementen~\cite[{Regel~[40]}]{maler2008xml} mit einem sog. \texttt{NameStartChar} beginnen muss. Dadurch wird ausgeschlossen, dass Tag-Namen mit bestimmten Zeichen beginnen -- darunter auch das Fragezeichen, da dies dazu führen würde, dass sich Start-Tags mit \glspl{pi} verwechselt werden könnten. Insbesondere in \acrshort{sgml} -- zu dem \acrshort{xml} vollständig kompatibel sein soll -- wären solche Tags nicht mehr von \glspl{pi} zu unterscheiden, da laut \acrshort{sgml}-Spezifikation lediglich ein einfaches Größerzeichen anstatt der Kombination aus Fragezeichen und Größerzeiche (\texttt{?>}) zum Schließen der \gls{pi} ausreicht.
 
