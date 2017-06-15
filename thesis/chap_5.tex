@@ -1,5 +1,15 @@
-\chapter{Schlussfolgerungen und Ausblick} \label{chap:conclusion}
+\chapter{Fazit und Ausblick} \label{chap:conclusion}
 
-Viele der Konversionsverfahren sind jedoch für eine Analyse dieser Art schon allein deshalb nicht geeignet, da ihnen die Möglichkeit der Rückkonvertierung zu \acrshort{xml} fehlt. Ohne eine solche Funktionalität ist eine Prüfung der Verlustlosigkeit in der hier beschriebenen Art jedoch nicht möglich. Projekte wie die PHP-Bibliothek \emph{xml2jsonphp} von IBM\footnote{https://www.ibm.com/developerworks/library/x-xml2jsonphp/index.html} oder das JavaScript-Modul \emph{xmlToJSON} von William Summers\footnote{https://github.com/metatribal/xmlToJSON} konnten daher nicht berücksichtigt werden.
+Die Komplexität des dokumentorientierten \acrshort{xml}-Formats macht eine verlustlose Umwandlung in \acrshort{json}-Strukturen schwierig. Die Analyse anhand von abrechenbaren Testfällen zeigte, das keines der verfügbaren Konversionsverfahren bisher in der Lage ist, \acrshort{xml}-Strukturen verlustlos abzubilden. Viele der Teile der \acrshort{xml}-Spezifikation werden von vielen Konversionsverfahreb nicht oder nur ungenügend unterstützt, darunter eher selten genutzte Features wie \glspl{pi}, aber grundlegendes \acrshort{xml}-Features wie die Beibehaltung der Elementreihenfolge oder die Nutzung von Mixed Content.
 
-% TODO: ADD stuff
+Es wurde ein Test-Framework implementiert, das die Durchführung der Überpfrüfung weitestgehen automatisiert.
+
+Aufbauend auf die vielversprechende \acrfull{jsonml} wurde die Möglichkeit zur verlustlosen Konversion von \acrshort{xml}-Dokumenten für \glspl{pi} implementertiert. Durch die erneute Durchführung aller Testfälle konnte die Verlustlogkeit des erweiterten \acrshort{jsonml}-Konversionsverfahrens verifiziert werden. Es wurde gezeigt, das nun auch die Umwandlung von komplexen \acrshort{xml}-basierten Formaten wie \gls{ooxml}, Flat \gls{odf} oder \gls{svg} in \acrshort{json} verlustlos und sicher möglich ist.
+
+Das hier gezeigte Prüfverfahren vergleicht die \acrshort{xml}-Dokumente vor und nach einem Konversions-Round-Trip. Viele der Konversionsverfahren sind jedoch für eine Analyse dieser Art schon allein deshalb nicht geeignet, da ihnen die Möglichkeit der Rückkonvertierung zu \acrshort{xml} fehlt. Ohne eine solche Funktionalität ist eine Prüfung der Verlustlosigkeit in der hier beschriebenen Art jedoch nicht möglich. Projekte wie die PHP-Bibliothek \emph{xml2jsonphp} von IBM\footnote{https://www.ibm.com/developerworks/library/x-xml2jsonphp/index.html} oder das JavaScript-Modul \emph{xmlToJSON} von William Summers\footnote{https://github.com/metatribal/xmlToJSON} konnten daher nicht berücksichtigt werden.
+
+Ansatzpunkt weiterer Forschung könnte neben der Evaluierung weiterer Konversionverfahren und -programme auch die Einbeziehung zusätzlicher Metadaten wie etwa \acrshortpl{dtd} oder Schema-Informationen könnte Verbesserungen bei dem Verwendung von nativen \acrshort{json}-Datentypen bringen.
+
+Auch die Überprüfung von Verfahren, die beliebige \acrshort{json}-Daten in ein \acrshort{xml}-basiertes Format übersetzen könnte Gegenstamd zukünftiger Forschung sein, inbesondere im Hinblick auf die Sicherheit gegenüber Angriffen auf \acrshort{xml}-Parser.
+
+Das Aufkommen von Technologien wie \acrshort{json} Schema, \acrshort{json} Reference oder \acrshort{json} Include könnte die Komplexität von \acrshort{json}-Parsern in Zukunft deutlich ansteigen und diese für Angriffe verwundbar machen, für die bislang typischerweise \acrshort{xml}-Parsern anfällig sind. Eine Evaluierung der Verwundbarkeit von Konvertern für solche Angriffe erscheint daher sinnvoll.
