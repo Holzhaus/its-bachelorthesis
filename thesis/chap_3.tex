@@ -31,7 +31,7 @@ Damit dieser Konversionsprozess als \emph{verlustlos} angesehen werden kann, mü
 Logisch äquivalent (vgl. Bed. \ref{item:ioequal}) heißt nicht, dass das \acrshort{xml}-Dokument nach dem Konversions-Round-Trip bitidentisch mit dem Ursprungsdokument sein muss -- es ist ausreichend, dass die Struktur der beiden Dokumente übereinstimmt. Daher werden beide Dokumente zunächst kanonisiert\footnote{Vgl. Abschnitt \ref{sec:c14n}} und im Anschluss verglichen. Stimmt die kanonische Form beider \acrshort{xml}-Dokumente überein, war die Konversion verlustlos.
 
 \begin{figure}[h!]
-\begin{definition}[Verlustlosigkeit von Konversion]
+\begin{definition}[Verlustlosigkeit von Konversion]\label{def:lossless}
     Sei $V \coloneqq \{x \mid x\text{ ist ein valider }\allowbreak{}\text{\acrshort{json}-Wert}\}$ und $W \coloneqq \{x \mid x\text{ ist ein wohlgeformtes \acrshort{xml}-Dokument}\}$.
 
     Ein Konversionverfahren $K = (f_{enc}, f_{dec})$ mit $f_{enc}: W \mapsto V$ und $f_{dec}: V \mapsto W$ heißt \emph{verlustlos} genau dann wenn
@@ -318,7 +318,7 @@ Die Testfälle für die Suche nach Schwachstellen der Kategorie \acrlong{fsa} ve
 
 Zur einfacheren Durchführung der Testreihen wurde Evaluations-Framework auf Basis von Python 3.5 implementiert, das ca. 2200 SLOC umfasst. Der Testprozess wird dabei weitestgehend automatisiert.
 
-Um die die \acrlong{c14n} durchzuführen, nutzt das Framework die~\mintinline{python}{write_c14n()}-Methode aus der \emph{lxml}-Bibliothek\footnote{http://lxml.de/}. Die Kanonisierung erfolgt nicht-exklusiv (vgl. Abschn.~\ref{sec:exc-c14n}) und ohne Kommentare -- ausgenommen ist dabei der Testfall, der die Unterstützung für Kommentare überprüft.
+Um die die \acrlong{c14n} durchzuführen, nutzt das Framework die~\mintinline{python}{write_c14n()}-Methode aus der \emph{lxml}-Bibliothek\footnote{http://lxml.de/}. Die Kanonisierung erfolgt nicht-exklusiv (vgl. Abschn.~\ref{sec:excc14n}) und ohne Kommentare -- ausgenommen ist dabei der Testfall, der die Unterstützung für Kommentare überprüft.
 
 Für das \acrshort{xml}-Parsing selbst kommt \emph{defusedxml}\footnote{https://pypi.python.org/pypi/defusedxml} zu Einsatz, das die gängigen Python-APIs zum Parsen von \acrshort{xml}-Dokumenten einem Security-Hardening unterzieht und daher nicht anfällig gegenüber fast allen Angriffsvektoren ist.\cite[Abschn. 9.5]{spaeth2016sok}
 
