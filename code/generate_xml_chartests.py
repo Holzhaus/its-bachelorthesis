@@ -55,8 +55,12 @@ width = math.floor(math.log(maxnum, 16)) + 1
 for start, end, desc in CHAR_RANGES:
     filename = FILENAME_TEMPLATE.format(start=start, end=end, w=width)
     el_root = lxml.etree.Element('root')
+    decimal_width = math.floor(math.log(max([start, end]), 10)) + 1
     for char in range(start, end):
-        el_char = lxml.etree.SubElement(el_root, 'ud%d' % char)
+        el_char = lxml.etree.SubElement(el_root, 'ud{char:0{w}d}'.format(
+            w=decimal_width,
+            char=char,
+        ))
         el_char.text = chr(char)
 
     comment_text = COMMENT_TEMPLATE.format(start=start, end=end, w=width,
