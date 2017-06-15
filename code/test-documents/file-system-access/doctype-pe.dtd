@@ -1,4 +1,4 @@
-<!ELEMENT data (#PCDATA)>
+<!ELEMENT root (#PCDATA)>
 <!ENTITY % start "<![CDATA[">
 <!ENTITY % goodies SYSTEM "{files.secret_txt.url}">
 <!ENTITY % end "]]>">

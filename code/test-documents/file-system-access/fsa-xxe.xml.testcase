@@ -7,8 +7,8 @@ description: File System Access via External Entity Expansion
 [File secret_txt]
 path: secret.txt
 -->
-<!DOCTYPE data [
-<!ELEMENT data (#PCDATA)>
+<!DOCTYPE root [
+<!ELEMENT root (#PCDATA)>
   <!ENTITY file SYSTEM "{files.secret_txt.url}">
 ]>
-<data>&file;</data>
+<root>&file;</root>

