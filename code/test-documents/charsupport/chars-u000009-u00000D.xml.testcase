@@ -3,5 +3,5 @@
 [General]
 name: Chars u000009-00000D (C0 set)
 description: Checks if characters u000009, u00000A, 00000D (C0 characters allowed by XML) are handled correctly
---><root><u9>	</u9><uA>
-</uA><uD></uD></root>
+--><root><ud09>	</ud09><ud10>
+</ud10><ud15></ud15></root>
