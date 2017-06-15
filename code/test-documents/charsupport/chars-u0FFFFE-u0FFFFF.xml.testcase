@@ -3,4 +3,4 @@
 [General]
 name: Chars u0FFFFE-0FFFFF (Discouraged by XML spec)
 description: Checks if characters in the range U+FFFFE to U+FFFFF (Discouraged by XML spec) are handled correctly
---><root><uFFFFE>󿿾</uFFFFE></root>
+--><root><ud1048574>󿿾</ud1048574></root>

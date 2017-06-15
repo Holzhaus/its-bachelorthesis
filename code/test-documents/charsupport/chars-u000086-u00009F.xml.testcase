@@ -3,4 +3,4 @@
 [General]
 name: Chars u000086-00009F (Discouraged by XML spec)
 description: Checks if characters in the range U+86 to U+9F (Discouraged by XML spec) are handled correctly
---><root><u86></u86><u87></u87><u88></u88><u89></u89><u8A></u8A><u8B></u8B><u8C></u8C><u8D></u8D><u8E></u8E><u8F></u8F><u90></u90><u91></u91><u92></u92><u93></u93><u94></u94><u95></u95><u96></u96><u97></u97><u98></u98><u99></u99><u9A></u9A><u9B></u9B><u9C></u9C><u9D></u9D><u9E></u9E></root>
+--><root><ud134></ud134><ud135></ud135><ud136></ud136><ud137></ud137><ud138></ud138><ud139></ud139><ud140></ud140><ud141></ud141><ud142></ud142><ud143></ud143><ud144></ud144><ud145></ud145><ud146></ud146><ud147></ud147><ud148></ud148><ud149></ud149><ud150></ud150><ud151></ud151><ud152></ud152><ud153></ud153><ud154></ud154><ud155></ud155><ud156></ud156><ud157></ud157><ud158></ud158></root>

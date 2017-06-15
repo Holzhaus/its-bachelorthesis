@@ -56,7 +56,7 @@ for start, end, desc in CHAR_RANGES:
     filename = FILENAME_TEMPLATE.format(start=start, end=end, w=width)
     el_root = lxml.etree.Element('root')
     for char in range(start, end):
-        el_char = lxml.etree.SubElement(el_root, 'u%X' % char)
+        el_char = lxml.etree.SubElement(el_root, 'ud%d' % char)
         el_char.text = chr(char)
 
     comment_text = COMMENT_TEMPLATE.format(start=start, end=end, w=width,
