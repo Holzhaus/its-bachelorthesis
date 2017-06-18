@@ -100,39 +100,22 @@ Goessner schlägt ein Mapping zwischen strukturierten XML-Daten und JSON vor, da
 \section{Aufbau der Arbeit}
 \label{sec:structure}
 
-Nach der Einleitung wird zunächst eine Einführung in die Struktur der
-Formate \acrshort{xml} und \acrshort{json} gegeben (wobei die Formate allerdings selbstverständlich
-nicht erschöpfend dargestellt werden können, da dies den Rahmen sprengen
-würde). Im Zuge dessen werden ebenfalls die wichtigsten Unterschiede zwischen
-beiden Formaten aufgezeigt (z.~B.\ \acrshort{json}-Arrays, \acrshort{xml}-Attribute, Duck Typing,
-etc.).
+Im zweiten Kapitel wird zunächst eine kleine Einführung in die Struktur der Formate \acrshort{xml} und \acrshort{json} gegeben. Zudem Werden auch relevante Technologien aus dem Umfeld der Formate beschrieben.  Zudem werden die bekannten Angriffe gegen \acrshort{xml}- und \acrshort{json}-Parser erläutert.
 
-Daran anschließend wird zunächst das Ziel konkret definiert, d.~h.\ es werden
+Im Anschluss daran wird der der Versuchsbau beschrieben. Zunächst zunächst das Ziel konkret definiert, d.~h.\ es werden
 überprüfbaren Kriterien aufgestellt, denen ein Konversionsverfahren genügen
-muss. Dazu gehört beispielsweise, Verlustlosigkeit genauer zu definieren (vor
-allem im Bezug auf Fragen wie \enquote{Sind Kommentare relevant?}). Hier wird
-auch ein Abschnitt zu Angriffen (\emph{\gls{xxe}}, \emph{Billion Laughs}, etc.)
-eingefügt, gegen den der jeweilige Konverter gewappnet sein soll.
+muss. Dazu gehört auch, Verlustlosigkeit genauer zu definieren, d.h.
+es wird die Relevanz der durch verschiedene XML-Strukturen dargestellten
+Informationen untersucht sowie sowie möglicherweise zu Datenverlust führende
+Probleme bei Umwandlung beschrieben.
 
-Dann werden die verschiedenen bestehenden Ansätze zur Umformung aufgezählt
-und die zugrunde liegenden Konzepte kurz und grob beschrieben.
-
-Der folgende Abschnitt erklärt den Versuchsaufbau (\acrshort{xml}-Testdokumente).
-Die verschiedenen Konversionsverfahren werden dann anhand des zuvor
-aufgestellten Anforderungskatalogs geprüft.
+Danach wird die Auswahl der getesteten Konverter vorgestellt und das Überprüfungsverfahren erläutert.
 
 Anschließend werden die Ergebnisse der Tests vorgestellt und diskutiert.
 Dabei wird erörtert, ob und welche Verfahren die zuvor genannten Bedingungen
 erfüllen.
 
-Falls keines der Konversionsverfahren den zuvor aufgestellten Kriterien genügt,
-folgt der Abschnitt, der einen eigenen Umwandlungsalgorithmus
-entwickelt.
+Das Konversionsverfahren, das bei der Überprüfung die XML-Strukturen am besten abgebildet hat, wird im folgenden Kapitel dann zu einem vollständig verlustlosen Verfahren weiterentwickelt. Das so verbesserte Verfahren wird mithilfe der Kriterien aus Kapitel~\ref{sec:criteria} einer erneuten Überprüfung unterzogen.
 
 Im Diskussions-Abschnitt werden die aktuellen Möglichkeiten zur Umwandlung
-von \acrshort{xml} in \acrshort{json} und wieder zurück abschließend eingeschätzt und bewertet.
-Dabei soll auch ein Ausblick auf weitere Verbesserungsmöglichkeiten oder
-alternative Wege zum Ziel erörtert werden.
-
-Im letzten Kapitel zu verwandten Arbeiten werden weitere Arbeiten zum Thema
-beschrieben und Unterschiede zur eigenen Arbeit herausgearbeitet.
+von \acrshort{xml} in \acrshort{json} und wieder zurück abschließend eingeschätzt und bewertet und ein Ausblick auf weitere Forschungfelder gegeben werden.
