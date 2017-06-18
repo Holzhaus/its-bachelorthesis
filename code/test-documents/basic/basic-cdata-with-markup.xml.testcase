@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--;testcase
 [General]
-name: CDATA support
-description: Checks if CDATA sections are supported
+name: CDATA section with Markup
+description: Checks if CDATA sections that contain Markup are supported
  -->
 <root><![CDATA[<markup>This & That </markup>]]></root>
