@@ -1,40 +1,41 @@
 \chapter{Ergebnisse} \label{chap:results}
 
+Es wurden insgesamt 101 Testfälle verwendet und 11 verschiedene Konverter überprüft. Allerdings konnte keiner der Konverter alle Anforderungen aus Abschnitt~\ref{sec:criteria} erfüllen.
+
+Im Folgenden werden die Ergebnisse der verschiedenenen Konverter vorgestellt.
+
 \begin{figure}[b!]
-    \label{fig:results-basic}
+    \label{tbl:results-basic}
     \includestandalone[width=\textwidth]{resulttable-basic}
-    \caption{Konversions-Testergebnisse bezüglich verschiedener Konversionprobleme.}
+    \captionof{table}{Konversions-Testergebnisse bezüglich verschiedener Konversionprobleme.}
 \end{figure}
 
-\begin{figure}[t!]
-    \label{fig:results-chars}
+\begin{figure}[H]
+    \label{tbl:results-chars}
     \includestandalone[width=\textwidth]{resulttable-chars}
-    \caption{Ergebnisse der Tests bezüglich Unterstützung der von der \acrshort{xml}-Spezifikation erlaubten Zeichen.}
+    \captionof{table}{Ergebnisse der Tests bezüglich Unterstützung der von der \acrshort{xml}-Spezifikation erlaubten Zeichen.}
 
-     \vspace*{\floatsep}
+    \vspace*{\floatsep}
 
-    \label{fig:results-complex}
+    \label{tbl:results-complex}
     \includestandalone[width=\textwidth]{resulttable-complex}
-    \caption{Testergebnisse der Konverter bei komplexen Dokumenten.}
+    \captionof{table}{Testergebnisse der Konverter bei komplexen Dokumenten.}
 \end{figure}
 
 \begin{figure}[t!]
-    \label{fig:results-sec}
+    \label{tbl:results-sec}
     \includestandalone[width=\textwidth]{resulttable-sec}
-    \caption{Ergebnisse der Tests auf Sicherheitlücken}
+    \captionof{table}{Ergebnisse der Tests auf Sicherheitlücken}
 \end{figure}
-
-In diesem Abschnitt werden die Ergebnisse der verschiedenene Textfälle vorgestellt. Es wurden 101 Testfälle und 11 verschiedene Konverter überprüft.
-
 \section{Cobra vs Mongoose}
 \label{sec:cobravsmongoose}
 
-Die Reihenfolge der Elemente sowie Whitespace wurden von \emph{Cobra vs Mongoose} verworfen. Das Auftreten vom Mixed Content, \glspl{pi} und Kommentaren im Urspungsdokument führte Fehlern bei der Rückkonvertierung von \acrshort{json} zu XML.
+Die Reihenfolge der Elemente sowie Whitespace werden von \emph{Cobra vs Mongoose} verworfen. Das Auftreten vom Mixed Content, \glspl{pi} und Kommentaren im Urspungsdokument führt zu Fehlern bei der Rückkonvertierung von \acrshort{json} zu \acrshort{xml}.
 
 \section{GreenCape \acrshort{xml} Converter}
 \label{sec:greencapexml}
 
-Bei der Umwandlung von \acrshort{json} zu \acrshort{xml}-Daten fügt der Konverter automatisch Zeilenumbrüche hinter allen Elementen ein und Einrückungen mit einer Breite von vier Leerzeichen ein. Dies führte dazu, dass der Konverter keinen der Tests bestand. Um die Überprüfung der anderen, davon unabhängigen Aspekte des Konverters gewährleisten zu können, musste dieses Verhalten durch einen Patch entfernt werden (siehe Anhang~\ref{appx:greencapexml}).
+Bei der Umwandlung von \acrshort{json} zu \acrshort{xml}-Daten fügt der Konverter automatisch Zeilenumbrüche hinter allen Elementen und Einrückungen mit einer Breite von vier Leerzeichen ein. Dies führte dazu, dass der Konverter keinen der Tests bestand. Um die Überprüfung der anderen, davon unabhängigen Aspekte des Konverters gewährleisten zu können, musste dieses Verhalten durch einen Patch entfernt werden (siehe Anhang~\ref{appx:greencapexml}).
 
 Die Konversion der umfangreichen \acrshort{odf}-Spezifikation in Form einer \texttt{*.fodt}-Datei mithilfe des \emph{GreenCape \acrshort{xml} Converters} schug fehl. Der Versuch wurde abgebrochen, nachdem der PHP-Prozess seit rund 3 Stunden bei 100\% CPU-Last eingefroren war. Eine Analyse mithilfe des Tools \mintinline{shell}{strace} zeigte, dass sich der PHP-Interpreter in einer Endlosschleife aus aufeinanderfolgenden \mintinline{c}{mmap()}- und \mintinline{c}{mummap()}-Syscalls befand (siehe Abb.~\ref{fig:greencapeloop}).
 
@@ -47,21 +48,21 @@ Die Konversion der umfangreichen \acrshort{odf}-Spezifikation in Form einer \tex
 \section{Json-lib}
 \label{sec:jsonlib}
 
-Enthält das Wurzelelement des Kommentare oder \glspl{pi} führt dies zu einem Fehler. \glspl{pi} außerhalb des Wurzelelements werden von \emph{Json-lib} ignoriert. Bei der Konversion geht zudem der Tagname des Wurzelelements verloren. Tritt Mixed Content auf, werden bei der Rückkonversion alle Text-Knoten zusammengefasst.
+Bei Kommentare oder \glspl{pi} innerhalb des Wurzelelement des \acrshort{xml}-Dokuments stürzt der Konverter ab. \glspl{pi} außerhalb des Wurzelelements werden von \emph{Json-lib} ignoriert. Bei der Konversion geht zudem der Tagname des Wurzelelements verloren. Tritt Mixed Content auf, werden bei der Rückkonversion alle Text-Knoten zusammengefasst.
 
 Mehrere aufeinanderfolgende Elemente selben Namens werden von \emph{Json-lib} in ein \acrshort{json}-Array konvertiert. Dabei wird jedoch lediglich der Inhalt der Elemente übernommen, während der Tagname verloren geht.
 
 Enthält das Wurzelelement eine \acrshort{xml}-Dokument ledglich Zeichendaten, so werden diese bei einem Round-Trip zum Inhalt eines Kindelements des Wurzelelements -- in diesem Fall fügt \emph{Json-lib} also eine Elementebene hinzu, die im Ursprungsdokument nicht existierte. Eine genauere Analyse der ausgegebene Daten zeigte, das dieses Verhalten auch der Grund für das Scheitern der CDATA-Testfälle war. CDATA-Sektionen werden von \emph{Json-lib} sehr wohl unterstützt.
 
-Leider war es nicht möglich, \emph{Json-lib} ohne besondere Konfiguration in einem Prozess mit begrenzem virtuellen Adressraum zu verwenden, da die \acrfull{jvm} in diesem Fall nicht gestartetwerden kann~\cite{jvmmemlimit}. Um dieses Problem zu umgehen, muss beim Start des Java-Prozesses die maximale Größe des Heap-Adressraums sowie die Größe des für Zeiger auf Metadaten von Java-Klassen zur Verfügung stehenden Adressraums angegeben werden.
+Leider war es nicht möglich, \emph{Json-lib} ohne besondere Konfiguration in einem Prozess mit begrenztem virtuellen Adressraum zu verwenden, da die \acrfull{jvm} in diesem Fall nicht gestartet werden kann~\cite{jvmmemlimit}. Um dieses Problem zu umgehen, muss beim Start des Java-Prozesses die maximale Größe des Heap-Adressraums sowie die Größe des für Zeiger auf Metadaten von Java-Klassen zur Verfügung stehenden Adressraums angegeben werden.
 
-Eine sinnvolle Aussage über die Anfälligkeit gegenüber Angriffen aus dem Bereich \acrlong{dos} ist unter diesen Umständen jedoch nicht möglich, die entsprechenden Tests für \emph{Json-lib} manuell wiederholt werden mussten.
+Eine sinnvolle Aussage über die Anfälligkeit gegenüber Angriffen aus dem Bereich \acrlong{dos} ist unter diesen Umständen jedoch nicht möglich, sodass die entsprechenden Tests für \emph{Json-lib} manuell wiederholt werden mussten.
 
 Ein Blick in den Quellcode der Klasse \texttt{net.sf.json.XMLSerializer} zeigt, dass Json-lib den \acrshort{xml}-Parser XOM einsetzt. Dieser ist anfällig für \acrshort{xxe}-Angriffe mittels General Entites bzw. Parameter Entities, die sowohl für \acrlong{fsa} als auch für \acrlong{ssrf} genutzt werden können.
 
-Ebenso erlaubt der Parser die Einbettung lokaler Dateien mittels Parameter Entities in DTDs, sowohl in ursprünglichen Version des Angriffs~\cite[S.~10]{morgan2014xml}, als auch in einer modifizierten Variante, die 2016 von Sicherheitsforschern der Ruhr-Universität Bochum vorgestellt wurde.~\cite[Abschn.~5.2]{spaeth2016sok}.
+Ebenso erlaubt der Parser die Einbettung lokaler Dateien mittels Parameter Entities in DTDs, sowohl in der ursprünglichen Version des Angriffs~\cite[S.~10]{morgan2014xml}, als auch in einer modifizierten Variante, die 2016 von Sicherheitsforschern der Ruhr-Universität Bochum vorgestellt wurde.~\cite[Abschn.~5.2]{spaeth2016sok}.
 
-\section{JsonML}
+\section{\acrshort{jsonml}}
 \label{sec:jsonml}
 
 Das Konversionverfahren \acrshort{jsonml} ist vergleichsweise vollständig. Lediglich die in Ursprungsdokumenten enthaltenen \glspl{pi} werden vom Konverter ignoriert und nicht in die \acrshort{json}-Ausgabe übernommen.
@@ -90,31 +91,29 @@ Zudem werden Zahlenwerte sowie die Zeichenketten \mintinline{json}{true} und \mi
 \section{Pesterfish}
 \label{sec:pesterfish}
 
-Bei der Konversion gehen zudem die Namen der Namesprace-Prefixe verloren und werden durch generische Bezeichnungen (\texttt{ns0}, \texttt{ns1}, \dots{}) ersetzt. Dies werden auch dann verwendet, wenn im Ursprungsdokument keinerlei Namensraum-Prefixe verwendet wurden, sondern ein eigener Default-Namespace genutzt wurde. Grund dafür ist die \texttt{ElementTree}-\acrshort{api}, die Namespace-Prefixes beim Parsen von \acrshort{xml} automatisch zur vollen URI expandiert und den ursprünglichen Prefixnamen verwirft~\cite[Abschn.~20.5.1.7]{pythonetreexmlns}.
-
-Zudem gehen bei der Konvertierung auch Processing Instructions verloren.
+Bei der Konversion gehen die Namen der Namesprace-Prefixe verloren und werden durch generische Bezeichnungen (\texttt{ns0}, \texttt{ns1}, \dots{}) ersetzt. Dies werden auch dann verwendet, wenn im Ursprungsdokument keinerlei Namensraum-Prefixe verwendet wurden, sondern ein eigener Default-Namespace genutzt wurde. Grund dafür ist die \texttt{ElementTree}-\acrshort{api}, die Namespace-Prefixes beim Parsen von \acrshort{xml} automatisch zur vollen URI expandiert und den ursprünglichen Prefixnamen verwirft~\cite[Abschn.~20.5.1.7]{pythonetreexmlns}.
+Zudem gehen bei der Konvertierung auch \glspl{pi} verloren.
 
 Bei den Sicherheitstests zeigte sich, dass \emph{Pesterfish} bei Nutzung der Vorgabeeinstellungen verwundbar für die \acrshort{dos}-Angriffe \emph{Billion Laughs} und \emph{Quadratic Blowup Attacks ist.}. Da die Bibliothek jedoch die Verwendung einer eigenen \texttt{ElementTree}-Implementierung erlaubt, kann diesem Problem durch den Einsatz eines sicheren Ersatzes -- beispielsweise aus der \emph{defusedxml}-Bibliothek -- entgegengewirkt werden.
 
 \section{x2js}
 \label{sec:x2js}
 
-Die Beibehaltung der Dokumentreihenfolge ist beim Einsatz von \emph{x2js} nicht gegeben. Bei Mixed Content wird der gesamte Character Content eines Elements zu einem einzelnen, Textknoten zusammengefasst. Auch Processing Instructions werden nicht unterstützt -- treten diese innerhalb des Wurzelelements auf, wird anstelle der \gls{pi} ein leeres Element namens "undefined" eingefügt.
+Die Beibehaltung der Dokumentreihenfolge ist beim Einsatz von \emph{x2js} nicht gegeben. Bei Mixed Content wird der gesamte Character Content eines Elements zu einem einzelnen Textknoten zusammengefasst. Auch \glspl{pi} werden nicht unterstützt -- treten diese innerhalb des Wurzelelements auf, wird anstelle der \gls{pi} ein leeres Element namens \enquote{undefined} eingefügt.
 
-Whitespace bleibt zwar grundsätzlich erhalten, Einrückungen werden jedoch wie anderer Mixed Content auch zusammengefasst, sodass Dokument mit Einrückungen nach der Konversion jedes Element mit zuvor eingerücktem Inhalt stattdessen einen einzelnen, nur aus Whitespace bestehenden Textknoten enthält.
+Whitespace bleibt zwar grundsätzlich erhalten, Einrückungen werden jedoch wie anderer Mixed Content auch zusammengefasst, sodass bei Dokumenten mit Einrückungen nach der Konversion jedes Element mit zuvor eingerücktem Inhalt stattdessen einen einzelnen, nur aus Whitespace bestehenden Textknoten enthält.
 
 \section{xmljson}
 \label{sec:xmljson}
 
-Im Gegensatz zu anderen Konvertern verfügt das Python-Package xmljson über keine Möglichkeit, einen \acrshort{xml}-Daten enthaltenden String direkt zu konvertieren, sondern akzeptiert lediglich bereits geparste ElementTree-Objekte. Da der Nutzer selbst für das Parsen des \acrshort{xml}-Dokuments zuständig ist und es im Unterschied zu Pesterfish (Vgl.~Abschn.~\ref{sec:pesterfish}) auch keine Voreinstellung gibt, wird eine Sicherheitsanalyse dieses Konverters hinfällig. Zum Durchführen der Tests wurde \texttt{defusedxml.lxml} verwendet.
+Im Gegensatz zu anderen Konvertern verfügt das Python-Package xmljson über keine Möglichkeit, einen \acrshort{xml}-Daten enthaltenden String direkt zu konvertieren, sondern akzeptiert lediglich bereits geparste \texttt{ElementTree}-Objekte. Da der Nutzer selbst für das Parsen des \acrshort{xml}-Dokuments zuständig ist und es im Unterschied zu Pesterfish (Vgl.~Abschn.~\ref{sec:pesterfish}) auch keine Voreinstellung gibt, wird eine Sicherheitsanalyse dieses Konverters hinfällig. Zum Durchführen der Tests wurde \texttt{defusedxml.lxml} verwendet.
 
 Der \emph{xmljson}-Konverter kann mehrere verschiedene Konvertierungskonventionen nutzen (vgl.~Abschn.~\ref{sec:converters}), die unabhängig voneinander getestet wurden.
 
 Durch den Einsatz der \texttt{ElementTree}-\acrshort{api} hat \emph{xmljson} keinen Zugriff auf die im \acrshort{xml}-Dokument verwendeten Prefixnamen, sodass diese wie beim \emph{Pesterfish}-Konverter durch generische Namen ersetztt werden~(vgl.~Abschn.~\ref{sec:pesterfish}).
-
 \glspl{pi} werden von allen Konventionen ignoriert.
 
-Lediglich die \emph{Cobra}- und \emph{Yahoo}-Konventionen (Abschn.~\ref{sec:xmljson-cobra} und~\ref{sec:xmljson-yahoo}) nutzen keine Typinferenz. Alle anderen Konverter wandeln Zeichenketten \texttt{true} und \texttt{false} in boolsche Werte umgewandelt. Auch Zahlenwerte werden als numerische Datentypen interpretiert, wodurch beispielsweise Rundungsfehler auftreten können oder Formatierung verloren geht (z.B. \mintinline{json}{1e+39} anstatt\mintinline{json}{"1E39"}). Sehr großen Zahlen werden als \mintinline{js}{Infinity}-Literal dargestellt, der zwar valides JavaScript wäre, von der \acrshort{json}-Spezifikation jedoch nicht erlaubt ist.
+Lediglich die \emph{Cobra}- und \emph{Yahoo}-Konventionen (Abschn.~\ref{sec:xmljson-cobra} und~\ref{sec:xmljson-yahoo}) nutzen keine Typinferenz. Alle anderen Konverter wandeln die Zeichenketten \texttt{true} und \texttt{false} in boolsche Werte um. Auch Zahlenwerte werden als numerische Datentypen interpretiert, wodurch beispielsweise Rundungsfehler auftreten können oder Formatierung verloren geht (z.B. \mintinline{json}{1e+39} anstatt \mintinline{json}{"1E39"}). Sehr großen Zahlen werden als \mintinline{js}{Infinity}-Literal dargestellt, der zwar valides JavaScript wäre, von der \acrshort{json}-Spezifikation jedoch nicht erlaubt ist.
 
 \subsection{Abdera}
 \label{sec:xmljson-abdera}
@@ -123,22 +122,21 @@ Attribute werden bei der \acrshort{json}-Konvertierung mithilfe der \emph{Abdera
 
 Andererseits werden teilweise Elemente und Textknoten zu Attributwerten umgedeutet. So wird aus \mintinline{xml}{<a><b>hello</b></a>} durch einen Round-Trip \mintinline{xml}{<a b="hello" />}
 
-Aufgrund der Probleme des Konverters, anhand den \acrshort{json}-Daten zwischen Elemente und Attributen zu unterscheiden und diese später wieder korrekt rekonstruieren zu können, schlagen auch Tests fehl, die der Konverter eigentlich bestehen könnte. So nutzt der Konverter bei mehreren Kindelement \acrshort{json}-Arrays, d.h. die Elementreihenfolge ist auch nach der Konversion noch ersichtlich.
- Auch Tag-Name und Attribute des Wurzelelements gehen eigentlich nicht verloren.
+Aufgrund der Probleme des Konverters, anhand der \acrshort{json}-Daten zwischen Elementen und Attributen zu unterscheiden und diese später wieder korrekt rekonstruieren zu können, schlagen auch Tests fehl, die der Konverter eigentlich bestehen könnte. So nutzt der Konverter bei mehreren Kindelementen \acrshort{json}-Arrays, d.h. die Elementreihenfolge ist auch nach der Konversion noch ersichtlich.
+Auch Tag-Name und Attribute des Wurzelelements gehen eigentlich nicht verloren.
 
-Mixed Content wird nicht unterstützt, es wird lediglich der erste Textknoten im Dokument auffindbar.
-
+Mixed Content wird nicht unterstützt, es ist lediglich der erste Textknoten im Dokument auffindbar.
 Führender oder anhängender Whitespace wird bei der Konversion verworfen.
 
 \subsection{Badgerfish}
 \label{sec:xmljson-badgerfish}
 
-Die Ergebnisse stimmen im Wesentlichen mit denen  denen des \emph{Cobra-vs-Mongoose}-Konverters (vgl.~Abschn.~\ref{sec:cobravsmongoose}), der ebenfalls auf die sogenannte Badgerfish-Konvention zur Darstellung von \acrshort{xml}-Strukturen in \acrshort{json} setzt. Nicht unterstütze Features wie Mixed Content, \glspl{pi} oder Kommentare führten bei \emph{xmljson} jedoch nicht zu eineme Absturz des Programms. Zudem kommt es zu Problemen durch den Einsatz von Typinferenz und dem Verlust der Prefixnamen von Namespaces.
+Die Ergebnisse stimmen im Wesentlichen mit denen  denen des \emph{Cobra-vs-Mongoose}-Konverters (vgl.~Abschn.~\ref{sec:cobravsmongoose}) überein, der ebenfalls auf die sogenannte Badgerfish-Konvention zur Darstellung von \acrshort{xml}-Strukturen in \acrshort{json} setzt. Nicht unterstütze Features wie Mixed Content, \glspl{pi} oder Kommentare führten bei \emph{xmljson} jedoch nicht zu eineme Absturz des Programms. Zudem kommt es zu Problemen durch den Einsatz von Typinferenz und dem Verlust der Prefixnamen von Namespaces.
 
 \subsection{Cobra}
 \label{sec:xmljson-cobra}
 
-Bei \emph{Cobra} handelt es sich um eine modifizierte Variante von \emph{Abdera}, die sich hauptsächtlich durch darin unterscheiden, welche Schlüssel in der \acrshort{json}-Objekte-Repräsentation eines \acrshort{xml}-Dokuments optional sind. Daher hat auch \emph{Cobra} große Probleme mit der Rückkonvertierung zu \acrshort{xml} und der unterscheidung zwischen Elementen und Attributen..
+Bei \emph{Cobra} handelt es sich um eine modifizierte Variante von \emph{Abdera}, die sich hauptsächtlich darin unterscheiden, welche Schlüssel in der \acrshort{json}-Objekte-Repräsentation eines \acrshort{xml}-Dokuments optional sind. Daher hat auch \emph{Cobra} große Probleme mit der Rückkonvertierung zu \acrshort{xml} und der Unterscheidung zwischen Elementen und Attributen.
 
 Ein weiterer Unterschied ist, dass bei Cobra keine Datentypen erraten werden, sondern alles als String behandelt wird.
 
@@ -159,42 +157,83 @@ In der Standardeinstellung verwirft diese Konvention das Wurzelelement -- dieses
 \subsection{Yahoo}
 \label{sec:xmljson-yahoo}
 
-Die \emph{Yahoo} hat ebenfalls Probleme bei der Unterscheidung zwischen Elementen und Attributen, fügt aber im Gegensatz zu \emph{Abdera} und \emph{Cobra} nicht noch zusätzlich komplett neuen Elemente in das Dokument ein.
+Die \emph{Yahoo} hat ebenfalls Probleme bei der Unterscheidung zwischen Elementen und Attributen, fügt aber im Gegensatz zu \emph{Abdera} und \emph{Cobra} nicht neue, im Originaldokument nicht existierende Elemente in das Dokument ein.
 
 Die Elementreihenfolge geht bei der Konvertierung verloren.
 
-Im \acrshort{xml}-Dokument enthaltener Character Content immer zu \acrshort{json}-Strings konvertiert, eine Typumwandlung findet nicht statt.
+Im \acrshort{xml}-Dokument enthaltener Character Content wird in allen getesteten Fällen zu \acrshort{json}-Strings konvertiert, eine Typumwandlung findet nicht statt.
 
-\chapter{\acrfull{jsonml}}
+\chapter{Weiterentwicklung eines Konversionsverfahrens}
 \label{chap:jsonml}
 
-Mit insgesamt XX von 101 bestandenen Testfällen ist die \acrfull{jsonml} durchaus vielversprechend.
+Mit insgesamt 89 von 100 bestandenen Testfällen erfüllt die \acrfull{jsonml} von allen Konversionverfahren die meisten Kriterien im Test.
 
-\begin{definition}Formale Syntax der \acrfull{jsonml}
-\label{def:jsonml}
+In diesem Kapitel wird daher zunächst ein Überblick über die von \acrshort{jsonml} eingesetzte Syntax gegeben.
+Darauf aufbauend werden dann die notwendigen Modifikationen am \acrshort{jsonml}-Verfahren beschrieben, die im Zuge dieser Arbeit entwickelt wurden, um das Ziel eines vollständig verlustlose Konversionsverfahrens zu erreichen. Im Anschluss daran werden die Ergebnisse einer Analyse der so weiterentwickelten \acrshort{jsonml}.
 
-Sowohl \synt{tag-name} als auch \synt{attribute-name} sind \acrshort{json}-Werte vom Typ String. Die Whitespace-Regeln sind identisch wie bei \acrshort{json} (Vgl. Definition~\ref{def:json}).
+\acrfull{jsonml}
+\section{Syntax}
 
-\begin{grammar}
-    \input{grammar_jsonml.tex}
-\end{grammar}
-\end{definition}
+Im Gegensatz zu anderen Konvertern nutzt \acrshort{jsonml} ungeordnete \acrshort{json}-Objekte ausschließlich für Attributlisten~\cite{jsonmlsyntax}. Die Baumstruktur eines \acrshort{xml}-Dokuments wird mittels \acrshort{json}-Arrays dargestellt, wobei ein Array immer genau ein Element repräsentiert. Textknoten bzw. CDATA-Sektionen werden zu einfachen \acrshort{json}-Strings umgewandelt.
 
-\section{Unterstützung von \glspl{pi}}
-
-Probleme hatte der Konverter jedoch mit der Umwandlung von \acrfullpl{pi}. Diese werdem in der aktuellen Version der einfach ignoriert. Stephen McKamey, der Entwickler von \acrshort{jsonml} begründet damit, das es keine sinnvolle Entsprechung von \acrshortpl{pi} in \acrshort{json} gäbe~\cite{mckamey2006xml}.
-
-Zwar ist bietet \acrshort{json} tatsächlich keinen vergleichbaren Mechanismus, eine Unterstützung von \glspl{pi} für bestimmte Einsatzzwecke aber sinnvoll sein, da sonst beispielsweise Formatierungsinformationen in DocBook-Dokumente verloren gehen könnten. Daher wurde die \acrshort{jsonml}-Syntax um \acrshort{pi}-Unterstützung ergänzt.
-
-\glspl{pi} bestehen aus einem \emph{Ziel} und \emph{Daten} (Vgl. Abschn. \ref{sec:xmlbasics}), bilden also das 2-Tupel $P \coloneqq \langle target, data \rangle$. Der Datenteil kann kann dabei auch der leer sein.
-
-Das Ziel muss ein gültiger Name im Sinne der \acrshort{xml}-Spezifikation sein~\cite[{Regel~[17]}]{maler2008xml}. Das heißt, dass der Name einer \gls{pi}\ ebenso wie auch der Tag-Name vom Elementen~\cite[{Regel~[40]}]{maler2008xml} mit einem sog. \texttt{NameStartChar} beginnen muss. Dadurch wird ausgeschlossen, dass Tag-Namen mit bestimmten Zeichen beginnen -- darunter auch das Fragezeichen, da dies dazu führen würde, dass sich Start-Tags mit \glspl{pi} verwechselt werden könnten. Insbesondere in \acrshort{sgml} -- zu dem \acrshort{xml} vollständig kompatibel sein soll -- wären solche Tags nicht mehr von \glspl{pi} zu unterscheiden, da laut \acrshort{sgml}-Spezifikation lediglich ein einfaches Größerzeichen anstatt der Kombination aus Fragezeichen und Größerzeiche (\texttt{?>}) zum Schließen der \gls{pi} ausreicht.
-
-
-Dadurch wird es möglich, \glspl{pi} in \acrshort{jsonml} eindeutig in Form eines \acrshort{json}-Arrays \mintinline{json}{["?target", "data"]} darzustellen~(vgl. Definition \ref{def:jsonmlpi}), das dem 2-Tupel $P$ (s.o.) entspricht. Die Repräsentation von \glspl{pi} ähnelt damit der eines Elementknotens, der einen einzelnen Textknoten (\emph{Character Data}) enthält. Eine Verwechslung ist jedoch durch das dem Zielnamen vorangestellte Fragezeichen ausgeschlossen -- ein Tagname darfnicht mit einem Fragezeichen beginnen, wodurch die Kategorisierung als \gls{pi} eindeutig ist.
+\begin{figure}[H]
+    \begin{definition}[{Formale Syntax der \acrfull{jsonml}}]
+        \label{def:jsonml}
+        Sowohl \synt{tag-name} als auch \synt{attribute-name} sind \acrshort{json}-Werte vom Typ String. Die Whitespace-Regeln sind identisch wie bei \acrshort{json} (Vgl. Definition~\ref{def:json}).
+        \begin{grammar}
+            \input{grammar_jsonml.tex}
+        \end{grammar}
+    \end{definition}
+\end{figure}
 
 \begin{figure}[h]
-    \begin{definition} Formale Syntax der \acrfull{jsonml} mit \emph{\glspl{pi}}
+    \begin{example}[{\acrshort{jsonml}-Dokument}]~
+    \inputminted{json}{xmltree.json}
+        \captionof{figure}{Die \acrshort{jsonml}-Repräsentation des \acrshort{xml}-Dokuments aus Beispiel~\ref{ex:xmldoc}.}
+    \label{fig:xmltreejsonml}
+    \end{example}
+\end{figure}
+
+\acrshort{jsonml} sieht keine gesonderte Verarbeitung von Namespace-Deklarationen oder mit Namespace-Prefixes versehene Tag-Namen vor, sondern behandelt diese wie normale Attribute bzw. wie einen Teil des Tag-Namens.
+
+\acrshort{jsonml} stellt die \acrshort{xml}-Inhalte recht effizient dar: Die \acrshort{json}-Repräsentation eines umfangreichen Office-Dokuments im \acrshort{fodt}-Format benötigt rund $6{,}6\%$ weniger Speicherplatz als die äquivalente Darstellung durch kanonisches \acrshort{xml}.
+
+Im Vergleich zu anderen Konvertern ist der Overhead bei \acrshort{jsonml} deutlich geringer. So waren die vom Pesterfish-Konverter ausgegebenen Daten trotz Informationsverlust auch nach Entfernung von optionalem Whitespace und unnötiger Quotierung von Unicode-Zeichen mehr als dreieinhalb Mal so groß wie bei \acrshort{jsonml} (vgl. Abb.~\ref{fig:sizecomparison}).
+
+\begin{center}
+    \begin{threeparttable}
+        \caption{Größenvergleich von ggü. \acrshort{xml} und Pesterfish anhand der Spezifikation des \acrlong{odf} im \acrshort{fodt}-Format.}
+        \label{fig:sizecomparison}
+        \begin{tabular}{lrrr}
+            \toprule
+            \rowcolor{white}     & \multicolumn{1}{c}{\fontfamily{rubflama}\selectfont\textbf{Größe (in bytes)}} & \multicolumn{2}{c}{\fontfamily{rubflama}\selectfont\textbf{Verhältnis zu \acrshort{xml} (in \%)}}\\
+                                 &                  & \multicolumn{1}{c}{\fontfamily{rubflama}\selectfont\textbf{Größe}}   & \multicolumn{1}{c}{\fontfamily{rubflama}\selectfont\textbf{Veränderung}}\\
+            \midrule
+            \rowcolor{rubgray!50} Kanonisches \acrshort{xml} &  5787196 & $100{,}0$ &        $0$ \\
+                                  \acrshort{jsonml}\tnote{a} &  5405329 &  $93{,}4$ &   $-6{,}6$ \\
+            \rowcolor{rubgray!50} Pesterfish\tnote{a}        & 15061634 & $260{,}3$ & $+160{,}3$ \\
+                                  Pesterfish\tnote{b}        & 14480612 & $250{,}2$ & $+150{,}2$ \\
+            \bottomrule
+        \end{tabular}
+        \begin{tablenotes}
+            \item[a] \acrshort{json} unverändert
+            \item[b] Optionaler \acrshort{json}-Whitespace entfernt
+        \end{tablenotes}
+    \end{threeparttable}
+\end{center}
+
+\section{Unterstützung von \acrlongpl{pi}}
+
+Probleme hatte der Konverter jedoch mit der Umwandlung von \acrfullpl{pi}. Diese werdem bei der Umwandlung in \acrshort{json} vollständig ignoriert. Stephen McKamey, der Entwickler von \acrshort{jsonml}, begründet damit, das es keine sinnvolle Entsprechung von \acrshortpl{pi} in \acrshort{json} gäbe~\cite{mckamey2006xml}.
+
+Zwar bietet \acrshort{json} tatsächlich keinen vergleichbaren Mechanismus, eine Unterstützung von \glspl{pi} kann für bestimmte Einsatzzwecke aber sinnvoll sein, beispielsweise wenn sonst die Verknüpfung mit \acrshort{xml}-Stylesheets oder Formatierungsinformationen in DocBook-Dateien verloren gehen könnten. Im Rahmen der vorliegenden Arbeit wurde die \acrshort{jsonml}-Syntax daher um Unterstützung von \acrlongpl{pi} ergänzt.
+
+\glspl{pi} bestehen aus einem \emph{Ziel} und \emph{Daten} (Vgl. Abschn. \ref{sec:xmlbasics}), bilden also das 2-Tupel $P \coloneqq \langle target, data \rangle$. Der Datenteil kann dabei auch leer sein.
+
+Das Ziel muss ein gültiger Name im Sinne der \acrshort{xml}-Spezifikation sein~\cite[{Regel~[17]}]{maler2008xml}. Das heißt, dass der Name einer \gls{pi}\ ebenso wie auch der Tag-Name vom Elementen~\cite[{Regel~[40]}]{maler2008xml} mit einem sog. \texttt{NameStartChar} beginnen muss. Dadurch wird ausgeschlossen, dass Tag-Namen mit bestimmten Zeichen beginnen -- darunter auch das Fragezeichen, da dies dazu führen würde, dass Start-Tags mit \glspl{pi} verwechselt werden könnten. Insbesondere in \acrshort{sgml} -- zu dem \acrshort{xml} vollständig kompatibel sein soll -- wären solche Tags nicht mehr von \glspl{pi} zu unterscheiden, da laut \acrshort{sgml}-Spezifikation lediglich ein einfaches Größerzeichen anstatt der Kombination aus Fragezeichen und Größerzeiche (\texttt{?>}) zum Schließen der \gls{pi} ausreicht.
+
+Dadurch wird es möglich, \glspl{pi} in \acrshort{jsonml} eindeutig in Form eines \acrshort{json}-Arrays \mintinline{json}{["?target", "data"]} darzustellen~(vgl. Definition \ref{def:jsonmlpi}), das dem 2-Tupel $P$ (s.o.) entspricht. Die Repräsentation von \glspl{pi} ähnelt damit der eines Elementknotens, der einen einzelnen Textknoten (\emph{Character Data}) enthält. Eine Verwechslung ist jedoch durch das dem Zielnamen vorangestellte Fragezeichen ausgeschlossen -- ein Tagname darfnicht mit einem Fragezeichen beginnen, wodurch die Kategorisierung als \gls{pi} eindeutig ist.  \begin{figure}[h]
+    \begin{definition}[{Formale Syntax der \acrfull{jsonml} mit \emph{\glspl{pi}}}]
         \label{def:jsonmlpi}
 
         Die um Unterstützung von \emph{\glspl{pi}} erweitere Syntax ist mit Ausname der Produktionsregeln für \synt{element} identisch zu der Syntax aus Definition~\ref{def:jsonml}.
@@ -213,7 +252,9 @@ Dadurch wird es möglich, \glspl{pi} in \acrshort{jsonml} eindeutig in Form eine
 Die syntaktischen Änderungen aus Definition~\ref{def:jsonmlpi} wurden in die JavaScript-Referenz\-implementierung von Stephen McKamey eingearbeitet. Entsprechende \emph{Unittests} zur Sicherstellung der korrekten Umwandlung von \glspl{pi} wurden ebenfalls hinzugefügt.
 
 \begin{figure}[h!]
-    \begin{example}[\glspl{pi}] Die \acrshort{jsonml}-Repräsentation des \acrshort{xml}-Dokuments aus Beispiel \ref{ex:xmltree} kann nun die \gls{pi} darstellen -- auch solche, die sich außerhalb des Wurzelelements befinden.
+
+    \begin{example}[{\acrshort{jsonml}-Dokument mit \glspl{pi}}]
+        Die \acrshort{jsonml}-Repräsentation des \acrshort{xml}-Dokuments aus Beispiel \ref{ex:xmltree} kann nun die \gls{pi} darstellen -- auch solche, die sich außerhalb des Wurzelelements befinden.
         \begin{minted}[autogobble]{json}
             ["", "\n",
                 [ "?xml-stylesheet", "href=\"style.css\"" ],"\n","\n",
@@ -231,6 +272,6 @@ Die syntaktischen Änderungen aus Definition~\ref{def:jsonmlpi} wurden in die Ja
     \end{example}
 \end{figure}
 
-Bei einer erneuten Überprüfung des \acrshort{jsonml}-Konverters unter Berücksichtigung der o. g. Änderungen wurden deren Korrektheit bestätigt: Alle Testdokumente, auch die zuvor fehlgeschlagenen, lassen sich nun verlustlos von \acrshort{xml} nach \acrshort{json} und wieder zurück konvertieren.
+Bei einer erneuten Überprüfung des \acrshort{jsonml}-Konverters unter Berücksichtigung der o. g. Änderungen wurde deren Korrektheit bestätigt: Alle Testdokumente, auch die zuvor fehlgeschlagenen, lassen sich nun verlustlos von \acrshort{xml} nach \acrshort{json} und wieder zurück konvertieren.
 
-Alle Änderungen wurdem dem \acrshort{jsonml}-Projekt zur Verfügung gestellt.\footnote{Vgl.~\url{https://github.com/mckamey/jsonml/pull/14}}
+Alle Änderungen wurdem dem \acrshort{jsonml}-Projekt zur Verfügung\footnote{Vgl.~\url{https://github.com/mckamey/jsonml/pull/14}} gestellt (siehe Anhang~\ref{appx:jsonmlpi}).
