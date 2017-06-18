@@ -1,8 +1,8 @@
-let X2JS = require('x2js')
-let xjcc = require('xjcc')
+const X2JS = require('x2js')
+const xjcc = require('xjcc')
 
 xjcc.process_input(function(data, encoding) {
-    let x2js = new X2JS({
+    var x2js = new X2JS({
         "stripWhitespaces": false,
         "skipEmptyTextNodesForObj": false
     })
