@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!--;testcase
 [General]
-name: Chars u000085-000085 (NEL Control Char)
+name: NEL Control Char (u000085-000085)
 description: Checks if characters in the range U+85 to U+85 (NEL Control Char) are handled correctly
 --><root/>

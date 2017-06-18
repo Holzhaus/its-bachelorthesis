@@ -62,7 +62,7 @@ CHAR_RANGES = [
 
 COMMENT_TEMPLATE = """;testcase
 [General]
-name: Chars u{start:0{w}X}-{end:0{w}X} ({desc})
+name: {desc} (u{start:0{w}X}-{end:0{w}X})
 description: Checks if characters in the range U+{start:X} to U+{end:X} ({desc}) are handled correctly
 """
 

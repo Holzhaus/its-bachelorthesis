@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!--;testcase
 [General]
-name: Chars u02FFFE-02FFFF (SIP plane Discouraged)
+name: SIP plane Discouraged (u02FFFE-02FFFF)
 description: Checks if characters in the range U+2FFFE to U+2FFFF (SIP plane Discouraged) are handled correctly
 --><root><ud196606>𯿾</ud196606></root>

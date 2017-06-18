@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!--;testcase
 [General]
-name: Chars u07FFFE-07FFFF (Plane 7 Discouraged)
+name: Plane 7 Discouraged (u07FFFE-07FFFF)
 description: Checks if characters in the range U+7FFFE to U+7FFFF (Plane 7 Discouraged) are handled correctly
 --><root><ud524286>񿿾</ud524286></root>

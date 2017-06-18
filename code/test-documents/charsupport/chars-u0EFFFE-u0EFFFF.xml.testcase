@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!--;testcase
 [General]
-name: Chars u0EFFFE-0EFFFF (SSP plane Discouraged)
+name: SSP plane Discouraged (u0EFFFE-0EFFFF)
 description: Checks if characters in the range U+EFFFE to U+EFFFF (SSP plane Discouraged) are handled correctly
 --><root><ud983038>󯿾</ud983038></root>

@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!--;testcase
 [General]
-name: Chars u03FFFE-03FFFF (Plane 3 Discouraged)
+name: Plane 3 Discouraged (u03FFFE-03FFFF)
 description: Checks if characters in the range U+3FFFE to U+3FFFF (Plane 3 Discouraged) are handled correctly
 --><root><ud262142>𿿾</ud262142></root>

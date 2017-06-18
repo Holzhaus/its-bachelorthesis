@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!--;testcase
 [General]
-name: Chars u10FFFE-10FFFF (SPUA-B plane Discouraged)
+name: SPUA-B plane Discouraged (u10FFFE-10FFFF)
 description: Checks if characters in the range U+10FFFE to U+10FFFF (SPUA-B plane Discouraged) are handled correctly
 --><root><ud1114110>􏿾</ud1114110></root>
