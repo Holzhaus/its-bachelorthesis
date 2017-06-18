@@ -18,14 +18,14 @@ const ctx = {
 
 
 /* Run code in fake browser context */
-var filename;
-if (!!~process.argv.indexOf("--patched")) {
+let filename;
+if (process.argv.includes("--patched")) {
     filename = require.resolve("jsonml-tools-patched/jsonml-xml.js");
 } else {
     filename = require.resolve("jsonml-tools/jsonml-xml.js");
 }
 
-var code = fs.readFileSync(filename, "utf-8");
+let code = fs.readFileSync(filename, "utf-8");
 vm.runInNewContext(code, ctx);
 
 xjcc.process_input(function(data, encoding) {

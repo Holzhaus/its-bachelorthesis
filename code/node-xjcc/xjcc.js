@@ -6,19 +6,15 @@
 const logger = new console.Console(process.stderr);
 const data_size_threshold = 100 * 1024;
 
-const to_xml = function(args) {
-    args = (args == null ? process.argv : args);
-    return !!(~args.indexOf("-d")) || (~args.indexOf("--decode"));
+let to_xml = function(args=process.argv) {
+    return args.includes("-d") || args.includes("--decode");
 }
 
-const process_input = function(callback, inputstream, outputstream, encoding) {
-    inputstream = (inputstream == null ? process.stdin : inputstream);
-    outputstream = (outputstream == null ? process.stdout : outputstream);
-    encoding = (encoding == null ? "utf-8" : encoding);
+let process_input = function(callback, inputstream=process.stdin, outputstream=process.stdout, encoding="utf-8") {
     process.stdin.setEncoding(encoding);
-    var data = "";
+    let data = "";
     inputstream.on("readable", function() {
-        var chunk;
+        let chunk;
         while (chunk = process.stdin.read()) {
             data += chunk;
             logger.info("Input read: %d chars / %d bytes (last chunk: %d chars / %d bytes)",
@@ -27,12 +23,12 @@ const process_input = function(callback, inputstream, outputstream, encoding) {
         }
     });
     inputstream.on("end", function () {
-        var data_bytes = Buffer.byteLength(data, encoding);
+        let data_bytes = Buffer.byteLength(data, encoding);
         logger.info("Total input read: %d chars / %d bytes", data.length, data_bytes);
         if (data_bytes >= data_size_threshold) {
             logger.warn("Input is quite big, this may take a while...");
         }
-        var output = callback(data, encoding);
+        let output = callback(data, encoding);
         if (outputstream !== null) {
             outputstream.write(output);
         }
