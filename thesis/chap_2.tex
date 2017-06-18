@@ -68,7 +68,8 @@ Es existieren jedoch auch abweichende Datenmodelle um die logische Strukur von \
     \item[CDATA-Abschnitte] kennzeichnen größere Bereiche von Text, die Markup-Zeichen wie \enquote{\texttt{<}} oder \enquote{\texttt{\&}} enthalten dürfen, ohne dass diese quotiert werden müssten. Sie werden mit der Zeichenkette \enquote{\texttt{<![CDATA[}} eingeleitet und mit \enquote{\texttt{]]>}} beendet.~\cite[Abschnitt 2.7]{maler2008xml}
 \end{description}
 
-\gls{dom}, \acrshort{xdm} und \acrshort{xml} Information Set kennen noch eine Vielzahl weiterer Konstrukte, die Teil eines \acrshort{xml}-Dokuments sein können, beispielseweise \acrfull{dtd}, Notation-Knoten, Entities bzw. Entity-Referenzen, etc. Für eine detaillierte Beschreibung empfiehlt es sich, die jeweiligen Spezifikationen zurate zu ziehen.~\cite{dom,xmlinfoset,xdm,maler2008xml}
+\gls{dom}, \acrshort{xdm} und \acrshort{xml} Information Set kennen noch eine Vielzahl weiterer Konstrukte, die Teil eines \acrshort{xml}-Dokuments sein können, beispielseweise \acrfull{dtd}, Notation-Knoten, etc. Für eine detaillierte Beschreibung empfiehlt es sich, die jeweiligen Spezifikationen zurate zu ziehen.~\cite{dom,xmlinfoset,xdm,maler2008xml}
+
 
 \subsection{\acrfull{xsd}}
 \label{sec:xsd}
@@ -205,6 +206,8 @@ Hierbei soll der \acrshort{xml}-Parser dazu gebracht werden, eine normalerweise 
 
 \begin{example}[\acrshort{xxe}-Angriff mit Parameter Entities]
     Hier versucht ein Angreifer, den Inhalt der Datei \texttt{/etc/passwd} innerhalb einer CDATA-Sektion zu platzieren und diese in das XML-Dokument zufügen.
+
+    Im Hauptdokument werden eine Reihe von \emph{Parameter Entities} angelegt, die dann in einem externen DTD zusammengesetzt werden.
     \begin{minted}{xml}
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE root [
@@ -216,13 +219,14 @@ Hierbei soll der \acrshort{xml}-Parser dazu gebracht werden, eine normalerweise 
 ]>
 <root>&all;</root>
     \end{minted}
-    \captionof{figure}{Im Hauptdokument werden eine Reihe von \emph{Parameter Entities} angelegt, die dann in einem externen DTD zusammengesetzt werden.}
+    \captionof{figure}{}
 
     \begin{minted}{xml}
 <?xml version="1.0" encoding="UTF-8"?>
 <!ENTITY all "%start;%file;%end;">
     \end{minted}
-    \captionof{figure}{Die \acrshort{dtd}-Datei wurde vom Angreifer unter der \acrshort{url} \texttt{http://example.com/evil.dtd} abgelegt.}
+
+    Die \acrshort{dtd}-Datei wurde vom Angreifer unter der \acrshort{url} \texttt{http://example.com/evil.dtd} abgelegt.
 \end{example}
 
 \paragraph{\acrshort{xinclude}}
@@ -238,7 +242,7 @@ Auch bei Angriffen auf Basis von \gls{xinclude} enthält das zu parsende \acrsho
     \end{minted}
 \end{example}
 
-Auch \acrfull{xslt} erlaubet die Einbindung von Dateien, beispielsweise über die \mintinline{xml}{fn:document}-Funktion~\cite[Abschn. 20.1]{xslt} und eigenet sich daher prinzipell für \acrshort{fsa}-Angriffe.
+Auch \acrfull{xslt} erlaubt die Einbindung von Dateien, beispielsweise über die \mintinline{xml}{fn:document}-Funktion~\cite[Abschn. 20.1]{xslt} und eigenet sich daher prinzipell für \acrshort{fsa}-Angriffe.
 
 \subsubsection{\acrfull{dos}}
 \label{sec:xmlattacks-dos}
