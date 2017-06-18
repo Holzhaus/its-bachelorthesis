@@ -1,5 +1,13 @@
 # -*- coding: utf-8 -*-
+import resource
 import xjcc.plugins
+
+
+def get_limit():
+    limits = [limit for limit in resource.getrlimit(resource.RLIMIT_AS)
+              if limit != resource.RLIM_INFINITY]
+    if limits:
+        return min(limits)
 
 
 class JsonlibPlugin(xjcc.plugins.ConverterPlugin):
@@ -31,9 +39,15 @@ class JsonlibPlugin(xjcc.plugins.ConverterPlugin):
         self.java_app = self.get_package_filename(self.JAR_PATH)
 
     def xml_to_json(self, xml_data):
-        cmd = ['java', *self.JAVA_ARGS, '-jar', self.java_app]
+        cmd = ['java']
+        if get_limit():
+            cmd.extend(self.JAVA_ARGS)
+        cmd.extend(['-jar', self.java_app])
         return self.run_command(cmd, xml_data)
 
     def json_to_xml(self, json_data):
-        cmd = ['java', *self.JAVA_ARGS, '-jar', self.java_app, '--decode']
+        cmd = ['java']
+        if get_limit():
+            cmd.extend(self.JAVA_ARGS)
+        cmd.extend(['-jar', self.java_app, '--decode'])
         return self.run_command(cmd, json_data)
