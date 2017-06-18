@@ -58,6 +58,9 @@ Leider war es nicht möglich, \emph{Json-lib} ohne besondere Konfiguration in ei
 
 Eine sinnvolle Aussage über die Anfälligkeit gegenüber Angriffen aus dem Bereich \acrlong{dos} ist unter diesen Umständen jedoch nicht möglich, sodass die entsprechenden Tests für \emph{Json-lib} manuell wiederholt werden mussten.
 
+\todo[inline]{TODO: Ergebnisse ergänzen}
+%TODO: Results?
+
 Ein Blick in den Quellcode der Klasse \texttt{net.sf.json.XMLSerializer} zeigt, dass Json-lib den \acrshort{xml}-Parser XOM einsetzt. Dieser ist anfällig für \acrshort{xxe}-Angriffe mittels General Entites bzw. Parameter Entities, die sowohl für \acrlong{fsa} als auch für \acrlong{ssrf} genutzt werden können.
 
 Ebenso erlaubt der Parser die Einbettung lokaler Dateien mittels Parameter Entities in DTDs, sowohl in der ursprünglichen Version des Angriffs~\cite[S.~10]{morgan2014xml}, als auch in einer modifizierten Variante, die 2016 von Sicherheitsforschern der Ruhr-Universität Bochum vorgestellt wurde.~\cite[Abschn.~5.2]{spaeth2016sok}.
@@ -152,6 +155,7 @@ Bei der Konversion kann es zu Informationsverlust durch Typinferenz kommen.
 
 In der Standardeinstellung verwirft diese Konvention das Wurzelelement -- dieses Verhalten ist jedoch über einen Parameter abschaltbar.
 
+\todo[inline]{TODO: Hier fehlt noch was }
 % TODO: Add content
 
 \subsection{Yahoo}
