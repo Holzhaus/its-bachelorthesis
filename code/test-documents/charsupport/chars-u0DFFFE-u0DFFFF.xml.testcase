@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!--;testcase
 [General]
-name: Chars u0DFFFE-0DFFFF (Discouraged by XML spec)
-description: Checks if characters in the range U+DFFFE to U+DFFFF (Discouraged by XML spec) are handled correctly
+name: Chars u0DFFFE-0DFFFF (Plane 13 Discouraged)
+description: Checks if characters in the range U+DFFFE to U+DFFFF (Plane 13 Discouraged) are handled correctly
 --><root><ud917502>󟿾</ud917502></root>

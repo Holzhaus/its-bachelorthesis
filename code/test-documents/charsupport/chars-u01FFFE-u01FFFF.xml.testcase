@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!--;testcase
 [General]
-name: Chars u01FFFE-01FFFF (Discouraged by XML spec)
-description: Checks if characters in the range U+1FFFE to U+1FFFF (Discouraged by XML spec) are handled correctly
+name: Chars u01FFFE-01FFFF (SMP plane Discouraged)
+description: Checks if characters in the range U+1FFFE to U+1FFFF (SMP plane Discouraged) are handled correctly
 --><root><ud131070>🿾</ud131070></root>
