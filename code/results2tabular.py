@@ -37,7 +37,8 @@ for catname, catprefixes in categories.items():
     print('Writing file: %s' % filename)
     num_successes = {}
     with open(filename, mode='w') as f:
-        writer = csv.DictWriter(f, fieldnames=['Index', 'Testcase']+converters)
+        writer = csv.DictWriter(f, fieldnames=['Index', 'Testcase']+converters,
+                                delimiter=';', quoting=csv.QUOTE_NONE)
         writer.writeheader()
         for i, tctuple in enumerate(testcases, start=1):
             basename, testcase = tctuple
