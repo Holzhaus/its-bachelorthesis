@@ -1,0 +1,180 @@
+\documentclass[
+    alternativetitlepage=alternativ,
+    cornerlogo=hgi_nds_logo2,
+    sectionoverview,
+]{rubpresentation}
+\setbeamercovered{invisible}
+
+\title[XML/JSON conversions]
+{Bridging the Gap: Secure and lossless conversion\\ of XML data structures to the JSON format}
+\subtitle{\small Bachelor thesis \hspace{3mm}{\scriptsize $\blacksquare$}\hspace{3mm} March 30, 2017 -- June 29, 2017}
+
+\author[Holthuis]{Jan~Holthuis}
+
+\institute[Advisors]
+{%\inst{1}%
+Advisors: Dennis Felsch \& Paul Rösler
+}
+\date{June 20, 2017}
+\subject{Computer Science}
+
+\titlegraphic{titlepage.png}
+\sponsorlogo[height=7.6mm,interpolate=true]{hgi_nds_logo}
+
+\definecolor{rubblue}{HTML}{003660}
+\definecolor{rubgreen}{HTML}{8dae10}
+\definecolor{rubgray}{HTML}{e7e7e7}
+
+\usepackage{minted}
+\usemintedstyle{rub}
+
+\usepackage{tikzsymbols}
+\setbeamercovered{invisible}
+
+\begin{document}
+
+\frame[plain]{\titlepage}
+
+%\begin{frame}{The \texttt{\textbackslash note}-Macro}
+%\begin{itemize}[<+->]
+%\item normal text for the presentation.
+%\note<1-2>[item]{Say something to the audience!}
+%\item and text for the presentation.
+%\item foo
+%\end{itemize}
+%\note<2>{Another note for you!}
+%\end{frame}
+
+%\note[enumerate]{\item foo \item bar \item baz \item foobar}
+
+
+\section{Quick Recap}
+
+\begin{frame}
+    \frametitle{Last time we learned that\dots{}}
+    \framesubtitle{}
+    \begin{itemize}
+        \item{} Based on my current conversion critera, \emph{no existing solution} allows lossless XML$\rightarrow$JSON$\rightarrow$XML roundtrips\dots{}
+        \item{} \dots{} but \textbf{JsonML} comes close
+        \item{} I fixed the issues to allow truly lossless conversion
+        \item{} Bugs in DOM implementations (\texttt{xmldom}!) can be a problem
+    \end{itemize}
+\end{frame}
+
+\section{Progress report}
+
+\begin{frame}[fragile]
+    \frametitle{Progress made in the last two weeks}
+    \framesubtitle{\texttt{xmldom} breakage}
+    \begin{itemize}
+        \item{} Last time I had to fix \texttt{>} quoting in text nodes
+        \item{} Found some more bugs in \texttt{xmldom}:
+        \begin{itemize}
+            \item{} XML declarations were treated as Processing Instructions
+            \item{} \texttt{DOCTYPE} declarations with an internal subsets broke parsing
+            \item{} Trailing whitespace in the data field of Processing Instructions was stripped
+        \end{itemize}
+    \end{itemize}
+    \visible<2>{%
+        \begin{tikzpicture}[remember picture,overlay]%
+            \node[draw=none,yshift=-1cm] at (current page.center) {\includegraphics[width=10cm]{fixemall}};%
+        \end{tikzpicture}%
+    }
+\end{frame}
+
+\begin{frame}
+    \frametitle{Progress made in the last two weeks}
+    \framesubtitle{}
+    \begin{itemize}
+        \item{} Continued writing everything down (almost done!)
+        \item{} Fixed some minor issues in test documents
+    \end{itemize}
+\end{frame}
+
+\section{Problem: Inferring a type}
+\begin{frame}[fragile]
+    \frametitle{Type Inference}
+    \framesubtitle{JSON's implicit types}
+    \begin{minted}[autogobble]{json}
+        {
+            "string": "somevalue",
+            "number": 1337,
+            "bool": true,
+            "nothing": null
+        }
+    \end{minted}
+    \begin{itemize}
+        \item{} Some converters try to be smart and guess them based on value
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Type Inference}
+    \framesubtitle{Let'try to guess types}
+    \begin{itemize}
+        \item{} \texttt{hello world} \visible<2->{$\rightarrow$ String}
+        \item<3->{} \texttt{123} \visible<4->{$\rightarrow$ Number}
+        \item<5->{} \texttt{1e-4} \visible<6->{$\rightarrow$ Number ($=1\cdot10^{-4} = 0.0001$)}
+        \item<7->{} \texttt{1e-324} \visible<8->{$\rightarrow$ Number ($=1\cdot10^{-324} = 0.00\ldots{}001$)
+        \begin{itemize}
+            \item{} But JavaScript's \mintinline{javascript}{parseFloat("1e-324")} will return \texttt{0}!
+        \end{itemize}}
+        \item<9->{} What about \texttt{1e-4} vs. \texttt{1E-4}?
+        \item<10->{} If \texttt{true} is a Boolean, what about \texttt{True}?
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Type Inference}
+    \framesubtitle{Don't try to be smart!}
+    \begin{itemize}
+        \item{} Inferring a type just complicates things and is error-prone
+        \item{} Application can't be sure which type it'll get
+        \begin{itemize}
+            \item{} String field incidentally contains just digits $\rightarrow$ Number type
+        \end{itemize}
+        \item{} Just use the String type instead
+    \end{itemize}
+\end{frame}
+
+\section{Next steps}
+
+\begin{frame}
+    \frametitle{Next Steps}
+    \begin{itemize}
+        \item{} Finish writing and submit thesis
+        \item{} Start making slides for the final presentation on July 4
+        \item{} Keep my fingers crossed! \Winkey[1.5][rubgreen]
+    \end{itemize}
+\end{frame}
+
+%%% Finally the last slide
+
+\begin{frame}[plain]
+\frametitle{Thanks!}
+ \begin{center}
+ {\bfseries\fontsize{30pt}{1.2em}\selectfont Questions?}
+ \end{center}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \begin{center}
+        %\font\endfont = cmss10 at 25.40mm
+        %\color{Brown}
+        %\endfont
+        %\baselineskip 20.0mm
+        Reach out via email:
+        \begin{itemize}
+        \item \textbf{Jan Holthuis}\\
+              jan.holthuis@rub.de
+        \end{itemize}
+      \end{center}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \begin{center}
+        \pgfimage[width=\textwidth]{questions.jpg}
+      \end{center}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\end{document}
