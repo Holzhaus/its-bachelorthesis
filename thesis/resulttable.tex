@@ -16,6 +16,7 @@
 \newcolumntype{C}{>{\raggedleft}p{22.5em}}% a centered fixed-width-column
 \pgfplotstabletypeset[
     string type,
+    string replace*={&}{\&},
     string replace*={ [OPTIONAL]}{$^1$},
     string replace={FAILED}{},
     string replace={ERROR}{\xmark},
