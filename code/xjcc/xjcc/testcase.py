@@ -153,43 +153,49 @@ class ConversionTestCase(object):
                              exc_info=True)
             else:
                 logger.info('Checking resulting JSON data...')
-                json_data, json_errors = demjson.decode(
-                        json_output,
-                        strict=True,
-                        return_errors=True,
-                        return_stats=False,
-                        write_errors=False,
-                        forbid_bom=True,
-                        allow_zero_byte=True,
-                        allow_non_portable=True,
-                    )[:2]
-                if json_errors:
-                    passed = False
-                    logger.info('Erroneous JSON: %r', json_errors)
+                try:
+                    json_data, json_errors = demjson.decode(
+                            json_output,
+                            strict=True,
+                            return_errors=True,
+                            return_stats=False,
+                            write_errors=False,
+                            forbid_bom=True,
+                            allow_zero_byte=True,
+                            allow_non_portable=True,
+                        )[:2]
+                except Exception as e:
+                    passed = None
+                    logger.warning('Failed to decode JSON!', exc_info=True)
                 else:
-                    json_input = demjson.encode(json_data, strict=True,
-                                                encoding='utf-8',
-                                                sort_keys=demjson.SORT_SMART)
-                    logger.info('Converting JSON back to XML...')
-                    try:
-                        xml_output = converter.module.json_to_xml(json_input)
-                    except Exception:
-                        passed = None
-                        logger.debug('Error occured during json-to-xml ' +
-                                     'conversion', exc_info=True)
+                    if json_errors:
+                        passed = False
+                        logger.info('Erroneous JSON: %r', json_errors)
                     else:
-                        logger.info('Canonicalizing XML...')
+                        json_input = demjson.encode(
+                                json_data, strict=True, encoding='utf-8',
+                                sort_keys=demjson.SORT_SMART)
+                        logger.info('Converting JSON back to XML...')
                         try:
-                            xmloutput_c14n = canonicalize(xml_output,
-                                                          **self.c14n_kwargs)
+                            xml_output = converter.module.json_to_xml(
+                                    json_input)
                         except Exception:
-                            logger.warning(
-                                    'Failed to canonicalize xml!',
-                                    exc_info=logger.isEnabledFor(
-                                        logging.DEBUG))
-                            passed = False
+                            passed = None
+                            logger.debug('Error occured during json-to-xml ' +
+                                         'conversion', exc_info=True)
                         else:
-                            passed = (xmldata_c14n == xmloutput_c14n)
+                            logger.info('Canonicalizing XML...')
+                            try:
+                                xmloutput_c14n = canonicalize(
+                                        xml_output, **self.c14n_kwargs)
+                            except Exception:
+                                logger.warning(
+                                        'Failed to canonicalize xml!',
+                                        exc_info=logger.isEnabledFor(
+                                            logging.DEBUG))
+                                passed = False
+                            else:
+                                passed = (xmldata_c14n == xmloutput_c14n)
             yield TestResult(
                 test=self,
                 converter=converter,
