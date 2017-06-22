@@ -1,6 +1,7 @@
 \chapter{Versuchsaufbau}
 \label{chap:impl}
 
+\begin{samepage}
 Im Folgenden wird wird der Versuchsaufbau, bestehend aus
 \begin{enumerate}
     \item{} der Erstellung einer Reihe von Kriterien zur Bewertung der Verlustlosigkeit  und Sicherheit von Konversionverfahren,
@@ -8,6 +9,7 @@ Im Folgenden wird wird der Versuchsaufbau, bestehend aus
     \item{} der Methodik zur Überprüfung der Konversionsverfahren auf Einhaltung der zuvor festgelegten Kriterien
 \end{enumerate}
 vorgestellt.
+\end{samepage}
 
 \section{Bewertungskriterien für Konversionsverfahren}
 \label{sec:criteria}
@@ -30,11 +32,13 @@ Dies gilt jedoch nicht für die vordefinierten General Entities \mintinline{xml}
 \subsection{Verlustlosigkeit}
 \label{sec:critera-lossless}
 
+\begin{samepage}
 Damit dieser Konversionsprozess als \emph{verlustlos} angesehen werden kann, müssen mehrere Bedingungen erfüllt sein:
 \begin{enumerate}
     \item{} Eingabedokument und Ausgabedokument müssen logisch äquivalent sein.\label{item:ioequal}
     \item{} Sowohl das \acrshort{json}-Zwischenprodukt als auch das \acrshort{xml}-Ausgabedokument müssen gültige Dokumente sein.\label{item:outputwellf}
 \end{enumerate}
+\end{samepage}
 
 Logisch äquivalent (vgl. Bed. \ref{item:ioequal}) heißt nicht, dass das \acrshort{xml}-Dokument nach dem Kon\-versions-Round-Trip bitidentisch mit dem Ursprungsdokument sein muss -- es ist ausreichend, dass die Struktur der beiden Dokumente übereinstimmt. Daher werden beide Dokumente zunächst kanonisiert\footnote{Vgl. Abschnitt \ref{sec:c14n}} und im Anschluss verglichen. Stimmt die kanonische Form beider \acrshort{xml}-Dokumente überein, war die Konversion verlustlos.
 
@@ -258,11 +262,14 @@ Dies gilt auch für die Zeichen, von deren Einsatz \acrshort{xml}-Spezifikation 
 \end{figure}
 
 Inzwischen sind eine große Anzahl an Applikationen und Programmbibliotheken für die Umwandlung zwischen \acrshort{json} und \acrshort{xml} verfügbar.
+
+\begin{samepage}
 Aufgrund des in dieser Arbeit zur Anwendung kommenden Prüfverfahrens konnten jedoch nur solche Konverter betrachtet werden, die
 \begin{enumerate}
     \item{} \acrshort{xml}-Dokumente in \acrshort{json} umwandeln können und
     \item{} aus den so erhaltenen \acrshort{json}-Strukuren wieder \acrshort{xml}-Dokumente erstellen können.
 \end{enumerate}
+\end{samepage}
 
 Da die Formate insbesondere im Webbereich eingesetzt werden und Webservices sowie \acrshortpl{api} ein relevantes Einsatzfeld für \acrshort{xml}-\acrshort{json}-Konversion darstellen, wurde bei der Auswahl darauf geachtet, ein breites Spektrum verschiedener populärer Programmiersprachen aus diesem Bereich abzudecken. Sowohl die klassischen Programmiersprachen für Web-Applikationen --  Java, PHP und JavaScript -- als auch C\#, Ruby und Python, die im Web in Form von ASP.NET, Ruby-on-Rails bzw. Django oder Flask zum Einsatz kommen, werden durch die Auswahl abgedeckt.
 
@@ -315,12 +322,14 @@ Die \acrshort{json}-Zwischendaten werden ebenfalls geparst und auf Verstöße ge
 
 Um die Sicherheit der Konversion zu überprüfen, wird eine modifizierte Vorgehensweise genutzt. Die auf Sicherheitslücken in \acrshort{xml}-Parsern abzielenden Test-Dokumente werden ebenfalls zunächst in das \acrshort{json}-Format und im Anschluss wieder zurück in \acrshort{xml} konvertiert. Allerdings ist dabei ausschließlich von Belang, dass keine der in Abschnitt~\ref{sec:xmlattacks} beschriebenen Angriffe ausgelöst wird -- die Korrektheit der Konversion wird hierbei nicht überprüft.
 
+\begin{samepage}
 Stattdessen wird ein Sicherheitstest als Fehlschlag gewerten, wenn eine oder mehrere der folgenden Bedingungen zutrifft:
 \begin{enumerate}
     \item{} Der Konversionsvorgang überschreitet zuvor festgelege Obergrenzen für die Allozierung von Arbeitsspeicher, verbraucht zuviel CPU-Zeit oder dauert zu lange.\label{itm:cond-dos}
     \item{} Während der Konversion sendet der Konverter Anfragen an einen Webserver.\label{itm:cond-ssrf}
     \item{} Die vom Konverter ausgegebenen \acrshort{json}- oder \acrshort{xml}-Dateien enthalten eine bestimmte Zeichenkette.\label{itm:cond-fsa}
 \end{enumerate}
+\end{samepage}
 
 Ist der eingesetzte \acrshort{xml}-Parser verwundbar gegenüber Angriffen aus dem Bereich \acrfull{dos}, führt das Parsen der Testdateien zu einem erhöhten Verbrauch an Systemressourcen. Die Obergrenzen für Arbeitsspeicherbelegung, CPU-Belastung und Zeitdauer sind so angelegt, dass ein erfolgreicher Angriff zwangsläufig gegen die erste Bedingung verstößt und damit zum Nichtbestehen des Tests führt.
 
