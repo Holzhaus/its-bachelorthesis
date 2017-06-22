@@ -13,7 +13,9 @@
 \definecolor{rubgray}{HTML}{e7e7e7}
 \begin{document}
   \begin{threeparttable}
-\newcolumntype{C}{>{\raggedleft}p{22.5em}}% a centered fixed-width-column
+\newcolumntype{R}{>{\raggedleft}p{20.5em}}
+\newcolumntype{C}{p{20.5em}}% a centered fixed-width-column
+\setlength{\tabcolsep}{1.25mm}
 \pgfplotstabletypeset[
     string type,
     string replace*={&}{\&},
@@ -38,6 +40,57 @@
         column name=Testcase,
         column type={C},
     },
+    columns/cobravsmongoose/.style={
+        column name={Cobra vs Mongoose},
+    },
+    columns/greencapexml/.style={
+        column name={GreenCape XML},
+    },
+    columns/jsonlib/.style={
+        column name={Json-lib},
+    },
+    columns/jsonml/.style={
+        column name={JsonML},
+    },
+    columns/jxon/.style={
+        column name={JXON},
+    },
+    columns/orgjsonxml/.style={
+        column name={org.json.XML},
+    },
+    columns/newtonsoftjson/.style={
+        column name={JSON.NET},
+    },
+    columns/pesterfish/.style={
+        column name={Pesterfish},
+    },
+    columns/pesterfishdefused/.style={
+        column name={Pesterfish (defusedxml)},
+    },
+    columns/x2js/.style={
+        column name={x2js (fork)},
+    },
+    columns/x2jsabdmob/.style={
+        column name=x2js,
+    },
+    columns/xmljson-abdera/.style={
+        column name=XMLJSON (Abdera),
+    },
+    columns/xmljson-badgerfish/.style={
+        column name=XMLJSON (Badgerfish),
+    },
+    columns/xmljson-cobra/.style={
+        column name=XMLJSON (Cobra),
+    },
+    columns/xmljson-gdata/.style={
+        column name=XMLJSON (GData),
+    },
+    columns/xmljson-parker/.style={
+        column name=XMLJSON (Parker),
+    },
+    columns/xmljson-yahoo/.style={
+        column name=XMLJSON (Yahoo),
+    },
     %every row no 34/.style={
     %    before row=\midrule,
     %},,
@@ -48,7 +101,7 @@
     %    before row=\midrule,
     %},,
     columns/jsonmlpatched/.style={
-        column name={jsonml (patched)\tnote{1}},
+        column name={JsonML (patched)\tnote{1}},
         postproc cell content/.style={%
             @cell content/.add={
                 %\ifnum\pdfstrcmp{\unexpanded{#1}}{OK}=0
@@ -60,9 +113,6 @@
                 %\fi
                }{}
         },
-    },
-    columns/pesterfishdefused/.style={
-        column name={pesterfish (defusedxml)},
     },
     every head row/.style={
         after row=\toprule,
@@ -100,7 +150,7 @@
         \item[1] Erweiterte JsonML-Version (vgl. Kapitel 5)
         \ifx\hasfootnote\undefined
         \else
-            \item[2] optional, Unterstützung nicht notwendig
+    \item[2] optional, Unterst{\"u}tzung nicht notwendig
         \fi
     \end{tablenotes}
   \end{threeparttable}\hspace{2em}
