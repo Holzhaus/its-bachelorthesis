@@ -24,7 +24,15 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     irb \
     php \
     php-json \
-    composer
+    composer \
+    curl \
+    mono-gac \
+    mono-mcs \
+    mono-runtime \
+    libmono-system-runtime-serialization4.0-cil \
+    libmono-system-xml-linq4.0-cil \
+    libmono-system-xml4.0-cil \
+    libmono-system-numerics4.0-cil
 
 # Symlink "nodejs" to "node"
 RUN ln -s /usr/bin/nodejs /usr/local/bin/node
@@ -45,6 +53,9 @@ RUN gem install cobravsmongoose --version '=0.0.2'
 ENV COMPOSER_HOME /user/local/share/composer_home
 COPY composer.json "${COMPOSER_HOME}/composer.json"
 RUN composer global install --prefer-dist
+
+# Install Mono/C# dependencies
+RUN curl -OL https://github.com/JamesNK/Newtonsoft.Json/releases/download/10.0.3/Json100r3.zip && unzip -p Json100r3.zip Bin?net40?Newtonsoft.Json.dll > Newtonsoft.Json.dll && gacutil -i Newtonsoft.Json.dll -package NewtonsoftJson && rm Json100r3.zip Newtonsoft.Json.dll
 
 # Install Python requirements
 COPY requirements.txt /opt/xjcc/requirements.txt
@@ -88,6 +99,9 @@ RUN cd /opt/xjcc/xjcc-cobravsmongoose && ./setup.py install
 
 COPY xjcc-greencapexml /opt/xjcc/xjcc-greencapexml
 RUN cd /opt/xjcc/xjcc-greencapexml && ./setup.py install
+
+COPY xjcc-newtonsoftjson /opt/xjcc/xjcc-newtonsoftjson
+RUN cd /opt/xjcc/xjcc-newtonsoftjson && ./setup.py install
 
 RUN rm -rf /opt/xjcc
 
