@@ -36,16 +36,18 @@ Damit dieser Konversionsprozess als \emph{verlustlos} angesehen werden kann, mü
     \item{} Sowohl das \acrshort{json}-Zwischenprodukt als auch das \acrshort{xml}-Ausgabedokument müssen gültige Dokumente sein.\label{item:outputwellf}
 \end{enumerate}
 
-Logisch äquivalent (vgl. Bed. \ref{item:ioequal}) heißt nicht, dass das \acrshort{xml}-Dokument nach dem Konversions-Round-Trip bitidentisch mit dem Ursprungsdokument sein muss -- es ist ausreichend, dass die Struktur der beiden Dokumente übereinstimmt. Daher werden beide Dokumente zunächst kanonisiert\footnote{Vgl. Abschnitt \ref{sec:c14n}} und im Anschluss verglichen. Stimmt die kanonische Form beider \acrshort{xml}-Dokumente überein, war die Konversion verlustlos.
+Logisch äquivalent (vgl. Bed. \ref{item:ioequal}) heißt nicht, dass das \acrshort{xml}-Dokument nach dem Kon\-versions-Round-Trip bitidentisch mit dem Ursprungsdokument sein muss -- es ist ausreichend, dass die Struktur der beiden Dokumente übereinstimmt. Daher werden beide Dokumente zunächst kanonisiert\footnote{Vgl. Abschnitt \ref{sec:c14n}} und im Anschluss verglichen. Stimmt die kanonische Form beider \acrshort{xml}-Dokumente überein, war die Konversion verlustlos.
 
 \begin{figure}[h!]
 \begin{definition}[Verlustlosigkeit von Konversion]\label{def:lossless}
     Sei $V \coloneqq \{x \mid x\text{ ist ein valider }\allowbreak{}\text{\acrshort{json}-Wert}\}$ und $W \coloneqq \{x \mid x\text{ ist ein wohlgeformtes \acrshort{xml}-Dokument}\}$.
 
-    Ein Konversionverfahren $K = (f_{enc}, f_{dec})$ mit $f_{enc}: W \mapsto V$ und $f_{dec}: V \mapsto W$ heißt \emph{verlustlos} genau dann wenn
-    \begin{equation}
-        (f_{dec}\mathrel{\circ} f_{enc})(x) \mathbin{\stackrel{c14n}{=}} x
-    \end{equation}
+    Ein Konversionverfahren $K = (f_{enc}, f_{dec})$ heißt \emph{verlustlos} genau dann wenn
+    \begin{align}
+        (f_{dec}\mathrel{\circ} f_{enc})(x) \; &\mathbin{\stackrel{\mathmakebox[\widthof{=}]{\mathrm{c14n}}}{=}} \; x\\
+        f_{enc}: W &\mapsto V\\
+        f_{dec}: V &\mapsto W
+    \end{align}
     für alle $x \in W$.
 \end{definition}
 \end{figure}
@@ -55,7 +57,7 @@ Logisch äquivalent (vgl. Bed. \ref{item:ioequal}) heißt nicht, dass das \acrsh
 
 \subsubsection{Elemente und Attribute}
 
-Als Kerninhalt jedes \acrshort{xml}-Dokuments müssen Elemente und deren Beziehung zueinander erhalten bleiben. Auch Attribute dürfen bei der Konversion nicht verloren gehen. Auch die Tag-Namen der Elemente transportieren relevante Information, daher müssen Sie erhalten bleiben -- dies gilt auch für den Tag-Namen des Wurzelelements.
+Als Kerninhalt jedes \acrshort{xml}-Dokuments müssen Elemente und deren Beziehung zueinander erhalten bleiben. Ebenso Attribute dürfen bei der Konversion nicht verloren gehen. Auch die Tag-Namen der Elemente transportieren relevante Information, daher müssen Sie erhalten bleiben -- dies gilt auch für den Tag-Namen des Wurzelelements.
 
 \subsubsection{Namespaces}
 
@@ -264,8 +266,8 @@ Aufgrund des in dieser Arbeit zur Anwendung kommenden Prüfverfahrens konnten je
 Da die Formate insbesondere im Webbereich eingesetzt werden und Webservices sowie \acrshortpl{api} ein relevantes Einsatzfeld für \acrshort{xml}-\acrshort{json}-Konversion darstellen, wurde bei der Auswahl darauf geachtet, ein breites Spektrum verschiedener populärer Programmiersprachen aus diesem Bereich abzudecken. Sowohl die klassischen Programmiersprachen für Web-Applikationen --  Java, PHP und JavaScript -- als auch C\#, Ruby und Python, die im Web in Form von ASP.NET, Ruby-on-Rails bzw. Django oder Flask zum Einsatz kommen, werden durch die Auswahl abgedeckt.
 
 \begin{description}
-    \item[Cobra vs Mongoose] Diese Implementierung ist in Form eines Ruby-Gems verfügbar und übersetzt \acrshort{xml}-Dokumente in Ruby-Datenstrukturen (Hashes), kann aber auch \acrshort{json}-Daten ausgeben. Bei der Umwandlung setzt die  Konverter auf die sogenannte \emph{Badgerfish}-Konvention.
-    \item[GreenCape \acrshort{xml} Converter] Der PHP \acrshort{xml} Konverter \acrshort{xml} \acrshort{xml}-Daten in  asso\-ziativen PHP-Arrays umwandeln. Diese können dann zu \acrshort{json}-Werten serialisiert werden.
+    \item[Cobra vs Mongoose] Diese Implementierung ist in Form eines Ruby-Gems verfügbar und übersetzt \acrshort{xml}-Dokumente in Ruby-Datenstrukturen (Hashes), kann aber auch \acrshort{json}-Daten ausgeben. Bei der Umwandlung setzt der  Konverter auf die sogenannte \emph{Badgerfish}-Konvention.
+    \item[GreenCape \acrshort{xml} Converter] Der in PHP implementierte Konverter kann \acrshort{xml}-Daten in asso\-ziativen PHP-Arrays umwandeln. Diese können dann zu \acrshort{json}-Werten serialisiert werden.
     \item[Json-lib] Die Java-Bibliothek \texttt{net.sf.json-lib} baut auf Software des \acrshort{json}-Entwicklers Douglas Crockford auf und wird laut Maven-Repository in über 400 anderen Projekten eingesetzt und beinhaltet unter anderem auch eine Klasse zum (De-)Serialisieren von \acrshort{xml}-Daten.
     \item[{\acrshort{jsonml}}] Die \acrfull{jsonml} ist \acrshort{json}-basiertes Format zur Speicherung von \acrshort{xml}-Markup. Neben der JavaScript-Bibliothek existieren auch Implementerungen in anderen Programmiersprachen, z.B. in Java\footnote{Das \texttt{org.json}-Paket stellt eine entsprechende Klasse bereit.}  oder PHP\footnote{Als Teil des FluentDOM-Projekts, siehe: \url{https://github.com/FluentDOM/FluentDOM/blob/master/src/FluentDOM/Serializer/Json/JsonML.php}}.
     \item[{\acrshort{jxon}}] Bei dem JavaScript-Modul handelt es sich um eine bidirektionale Bibliothek für die \acrlong{jxon}. Es handelt sich um eine Weiterentwicklung der ursprünglich von Mozilla veröffentlichten Implementierung.

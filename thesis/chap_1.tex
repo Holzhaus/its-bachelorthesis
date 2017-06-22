@@ -33,12 +33,12 @@ Während Abbildung von beliebigen \acrshort{json}-Datenstrukturen in \acrshort{x
 oberflächlicher Betrachtung trivial erscheint, ist dies beim verlustlosen
 Transfer von \acrshort{xml}-Daten ins \acrshort{json}-Format keineswegs der Fall.
 
-Daher sollen in dieser Bachelorarbeit verschiedene Verfahren analysiert
-werden, die beliebige \acrshort{xml}-Daten in \acrshort{json} abbilden und aus der resultierenden
-\acrshort{json}-Datenstruktur wieder \acrshort{xml}-Dokument erstellen können. Sollte keines
-der analysierten Verfahren den vorher aufgestellten Kriterien für eine
-zuverlässige und sichere Umwandlung genügen, wird ein eigener
-Abbildungsalgorithmus entwickelt, bei dem dies der Fall ist.
+Ziel ist es daher, ein sicheres und verlustloses Verfahren zur Konversion von
+XML-Dokumenten in das JSON-Format zu finden. Dazu werden werden in dieser
+Bachelorarbeit verschiedene Konverter anhand zuvor festgelegter Kriterien
+analysiert. Da keines der getesteten Konversionsverfahren vollständig
+verlustlos arbeitet, wird das vielversprechendste Verfahren angepasst,
+sodass alle Anforderungen erfüllt werden.
 
 \section{Motivation}
 \label{sec:motivation}
@@ -72,8 +72,8 @@ unterstützt wurde.~\cite{duvander2013convergence}
 
 \acrshort{json} ist bei bestimmten Aufgaben im Bezug auf Geschwindigkeit und
 Ressourcenauslastung deutlich effizienter~\cite{nurseitov2009comparison} als
-\acrshort{xml}\@. inzwischen setzen auch einige populäre NoSQL-Datenbanken wie
-\emph{CouchDB} oder \emph{MongoDB} auf \acrshort{json} zur Speicherung. Auch
+\acrshort{xml}\@. Inzwischen setzen auch einige populäre NoSQL-Datenbanken wie
+\emph{CouchDB} oder \emph{MongoDB} auf \acrshort{json} zur Datenspeicherung. Auch
 MySQL verfügt seit Version 5.7.8 über einen nativen \acrshort{json}-Datentyp.
 
 Die Umwandlung zwischen den beiden Formaten kann aus vielen Gründen
@@ -115,11 +115,11 @@ Ein System zur Umstellung des von einer Webapplikation auf JavaScript-Basis genu
 
 Im zweiten Kapitel wird zunächst eine kleine Einführung in die Struktur der Formate \acrshort{xml} und \acrshort{json} gegeben. Zudem Werden auch relevante Technologien aus dem Umfeld der Formate beschrieben.  Zudem werden die bekannten Angriffe gegen \acrshort{xml}- und \acrshort{json}-Parser erläutert.
 
-Im Anschluss daran wird der der Versuchsbau beschrieben. Zunächst zunächst das Ziel konkret definiert, d.~h.\ es werden
+Im Anschluss daran wird der Versuchsbau beschrieben. Zunächst wird die Anforderungen konkret definiert, d.~h.\ es werden
 überprüfbaren Kriterien aufgestellt, denen ein Konversionsverfahren genügen
 muss. Dazu gehört auch, Verlustlosigkeit genauer zu definieren, d.h.
 es wird die Relevanz der durch verschiedene XML-Strukturen dargestellten
-Informationen untersucht sowie sowie möglicherweise zu Datenverlust führende
+Informationen untersucht sowie möglicherweise zu Datenverlust führende
 Probleme bei Umwandlung beschrieben.
 
 Danach wird die Auswahl der getesteten Konverter vorgestellt und das Überprüfungsverfahren erläutert.

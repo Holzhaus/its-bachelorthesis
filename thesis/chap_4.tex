@@ -5,27 +5,27 @@ Es wurden insgesamt 101 Testfälle verwendet und 11 verschiedene Konverter über
 Im Folgenden werden die Ergebnisse der verschiedenenen Konverter vorgestellt.
 
 \begin{figure}[b!]
-    \label{tbl:results-basic}
     \includestandalone[width=\textwidth]{resulttable-basic}
     \captionof{table}{Konversions-Testergebnisse bezüglich verschiedener Konversionprobleme.}
+    \label{tbl:results-basic}
 \end{figure}
 
 \begin{figure}[H]
-    \label{tbl:results-chars}
     \includestandalone[width=\textwidth]{resulttable-chars}
     \captionof{table}{Ergebnisse der Tests bezüglich Unterstützung der von der \acrshort{xml}-Spezifikation erlaubten Zeichen.}
+    \label{tbl:results-chars}
 
     \vspace*{\floatsep}
 
-    \label{tbl:results-complex}
     \includestandalone[width=\textwidth]{resulttable-complex}
     \captionof{table}{Testergebnisse der Konverter bei komplexen Dokumenten.}
+    \label{tbl:results-complex}
 \end{figure}
 
 \begin{figure}[t!]
-    \label{tbl:results-sec}
     \includestandalone[width=\textwidth]{resulttable-sec}
     \captionof{table}{Ergebnisse der Tests auf Sicherheitlücken}
+    \label{tbl:results-sec}
 \end{figure}
 \section{Cobra vs Mongoose}
 \label{sec:cobravsmongoose}
@@ -173,9 +173,8 @@ Im \acrshort{xml}-Dokument enthaltener Character Content wird in allen getestete
 Mit insgesamt 89 von 100 bestandenen Testfällen erfüllt die \acrfull{jsonml} von allen Konversionverfahren die meisten Kriterien im Test.
 
 In diesem Kapitel wird daher zunächst ein Überblick über die von \acrshort{jsonml} eingesetzte Syntax gegeben.
-Darauf aufbauend werden dann die notwendigen Modifikationen am \acrshort{jsonml}-Verfahren beschrieben, die im Zuge dieser Arbeit entwickelt wurden, um das Ziel eines vollständig verlustlose Konversionsverfahrens zu erreichen. Im Anschluss daran werden die Ergebnisse einer Analyse der so weiterentwickelten \acrshort{jsonml}.
+Darauf aufbauend werden dann die notwendigen Modifikationen am \acrshort{jsonml}-Verfahren beschrieben, die im Zuge dieser Arbeit entwickelt wurden, um das Ziel eines vollständig verlustlose Konversionsverfahrens zu erreichen.
 
-\acrfull{jsonml}
 \section{Syntax}
 
 Im Gegensatz zu anderen Konvertern nutzt \acrshort{jsonml} ungeordnete \acrshort{json}-Objekte ausschließlich für Attributlisten~\cite{jsonmlsyntax}. Die Baumstruktur eines \acrshort{xml}-Dokuments wird mittels \acrshort{json}-Arrays dargestellt, wobei ein Array immer genau ein Element repräsentiert. Textknoten bzw. CDATA-Sektionen werden zu einfachen \acrshort{json}-Strings umgewandelt.
@@ -276,6 +275,6 @@ Die syntaktischen Änderungen aus Definition~\ref{def:jsonmlpi} wurden in die Ja
     \end{example}
 \end{figure}
 
-Bei einer erneuten Überprüfung des \acrshort{jsonml}-Konverters unter Berücksichtigung der o. g. Änderungen wurde deren Korrektheit bestätigt: Alle Testdokumente, auch die zuvor fehlgeschlagenen, lassen sich nun verlustlos von \acrshort{xml} nach \acrshort{json} und wieder zurück konvertieren.
+Bei einer erneuten Überprüfung des \acrshort{jsonml}-Konverters unter Berücksichtigung der o. g. Änderungen wurde deren Korrektheit bestätigt: Alle Testdokumente, auch die zuvor fehlgeschlagenen, lassen sich nun verlustlos von \acrshort{xml} nach \acrshort{json} und wieder zurück konvertieren (vgl. Tab.~\ref{tbl:results-basic} bis~\ref{tbl:results-sec}).
 
 Alle Änderungen wurdem dem \acrshort{jsonml}-Projekt zur Verfügung\footnote{Vgl.~\url{https://github.com/mckamey/jsonml/pull/14}} gestellt (siehe Anhang~\ref{appx:jsonmlpi}).

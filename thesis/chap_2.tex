@@ -20,6 +20,9 @@ Aktuell steht \acrshort{xml} in zwei unterschiedlichen Versionen zu Verfügung:
 
 Als Metasprache bildet \acrshort{xml} die Grundlage für eine große Anzahl von Dateiformaten wie \gls{svg}, \gls{odf} und \gls{ooxml} und wird in Protokollen wie SOAP und \acrshort{ebics} eingesetzt.
 
+%TODO: Steht so ähnlich schon im Intro
+\todo[inline]{TODO: Nächster Absatz ist CopyPaste aus dem Intro}
+
 Neben \acrshort{xml}-basierten Webservices, die beispielsweise das \acrshort{saml}-Framework, SOAP
 oder \acrshort{xmlrpc} verwenden, wird \acrshort{xml} auch in einer Vielzahl weiterer
 Einsatzbereiche eingesetzt. So dient \acrshort{xml} den Dateiformaten \acrshort{rss}/\acrshort{asf}, \acrshort{mathml}, \gls{svg} oder \acrshort{xhtml} als Basis. Auch die gängigen
@@ -48,6 +51,8 @@ Office-Dateiformate -- das \acrfull{odf}, Microsofts % chktex 8
     \end{example}
 \end{figure}
 
+%TODO: Hier wird nicht klar was Markup ist
+\todo[inline]{TODO: Hier wird nicht klar was Markup ist.}
 \acrshort{xml}-Daten bestehen aus Text, deren Struktur durch die Produktionsregeln der \acrshort{xml}-Spezifikation vorgegeben ist. Der Text eines \acrshort{xml}-Dokuments besteht aus einem Gemisch von \emph{Markup} und \emph{Character Data}, wobei das Markup eine Vielzahl von Formen annehmen kann. Text der \emph{kein} Markup enthält, nennt man \emph{Character Data}.
 
 Auf die in \acrshort{xml}-Dokumenten enthaltenen Informationen wird in der Regel über Schnittstellen zugegriffen, die das Markup auswerten und das Dokument in Form einer baumartigen Datenstruktur darstellen. Ein prominentes Beispiel dafür ist das \acrfull{dom}, das u.a. von \emph{JavaScript}-Programmen in Webbrowsern eingesetzt wird, um  \acrshort{html}-Seiten auszuwerden und zu manipulieren.
@@ -69,7 +74,7 @@ Es existieren jedoch auch abweichende Datenmodelle um die logische Strukur von \
     \item[CDATA-Abschnitte] kennzeichnen größere Bereiche von Text, die Markup-Zeichen wie \enquote{\texttt{<}} oder \enquote{\texttt{\&}} enthalten dürfen, ohne dass diese quotiert werden müssten. Sie werden mit der Zeichenkette \enquote{\texttt{<![CDATA[}} eingeleitet und mit \enquote{\texttt{]]>}} beendet.~\cite[Abschnitt 2.7]{maler2008xml}
 \end{description}
 
-\gls{dom}, \acrshort{xdm} und \acrshort{xml} Information Set kennen noch eine Vielzahl weiterer Konstrukte, die Teil eines \acrshort{xml}-Dokuments sein können, beispielseweise \acrfull{dtd}, Notation-Knoten, etc. Für eine detaillierte Beschreibung empfiehlt es sich, die jeweiligen Spezifikationen zurate zu ziehen.~\cite{dom,xmlinfoset,xdm,maler2008xml}
+\gls{dom}, \acrshort{xdm} und \acrshort{xml} Information Set kennen noch eine Vielzahl weiterer Konstrukte, die Teil eines \acrshort{xml}-Dokuments sein können, beispielseweise \acrfull{dtd}, Notation-Knoten, etc. Detaillierte Beschreibungen können in den jeweiligen Spezifikationen gefunden werden.~\cite{dom,xmlinfoset,xdm,maler2008xml}
 
 
 \subsection{\acrfull{xsd}}
@@ -127,9 +132,9 @@ logisch äquivalent.
 \subsubsection{Motivation und Anwendungsbereich}
 \label{sec:c14nscope}
 
-Durch die Flexibilität des \acrshort{xml}-Standards besteht die Möglichkeit, Informationen durch eine Vielzahl von \acrshort{xml}-Dokumenten darzustellen~\cite{siddiqui2002c14n}. Die im Beispiel~\ref{ex:c14n} abgebildeten \acrshort{xml}-Dokumente haben einen identischen Informationsgehalt, lediglich die Darstellungsweisen unterscheiden sich. Allein die Möglichkeit, innerhalb eines Start-Tags eine beliebe Anzahl von Whitespace einzusetzen~\cite[Produktionsregeln 3 und 40]{maler2008xml} führt bereits zu einer unendlichen Anzahl von logisch äquivalenten \acrshort{xml}-Darstellungen einer Information.
+Durch die Flexibilität des \acrshort{xml}-Standards besteht die Möglichkeit, Informationen durch eine Vielzahl von \acrshort{xml}-Dokumenten darzustellen~\cite{siddiqui2002c14n}. Die im Beispiel~\ref{ex:c14n} abgebildeten \acrshort{xml}-Dokumente haben einen identischen Informationsgehalt, lediglich die Darstellungsweisen unterscheiden sich. Allein die Möglichkeit, innerhalb eines Start-Tags eine beliebige Anzahl von Whitespace einzusetzen~\cite[Produktionsregeln 3 und 40]{maler2008xml} führt bereits zu einer unendlichen Anzahl von logisch äquivalenten \acrshort{xml}-Darstellungen einer Information.
 
-Um die in verschiedenden \acrshort{xml}-Dokumenten enthaltene Logik vergleichbar zu machen, muss daher von der konkreten Darstellung abstrahiert werden. \acrlong{c14n} überführt daher beliebige \acrshort{xml}-Dokumente in eine \emph{Kanonische Form}, indem eine Reihe von Arbeitsschritten abgearbeitet werden, die in Abschnitt~\ref{sec:c14nsteps} beschrieben sind.
+Um die in verschiedenen \acrshort{xml}-Dokumenten enthaltene Logik vergleichbar zu machen, muss daher von der konkreten Darstellung abstrahiert werden. \acrlong{c14n} überführt daher beliebige \acrshort{xml}-Dokumente in eine \emph{Kanonische Form}, indem eine Reihe von Arbeitsschritten abgearbeitet werden, die in Abschnitt~\ref{sec:c14nsteps} beschrieben sind.
 
 \acrlong{c14n} wird vor allem im Bereich der Signaturerstellung und -verifikation eingesetzt. Dabei wird nicht das zu siginierende Datenobjekt selbst, sondern lediglich ein \emph{Digest} d.h. ein Hashwert des Objekts) signiert.~\cite[Abschnitt 2.0]{bartel2008xmlsig} Subtile und für die Dokumentlogik irrelevante Unterschiede wie der Einsatz von abweichenden Zeilenumbrüchen oder die Nutzung von einfachen statt doppelten Hochkomma als Trennzeichen für Attribute würden dabei den Hashwert ändern und die Signatur ungültig werden lassen. Daher werden die Datenobjekte standardmäßig mittels \acrlong{c14n} transformiert.~\cite[Abschnitt 4.3.3.2]{bartel2008xmlsig}
 
@@ -188,7 +193,7 @@ Obwohl Angriffe zum Teil seit Jahren bekannt sind, sind viele XML-Parser weiterh
 
 \subsubsection{\acrlong{fsa}}
 \label{sec:xmlattacks-fsa}
-Hierbei soll der \acrshort{xml}-Parser dazu gebracht werden, eine normalerweise nicht zugängliche Datei auf dem lokalen Dateisystem in ein \acrshort{xml}-Dokument einzubetten. Kann der Angreifer die Zielapplikation dazu bringen, ihm Zugriff auf das Dokument zu gewähren, erlangt er Kenntnis vom Inhalt der Datei.
+Bei dem Angriffen aus dem Bereich \acrlong{fsa} soll der \acrshort{xml}-Parser dazu gebracht werden, eine normalerweise nicht zugängliche Datei auf dem lokalen Dateisystem in ein \acrshort{xml}-Dokument einzubetten. Kann der Angreifer die Zielapplikation dazu bringen, ihm Zugriff auf das Dokument zu gewähren, erlangt er Kenntnis vom Inhalt der Datei.
 
 \paragraph{\acrfull{xxe}}
 \acrshort{xxe}-Angriffe sind bereits seit 2002 bekannt~\cite{steuck2002xxe}. Der Angreifer gibt dabei den Pfad zu einer lokalen Datei auf dem Server in Form einer File-URL in einer External Entity an und refenziert diese Entity dann im Dokument. Enthält der eingebette Inhalt jedoch Zeichen, die von XML als Markup interpretiert werden, kann dies unter Umständen dazu führen, dass das resultierende Dokument nicht mehr wohlgeformt ist und der Angriff fehlschlägt.~\cite[Abschnitt 5.1]{spaeth2016sok}
@@ -248,7 +253,7 @@ Auch \acrfull{xslt} erlaubt die Einbindung von Dateien, beispielsweise über die
 \subsubsection{\acrfull{dos}}
 \label{sec:xmlattacks-dos}
 
-Angriffe dieser Kategorie zielen drauf ab, einen Dienst unerreichbar für andere Nutzer zu machen, indem er -- oder der Server, auf dem er läuft -- überlastet wird. Dazu wird in der Regel versucht, den zur Verfügung stehende Arbeitsspeicher zu füllen oder die \acrshort{cpu} über längere Zeit auszulasten. Zudem können Angriffsvektoren aus dem Bereich \acrlong{fsa} für \acrshort{dos}-Angriffe eingesetzt werden, indem der Parser angewiesen wird, extrem große bzw. niemals endende Dateien wie \texttt{/dev/random} zu lesen.
+\acrlong{dos} ist ein Angrifftyp, bei dem ein Angreifer darauf abzielt einen Dienst unerreichbar für andere Nutzer zu machen, indem dieser -- oder der Server, auf dem er läuft -- überlastet wird. Dazu wird in der Regel versucht, den zur Verfügung stehende Arbeitsspeicher zu füllen oder die \acrshort{cpu} über längere Zeit auszulasten. Zudem können Angriffsvektoren aus dem Bereich \acrlong{fsa} für \acrshort{dos}-Angriffe eingesetzt werden, indem der Parser angewiesen wird, extrem große bzw. niemals endende Dateien wie \texttt{/dev/random} zu lesen~\cite[S.~13]{morgan2014xml}.
 
 \paragraph{Entity Recursion Attack}
 Hierbei werden Entities so angelegt, dass sie auf sich selbst verweisen. Zwar sind direkte und indirekte Selbstreferenzierung von Entites in der \acrshort{xml}"~Spezifikation explizit verboten~\cite[Abschnitt 4.1]{maler2008xml}, naive Parser könnten aber trotzdem in eine Endlosschleife verfallen.
@@ -267,7 +272,7 @@ Hierbei werden Entities so angelegt, dass sie auf sich selbst verweisen. Zwar si
 \paragraph{Exponential Entity Attack (Billion Laughs)}
 Indem interne Entities über mehrere Ebenen ineinander verschachtelt werden, wird der Parser dazu gebracht, eine große Menge von Arbeitsspeicher zu allozieren. Eine mögliche Gegenmaßnahme ist die Begrenzung der Anzahl von erlaubten Entity-Referenzen.
 
-\begin{example}[Billion Laughs] Die expandierte Entity \mintinline{xml}{&x9;} belegt $\SI[parse-numbers=false]{3 \cdot 10^9}{\byte}\allowbreak{}\approx \SI{2.7939}{\gibi\byte}$ im Arbeitsspeicher.
+\begin{example}[Billion Laughs] Nach der rekursiven Dereferenzierung belegt die expandierte Entity \mintinline{xml}{&x9;} $\SI[parse-numbers=false]{3 \cdot 10^9}{\byte}\approx \SI{2.7939}{\gibi\byte}$ im Arbeitsspeicher.
     \begin{minted}{xml}
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE root [
@@ -299,9 +304,9 @@ Durch manipulierte \acrshort{xml}-Dateien soll ein Parser dazu gebracht werden, 
     \end{example}
 \end{figure}
 
-Weitere \acrshort{ssrf}-Angriffsvektoren sind \acrshort{xsd}-Attribute\footnote{Die vollständige Namespace-\acrshort{uri} lautet: \url{http://www.w3.org/2001/XMLSchema-instance}.} \mintinline{xml}{schemaLocation} und \mintinline{xml}{noNamespaceSchemaLocation}. Auch sie erlauben die Angabe von URLs, die u.U. von einem Parser aufgerufen werden.\cite[S.~8f]{morgan2014xml}
+Weitere \acrshort{ssrf}-Angriffsvektoren sind \acrshort{xsd}-Attribute\footnote{Die vollständige Namespace-\acrshort{uri} lautet: \url{http://www.w3.org/2001/XMLSchema-instance}.} \mintinline{xml}{schemaLocation} und \mintinline[breakbefore=S]{xml}{noNamespaceSchemaLocation}. Auch sie erlauben die Angabe von \acrshortpl{url}, die u.\,U. von einem Parser aufgerufen werden.\cite[S.~8f]{morgan2014xml}
 
-Zudem \acrshort{xinclude}- und \acrshort{xxe}-Angriffe aus dem Bereich \acrlong{fsa} können teilweise auch mit URLs durchgeführt und somit für \acrlong{ssrf} eingesetzt werden.
+\acrshort{xinclude}- und \acrshort{xxe}-Angriffe aus dem Bereich \acrlong{fsa} können teilweise auch mit URLs durchgeführt und somit für \acrlong{ssrf} eingesetzt werden.
 
 \section{\acrfull{json}}
 \label{sec:json}
@@ -413,7 +418,7 @@ Das \acrshort{json}-Format ist sehr einfach aufgebaut -- komplexere Features wie
 
 Ein \acrfull{idraft} der \gls{ietf} von September 2012 schlug eine solche Funktionalität unter dem Titel \enquote{\acrshort{json} Reference} zwar vor, diese kam aber aber nie über das Entwurfsstadium hinaus.~\cite{jsonref}
 
-Eine Spezifikation für die Nutzung von Schemas ist aktuell im Entwurfsstadium. Sie beschreibt ebenfalls eine Möglichkeit zur Referenzierung von Schemata und \acrshort{json}-Werten~\cite[Abschnitt 8]{jsonschema}. Im Gegensatz zu \acrshort{xml} sieht die Spezifikation allerdings zur Zeit keine Möglichkeit zur Einbettung eines Schemas in ein Datendokument vor. Auch der Verweis auf ein Schema im Datendokument selbst ist nicht vorgesehen. Stattdessen können aber HTTP-Header ~\cite[Abschnitt 10.1]{jsonschema} verwendet werden, um auf ein Schema zu verweisen. Daher werden die Sicherheitsaspekte von \emph{\acrshort{json} Schema} im Rahmen dieser Bacherlorarbeit nicht betrachtet.
+Eine Spezifikation für die Nutzung von Schemata ist aktuell noch im Entwurfsstadium. Daher werden die Sicherheitsaspekte von \emph{\acrshort{json} Schema} im Rahmen dieser Bacherlorarbeit nicht betrachtet. Sie beschreibt ebenfalls eine Möglichkeit zur Referenzierung von Schemata und \acrshort{json}-Werten~\cite[Abschnitt 8]{jsonschema}. Im Gegensatz zu \acrshort{xml} sieht die Spezifikation allerdings zur Zeit keine Möglichkeit zur Einbettung eines Schemas in ein Datendokument vor. Auch der Verweis auf ein Schema im Datendokument selbst ist nicht vorgesehen. Stattdessen können aber HTTP-Header ~\cite[Abschnitt 10.1]{jsonschema} verwendet werden, um auf ein Schema zu verweisen.
 
 \begin{figure}[h]
 \begin{example}[Unsicheres \acrshort{json}-Parsing] Wird \acrshort{json} mittels \mintinline{javascript}{eval()}-Funktion geparst, kann ein Angreifer u.U. Schadcode ausführen.
