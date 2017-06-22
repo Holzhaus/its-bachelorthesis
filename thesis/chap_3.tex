@@ -18,8 +18,13 @@ Ziel ist das Findes eines Konversionsverfahren, welches sowohl \emph{sicher} als
 
 Die Sicherheit eines Konverters hängt in erster Linie von der Sicherheit des eingesetzten \acrshort{xml}-Prozessors ab. Dieser darf gegen keinen der im Abschnitt~\ref{sec:xmlattacks} beschriebenen Angriffe auf \acrshort{xml}-Parser verwundbar sein.
 
-% TODO: Stuff still missing here
-\todo[inline,color=green!40]{FIXME: Zu kurz, fehlt hier noch was?}
+Im Bezug auf Sicherheit stellt die Unterstützung eines \acrshort{xml}-Parsers für Entities das größte Einfallstor für Angriffe dar. Viele der Angriffsvektoren sind nur dann möglich, wenn der Parser General bzw. Parameter Entities auswertet und expandiert.
+
+Das \acrfull{owasp} empfiehlt daher, die Unterstützung für \acrfullpl{dtd} komplett zu deaktivieren, da dies sowohl \acrshort{xxe}-Angriffe als auch \acrshort{dos}-Attacken wie \emph{Billion Laughs} oder \emph{Quadratic Blowup} wirksam verhindert~\cite[Abschn.~1.1]{owasp2017xxeprevention}. Diese Gegenmaßnahme empfiehlt auch Nazim Lala von Microsofts IIS Security Team~\cite{lala2013handlinguntrustedxml}.
+
+Aus Sicherheitsgründen ist die Verarbeitung von \glspl{dtd} für die in der vorliegenden Arbeit überprüften Konverter daher nicht erforderlich.
+
+Dies gilt jedoch nicht für die vordefinierten General Entities \mintinline{xml}{&amp;}, \mintinline{xml}{&lt;}, \mintinline{xml}{&gt;}, \mintinline{xml}{&apos;} und \mintinline{xml}{&quot;}~\cite[Abschn.~4.6]{maler2008xml} bzw. Character References~\cite[Abschn.~4.1]{maler2008xml}, da für diese nicht innerhalb einer \gls{dtd} angegeben werden müssen und sie zum Quotieren von Markup in Text-Knoten und Attributen nötig sind.
 
 \subsection{Verlustlosigkeit}
 
