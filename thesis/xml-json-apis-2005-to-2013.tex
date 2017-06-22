@@ -1,0 +1,66 @@
+
+\documentclass[border=10pt]{standalone}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepgfplotslibrary{dateplot}
+\usepackage[T1]{fontenc}
+\usepackage{rubfonts2009}
+% FIXME: Blue should be #003560, but that'd conflict with the front page colors
+\definecolor{rubblue}{HTML}{003660}
+\definecolor{rubgreen}{HTML}{8dae10}
+\definecolor{rubgray}{HTML}{e7e7e7}
+
+\pgfplotsset{
+    tick label style={
+        font=\fontfamily{rubscala}\selectfont,
+    },
+    every axis label/.append style={
+        font=\fontfamily{rubscala}\selectfont,
+    },
+}
+
+\begin{document}
+\pgfplotstableread{xml-json-apis-2005-to-2013.csv}{\tabledata}
+\begin{tikzpicture}
+        \begin{axis}[
+            title={Einsatz von XML und JSON durch APIs},
+            xlabel={Jahr},
+            ylabel={Marktanteil},
+            ymajorgrids,
+            grid style={line width=.1pt, draw=black!50},
+            minor tick num=5,
+            set layers,
+            anchor=north east,
+            smooth, area style, enlarge x limits=false,
+            date coordinates in=x,
+            xtick = {
+              {2005-01-01},
+              {2006-01-01},
+              {2007-01-01},
+              {2008-01-01},
+              {2009-01-01},
+              {2010-01-01},
+              {2011-01-01},
+              {2012-01-01},
+              {2013-01-01}
+            },
+            ytick = {0, 10, 20, 30, 40, 50, 60, 70, 80},
+            xticklabel=\year,
+            yticklabel={\pgfmathprintnumber[assume math mode=true]{\tick}\%},
+            xtick pos=left,
+            ytick pos=left,
+            height=8cm,
+            width=12cm,
+        ]
+        \addplot[rubgreen,fill=rubgreen!80!white,fill opacity=0.8,thick,on layer=axis foreground] table[x=date,y=xml] {\tabledata} \closedcycle;
+        \addplot[rubblue,fill=rubblue!80!white,fill opacity=1,thick,on layer=axis foreground] table[x=date,y=json] {\tabledata} \closedcycle;
+
+        \begin{pgfonlayer}{axis foreground}
+            \node[draw=none,font=\Large,on layer=axis foreground] at (axis cs: 2008-01-01,40) {\fontfamily{rubflama}\selectfont{}XML};
+            \node[draw=none,font=\Large,on layer=axis foreground,text=white] at (axis cs: 2012-01-01,20) {\fontfamily{rubflama}\selectfont{}JSON};
+        \end{pgfonlayer}
+    \end{axis}
+    %\node[below left, rotate=90, font=\tiny] {\tiny Data Source: ProgrammableWeb, Dec. 26 2013};
+\end{tikzpicture}
+\end{document}
+

@@ -55,13 +55,22 @@ Office-Dateiformate -- das \acrfull{odf}, Microsofts % chktex 8
 \acrfull{ooxml} und Apples iWorks -- bauen auf \acrshort{xml} auf. % chktex 8
 
 Inzwischen gewinnt jedoch \acrshort{json} vor allem im Mobile-
-und Web-Bereich immer mehr an Bedeutung. Laut dem \acrshort{api}-Verzeichnis
+und Web-Bereich immer mehr an Bedeutung (Vgl. Abb.~\ref{fig:xmljsonapis}). Laut dem \acrshort{api}-Verzeichnis
 \emph{ProgrammableWeb} unterstützten im Jahr 2013 ca. 60\% aller neu
 hinzugefügten \acrshortpl{api} das \acrshort{json}-Format, während
 \acrshort{xml} im selben Zeitraum lediglich von 37\% der neuen \acrshortpl{api}
 unterstützt wurde.~\cite{duvander2013convergence}
 
-\acrshort{json} ist bei bestimmten Aufgaben in puncto Geschwindigkeit und
+\begin{figure}[h!]
+    \begin{center}
+        \includestandalone[width=\textwidth]{xml-json-apis-2005-to-2013}
+    \end{center}
+    \caption{Sowohl JSON als auch XML wurden 2013 von jeweils mehr als 45\% der Web-\acrshortpl{api} unterstützt.}
+    \label{fig:xmljsonapis}
+\end{figure}
+
+
+\acrshort{json} ist bei bestimmten Aufgaben im Bezug auf Geschwindigkeit und
 Ressourcenauslastung deutlich effizienter~\cite{nurseitov2009comparison} als
 \acrshort{xml}\@. inzwischen setzen auch einige populäre NoSQL-Datenbanken wie
 \emph{CouchDB} oder \emph{MongoDB} auf \acrshort{json} zur Speicherung. Auch
