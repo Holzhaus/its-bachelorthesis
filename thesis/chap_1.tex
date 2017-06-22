@@ -98,6 +98,10 @@ Im Gegensatz dazu ist eine Anforderung an das in der vorliegenden Arbeit zu entw
 
 Goessner schlägt ein Mapping zwischen strukturierten XML-Daten und JSON vor, dass möglichst kompakte und simpel sein soll. Dafür werden jedoch Abstriche im Bereich Verlustlosigkeit und Umkehrbarkeit der Konversion hingenommen, d.h. in bestimmten Fällen wie dem Auftreten mehrerer Kindelemente gleichen Namens kann ein Verlust (\emph{hier:} Verlust der Elementreihenfolge) auftreten.~\cite{goessner2006converting}
 
+In einem Paper vergleicht Wang die beiden Formate und entwickelt einen Übersetzungsalgorithmus zwischen den beiden Formaten~\cite{wang2011improving}. Allerdings wird dabei von datenorientiertem XML ausgegangen und somit keine Probleme betrachtet, die bei der Umwandlung von spezfischen Strukturen einer dokumentorientierten Auszeichnungssprache wie XML in das JSON-Format entstehen können, beispielsweise die korrekte Abbildung von Mixed Content (vgl. Abschn.~\ref{sec:mixedcontent}). Der von Wang vorgeschlagene Algorithmus zudem auch bei datenorientierem XML unter Umständen verlustbehaftet.\cite[S.~184]{wang2011improving}.
+
+Ein System zur Umstellung des von einer Webapplikation auf JavaScript-Basis genutzten Datenformats wird von Ying und Miller vorgeschlagen~\cite{ying2013refactoring}. Neben der Automatischen Konversion von XML in JSON wird dabei auch der JavaScript-Quelltext der Applikation automatisch an das neue Format angepasst. Der Fokus der Arbeit liegt dabei auf dem Code-Refacoring -- einer genauere Evaluation des eingesetzten Konversionsverfahrens im Bezug auf Sicherheit und Verlustlosgkeit findet nicht statt.
+
 % TODO: Add related works
 
 \todo[inline]{TODO: List related work \emph{and} the result of this work\@! What is the relevance of this work concerning your thesis\@? If necessary,\ \emph{emphasize} some words in your text, for example words like \emph{not} or \emph{and} are sometimes crucial for understanding\@.}
