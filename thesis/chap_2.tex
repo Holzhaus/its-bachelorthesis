@@ -18,16 +18,10 @@ Aktuell steht \acrshort{xml} in zwei unterschiedlichen Versionen zu Verfügung:
 
 \acrshort{xml} 1.1 ist in der Praxis kaum verbreitet und wird daher in der vorliegenden Arbeit nicht betrachtet.
 
-Als Metasprache bildet \acrshort{xml} die Grundlage für eine große Anzahl von Dateiformaten wie \gls{svg}, \gls{odf} und \gls{ooxml} und wird in Protokollen wie SOAP und \acrshort{ebics} eingesetzt.
+Als Metasprache bildet \acrshort{xml} die Grundlage für eine große Anzahl von Dateiformaten, beispielsweise die verbreiteten Office-Formate \gls{odf} und \gls{ooxml} ebenso wie das Vektorgrafikformat \gls{svg}.
 
-%TODO: Steht so ähnlich schon im Intro
-\todo[inline]{TODO: Nächster Absatz ist CopyPaste aus dem Intro}
+Im Web wird XML z.B. in Form von \acrshort{xhtml} oder \gls{rss} für die Darstellung von Inhalten eingesetzt, vor allem aber für Datenaustausch mit dynamischen AJAX-Applikationen und Webservices genutzt.
 
-Neben \acrshort{xml}-basierten Webservices, die beispielsweise das \acrshort{saml}-Framework, SOAP
-oder \acrshort{xmlrpc} verwenden, wird \acrshort{xml} auch in einer Vielzahl weiterer
-Einsatzbereiche eingesetzt. So dient \acrshort{xml} den Dateiformaten \acrshort{rss}/\acrshort{asf}, \acrshort{mathml}, \gls{svg} oder \acrshort{xhtml} als Basis. Auch die gängigen
-Office-Dateiformate -- das \acrfull{odf}, Microsofts % chktex 8
-\acrlong{ooxml} und Apples iWorks -- bauen auf \acrshort{xml} auf. % chktex 8
 \subsection{Grundlagen}
 \label{sec:xmlbasics}
 
@@ -51,9 +45,7 @@ Office-Dateiformate -- das \acrfull{odf}, Microsofts % chktex 8
     \end{example}
 \end{figure}
 
-%TODO: Hier wird nicht klar was Markup ist
-\todo[inline]{TODO: Hier wird nicht klar was Markup ist.}
-\acrshort{xml}-Daten bestehen aus Text, deren Struktur durch die Produktionsregeln der \acrshort{xml}-Spezifikation vorgegeben ist. Der Text eines \acrshort{xml}-Dokuments besteht aus einem Gemisch von \emph{Markup} und \emph{Character Data}, wobei das Markup eine Vielzahl von Formen annehmen kann. Text der \emph{kein} Markup enthält, nennt man \emph{Character Data}.
+\acrshort{xml}-Daten bestehen aus Text, deren Struktur durch die Produktionsregeln der \acrshort{xml}-Spezifikation vorgegeben ist. Der Text eines \acrshort{xml}-Dokuments besteht aus einem Gemisch von \emph{Markup} und \emph{Character Data}, wobei das Markup eine Vielzahl von Formen annehmen kann, sich jedoch in jedem Fall syntaktisch von Character Data unterscheidet. Es wird dazu genutzt, den Inhalt des Dokumentes zu strukturieren und verschiedene Teile des Dokuments mit Metainformationen zu versehen. Text, der \emph{kein} Markup enthält, nennt man \emph{Character Data}.
 
 Auf die in \acrshort{xml}-Dokumenten enthaltenen Informationen wird in der Regel über Schnittstellen zugegriffen, die das Markup auswerten und das Dokument in Form einer baumartigen Datenstruktur darstellen. Ein prominentes Beispiel dafür ist das \acrfull{dom}, das u.a. von \emph{JavaScript}-Programmen in Webbrowsern eingesetzt wird, um  \acrshort{html}-Seiten auszuwerden und zu manipulieren.
 
