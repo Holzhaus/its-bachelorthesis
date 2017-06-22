@@ -116,7 +116,7 @@ BCOR=1cm, % Bindekorrektur: Change this accordingly, also read the KomaScript Gu
 }
 \setabbreviationstyle[acronym]{long-short-user}
 
-\RequirePackage[url=true,backend=biber,style=alphabetic,maxalphanames=1]{biblatex}
+\RequirePackage[url=true,backend=biber,style=alphabetic,maxalphanames=1,maxbibnames=5]{biblatex}
 \renewcommand*{\labelalphaothers}{}
 
 % Make bibliography titles clickable if URL is given
