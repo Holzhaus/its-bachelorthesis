@@ -15,6 +15,7 @@ vorgestellt.
 Ziel ist das Findes eines Konversionsverfahren, welches sowohl \emph{sicher} als auch \emph{verlustlos} arbeitet. Dazu müssen beide Anforderungen zunächst genauer definiert werden.
 
 \subsection{Sicherheit}
+\label{sec:criteria-security}
 
 Die Sicherheit eines Konverters hängt in erster Linie von der Sicherheit des eingesetzten \acrshort{xml}-Prozessors ab. Dieser darf gegen keinen der im Abschnitt~\ref{sec:xmlattacks} beschriebenen Angriffe auf \acrshort{xml}-Parser verwundbar sein.
 
@@ -27,6 +28,7 @@ Aus Sicherheitsgründen ist die Verarbeitung von \glspl{dtd} für die in der vor
 Dies gilt jedoch nicht für die vordefinierten General Entities \mintinline{xml}{&amp;}, \mintinline{xml}{&lt;}, \mintinline{xml}{&gt;}, \mintinline{xml}{&apos;} und \mintinline{xml}{&quot;}~\cite[Abschn.~4.6]{maler2008xml} bzw. Character References~\cite[Abschn.~4.1]{maler2008xml}, da für diese nicht innerhalb einer \gls{dtd} angegeben werden müssen und sie zum Quotieren von Markup in Text-Knoten und Attributen nötig sind.
 
 \subsection{Verlustlosigkeit}
+\label{sec:critera-lossless}
 
 Damit dieser Konversionsprozess als \emph{verlustlos} angesehen werden kann, müssen mehrere Bedingungen erfüllt sein:
 \begin{enumerate}
