@@ -17,7 +17,7 @@
 \pgfplotstabletypeset[
     string type,
     string replace*={&}{\&},
-    string replace*={ [OPTIONAL]}{$^1$},
+    string replace*={ [OPTIONAL]}{\tnote{2}},
     string replace={FAILED}{},
     string replace={ERROR}{\xmark},
     string replace={OK}{\cmark},
@@ -48,7 +48,7 @@
     %    before row=\midrule,
     %},,
     columns/jsonmlpatched/.style={
-        column name={jsonml (patched)},
+        column name={jsonml (patched)\tnote{1}},
         postproc cell content/.style={%
             @cell content/.add={
                 %\ifnum\pdfstrcmp{\unexpanded{#1}}{OK}=0
@@ -96,11 +96,12 @@
         \fi
     },
 ]\loadedtable
-    \ifx\hasfootnote\undefined
-    \else
-        \begin{tablenotes}
-            \item[1] optional, included for informational purposes
-        \end{tablenotes}
-    \fi
+    \begin{tablenotes}
+        \item[1] Erweiterte JsonML-Version (vgl. Kapitel 5)
+        \ifx\hasfootnote\undefined
+        \else
+            \item[2] optional, Unterstützung nicht notwendig
+        \fi
+    \end{tablenotes}
   \end{threeparttable}\hspace{2em}
 \end{document}
