@@ -91,6 +91,8 @@ In der vorliegenden Arbeit soll die Konversion in umgekehrter Richtung untersuch
 
 Ein weiteres XML-basiertes Format, dass das Datenmodell der \acrfull{json} in XML nachbildet und dadurch die verlustlose Abbildung beliebiger JSON-Daten in XML ermöglicht, ist JsonXML (JXML)~\cite{jxml}.
 
+Christensen \emph{et.\,al.} halten das US-Patent and der Übersetzung zwischen XML und \enquote{dynamic language data expressions}~\cite{US7761484}, womit unter anderem auch \acrshort{json} gemeint ist. Es nennt mehrere verschiedene denkbare Ausführungen, beispielsweise die Konversion von JSON in typannotiertes XML mittels Attributen oder Element-Namen, aber auch die Round-Trip-Umwandlung von XML zu JSON und zurück, ohne diese jedoch im Detail zubeschreiben.
+
 David Lee~\cite{lee2011jxon} entwickelte 2011 ein Verfahren, um anhand annotierter XSD-Schemata XSLT-Dateien zu erzeugen, die in der Lage sind, bidirektional zwischen XML und JXML zu konvertieren.  Damit ist also -- mit einem Umweg über JXML -- die verlustlose Umwandlung von XML in JSON und wieder zurück möglich.
 Durch die Nutzung des jeweiligen XSD-Schema der zu konvertierenden XML-Dokumente sind bei der Umwandlung die im XML-Dokument genutzten Datentypen bekannt, wodurch ein zuverlässigen Mapping auf die nativen JSON-Typen möglich wird.
 
@@ -98,9 +100,11 @@ Im Gegensatz dazu ist eine Anforderung an das in der vorliegenden Arbeit zu entw
 
 Goessner schlägt ein Mapping zwischen strukturierten XML-Daten und JSON vor, dass möglichst kompakte und simpel sein soll. Dafür werden jedoch Abstriche im Bereich Verlustlosigkeit und Umkehrbarkeit der Konversion hingenommen, d.h. in bestimmten Fällen wie dem Auftreten mehrerer Kindelemente gleichen Namens kann ein Verlust (\emph{hier:} Verlust der Elementreihenfolge) auftreten.~\cite{goessner2006converting}
 
+Ein US-Patent von Williamson~\cite{US20140244692} beschreibt die Überführung von Daten aus einem XML-Dokument in eine JSON-Struktur, indem bestimmte Teile des XML-Baums selektiert (z.\,B. mittels \acrshort{xpath}-artigen Ausdrücken) und einem Ziel-Schlüssel im resultierenden JSON-Objekt zugeordnet werden. Dadurch werden jedoch lediglich Teile der im XML-Dokument enthaltenen Informationen in die Ausgabe übernommen, sodass verlustloses Round-Tripping unmöglich wird.
+
 In einem Paper vergleicht Wang die beiden Formate und entwickelt einen Übersetzungsalgorithmus zwischen den beiden Formaten~\cite{wang2011improving}. Allerdings wird dabei von datenorientiertem XML ausgegangen und somit keine Probleme betrachtet, die bei der Umwandlung von spezfischen Strukturen einer dokumentorientierten Auszeichnungssprache wie XML in das JSON-Format entstehen können, beispielsweise die korrekte Abbildung von Mixed Content (vgl. Abschn.~\ref{sec:mixedcontent}). Der von Wang vorgeschlagene Algorithmus zudem auch bei datenorientierem XML unter Umständen verlustbehaftet.\cite[S.~184]{wang2011improving}.
 
-Ein System zur Umstellung des von einer Webapplikation auf JavaScript-Basis genutzten Datenformats wird von Ying und Miller vorgeschlagen~\cite{ying2013refactoring}. Neben der Automatischen Konversion von XML in JSON wird dabei auch der JavaScript-Quelltext der Applikation automatisch an das neue Format angepasst. Der Fokus der Arbeit liegt dabei auf dem Code-Refacoring -- einer genauere Evaluation des eingesetzten Konversionsverfahrens im Bezug auf Sicherheit und Verlustlosgkeit findet nicht statt.
+Ein System zur Umstellung des von einer Webapplikation auf JavaScript-Basis genutzten Datenformats wird von Ying und Miller vorgeschlagen~\cite{ying2013refactoring}. Neben der Automatischen Konversion von XML in JSON wird dabei auch der JavaScript-Quelltext der Applikation automatisch an das neue Format angepasst. Der Fokus der Arbeit liegt dabei auf dem Code-Refactoring -- einer genauere Evaluation des eingesetzten Konversionsverfahrens im Bezug auf Sicherheit und Verlustlosgkeit findet nicht statt.
 
 % TODO: Add related works
 
