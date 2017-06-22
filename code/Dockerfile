@@ -31,7 +31,8 @@ RUN npm install -g \
     x2js@3.1.0 \
     jxon@2.0.0-beta.4 \
     jsonml-tools@2.0.0 \
-    https://github.com/Holzhaus/jsonml/archive/c8c15cc276eda15a85b67a4883196efe4528b171.tar.gz
+    https://github.com/Holzhaus/jsonml/archive/c8c15cc276eda15a85b67a4883196efe4528b171.tar.gz \
+    https://github.com/Holzhaus/x2js/archive/d1a7c1995f0874504ca031ec6ee78607a60ffc27.tar.gz
 
 # Install Ruby dependencies
 RUN gem install cobravsmongoose --version '=0.0.2'
@@ -76,6 +77,9 @@ RUN cd /opt/xjcc/xjcc-pesterfish && ./setup.py install
 
 COPY xjcc-x2js /opt/xjcc/xjcc-x2js
 RUN cd /opt/xjcc/xjcc-x2js && ./setup.py install
+
+COPY xjcc-x2jsabdmob /opt/xjcc/xjcc-x2jsabdmob
+RUN cd /opt/xjcc/xjcc-x2jsabdmob && ./setup.py install
 
 COPY xjcc-xmljson /opt/xjcc/xjcc-xmljson
 RUN cd /opt/xjcc/xjcc-xmljson && ./setup.py install
