@@ -1,29 +1,33 @@
-FROM alpine:3.5
+FROM ubuntu:xenial
 
 MAINTAINER Jan Holthuis "jan.holthuis@ruhr-uni-bochum.de"
 
 # Create user (do it early so we don't need to do this every time we change
 # something)
-RUN mkdir /data
-RUN adduser -D -h /data xjcc
+RUN useradd -m -d /data xjcc
 RUN mkdir -p /opt/xjcc
 
 # Install dependencies
-RUN apk add --no-cache --update \
+RUN apt-get update && apt-get install -y --no-install-recommends \
     ca-certificates \
+    unzip \
     python3 \
+    python3-setuptools \
+    python3-lxml \
+    python3-pip \
+    python3-wheel \
     nodejs \
-    py-setuptools \
-    py-lxml \
+    npm \
+    openjdk-8-jdk-headless \
     maven \
-    openjdk8 \
     ruby \
-    ruby-irb \
-    ruby-rdoc \
-    php5 \
-    php5-phar \
-    php5-json \
-    php5-openssl
+    irb \
+    php \
+    php-json \
+    composer
+
+# Symlink "nodejs" to "node"
+RUN ln -s /usr/bin/nodejs /usr/local/bin/node
 
 # Install NodeJS dependencies
 RUN npm install -g \
@@ -40,12 +44,7 @@ RUN gem install cobravsmongoose --version '=0.0.2'
 # Install PHP depencies
 ENV COMPOSER_HOME /user/local/share/composer_home
 COPY composer.json "${COMPOSER_HOME}/composer.json"
-RUN apk add --no-cache --update curl openssl && \
-    curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer --version=1.4.2 && \
-    chmod +x /usr/local/bin/composer && \
-    apk del curl openssl && \
-    mkdir -p "${COMPOSER_HOME}" && \
-    /usr/local/bin/composer global install --prefer-dist
+RUN composer global install --prefer-dist
 
 # Install Python requirements
 COPY requirements.txt /opt/xjcc/requirements.txt
