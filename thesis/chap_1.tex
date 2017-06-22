@@ -33,12 +33,17 @@ Während Abbildung von beliebigen \acrshort{json}-Datenstrukturen in \acrshort{x
 oberflächlicher Betrachtung trivial erscheint, ist dies beim verlustlosen
 Transfer von \acrshort{xml}-Daten ins \acrshort{json}-Format keineswegs der Fall.
 
-Ziel ist es daher, ein sicheres und verlustloses Verfahren zur Konversion von
-XML-Dokumenten in das JSON-Format zu finden. Dazu werden werden in dieser
-Bachelorarbeit verschiedene Konverter anhand zuvor festgelegter Kriterien
-analysiert. Da keines der getesteten Konversionsverfahren vollständig
-verlustlos arbeitet, wird das vielversprechendste Verfahren angepasst,
-sodass alle Anforderungen erfüllt werden.
+Ziel der vorliegenden Arbeit war es daher, ein sicheres und verlustloses
+Verfahren zur Konversion von XML-Dokumenten in das JSON-Format zu finden.
+
+Dazu wurden eine Reihe von bereits erhältlichen Programmbiliotheken analysiert,
+die \acrshort{xml}-Daten in \acrshort{json} abbilden und aus der resultierenden
+\acrshort{json}-Datenstruktur wieder \acrshort{xml}-Dokument erstellen können.
+
+Da keiner der analysierten Konverter die vorher aufgestellten Anforderungen
+vollständig erfüllt, wurde das vielversprechendste Konversionsprogramm
+modifiziert und weiterentwickelt. Das Resultat wurde erneut anhand des o.\,g.
+Kritierenkatalogs evaluiert und konnte diese in vollem Umfang erfüllen.
 
 \section{Motivation}
 \label{sec:motivation}
@@ -106,18 +111,10 @@ In einem Paper vergleicht Wang die beiden Formate und entwickelt einen Übersetz
 
 Ein System zur Umstellung des von einer Webapplikation auf JavaScript-Basis genutzten Datenformats wird von Ying und Miller vorgeschlagen~\cite{ying2013refactoring}. Neben der Automatischen Konversion von XML in JSON wird dabei auch der JavaScript-Quelltext der Applikation automatisch an das neue Format angepasst. Der Fokus der Arbeit liegt dabei auf dem Code-Refactoring -- einer genauere Evaluation des eingesetzten Konversionsverfahrens im Bezug auf Sicherheit und Verlustlosgkeit findet nicht statt.
 
-% TODO: Add related works
-
-\todo[inline]{TODO: List related work \emph{and} the result of this work\@! What is the relevance of this work concerning your thesis\@? If necessary,\ \emph{emphasize} some words in your text, for example words like \emph{not} or \emph{and} are sometimes crucial for understanding\@.}
-
-\section{Zielsetzung}
-% TODO: Add contribution
-\todo[inline]{TODO: What is your contribution?}
-
 \section{Aufbau der Arbeit}
 \label{sec:structure}
 
-Im zweiten Kapitel wird zunächst eine kleine Einführung in die Struktur der Formate \acrshort{xml} und \acrshort{json} gegeben. Zudem Werden auch relevante Technologien aus dem Umfeld der Formate beschrieben.  Zudem werden die bekannten Angriffe gegen \acrshort{xml}- und \acrshort{json}-Parser erläutert.
+Im zweiten Kapitel wird zunächst eine kurze Einführung in die Struktur der Formate \acrshort{xml} und \acrshort{json} gegeben. Zudem Werden auch relevante Technologien aus dem Umfeld der Formate beschrieben.  Zudem werden die bekannten Angriffe gegen \acrshort{xml}- und \acrshort{json}-Parser erläutert.
 
 Im Anschluss daran wird der Versuchsbau beschrieben. Zunächst wird die Anforderungen konkret definiert, d.~h.\ es werden
 überprüfbaren Kriterien aufgestellt, denen ein Konversionsverfahren genügen
