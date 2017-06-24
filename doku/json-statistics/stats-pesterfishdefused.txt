@@ -1,0 +1,20 @@
+ number of nulls              |                  0 
+ number of booleans           |                  0 
+ number of numbers            |                  0 
+ number of strings            |             146922 
+ number of arrays             |              33575 
+ number of maps               |             111333 
+ number of map key strings    |             217908 
+ Total number of values       |             509738 
+                              |                    
+ Total number of map keys     |             217908 
+ Most keys in a single map    |                 16 
+ Average keys per map         | 1.9572633450998356 
+ Median keys per map          |                  2 
+                              |                    
+ Total number of array items  |              73921 
+ Most items in a single array |               2597 
+ Average items per Array      |  2.201667907669397 
+ Median items per Array       |                  1 
+                              |                    
+ Maximum nesting depth        |                 32 
