@@ -233,7 +233,7 @@ Dies gilt auch für die Zeichen, von deren Einsatz \acrshort{xml}-Spezifikation 
             \acrshort{jsonml}\tnote{d} & {Stephen M. McKamey} & MIT & JavaScript & \texttt{2.0.0}\newline 09.04.2016\\
             JXON\tnote{e} & {Martin Raifer, Mozilla} & GNU GPL~3.0 & JavaScript & \texttt{2.0.0-beta.4}\newline 22.11.2016\\
             \rowcolor{rubgray!80}
-            JSON.NET\tnote{f} & {James Newton-King} & MIT & C\# & \texttt{10.0.3}\newline 18.06.2017\\
+            Json.NET\tnote{f} & {James Newton-King} & MIT & C\# & \texttt{10.0.3}\newline 18.06.2017\\
             org.json.XML\tnote{g} & {Sean Leary / JSON.org} & MIT & Java & \texttt{20160810}\newline 10.08.2016\\
             \rowcolor{rubgray!80}
             Pesterfish\tnote{h} & {Jacob Smullyan} & MIT & Python & \texttt{1578db9}\newline 22.11.2010\\
@@ -284,7 +284,7 @@ Da die Formate insbesondere im Webbereich eingesetzt werden und Webservices sowi
     \item[Json-lib] Die Java-Bibliothek \texttt{net.sf.json-lib} baut auf Software des \acrshort{json}-Entwicklers Douglas Crockford auf und wird laut Maven-Repository in über 400 anderen Projekten eingesetzt und beinhaltet unter anderem auch eine Klasse zum (De-)Serialisieren von \acrshort{xml}-Daten.
     \item[{\acrshort{jsonml}}] Die \acrfull{jsonml} ist \acrshort{json}-basiertes Format zur Speicherung von \acrshort{xml}-Markup. Neben der JavaScript-Bibliothek existieren auch Implementerungen in anderen Programmiersprachen, z.B. in Java\footnote{Das \texttt{org.json}-Paket stellt eine entsprechende Klasse bereit.}  oder PHP\footnote{Als Teil des FluentDOM-Projekts, siehe: \url{https://github.com/FluentDOM/FluentDOM/blob/master/src/FluentDOM/Serializer/Json/JsonML.php}}.
     \item[{\acrshort{jxon}}] Bei dem JavaScript-Modul handelt es sich um eine bidirektionale Bibliothek für die \acrlong{jxon}. Es handelt sich um eine Weiterentwicklung der ursprünglich von Mozilla veröffentlichten Implementierung.
-    \item[Newtonsoft JSON.NET] Das JSON-Framework für C\#.NET wurde insgesamt mehr als 64 Millionen Mal von Paket-Repository NuGet heruntergeladen~\cite{nugetjsonnet} und war zum Testzeitpunkt das am meisten heruntergeladene .NET-Paket~\cite{nugetstatistics}.\footnote{Stand: \DTMdate{2017-06-21}} Es ermöglicht unter anderem auch die Konversion von XML-Dokumenten in das JSON-Format.
+    \item[Newtonsoft Json.NET] Das JSON-Framework für C\#.NET wurde insgesamt mehr als 64 Millionen Mal von Paket-Repository NuGet heruntergeladen~\cite{nugetjsonnet} und war zum Testzeitpunkt das am meisten heruntergeladene .NET-Paket~\cite{nugetstatistics}.\footnote{Stand: \DTMdate{2017-06-21}} Es ermöglicht unter anderem auch die Konversion von XML-Dokumenten in das JSON-Format.
     \item[org.json.XML] Das Paket \texttt{org.json} ist die Referenzimplementierung des \acrshort{json}-Formats für Java und bietet auch ein Konversionsverfahren in Form einer dedizierten \acrshort{xml}-Klasse.
     \item[Pesterfish] Das Python-Modul Pesterfish konvertiert zwischen \acrshort{xml} und Python-Dictionaries, die dann zu \acrshort{json} serialisiert werden können. Laut dem Autor wurde das Konversionsverfahren als \enquote{Reaktion auf die Badgerfish-Konvention} entwickelt\footnote{Der Autor schreibt dies in einem Kommentar im Quelltext des Moduls.}. Für die Verarbeitung der \acrshort{xml}-Daten baut das Modul auf die \texttt{ElementTree}-\acrshort{api} auf und erlaubt Entwicklern auch die Angabe eines eigenen Parsers, beispielsweise \texttt{defusedxml}.
     %FIXME: Quelle
