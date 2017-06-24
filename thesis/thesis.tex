@@ -43,6 +43,19 @@
 \renewcommand{\thesistype}{Bacherlorarbeit}
 \renewcommand{\thesisadvisor}{B.~Sc.~Paul~Rösler}
 \renewcommand{\thesiskeywords}{XML, JSON, Konversion, Umwandlung, Abbildung}
+
+% Remove theorem type name from list of theorems
+\makeatletter
+\def\ll@mdexample{%
+  \protect\numberline{\csname the\thmt@envname\endcsname}%
+  \ifx\@empty\thmt@shortoptarg
+    \thmt@thmname
+  \else
+    \thmt@shortoptarg
+  \fi}
+\def\l@thmt@mdexample{}
+\makeatother
+
 % Set date here
 %\day=6 \month=6 \year=2012
 
@@ -153,8 +166,9 @@ ins JSON-Format
 
 %% generate list of algorithms, optional, remove it if you do not like it
 \clearpage \phantomsection{}
-%\addcontentsline{toc}{chapter}{Liste der Algorithmen}
-%\listofalgorithmes{}
+\addcontentsline{toc}{chapter}{Liste der Beispiele}
+\renewcommand{\listtheoremname}{Liste der Beispiele}
+\listoftheorems[ignoreall,show={mdexample}]
 %
 %%% generate list of listings, optional, remove it if you do not like it
 %\renewcommand*{\listoflistingscaption}{Liste der Auflistungen}

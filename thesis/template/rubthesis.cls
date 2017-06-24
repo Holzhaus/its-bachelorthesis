@@ -43,7 +43,7 @@ BCOR=1cm, % Bindekorrektur: Change this accordingly, also read the KomaScript Gu
 \newcommand{\thesisadvisor}{Dipl.-Ing.~Christopher Meyer}
 \newcommand{\thesiskeywords}{SAML, add more}
 
-\newcommand{\proposititontitle}{Proposition}
+\newcommand{\propositiontitle}{Proposition}
 \newcommand{\corollarytitle}{Corollary}
 \newcommand{\algorithmtitle}{Algorithm}
 \newcommand{\exampletitle}{Example}
@@ -54,7 +54,7 @@ BCOR=1cm, % Bindekorrektur: Change this accordingly, also read the KomaScript Gu
   \renewcommand{\thesissupervisortitle}{Betreuer}
   \renewcommand{\thesisadvisortitle}{Berater}
 
-  \renewcommand{\proposititontitle}{Satz}
+  \renewcommand{\propositiontitle}{Satz}
   \renewcommand{\corollarytitle}{Korollar}
   \renewcommand{\algorithmtitle}{Algorithmus}
   \renewcommand{\exampletitle}{Beispiel}
@@ -196,24 +196,25 @@ BCOR=1cm, % Bindekorrektur: Change this accordingly, also read the KomaScript Gu
 % Nicer Theorems
 \RequirePackage{mdframed}
 \RequirePackage{amsthm}
+\RequirePackage{thmtools}
 
 %% use some standards for mathematical expressions:
 \newcommand{\red}{{\rm red}}
-\newtheorem{theorem}{Theorem}[section]
-\newtheorem{lemma}[theorem]{Lemma}
-\newtheorem{proposition}[theorem]{\propositiontitle}
-\newtheorem{corollary}[theorem]{\corollarytitle}
-% \newtheorem{definition}[theorem]{Definition}
-\newtheorem{algorithm}[theorem]{\algorithmtitle}
+\declaretheorem[name={Theorem}]{theorem}
+\declaretheorem[name=Lemma]{lemma}
+\declaretheorem[name={\propositiontitle}]{proposition}
+\declaretheorem[name={\corollarytitle}]{corollary}
+% \declaretheorem[name=Definition]{definition}
+\declaretheorem[name={\algorithmtitle}]{algorithm}
 %\newenvironment{example}{\begin{quote}{\textbf \exampletitle:}}{\end{quote}}
 \theoremstyle{definition}
-\newtheorem{mdexample}[theorem]{\exampletitle}
+\declaretheorem[name={\exampletitle}]{mdexample}
 \newenvironment{example}%
   {\begin{mdframed}[hidealllines=true,backgroundcolor=rubgray!50]\begin{mdexample}}%
   {\end{mdexample}\end{mdframed}}
 
 % gray definition boxes, that whay you'll find them in the text
-\newtheorem{mddefinition}[figure]{Definition}
+\declaretheorem[name={Definition}]{mddefinition}
 \newenvironment{definition}%
   {\begin{mdframed}[hidealllines=true,backgroundcolor=rubgray!50]\begin{mddefinition}}%
   {\end{mddefinition}\end{mdframed}}
