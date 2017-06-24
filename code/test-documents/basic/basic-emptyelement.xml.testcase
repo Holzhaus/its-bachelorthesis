@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--;testcase
+[General]
+name: Empty Elements
+description: Checks if elements without content are retained
+ -->
+<root><a /><b /><c /></root>

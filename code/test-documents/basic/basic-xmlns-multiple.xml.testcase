@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--;testcase
+[General]
+name: Namespace declaration (multiple)
+description: Checks if XML multiple namespaces declarations and prefixes can be converted.
+ -->
+<root><test xmlns:bar="http://example.com/bar"><a xmlns="http://example.com/a"><hello>world</hello><b xmlns="http://example.com/b" xmlns:foo="http://example.com/foo"><c>hello</c><foo:d>world</foo:d></b></a><bar:e>hello</bar:e></test></root>
