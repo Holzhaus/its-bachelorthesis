@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--;testcase
 [General]
-name: Namepace declaration with prefix
+name: Namespace declaration with prefix
 description: Checks if XML namespaces with prefix can be converted.
  -->
 <root><test xmlns:a="http://example.com/a"><a:hello>world</a:hello></test></root>
