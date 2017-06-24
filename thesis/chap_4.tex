@@ -225,6 +225,16 @@ Im Vergleich zu anderen Konvertern ist der Overhead bei \acrshort{jsonml} deutli
     \end{threeparttable}
 \end{center}
 
+\begin{figure}[t]
+    \includestandalone[width=\textwidth]{nestingdepth}
+    \captionof{figure}{Verschachtelungstiefe der aus einem Word-XML-Dokument erzeugten JSON-Dateien (weniger ist besser)}
+    \label{fig:xmltreejsonml}
+\end{figure}
+
+Neben der Dateigröße ist auch die Verschachtelungstiefe der JSON-Container ein guter Indikator für Overhead. Meist wird für die Verarbeitung der verschiedenen Ebenen von JSON-Objekten und -Arrays ein Stapelspeicher (Stack) eingesetzt, der bei jeder zusätzlichen Verschachtelungsebene anwächst. Damit der Speicherverbrauch des Stacks im Rahmen bleibt, erlaubt es die \acrshort{ietf} daher die Verschachtelungstiefe von \acrshort{json} zu begrenzen ~\cite[Abschn.~9]{rfc7159}. So hat die \mintinline{php}{json_decode()}-Funktion von PHP standardmäßig eine Obergrenze von 512 Ebenen~\cite{php-json} und Ruby limitiert die maximale Tiefe sogar auf nur 100 Ebenen~\cite{ruby-json}.
+
+Bei einem Vergleich der Verschachtelungstiefe anhand eines Microsoft-Office-Dokument im war \acrshort{jsonml} der konnte \acrshort{jsonml} ebenfalls gut abschneiden. Mit 17 Ebenen war die Komplexität von \acrshort{jsonml} am geringsten und unterschreitet damit den Medianwert um rund $26\%$.
+
 \section{Unterstützung von \acrlongpl{pi}}
 
 Probleme hatte der Konverter jedoch mit der Umwandlung von \acrfullpl{pi}. Diese werdem bei der Umwandlung in \acrshort{json} vollständig ignoriert. Stephen McKamey, der Entwickler von \acrshort{jsonml}, begründet damit, das es keine sinnvolle Entsprechung von \acrshortpl{pi} in \acrshort{json} gäbe~\cite{mckamey2006xml}.
