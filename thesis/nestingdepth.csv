@@ -1,0 +1,15 @@
+# grep -H -Po  "nesting depth\s*\|\s*\K(.*)" stats-*.txt | sed 's/stats-\(.*\)\.txt:/\1,/g;s/greencapexml/GreenCape XML/g;s/jsonlib/Json-lib/g;s/jsonmlpatched/JsonML (patched)/g;s/jsonml/JsonML/g;s/jxon/JXON/g;s/newtonsoftjson/Json.NET/g;s/orgjsonxml/orgjsonXML/g;s/pesterfishdefused/Pesterfish (defusedxml)/g;s/pesterfish/Pesterfish/g;s/x2js,/x2js (Fork),/g;s/x2jsabdmob/x2js/g;s/xmljson-cobra/XMLJSON (Cobra)/g;s/xmljson-parker/XMLJSON (Parker)/g;s/xmljson-yahoo/XMLJSON (Yahoo)/g;' | sort -t ',' -k2 -n > nestingdepth.csv
+JsonML,17
+JsonML (patched),18
+Json-lib,22
+XMLJSON (Parker),22
+Json.NET,23
+JXON,23
+orgjsonXML,23
+x2js (Fork),23
+XMLJSON (Yahoo),23
+GreenCape XML,26
+Pesterfish,32
+Pesterfish (defusedxml),32
+XMLJSON (Cobra),48
+x2js,2552
