@@ -1,6 +1,8 @@
 # Set the default behavior, in case people don't have core.autocrlf set.
 * text=auto
 /code/test-documents/** binary
+/doku/resultdata/xjcc-*/*/*.json binary
+/doku/resultdata/xjcc-*/*/*.xml binary
 
 # Explicitly declare text files you want to always be normalized and converted
 # to native line endings on checkout.
