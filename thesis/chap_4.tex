@@ -1,22 +1,18 @@
 \chapter{Ergebnisse} \label{chap:results}
 
-Es wurden insgesamt 101 Testfälle verwendet und 11 verschiedene Konverter überprüft. Allerdings konnte keiner der Konverter alle Anforderungen aus Abschnitt~\ref{sec:criteria} erfüllen.
-
-Im Folgenden werden die Ergebnisse der verschiedenenen Konverter vorgestellt.
-
 \begin{figure}[b!]
     \includestandalone[width=\textwidth]{resulttable-basic}
     \captionof{table}{Konversions-Testergebnisse bezüglich verschiedener Konversionprobleme.}
     \label{tbl:results-basic}
 \end{figure}
 
-\begin{figure}[H]
+\begin{figure}[t!]
     \includestandalone[width=\textwidth]{resulttable-chars}
     \captionof{table}{Ergebnisse der Tests bezüglich Unterstützung der von der \acrshort{xml}-Spezifikation erlaubten Zeichen.}
     \label{tbl:results-chars}
 \end{figure}
 
-\begin{figure}[H]
+\begin{figure}[t!]
     \includestandalone[width=\textwidth]{resulttable-complex}
     \captionof{table}{Testergebnisse der Konverter bei komplexen Dokumenten.}
     \label{tbl:results-complex}
@@ -27,10 +23,17 @@ Im Folgenden werden die Ergebnisse der verschiedenenen Konverter vorgestellt.
     \captionof{table}{Ergebnisse der Tests auf Sicherheitlücken}
     \label{tbl:results-sec}
 \end{figure}
+
+Es wurden insgesamt 101 Testfälle verwendet und 11 verschiedene Konverter überprüft. Allerdings konnte keiner der Konverter alle Anforderungen aus Abschnitt~\ref{sec:criteria} erfüllen.
+
+Im Folgenden werden die Ergebnisse der verschiedenenen Konverter vorgestellt.
+
 \section{Cobra vs Mongoose}
 \label{sec:cobravsmongoose}
 
 Die Reihenfolge der Elemente sowie Whitespace werden von \emph{Cobra vs Mongoose} verworfen. Das Auftreten vom Mixed Content, \glspl{pi} und Kommentaren im Urspungsdokument führt zu Fehlern bei der Rückkonvertierung von \acrshort{json} zu \acrshort{xml}.
+
+Der von \emph{Cobra vs Mongoose} eingesetzte XML-Parser \emph{REXML} aus der Ruby-Standardbibliothek war für keinen der überprüften Angriffe verwundbar.
 
 \section{GreenCape \acrshort{xml} Converter}
 \label{sec:greencapexml}
@@ -45,6 +48,8 @@ Die Konversion der umfangreichen \acrshort{odf}-Spezifikation in Form einer \tex
     \label{fig:greencapeloop}
 \end{figure}
 
+Abgesehen von diesem möglicherweise für \acrshort{dos}-Attacken ausnutzbarem Verhalten war der \emph{GreenCape XML Converter}, der das Parsen der XML-Daten selbst implementiert, für keinen der getesteten Angriffe verwundbar.
+
 \section{Json-lib}
 \label{sec:jsonlib}
 
@@ -58,12 +63,10 @@ Leider war es nicht möglich, \emph{Json-lib} ohne besondere Konfiguration in ei
 
 Eine sinnvolle Aussage über die Anfälligkeit gegenüber Angriffen aus dem Bereich \acrlong{dos} ist unter diesen Umständen jedoch nicht möglich, sodass die entsprechenden Tests für \emph{Json-lib} manuell wiederholt werden mussten.
 
-\todo[inline]{TODO: Ergebnisse ergänzen}
-%TODO: Results?
+Dabei ergab sich eine Verwundbarkeit gegenüber \emph{Billion-Laughs}-Angriffen sowohl mit General Entities als auch mit Parameter Entities. \emph{Json-lib} ist ebenfalls anfällig für \emph{Quadratic-Blowup}-Attacken. Zudem war der Parser anfällig für \acrshort{xxe}-Angriffe mittels General Entites bzw. Parameter Entities, die sowohl für \acrlong{fsa} als auch für \acrlong{ssrf} genutzt werden können.
+Ebenso erlaubt \emph{Jsonlib} die Einbettung lokaler Dateien mittels Parameter Entities in DTDs, sowohl in der ursprünglichen Version des Angriffs~\cite[S.~10]{morgan2014xml}, als auch in einer modifizierten Variante, die 2016 von Sicherheitsforschern der Ruhr-Universität Bochum vorgestellt wurde.~\cite[Abschn.~5.2]{spaeth2016sok}.
 
-Ein Blick in den Quellcode der Klasse \texttt{net.sf.json.XMLSerializer} zeigt, dass Json-lib den \acrshort{xml}-Parser XOM einsetzt. Dieser ist anfällig für \acrshort{xxe}-Angriffe mittels General Entites bzw. Parameter Entities, die sowohl für \acrlong{fsa} als auch für \acrlong{ssrf} genutzt werden können.
-
-Ebenso erlaubt der Parser die Einbettung lokaler Dateien mittels Parameter Entities in DTDs, sowohl in der ursprünglichen Version des Angriffs~\cite[S.~10]{morgan2014xml}, als auch in einer modifizierten Variante, die 2016 von Sicherheitsforschern der Ruhr-Universität Bochum vorgestellt wurde.~\cite[Abschn.~5.2]{spaeth2016sok}.
+Ein Blick in den Quellcode der Klasse \texttt{net.sf.json.XMLSerializer} zeigt, dass Json-lib den \acrshort{xml}-Parser XOM einsetzt.
 
 \section{\acrshort{jsonml}}
 \label{sec:jsonml}
@@ -80,7 +83,7 @@ JXON fehlt die Unterstützung von Whitespace und Mixed Content. Zudem geht die R
 \section{org.json.XML}
 \label{sec:orgjsonxml}
 
-Als Java-Package ist \texttt{org.json.XML} ist die Untersuchung von \acrshort{dos}-Angriffen wegen der Beschränkungen der \acrlong{jvm} ebenso problematisch wie bei \emph{Json-lib}~(siehe Abschn.~\ref{sec:jsonlib}). Auch bei org.json.\acrshort{xml} musste die Verwundbarkeit gegenüber solchen Angriffe daher manuell verifiziert werden.
+Als Java-Package ist \texttt{org.json.XML} ist die Untersuchung von \acrshort{dos}-Angriffen wegen der Beschränkungen der \acrlong{jvm} ebenso problematisch wie bei \emph{Json-lib}~(siehe Abschn.~\ref{sec:jsonlib}). Auch bei org.json.\acrshort{xml} musste die Verwundbarkeit gegenüber solchen Angriffe daher manuell verifiziert werden. Der XML-Parser wird von dem Paket selbst implementiert und ist für keine der überprüften Angriffe verwundbar.
 
 Attribute gehen bei der Konvertierung von \acrshort{xml}-Daten in \acrshort{json} zwar nicht verloren -- bei der Rückkonvertierung kann der Konverter jedoch nicht mehr erkennen, dass es sich um Attribute handelt und interpretiert diese stattdessen als Elemente.
 
@@ -154,6 +157,8 @@ Bei der Konversion kann es zu Informationsverlust durch Typinferenz kommen.
 \label{sec:xmljson-parker}
 
 In der Standardeinstellung verwirft diese Konvention das Wurzelelement -- dieses Verhalten ist jedoch über einen Parameter abschaltbar.
+
+Alle Attribute gehen bei der Konversion verloren, ebenso wie \glspl{pi}. Als einzige Konvention des XMLJSON-Konverters wurde bei ausschließlich Text enhaltenden Elementen führender oder nachfolgender Whitespace nicht verworfen -- Mixed Content wird jedoch trotzdem nicht unterstützt.
 
 \todo[inline]{TODO: Hier fehlt noch was }
 % TODO: Add content
