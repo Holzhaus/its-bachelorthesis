@@ -1,0 +1,13 @@
+[Fatal Error] :-1:-1: Recursive entity reference "a". (Reference path: a -> b -> a),
+Exception in thread "main" net.sf.json.JSONException: nu.xom.ParsingException: Recursive entity reference "a". (Reference path: a -> b -> a),
+	at net.sf.json.xml.XMLSerializer.read(XMLSerializer.java:331)
+	at net.sf.json.xml.XMLSerializer.readFromStream(XMLSerializer.java:391)
+	at de.rub.xjcc.jsonlib.App.main(App.java:40)
+Caused by: nu.xom.ParsingException: Recursive entity reference "a". (Reference path: a -> b -> a),
+	at nu.xom.Builder.build(Unknown Source)
+	at nu.xom.Builder.build(Unknown Source)
+	at net.sf.json.xml.XMLSerializer.read(XMLSerializer.java:309)
+	... 2 more
+Caused by: org.xml.sax.SAXParseException; Recursive entity reference "a". (Reference path: a -> b -> a),
+	at org.apache.xerces.parsers.AbstractSAXParser.parse(Unknown Source)
+	... 5 more
