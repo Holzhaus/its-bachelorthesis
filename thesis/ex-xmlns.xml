@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<song xmlns="http://example.com/song"
+      xmlns:cp="http://example.com/composition"
+      xmlns:rc="http://example.com/recording">
+  <title>Love for Sale</title>
+  <artist>Cannonball Adderley</artist>
+  <cp:artist>Cole Porter</cp:artist>
+  <cp:year>1930</cp:year>
+  <album>Somethin' Else</album>
+  <rc:date xmlns="http://example.com/date">
+    <month>March</month> <day>9</day>, <year>1959</year>
+  </rc:date>
+</song>
