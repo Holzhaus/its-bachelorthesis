@@ -224,9 +224,9 @@ Bei dem Angriffen aus dem Bereich \acrlong{fsa} soll der \acrshort{xml}-Parser d
 
 \paragraph{\acrshort{xinclude}}
 
-Auch bei Angriffen auf Basis von \gls{xinclude} enthält das zu parsende \acrshort{xml}-Dokument eine Anweisung zum Einbetten einer lokalen Datei. Im Gegensatz zu klassischen \acrshort{xxe}-Angriffen kann der eingebette Inhalt jedoch beliebiger Text sein, darf also z.B. auch ungültiges \acrshort{xml}-Markup enthalten.~\cite[S.~80]{spaeth2015dtdattacks}
+Auch bei Angriffen auf Basis von \gls{xinclude} enthält das zu parsende \acrshort{xml}-Dokument eine Anweisung zum Einbetten einer lokalen Datei~\cite{xinclude}. Im Gegensatz zu klassischen \acrshort{xxe}-Angriffen kann der eingebette Inhalt jedoch beliebiger Text sein, darf also z.B. auch ungültiges \acrshort{xml}-Markup enthalten.~\cite[S.~80]{spaeth2015dtdattacks}
 
-\begin{example}[\acrshort{xinclude}-Angriff] Der \acrshort{xml}-Parser wird angewiesen, den Inhalt der Datei \texttt{/etc/passwd} in das Dokument einzubetten.
+\begin{example}[\acrshort{xinclude}-Angriff] Der \acrshort{xml}-Parser wird angewiesen, den Inhalt der Datei \texttt{/etc/passwd} in das Dokument einzubetten~\cite[Abschn.~3.1]{xinclude}.
     \begin{minted}{xml}
 <?xml version="1.0" encoding="UTF-8"?>
 <root xmlns:xi="http://www.w3.org/2001/XInclude">
