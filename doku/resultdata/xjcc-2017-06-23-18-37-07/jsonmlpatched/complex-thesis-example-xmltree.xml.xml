@@ -1,0 +1,10 @@
+
+<?xml-stylesheet href="style.css"?>
+
+<albums>
+  <album catno="ARGO LP-628">
+    <artist>Ahmad Jamal Trio</artist>
+    <title>At The Pershing</title>
+    <recording>Recorded <date>January 16, 1958</date>.</recording>
+  </album>
+</albums>

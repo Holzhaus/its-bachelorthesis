@@ -1,0 +1,14 @@
+{"test": {
+  "@xmlns:bar": "http://example.com/bar",
+  "a":   {
+    "@xmlns": "http://example.com/a",
+    "hello": "world",
+    "b":     {
+      "@xmlns": "http://example.com/b",
+      "@xmlns:foo": "http://example.com/foo",
+      "c": "hello",
+      "foo:d": "world"
+    }
+  },
+  "bar:e": "hello"
+}}

@@ -1,0 +1,1 @@
+<root><test><a><b><foo:d>world</foo:d><xmlns>http://example.com/b</xmlns><xmlns:foo>http://example.com/foo</xmlns:foo><c>hello</c></b><xmlns>http://example.com/a</xmlns><hello>world</hello></a><bar:e>hello</bar:e><xmlns:bar>http://example.com/bar</xmlns:bar></test></root>

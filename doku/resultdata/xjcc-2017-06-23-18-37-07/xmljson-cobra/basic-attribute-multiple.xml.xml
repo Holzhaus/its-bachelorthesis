@@ -1,0 +1,1 @@
+<root><attributes /><children><hello><attributes baz="lol" foo="bar" /><children>world</children></hello></children></root>

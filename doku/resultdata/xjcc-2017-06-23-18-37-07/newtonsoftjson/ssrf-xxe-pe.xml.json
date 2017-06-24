@@ -1,0 +1,1 @@
+{"?xml":{"@version":"1.0","@encoding":"UTF-8"},"!DOCTYPE":{"@name":"root","@internalSubset":"  <!ELEMENT root (#PCDATA)>  <!ENTITY % remote SYSTEM \"http://127.0.0.1:44733/xxe-pe.dtd\">  %remote;"},"root":"This is a test."}

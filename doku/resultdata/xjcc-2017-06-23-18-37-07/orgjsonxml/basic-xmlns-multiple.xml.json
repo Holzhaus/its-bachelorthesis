@@ -1,0 +1,1 @@
+{"root":{"test":{"a":{"xmlns":"http://example.com/a","b":{"foo:d":"world","xmlns":"http://example.com/b","xmlns:foo":"http://example.com/foo","c":"hello"},"hello":"world"},"bar:e":"hello","xmlns:bar":"http://example.com/bar"}}}

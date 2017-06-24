@@ -1,0 +1,1235 @@
+<article><xmlns:xl>http://www.w3.org/1999/xlink</xmlns:xl><xml:lang>en</xml:lang><xmlns>http://docbook.org/ns/docbook</xmlns><bibliography><bibliomixed><abbrev>RNCTUT</abbrev><bibliomisc><link><xl:href>http://relaxng.org/compact-tutorial-20030326.html</xl:href></link></bibliomisc><title>RELAX NG Compact Syntax Tutorial</title>Clark, James ??? Cowan, John ??? MURATA, Makoto:
+.
+Working Draft, 26 March 2003. OASIS.</bibliomixed><bibliomixed><abbrev>NVDLTUT</abbrev><bibliomisc><link><xl:href>http://jnvdl.sourceforge.net/tutorial.html</xl:href></link></bibliomisc><title>NVDL Tutorial</title>N??levka, Petr:
+.</bibliomixed><bibliomixed><abbrev>XMLID</abbrev><bibliomisc><link><xl:href>http://www.w3.org/TR/xml-id/</xl:href></link></bibliomisc><title>xml:id Version 1.0</title>Marsh, Jonathan ??? 
+Veillard, Daniel ???
+Walsh, Norman:
+. W3C Recommendation, 9 September 2005.</bibliomixed><bibliomixed><abbrev>DB5SPEC</abbrev><bibliomisc><link><xl:href>http://www.docbook.org/specs/wd-docbook-docbook-5.0a1.html</xl:href></link></bibliomisc><title>The DocBook Schema</title>Norman, Walsh:
+.
+Working Draft 5.0a1, OASIS, 29 June 2005.</bibliomixed><xml:id>references</xml:id></bibliography><para>This document is targeted at DocBook users who are considering
+switching from DocBook V4.x to DocBook V5.0. It describes
+differences between DocBook V4.x and V5.0 and provides some suggestions about
+how to edit and process DocBook V5.0 documents. There is
+also a section devoted to conversion of legacy documents from DocBook
+4.x to DocBook V5.0.</para><para>At the time this was written the current version of DocBook V5.0
+was 5.0. However, almost all of the information in this document is
+general and applies to any newer version of DocBook V5.0.</para><section><para><citation>DB5SPEC</citation>The differences between DocBook V4.x and V5.0 are quite radical in
+some aspects, but the basic idea behind DocBook is still the same, and
+almost all element names are unchanged. Because of this it is very
+easy to become familiar with DocBook V5.0 if you know any previous version of
+DocBook. You can find a complete list of changes in
+, here we will discuss only the most
+fundamental changes.</para><xml:id>introduction</xml:id><section><note><para><uri>http://docbook.org/ns/docbook</uri>The namespace name
+serves
+only as an identifier. This resource is not fetched during processing
+of DocBook documents, and you are not required to have an Internet
+connection during processing. If you access the namespace URI with a browser,
+you will find a short explanatory document about the namespace. In the
+future this document will probably conform to (some version of) RDDL
+and provide pointers to related resources.</para></note><para><acronym><alt>Extensible
+Markup Language</alt>XML</acronym><uri>http://docbook.org/ns/docbook</uri>All DocBook V5.0 elements are in the namespace
+.
+namespaces are used to distinguish
+between different element sets. In the last few years, almost all new
+XML grammars have used their own namespace. It is easy to
+create compound documents that contain elements from different XML
+vocabularies. DocBook V5.0 is following this design rule. Using
+namespaces in your documents is very easy. Consider this
+simple article marked up in DocBook V4.5:</para><para>The corresponding DocBook V5.0 article will look very similar:</para><para><code>xmlns=&quot;http://docbook.org/ns/docbook&quot;</code>The only change is the addition of a default namespace declaration
+(
+) on the root
+element. This declaration applies the namespace to the root element and
+all nested elements. Each
+element is now uniquely identified by its local name and namespace.</para><programlisting>&lt;article&gt;
+  &lt;title&gt;Sample article&lt;/title&gt;
+  &lt;para&gt;This is a really short article.&lt;/para&gt;
+&lt;/article&gt;</programlisting><programlisting>&lt;article xmlns=&quot;http://docbook.org/ns/docbook&quot; ???&gt;
+  &lt;title&gt;Sample article&lt;/title&gt;
+  &lt;para&gt;This is a really short article.&lt;/para&gt;
+&lt;/article&gt;</programlisting><xml:id>introduction-ns</xml:id><title>Finally in a namespace</title></section><section><note><para><xref><linkend>schemas</linkend></xref>Although we recommend the RELAX NG schema for DocBook
+V5.0, there are also DTD and W3C XML Schema versions available (see
+) for tools that do not yet support RELAX NG.</para></note><para>For more than a decade, the DocBook schema was defined using a
+DTD. However, DTDs have serious limitations, and DocBook V5.0 is thus
+defined using a very powerful schema language called RELAX NG. Thanks
+to RELAX NG, it is now much easier to create customized versions of
+DocBook, and some content models are now cleaner and more
+precise.</para><para>Using RELAX NG has an impact on the document prolog. The following
+example shows the typical prolog of a DocBook V4.x document. The version of
+the DocBook DTD (in this case 4.5) is indicated in the document type
+declaration (!DOCTYPE) which points to a particular version of the
+DTD.</para><para><tag><class>attribute</class>version</tag>In contrast, DocBook V5.0 does not depend on DTDs anymore. This
+mean that there is no document type declaration and the version of DocBook
+used is indicated with the
+attribute instead.</para><para><tag><class>attribute</class>lang</tag><tag><xl:href>http://www.w3.org/TR/REC-xml/#sec-lang-tag</xl:href><class>attribute</class>xml:lang</tag>As you can see, DocBook V5.0 is built on top of existing XML
+standards as much as possible, for example the
+attribute is superseded by the standard
+attribute.</para><para>Another fundamental change is that there is no direct indication
+of the schema used. Later in this document, you will learn how you can
+specify a schema to be used for document validation.</para><xml:id>introduction-rng</xml:id><title>Relaxing with DocBook</title><example><programlisting>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;!DOCTYPE article PUBLIC &apos;-//OASIS//DTD DocBook XML V4.5//EN&apos;
+                         &apos;http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd&apos;&gt;
+&lt;article lang=&quot;en&quot;&gt;
+  &lt;title&gt;Sample article&lt;/title&gt;
+  &lt;para&gt;This is a very short article.&lt;/para&gt;
+&lt;/article&gt;</programlisting><xml:id>ex.docbook45</xml:id><title>DocBook V4.5 document</title></example><example><programlisting>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;article xmlns=&quot;http://docbook.org/ns/docbook&quot; version=&quot;5.0&quot; xml:lang=&quot;en&quot;&gt;
+  &lt;title&gt;Sample article&lt;/title&gt;
+  &lt;para&gt;This is a very short article.&lt;/para&gt;
+&lt;/article&gt;</programlisting><xml:id>ex.docbook5</xml:id><title>DocBook V5.0 document</title></example></section><section><para><quote>because DocBook V5.0 is the
+future</quote>The simple answer is
+. Apart from this marketing blurb, there are also more
+technical reasons:</para><xml:id>introduction-why-to-switch</xml:id><itemizedlist><listitem><para><emphasis>DocBook V4.x is feature frozen.</emphasis>DocBook V4.5
+is the last version of DocBook in the V4.x series. Any new DocBook
+development, like the addition of new elements, will be done in
+DocBook V5.0. It is only matter of time before useful, new elements
+will be added into DocBook V5.0, but they are not likely to be back
+ported into DocBook V4.x. DocBook V4.x will be in maintenance mode and
+errata will be published if necessary.</para></listitem><listitem><para><emphasis>DocBook V5.0 offers new functionality.</emphasis><tag>info</tag>DocBook V5.0 provides significant improvements over DocBook V4.x. For
+example there is general markup for annotations, a new and flexible
+system for linking, and unified markup for information sections using
+the
+element.</para></listitem><listitem><para><emphasis>DocBook V5.0 is more extensible.</emphasis>Having
+DocBook V5.0 in a separate namespace allows you to easily mix DocBook
+markup with other XML-based languages like SVG, MathML, XHTML or even
+FooBarML.</para></listitem><listitem><para><xref><linkend>customizations</linkend></xref><emphasis>DocBook V5.0 is easier to customize.</emphasis>RELAX
+NG offers many powerful constructs that make customization much easier
+than it would be using a DTD (see
+).</para></listitem></itemizedlist><title>Why switch to DocBook V5.0?</title></section><section><para><xref><linkend>t.schema-comparison</linkend></xref><link><xl:href>http://www.oasis-open.org/docbook/xml/5.0/</xl:href></link><link><xl:href>http://docbook.org/xml/5.0/</xl:href></link>Schemas for DocBook V5.0 are available in several formats at
+(or the
+mirror at
+).
+Only the RELAX NG schema is normative
+and it is preferred over the other schema languages.  However, for your
+convenience there are also DTD and W3C XML Schema versions provided for DocBook
+V5.0. But please note that neither the DTD nor the W3C XML schema are able to
+capture all the constraints of DocBook V5.0. This mean that a
+document that validates against the DTD or XML schema is not necessarily
+valid against the RELAX NG schema and thus may not be a valid
+DocBook V5.0 document. See
+for
+summary of constraints that are checked by different schemas.</para><para>DTD and W3C XML Schema versions of the DocBook V5.0 grammar are provided
+as a convenience for users who want to use DocBook V5.0 with legacy tools
+that don&apos;t support RELAX NG. Authors are encouraged to switch to RELAX
+NG based tools as soon as possible, or at least to validate documents
+against the RELAX NG schema before further processing.</para><para>Some document constraints can&apos;t be expressed in schema languages
+like RELAX NG or W3C XML Schema. To check for these additional
+constraints DocBook??V5.0 uses Schematron.  We recommend that you
+validate your document against both the RELAX NG and
+Schematron schemas.</para><xml:id>introduction-schemas</xml:id><section><para><link><xl:href>http://docbook.org/schemas/5x.html</xl:href></link>The latest versions of schemas can be obtained from
+. At the time this was
+written the latest version was 5.0. Individual schemas are
+available at the following locations:</para><para><link><xl:href>http://www.oasis-open.org/docbook/xml/5.0/</xl:href></link>These schemas are also available from the mirror at
+.</para><xml:id>schemas</xml:id><variablelist><varlistentry><term>RELAX NG schema</term><listitem><para><link><xl:href>http://docbook.org/xml/5.0/rng/docbook.rng</xl:href></link></para></listitem></varlistentry><varlistentry><term>RELAX NG schema in compact syntax</term><listitem><para><link><xl:href>http://docbook.org/xml/5.0/rng/docbook.rnc</xl:href></link></para></listitem></varlistentry><varlistentry><term>DTD</term><listitem><para><link><xl:href>http://docbook.org/xml/5.0/dtd/docbook.dtd</xl:href></link></para></listitem></varlistentry><varlistentry><term>W3C XML Schema</term><listitem><para><link><xl:href>http://docbook.org/xml/5.0/xsd/docbook.xsd</xl:href></link></para></listitem></varlistentry><varlistentry><term>Schematron schema with additional checks</term><listitem><para><link><xl:href>http://docbook.org/xml/5.0/sch/docbook.sch</xl:href></link></para></listitem></varlistentry></variablelist><title>Where to get the schemas</title></section><section><note><para><citetitle>DocBook: The Definitive
+Guide</citetitle>Other parts of
+have not yet been updated to reflect the changes
+made in DocBook V5.0. Please do not be confused by this.</para></note><para><link><citetitle>DocBook: The Definitive Guide</citetitle><xl:href>http://docbook.org/tdg5/en/html/pt02.html</xl:href>the reference part
+of</link>Detailed documentation about each DocBook V5.0 element is
+presented in
+.</para><xml:id>docs</xml:id><title>DocBook documentation</title></section><title>Schema jungle</title><table><tgroup><colspec><colwidth>4*</colwidth></colspec><colspec><colwidth>1*</colwidth><align>center</align></colspec><colspec><colwidth>1*</colwidth><align>center</align></colspec><colspec><colwidth>1*</colwidth><align>center</align></colspec><colspec><colwidth>1*</colwidth><align>center</align></colspec><colspec><colwidth>1*</colwidth><align>center</align></colspec><tbody><row><entry>Basic document structure</entry><entry>YES</entry><entry>YES</entry><entry>YES</entry><entry>YES</entry><entry>YES</entry></row><row><entry>ID/IDREF datatypes</entry><entry>YES</entry><entry>YES</entry><entry>YES</entry><entry>YES</entry><entry>YES</entry></row><row><entry><footnote><para>In a very few places RELAX NG specifies datatype
+	  like number (mainly for length specifications) or
+	  enumeration between
+and
+.<literal>0</literal><literal>1</literal></para><para>In general those datatypes can be also supported in
+	  W3C XML Schema, but currently this schema is generated
+	  from DTD which lacks datatype information.</para></footnote>Datatypes</entry><entry>NO</entry><entry>NO</entry><entry>NO</entry><entry>YES</entry><entry>YES</entry></row><row><entry><footnote><para><tag>title</tag><tag>info</tag><tag>title</tag><tag>info</tag>RELAX NG grammar enforces exclusivity of several
+	elements. For example if you have
+inside
+then it is not allowed to have another
+outside
+. Similarly,
+	models of HTML and CALS tables are separated and validated
+	properly, where in DTD and WXS only union of both models is
+	available.</para><para>On other places co-occurrences enforces particular
+	content model based on presence of specific attribute or
+	attribute value.</para><para>Please also note that in theory co-occurences can be
+	validated using Schematron, but the current DocBook schema
+	uses RELAX NG for these definitions. Schematron can be used
+	only for validation, whereas grammar based schemas like
+	RELAX NG are useful also for other purposes like guided editing.</para></footnote>Co-occurrences</entry><entry>NO</entry><entry>NO</entry><entry>NO</entry><entry>YES</entry><entry>YES</entry></row><row><entry>Hooks for MathML and SVG content</entry><entry>NO</entry><entry>NO</entry><entry>NO</entry><entry>YES</entry><entry>YES</entry></row><row><entry><footnote><para><tag>footnoteref</tag><tag>footnote</tag>Check whether ID/IDREF links are pointing to element
+	of corresponding type. For example that
+points to
+.</para></footnote>Link type integrity</entry><entry>NO</entry><entry>NO</entry><entry>YES</entry><entry>NO</entry><entry>YES</entry></row><row><entry><tag><class>attribute</class>version</tag>Presence of
+attribute on the root element</entry><entry>NO</entry><entry>NO</entry><entry>YES</entry><entry>NO</entry><entry>YES</entry></row><row><entry><footnote><para>For example consistency of segmented lists, only one
+	term inside term definition etc.</para></footnote>Miscellaneous checks</entry><entry>NO</entry><entry>NO</entry><entry>YES</entry><entry>NO</entry><entry>YES</entry></row><row><entry><footnote><para>Prevents improper nesting of elements, like admonition
+	inside admonition.</para></footnote>Element exclusions</entry><entry>NO</entry><entry>NO</entry><entry>YES</entry><entry>NO</entry><entry>YES</entry></row></tbody><thead><row><entry>Description</entry><entry>DTD</entry><entry>W3C XML Schema</entry><entry>W3C XML Schema + Schematron</entry><entry>RELAX NG</entry><entry>RELAX NG + Schematron/NVDL</entry></row></thead><cols>6</cols></tgroup><xml:id>t.schema-comparison</xml:id><title>Schema Comparison</title></table></section><title>Introduction</title></section><section><para>This section briefly describes tools and procedures to edit and
+process content stored in DocBook V5.0.</para><xml:id>tools</xml:id><section><para><quote>dumb</quote>Because DocBook is an XML-based format and XML is a text-based
+format, you can use any text editor to create and edit DocBook V5.0
+documents. However, using
+editors like Notepad is
+not very productive. You will do better if you use an editor that
+supports XML. Although there are DTD and W3C XML Schemas available for
+DocBook V5.0, which means you can use any editor that works with DTDs
+or W3C XML Schemas, we recommend that you use the RELAX NG grammar
+with DocBook V5.0. The rest of this section contains an overview of
+XML editors (listed in alphabetical order) that are known to work with
+RELAX NG schemas and that offer guided editing based on the RELAX NG
+schema.</para><xml:id>editors</xml:id><section><note><para><filename>docbook.rnc</filename>Please note that nXML ships with a file named
+. This file contains the RELAX NG grammar
+for DocBook V4.x. Be sure that you associate the DocBook V5.0 namespace
+with the corresponding DocBook V5.0 grammar.</para></note><figure><xml:id>f.emacs</xml:id><title>Emacs with nXML mode provides guided editing and validation</title><mediaobject><imageobject><role>html</role><imagedata><fileref>images/emacs.png</fileref></imagedata></imageobject><imageobject><role>fo</role><imagedata><width>100%</width><fileref>images/emacs.png</fileref></imagedata></imageobject></mediaobject></figure><para><application><xl:href>http://www.gnu.org/software/emacs/emacs.html</xl:href>GNU
+Emacs</application><link><xl:href>http://www.thaiopensource.com/nxml-mode/</xl:href>nXML
+mode</link>is an add-on for the
+text editor. By installing nXML you can turn Emacs
+into a very powerful XML editor that offers guided editing and
+validation of XML documents.</para><para><filename>schemas.xml</filename><filename>site-lisp/nxml/schema</filename>nXML uses a special configuration file named
+to associate schemas with XML
+documents. Often you will find this file in the directory
+inside the Emacs installation
+directory. Adding the following line into the configuration file,
+will associate DocBook V5.0 elements with the appropriate
+schema:</para><para><filename>schemas.xml</filename>If you can&apos;t edit the global
+file,
+you can create this file in the same directory as your document. nXML will
+find associations placed there also. In this case you must create a
+complete configuration file like:</para><programlisting><replaceable>/path/to/</replaceable>&lt;namespace ns=&quot;http://docbook.org/ns/docbook&quot; uri=&quot;
+docbook.rnc&quot;/&gt;</programlisting><programlisting><replaceable>/path/to/</replaceable>&lt;locatingRules xmlns=&quot;http://thaiopensource.com/ns/locating-rules/1.0&quot;&gt;
+  &lt;namespace ns=&quot;http://docbook.org/ns/docbook&quot; uri=&quot;
+docbook.rnc&quot;/&gt;
+&lt;/locatingRules&gt;</programlisting><xml:id>editors-nxml</xml:id><title>Emacs and nXML</title></section><section><figure><xml:id>f.oxygen.open5</xml:id><title>DocBook V5.0 document opened in oXygen</title><mediaobject><imageobject><imagedata><width>100%</width><fileref>images/oxygen4.png</fileref></imagedata></imageobject></mediaobject></figure><figure><xml:id>f.oxygen.author.mode</xml:id><title>DocBook V5.0 document opened in oXygen in Author mode</title><mediaobject><imageobject><imagedata><width>100%</width><fileref>images/oxygen5.png</fileref></imagedata></imageobject></mediaobject></figure><para><application><xl:href>http://www.oxygenxml.com/</xl:href>oXygen</application>is a feature
+rich XML editor. It has built-in support for many schema languages
+including RELAX NG and it is preconfigured with many document types
+including DocBook. oXygen will assist you with writing DocBook V5.0
+content, and you will be able to validate your documents against both
+RELAX NG and Schematron schemas.</para><xml:id>editors-oxygen</xml:id><title>oXygen</title></section><section><figure><xml:id>f.xmlmind</xml:id><title>XML Mind XML Editor ??? feels almost like MS Word but real DocBook V5.0 markup is created</title><mediaobject><imageobject><imagedata><width>100%</width><fileref>images/xxe.png</fileref></imagedata></imageobject></mediaobject></figure><para><application><xl:href>http://www.xmlmind.com/xmleditor/</xl:href>XML
+Mind XML editor</application>(XXE) is a visual validating XML editor that
+provides a wordprocessor-like interface to users. It is available in
+two versions, Standard and Professional. The Standard version is free and
+provides everything you need to edit DocBook V5.0 documents.</para><para><guilabel>DocBook
+5 configuration</guilabel><menuchoice><guimenu>Options</guimenu><guimenuitem>Install
+Add-ons???</guimenuitem></menuchoice>In order to use DocBook V5.0 in XXE you have to install
+an add-on. Go to
+. Then choose
+and press the
+button. After restart, XXE is ready to work with DocBook V5.0
+documents.<guibutton>OK</guibutton></para><xml:id>editors-xxe</xml:id><title>XML Mind XML editor</title></section><title>Editing DocBook V5.0</title></section><section><para>If you are not using a RELAX NG-based validating editor when you
+create documents, we strongly recommend that you validate your
+documents against RELAX NG and Schematron schemas before processing
+them. Only after successful validation can you be sure that your
+document is really DocBook V5.0 and that processing tools will be able
+to process it correctly.</para><para>For validation you can use tools that support simultaneous RELAX NG and
+Schematron validation, or you can use NVDL to orchestrate validation using
+the two schemas.</para><xml:id>validators</xml:id><section><para><link><xl:href>http://relaxng.org/#validators</xl:href></link>You can find a list of RELAX NG validators at
+. It is best to use
+validators with support for embedded Schematron rules inside RELAX NG
+schemas. Schematron is a rule-based validation language which is used
+to impose additional constraints on DocBook documents. Schematron rules
+assert conditions which are impossible or difficult to express 
+in a pure RELAX NG schema.</para><para><application><xl:href>https://msv.dev.java.net/</xl:href>Sun 
+Multi-Schema XML Validator (MSV)</application>is able to validate an XML
+document against a RELAX NG schema and Schematron rules at the same time.
+To install and use MSV follow these steps:</para><para><link><xl:href>http://relaxed.vse.cz/docbookvalidator/</xl:href>on-line DocBook??V5.0
+validator</link>There is also an
+that validates DocBook V5.0 documents against the normative
+RELAX NG schema with embedded Schematron rules.</para><xml:id>validators-rng-sch</xml:id><procedure><step><para><filename>relames.zip</filename><link><xl:href>https://msv.dev.java.net/servlets/ProjectDocumentList?folderID=101</xl:href></link>Download
+from
+.</para></step><step><para>Unpack the downloaded file into an arbitrary directory.</para></step><step><note><para>The switch
+increases the stack size
+of the Java virtual machine. This is necessary because the DocBook schema is
+quite large. If you get stack overflow errors from MSV, increase
+this value. You may get spurious error messages if the value
+is too small, so if you get a stack overflow error, ignore any other error
+messages and try a larger value for the stack size.
+If you are not using Sun&apos;s Java implementation, please consult the
+documentation for your virtual machine to learn how to increase the stack
+size.<option>-Xss512K</option></para></note><para>Validate your document using the following command:</para><screen><replaceable>/path/to/</replaceable><replaceable>/path/to/</replaceable><command>java</command>-Xss512K -jar
+relames.jar
+docbook.rng document.xml</screen></step></procedure><title>Using RELAX NG and Schematron</title></section><section><para>NVDL is a meta-schema language which can validate a document 
+against several schemas. DocBook??V5.0 comes with a NVDL
+schema which specifies that DocBook documents should be validated
+against both RELAX NG and Schematron schemas.</para><para><application><xl:href>http://www.oxygenxml.com/onvdl.html</xl:href>oNVDL</application><application><xl:href>http://jnvdl.sourceforge.net</xl:href>JNVDL</application><link><xl:href>http://nvdl.org/</xl:href></link>You can find a list of NVDL validators at
+. The following procedures show how to
+install and use the
+and
+validators.</para><procedure><step><para><filename><xl:href>http://www.oxygenxml.com/InstData/onvdl/onvdl-20070517.zip</xl:href>onvdl-20070517.zip</filename>Download
+.</para></step><step><para>Unpack the downloaded file into an arbitrary directory.</para></step><step><para>Validate your document using the following command:</para><screen><replaceable>/path/to/oNVDL/</replaceable><replaceable>/path/to/</replaceable><command>java</command>-jar
+bin/onvdl.jar
+docbook.nvdl document.xml</screen></step><title>oNVDL installation and usage</title></procedure><procedure><step><para><link><xl:href>http://sourceforge.net/project/showfiles.php?group_id=164464</xl:href></link>Download the latest release of JNVDL from
+.</para></step><step><para>Unpack the downloaded file into an arbitrary directory.</para></step><step><para><filename>jnvdl.bat</filename><filename>jnvdl.sh</filename><command>java</command>Modify file
+(or
+on Unix based systems) to include
+switch directly after
+command.<option>-Xss512K</option></para></step><step><para>On Windows systems, validate your document using the following command:</para><para>On Unix systems, validate your document using the following command:</para><screen><replaceable>/path/to/jnvdl/</replaceable><replaceable>/path/to/</replaceable><command>jnvdl</command>-nt -s
+docbook.nvdl document.xml</screen><screen><replaceable>/path/to/jnvdl/</replaceable><replaceable>/path/to/</replaceable><command>jnvdl.sh</command>-nt -s
+docbook.nvdl document.xml</screen></step><title>JNVDL installation and usage</title></procedure><title>Using NVDL</title></section><title>Validating DocBook V5.0</title></section><section><para>Part of DocBook&apos;s great success can be attributed to the
+availability of free
+tools that can be used to transform DocBook content into various
+target formats including HTML and PDF. The DocBook XSL Stylesheets are
+very popular tools.</para><xml:id>processing</xml:id><section><note><para><screen>WARNING: cannot add @xml:base to node set root element. Relative paths may not work.</screen>During namespace stripping, the base URI of the document is
+lost. This means that in rare situations, relatively referenced
+resources like images or programlistings can be processed incorrectly.
+The stylesheets attempt to compensate for this problem, but that is not always 
+possible. When an XSLT processor other than Saxon or Xalan is used, a warning 
+message is generated:</para></note><para>The DocBook stylesheets are designed to process content written in
+different versions of DocBook (for example 3.1 and 4.2). Recent
+versions of the stylesheets are also able to process DocBook V5.0
+with some limitations.</para><para>You can process DocBook V5.0 documents with the DocBook XSL
+stylesheets in exactly the same way you process DocBook V4.x documents.
+You do not need special software; you can stick to your preferred
+XSLT processor, be it Saxon, xsltproc, Xalan or whatever else (but see
+the note about the lost base URI below).</para><para>During document processing, the stylesheets strip
+namespaces from DocBook V5.0 to get a document which will be
+very similar to DocBook V4.x. This is necessary because from the XSLT
+point of view, elements from different namespaces are distinct and cannot 
+be easily processed by the same set of templates. This process is
+completely transparent to the user. If you are processing DocBook V5.0
+documents, the only difference is that you will see the following
+additional message:</para><para>Although you can successfully use the existing stylesheets to
+process DocBook V5.0, there are some limitations and unsupported
+features. The unsupported features include:</para><screen>Note: namesp. cut : stripped namespace before processing
+Note: namesp. cut : processing stripped document</screen><xml:id>dbxsl</xml:id><itemizedlist><listitem><para>general annotations;</para></listitem><listitem><para>general XLink links on all elements.</para></listitem></itemizedlist><title>DocBook XSL Stylesheets</title></section><section><para><link><xl:href>http://docbook.sourceforge.net/release/xsl-ns/current/</xl:href>XSL-NS stylesheets</link>As you can see from reading the previous section, namespace
+  stripping has limitations that will cause trouble in some
+  situations. To overcome those limitations, Bob Stayton created a
+  build system for taking the non-namespace-aware DocBook XSL
+  stylesheets and generating namespace-aware versions from them.
+  The DocBook
+are the result.</para><para><link><package>docbook-xsl-ns</package><xl:href>https://sourceforge.net/project/showfiles.php?group_id=21935&amp;package_id=219178</xl:href></link>The DocBook XSL-NS stylesheets are released side-by-side
+  with the DocBook XSL stylesheets, as a separate
+package. They are the
+recommended XSLT 1.0 stylesheets to use for transforming
+namespaced (DocBook V5.0) documents.</para><xml:id>dbxsl-ns</xml:id><title>DocBook XSL-NS Stylesheets</title></section><section><para>XSLT 1.0 is missing some important features. To work around
+these missing features, the current DocBook XSL stylesheets use some
+implementation-specific extensions.
+XSLT 2.0 adds many new and previously missing features into the language.
+A new set of DocBook stylesheets is being implemented based on XSLT 2.0
+to take advantage of these features and to fully support DocBook V5.0.</para><para>The XSLT 2.0 based stylesheets have many new features, including:</para><para>The XSLT 2.0 based stylesheets are still under development.  At
+this writing, they only support HTML and chunked HTML output.  As time
+permits, the stylesheet developers will be adding other formats.  Since
+the stylesheets are developed in the limited free time the developers
+have, there&apos;s no specific schedule.</para><para><link><xl:href>http://docbook.sourceforge.net/snapshots/docbook-xsl2-snapshot.zip</xl:href></link><link><xl:href>http://saxon.sf.net</xl:href></link>There are not very many XSLT 2.0 implementations available.
+But, if you want to try the new stylesheets, grab a snapshot of
+the development version from
+and unpack it somewhere. Then download and install Saxon??9 from
+.</para><para>To transform a DocBook V5.0 document to a single HTML page use the command:</para><para>To transform a DocBook V5.0 document to a set of chunked HTML pages use the command:</para><screen><replaceable>/path/to/</replaceable><replaceable>/path/to/</replaceable><command>java</command>-jar
+saxon9.jar -o output.html document.xml
+docbook-xsl2-snapshot/html/docbook.xsl</screen><screen><replaceable>/path/to/</replaceable><replaceable>/path/to/</replaceable><command>java</command>-jar
+saxon9.jar document.xml
+docbook-xsl2-snapshot/html/chunk.xsl</screen><xml:id>dbxsl2</xml:id><itemizedlist><listitem><para>seamless integration of profiling (conditional
+documents) with external bibliographies and
+glossaries;</para></listitem><listitem><para>no need for (most) external extensions;</para></listitem><listitem><para>internationalized indexes;</para></listitem><listitem><para>easy to customize titlepage templates.</para></listitem></itemizedlist><title>XSLT 2.0 based re-implementation</title></section><title>Processing DocBook V5.0</title></section><title>Tool chain</title></section><section><para><citation>DB5SPEC</citation>This section describes the most common markup changes
+between DocBook V4.x and V5.0.
+You can find a complete list of changes in
+.</para><xml:id>changes</xml:id><section><para><citation>XMLID</citation><tag><class>attribute</class>id</tag><tag><class>attribute</class>xml:id</tag>In DocBook V4.x the attribute
+is
+used to assign a unique identifier to an element. In DocBook V5.0 this
+attribute is renamed
+in order
+to comply with
+.</para><para><tag>xref</tag><tag>link</tag>Now you can use almost any inline element as the source of a link,
+not just
+or
+. For example, the following
+DocBook 4.x content:</para><para>is written in DocBook V5.0 as:</para><para><tag><class>attribute</class>linkend</tag><tag><class>attribute</class>href</tag>The
+attribute was added to all
+inline elements together with the
+attribute from the XLink namespace. This means that you can use any inline
+element as the source of a hypertext link. To use XLinks you have
+to declare the XLink namespace (most often on the root element of your
+document):</para><para><tag><condition>v4</condition>ulink</tag><tag><condition>v4</condition>ulink</tag>The
+element was removed from DocBook V5.0
+in favor of XLink linking. Instead of the DocBook V4.x
+element:</para><para><tag>link</tag>you can now use</para><para><tag><class>attribute</class>linkend</tag>XLink links may contain a fragment identifier, which you can 
+use instead of
+to form
+cross-references inside a document; for example:</para><para><tag><class>attribute</class>xml:id</tag><tag><class>attribute</class>linkend</tag>However XLink links are not checked during validation, while
+/
+links are checked for ID/IDREF consistency.
+One place where the XLink-based, fragment identifier scheme is
+useful is when XInclude is being used, since XML ID/IDREF links
+cannot span XInclude boundaries.
+You can use whichever approach better suits your needs.</para><programlisting>&lt;section id=&quot;dir&quot;&gt;
+  &lt;title&gt;DIR command&lt;/title&gt;
+  &lt;para&gt;...&lt;/para&gt;
+&lt;/section&gt;
+
+&lt;section id=&quot;ls&quot;&gt;
+  &lt;title&gt;LS command&lt;/title&gt;
+  &lt;para&gt;This command is a synonym for &lt;link linkend=&quot;dir&quot;&gt;&lt;command&gt;DIR&lt;/command&gt;&lt;/link&gt; command.&lt;/para&gt;
+&lt;/section&gt;</programlisting><programlisting>&lt;section xml:id=&quot;dir&quot;&gt;
+  &lt;title&gt;DIR command&lt;/title&gt;
+  &lt;para&gt;...&lt;/para&gt;
+&lt;/section&gt;
+
+&lt;section xml:id=&quot;ls&quot;&gt;
+  &lt;title&gt;LS command&lt;/title&gt;
+  &lt;para&gt;This command is a synonym for &lt;command linkend=&quot;dir&quot;&gt;DIR&lt;/command&gt; command.&lt;/para&gt;
+&lt;/section&gt;</programlisting><programlisting><array>&lt;article xmlns=&quot;http://docbook.org/ns/docbook&quot; 
+         xmlns:xl=&quot;http://www.w3.org/1999/xlink&quot; version=&quot;5.0&quot;&gt;
+  &lt;title&gt;Test article&lt;/title&gt;
+
+  &lt;para&gt;&lt;application xl:href=&quot;http://www.gnu.org/software/emacs/emacs.html&quot;&gt;Emacs&lt;/application&gt; 
+    is my favourite text editor.&lt;/para&gt;</array><array>???</array></programlisting><programlisting>&lt;ulink url=&quot;http://docbook.org&quot;&gt;DocBook site&lt;/ulink&gt;</programlisting><programlisting>&lt;link xl:href=&quot;http://docbook.org&quot;&gt;DocBook site&lt;/link&gt;</programlisting><programlisting>&lt;command xl:href=&quot;#dir&quot;&gt;DIR&lt;/command&gt;</programlisting><xml:id>changes-linking</xml:id><title>Improved cross-referencing and linking</title></section><section><para>Some elements were renamed to better express their meaning or to
+reduce the total number of elements available in DocBook.</para><xml:id>changes-renamed</xml:id><title>Renamed elements</title><table><tgroup><tbody><row><entry><tag><condition>v4</condition>sgmltag</tag></entry><entry><tag>tag</tag></entry></row><row><entry><tag><condition>v4</condition>bookinfo</tag><tag><condition>v4</condition>articleinfo</tag><tag><condition>v4</condition>chapterinfo</tag><tag><condition>nolink</condition>*info</tag>,
+,
+,</entry><entry><tag>info</tag></entry></row><row><entry><tag><condition>v4</condition>authorblurb</tag></entry><entry><tag>personblurb</tag></entry></row><row><entry><tag><condition>v4</condition>collabname</tag><tag><condition>v4</condition>corpauthor</tag><tag><condition>v4</condition>corpcredit</tag><tag><condition>v4</condition>corpname</tag>,
+,
+,</entry><entry><tag>orgname</tag></entry></row><row><entry><tag><condition>v4</condition>isbn</tag><tag><condition>v4</condition>issn</tag><tag><condition>v4</condition>pubsnumber</tag>,
+,</entry><entry><tag>biblioid</tag></entry></row><row><entry><tag><condition>v4</condition>lot</tag><tag><condition>v4</condition>lotentry</tag><tag><condition>v4</condition>tocback</tag><tag><condition>v4</condition>tocchap</tag><tag><condition>v4</condition>tocfront</tag><tag><condition>v4</condition>toclevel1</tag><tag><condition>v4</condition>toclevel2</tag><tag><condition>v4</condition>toclevel3</tag><tag><condition>v4</condition>toclevel4</tag><tag><condition>v4</condition>toclevel5</tag><tag><condition>v4</condition>tocpart</tag>,
+,
+,
+,
+,
+,
+,
+,
+,
+,</entry><entry><tag>tocdiv</tag></entry></row><row><entry><tag><condition>v4</condition>graphic</tag><tag><condition>v4</condition>graphicco</tag><tag><condition>v4</condition>inlinegraphic</tag><tag><condition>v4</condition>mediaobjectco</tag>,
+,
+,</entry><entry><tag>mediaobject</tag><tag>inlinemediaobject</tag>and</entry></row><row><entry><tag><condition>v4</condition>ulink</tag></entry><entry><tag>link</tag></entry></row><row><entry><tag><condition>v4</condition>ackno</tag></entry><entry><tag>acknowledgements</tag></entry></row></tbody><thead><row><entry>Old name</entry><entry>New name</entry></row></thead><cols>2</cols></tgroup><xml:id>t.renamed</xml:id><title>Renamed elements</title></table></section><section><para><tag><condition>v4</condition>action</tag><tag><condition>v4</condition>beginpage</tag><tag><condition>v4</condition>highlights</tag><tag><condition>v4</condition>interface</tag><tag><condition>v4</condition>invpartnumber</tag><tag><condition>v4</condition>medialabel</tag><tag><condition>v4</condition>modespec</tag><tag><condition>v4</condition>structfield</tag><tag><condition>v4</condition>structname</tag>The following elements were removed from DocBook V5.0 without
+direct replacements:
+,
+,
+,
+,
+,
+,
+,
+,
+.
+If you use one or more of these elements, here are some suggestions
+as to how to re-code them in DocBook V5.0.</para><xml:id>changes-removed</xml:id><title>Removed elements</title><table><tgroup><tbody><row><entry><tag><condition>v4</condition>action</tag></entry><entry><computeroutput><tag>phrase</tag>&lt;
+remap=&quot;action&quot;&gt;</computeroutput>Use
+.</entry></row><row><entry><tag><condition>v4</condition>beginpage</tag></entry><entry><tag><condition>v4</condition>beginpage</tag>Remove:
+is advisory only
+and has tended to cause confusion.  A processing instruction or
+comment should be a workable replacement if one is needed.</entry></row><row><entry><tag><condition>v4</condition>highlights</tag></entry><entry><tag>abstract</tag><tag><condition>v4</condition>highlights</tag><tag>para</tag><tag>abstract</tag>Use
+.  Note that because
+has a broader content model, you may
+need to wrap contents in a
+inside
+.</entry></row><row><entry><tag><condition>v4</condition>interface</tag></entry><entry><quote>gui*</quote><tag>guibutton</tag><tag>guiicon</tag><tag>guilabel</tag><tag>guimenu</tag><tag>guimenuitem</tag><tag>guisubmenu</tag>Use one of the
+elements
+(
+,
+,
+,
+,
+, or
+).</entry></row><row><entry><tag><condition>v4</condition>invpartnumber</tag></entry><entry><computeroutput><tag>biblioid</tag>&lt;
+class=&quot;other&quot;
+otherclass=&quot;medialabel&quot;&gt;</computeroutput><tag>productnumber</tag>Use
+.  The
+element is another alternative.</entry></row><row><entry><tag><condition>v4</condition>medialabel</tag></entry><entry><replaceable>mediatype</replaceable><computeroutput><replaceable>mediatype</replaceable><tag>citetitle</tag>&lt;
+pubwork=&quot;
+&quot;&gt;</computeroutput><tag><class>attvalue</class>cdrom</tag><tag><class>attvalue</class>dvd</tag>Use
+,
+where
+is the type of media being
+labeled (e.g.,
+or
+).</entry></row><row><entry><tag><condition>v4</condition>modespec</tag></entry><entry><tag>olink</tag><tag><condition>v4</condition>modespec</tag>No longer needed.  The current processing model for
+renders
+unnecessary.</entry></row><row><entry><tag><condition>v4</condition>structfield</tag><tag><condition>v4</condition>structname</tag>,</entry><entry><computeroutput><replaceable>structname or
+structfield</replaceable><tag>varname</tag>&lt;
+remap=&quot;
+&quot;&gt;</computeroutput><tag>varname</tag><tag>property</tag><tag><condition>v4</condition>structfield</tag>Use
+. If you need to distinguish between the
+two, use
+.  In some contexts, it
+may also be appropriate to use
+for
+.</entry></row></tbody><thead><row><entry>Old name</entry><entry>Recommended mapping</entry></row></thead><cols>2</cols></tgroup><xml:id>t.removed</xml:id><title>Recommended mapping for removed elements</title></table></section><title>Markup changes</title></section><section><para>The DocBook V5.0 schema ships with an XSLT 1.0 stylesheet that
+is designed to transform valid DocBook V4.x documents to valid
+DocBook V5.0 documents.</para><para><filename>doc.xml</filename>To convert your document,
+in the
+examples below, follow these steps:</para><para>In the vast majority of cases, the resulting document should
+be valid and your conversion process is finished.</para><para>If the document is not valid, please report the problem.
+(Over time, we&apos;ll have more experience with the sorts of things
+that can go wrong and we&apos;ll update this document to reflect that
+experience.)</para><xml:id>convert4to5</xml:id><section><para>Using XSLT to transform existing documents to DocBook V5.0 has
+one potential disadvantage: it removes all entity references from 
+your document.</para><para>If preserving entities is an important aspect of your production
+work flow, you will have to engage in a semi-manual process to
+preserve them.</para><xml:id>entities</xml:id><section><para>External parsed entities, entities which load part of a document
+from another file, are a special case. These can often be replaced
+with XInclude elements.</para><para><filename>db4-entities.pl</filename>The Perl script
+, also included
+in the DocBook V5.0 distribution attempts to perform this replacement
+for you. To use the script, perform the following steps:</para><xml:id>extparsedentities</xml:id><procedure><step><para><filename>db4-entities.pl</filename>Process your document with
+.
+The script expects a single filename and prints the XInclude version
+on standard output.</para></step><step><para><xref><linkend>convert4to5</linkend></xref>Process the XInclude version as described in
+.</para></step></procedure><title>External Parsed Entities</title></section><tip><para><link><xl:href>http://docbook.svn.sourceforge.net/viewvc/docbook/trunk/contrib/tools/cloak</xl:href>cloak
+script</link>Steps 2 and 5 from previous procedure can be automated using the
+written by Michael Smith.</para></tip><procedure><step><para><emphasis>is not</emphasis>Open your existing document using your favorite editing tool.
+You must use a tool that
+XML-aware, or one
+that allows you to edit markup ???in the raw???.</para></step><step><para>Replace all occurrences of the entity references that you want
+to preserve with some unique string. For example, if you want to preserve
+???
+??? references, you could replace them
+all with ???
+??? (assuming that the string
+???
+??? doesn&apos;t occur anywhere else in your document).<literal>&amp;Product;</literal><literal>[[[Product]]]</literal><literal>[[[Product]]]</literal></para></step><step><para>Copy the document type declaration off of your document and save
+it some place. The document type declaration is everything from
+???
+??? to the closing ???
+???.<literal>&lt;!DOCTYPE</literal><literal>]&gt;</literal></para></step><step><para><xref><linkend>convert4to5</linkend></xref>Perform the conversion described in
+.</para></step><step><para>Open the new document using your favorite editing tool. Replace
+all occurrences of the unique string you used to save the entity references
+with the corresponding entity references.</para></step><step><para>Paste the document type declaration that you saved onto the top
+of your new document.</para></step><step><para>Remove the external identifier (the
+and/or
+keywords) from the document type
+declaration. A document that begins:<literal>PUBLIC</literal><literal>SYSTEM</literal></para><para>is perfectly well-formed. If you don&apos;t remove the references to
+the DTD, then your parser will likely try to validate against DocBook
+V4.0 and that&apos;s not going to work. Alternatively, you could refer
+to the DocBook V5.0 DTD.</para><programlisting>&lt;!DOCTYPE book [
+&lt;!ENTITY someEntity &quot;some replacement text&quot;&gt;
+]&gt;</programlisting></step></procedure><title>What About Entities?</title></section><procedure><step><para>Check the validity of your DocBook XML V4.x document. The
+conversion tool assumes that the input document is valid. If the input
+document contains markup errors, the results will be unpredictable at
+best.</para></step><step><para><filename>doc.xml</filename><filename>newdoc.xml</filename><filename>db4-upgrade.xsl</filename>Transform
+to
+with the
+stylesheet included in the
+DocBook V5.0 distribution that you are using.</para></step><step><para>Check the validity of your DocBook XML V5.0 document against
+the DocBook V5.0 RELAX NG grammar.</para></step></procedure><title>Converting DocBook V4.x documents to DocBook V5.0</title></section><section><para><citation>RNCTUT</citation>It&apos;s much easier to customize DocBook V5.0 than it was to
+    customize earlier releases.  This is partly because RELAX NG
+    provides better support for modifications than DTDs and partly
+    because the DocBook schema is designed to take full advantage
+    of the capabilities RELAX NG provides.
+    This section describes the organization of the RELAX NG schema for
+    DocBook, methods and examples for adding, removing, and modifying elements
+    and attributes, and conventions for naming and versioning
+    DocBook customizations.
+    It assumes some familiarity with RELAX NG.  If you are unfamiliar
+    with RELAX NG, you can find a tutorial introduction in
+.</para><xml:id>customizations</xml:id><section><para><quote>hooks</quote>The DocBook RELAX NG schema is highly modular, using named
+      patterns extensively.  Every element, attribute, attribute
+      list, and enumeration has its own named pattern.  In addition,
+      there are named patterns for logical combinations of elements
+      and attributes.  These named patterns provide
+into the schema that allow you to do a wide range of customization
+      by simply redefining one or more of the named patterns.</para><para><tag>imagedata</tag><tag>videodata</tag><tag><class>attribute</class>align</tag><varname>db.halign.enumeration</varname><varname>db.videodata.align.enumeration</varname><varname>db.imagedata.align.enumeration</varname><varname>db.videodata.align.attribute</varname><varname>db.imagedata.align.attribute</varname>An important design characteristic of the schema is that
+      duplication is minimized.  This is done through the use of
+      named patterns for common groupings that can be re-used.
+      For example, the
+and
+elements each have an
+attribute
+      that takes the same set of enumerated values.  Rather than
+      repeating those values, a single pattern,
+is referenced by
+      the
+and
+patterns,
+      which are in turn referenced by the
+and
+patterns.
+      While this may seem like overkill, it allows a customizer to modify
+      the allowed enumerations for these two attributes separately or together,
+      or to completely re-define the allowed content of either or both,
+      by redefining one or more of these named patterns.</para><xml:id>relaxngorg</xml:id><section><para><itemizedlist><spacing>compact</spacing><listitem><para><quote>.</quote>Names have two or more parts, separated by dots</para></listitem><listitem><para><quote>db</quote>The first part of each name is the prefix</para></listitem><listitem><para><replaceable>Context</replaceable><tag>info</tag><tag>figure</tag><varname><replaceable>elementname</replaceable>db.</varname><varname><replaceable>context.elementname</replaceable>db.</varname><varname>db.figure.info</varname><varname>db.cals.entrytbl.thead</varname>Each element has a named pattern in the form
+.
+            Elements that have different content models in different
+            contexts will also have patterns in the form
+.  For example,
+defines the content model for the
+element
+            when it appears as a child of the
+element.
+may have several parts.
+            For example,
+.</para></listitem><listitem><para><tag><class>attribute</class>localinfo</tag><tag>olink</tag><varname><replaceable>attributename</replaceable>db.
+.attribute</varname><varname><replaceable>context.attributename</replaceable>db.
+.attribute</varname><varname>db.olink.localinfo.attribute</varname><varname>db.effectivity.attributes</varname>Most attributes have a named pattern in the form
+.
+            Attributes that have different content models in different
+            contexts will also have patterns in the form
+.
+            For example,
+defines the content
+            model of the
+attribute when
+            it appears in
+.
+            There are a few attributes that do not have individual named
+            patterns.  For example, the effectivity attributes are grouped
+            into
+and not identified
+            separately.</para></listitem><listitem><para><tag><condition>nolink</condition>table</tag><tag><condition>nolink</condition>table</tag><varname><replaceable>elementname</replaceable>db.
+.attlist</varname><varname><replaceable>context.elementname</replaceable>db.
+.attlist</varname><varname>db.html.table.attlist</varname><varname>db.cals.table.attlist</varname>Each element has a named pattern for its attribute list in
+            the form
+that defines the list of attributes for that element.
+            Elements that have different attribute lists in different
+            contexts will also have patterns in the form
+For example,
+defines
+            the attribute list for the html
+element and
+defines the attribute
+            list for a cals
+element.</para></listitem><listitem><para><tag><class>attribute</class>continuation</tag><tag>screen</tag><tag><class>attribute</class>class</tag><varname><replaceable>[context.]attributename</replaceable>db.
+.enumeration</varname><varname>db.verbatim.continuation.enumeration</varname><varname>db.class.enumeration</varname>Each attribute that has enumerated values has a
+            named pattern in the form
+.
+            If the enumeration for a particular attribute depends on
+            context, optional context is provided.
+            For example,
+defines
+            the enumeration values for the
+attribute that is used
+            in verbatim contexts like
+.
+            Unlike elements and attributes, there is not necessarily a
+            named pattern for enumerated attributes outside their context.
+            For example, there is no
+because the
+attribute has
+            a broad and non-intersecting range of uses.</para></listitem><listitem><para><variablelist><spacing>compact</spacing><varlistentry><term>inlines</term><listitem><para><varname>db.error.inlines</varname><varname>db.errorcode</varname><varname>db.errortext</varname>Combinations of inline elements, for example,
+, which contains
+,
+, etc.</para></listitem></varlistentry><varlistentry><term>blocks</term><listitem><para><varname>db.verbatim.blocks</varname><varname>db.programlisting</varname><varname>db.screen</varname>Combinations of block elements, for example,
+, which contains
+,
+, etc.</para></listitem></varlistentry><varlistentry><term>attributes</term><listitem><para><tag><class>attribute</class>arch</tag><tag><class>attribute</class>condition</tag><tag><class>attribute</class>conformance</tag><varname>db.effectivity.attributes</varname>Combinations of attributes, for example,
+,
+                    which contains the attributes
+,
+,
+, etc.</para></listitem></varlistentry><varlistentry><term>components</term><listitem><para><tag>chapter</tag><tag>appendix</tag><tag>preface</tag><varname>db.navigation.components</varname><varname>db.glossary</varname><varname>db.bibliography</varname><varname>db.index</varname><varname>db.toc</varname>High level components of the schema, for example,
+, which contains
+,
+,
+, and
+, and is used inside the
+                    content model for
+,
+,
+                    and
+.</para></listitem></varlistentry><varlistentry><term>contentmodel</term><listitem><para><tag>tip</tag><tag>warning</tag><tag>note</tag><varname>db.admonition.contentmodel</varname>Shared content models, for example,
+, which contains
+                    the content model for
+,
+,
+, etc.</para></listitem></varlistentry></variablelist>There are several different groupings of elements and attributes.
+            Here are the major ones:</para><para>There are a couple of other groupings designed to minimize
+            duplication, but these are the most important.</para></listitem></itemizedlist>Because named patterns are used extensively, the RELAX NG schema uses
+      several naming conventions.  These are:</para><xml:id>patternnames</xml:id><title>Pattern Names</title></section><title>DocBook RELAX NG schema organization</title></section><section><para>Creating a customized schema is similar to
+    creating a customization layer for XSL.  The schema customization
+    layer is a new RELAX NG schema that defines your changes and
+    includes the standard docbook schema.  You then validate using
+    the schema customization as your schema.</para><para><xref><xrefstyle>select: label</xrefstyle><linkend>ex-empty</linkend></xref><footnote><para><filename>docbook.rng</filename><link><xl:href>http://www.oasis-open.org/committees/download.php/14809/xml-catalogs.html</xl:href>XML
+    catalogs</link><uri>http://docbook.org/xml/5.0/rng/docbook.rng</uri>The examples in this section use
+as the schema location. If you want
+    to create a portable schema customization you should use a standard
+    web-accessible location like
+and
+    then use
+to resolve this location to your local copy of the
+    schema for improved performance. Unfortunately, at the time of
+    this writing not all RELAX NG validators support XML catalogs.</para></footnote><tag><class>attribute</class>href</tag><tag><condition>nolink</condition>include</tag>is an empty
+    RELAX NG customization that does nothing
+    except define the name spaces and include the standard DocBook schema.
+    The
+attribute of the
+element points to
+    the location of the standard DocBook V5.0
+    schema.
+All of the examples are given in both RNG and RNC form.<example><programlisting><language>rng</language>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;grammar xmlns:db=&quot;http://docbook.org/ns/docbook&quot;
+         ns=&quot;http://docbook.org/ns/docbook&quot;
+         xmlns=&quot;http://relaxng.org/ns/structure/1.0&quot;&gt;
+  &lt;include href=&quot;docbook.rng&quot;/&gt;
+
+  &lt;!-- redefinitions of named patterns --&gt;
+
+&lt;/grammar&gt;</programlisting><programlisting><language>rnc</language>namespace db = &quot;http://docbook.org/ns/docbook&quot;
+
+include &quot;docbook.rnc&quot; inherit = db
+# redefinitions of named patterns</programlisting><xml:id>ex-empty</xml:id><title>Empty customization file</title></example></para><xml:id>customconsiderations</xml:id><title>General customization considerations</title></section><section><xml:id>cust-elements</xml:id><section><para>Adding an element typically takes two definitions.
+        The first defines the new element and
+        its content model, and the second adds the
+        new element into the schema.  We&apos;ll show two examples.</para><para><xref><xrefstyle>select: label</xrefstyle><linkend>ex-add-element-1</linkend></xref><tag><condition>nolink</condition>person</tag><tag>author</tag><tag>author</tag>adds a new element,
+, with the same
+        content model as
+.  The new element will be
+        allowed to appear wherever
+can appear.</para><para><quote>choice</quote><tag><condition>nolink</condition>person</tag><tag><class>attribute</class>combine</tag><tag><class>attribute</class>combine</tag><varname>db.author</varname><varname>dbx.person</varname><varname>db.author</varname><varname>dbx.person</varname>The
+pattern is copied
+        and renamed
+, defining
+        a new element called
+.
+        Then, the
+pattern is redefined
+        to be a choice of the current value or
+.
+        The
+attribute tells
+        RELAX NG to combine this pattern with the existing named
+        pattern.  In this case, the value
+        of the
+attribute is
+, which tells the parser that either
+        the original pattern or this new pattern is a valid match.</para><para><tag>author</tag><tag><condition>nolink</condition>person</tag>The preceding method works well when you&apos;d like a new element
+      to be a clone or near-clone of an existing element.  It gives
+      you complete control over the content model, but
+      only limited control over where the element is allowed.  It
+      works well when you want to allow the element in the same places
+      as an existing element, and for this example that works
+      nicely, since
+is allowed in four different
+      named patterns, each of which would have had to be redefined to
+      allow
+.
+      But, if you can&apos;t find an existing element that is allowed in
+      exactly the places you need, this method doesn&apos;t work as well.</para><para><quote>clone</quote><xref><xrefstyle>select: label</xrefstyle><linkend>ex-add-element-2</linkend></xref><xref><xrefstyle>select: label</xrefstyle><linkend>ex-add-element-2</linkend></xref><xref><xrefstyle>select: label</xrefstyle><linkend>ex-add-element-1</linkend></xref><tag><condition>nolink</condition>register</tag><tag><condition>nolink</condition>instruction</tag><varname>dbx.asm.inlines</varname><varname>db.programming.inlines</varname><varname>db.os.inlines</varname>adds two new elements by combining them into
+      a higher level pattern.  In this example, we&apos;ll add
+      two new inline elements for writing about assembly language,
+and
+.
+      We will allow them wherever programming inlines
+      or operating system inlines are allowed.
+defines the two elements, creates a new named pattern
+      (
+) that contains them, and adds
+      that pattern to
+and
+.  Since these two patterns
+      don&apos;t have any elements in common, the strategy used in
+would require selecting two different elements to
+,
+      which would be messy.</para><xml:id>cust-add-elements</xml:id><title>Adding elements</title><example><programlisting><language>rng</language>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;grammar xmlns:db=&quot;http://docbook.org/ns/docbook&quot;
+         ns=&quot;http://docbook.org/ns/docbook&quot;
+         xmlns=&quot;http://relaxng.org/ns/structure/1.0&quot;&gt;
+  &lt;include href=&quot;docbook.rng&quot;/&gt;
+  &lt;!-- define the new element --&gt;
+  &lt;define name=&quot;dbx.person&quot;&gt;
+    &lt;element name=&quot;person&quot;&gt;
+        &lt;ref name=&quot;db.author.attlist&quot;/&gt;
+        &lt;ref name=&quot;db.credit.contentmodel&quot;/&gt;
+    &lt;/element&gt;
+  &lt;/define&gt;
+  &lt;!-- redefine the db.author pattern to allow db.person in
+       the same places as db.author --&gt;
+  &lt;define name=&quot;db.author&quot; combine=&quot;choice&quot;&gt;
+    &lt;ref name=&quot;dbx.person&quot;/&gt;
+  &lt;/define&gt;
+&lt;/grammar&gt;</programlisting><programlisting><language>rnc</language>default namespace db = &quot;http://docbook.org/ns/docbook&quot;
+
+include &quot;docbook.rnc&quot;
+# define the new element
+dbx.person =
+  element person { db.author.attlist, db.credit.contentmodel }
+# redefine the db.author pattern to allow db.person in
+# the same places as db.author
+db.author |= dbx.person</programlisting><xml:id>ex-add-element-1</xml:id><title>Adding a new element by duplicating an existing one</title></example><example><programlisting><language>rng</language>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;grammar xmlns:db=&quot;http://docbook.org/ns/docbook&quot;
+         ns=&quot;http://docbook.org/ns/docbook&quot;
+         xmlns=&quot;http://relaxng.org/ns/structure/1.0&quot;&gt;
+  &lt;include href=&quot;docbook.rng&quot;/&gt;
+  &lt;!-- define the new elements --&gt;
+  &lt;define name=&quot;dbx.register&quot;&gt;
+    &lt;element name=&quot;register&quot;&gt;
+      &lt;text/&gt;
+    &lt;/element&gt;
+  &lt;/define&gt;
+  &lt;define name=&quot;dbx.instruction&quot;&gt;
+    &lt;element name=&quot;instruction&quot;&gt;
+      &lt;text/&gt;
+    &lt;/element&gt;
+  &lt;/define&gt;
+  &lt;!-- create a new pattern that contains the new inlines --&gt;
+  &lt;define name=&quot;dbx.asm.inlines&quot;&gt;
+    &lt;choice&gt;
+      &lt;ref name=&quot;dbx.register&quot;/&gt;
+      &lt;ref name=&quot;dbx.instruction&quot;/&gt;
+    &lt;/choice&gt;
+  &lt;/define&gt;
+  &lt;!-- add the new inlines to programming and os inlines --&gt;
+    &lt;define name=&quot;db.programming.inlines&quot; combine=&quot;choice&quot;&gt;
+      &lt;ref name=&quot;dbx.asm.inlines&quot;/&gt;
+    &lt;/define&gt;
+    &lt;define name=&quot;db.os.inlines&quot; combine=&quot;choice&quot;&gt;
+      &lt;ref name=&quot;dbx.asm.inlines&quot;/&gt;
+    &lt;/define&gt;
+&lt;/grammar&gt;</programlisting><programlisting><language>rnc</language>default namespace db = &quot;http://docbook.org/ns/docbook&quot;
+
+include &quot;docbook.rnc&quot;
+# define the new elements
+dbx.register = element register { text }
+dbx.instruction = element instruction { text }
+# create a new pattern that contains the new inlines
+dbx.asm.inlines = dbx.register | dbx.instruction
+# add the new inlines to programming and os inlines
+db.programming.inlines |= dbx.asm.inlines
+db.os.inlines |= dbx.asm.inlines</programlisting><xml:id>ex-add-element-2</xml:id><title>Adding new inline elements</title></example></section><section><para><xref><xrefstyle>select: label</xrefstyle><linkend>ex-delete-element</linkend></xref><tag>important</tag><tag><condition>nolink</condition>include</tag><varname>notAllowed</varname>Deleting elements is straightforward, but takes some
+        care and planning.
+deletes
+        the
+admonition element by redefining
+        it with a content model of
+.
+        Note that in this example, the redefinition is inside
+        the
+element.
+        This is required for
+        redefinitions that completely replace an existing pattern.</para><para><tag>title</tag><tag>book</tag><tag>book</tag><tag>title</tag>Be careful; If you delete an element that is a required part
+        of another element&apos;s content model, you can make it
+        impossible to create a valid document.
+        For example, if you delete the
+element, you won&apos;t be able to validate a
+because a
+requires a
+.</para><xml:id>cust-delete-elements</xml:id><title>Deleting elements</title><example><programlisting><language>rng</language>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;grammar xmlns:db=&quot;http://docbook.org/ns/docbook&quot;
+         ns=&quot;http://docbook.org/ns/docbook&quot;
+         xmlns=&quot;http://relaxng.org/ns/structure/1.0&quot;&gt;
+  &lt;include href=&quot;docbook.rng&quot;&gt;
+    &lt;!-- redefine important element as notAllowed --&gt;
+    &lt;define name=&quot;db.important&quot;&gt;
+      &lt;notAllowed/&gt;
+    &lt;/define&gt;
+  &lt;/include&gt;
+&lt;/grammar&gt;</programlisting><programlisting><language>rnc</language>namespace db = &quot;http://docbook.org/ns/docbook&quot;
+
+include &quot;docbook.rnc&quot; inherit = db {
+  # redefine important element as notAllowed
+  db.important = notAllowed
+}</programlisting><xml:id>ex-delete-element</xml:id><title>Deleting an element</title></example></section><section><para><xref><xrefstyle>select: label</xrefstyle><linkend>ex-modify-element</linkend></xref><tag>author</tag><tag><condition>nolink</condition>born</tag><tag><condition>nolink</condition>died</tag><tag>author</tag><varname>db.person.author.contentmodel</varname><varname>db.org.author.contentmodel</varname><varname>db.person.author.contentmodel</varname>expands the definition of
+to include two
+         new elements,
+and
+.
+         The
+element allows two content models,
+, which
+         defines an author who is a person, and
+, which
+         defines an author that is an organization.  We will modify
+so that
+         only authors who are persons can have the new elements.<example><programlisting><language>rng</language>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;grammar xmlns:db=&quot;http://docbook.org/ns/docbook&quot;
+         ns=&quot;http://docbook.org/ns/docbook&quot;
+         xmlns=&quot;http://relaxng.org/ns/structure/1.0&quot;&gt;
+  &lt;include href=&quot;docbook.rng&quot;/&gt;
+
+  &lt;define name=&quot;db.person.author.contentmodel&quot; combine=&quot;interleave&quot;&gt;
+    &lt;interleave&gt;
+      &lt;optional&gt;
+        &lt;element name=&quot;born&quot;&gt;
+          &lt;ref name=&quot;db.date.contentmodel&quot;/&gt;
+        &lt;/element&gt;
+      &lt;/optional&gt;
+      &lt;optional&gt;
+        &lt;element name=&quot;died&quot;&gt;
+          &lt;ref name=&quot;db.date.contentmodel&quot;/&gt;
+        &lt;/element&gt;
+      &lt;/optional&gt;
+    &lt;/interleave&gt;
+  &lt;/define&gt;
+&lt;/grammar&gt;</programlisting><programlisting><language>rnc</language>default namespace = &quot;http://docbook.org/ns/docbook&quot;
+namespace db = &quot;http://docbook.org/ns/docbook&quot;
+
+include &quot;docbook.rnc&quot;
+
+db.person.author.contentmodel &amp;=
+  element born { db.date.contentmodel }?
+  &amp; element died { db.date.contentmodel }?</programlisting><xml:id>ex-modify-element</xml:id><title>Modifying the content model of an element</title></example></para><para><programlisting>&lt;author&gt;
+  &lt;personname&gt;Babe Ruth&lt;/personname&gt;
+  &lt;born&gt;02/06/1895&lt;/born&gt;
+  &lt;died&gt;08/16/1948&lt;/died&gt;
+&lt;/author&gt;</programlisting><programlisting>&lt;!-- INVALID --&gt;
+&lt;author&gt;
+  &lt;orgname&gt;Boston Red Sox&lt;/orgname&gt;
+  &lt;died&gt;1919&lt;/died&gt;
+  &lt;born&gt;2004&lt;/born&gt;
+&lt;/author&gt;</programlisting><varname>db.org.author.contentmodel</varname>This modification will allow instances like this:
+but because we only modified the content model for authors
+who are human, it won&apos;t allow an instance like this, which
+uses
+:</para><xml:id>cust-modify-elements</xml:id><title>Customizing the content model of existing elements</title></section><title>Elements</title></section><section><xml:id>cust-attributes</xml:id><section><para><quote>interleave</quote><xref><xrefstyle>select: label</xrefstyle><linkend>ex-add-attr</linkend></xref><tag><class>attribute</class>born</tag><tag><class>attribute</class>died</tag><tag>author</tag><tag><class>attribute</class>combine</tag><varname>db.author.attlist</varname>The simplest way to add an attribute to a single element
+        is to add it to the attlist pattern for that element.
+adds the optional attributes
+and
+to the attribute
+        list for
+.
+        The
+named pattern is redefined with the
+attribute set to
+, which interleaves the two new
+        optional attributes with the existing attributes on the list.</para><para><xref><xrefstyle>select: label</xrefstyle><linkend>ex-modify-element</linkend></xref><xref><xrefstyle>select: label</xrefstyle><linkend>ex-add-attr</linkend></xref><tag>author</tag>Unlike
+,
+allows
+      the new attributes to appear on any
+element, not just those using the person content model.</para><para><xref><xrefstyle>select: label</xrefstyle><linkend>ex-add-attr-2</linkend></xref><xref><xrefstyle>select: label</xrefstyle><linkend>ex-modify-element</linkend></xref><tag><condition>nolink</condition>interleave</tag><varname>db.person.author.contentmodel</varname>shows
+      how you could limit the use of these attributes to authors who
+      are persons.  In this example, the new attributes are interleaved
+      with the
+.  
+      The only difference between this example and
+is
+      that the added patterns are identified as attributes rather than
+      elements.  This shows some of the flexibility of RELAX NG, which
+      treats attributes and elements very consistently.
+There is one difference in the treatment of attributes and elements
+that is worth noting.  By the XML 1.0 definition, the relative order
+of attributes is not significant.  Therefore, the
+block is not required for
+attributes, though it does no harm.<example><programlisting><language>rng</language>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;grammar xmlns:db=&quot;http://docbook.org/ns/docbook&quot;
+         ns=&quot;http://docbook.org/ns/docbook&quot;
+         xmlns=&quot;http://relaxng.org/ns/structure/1.0&quot;&gt;
+  &lt;include href=&quot;docbook.rng&quot;/&gt;
+  &lt;!-- redefinitions of named patterns --&gt;
+  &lt;define name=&quot;db.person.author.contentmodel&quot; combine=&quot;interleave&quot;&gt;
+    &lt;interleave&gt;
+      &lt;optional&gt;
+        &lt;attribute name=&quot;born&quot;&gt;
+          &lt;ref name=&quot;db.date.contentmodel&quot;/&gt;
+        &lt;/attribute&gt;
+      &lt;/optional&gt;
+      &lt;optional&gt;
+        &lt;attribute name=&quot;died&quot;&gt;
+          &lt;ref name=&quot;db.date.contentmodel&quot;/&gt;
+        &lt;/attribute&gt;
+      &lt;/optional&gt;
+    &lt;/interleave&gt;
+  &lt;/define&gt;
+&lt;/grammar&gt;</programlisting><programlisting><language>rnc</language>namespace db = &quot;http://docbook.org/ns/docbook&quot;
+
+include &quot;docbook.rnc&quot; inherit = db
+# redefinitions of named patterns
+db.person.author.contentmodel &amp;=
+  attribute born { db.date.contentmodel }?
+  &amp; attribute died { db.date.contentmodel }?</programlisting><xml:id>ex-add-attr-2</xml:id><title>Adding attributes; alternate method</title></example></para><xml:id>cust-add-attributes</xml:id><title>Adding attributes</title><example><programlisting><language>rng</language>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;grammar xmlns:db=&quot;http://docbook.org/ns/docbook&quot;
+         ns=&quot;http://docbook.org/ns/docbook&quot;
+         xmlns=&quot;http://relaxng.org/ns/structure/1.0&quot;&gt;
+  &lt;include href=&quot;docbook.rng&quot;/&gt;
+
+  &lt;define name=&quot;db.author.attlist&quot; combine=&quot;interleave&quot;&gt;
+    &lt;interleave&gt;
+      &lt;optional&gt;
+        &lt;attribute name=&quot;born&quot;&gt;
+          &lt;ref name=&quot;db.date.contentmodel&quot;/&gt;
+        &lt;/attribute&gt;
+      &lt;/optional&gt;
+      &lt;optional&gt;
+        &lt;attribute name=&quot;died&quot;&gt;
+          &lt;ref name=&quot;db.date.contentmodel&quot;/&gt;
+        &lt;/attribute&gt;
+      &lt;/optional&gt;
+    &lt;/interleave&gt;
+  &lt;/define&gt;
+&lt;/grammar&gt;</programlisting><programlisting><language>rnc</language>namespace db = &quot;http://docbook.org/ns/docbook&quot;
+
+include &quot;docbook.rnc&quot; inherit = db
+
+db.author.attlist &amp;=
+  attribute born { db.date.contentmodel }?
+  &amp; attribute died { db.date.contentmodel }?</programlisting><xml:id>ex-add-attr</xml:id><title>Adding attributes</title></example></section><section><para><xref><xrefstyle>select: label</xrefstyle><linkend>ex-delete-attr</linkend></xref><varname>empty</varname><varname>notAllowed</varname><varname>db.common.linking.attributes</varname><varname>empty</varname>Deleting an attribute is similar to deleting an element,
+        except that you use the RELAX NG
+pattern rather than
+.
+deletes the linking attributes, which are collected in the
+pattern,
+        by defining that pattern as
+.</para><para><varname>empty</varname><varname>notAllowed</varname>Generally,
+is used when deleting
+        attributes and
+is used when
+        deleting elements.</para><xml:id>cust-delete-attributes</xml:id><title>Deleting attributes</title><example><programlisting><language>rng</language>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;grammar xmlns:db=&quot;http://docbook.org/ns/docbook&quot;
+         ns=&quot;http://docbook.org/ns/docbook&quot;
+         xmlns=&quot;http://relaxng.org/ns/structure/1.0&quot;&gt;
+  &lt;include href=&quot;docbook.rng&quot;&gt;
+    &lt;define name=&quot;db.common.linking.attributes&quot;&gt;
+      &lt;empty/&gt;
+    &lt;/define&gt;
+  &lt;/include&gt;
+&lt;/grammar&gt;</programlisting><programlisting><language>rnc</language>namespace db = &quot;http://docbook.org/ns/docbook&quot;
+
+include &quot;docbook.rnc&quot; inherit = db {
+  db.common.linking.attributes = empty
+}</programlisting><xml:id>ex-delete-attr</xml:id><title>Deleting an attribute</title></example></section><section><para><quote>large</quote><xref><xrefstyle>select: label</xrefstyle><linkend>ex-modify-attr</linkend></xref><varname>db.spacing.enumeration</varname>modifies
+to
+        add the additional value
+.  Note
+        that to remove a value from an enumeration, you need
+        to redefine the entire enumeration, minus the values
+        you don&apos;t need.</para><xml:id>cust-modify-attributes</xml:id><title>Changing permitted content of attributes</title><example><programlisting><language>rng</language>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;grammar xmlns:db=&quot;http://docbook.org/ns/docbook&quot;
+         ns=&quot;http://docbook.org/ns/docbook&quot;
+         xmlns=&quot;http://relaxng.org/ns/structure/1.0&quot;&gt;
+  &lt;include href=&quot;docbook.rng&quot;/&gt;
+  &lt;!-- add value to an enumeration --&gt;
+  &lt;define name=&quot;db.spacing.enumeration&quot; combine=&quot;choice&quot;&gt;
+    &lt;value&gt;large&lt;/value&gt;
+  &lt;/define&gt;
+&lt;/grammar&gt;</programlisting><programlisting><language>rnc</language>namespace db = &quot;http://docbook.org/ns/docbook&quot;
+
+include &quot;docbook.rnc&quot; inherit = db
+# add value to an enumeration
+db.spacing.enumeration |= &quot;large&quot;</programlisting><xml:id>ex-modify-attr</xml:id><title>Deleting an attribute</title></example></section><title>Attributes</title></section><section><para><tag><class>attribute</class>version</tag><uri>http://docbook.org/ns/docbook</uri>DocBook V5.0 is not tightly coupled with some particular
+validation technology like DTDs. This also means that DocBook V5.0
+documents don&apos;t have to (and usually don&apos;t) start with a
+document type declaration (&lt;!DOCTYPE???&gt;) to specify the schema
+(DTD) to use. Instead, DocBook V5.0 instances can be easily
+distinguished from other XML vocabularies by using elements in the
+namespace. This namespace is
+enough to distinguish DocBook from other XML based formats. But the
+DocBook schema evolves over time and there are several versions of
+DocBook (e.g. 3.1, 4.2, 4.5 and 5.0).  Since DocBook version 5.0, the
+actual version used is indicated in the
+attribute on a root element.</para><para>Future versions of DocBook documents will start with the same
+markup, except the version number will be raised, for example to 5.1
+or 6.0.
+The namespace will remain the same until the semantics of the elements
+change in a backward incompatible way, which is very unlikely to happen.</para><para><quote>official</quote><tag><class>attribute</class>version</tag>If you create a DocBook schema customization you must change the
+attribute to distinguish your
+customization from the
+DocBook.  Changing the
+namespace is not recommended because that would break the processing
+tools.  Remember that changing namespaces is the same as renaming all
+elements in the namespace.</para><para>When you customize the schema, use the following syntax to
+identify your DocBook derivation:</para><para>For example:</para><para>The first part of the version identifier is the version number of the
+DocBook schema from which you derived your customization.</para><para>If your schema is a proper subset, you can advertise this status
+by using the
+keyword in the description. If
+your schema contains any markup model extensions, you can advertise
+this status by using the
+keyword. If
+you&apos;d rather not characterize your variant specifically as a subset or
+an extension, use the
+keyword.<literal>subset</literal><literal>extension</literal><literal>variant</literal></para><para>After these keywords you may add a whitespace separated list of
+customization identifiers. Each name may be optionally followed by its
+version number.</para><programlisting>&lt;book xmlns=&quot;http://docbook.org/ns/docbook&quot;
+      version=&quot;5.0&quot;&gt;
+  ???
+&lt;/book&gt;</programlisting><programlisting><replaceable>base_version</replaceable><replaceable>name</replaceable><replaceable>version</replaceable>-[subset|extension|variant] [
+[-
+]?]+</programlisting><programlisting>5.0-subset simplified-1.0
+5.0-variant ASMBook
+5.0-variant ASMBook-2006
+5.0-extension MathML-2.0 SVG-1.1</programlisting><xml:id>cust-naming</xml:id><title>Naming and versioning DocBook customizations</title></section><title>Customizing DocBook V5.0</title></section><section><qandaset><qandadiv><qandaentry><answer><para>There is no standard way of associating a RELAX NG schema with a
+document. Most tools provide some mechanism for performing this
+association, consult the documentation for your application. In some
+tools you must specify schema manually each time you want to
+edit/process your document.</para></answer><question><para>How do I attach a schema to a DocBook V5.0 document when I do not
+want to use DTDs and !DOCTYPE?</para></question><xml:id>faq-authoring-schema-association</xml:id></qandaentry><qandaentry><answer><para>Modern schema languages (including RELAX NG and W3X XML Schema)
+do not provide any means to define entities that can be used for easier
+typing of special characters. Some editors provide functions or
+special toolbars that allow you to easily pick necessary character
+and insert it into document as a raw Unicode character or a numeric
+character reference.</para><para><link><xl:href>http://www.w3.org/2003/entities/</xl:href>Entity definition
+files</link>Another possibility is to include entity definitions in the
+prolog of your document.
+are now maintained by W3C. You can reference definition
+files with entity definitions you are interested in and then reference
+imported entities. For example:</para><para>For your convenience there is also flattened entity definition
+file which contains all entity definitions.</para><programlisting><array>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;!DOCTYPE article [
+&lt;!ENTITY % isopub SYSTEM &quot;http://www.w3.org/2003/entities/iso8879/isopub.ent&quot;&gt;
+%isopub;
+]&gt;
+&lt;article xmlns=&quot;http://docbook.org/ns/docbook&quot; version=&quot;5.0&quot;&gt;
+&lt;title&gt;DocBook V5.0 &amp;ndash; the superb documentation format&lt;/title&gt;</array><array>???</array></programlisting><programlisting><array>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;!DOCTYPE article [
+&lt;!ENTITY % allent SYSTEM &quot;http://www.w3.org/2003/entities/2007/w3centities-f.ent&quot;&gt;
+%allent;
+]&gt;
+&lt;article xmlns=&quot;http://docbook.org/ns/docbook&quot; version=&quot;5.0&quot;&gt;
+&lt;title&gt;DocBook V5.0 &amp;ndash; the superb documentation format&lt;/title&gt;</array><array>???</array></programlisting></answer><question><para><tag><class>genentity</class>ndash</tag>How do I use entities like
+in
+DocBook V5.0?</para></question><xml:id>faq-authoring-general-entities</xml:id></qandaentry><qandaentry><answer><para><filename>docbookxi.rnc</filename><filename>docbook.rnc</filename><quote>xi</quote><link><xl:href>http://www.w3.org/TR/xinclude/</xl:href>XInclude</link>You can use
+for this
+task. There is an alternative schema for DocBook V5.0 that
+contains XInclude elements. This is necessary to make some XML editors
+happy. This schema can be found in files that end with letters
+, e.g.
+instead of
+.</para></answer><question><para>How to modularize documents?</para></question><xml:id>faq-authoring-modularization</xml:id></qandaentry><qandaentry><answer><para>If you are using XIncludes you should make sure that the final
+document after resolving all inclusions is valid DocBook V5.0
+instance. This means that all XIncludes should be processed before
+validation takes place. The following command can be used to enable
+XInclude processing in oNVDL.</para><para>For JNVDL you can use switch
+to enable XInclude processing.<option>-xi</option></para><screen><replaceable>/path/to/oNVDL/</replaceable><replaceable>/path/to/</replaceable><command>java</command>-Dorg.apache.xerces.xni.parser.XMLParserConfiguration=org.apache.xerces.parsers.XIncludeParserConfiguration -jar
+bin/onvdl.jar
+docbook.nvdl document.xml</screen></answer><question><para>How to validate documents which are composed by XInclude?</para></question><xml:id>faq-authoring-validating-xincludes</xml:id></qandaentry><title>Authoring</title></qandadiv><qandadiv><qandaentry><answer><para>Yes, the current stylesheets (like 1.73.x) will be supported and
+improved further because they are very widely deployed and work with
+many existing XSLT processors.</para><para>Surely there will be a point in a future when all new development
+will be switched to the XSLT 2.0 based implementation. But this
+will not happen until all features of the current stylesheets are
+implemented in the new stylesheets, and until there is more than
+one usable XSLT 2.0 processor available.</para></answer><question><para>Will the current DocBook XSL stylesheets (XSLT 1.0 based
+implementation) be maintained and improved in the future since work on
+a new XSLT 2.0 based implementation has started?</para></question><xml:id>faq-stylesheets-future</xml:id></qandaentry><title>Stylesheets</title></qandadiv><qandadiv><qandaentry><answer><para><tag>equation</tag>The basic DocBook schema allows elements from the MathML namespace
+to appear inside the
+element.  This means that you can
+validate a DocBook+MathML document, but MathML content will be ignored
+during the validation. You will also not be able to use guided editing
+for the MathML content.</para><para>If you need strict validation of MathML content or guided
+editing for MathML, you can easily extend the base DocBook schema with
+the MathML schema.</para><procedure><step><para><filename>mathml</filename><link><xl:href>http://yupotan.sppd.ne.jp/relax-ng/mml2.html</xl:href></link>Download the MathML RELAX NG schema from
+and unpack it
+somewhere (e.g. into a
+subdirectory).</para></step><step><para><filename>dbmathml.rnc</filename>Create a schema customization in compact syntax???
+:</para><para><filename>dbmathml.rng</filename>Or, alternatively, you can use the XML syntax of RELAX NG???
+:</para><programlisting><language>rnc</language>namespace html = &quot;http://www.w3.org/1999/xhtml&quot;
+namespace mml = &quot;http://www.w3.org/1998/Math/MathML&quot;
+namespace db = &quot;http://docbook.org/ns/docbook&quot;
+
+include &quot;/path/to/docbook.rnc&quot; {
+  db._any.mml = external &quot;mathml/mathml2.rnc&quot;
+  db._any =
+    element * - (db:* | html:* | mml:*) {
+      (attribute * { text }
+       | text
+       | db._any)*
+    }
+}</programlisting><programlisting><language>rng</language>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;grammar xmlns=&quot;http://relaxng.org/ns/structure/1.0&quot;&gt;
+
+&lt;include href=&quot;/path/to/docbook.rng&quot;&gt;
+  &lt;define name=&quot;db._any.mml&quot;&gt;
+    &lt;externalRef href=&quot;mathml/mathml2.rng&quot;/&gt;
+  &lt;/define&gt;
+
+  &lt;define name=&quot;db._any&quot;&gt;
+    &lt;element&gt;
+      &lt;anyName&gt;
+        &lt;except&gt;
+          &lt;nsName ns=&quot;http://docbook.org/ns/docbook&quot;/&gt;
+          &lt;nsName ns=&quot;http://www.w3.org/1999/xhtml&quot;/&gt;
+          &lt;nsName ns=&quot;http://www.w3.org/1998/Math/MathML&quot;/&gt;
+        &lt;/except&gt;
+      &lt;/anyName&gt;
+      &lt;zeroOrMore&gt;
+        &lt;choice&gt;
+          &lt;attribute&gt;
+            &lt;anyName/&gt;
+          &lt;/attribute&gt;
+          &lt;text/&gt;
+          &lt;ref name=&quot;db._any&quot;/&gt;
+        &lt;/choice&gt;
+      &lt;/zeroOrMore&gt;
+    &lt;/element&gt;
+  &lt;/define&gt;
+&lt;/include&gt;
+
+&lt;/grammar&gt;</programlisting></step><step><para><filename>dbmathml.rnc</filename><filename>dbmathml.rng</filename>Now use the customized schema (
+or
+) instead of the original
+DocBook schema.</para></step><title>Extending the DocBook schema with the MathML schema</title></procedure></answer><question><para>How can I extend the DocBook schema with MathML elements?</para></question><xml:id>faq-customization-mathml</xml:id></qandaentry><qandaentry><answer><para><tag>imageobject</tag>The situation is the same as with MathML support. You can use
+elements from the SVG namespace inside the
+element.</para><procedure><step><para><filename>svg</filename><link><xl:href>http://www.w3.org/Graphics/SVG/1.1/rng/rng.zip</xl:href></link>Download the SVG RELAX NG schema from
+and unpack it
+somewhere (e.g. into an
+subdirectory).</para></step><step><para><filename>dbsvg.rnc</filename>Create a schema customization in compact syntax???
+:</para><para><filename>dbsvg.rng</filename>Or, alternatively, you can use the XML syntax of RELAX NG???
+:</para><programlisting><language>rnc</language>namespace html = &quot;http://www.w3.org/1999/xhtml&quot;
+namespace db = &quot;http://docbook.org/ns/docbook&quot;
+namespace svg = &quot;http://www.w3.org/2000/svg&quot;
+
+include &quot;/path/to/docbook.rnc&quot; {
+  db._any.svg = external &quot;svg/svg11.rnc&quot;
+  db._any =
+    element * - (db:* | html:* | svg:*) {
+      (attribute * { text }
+       | text
+       | db._any)*
+    }
+}</programlisting><programlisting><language>rng</language>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;grammar xmlns=&quot;http://relaxng.org/ns/structure/1.0&quot;&gt;
+
+&lt;include href=&quot;/path/to/docbook.rng&quot;&gt;
+  &lt;define name=&quot;db._any.svg&quot;&gt;
+    &lt;externalRef href=&quot;svg/svg11.rng&quot;/&gt;
+  &lt;/define&gt;
+
+  &lt;define name=&quot;db._any&quot;&gt;
+    &lt;element&gt;
+      &lt;anyName&gt;
+        &lt;except&gt;
+          &lt;nsName ns=&quot;http://docbook.org/ns/docbook&quot;/&gt;
+          &lt;nsName ns=&quot;http://www.w3.org/1999/xhtml&quot;/&gt;
+          &lt;nsName ns=&quot;http://www.w3.org/2000/svg&quot;/&gt;
+        &lt;/except&gt;
+      &lt;/anyName&gt;
+      &lt;zeroOrMore&gt;
+        &lt;choice&gt;
+          &lt;attribute&gt;
+            &lt;anyName/&gt;
+          &lt;/attribute&gt;
+          &lt;text/&gt;
+          &lt;ref name=&quot;db._any&quot;/&gt;
+        &lt;/choice&gt;
+      &lt;/zeroOrMore&gt;
+    &lt;/element&gt;
+  &lt;/define&gt;
+&lt;/include&gt;
+
+&lt;/grammar&gt;</programlisting></step><step><para><filename>dbsvg.rnc</filename><filename>dbsvg.rng</filename>Now use the customized schema (
+or
+) instead of the original
+DocBook schema.</para></step><title>Extending the DocBook schema with the SVG schema</title></procedure></answer><question><para>How can I extend the DocBook schema with SVG elements?</para></question><xml:id>faq-customization-svg</xml:id></qandaentry><qandaentry><answer><para>Yes, you can create a special schema customization that combines
+both MathML and SVG with the DocBook schema. In compact syntax, the merged
+schema is:</para><para>Or alternatively in the full RELAX NG syntax:</para><programlisting><language>rnc</language>namespace html = &quot;http://www.w3.org/1999/xhtml&quot;
+namespace mml = &quot;http://www.w3.org/1998/Math/MathML&quot;
+namespace db = &quot;http://docbook.org/ns/docbook&quot;
+namespace svg = &quot;http://www.w3.org/2000/svg&quot;
+
+include &quot;/path/to/docbook.rnc&quot; {
+  db._any.mml = external &quot;mahtml/mathml2.rnc&quot;
+  db._any.svg = external &quot;svg/svg11.rnc&quot;
+  db._any =
+    element * - (db:* | html:* | mml:* | svg:*) {
+      (attribute * { text }
+       | text
+       | db._any)*
+    }
+}</programlisting><programlisting><language>rng</language>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;grammar xmlns=&quot;http://relaxng.org/ns/structure/1.0&quot;&gt;
+
+&lt;include href=&quot;/path/to/docbook.rng&quot;&gt;
+  &lt;define name=&quot;db._any.mml&quot;&gt;
+    &lt;externalRef href=&quot;mathml/mathml2.rng&quot;/&gt;
+  &lt;/define&gt;
+
+  &lt;define name=&quot;db._any.svg&quot;&gt;
+    &lt;externalRef href=&quot;svg/svg11.rng&quot;/&gt;
+  &lt;/define&gt;
+
+  &lt;define name=&quot;db._any&quot;&gt;
+    &lt;element&gt;
+      &lt;anyName&gt;
+        &lt;except&gt;
+          &lt;nsName ns=&quot;http://docbook.org/ns/docbook&quot;/&gt;
+          &lt;nsName ns=&quot;http://www.w3.org/1999/xhtml&quot;/&gt;
+          &lt;nsName ns=&quot;http://www.w3.org/1998/Math/MathML&quot;/&gt;
+          &lt;nsName ns=&quot;http://www.w3.org/2000/svg&quot;/&gt;
+        &lt;/except&gt;
+      &lt;/anyName&gt;
+      &lt;zeroOrMore&gt;
+        &lt;choice&gt;
+          &lt;attribute&gt;
+            &lt;anyName/&gt;
+          &lt;/attribute&gt;
+          &lt;text/&gt;
+          &lt;ref name=&quot;db._any&quot;/&gt;
+        &lt;/choice&gt;
+      &lt;/zeroOrMore&gt;
+    &lt;/element&gt;
+  &lt;/define&gt;
+&lt;/include&gt;
+
+&lt;/grammar&gt;</programlisting></answer><question><para>Is it possible to use the previous two customizations for MathML
+and SVG together?</para></question><xml:id>faq-customization-mathml-svg</xml:id></qandaentry><qandaentry><answer><para>Sure. Some of the are listed bellow:</para><itemizedlist><listitem><para><link><xl:href>http://www.w3.org/TR/xml-i18n-bp/#docbook-plus-its</xl:href>Sample
+customization of ITS and DocBook</link></para></listitem><listitem><para><link><xl:href>http://wiki.docbook.org/topic/DocbookSchemas</xl:href>Examples on
+DocBook WiKi</link></para></listitem></itemizedlist></answer><question><para>Are there any other examples of schema customization
+available?</para></question><xml:id>faq-customization-links</xml:id></qandaentry><title>Schema customizations</title></qandadiv><qandadiv><qandaentry><answer><para><filename>xml.xsd</filename><filename>xml.xsd</filename><tag><class>attribute</class>xml:id</tag>XMLSpy always uses its own bundled version of
+which unfortunately doesn&apos;t define the
+attribute. The bundled version of
+is hardwired into the program and cannot
+be replaced by a newer version. To solve this problem you must upgrade
+to version 2006 SP1.</para></answer><question><para><filename>docbook.xsd</filename><tag><class>attribute</class>xml:id</tag>I&apos;m using Altova XMLSpy to validate DocBook V5.0 instances
+against the W3C XML Schema (
+). XMLSpy
+complains about undefined
+attributes?</para></question><xml:id>faq-tools-xmlspy-xmlid</xml:id></qandaentry><title>Tool specific problems</title></qandadiv></qandaset><xml:id>faq</xml:id><title>FAQ</title></section><version>5</version><info><authorgroup><author><email>jirka@kosek.cz</email><personname>Jirka Kosek</personname></author><author><contrib>??convert4to5, proofreading</contrib><email>ndw@nwalsh.com</email><personname>Norman Walsh</personname></author><author><contrib>??changes-removed, customization, proofreading</contrib><email>rlhamilton@frii.com</email><personname>Dick Hamilton</personname></author><othercredit><otherclass>contributor</otherclass><class>other</class><contrib>??dbxsl-ns</contrib><email>smith@sideshowbarker.net</email><personname>Michael(tm) Smith</personname></othercredit></authorgroup><subtitle>The Transition Guide</subtitle><title>DocBook V5.0</title><pubdate>2009-06-16</pubdate><pubdate>2008-02-06</pubdate><pubdate>2007-10-28</pubdate><pubdate>2006-10-22</pubdate><pubdate>2006-05-16</pubdate><pubdate>2006-03-01</pubdate><pubdate>2005-12-28</pubdate><pubdate>2005-10-27</pubdate></info></article>

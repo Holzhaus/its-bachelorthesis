@@ -1,0 +1,1 @@
+<root><test><c:foo>athirdvalue</c:foo><xmlns:a>http://example.com/a</xmlns:a><xmlns:c>http://example.com/c</xmlns:c><xmlns:b>http://example.com/b</xmlns:b><b:foo>anothervalue</b:foo><a:foo>somevalue</a:foo></test></root>

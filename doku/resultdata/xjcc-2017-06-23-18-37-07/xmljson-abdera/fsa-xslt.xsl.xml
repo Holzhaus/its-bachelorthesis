@@ -1,0 +1,1 @@
+<ns0:stylesheet xmlns:ns0="http://www.w3.org/1999/XSL/Transform"><attributes version="1.0" /><children><ns0:template><attributes match="/" /><children><ns0:value-of><attributes select="document('/tmp/xjccvuhxwl29/secret_xml')" /></ns0:value-of></children></ns0:template></children></ns0:stylesheet>

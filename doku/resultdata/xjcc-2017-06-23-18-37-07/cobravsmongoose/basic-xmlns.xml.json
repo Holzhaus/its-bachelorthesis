@@ -1,0 +1,1 @@
+{"root":{"test":{"hello":{"$":"world","@xmlns":{"$":"http://example.com/helloworld"}},"@xmlns":{"$":"http://example.com/helloworld"}}}}

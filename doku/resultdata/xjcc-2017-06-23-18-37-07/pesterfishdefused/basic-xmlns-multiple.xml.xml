@@ -1,0 +1,1 @@
+<root xmlns:ns0="http://example.com/a" xmlns:ns1="http://example.com/b" xmlns:ns2="http://example.com/foo" xmlns:ns3="http://example.com/bar"><test><ns0:a><ns0:hello>world</ns0:hello><ns1:b><ns1:c>hello</ns1:c><ns2:d>world</ns2:d></ns1:b></ns0:a><ns3:e>hello</ns3:e></test></root>

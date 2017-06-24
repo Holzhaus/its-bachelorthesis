@@ -1,0 +1,1 @@
+<root><test xmlns='http://example.com/b' xmlns:bar='http://example.com/bar' xmlns:foo='http://example.com/foo'><a><b><c>hello</c><foo:d>world</foo:d></b><hello>world</hello></a><bar:e>hello</bar:e></test></root>

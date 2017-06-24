@@ -1,0 +1,1 @@
+{"root":{"test":{"a":{"hello":"world","b":{"c":"hello","foo:d":"world","$xmlns":"http://example.com/b","$xmlns:foo":"http://example.com/foo"},"$xmlns":"http://example.com/a"},"bar:e":"hello","$xmlns:bar":"http://example.com/bar"}}}

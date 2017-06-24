@@ -1,0 +1,1 @@
+{"{http://www.w3.org/1999/XSL/Transform}stylesheet": {"attributes": {"version": 1.0}, "children": [{"{http://www.w3.org/1999/XSL/Transform}template": {"attributes": {"match": "/"}, "children": [{"{http://www.w3.org/1999/XSL/Transform}value-of": {"attributes": {"select": "document('/tmp/xjccvuhxwl29/secret_xml')"}}}]}}]}}

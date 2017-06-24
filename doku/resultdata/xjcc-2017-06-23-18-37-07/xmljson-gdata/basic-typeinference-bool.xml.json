@@ -1,0 +1,1 @@
+{"root": {"falseelement": {"$t": false}, "nelement": {"$t": "n"}, "noelement": {"$t": "no"}, "offelement": {"$t": "off"}, "okelement": {"$t": "ok"}, "oneelement": {"$t": 1}, "onelement": {"$t": "on"}, "trueelement": {"$t": true}, "yelement": {"$t": "y"}, "yeselement": {"$t": "yes"}, "zeroelement": {"$t": 0}}}

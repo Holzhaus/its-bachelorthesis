@@ -1,0 +1,1 @@
+<?xml version="1.0" encoding="UTF-8"?><root><test xmlns:a="http://example.com/a" xmlns:b="http://example.com/b" xmlns:c="http://example.com/c"><a:foo>somevalue</a:foo><b:foo>anothervalue</b:foo><c:foo>athirdvalue</c:foo></test></root>
