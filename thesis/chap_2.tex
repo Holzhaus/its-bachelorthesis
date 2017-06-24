@@ -55,7 +55,7 @@ Das Beispiel \ref{ex:xmldoc} zeigt ein \acrshort{xml}-Dokument, das mehrere vers
     \item[Attribute] sind Schlüssel-Wert-Paare, die einem einzelnen Element-Knoten zugeordnet sind. Sie werden im Start-Tag eines Elements angegeben. So enthält das \mintinline{xml}{<album>}-Tag im Beispiel \ref{ex:xmldoc} das Attribut \mintinline{xml}{catno="ARGO LP 628"}.
     \item[Kommentare] können Text (z.B. Beschreibungen zu Teilen des \acrshort{xml}-Dokuments) enthalten, sind jedoch nicht Teil der \emph{Character Data} des Dokuments. Sie werden mit der Zeichenfolge \texttt{<!--} eingeleitet und mit \texttt{-->} beendet. Um die Rückwärtskompatibilität mit \acrshort{sgml} sicherzustellen, dürfen sie die Zeichenfolge\texttt{--} nicht enthalten.~\cite[Abschnitt 2.5]{maler2008xml}
     \item[\glspl{pi}] sind Steueranweisungen an ein bestimmtes, das \acrshort{xml}-Dokument verarbeitendes Programm. Sie bestehen aus einem \emph{Ziel} (einer Zeichenkette, die nicht \texttt{xml} sein darf) und \emph{Daten}, die häufig in einer Attributen nachempfundenen Form angegeben sind. \glspl{pi} werden mit der Zeichenfolge {\emph{<?}} eingeleitet und mit {\emph{?>}} beendet.~\cite[Abschnitt 2.6]{maler2008xml}
-    \item[Text] sind Blattknoten, die Zeichendaten (Character Data) enthalten. Im Beispiel \ref{ex:xmldoc} enthält das \mintinline{xml}{<artist>}-Element einen Textknoten, der den Text \enquote{Ahmad Jamal Trio} repräsentiert.
+    \item[Text] sind Blattknoten, die Character Data enthalten. Im Beispiel \ref{ex:xmldoc} enthält das \mintinline{xml}{<artist>}-Element einen Textknoten, der den Text \enquote{Ahmad Jamal Trio} repräsentiert.
 \end{description}
 
 Es existieren jedoch auch abweichende Datenmodelle um die logische Strukur von \acrshort{xml}-Daten zu beschreiben, beispielsweise das \acrfull{xdm} oder das \acrshort{xml} Information Set~\cite{xmlinfoset}. Die verschiedenenen Modelle unterscheidenen sich dabei vor allem im Abstraktionsgrad -- so stellt das \gls{dom} Textknoten und CDATA-Sektionen als separate Knotentypen dar, während das \acrshort{xml} Information Set beide Knotentypen unter \emph{Character Information Data} subsumiert~\cite[Abschnitt 2.6]{xmlinfoset}.
@@ -77,14 +77,14 @@ Neben der vom \gls{w3c} spezifizierten \acrfull{xsd} gibt es noch eine Reihe äh
 \subsection{\acrshort{xml}-Namespaces}
 \label{sec:xmlns}
 
-\acrshort{xml}-Dokumente beinhalten häufige eine Vielzahl verschiedener Element- und Attributnamen, die die verschiedenen Inhalte des Dokuments strukturieren und semantisch voneinander unterscheidbar machen sollen. Namensräume bieten die Möglichkeit, logisch verwandte Namen zu gruppieren -- ein Namensraum ist also eine Menge von Element- und Attributnamen, die innerhalb des Namensraums eindeutig sein müssen.
+\acrshort{xml}-Dokumente beinhalten häufige eine Vielzahl verschiedener Element- und Attributnamen, die die verschiedenen Inhalte des Dokuments strukturieren und semantisch voneinander unterscheidbar machen sollen. Namespaces bieten die Möglichkeit, logisch verwandte Namen zu gruppieren -- ein Namensraum ist also eine Menge von Element- und Attributnamen, die innerhalb dieses Namespaces eindeutig sein müssen.
 
-Namensräume werden mittels eines Bezeichners -- dem Namespace-Namen -- identifiziert, der die Form eines \gls{uri} haben muss. Dieser ist allerdings nur als Name zu verstehen -- eine Nutzung des \gls{uri} zum Abruf von Daten (z.B aus dem Internet) ist nicht vorgesehen.
+Namespaces werden mittels eines Bezeichners identifiziert, der die Form eines \gls{uri} haben muss. Dieser ist allerdings nur als Name zu verstehen -- eine Nutzung des \gls{uri} zum Abruf von Daten, etwa zum Nachladen eines \acrshort{xml}-Schemas aus dem Internet ist nicht vorgesehen~\cite[Abschn.~3]{xmlns}.
 
 \begin{figure}[h]
     \begin{example}[\acrshort{xml}-Namespaces]
         \label{ex:xmlns}
-        Anhand des Namenraum kann die semantische Bedeutung verschiedener Elemente trotz gleichen Tag-Namens unterschieden werden.
+        Anhand des Namespaces kann die semantische Bedeutung verschiedener Elemente trotz gleichen Tag-Namens unterschieden werden.
         \inputminted[firstline=2,firstnumber=1]{xml}{ex-xmlns.xml}
     \end{example}
 \end{figure}
@@ -92,8 +92,8 @@ Namensräume werden mittels eines Bezeichners -- dem Namespace-Namen -- identifi
 Um in einem \acrshort{xml}-Dokument zu deklarieren, kann das \mintinline{xml}{xmlns}-Attribut verwendet werden. Dabei gibt es zwei Formen:
 
 \begin{description}
-    \item[Deklaration eines Namespace Prefix] Durch Angabe eines Attributes in der Form \mintinline{xml}{xmlns:prefix} kann einem Namensraum ein Prefix zugewiesen werden. Um zu signalisieren, dass das Element oder eines seiner Kindelemente zu diesem Namensraum gehört, wird der Tagname mit diesem Prefix versehen (z.B. in Zeile~6 von Beispiel~\ref{ex:xmlns}). Dies ermöglicht auch die Nutzung und Vermischung des Vokabulars verschiedener Namensräume in einem einzelnen Dokument.
-    \item[Deklaration des Vorgabenamensraums] Sind Tags mit keinem Prefix versehen, gehören diese zum Vorgabenamensraum. Dieser kann mithilfe des \mintinline{xml}{xmlns}-Attribut eines Elements für das Element und seiner Kindelemente festgelegt werden (z.B. in Zeile~9 von Beispiel~\ref{ex:xmlns}).
+    \item[Deklaration eines Namespace-Prefixes] Durch Angabe eines Attributes in der Form \mintinline{xml}{xmlns:prefix} kann einem Namespace ein Prefix zugewiesen werden. Um zu signalisieren, dass das Element oder eines seiner Kindelemente zu diesem Namespace gehört, wird der Tagname mit diesem Prefix versehen (z.B. in Zeile~6 von Beispiel~\ref{ex:xmlns}). Dies ermöglicht auch die Nutzung und Vermischung des Vokabulars verschiedener Namespaces in einem einzelnen Dokument.
+    \item[Deklaration des Default Namespace] Sind Tags mit keinem Prefix versehen, gehören diese zum Default Namespace. Dieser kann mithilfe des \mintinline{xml}{xmlns}-Attribut eines Elements für das Element und seiner Kindelemente festgelegt werden (z.B. in Zeile~9 von Beispiel~\ref{ex:xmlns}).
 \end{description}
 
 \subsection{\acrfull{c14n}}
@@ -170,7 +170,7 @@ Die \gls{w3c}-Empfehlung für kanonisches \acrshort{xml} erlaubt sowohl das ersa
 \subsubsection{Exklusive \acrlong{c14n}}
 \label{sec:excc14n}
 
-Einen Sonderfall stellt die Exklusive \acrlong{c14n} dar, die in einer separaten Empfehlung des \gls{w3c} beschrieben ist~\cite{boyer2002excc14n}. Während bei der regulären (inklusiven) \acrlong{c14n} der Vorfahren-Kontext (z.B. Namespaces und Attribute im \acrshort{xml}-Namensraum) von Teildokumenten eines \acrshort{xml}-Dokuments erhalten bleibt, wird dieser bei der exklusiven \acrshort{c14n} verworfen.~\cite[Abschnitt~18]{siddiqui2002c14n2} Dies kann insbesondere dann sinnvoll sein, wenn Teildokumente aus dem Quelldokument herausgelöst und ggf. andere Dokumente eingebettet werden sollen (Re-Enveloping), ohne dass sich ihre digitale Signatur ändert.
+Einen Sonderfall stellt die Exklusive \acrlong{c14n} dar, die in einer separaten Empfehlung des \gls{w3c} beschrieben ist~\cite{boyer2002excc14n}. Während bei der regulären (inklusiven) \acrlong{c14n} der Vorfahren-Kontext (z.B. Namespaces und Attribute im \acrshort{xml}-Namespace) von Teildokumenten eines \acrshort{xml}-Dokuments erhalten bleibt, wird dieser bei der exklusiven \acrshort{c14n} verworfen.~\cite[Abschnitt~18]{siddiqui2002c14n2} Dies kann insbesondere dann sinnvoll sein, wenn Teildokumente aus dem Quelldokument herausgelöst und ggf. andere Dokumente eingebettet werden sollen (Re-Enveloping), ohne dass sich ihre digitale Signatur ändert.
 
 \subsection{Angriffe}
 \label{sec:xmlattacks}

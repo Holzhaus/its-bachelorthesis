@@ -65,7 +65,7 @@ Als Kerninhalt jedes \acrshort{xml}-Dokuments müssen Elemente und deren Beziehu
 
 \subsubsection{Namespaces}
 
-Namensräume bieten eine Möglichkeit, Teilen eines \acrshort{xml}-Dokuments eine bestimmte Semantik zuzuweisen. Die Zuordnung zwischen Elementen und Namensräumen im Dokument darf daher nicht verändert werden.
+Namespaces bieten eine Möglichkeit, Teilen eines \acrshort{xml}-Dokuments eine bestimmte Semantik zuzuweisen. Die Zuordnung zwischen Elementen und Namensräumen im Dokument darf daher nicht verändert werden.
 
 Obwohl Namespace-Prefixe eigentlich frei gewählt werden können, ist es möglich, dass auch sie wichtige Informationen enthalten. Dies wäre beispielsweise dann der Fall, wenn ein im Dokument vorhandener \acrshort{xpath}-Ausduruck ein Namenraumprefix referenziert.~\cite[Abschn. 4.4]{boyer2001c14n} Bei einer Umbenennung von Prefixen wäre die korrekte Evaluation des \acrshort{xpath}-Ausdrucks nicht mehr möglich. Die Prefix-Bezeichner müssen also erhalten bleiben.
 
@@ -184,7 +184,7 @@ Im Rahmen der \acrshort{xml} zu \acrshort{json}-Konversion ist es zwar wünschen
 
 Die oben beschriebene Vorgehensweise zur Typableitung kann zur Fehlerkennung von Datentypen führen.
 
-Darf eine Text Node beispielsweise eigentlich beliebigen Zeicheninhalt enthalten, enthält aber \emph{zufälligerweise} ausschließlich Ziffern, würde fälschlicherweise ein Zahlentyp erkannt werden. Dies könnte zu Problemen mit der verarbeitetenden Applikation führen, die stattdessen eine Zeichenkette erwartet.
+Darf eine Text Node beispielsweise eigentlich beliebige Zeichen enthalten, enthält aber \emph{zufälligerweise} ausschließlich Ziffern, würde fälschlicherweise ein Zahlentyp erkannt werden. Dies könnte zu Problemen mit der verarbeitetenden Applikation führen, die stattdessen eine Zeichenkette erwartet.
 
 \paragraph{Einschränkungen durch Wertebereiche}
 

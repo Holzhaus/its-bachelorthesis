@@ -87,7 +87,7 @@ Als Java-Package ist \texttt{org.json.XML} ist die Untersuchung von \acrshort{do
 
 Attribute gehen bei der Konvertierung von \acrshort{xml}-Daten in \acrshort{json} zwar nicht verloren -- bei der Rückkonvertierung kann der Konverter jedoch nicht mehr erkennen, dass es sich um Attribute handelt und interpretiert diese stattdessen als Elemente.
 
-\acrshort{xml}-Namespace-Prefixe für Tag-Namen werden zwar grundsätzlich unterstützt, Namensräume können aber aufgrund der fehlerhaften Behandlung von Attributen dennoch nicht genutzt werden.
+\acrshort{xml}-Namespace-Prefixe für Tag-Namen werden zwar grundsätzlich unterstützt, Namespaces können aber aufgrund der fehlerhaften Behandlung von Attributen dennoch nicht genutzt werden.
  Mixed Content wird nicht unterstützt -- enthält ein Element neben Kindelement auch Text, wird dieser verworfen.
 
 Ebenfalls gehen bei der Konversion \glspl{pi} und die Reihenfolge der Dokumenteninhalte verloren.
@@ -97,7 +97,7 @@ Zudem werden Zahlenwerte sowie die Zeichenketten \mintinline{json}{true} und \mi
 \section{Pesterfish}
 \label{sec:pesterfish}
 
-Bei der Konversion gehen die Namen der Namesprace-Prefixe verloren und werden durch generische Bezeichnungen (\texttt{ns0}, \texttt{ns1}, \dots{}) ersetzt. Dies werden auch dann verwendet, wenn im Ursprungsdokument keinerlei Namensraum-Prefixe verwendet wurden, sondern ein eigener Default-Namespace genutzt wurde. Grund dafür ist die \texttt{ElementTree}-\acrshort{api}, die Namespace-Prefixes beim Parsen von \acrshort{xml} automatisch zur vollen URI expandiert und den ursprünglichen Prefixnamen verwirft~\cite[Abschn.~20.5.1.7]{pythonetreexmlns}.
+Bei der Konversion gehen die Namen der Namesprace-Prefixe verloren und werden durch generische Bezeichnungen (\texttt{ns0}, \texttt{ns1}, \dots{}) ersetzt. Dies werden auch dann verwendet, wenn im Ursprungsdokument keinerlei Namespace-Prefixes verwendet wurden, sondern ein eigener Default-Namespace genutzt wurde. Grund dafür ist die \texttt{ElementTree}-\acrshort{api}, die Namespace-Prefixes beim Parsen von \acrshort{xml} automatisch zur vollen URI expandiert und den ursprünglichen Prefixnamen verwirft~\cite[Abschn.~20.5.1.7]{pythonetreexmlns}.
 Zudem gehen bei der Konvertierung auch \glspl{pi} verloren.
 
 Bei den Sicherheitstests zeigte sich, dass \emph{Pesterfish} bei Nutzung der Vorgabeeinstellungen verwundbar für die \acrshort{dos}-Angriffe \emph{Billion Laughs} und \emph{Quadratic Blowup Attacks ist.}. Da die Bibliothek jedoch die Verwendung einer eigenen \texttt{ElementTree}-Implementierung erlaubt, kann diesem Problem durch den Einsatz eines sicheren Ersatzes -- beispielsweise aus der \emph{defusedxml}-Bibliothek -- entgegengewirkt werden.
