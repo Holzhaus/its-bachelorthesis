@@ -133,10 +133,11 @@ Whitespace innerhalb des Wurzelelements des Dokumentens muss beibehalten werden,
 
 Eine Besonderheit von \acrshort{xml} und auch \acrshort{sgml} ist, dass die Spezifikation sogenannten \emph{Mixed Content} erlaubt. Dieser liegt vor, wenn ein Element sowohl Character Data als auch Kindelemente enthält~\cite[Abschnitt 3.2.2]{maler2008xml}.
 
-\begin{example} Mixed Content
+\begin{example}[Mixed Content]~
     \begin{minted}{xml}
 <mixed>This is an element<br /> containing <emph>mixed content</emph>.<mixed>
     \end{minted}
+    \captionof{figure}{Mit Elementen durchsetzte \emph{Character Data} wird \emph{Mixed Content} genannt.}
 \end{example}
 
 \emph{Mixed Content} stellt \acrshort{xml}-Parser vor besondere Herausforderungen~\cite{mcgrath2002mixedcontent}. Zudem existiert kein \acrshort{json}-Äquivalent von \emph{Mixed Content}, was eine Konversion erschwert.
@@ -153,7 +154,8 @@ Wird kein Schema verwendet bzw. legt ein Schema den Datentyp eines Elements nich
 
 Elemente dieses Typs unterliegen keinen Beschänkungen. Daher ist es ohne Zuhilfenahme eines Schemas nicht möglich, Aussagen über den Wertebereich eines Elements, eines Attributs oder einer Text Node zu treffen.
 
-\begin{example} Type Inference
+\begin{example}[Type Inference]~
+
     \begin{minted}[linenos=false]{xml}
 <price>5.99</price>
     \end{minted}
@@ -188,7 +190,7 @@ Darf eine Text Node beispielsweise eigentlich beliebigen Zeicheninhalt enthalten
 
 Ein weiteres Problem bei der \emph{Type Inference} kann durch die unterschiedlichen Wertebereichsgrenzen der verschiedenen Datentypen entstehen.  Während Zeichenketten in vielen Programmiersprachen mehrere tausend Zeichen lang sein dürfen, ist der Wertebereich von numerischen Datentypen in der Regel deutlich eingeschränkter. Wird ein Zahlenwert vom Konversionsprogramm also in einen nativen Datentyp umgewandelt, für den ein kleinerer Wertebereich gilt als durch Strings darstellbar sind, führt dies zu Fehlern oder Informationsverlust.
 
-\begin{example} Informationsverlust durch Typumwandlung in JavaScript
+\begin{example}[Informationsverlust durch Typumwandlung in JavaScript]
 
     Die Programmiersprache \emph{JavaScript} erlaubt beispielsweise Strings mit einer Länge von bis zu $n=2^{53}-1 \approx 9 \cdot 10^{15}$ Zeichen, d.h. als Strings abgelegte Zahlen können rund 9 Billarden Stellen haben.~\cite[Abschnitt 6.1.4]{ecma262} Für Zahlen im Dezimalsystem entspräche dies dem Wertebereich $\left\{x \in \mathbb{Z} \mid -\left(10^{n-1}-1\right) \leq x \leq 10^{n}-1\right\}$.
 

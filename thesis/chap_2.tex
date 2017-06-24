@@ -26,22 +26,20 @@ Im Web wird XML z.B. in Form von \acrshort{xhtml} oder \gls{rss} für die Darste
 \label{sec:xmlbasics}
 
 \begin{figure}[h!]
-    \begin{example}[\acrshort{xml}-Dokument] Ein  einfaches \acrshort{xml}-Dokument, das verschiedene Knoten-Typen enthält.
-
-    \label{ex:xmldoc}
-    \inputminted{xml}{xmltree.xml}
-    \end{example}
+    \begin{example}[\acrshort{xml}-Dokument]
+        Ein  einfaches \acrshort{xml}-Dokument, das verschiedene Knoten-Typen enthält.
+        \label{ex:xmldoc}
+        \inputminted{xml}{xmltree.xml}
+        \end{example}
 \end{figure}
 
-\begin{figure}[h!]
-    \begin{example}[\acrshort{xml}-Nodes] Die verschiedenen \acrshort{xml}-Nodes und ihre Eltern-Kind-Beziehungen stellen eine Braumstruktur dar.
-
-        \todo[inline]{TODO: Hier und im restlichen Dokument nicht gleichzeitig Caption und Beschreibungstext in Beispiele packen, das sieht komisch aus.}
-        \begin{captionbeside}%
-            {Das \acrshort{xml}-Dokument aus Beispiel \ref{ex:xmldoc} kann als Baumstruktur dargestellt werden. Die durch Einrückung entstandenen Whitespace-Textknoten wurden zwecks Übersichtlichkeit nicht miteinbezogen.}
-            \label{ex:xmltree}
-            \includestandalone[width=0.5\textwidth]{xmltree}
-        \end{captionbeside}
+\begin{figure}[b!]
+    \begin{example}[\acrshort{xml}-Nodes]
+        Das \acrshort{xml}-Dokument aus Beispiel \ref{ex:xmldoc} kann als Baumstruktur dargestellt werden. Die durch Einrückung entstandenen Whitespace-Textknoten wurden zwecks Übersichtlichkeit nicht miteinbezogen.
+        \begin{center}
+            \includestandalone[width=0.6\textwidth]{xmltree}
+        \end{center}
+        \label{ex:xmltree}
     \end{example}
 \end{figure}
 
@@ -88,7 +86,6 @@ Namensräume werden mittels eines Bezeichners -- dem Namespace-Namen -- identifi
         \label{ex:xmlns}
         Anhand des Namenraum kann die semantische Bedeutung verschiedener Elemente trotz gleichen Tag-Namens unterschieden werden.
         \inputminted[firstline=2,firstnumber=1]{xml}{ex-xmlns.xml}
-        \captionof{figure}{Ein \acrshort{xml}-Dokument, das mehrere verschiedene Namensräume enthält.}
     \end{example}
 \end{figure}
 
@@ -109,15 +106,14 @@ festgelegt. Der Umwandlungprozess wird \acrfull{c14n} genannt.~\cite{boyer2001c1
 
 \begin{figure}[h!]
 \begin{example}[Kanonisierung]
-\label{ex:c14n}
+    \label{ex:c14n}
+    Ein \acrshort{xml}-Dokument vor und nach der Kanonisierung. Beide Versionen sind
+    logisch äquivalent.
 
-Ein \acrshort{xml}-Dokument vor und nach der Kanonisierung. Beide Versionen sind
-logisch äquivalent.
-
-\inputminted{xml}{ex-c14n-pre.xml}
-\captionof{figure}{Das unkanonisierte \acrshort{xml}-Dokument enthält überflüssigen Whitespace und z.T. einfache Hochkommas als Attributwert-Trennzeichen.}
-\inputminted{xml}{ex-c14n-post.xml}
-\captionof{figure}{Im kanonisierten \acrshort{xml}-Dokument wurde überflüssiger Whitespace entfernt, durchgehend das Anführungszeichen als Attributtrennzeichen verwendet und lediglich aus einem Start-Tag bestehende leere Elemente durch das entsprechende Start-End-Tag-Paar ersetzt.}
+    Das unkanonisierte \acrshort{xml}-Dokument enthält überflüssigen Whitespace und z.T. einfache Hochkommas als Attributwert-Trennzeichen.
+    \inputminted{xml}{ex-c14n-pre.xml}
+    Durch die Kanonisierung des Dokuments wurde überflüssiger Whitespace entfernt, durchgehend das Anführungszeichen als Attributtrennzeichen verwendet und lediglich aus einem Start-Tag bestehende leere Elemente durch das entsprechende Start-End-Tag-Paar ersetzt.
+    \inputminted{xml}{ex-c14n-post.xml}
 \end{example}
 \end{figure}
 
@@ -202,10 +198,10 @@ Bei dem Angriffen aus dem Bereich \acrlong{fsa} soll der \acrshort{xml}-Parser d
 
 \paragraph{Parameter-Entity-based \acrfull{xxe}} Im Gegensatz zu klassischen \acrshort{xxe}-Angriffen kann der Dateiinhalt bei \gls{xxe} mit \emph{Parameter Entities} in eine CDATA"~Sektion eingebettet werden. Dies wird durch Anlegen mehrerer solcher Entities erreicht, die Beginn und Ende der CDATA"~Sektion sowie den Dateiinhalt enthalten und im Anschluss zusammengesetzt werden.~\cite[S.~10]{morgan2014xml}
 
+\begin{samepage}
 \begin{example}[\acrshort{xxe}-Angriff mit Parameter Entities]
-    Hier versucht ein Angreifer, den Inhalt der Datei \texttt{/etc/passwd} innerhalb einer CDATA-Sektion zu platzieren und diese in das XML-Dokument zufügen.
+    In der \acrshort{dtd} des \acrshort{xml}-Dokuments definiert der Angreifer Parameter Entities für den Inhalt der Datei \texttt{/etc/passwd} sowie für Beginn und Ende einer CDATA-Sektion.
 
-    Im Hauptdokument werden eine Reihe von \emph{Parameter Entities} angelegt, die dann in einem externen DTD zusammengesetzt werden.
     \begin{minted}{xml}
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE root [
@@ -217,15 +213,14 @@ Bei dem Angriffen aus dem Bereich \acrlong{fsa} soll der \acrshort{xml}-Parser d
 ]>
 <root>&all;</root>
     \end{minted}
-    \captionof{figure}{}
+    Mithilfe einer externen \acrshort{dtd}-Datei, die vom Angreifer unter der im Dokument angegeben \acrshort{url} abgelegt wurde, werden die einzelnen Parameter Entities zusammengesetzt.
 
     \begin{minted}{xml}
 <?xml version="1.0" encoding="UTF-8"?>
 <!ENTITY all "%start;%file;%end;">
     \end{minted}
-
-    Die \acrshort{dtd}-Datei wurde vom Angreifer unter der \acrshort{url} \texttt{http://example.com/evil.dtd} abgelegt.
 \end{example}
+\end{samepage}
 
 \paragraph{\acrshort{xinclude}}
 
@@ -236,7 +231,7 @@ Auch bei Angriffen auf Basis von \gls{xinclude} enthält das zu parsende \acrsho
 <?xml version="1.0" encoding="UTF-8"?>
 <root xmlns:xi="http://www.w3.org/2001/XInclude">
   <xi:include href="file:///etc/passwd" parse="text" />
-/root>
+</root>
     \end{minted}
 \end{example}
 
@@ -319,7 +314,7 @@ Das \acrshort{json}-Format verfügt über mehrere verschiedene Datentypen, darun
     \item[\texttt{null}] steht für den Nullwert.
 \end{description}
 
-\begin{definition}Formale Syntax der \acrfull{json}
+\begin{definition}[Formale Syntax der \acrfull{json}]
 \label{def:json}
 
 Unerheblicher Whitespace (Tabulator\footnote{Unicode-Codepoint \texttt{U+0009}: \texttt{CHARACTER TABULATION}}, Zeilenumbruch\footnote{Unicode-Codepoint \texttt{U+000A}: \texttt{LINE FEED (LF)}}, Wagenrücklauf\footnote{Unicode-Codepoint \texttt{U+000D}: \texttt{CARRIAGE RETURN (CR)}} und Leerzeichen\footnote{Unicode-Codepoint \texttt{U+0020}: \texttt{SPACE}}) kann vor oder nach allen Token (\lit{\{}\footnote{Unicode-Codepoint \texttt{U+007B}: \texttt{LEFT CURLY BRACKET}}, \lit{\}}\footnote{Unicode-Codepoint \texttt{U+007D}: \texttt{RIGHT CURLY BRACKET}}, \lit{[}\footnote{Unicode-Codepoint \texttt{U+005B}: \texttt{LEFT SQUARE BRACKET}}, \lit{]}\footnote{Unicode-Codepoint \texttt{U+005D}: \texttt{RIGHT SQUARE BRACKET}}, \lit{:}\footnote{Unicode-Codepoint \texttt{U+003A}: \texttt{COLON}}, \lit{,}\footnote{Unicode-Codepoint \texttt{U+002C}: \texttt{COMMA}}) eingefügt werden.
@@ -413,12 +408,11 @@ Ein \acrfull{idraft} der \gls{ietf} von September 2012 schlug eine solche Funkti
 Eine Spezifikation für die Nutzung von Schemata ist aktuell noch im Entwurfsstadium. Daher werden die Sicherheitsaspekte von \emph{\acrshort{json} Schema} im Rahmen dieser Bacherlorarbeit nicht betrachtet. Sie beschreibt ebenfalls eine Möglichkeit zur Referenzierung von Schemata und \acrshort{json}-Werten~\cite[Abschnitt 8]{jsonschema}. Im Gegensatz zu \acrshort{xml} sieht die Spezifikation allerdings zur Zeit keine Möglichkeit zur Einbettung eines Schemas in ein Datendokument vor. Auch der Verweis auf ein Schema im Datendokument selbst ist nicht vorgesehen. Stattdessen können aber HTTP-Header ~\cite[Abschnitt 10.1]{jsonschema} verwendet werden, um auf ein Schema zu verweisen.
 
 \begin{figure}[h]
-\begin{example}[Unsicheres \acrshort{json}-Parsing] Wird \acrshort{json} mittels \mintinline{javascript}{eval()}-Funktion geparst, kann ein Angreifer u.U. Schadcode ausführen.
+\begin{example}[Unsicheres \acrshort{json}-Parsing] Wird \acrshort{json} mittels \mintinline{javascript}{eval()}-Funktion geparst, kann ein Angreifer u.U. Schadcode ausführen. Hier öffnet der im String eingebette Funktionsaufruf öffnet \mintinline{javascript}{alert()}-Benachrichtungsfenster im Browser.
 \inputminted{javascript}{json-eval.js}
 \begin{center}
 \frame{\includegraphics[width=\textwidth]{json-eval-alert}}
 \end{center}
-\caption{Der im String eingebetten Funktionsaufruf öffnet ein \mintinline{javascript}{alert()}-Benachrichtungsfenster im Browser.}
 \end{example}
 \end{figure}
 
