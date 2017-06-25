@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--;testcase
+[General]
+name: Space Char (u000020)
+description: Checks if the Space character (U+20) is handled correctly
+--><root><ud032> </ud032></root>
