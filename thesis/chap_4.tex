@@ -124,9 +124,26 @@ Bei den Sicherheitstests zeigte sich, dass \emph{Pesterfish} bei Nutzung der Vor
 \section{x2js}
 \label{sec:x2js}
 
-Die Beibehaltung der Dokumentreihenfolge ist beim Einsatz von \emph{x2js} nicht gegeben. Bei Mixed Content wird der gesamte Character Content eines Elements zu einem einzelnen Textknoten zusammengefasst. Auch \glspl{pi} werden nicht unterstützt -- treten diese innerhalb des Wurzelelements auf, wird anstelle der \gls{pi} ein leeres Element namens \enquote{undefined} eingefügt.
+Bei der Umwandlung mittels \emph{x2js} gehen die Reihenfolge der Elemente verloren. \glspl{pi} werden komplett ignoriert.
+
+Verfügt ein Element über mehrere Kindelemente mit dem gleichen Tagnamen, tritt bei der Konversion ein Fehler auf, wodurch mehrere JSON-Arrays ineinander geschachtelt werden. Bei der Rückkonversion enstehen dann zusätzliche Kindelemente, bei denen die Array-Indizes als Tag-Name verwendet werden.
+
+Mixed Content -- auch Einrückungen -- führen zum Absturz von \emph{x2js}.
+
+Sonderzeichen stellen für den Konverter jedoch kein Problem dar.
+
+\section{x2js (Fork)}
+\label{sec:x2js-fork}
+
+Die Beibehaltung der Dokumentreihenfolge ist beim Einsatz des \emph{x2js}-Forks nicht gegeben.
+
+Mixed Content führt im Gegensatz zum Ursprungsprojekt nicht zum Absturz, jedoch wird dabei der gesamte Character Content eines Elements zu einem einzelnen Textknoten zusammengefasst.
 
 Whitespace bleibt zwar grundsätzlich erhalten, Einrückungen werden jedoch wie anderer Mixed Content auch zusammengefasst, sodass bei Dokumenten mit Einrückungen nach der Konversion jedes Element mit zuvor eingerücktem Inhalt stattdessen einen einzelnen, nur aus Whitespace bestehenden Textknoten enthält.
+
+Auch \glspl{pi} werden nicht unterstützt -- treten diese innerhalb des Wurzelelements auf, wird anstelle der \gls{pi} ein leeres Element namens \enquote{undefined} eingefügt.
+
+Der Bug, der bei \emph{x2js}  Probleme mit Elementen verursacht, die·mehrere·Kindelemente·mit·dem·gleichen·Tagnamen enhalten, ist in der geforkten Version behoben. Die Kindelemente werden dabei jedoch nach Namen gruppiert, sodass die Reihenfolge beispielsweise bei alternierende Tag-Namen verloren geht.
 
 \section{xmljson}
 \label{sec:xmljson}
