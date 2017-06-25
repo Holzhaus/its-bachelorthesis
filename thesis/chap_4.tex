@@ -81,6 +81,19 @@ Das Konversionverfahren \acrshort{jsonml} ist vergleichsweise vollständig. Ledi
 
 \acrshort{jsonml} ist von allen getesten Konvertern als einziger in der Lage, alle Test-Dokumente verlustlos zu konvertieren, solange sie keine \glspl{pi} enhielten.
 
+\section{Json.NET}
+\label{sec:jsondotnet}
+
+Der Json.NET-Konverter nutzt intern die Klasse \mintinline{csharp}{System.Xml.XmlDocument} aus der C\#-Standardbibliothek.
+
+Probleme hat der Konverter mit der Beibehaltung der ursprünglichen Elementreihenfolge des Dokuments. Bei der Umwandlung von Mixed Content tritt ebenfalls Informationsverlust auf. Whitespace wird bei der Konversion verworfen.
+
+Json.NET ist als einziger Konverter im Test in der Lage, \glspl{pi} korrekt umzuwandeln -- zumindest solange sie keinen Whitespace enthalten, da dieser verloren geht. Treten \glspl{pi} außerhalb des Wurzelelements aus, führt dies bei der Rückkonvertierung der \acrshort{json}-Daten zu einem Absturz des Programms.
+
+Alle Zeichen, die nicht mit mittels 7-Bit-\acrshort{ascii}-Kodierung darstellbar sind (d.\,h. alle Zeichen, deren UnicodeCodepoint hinter U+00007F liegt) werden von Json.NET bereits bei der Konversion in \acrshort{json} durch zwei Fragezeichen ersetzt.
+
+Der Konverter ist anfällig für \acrshort{ssrf}-Angriffe durch mittels \acrlong{xxe}, sowohl mit General Entities als auch mit Parameter Entities. Ebenso ruft der Konverter exerne \glspl{dtd} über den im \texttt{SYSTEM}-Identifiktator angegebene \acrshort{uri} ab.
+
 \section{JXON}
 \label{sec:jxon}
 
