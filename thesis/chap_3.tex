@@ -40,7 +40,7 @@ Damit dieser Konversionsprozess als \emph{verlustlos} angesehen werden kann, mü
 \end{enumerate}
 \end{samepage}
 
-Logisch äquivalent (vgl. Bed. \ref{item:ioequal}) heißt nicht, dass das \acrshort{xml}-Dokument nach dem Kon\-versions-Round-Trip bitidentisch mit dem Ursprungsdokument sein muss -- es ist ausreichend, dass die Struktur der beiden Dokumente übereinstimmt. Daher werden beide Dokumente zunächst kanonisiert\footnote{Vgl. Abschnitt \ref{sec:c14n}} und im Anschluss verglichen. Stimmt die kanonische Form beider \acrshort{xml}-Dokumente überein, war die Konversion verlustlos.
+Logisch äquivalent (vgl. Bed. \ref{item:ioequal}) heißt nicht, dass das \acrshort{xml}-Dokument nach dem Kon\-versions\hyp{}Round\hyp{}Trip bitidentisch mit dem Ursprungsdokument sein muss -- es ist ausreichend, dass die Struktur der beiden Dokumente übereinstimmt. Daher werden beide Dokumente zunächst kanonisiert\footnote{Vgl. Abschnitt \ref{sec:c14n}} und im Anschluss verglichen. Stimmt die kanonische Form beider \acrshort{xml}-Dokumente überein, war die Konversion verlustlos.
 
 \begin{figure}[h!]
 \begin{definition}[Verlustlosigkeit von Konversion]\label{def:lossless}
@@ -59,15 +59,17 @@ Logisch äquivalent (vgl. Bed. \ref{item:ioequal}) heißt nicht, dass das \acrsh
 % TODO: Add content here
 \todo[inline]{TODO: Besserer Übergang zur folgenden Subsubsection}
 
+
+
 \subsubsection{Elemente und Attribute}
 
-Als Kerninhalt jedes \acrshort{xml}-Dokuments müssen Elemente und deren Beziehung zueinander erhalten bleiben. Ebenso Attribute dürfen bei der Konversion nicht verloren gehen. Auch die Tag-Namen der Elemente transportieren relevante Information, daher müssen Sie erhalten bleiben -- dies gilt auch für den Tag-Namen des Wurzelelements.
+Als Kerninhalt jedes \acrshort{xml}\hyp{}Dokuments müssen Elemente und deren Beziehung zueinander erhalten bleiben. Ebenso Attribute dürfen bei der Konversion nicht verloren gehen. Auch die Tag\hyp{}Namen der Elemente transportieren relevante Information, daher müssen Sie erhalten bleiben -- dies gilt auch für den Tag\hyp{}Namen des Wurzelelements.
 
 \subsubsection{Namespaces}
 
 Namespaces bieten eine Möglichkeit, Teilen eines \acrshort{xml}-Dokuments eine bestimmte Semantik zuzuweisen. Die Zuordnung zwischen Elementen und Namensräumen im Dokument darf daher nicht verändert werden.
 
-Obwohl Namespace-Prefixe eigentlich frei gewählt werden können, ist es möglich, dass auch sie wichtige Informationen enthalten. Dies wäre beispielsweise dann der Fall, wenn ein im Dokument vorhandener \acrshort{xpath}-Ausduruck ein Namenraumprefix referenziert.~\cite[Abschn. 4.4]{boyer2001c14n} Bei einer Umbenennung von Prefixen wäre die korrekte Evaluation des \acrshort{xpath}-Ausdrucks nicht mehr möglich. Die Prefix-Bezeichner müssen also erhalten bleiben.
+Obwohl Namespace\hyp{}Prefixe eigentlich frei gewählt werden können, ist es möglich, dass auch sie wichtige Informationen enthalten. Dies wäre beispielsweise dann der Fall, wenn ein im Dokument vorhandener \acrshort{xpath}\hyp{}Ausdruck ein Namenraumprefix referenziert.~\cite[Abschn. 4.4]{boyer2001c14n} Bei einer Umbenennung von Prefixen wäre die korrekte Evaluation des \acrshort{xpath}\hyp{}Ausdrucks nicht mehr möglich. Die Prefix-Bezeichner müssen also erhalten bleiben.
 
 \subsubsection{Character Data}
 \label{sec:cdata}
@@ -118,9 +120,9 @@ Folglich muss die Reihenfolge der Element-Nodes bei der Konversion beibehalten w
 
 \paragraph{Ordnung von Attributen und Namespaces}
 
-Der Reihenfolge, in der die Attribute eines Element im Start-Tag bzw. Leeres-Element-Tag angegeben wurden, kommt laut \acrshort{xml}-Spezifikation keine Bedeutung zu.~\cite[Abschnitt~3.1]{maler2008xml}
+Der Reihenfolge, in der die Attribute eines Element im Start-Tag bzw. Leeres-Element-Tag angegeben wurden, kommt laut \acrshort{xml}-Spezi\-fikation keine Bedeutung zu.~\cite[Abschnitt~3.1]{maler2008xml}
 
-Dies wird auch von der \acrshort{xpath}-Spezifikation untermauert, die die Reihenfolge von Namespace-Deklarationen und Attributen als implementierungsabhängig festlegt.~\cite[Abschnitt~5]{clark1999xpath1}
+Dies wird auch von der \acrshort{xpath}-Spezifikation untermauert, die die Reihenfolge von Name\-space-Deklarationen und Attributen als implementierungsabhängig festlegt.~\cite[Abschnitt~5]{clark1999xpath1}
 
 Die Reihenfolge der Attribute eines Elements nach einem $\text{\acrshort{xml}}\rightarrow{}\text{\acrshort{json}}\rightarrow{}\text{\acrshort{xml}}$-Roundtrip ist daher beliebig und muss nicht mit der Reihenfolge vor der Umwandlung identisch sein.
 
@@ -131,7 +133,7 @@ XML-Parser müssen grundsätzlich jeglichen Whitespace -- also Leerzeichen, Tabs
 \begin{samepage}
     Ausgenommen hiervon sind jedoch bestimmte Sonderfälle, in denen Whitespace durch den \acrshort{xml}-Prozessor \emph{normalisiert} wird:
     \begin{enumerate}
-        \item{} Zeilenenden, d.h. die verschiedenen Kombinationen der Wagenrücklauf- und Zeilenvorschub-Zeichen, werden zu einem einfachen Zeilenvorschub umgewandelt ~\cite[Abschn.~2.11]{maler2008xml}.
+        \item{} Zeilenenden, d.h. die verschiedenen Kombinationen der Wagenrücklauf- und \linebreak{}Zeilenvorschub-Zeichen, werden zu einem einfachen Zeilenvorschub umgewandelt ~\cite[Abschn.~2.11]{maler2008xml}.
         \item{} In Attributen vorkommende Whitespace-Zeichen (keine Character References) werden zu Leerzeichen umgewandelt~\cite[Abschn.~3.3.3]{maler2008xml}
     \end{enumerate}
 \end{samepage}
@@ -200,6 +202,7 @@ Darf eine Text Node beispielsweise eigentlich beliebige Zeichen enthalten, enth�
 
 Ein weiteres Problem bei der \emph{Type Inference} kann durch die unterschiedlichen Wertebereichsgrenzen der verschiedenen Datentypen entstehen.  Während Zeichenketten in vielen Programmiersprachen mehrere tausend Zeichen lang sein dürfen, ist der Wertebereich von numerischen Datentypen in der Regel deutlich eingeschränkter. Wird ein Zahlenwert vom Konversionsprogramm also in einen nativen Datentyp umgewandelt, für den ein kleinerer Wertebereich gilt als durch Strings darstellbar sind, führt dies zu Fehlern oder Informationsverlust.
 
+\begin{figure}[t!]
 \begin{example}[Informationsverlust durch Typumwandlung in JavaScript]
 
     Die Programmiersprache \emph{JavaScript} erlaubt Strings mit einer Länge von bis zu $n=2^{53}-1 \approx 9 \cdot 10^{15}$ Zeichen, d.h. als Strings abgelegte Zahlen können rund 9 Billarden Stellen haben.~\cite[Abschnitt 6.1.4]{ecma262} Für Zahlen im Dezimalsystem entspräche dies dem Wertebereich $\left\{x \in \mathbb{Z} \mid -\left(10^{n-1}-1\right) \leq x \leq 10^{n}-1\right\}$.
@@ -211,6 +214,7 @@ Ein weiteres Problem bei der \emph{Type Inference} kann durch die unterschiedlic
     \inputminted[firstline=2,firstnumber=1,mathescape]{javascript}{typeinference.js}
     \captionof{figure}{Die Umwandlung von numerischen Zeichenketten in den \texttt{Number}-Typ kann in JavaScript bei Zahlen $> 2^{53}-1$ zu Problemen führen.}
 \end{example}
+\end{figure}
 
 Ähnliches gilt für Konversionsverfahren, die aus Werten wie \mintinline{text}{yes} und \mintinline{text}{true} den Boole'schen Datentyp ableiten: Nach dem Konversion ist nicht mehr feststellbar, ob der Ursprungswert nun \mintinline{text}{yes} oder \mintinline{text}{true} lautete.
 
@@ -218,7 +222,7 @@ Ein weiteres Problem bei der \emph{Type Inference} kann durch die unterschiedlic
 
 Die \acrshort{xml}-Spezifikation erlaubt eine große Anzahl verschiedener Unicode-Zeichen weit über den ASCII-Raum hinaus ~\cite[Regel~2]{maler2008xml}. Da bei der Konvertierung keine Zeichendaten verloren gehen dürfen (vgl. Abschn.~\ref{sec:cdata}), müssen Konverter in der Lage sein, diese Zeichen zu \acrshort{json} zu übersetzen und ggf. korrekt zu quotieren.
 
-Dies gilt auch für die Zeichen, von deren Einsatz \acrshort{xml}-Spezifikation abgeraten wird~\cite[Abschn.~2.2]{maler2008xml}, da es sich dennoch um wohlgeformtes \acrshort{xml} handelt.
+Dies gilt auch für die Zeichen, von deren Einsatz \acrshort{xml}-Spezifikation ausdrücklich abgeraten wird~\cite[Abschn.~2.2]{maler2008xml}, da es sich dennoch um wohlgeformtes \acrshort{xml} handelt.
 
 \section{Auswahl der \acrshort{xml}-\acrshort{json}-Konverter}
 \label{sec:converters}
@@ -284,7 +288,7 @@ Aufgrund des in dieser Arbeit zur Anwendung kommenden Prüfverfahrens konnten je
 \end{samepage}
 
 Da es für viele XML-Strukturen kein Äquivalent in der JSON-Spezifikation existiert, gibt es meist verschiedene Möglichkeiten der Abbildungs von XML-Inhalten in JSON.
-Die gebräuchlichsten Varianten haben sich in Form verschiedener Konvertierungskonventionen herausgebildet, die jeweils beschreiben, wie XML-Strukturen in JSON dargestellt werden~\cite{open311-conventions}. Dabei unterscheidet sich das anhand der verschiedenen Konventionen produzierte JSON zum Teil stark, beispielsweise darin, welcher JSON-Containertyp zur Darstellung eines XML-Elements genutzt wird oder wie Attribute dargestellt werden. Die für die Analyse im Rahmen der vorliegenden Arbeit ausgewählten Konverter sollten daher nach Möglichkeit verschiedene Umwandlungsverfahren und Konventionen implementieren.
+Die gebräuchlichsten Varianten haben sich in Form verschiedener Konvertierungskonventionen herausgebildet, die jeweils beschreiben, wie XML-Strukturen in JSON dargestellt werden~\cite{open311-conventions}. Dabei unterscheidet sich das anhand der verschiedenen Konventionen produzierte JSON zum Teil stark, beispielsweise darin, welcher JSON-Container\-typ zur Darstellung eines XML-Elements genutzt wird oder wie Attribute dargestellt werden. Die für die Analyse im Rahmen der vorliegenden Arbeit ausgewählten Konverter sollten daher nach Möglichkeit verschiedene Umwandlungsverfahren und Konventionen implementieren.
 
 Da die Formate insbesondere im Webbereich eingesetzt werden und Webservices sowie \acrshortpl{api} ein relevantes Einsatzfeld für \acrshort{xml}-\acrshort{json}-Konversion darstellen, wurde bei der Auswahl zudem darauf geachtet, ein breites Spektrum verschiedener populärer Programmiersprachen aus diesem Bereich abzudecken. Sowohl die klassischen Programmiersprachen für Web-Applikationen --  Java, PHP und JavaScript -- als auch C\#, Ruby und Python, die im Web in Form von ASP.NET, Ruby-on-Rails bzw. Django oder Flask zum Einsatz kommen, werden durch die Auswahl abgedeckt.
 
@@ -295,9 +299,8 @@ Da die Formate insbesondere im Webbereich eingesetzt werden und Webservices sowi
     \item[{\acrshort{jsonml}}] Die \acrfull{jsonml} ist \acrshort{json}-basiertes Format zur Speicherung von \acrshort{xml}-Markup. Neben der JavaScript-Bibliothek existieren auch Implementerungen in anderen Programmiersprachen, z.B. in Java\footnote{Das \texttt{org.json}-Paket stellt eine entsprechende Klasse bereit.}  oder PHP\footnote{Als Teil des FluentDOM-Projekts, siehe: \url{https://github.com/FluentDOM/FluentDOM/blob/master/src/FluentDOM/Serializer/Json/JsonML.php}}.
     \item[{\acrshort{jxon}}] Bei dem JavaScript-Modul handelt es sich um eine bidirektionale Bibliothek für die \acrlong{jxon}. Es handelt sich um eine Weiterentwicklung der ursprünglich von Mozilla veröffentlichten Implementierung.
     \item[Newtonsoft Json.NET] Das JSON-Framework für C\#.NET wurde insgesamt mehr als 64 Millionen Mal von Paket-Repository NuGet heruntergeladen~\cite{nugetjsonnet} und war zum Testzeitpunkt das am meisten heruntergeladene .NET-Paket~\cite{nugetstatistics}. Es ermöglicht unter anderem auch die Konversion von XML-Dokumenten in das JSON-Format.
-    \item[org.json.XML] Das Paket \texttt{org.json} ist die Referenzimplementierung des \acrshort{json}-Formats für Java und bietet auch ein Konversionsverfahren in Form einer dedizierten \acrshort{xml}-Klasse. Es wird von mehr als 1\,600 Projekten eingesetzt, darunter auch die Google Android Library, das Google Web Toolkit (GWT) oder die XStream-Bibliothek~\cite{mvn-orgjsonxml}.
-    \item[Pesterfish] Das Python-Modul Pesterfish konvertiert zwischen \acrshort{xml} und Python-Dictionaries, die dann zu \acrshort{json} serialisiert werden können. Laut dem Autor wurde das Konversionsverfahren als \enquote{Reaktion auf die Badgerfish-Konvention} entwickelt\footnote{Der Autor schreibt dies in einem Kommentar im Quelltext des Moduls.}. Für die Verarbeitung der \acrshort{xml}-Daten baut das Modul auf die \texttt{ElementTree}-\acrshort{api} auf und erlaubt Entwicklern auch die Angabe eines eigenen Parsers, beispielsweise \texttt{defusedxml}.
-    %FIXME: Quelle
+    \item[org.json.XML] Das Paket \texttt{org.json} ist die Referenzimplementierung des \acrshort{json}-Formats für Java und bietet auch ein Konversionsverfahren in Form einer dedizierten \acrshort{xml}-Klasse. Es wird von mehr als 1\,600 Projekten eingesetzt, darunter auch die Google Android Library, das Google Web Toolkit (GWT) oder die Objektserialisierungs\hyp{}Bibliothek XStream~\cite{mvn-orgjsonxml}.
+    \item[Pesterfish] Das Python-Modul Pesterfish konvertiert zwischen \acrshort{xml} und Python-\linebreak{}Dictionaries, die dann zu \acrshort{json} serialisiert werden können. Laut dem Autor wurde das Konversionsverfahren als \enquote{Reaktion auf die Badgerfish-Konvention} entwickelt\footnote{Der Autor schreibt dies in einem Kommentar im Quelltext des Moduls.}. Für die Verarbeitung der \acrshort{xml}-Daten baut das Modul auf die \texttt{ElementTree}-\acrshort{api} auf und erlaubt Entwicklern auch die Angabe eines eigenen Parsers, beispielsweise \texttt{defusedxml}.
     \item[x2js] Die JavaScript-Bibliothek ist mit 475 Sternen und 219 Forks auf GitHub recht populär~\cite{githubx2js} und erlaubt eine große Zahl von Einstellungsmöglichkeiten.
     \item[x2js (Fork)] Hierbei handelt es sich um einen für die Verwendung mit NodeJS ausgelegten Fork der xj2s-Bibliothek, der seit der Abspaltung im Oktober 2015 unabhängig weiterentwickelt wird.
     \item[xmljson] Das Python-Paket \emph{xmljson} wurde mehr als 11\,500 mal vom Python-Repository PyPI heruntergeladen~\cite{pypistats-xmljson}. Eine Besonderheit ist, dass es die Konversion von \acrshort{xml}-Daten in Python-Dictionaries/Lists bzw. \acrshort{json} anhand von 6 verschiedenen Konventionen (\emph{Abdera}, \emph{Badgerfish}, \emph{Cobra}, \emph{GData}, \emph{Parker} und \emph{Yahoo}) unterstützt.
