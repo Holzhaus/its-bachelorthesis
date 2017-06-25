@@ -126,7 +126,17 @@ Die Reihenfolge der Attribute eines Elements nach einem $\text{\acrshort{xml}}\r
 
 \subsubsection{Whitespace}
 
-Whitespace innerhalb des Wurzelelements des Dokumentens muss beibehalten werden, während whitespace außerhalb des Wurzelelements keine Bedeutung zukommt.~\cite[Abschnitt~2.1]{boyer2001c14n}
+XML-Parser müssen grundsätzlich jeglichen Whitespace -- also Leerzeichen, Tabs und Zeilenumbrüche --  innerhalb des Wurzelelements eines Dokuments an die verarbeitende Applikation weiterreichen~\cite[Abschn.~2.10]{maler2008xml}, während Whitespace außerhalb des Wurzelelements keine Bedeutung zukommt~\cite[Abschnitt~2.1]{boyer2001c14n}.
+
+\begin{samepage}
+    Ausgenommen hiervon sind jedoch bestimmte Sonderfälle, in denen Whitespace durch den \acrshort{xml}-Prozessor \emph{normalisiert} wird:
+    \begin{enumerate}
+        \item{} Zeilenenden, d.h. die verschiedenen Kombinationen der Wagenrücklauf- und Zeilenvorschub-Zeichen, werden zu einem einfachen Zeilenvorschub umgewandelt ~\cite[Abschn.~2.11]{maler2008xml}.
+        \item{} In Attributen vorkommende Whitespace-Zeichen (keine Character References) werden zu Leerzeichen umgewandelt~\cite[Abschn.~3.3.3]{maler2008xml}
+    \end{enumerate}
+\end{samepage}
+
+Zwar kann Whitespace durch \glspl{dtd} oder \acrshort{XSD}-Schemata auch als unsignifikant markiert werden~\cite{page2005whitespace}, dies wird jedoch nur von \enph{validierenden} XML-Prozessoren beachtet und geht somit über den Rahmen der vorliegenden Arbeit hinaus.
 
 \subsubsection{Mixed Content}
 \label{sec:mixedcontent}
