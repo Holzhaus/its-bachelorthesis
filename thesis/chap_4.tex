@@ -48,7 +48,13 @@ Die Konversion der umfangreichen \acrshort{odf}-Spezifikation in Form einer \tex
     \label{fig:greencapeloop}
 \end{figure}
 
-Abgesehen von diesem möglicherweise für \acrshort{dos}-Attacken ausnutzbarem Verhalten war der \emph{GreenCape XML Converter}, der das Parsen der XML-Daten selbst implementiert, für keinen der getesteten Angriffe verwundbar.
+Abgesehen von diesem möglicherweise für \acrshort{dos}-Attacken ausnutzbarem Verhalten war der \emph{GreenCape XML Converter} für keinen der getesteten Angriffe verwundbar.
+
+CDATA-Sektionen in \acrshort{xml}-Dokumenten führen zu Fehlern im von der PHP-Bibliothek selbst implementierten \acrshort{xml}-Parser und bringen das Programm zum Absturz.
+
+Bei der Konversion von Mixed Content wirt sämtlicher Textinhalt außerhalb der Kindelemente verworfen. Whitespace geht ebenso verloren. \glspl{pi} werden ignoriert. Abgesehen von Whitespace bleiben alle Sonderzeichen bei der Umwandlung jedoch erhalten.
+
+Der \emph{GreenCape XML Converter} konnte als einziges Programm neben \acrshort{JsonML} (vgl. Abschn.~\ref{sec:jsonml}) die \acrshort{xml}-Antwort auf eine Anfrage an die MusicBrainz-\acrshort{api} verlustlos umwandeln.
 
 \section{Json-lib}
 \label{sec:jsonlib}
