@@ -4,4 +4,4 @@
 name: Duplicate Child tag Names (Alternating Order)
 description: Checks if one tag that has multiple child elements with alternating child tag name will be kept in the correct order.
  -->
-<root><a>hello</a><b>world</b><a>hello</a><a>world</a><b>hello></b><b>world</b></root>
+<root><a>hello</a><b>world</b><a>hello</a><a>world</a><b>hello</b><b>world</b></root>
