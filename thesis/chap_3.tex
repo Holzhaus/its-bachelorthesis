@@ -194,7 +194,7 @@ Ein weiteres Problem bei der \emph{Type Inference} kann durch die unterschiedlic
 
     Die Programmiersprache \emph{JavaScript} erlaubt Strings mit einer Länge von bis zu $n=2^{53}-1 \approx 9 \cdot 10^{15}$ Zeichen, d.h. als Strings abgelegte Zahlen können rund 9 Billarden Stellen haben.~\cite[Abschnitt 6.1.4]{ecma262} Für Zahlen im Dezimalsystem entspräche dies dem Wertebereich $\left\{x \in \mathbb{Z} \mid -\left(10^{n-1}-1\right) \leq x \leq 10^{n}-1\right\}$.
 
-    Für den Datentyp \texttt{Number} nutzt JavaScript 64-bit-Fließkommazahlen nach dem IEEE-754-Standard (Doppelte Genauigkeit, \texttt{binary64}).~\cite[Abschnitt 4.3.20]{ieee754,ecma262}. Für Ganzzahlen gilt daher der \enquote{sichere} Wertebereich $\left\{x \in \mathbb{Z} \mid \abs{x} \leq 2^{53}-1\right\}$~\cite[Abschnitt 20.1.2.5]{ecma262}. Dies entspricht einer Zahl mit lediglich $\floor{\log_{10}\left(2^{53}-1\right)}+1 = 16$ Ziffern im Dezimalsystem.
+    Für den Datentyp \texttt{Number} nutzt JavaScript 64-bit-Fließkommazahlen nach dem \acrshort{ieee}-754-Standard (Doppelte Genauigkeit, \texttt{binary64}).~\cite[Abschnitt 4.3.20]{ieee754,ecma262}. Für Ganzzahlen gilt daher der \enquote{sichere} Wertebereich $\left\{x \in \mathbb{Z} \mid \abs{x} \leq 2^{53}-1\right\}$~\cite[Abschnitt 20.1.2.5]{ecma262}. Dies entspricht einer Zahl mit lediglich $\floor{\log_{10}\left(2^{53}-1\right)}+1 = 16$ Ziffern im Dezimalsystem.
 
     Zahlen außerhalb dieses Wertebereichs können nicht mehr fehlerfrei eingesetzt werden.
 
