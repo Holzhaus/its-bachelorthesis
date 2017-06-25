@@ -4,4 +4,4 @@
 name: Namespace declaration (multiple)
 description: Checks if XML multiple namespaces declarations and prefixes can be converted.
  -->
-<root><test xmlns:bar="http://example.com/bar"><a xmlns="http://example.com/a"><hello>world</hello><b xmlns="http://example.com/b" xmlns:foo="http://example.com/foo"><c>hello</c><foo:d>world</foo:d></b></a><bar:e>hello</bar:e></test></root>
+<root><test xmlns:bar="http://example.com/bar"><a xmlns="http://example.com/a"><b>world</b><c xmlns="http://example.com/b" xmlns:foo="http://example.com/foo"><d>hello</d><foo:e>world</foo:e></c></a><bar:f>hello</bar:f></test></root>
