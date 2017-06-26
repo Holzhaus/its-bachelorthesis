@@ -56,10 +56,11 @@ Logisch äquivalent (vgl. Bed. \ref{item:ioequal}) heißt nicht, dass das \acrsh
 \end{definition}
 \end{figure}
 
-% TODO: Add content here
-\todo[inline]{TODO: Besserer Übergang zur folgenden Subsubsection}
+Für die Festellung, dass ein ein Konversionsverfahren verlustbehaftet ist, ist es ausreichend \emph{ein einzelnes} wohlgeformtes XML-Dokument zu finden, das das Verfahren nicht verlustlos konvertiert. Um jedoch hinreichend zu beweisen, dass ein Konversionsverfahren vollständig verlustlos arbeitet und somit Bedingungen aus Def.~\ref{def:lossless} erfüllt, müsste die Umwandlung für \emph{alle} wohlgeformten XML-Dokumente überprüft werden. Da die Menge der möglichen wohlgeformten XML-Dokumente  -- auch bei Beachtung der Einschränkungen aus Abschnitt~\ref{sec:critera-security} -- unendlich ist, ist eine deduktive Art der Beweisführung jedoch nicht möglich.
 
+Um zu entscheiden, ob ein Konversionsverfahren verlustlos ist, verfolgt die vorliegende Arbeit daher einen empirisch-induktiven Ansatz: Wenn für eine ausreichend große Anzahl verschiedener Fälle gezeigt wird, dass die Bedingung erfüllt ist\footnote{\emph{hier:} die XML-Dokumente vor und nach der Konversion sind logisch Äquivalent} kann, kann die eine allgemeine Erfüllung der Bedingung induziert werden~\cite[S.~2]{rudner1953judgments}.
 
+Daher wird die Verlustlosigkeit einer Konversion im Folgenden anhand konkreter XML-Strukturen und Problemstellungen erläutert. Diese bilden die Grundlage zur anschließenden zur Erstellung konkreter Testfälle in Form von XML-Dokumenten (vgl.~Abschn.~\ref{sec:method-conv}).
 
 \subsubsection{Elemente und Attribute}
 
