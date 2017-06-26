@@ -99,7 +99,7 @@ Wie bereits \acrshort{sgml} unterstützt \acrshort{xml} die Einbettung von Anwei
 
 In der Praxis werden \glspl{pi} eher selten eingesetzt. Genutzt werden sie unter anderem um Darstellungsinformationen in Form von Stylesheets mit \acrshort{xml}-Dokumenten zu verknüpfen~\cite[Abschnitt 4]{xmlstylesheet}.
 
-Ein weiteres prominentes Beispiel für eine Praxisanwendung ist die Microsoft Office Suite, die seit der Version 2003 Office-Dokumente als einzelne \acrshort{xml}-Dateien speichern kann. Diese setzen die unspezifische Dateiendung \texttt{*.xml} ein und würden daher mit einem generisch \acrshort{xml}-Anzeigeprogramm geöffnet werden. Mithilfe der Processing Instruction \mintinline{xml}{<?mso-application progid="Word.Document"?>} werden Windows- bzw. Internet Explorer angewiesen, diese als Microsoft Word-Document zu behandeln.~\cite[Abschnitt 3.2]{tverskov2008understandingpi}
+Ein weiteres prominentes Beispiel für eine Praxisanwendung ist die Microsoft Office Suite, die seit der Version 2003 Office-Dokumente als einzelne \acrshort{xml}-Dateien speichern kann. Diese setzen die unspezifische Dateiendung \texttt{*.xml} ein und würden daher mit einem generisch \acrshort{xml}-Anzeigeprogramm geöffnet werden. Mithilfe der Processing Instruction \enquote{\mintinline{xml}{<?mso-application progid="Word.Document"?>}} werden Windows- bzw. Internet Explorer angewiesen, diese als Microsoft Word-Document zu behandeln.~\cite[Abschnitt 3.2]{tverskov2008understandingpi}
 
 Auch die XSLT-Stylesheets des DocBook-Formats nutzen Processing Instructions, um spezielle Formatierungen für die verschiedenen Ausgabeformate festzulegen.~\cite[{Kapitel \enquote{User Reference: PIs}}]{docbookxsl}
 
@@ -199,7 +199,7 @@ Ein weiteres Problem bei der \emph{Type Inference} kann durch die unterschiedlic
 
 Die Programmiersprache \emph{JavaScript} erlaubt beispielsweise Strings mit einer Länge von bis zu $n=2^{53}-1 \approx 9 \cdot 10^{15}$ Zeichen, d.h. als Strings abgelegte Zahlen können rund 9 Billarden Stellen haben.~\cite[Abschnitt 6.1.4]{ecma262} Für Zahlen im Dezimalsystem entspräche dies dem Wertebereich $\left\{x \in \mathbb{Z} \mid -\left(10^{n-1}-1\right) \leq x \leq 10^{n}-1\right\}$.
 
-Für den Datentyp \texttt{Number} nutzt JavaScript 64-bit-Fließkommazahlen nach dem \acrshort{ieee}-754-Standard (Doppelte Genauigkeit, \texttt{binary64}).~\cite[Abschnitt 4.3.20]{ieee754,ecma262}. Für Ganzzahlen gilt daher der \enquote{sichere} Wertebereich $\left\{x \in \mathbb{Z} \mid \abs{x} \leq 2^{53}-1\right\}$~\cite[Abschnitt 20.1.2.5]{ecma262}. Dies entspricht einer Zahl mit lediglich $\floor{\log_{10}\left(2^{53}-1\right)}+1 = 16$ Ziffern im Dezimalsystem.
+Für den Datentyp \texttt{Number} nutzt JavaScript 64-bit-Fließkommazahlen nach dem \acrshort{ieee}-754-Standard\footnote{Fließkommazahlen mit doppelter Genauigkeit (\texttt{binary64}-Typ nach \acrshort{ieee}-754)}~\cite[Abschnitt 4.3.20]{ieee754,ecma262}. Für Ganzzahlen gilt daher der \enquote{sichere} Wertebereich $\left\{x \in \mathbb{Z} \mid \abs{x} \leq 2^{53}-1\right\}$~\cite[Abschnitt 20.1.2.5]{ecma262}. Dies entspricht einer Zahl mit lediglich $\floor{\log_{10}\left(2^{53}-1\right)}+1 = 16$ Ziffern im Dezimalsystem.
 
 Zahlen außerhalb dieses Wertebereichs können nicht mehr fehlerfrei eingesetzt werden. Auf den möglicher Informationsverlust bei dem Einsatz von Zahlentypen in \acrshort{json} wird in der \acrshort{ietf}-Spezifikation daher explizit hingewiesen~\cite[Abschn.~6]{rfc7159}.
 
@@ -210,7 +210,7 @@ Zahlen außerhalb dieses Wertebereichs können nicht mehr fehlerfrei eingesetzt 
 \end{example}
 \end{figure}
 
-Ähnliches gilt für Konversionsverfahren, die aus Werten wie \mintinline{text}{yes} und \mintinline{text}{true} den Boole'schen Datentyp ableiten: Nach dem Konversion ist nicht mehr feststellbar, ob der Ursprungswert nun \mintinline{text}{yes} oder \mintinline{text}{true} lautete.
+Ähnliches gilt für Konversionsverfahren, die aus Werten wie \enquote{\mintinline{text}{yes}} und \enquote{\mintinline{text}{true}} den Boole'schen Datentyp ableiten: Nach dem Konversion ist nicht mehr feststellbar, ob der Ursprungswert nun \enquote{\mintinline{text}{yes}} oder \enquote{\mintinline{text}{true}} lautete.
 
 \subsubsection{Unterstützung des Zeichenbereichs}
 
@@ -343,7 +343,7 @@ Stattdessen wird ein Sicherheitstest als Fehlschlag gewerten, wenn eine oder meh
 \end{enumerate}
 \end{samepage}
 
-Ist der eingesetzte \acrshort{xml}-Parser verwundbar gegenüber Angriffen aus dem Bereich \acrfull{dos}, führt das Parsen der Testdateien zu einem erhöhten Verbrauch an Systemressourcen. Die Obergrenzen für Arbeitsspeicherbelegung, CPU-Belastung und Zeitdauer sind so angelegt, dass ein erfolgreicher Angriff zwangsläufig gegen die erste Bedingung verstößt und damit zum Nichtbestehen des Tests führt.
+Ist der eingesetzte \acrshort{xml}-Parser verwundbar gegenüber Angriffen aus dem Bereich \acrfull{dos}, führt das Parsen der Testdateien zu einem erhöhten Verbrauch an Systemressourcen. Die Obergrenzen für Arbeitsspeicherbelegung, \acrshort{cpu}-Auslastung und Zeitdauer sind so angelegt, dass ein erfolgreicher Angriff zwangsläufig gegen die erste Bedingung verstößt und damit zum Nichtbestehen des Tests führt.
 
 Um zu Prüfen, ob \acrfull{ssrf} möglich ist, wird ein \acrshort{http}-Server gestartet, der von den entsprechenden Testfällen referenziert wird. Ruft ein Konverter während des Parsings eine der URLs auf, wird die Anfrage vom Server aufgezeichnet. Sind bei dem Server bis zum Abschluss der Konversion keine Anfragen eingegangen (Bed.~\ref{itm:cond-ssrf}), ist der Konverter offenbar nicht anfällig für solche Angriffe.
 
