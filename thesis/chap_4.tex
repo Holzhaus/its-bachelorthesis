@@ -93,6 +93,8 @@ Probleme hat der Konverter mit der Beibehaltung der ursprünglichen Elementreihe
 
 Json.NET ist als einziger Konverter im Test in der Lage, \glspl{pi} korrekt umzuwandeln -- zumindest solange sie keinen Whitespace enthalten, da dieser verloren geht. Treten \glspl{pi} außerhalb des Wurzelelements auf, führt dies bei der Rückkonvertierung der \acrshort{json}-Daten zu einem Absturz des Programms.
 
+Im Gegensatz zu allen anderen überprüften Konvertern wandelt Json.NET auch \acrshort{xml}-Kommentare um. Der Konverter fügt diese als JavaScript-Blockkommentare, d.h. in der Form \enquote{\mintinline{javascript}{/* Comment */}}, in die JSON-Ausgabe ein. Da Kommentare jedoch nicht Teil der \acrshort{json}-Syntax sind (vgl. Def.~\ref{def:json} in Abschn.~\ref{sec:jsontypes}), ist die von Json.NET in diesem Fall produzierte Ausgabe kein gültiges \acrshort{json}~\cite{ecma404,rfc7159} und führt bei den meisten Parsern zu Problemen~\cite[Abschn.~2.1,~4.1]{seriot2016minefield}.
+
 Alle Zeichen, die nicht mit mittels 7-Bit-\acrshort{ascii}-Kodierung darstellbar sind (d.\,h. alle Zeichen, deren UnicodeCodepoint hinter U+00007F liegt) werden von Json.NET bereits bei der Konversion in \acrshort{json} durch zwei Fragezeichen ersetzt.
 
 Der Konverter ist anfällig für \acrshort{ssrf}-Angriffe durch mittels \acrlong{xxe}, sowohl mit General Entities als auch mit Parameter Entities. Ebenso ruft der Konverter exerne \glspl{dtd} über den im \texttt{SYSTEM}-Identifiktator angegebene \acrshort{uri} ab.
