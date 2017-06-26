@@ -50,6 +50,59 @@ installiert werden:
 $ pip install pygments pygments-style-rub
 ```
 
+## Test-Framework
+
+Es wird empfohlen, das Test-Framework innerhalb eines Docker-Containers
+auszuführen. Dazu kann das Dockerfile unter `code/Dockerfile` verwendet
+werden.
+
+Zunächst muss dafür das Docker-Image erstellt werden:
+
+```shell-session
+$ cd code
+$ docker build -t xjcc .
+```
+
+Im Anschluss kann der Docker-Container gestartet werden. Um die Ergebnisdaten
+später auf dem Host-System auswerten zu können, kann ein lokaler Ordner auf
+das `/data`-Verzeichnis im Docker-Container gemappt werden. Hier ein Beispiel
+für das Verzeichnis `~/mydata` auf dem Host:
+
+```shell-session
+$ docker run -v ~/mydata:/data -it xjcc
+```
+
+Im Container wird eine Shell gestartet, in der dann der Befehl `xjcc` zum
+Einsatz des Test-Frameworks genutzt werden kann.
+
+Das folgende Kommando führt alle Konverter und alle Testfälle aus und
+legt die Ergebnisse in einem Ordner im aktuellen Arbeitsverzeichnis ab:
+
+```shell-session
+$ xjcc -vv test-conversion -w
+```
+
+Mit dem Argument `--help` kann die eingebaute Hilfe angezeigt werden:
+
+```shell -session
+$ xjcc --help
+usage: xjcc [-h] [-v | -vv | -q]
+            {convert-file,list-converters,list-testcases,test-conversion,canonicalize}
+            ...
+positional arguments:
+  {convert-file,list-converters,list-testcases,test-conversion,canonicalize}
+    convert-file        convert file
+    list-converters     list available converters
+    list-testcases      list available testcases
+    test-conversion     test conversion
+    canonicalize        canonicalize an XML document
+optional arguments:
+  -h, --help            show this help message and exit
+  -v, --verbose         be verbose
+  -vv, --debug          even show debug messages
+  -q, --quiet           be quiet
+```
+
 ## Testcases
 
 Die [Sicherheits-Testdokumente](code/test-documents) in den Ordnern
