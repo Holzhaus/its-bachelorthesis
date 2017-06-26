@@ -4,7 +4,7 @@
 \begin{samepage}
 Im Folgenden wird wird der Versuchsaufbau, bestehend aus
 \begin{enumerate}
-    \item{} der Erstellung einer Reihe von Kriterien zur Bewertung der Verlustlosigkeit  und Sicherheit von Konversionverfahren,
+    \item{} der Erstellung einer Reihe von Kriterien zur Bewertung der Verlustlosigkeit und Sicherheit von Konversionverfahren,
     \item{} einer Auswahl von zu überprüfenden Konverter, und
     \item{} der Methodik zur Überprüfung der Konversionsverfahren auf Einhaltung der zuvor festgelegten Kriterien
 \end{enumerate}
@@ -320,7 +320,7 @@ Da die Formate insbesondere im Webbereich eingesetzt werden und Webservices sowi
     \end{center}
 \end{figure}
 
-Zur Überprüfung der Konversionsqualität wurden für alle der in Abschnitt~\ref{sec:criteria} festgelegten Kriterien ein oder mehrere Testfälle erstellt. Jeder Testfall besteht aus einer \acrshort{xml}-Datei, anhand der bestimmte \acrshort{xml}-Features oder Problemstellungen nachvollzogen werden können. Die Dateien werden dazu zunächst mit einem Konverter in das \acrshort{json}-Format umgewandelt. Die daraus resultierenden \acrshort{json}-Daten werden im Anschluss wieder zurück in das \acrshort{xml}-Format konvertiert, d.h. es wird ein kompletter Round-Trip vollzogen.
+Zur Überprüfung der Konversionsqualität wurden für alle der in Abschnitt~\ref{sec:critera-lossless} festgelegten Kriterien und diskutierten Probleme ein oder mehrere Testfälle erstellt. Jeder Testfall besteht aus einer \acrshort{xml}-Datei, anhand der bestimmte \acrshort{xml}-Features oder Problemstellungen nachvollzogen werden können. Die Dateien werden dazu zunächst mit einem Konverter in das \acrshort{json}-Format umgewandelt. Die daraus resultierenden \acrshort{json}-Daten werden im Anschluss wieder zurück in das \acrshort{xml}-Format konvertiert, d.h. es wird ein kompletter Round-Trip vollzogen.
 
 Gemäß Definiton~\ref{def:lossless} gibt ein Abgleich zwischen den resultierenden \acrshort{xml}-Daten und dem ursprünglichen \acrshort{xml}-Dokument dann Aufschluss über den eventuellen Verlust signifikanter Informationen. Dazu wird überprüft, ob beide Dokumente logisch äquivalent sind, indem beide in \emph{kanonisches \acrshort{xml}} umgewandelt werden. Ob Informationsverlust aufgetreten ist, kann dann mit simplen Vergleich geprüft werden.
 
