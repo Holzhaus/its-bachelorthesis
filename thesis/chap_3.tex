@@ -195,19 +195,18 @@ Darf eine Text Node beispielsweise eigentlich beliebige Zeichen enthalten, enth�
 
 \paragraph{Einschränkungen durch Wertebereiche}
 
-Ein weiteres Problem bei der \emph{Type Inference} kann durch die unterschiedlichen Wertebereichsgrenzen der verschiedenen Datentypen entstehen.  Während Zeichenketten in vielen Programmiersprachen mehrere tausend Zeichen lang sein dürfen, ist der Wertebereich von numerischen Datentypen in der Regel deutlich eingeschränkter. Wird ein Zahlenwert vom Konversionsprogramm also in einen nativen Datentyp umgewandelt, für den ein kleinerer Wertebereich gilt als durch Strings darstellbar sind, führt dies zu Fehlern oder Informationsverlust~\cite[Abschn.~6]{rfc7159}.
+Ein weiteres Problem bei der \emph{Type Inference} kann durch die unterschiedlichen Wertebereichsgrenzen der verschiedenen Datentypen entstehen.  Während Zeichenketten in vielen Programmiersprachen mehrere tausend Zeichen lang sein dürfen, ist der Wertebereich von numerischen Datentypen in der Regel deutlich eingeschränkter. Wird ein Zahlenwert vom Konversionsprogramm also in einen nativen Datentyp umgewandelt, für den ein kleinerer Wertebereich gilt als durch Strings darstellbar sind, führt dies zu Fehlern oder Informationsverlust.
 
-\begin{figure}[t!]
+Die Programmiersprache \emph{JavaScript} erlaubt beispielsweise Strings mit einer Länge von bis zu $n=2^{53}-1 \approx 9 \cdot 10^{15}$ Zeichen, d.h. als Strings abgelegte Zahlen können rund 9 Billarden Stellen haben.~\cite[Abschnitt 6.1.4]{ecma262} Für Zahlen im Dezimalsystem entspräche dies dem Wertebereich $\left\{x \in \mathbb{Z} \mid -\left(10^{n-1}-1\right) \leq x \leq 10^{n}-1\right\}$.
+
+Für den Datentyp \texttt{Number} nutzt JavaScript 64-bit-Fließkommazahlen nach dem \acrshort{ieee}-754-Standard (Doppelte Genauigkeit, \texttt{binary64}).~\cite[Abschnitt 4.3.20]{ieee754,ecma262}. Für Ganzzahlen gilt daher der \enquote{sichere} Wertebereich $\left\{x \in \mathbb{Z} \mid \abs{x} \leq 2^{53}-1\right\}$~\cite[Abschnitt 20.1.2.5]{ecma262}. Dies entspricht einer Zahl mit lediglich $\floor{\log_{10}\left(2^{53}-1\right)}+1 = 16$ Ziffern im Dezimalsystem.
+
+Zahlen außerhalb dieses Wertebereichs können nicht mehr fehlerfrei eingesetzt werden. Auf den möglicher Informationsverlust bei dem Einsatz von Zahlentypen in \acrshort{json} wird in der \acrshort{ietf}-Spezifikation daher explizit hingewiesen~\cite[Abschn.~6]{rfc7159}.
+
+\begin{figure}[b!]
 \begin{example}[Informationsverlust durch Typumwandlung in JavaScript]
-
-    Die Programmiersprache \emph{JavaScript} erlaubt Strings mit einer Länge von bis zu $n=2^{53}-1 \approx 9 \cdot 10^{15}$ Zeichen, d.h. als Strings abgelegte Zahlen können rund 9 Billarden Stellen haben.~\cite[Abschnitt 6.1.4]{ecma262} Für Zahlen im Dezimalsystem entspräche dies dem Wertebereich $\left\{x \in \mathbb{Z} \mid -\left(10^{n-1}-1\right) \leq x \leq 10^{n}-1\right\}$.
-
-    Für den Datentyp \texttt{Number} nutzt JavaScript 64-bit-Fließkommazahlen nach dem \acrshort{ieee}-754-Standard (Doppelte Genauigkeit, \texttt{binary64}).~\cite[Abschnitt 4.3.20]{ieee754,ecma262}. Für Ganzzahlen gilt daher der \enquote{sichere} Wertebereich $\left\{x \in \mathbb{Z} \mid \abs{x} \leq 2^{53}-1\right\}$~\cite[Abschnitt 20.1.2.5]{ecma262}. Dies entspricht einer Zahl mit lediglich $\floor{\log_{10}\left(2^{53}-1\right)}+1 = 16$ Ziffern im Dezimalsystem.
-
-    Zahlen außerhalb dieses Wertebereichs können nicht mehr fehlerfrei eingesetzt werden.
-
+    Die Umwandlung von numerischen Zeichenketten in den \texttt{Number}-Typ kann in JavaScript bei Zahlen $> 2^{53}-1$ zu Problemen führen.
     \inputminted[firstline=2,firstnumber=1,mathescape]{javascript}{typeinference.js}
-    \captionof{figure}{Die Umwandlung von numerischen Zeichenketten in den \texttt{Number}-Typ kann in JavaScript bei Zahlen $> 2^{53}-1$ zu Problemen führen.}
 \end{example}
 \end{figure}
 
