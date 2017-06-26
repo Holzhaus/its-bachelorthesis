@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--;testcase
+[General]
+name: NEL Control Char (u000085)
+description: Checks if the NEL Control Char (U+85 ) is handled correctly
+--><root></root>

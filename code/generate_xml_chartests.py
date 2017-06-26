@@ -6,7 +6,6 @@ import lxml.etree
 CHAR_RANGES = [
     [    0x20,     0x7E, 'ASCII printable'],
     [    0x7F,     0x84, 'Discouraged'],
-    [    0x85,     0x85, 'NEL Control Char'],
     [    0x86,     0x9F, 'Discouraged'],
     [    0xA0,    0xFFF, 'BMP plane I'],
     [  0x1000,   0x1FFF, 'BMP plane II'],
