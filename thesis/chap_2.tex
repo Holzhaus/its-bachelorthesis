@@ -190,6 +190,7 @@ Bei dem Angriffen aus dem Bereich \acrlong{fsa} soll der \acrshort{xml}-Parser d
 \paragraph{\acrfull{xxe}}
 \acrshort{xxe}-Angriffe sind bereits seit 2002 bekannt~\cite{steuck2002xxe}. Der Angreifer gibt dabei den Pfad zu einer lokalen Datei auf dem Server in Form einer File-URL in einer External Entity an und refenziert diese Entity dann im Dokument. Enthält der eingebette Inhalt jedoch Zeichen, die von XML als Markup interpretiert werden, kann dies unter Umständen dazu führen, dass das resultierende Dokument nicht mehr wohlgeformt ist und der Angriff fehlschlägt.~\cite[Abschnitt 5.1]{spaeth2016sok}
 
+\begin{figure}[h!]
 \begin{example}[Klassischer \acrshort{xxe}-Angriff] Der \acrshort{xml}-Parser wird angewiesen, den Inhalt der Datei \texttt{/etc/passwd} in das Dokument einzubetten.
     \begin{minted}{xml}
 <?xml version="1.0" encoding="UTF-8"?>
@@ -199,10 +200,11 @@ Bei dem Angriffen aus dem Bereich \acrlong{fsa} soll der \acrshort{xml}-Parser d
 <root>&xxe;</root>
     \end{minted}
 \end{example}
+\end{figure}
 
 \paragraph{Parameter-Entity-based \acrfull{xxe}} Im Gegensatz zu klassischen \acrshort{xxe}-Angriffen kann der Dateiinhalt bei \gls{xxe} mit \emph{Parameter Entities} in eine CDATA"~Sektion eingebettet werden. Dies wird durch Anlegen mehrerer solcher Entities erreicht, die Beginn und Ende der CDATA"~Sektion sowie den Dateiinhalt enthalten und im Anschluss zusammengesetzt werden.~\cite[S.~10]{morgan2014xml}
 
-\begin{samepage}
+\begin{figure}[h!]
 \begin{example}[\acrshort{xxe}-Angriff mit Parameter Entities]
     In der \acrshort{dtd} des \acrshort{xml}-Dokuments definiert der Angreifer Parameter Entities für den Inhalt der Datei \texttt{/etc/passwd} sowie für Beginn und Ende einer CDATA-Sektion.
 
@@ -224,12 +226,13 @@ Bei dem Angriffen aus dem Bereich \acrlong{fsa} soll der \acrshort{xml}-Parser d
 <!ENTITY all "%start;%file;%end;">
     \end{minted}
 \end{example}
-\end{samepage}
+\end{figure}
 
 \paragraph{\acrshort{xinclude}}
 
 Auch bei Angriffen auf Basis von \gls{xinclude} enthält das zu parsende \acrshort{xml}-Dokument eine Anweisung zum Einbetten einer lokalen Datei~\cite{xinclude}. Im Gegensatz zu klassischen \acrshort{xxe}-Angriffen kann der eingebette Inhalt jedoch beliebiger Text sein, darf also z.B. auch ungültiges \acrshort{xml}-Markup enthalten.~\cite[S.~80]{spaeth2015dtdattacks}
 
+\begin{figure}[h!]
 \begin{example}[\acrshort{xinclude}-Angriff] Der \acrshort{xml}-Parser wird angewiesen, den Inhalt der Datei \texttt{/etc/passwd} in das Dokument einzubetten~\cite[Abschn.~3.1]{xinclude}.
     \begin{minted}{xml}
 <?xml version="1.0" encoding="UTF-8"?>
@@ -238,6 +241,7 @@ Auch bei Angriffen auf Basis von \gls{xinclude} enthält das zu parsende \acrsho
 </root>
     \end{minted}
 \end{example}
+\end{figure}
 
 Auch \acrfull{xslt} erlaubt die Einbindung von Dateien, beispielsweise über die \mintinline{xml}{fn:document}-Funktion~\cite[Abschn. 20.1]{xslt} und eigenet sich daher prinzipell für \acrshort{fsa}-Angriffe.
 
@@ -249,6 +253,7 @@ Auch \acrfull{xslt} erlaubt die Einbindung von Dateien, beispielsweise über die
 \paragraph{Entity Recursion Attack}
 Hierbei werden Entities so angelegt, dass sie auf sich selbst verweisen. Zwar sind direkte und indirekte Selbstreferenzierung von Entites in der \acrshort{xml}"~Spezifikation explizit verboten~\cite[Abschnitt 4.1]{maler2008xml}, naive Parser könnten aber trotzdem in eine Endlosschleife verfallen.
 
+\begin{figure}[h!]
 \begin{example}[Entity Recursion] Die Entität \mintinline{xml}{&a;} verweist indirekt auf sich selbst.
     \begin{minted}{xml}
 <?xml version="1.0" encoding="UTF-8"?>
@@ -259,10 +264,12 @@ Hierbei werden Entities so angelegt, dass sie auf sich selbst verweisen. Zwar si
 <root>&a;</root>
     \end{minted}
 \end{example}
+\end{figure}
 
 \paragraph{Exponential Entity Attack (Billion Laughs)}
 Indem interne Entities über mehrere Ebenen ineinander verschachtelt werden, wird der Parser dazu gebracht, eine große Menge von Arbeitsspeicher zu allozieren. Eine mögliche Gegenmaßnahme ist die Begrenzung der Anzahl von erlaubten Entity-Referenzen.
 
+\begin{figure}[h!]
 \begin{example}[Billion Laughs] Nach der rekursiven Dereferenzierung belegt die expandierte Entity \mintinline{xml}{&x9;} $\SI[parse-numbers=false]{3 \cdot 10^9}{\byte}\approx \SI{2.7939}{\gibi\byte}$ im Arbeitsspeicher.
     \begin{minted}{xml}
 <?xml version="1.0" encoding="UTF-8"?>
@@ -276,6 +283,7 @@ Indem interne Entities über mehrere Ebenen ineinander verschachtelt werden, wir
 <root>&x9;</root>
     \end{minted}
 \end{example}
+\end{figure}
 
 \paragraph{Quadratic Blowup Attack}
 Dieser Angriff ist eine Abwandlung der \emph{Billion Laughs Attack}. Es wird eine einzelne Entität angelegt, die einen extrem langen String enthält. Dieser wird nun mehrmals im Dokument referenziert, die Anzahl der verwendeten Referenzen ist jedoch im Vergleich zu \emph{Billion Laughs} gering, sodass eine mögliche Obergrenze für erlaubte Entity-Referenzen umgangen werden kann.
@@ -318,6 +326,7 @@ Das \acrshort{json}-Format verfügt über mehrere verschiedene Datentypen, darun
     \item[\texttt{null}] steht für den Nullwert.
 \end{description}
 
+\begin{figure}[tp!]
 \begin{definition}[Formale Syntax der \acrfull{json}]
 \label{def:json}
 
@@ -327,6 +336,7 @@ Unerheblicher Whitespace (Tabulator\footnote{Unicode-Codepoint \texttt{U+0009}: 
     \input{grammar_json}
 \end{grammar}
 \end{definition}
+\end{figure}
 
 \subsection{Angriffe}
 
