@@ -50,6 +50,12 @@
         chamfered rectangle,
         fill=rubgreen,
     },
+    attribute/.style = {
+        base,
+        rounded rectangle,
+        text=white,
+        fill=rubblue!60!white,
+    },
     textnode/.style = {
         base,
         rectangle,
@@ -100,11 +106,15 @@
                 }
             }
         };
-        \node [anchor=east] at (xmlstyle -| trio.east) (desc) {(PI)};
+        \node [attribute,anchor=east,right=of album] (attr) {catno="ARGO LP-628"};
+        \draw[dashed] (album.east) -- (attr.west);
+
+        \node [anchor=east,right=of attr,xshift=-2em] (desc) {(Attribute)};
+        \node [anchor=east] at (xmlstyle -| desc.east) {(PI)};
         \node [anchor=east] at (comment -| desc.east) {(Comment)};
         \node [anchor=east] at (albums -| desc.east) {(Element)};
-        \node [anchor=east] at (album -| desc.east) {(Element)};
-        \node [anchor=west] at (artist -| doc.west) (leftdesc) {(Element)};
+        \node [anchor=west] at (album -| doc.west) (leftdesc) {(Element)};
+        \node [anchor=west] at (artist -| leftdesc.west)  {(Element)};
         \node [anchor=west] at (trio -| leftdesc.west) {(Character Data)};
         \node [anchor=west] at (title -| leftdesc.west) {(Element)};
         \node [anchor=west] at (pershing -| leftdesc.west) {(Character Data)};
