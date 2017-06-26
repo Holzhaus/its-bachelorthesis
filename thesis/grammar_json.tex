@@ -1,0 +1,76 @@
+<value> ::= \[[ \begin{stack}
+            <object>\\
+            <array>\\
+            <string>\\
+            <number>\\
+            `true'\\
+            `false'\\
+            `null'
+        \end{stack} \]]
+
+<object> ::= \[[ `\{' \begin{stack}
+            \begin{rep}
+                <string> `:' <value>\\
+                `,'
+            \end{rep}\\
+    \end{stack} `\}' \]]
+
+<array> ::= \[[ `[' \begin{stack}
+            \begin{rep}
+                <value>\\
+                `,'
+            \end{rep}\\
+    \end{stack} `]' \]]
+
+<number> ::= \[[
+    \begin{stack}
+        \\`-'
+    \end{stack}
+    \begin{stack}
+        `0'\\
+        "\lit1 - \lit9"
+        \begin{rep}
+            \\"\lit0 - \lit9"
+        \end{rep}
+    \end{stack}
+    \begin{stack}\\
+        `.' \begin{rep}
+                "\lit0 - \lit9"
+            \end{rep}
+    \end{stack}
+    \begin{stack}\\
+        \begin{stack}
+            `e'\\
+            `E'
+        \end{stack}
+        \begin{stack}
+            \\
+            `+'\\
+            `-'\\
+        \end{stack}
+        \begin{rep}
+            "\lit0 - \lit9"
+        \end{rep}
+    \end{stack}
+    \]]
+
+<string> ::= \[[
+    `\textquotedbl' \begin{stack}\\
+            \begin{rep}
+                \begin{stack}
+                    \tok{\color{black} Any Unicode char except \texttt{\textquotedbl}, \texttt{\textbackslash} or control char}\\
+                    `\textbackslash' \begin{stack}
+                        `\textquotedbl'\\
+                        `\textbackslash'\\
+                        `/'\\
+                        `b'\\
+                        `f'\\
+                        `n'\\
+                        `r'\\
+                        `t'\\
+                        `u' \tok{\color{black} 4 hexadecimal digits}
+                    \end{stack}
+                \end{stack}
+            \end{rep}
+    \end{stack} `\textquotedbl'
+    \]]
