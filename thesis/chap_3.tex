@@ -159,11 +159,12 @@ Eine Besonderheit von \acrshort{xml} und auch \acrshort{sgml} ist, dass die Spez
 
 Zwar ist es möglich, mittels einer \acrfull{xsd} die in einem \acrshort{xml}-Dokument enthaltenten Datentypen genauer festzulegen, direkte syntaktische Unterstützung für Zahlen bietet \acrshort{xml} jedoch im Gegensatz zur \acrlong{json} nicht.
 
+\begin{samepage}
 Wird kein Schema verwendet bzw. legt ein Schema den Datentyp eines Elements nicht anderweitig fest, so ist es standardmäßig vom Typ \texttt{xsd:anyType}:
-
 \begin{foreigndisplayquote}{english}[{~\cite[Abschnitt 2.2.1.1]{xmlschema11-1}}]
     A special complex type definition, (referred to in earlier versions of this specification as `the ur-type definition') whose name is \textbf{anyType} in the XSD namespace, is present in each ·\emph{XSD schema}·. The \textbf{definition of anyType} serves as default type definition for element declarations whose \acrshort{xml} representation does not specify one.
 \end{foreigndisplayquote}
+\end{samepage}
 
 Elemente dieses Typs unterliegen keinen Beschänkungen. Daher ist es ohne Zuhilfenahme eines Schemas nicht möglich, Aussagen über den Wertebereich eines Elements, eines Attributs oder einer Text Node zu treffen.
 
