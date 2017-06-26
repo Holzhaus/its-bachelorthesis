@@ -85,10 +85,13 @@ $ xjcc -vv test-conversion -w
 Mit dem Argument `--help` kann die eingebaute Hilfe angezeigt werden:
 
 ```shell -session
-$ xjcc --help
 usage: xjcc [-h] [-v | -vv | -q]
             {convert-file,list-converters,list-testcases,test-conversion,canonicalize}
             ...
+
+XML/JSON conversion checker
+(c) 2017 by Jan Holthuis
+
 positional arguments:
   {convert-file,list-converters,list-testcases,test-conversion,canonicalize}
     convert-file        convert file
@@ -96,11 +99,14 @@ positional arguments:
     list-testcases      list available testcases
     test-conversion     test conversion
     canonicalize        canonicalize an XML document
+
 optional arguments:
   -h, --help            show this help message and exit
   -v, --verbose         be verbose
   -vv, --debug          even show debug messages
   -q, --quiet           be quiet
+
+Happy testing!
 ```
 
 ## Testcases

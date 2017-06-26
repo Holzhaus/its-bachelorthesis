@@ -24,7 +24,14 @@ def writable_directory(path):
 
 
 def parse_args(args=None):
-    parser = argparse.ArgumentParser()
+    parser = argparse.ArgumentParser(
+        description=(
+            'XML/JSON conversion checker\n' +
+            '(c) 2017 by Jan Holthuis'
+        ),
+        epilog='Happy testing!',
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+    )
 
     loglevel = parser.add_mutually_exclusive_group()
     loglevel.add_argument(
