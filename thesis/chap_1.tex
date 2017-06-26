@@ -28,16 +28,19 @@ Ausgangsformat, d.~h.\ die Umwandlungsverfahren für die beiden Richtungen
 \end{enumerate}
 haben jeweils eigene Anforderungen und sind getrennt voneinander zu betrachten.
 
-Während Abbildung von beliebigen \acrshort{json}-Datenstrukturen in \acrshort{xml} zumindest bei
-oberflächlicher Betrachtung trivial erscheint, ist dies beim verlustlosen
+Während Abbildung von beliebigen \acrshort{json}-Datenstrukturen in \acrshort{xml} -- zumindest bei
+oberflächlicher Betrachtung -- trivial erscheint, ist dies beim verlustlosen
 Transfer von \acrshort{xml}-Daten ins \acrshort{json}-Format keineswegs der Fall.
 
-Ziel der vorliegenden Arbeit war es daher, ein sicheres und verlustloses
+Ziel der vorliegenden Arbeit ist es daher, ein sicheres und verlustloses
 Verfahren zur Konversion von XML-Dokumenten in das JSON-Format zu finden.
 
 Dazu wurden eine Reihe von bereits erhältlichen Programmbiliotheken analysiert,
 die \acrshort{xml}-Daten in \acrshort{json} abbilden und aus der resultierenden
 \acrshort{json}-Datenstruktur wieder \acrshort{xml}-Dokument erstellen können.
+
+% FIXME: Does this belong here?
+\todo[inline]{FIXME: Gehört das hier hin?}
 
 Da keiner der analysierten Konverter die vorher aufgestellten Anforderungen
 vollständig erfüllt, wurde das vielversprechendste Konversionsprogramm
@@ -60,23 +63,23 @@ Office-Dateiformate -- das \acrfull{odf}, Microsofts % chktex 8
 
 Inzwischen gewinnt jedoch \acrshort{json} vor allem im Mobile-
 und Web-Bereich immer mehr an Bedeutung (Vgl. Abb.~\ref{fig:xmljsonapis}). Laut dem \acrshort{api}-Verzeichnis
-\emph{ProgrammableWeb} unterstützten im Jahr 2013 ca. 60\% aller neu
+\emph{ProgrammableWeb}\footnote{\url{https://www.programmableweb.com/}} unterstützten im Jahr 2013 ca. 60 Prozent aller neu
 hinzugefügten \acrshortpl{api} das \acrshort{json}-Format, während
-\acrshort{xml} im selben Zeitraum lediglich von 37\% der neuen \acrshortpl{api}
+\acrshort{xml} im selben Zeitraum lediglich von 37 Prozent der neuen \acrshortpl{api}
 unterstützt wurde.~\cite{duvander2013convergence}
 
 \begin{figure}[h!]
     \begin{center}
         \includestandalone[width=\textwidth]{xml-json-apis-2005-to-2013}
     \end{center}
-    \caption{Sowohl JSON als auch XML wurden 2013 von jeweils mehr als 45\% der Web-\acrshortpl{api} unterstützt.}
+    \caption{Sowohl JSON als auch XML wurden 2013 von jeweils mehr als 45 Prozent der Web-\acrshortpl{api} unterstützt.}
     \label{fig:xmljsonapis}
 \end{figure}
 
 
 \acrshort{json} ist bei bestimmten Aufgaben im Bezug auf Geschwindigkeit und
-Ressourcenauslastung deutlich effizienter~\cite{nurseitov2009comparison} als
-\acrshort{xml}\@. Inzwischen setzen auch einige populäre NoSQL-Datenbanken wie
+Ressourcenauslastung deutlich effizienter als \acrshort{xml}~\cite{nurseitov2009comparison}\@.
+Inzwischen setzen auch einige populäre NoSQL-Datenbanken wie
 \emph{CouchDB} oder \emph{MongoDB} auf \acrshort{json} zur Datenspeicherung. Auch
 MySQL verfügt seit Version 5.7.8 über einen nativen \acrshort{json}-Datentyp.
 
@@ -89,46 +92,44 @@ Programmiersprachen, Frameworks und Applikationen nicht immer gleich gut.
 
 \section{Verwandte Arbeiten}
 
-Muschett, Salz und Schenker schlugen 2011 in ein Format zur Repräsentation beliebiger JSON-Daten in XML 1.0 names JSONx vor. In dem inzwischen ausgelaufenen \gls{idraft} werden eine Reihe von Regeln festgelegt um Instanzen der verschiedenen JSON-Daten in XML-Strukturen zu konvertieren.~\cite{jsonx}
-
-In der vorliegenden Arbeit soll die Konversion in umgekehrter Richtung untersucht werden, d.h. die Umwandlung beliebiger XML-Dokumente in das JSON-Format.
+Muschett, Salz und Schenker schlugen 2011 ein Format zur Repräsentation beliebiger JSON-Daten in XML 1.0 names JSONx vor. In dem inzwischen ausgelaufenen \gls{idraft} werden eine Reihe von Regeln festgelegt um Instanzen der verschiedenen JSON-Daten in XML-Strukturen zu konvertieren.~\cite{jsonx} Die vorliegenden Arbeit untersucht hingegen die Konversion in umgekehrter Richtung, d.h. die Umwandlung beliebiger XML-Dokumente in das JSON-Format.
 
 Ein weiteres XML-basiertes Format, dass das Datenmodell der \acrfull{json} in XML nachbildet und dadurch die verlustlose Abbildung beliebiger JSON-Daten in XML ermöglicht, ist JsonXML (JXML)~\cite{jxml}.
 
-Christensen \emph{et.\,al.} halten das US-Patent and der Übersetzung zwischen XML und \enquote{dynamic language data expressions}~\cite{US7761484}, womit unter anderem auch \acrshort{json} gemeint ist. Es nennt mehrere verschiedene denkbare Ausführungen, beispielsweise die Konversion von JSON in typannotiertes XML mittels Attributen oder Element-Namen, aber auch die Round-Trip-Umwandlung von XML zu JSON und zurück, ohne diese jedoch im Detail zubeschreiben.
+Christensen \emph{et.\,al.}~\cite{US7761484} halten ein US-Patent an der Übersetzung zwischen XML und \enquote{dynamic language data expressions}, womit unter anderem auch \acrshort{json} gemeint ist. Es nennt mehrere verschiedene denkbare Ausführungen, beispielsweise die Konversion von JSON in typannotiertes XML mittels Attributen oder Element-Namen, aber auch die Round-Trip-Umwandlung von XML zu JSON und zurück, ohne diese jedoch im Detail zu beschreiben.
 
 David Lee~\cite{lee2011jxon} entwickelte 2011 ein Verfahren, um anhand annotierter XSD-Schemata XSLT-Dateien zu erzeugen, die in der Lage sind, bidirektional zwischen XML und JXML zu konvertieren.  Damit ist also -- mit einem Umweg über JXML -- die verlustlose Umwandlung von XML in JSON und wieder zurück möglich.
 Durch die Nutzung des jeweiligen XSD-Schema der zu konvertierenden XML-Dokumente sind bei der Umwandlung die im XML-Dokument genutzten Datentypen bekannt, wodurch ein zuverlässigen Mapping auf die nativen JSON-Typen möglich wird.
 
-Im Gegensatz dazu ist eine Anforderung an das in der vorliegenden Arbeit zu entwickelnde Konversionsverfahren jedoch die Konversion beliebiger XML-Dokumente, ohne Zuhilfenahme weiterer Metadaten wie XSD-Schemata.
+Im Gegensatz dazu beschränkt sich die vorliegende Arbeit jedoch auf Konverter, die beliebige XML-Dokumente auch ohne Zuhilfenahme weiterer Metadaten wie XSD-Schemata umwandeln können.
 
-Goessner schlägt ein Mapping zwischen strukturierten XML-Daten und JSON vor, dass möglichst kompakte und simpel sein soll. Dafür werden jedoch Abstriche im Bereich Verlustlosigkeit und Umkehrbarkeit der Konversion hingenommen, d.h. in bestimmten Fällen wie dem Auftreten mehrerer Kindelemente gleichen Namens kann ein Verlust (\emph{hier:} Verlust der Elementreihenfolge) auftreten.~\cite{goessner2006converting}
+Goessner schlägt ein Mapping zwischen strukturierten XML-Daten und JSON vor, dass möglichst kompakt und simpel sein soll. Dafür werden jedoch Abstriche im Bereich Verlustlosigkeit und Umkehrbarkeit der Konversion hingenommen, d.h. in bestimmten Fällen wie dem Auftreten mehrerer Kindelemente gleichen Namens kann ein Verlust (\emph{hier:} Verlust der Elementreihenfolge) auftreten.~\cite{goessner2006converting}
 
 Ein US-Patent von Williamson~\cite{US20140244692} beschreibt die Überführung von Daten aus einem XML-Dokument in eine JSON-Struktur, indem bestimmte Teile des XML-Baums selektiert (z.\,B. mittels \acrshort{xpath}-artigen Ausdrücken) und einem Ziel-Schlüssel im resultierenden JSON-Objekt zugeordnet werden. Dadurch werden jedoch lediglich Teile der im XML-Dokument enthaltenen Informationen in die Ausgabe übernommen, sodass verlustloses Round-Tripping unmöglich wird.
 
-In einem Paper vergleicht Wang die beiden Formate und entwickelt einen Übersetzungsalgorithmus zwischen den beiden Formaten~\cite{wang2011improving}. Allerdings wird dabei von datenorientiertem XML ausgegangen und somit keine Probleme betrachtet, die bei der Umwandlung von spezfischen Strukturen einer dokumentorientierten Auszeichnungssprache wie XML in das JSON-Format entstehen können, beispielsweise die korrekte Abbildung von Mixed Content (vgl. Abschn.~\ref{sec:mixedcontent}). Der von Wang vorgeschlagene Algorithmus zudem auch bei datenorientierem XML unter Umständen verlustbehaftet.\cite[S.~184]{wang2011improving}.
+In einem Paper vergleicht Wang~\cite{wang2011improving} die beiden Formate und entwickelt einen Übersetzungsalgorithmus zwischen den beiden Formaten. Allerdings wird dabei von datenorientiertem XML ausgegangen und somit keine Probleme betrachtet, die bei der Umwandlung von spezfischen Strukturen einer dokumentorientierten Auszeichnungssprache wie XML in das JSON-Format entstehen können, beispielsweise die korrekte Abbildung von Mixed Content (vgl. Abschn.~\ref{sec:mixedcontent}). Der von Wang vorgeschlagene Algorithmus ist zudem auch bei datenorientierem XML unter Umständen verlustbehaftet.\cite[S.~184]{wang2011improving}.
 
-Ein System zur Umstellung des von einer Webapplikation auf JavaScript-Basis genutzten Datenformats wird von Ying und Miller vorgeschlagen~\cite{ying2013refactoring}. Neben der Automatischen Konversion von XML in JSON wird dabei auch der JavaScript-Quelltext der Applikation automatisch an das neue Format angepasst. Der Fokus der Arbeit liegt dabei auf dem Code-Refactoring -- einer genauere Evaluation des eingesetzten Konversionsverfahrens im Bezug auf Sicherheit und Verlustlosgkeit findet nicht statt.
+Ein System zur Umstellung des von einer Webapplikation auf JavaScript-Basis genutzten Datenformats wird von Ying und Miller~\cite{ying2013refactoring} vorgeschlagen. Neben der Automatischen Konversion von XML in JSON wird dabei auch der JavaScript-Quelltext der Applikation automatisch an das neue Format angepasst. Der Fokus der Arbeit liegt dabei auf dem Code-Refactoring -- einer genauere Evaluation des eingesetzten Konversionsverfahrens im Bezug auf Sicherheit und Verlustlosgkeit findet nicht statt.
 
 \section{Aufbau der Arbeit}
 \label{sec:structure}
 
-Im zweiten Kapitel wird zunächst eine kurze Einführung in die Struktur der Formate \acrshort{xml} und \acrshort{json} gegeben. Zudem Werden auch relevante Technologien aus dem Umfeld der Formate beschrieben.  Zudem werden die bekannten Angriffe gegen \acrshort{xml}- und \acrshort{json}-Parser erläutert.
+Im zweiten Kapitel wird zunächst eine kurze Einführung in die Struktur der Formate \acrshort{xml} und \acrshort{json} gegeben. Zudem werden auch relevante Technologien aus dem Umfeld der Formate beschrieben und die bekannten Angriffe gegen \acrshort{xml}- und \acrshort{json}-Parser erläutert.
 
-Im Anschluss daran wird der Versuchsbau beschrieben. Zunächst wird die Anforderungen konkret definiert, d.~h.\ es werden
-überprüfbaren Kriterien aufgestellt, denen ein Konversionsverfahren genügen
+Im Anschluss daran wird der Versuchsbau beschrieben. Zunächst werden die Anforderungen konkret definiert, d.~h.\ es werden
+überprüfbare Kriterien aufgestellt, denen ein Konversionsverfahren genügen
 muss. Dazu gehört auch, Verlustlosigkeit genauer zu definieren, d.h.
 es wird die Relevanz der durch verschiedene XML-Strukturen dargestellten
 Informationen untersucht sowie möglicherweise zu Datenverlust führende
-Probleme bei Umwandlung beschrieben.
+Probleme bei der Umwandlung beschrieben.
 
-Danach wird die Auswahl der getesteten Konverter vorgestellt und das Überprüfungsverfahren erläutert.
+In Abschnitt~\ref{sec:converters} wird die Auswahl der getesteten Konverter vorgestellt und daran anschließend das Überprüfungsverfahren erläutert.
 
-Anschließend werden die Ergebnisse der Tests vorgestellt und diskutiert.
+Kapitel~\ref{{chap_4} stellt die Ergebnisse der Tests vor und diskutiert diese.
 Dabei wird erörtert, ob und welche Verfahren die zuvor genannten Bedingungen
 erfüllen.
 
 Das Konversionsverfahren, das bei der Überprüfung die XML-Strukturen am besten abgebildet hat, wird im folgenden Kapitel dann zu einem vollständig verlustlosen Verfahren weiterentwickelt. Das so verbesserte Verfahren wird mithilfe der Kriterien aus Kapitel~\ref{sec:criteria} einer erneuten Überprüfung unterzogen.
 
-Im Diskussions-Abschnitt werden die aktuellen Möglichkeiten zur Umwandlung
-von \acrshort{xml} in \acrshort{json} und wieder zurück abschließend eingeschätzt und bewertet und ein Ausblick auf weitere Forschungfelder gegeben werden.
+Im Fazit werden die aktuellen Möglichkeiten zur Umwandlung
+von \acrshort{xml} in \acrshort{json} und wieder zurück abschließend eingeschätzt und bewertet sowie ein Ausblick auf weitere Forschungfelder gegeben.
