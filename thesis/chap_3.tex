@@ -30,7 +30,7 @@ Aus Sicherheitsgründen ist die Verarbeitung von \glspl{dtd} für die in der vor
 Dies gilt jedoch nicht für die vordefinierten General Entities \enquote{\mintinline{xml}{&amp;}}, \enquote{\mintinline{xml}{&lt;}}, \enquote{\mintinline{xml}{&gt;}}, \enquote{\mintinline{xml}{&apos;}} und \enquote{\mintinline{xml}{&quot;}}~\cite[Abschn.~4.6]{maler2008xml} bzw. Character References~\cite[Abschn.~4.1]{maler2008xml}, da diese nicht innerhalb einer \gls{dtd} angegeben werden müssen und sie zum Quotieren von Markup in Text-Knoten und Attributen nötig sind.
 
 \subsection{Verlustlosigkeit}
-\label{sec:critera-lossless}
+\label{sec:criteria-lossless}
 
 \begin{samepage}
 Damit ein Konversionsprozess als \emph{verlustlos} angesehen werden kann, müssen folgende Bedingungen erfüllt sein:
@@ -314,7 +314,7 @@ Da die Formate insbesondere im Webbereich eingesetzt werden und Webservices sowi
     \end{center}
 \end{figure}
 
-Zur Überprüfung der Konversionsqualität wurden für alle der in Abschnitt~\ref{sec:critera-lossless} festgelegten Kriterien und diskutierten Probleme ein oder mehrere Testfälle erstellt. Jeder Testfall besteht aus einer \acrshort{xml}-Datei, anhand der bestimmte \acrshort{xml}-Features oder Problemstellungen nachvollzogen werden können. Die Dateien werden dazu zunächst mit einem Konverter in das \acrshort{json}-Format umgewandelt. Die daraus resultierenden \acrshort{json}-Daten werden im Anschluss wieder zurück in das \acrshort{xml}-Format konvertiert, d.h. es wird ein kompletter Round-Trip vollzogen.
+Zur Überprüfung der Konversionsqualität wurden für alle der in Abschnitt~\ref{sec:criteria-lossless} festgelegten Kriterien und diskutierten Probleme ein oder mehrere Testfälle erstellt. Jeder Testfall besteht aus einer \acrshort{xml}-Datei, anhand der bestimmte \acrshort{xml}-Features oder Problemstellungen nachvollzogen werden können. Die Dateien werden dazu zunächst mit einem Konverter in das \acrshort{json}-Format umgewandelt. Die daraus resultierenden \acrshort{json}-Daten werden im Anschluss wieder zurück in das \acrshort{xml}-Format konvertiert, d.h. es wird ein kompletter Round-Trip vollzogen.
 
 Gemäß Definiton~\ref{def:lossless} in Abschnitt~\ref{sec:criteria-lossless} gibt ein Abgleich zwischen den resultierenden \acrshort{xml}-Daten und dem ursprünglichen \acrshort{xml}-Dokument dann Aufschluss über den eventuellen Verlust signifikanter Informationen. Dazu wird überprüft, ob beide Dokumente logisch äquivalent sind, indem beide in \emph{kanonisches \acrshort{xml}} umgewandelt werden. Ob Informationsverlust aufgetreten ist, kann dann mit simplen Vergleich geprüft werden.
 
