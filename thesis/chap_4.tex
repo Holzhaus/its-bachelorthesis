@@ -129,7 +129,7 @@ Bei den Sicherheitstests zeigte sich, dass \emph{Pesterfish} bei Nutzung der Vor
 
 Bei der Umwandlung mittels \emph{x2js} geht die Reihenfolge der Elemente verloren. \glspl{pi} werden komplett ignoriert.
 
-Verfügt ein Element über mehrere Kindelemente mit dem gleichen Tag-Namen, tritt bei der Konversion ein Fehler auf, wodurch mehrere JSON-Arrays ineinander geschachtelt werden. Bei der Rückkonversion enstehen dann zusätzliche Kindelemente, bei denen die Array-Indizes als Tag-Name verwendet werden.
+Verfügt ein Element über mehrere Kindelemente mit dem gleichen Tag-Namen, tritt bei der Konversion ein Fehler auf, wodurch mehrere \acrshort{json}-Arrays ineinander geschachtelt werden. Bei der Rückkonversion enstehen dann zusätzliche Kindelemente, bei denen die Array-Indizes als Tag-Name verwendet werden.
 
 Mixed Content -- auch Einrückungen -- führen zum Absturz von \emph{x2js}. Sonderzeichen stellen für den Konverter jedoch kein Problem dar.
 
@@ -266,11 +266,11 @@ Im Vergleich zu anderen Konvertern ist der Overhead bei \acrshort{jsonml} deutli
 
 \begin{figure}[t]
     \includestandalone[width=\textwidth]{nestingdepth}
-    \captionof{figure}{Verschachtelungstiefe der aus einem Word-\acrshort{xml}-Dokument erzeugten JSON-Dateien (weniger ist besser)}
+    \captionof{figure}{Verschachtelungstiefe der aus einem Word-\acrshort{xml}-Dokument erzeugten \acrshort{json}-Dateien (weniger ist besser)}
     \label{fig:jsondepth}
 \end{figure}
 
-Neben der Dateigröße ist auch die Verschachtelungstiefe der JSON-Container ein guter Indikator für Overhead. Meist wird für die Verarbeitung der verschiedenen Ebenen von JSON-Objekten und -Arrays ein Stapelspeicher (Stack) eingesetzt, der bei jeder zusätzlichen Verschachtelungsebene anwächst. Damit der Speicherverbrauch des Stacks im Rahmen bleibt, erlaubt es die \acrshort{ietf} daher die Verschachtelungstiefe von \acrshort{json} zu begrenzen ~\cite[Abschn.~9]{rfc7159}. So hat die \mintinline{php}{json_decode()}-Funktion von PHP standardmäßig eine Obergrenze von 512 Ebenen~\cite{php-json} und Ruby limitiert die maximale Tiefe sogar auf nur 100 Ebenen~\cite{ruby-json}.
+Neben der Dateigröße ist auch die Verschachtelungstiefe der \acrshort{json}-Container ein guter Indikator für Overhead. Meist wird für die Verarbeitung der verschiedenen Ebenen von JSON-Objekten und -Arrays ein Stapelspeicher (Stack) eingesetzt, der bei jeder zusätzlichen Verschachtelungsebene anwächst. Damit der Speicherverbrauch des Stacks im Rahmen bleibt, erlaubt es die \acrshort{ietf} daher die Verschachtelungstiefe von \acrshort{json} zu begrenzen ~\cite[Abschn.~9]{rfc7159}. So hat die \mintinline{php}{json_decode()}-Funktion von PHP standardmäßig eine Obergrenze von 512 Ebenen~\cite{php-json} und Ruby limitiert die maximale Tiefe sogar auf nur 100 Ebenen~\cite{ruby-json}.
 
 Bei einem Vergleich der Verschachtelungstiefe anhand eines Microsoft\hyp{}Office\hyp{}Dokuments konnte \acrshort{jsonml} ebenfalls gut abschneiden (vgl. Abb.~\ref{fig:jsondepth}). Mit 17 Ebenen war die Komplexität von \acrshort{jsonml} am geringsten und unterschreitet damit den Medianwert um rund 26 Prozent.
 

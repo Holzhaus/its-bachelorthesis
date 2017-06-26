@@ -91,7 +91,7 @@ Für die Verlustlosigkeit der Konversion ist es somit unerheblich, ob die CDATA-
 
 Zudem ist auch bei der Implementierung der \acrlong{c14n} die Unterstützung von \emph{Kanonischem \acrshort{xml} mit Kommentaren} lediglich empfohlen, während die Möglichkeit der Umwandlung in \emph{Kanonisches \acrshort{xml}} ausschließlich aller Kommentare zwingend erforderlich ist.~\cite[Abschnitt~2.1]{boyer2001c14n}
 
-Folglich ist es nicht nötig, dass sich die Kommentare im \acrshort{xml}-Eingabedokument nach dem $\acrshort{xml}\rightarrow{}JSON\rightarrow{}\acrshort{xml}$ Roundtrip auch in der Ausgabe wiederfinden.
+Folglich ist es nicht nötig, dass sich die Kommentare im \acrshort{xml}-Eingabedokument nach dem $\acrshort{xml}\rightarrow{}\acrshort{json}\rightarrow{}\acrshort{xml}$ Roundtrip auch in der Ausgabe wiederfinden.
 
 \subsubsection{\acrfullpl{pi}}
 
@@ -155,7 +155,7 @@ Eine Besonderheit von \acrshort{xml} und auch \acrshort{sgml} ist, dass die Spez
 
 \emph{Mixed Content} stellt \acrshort{xml}-Parser vor besondere Herausforderungen~\cite{mcgrath2002mixedcontent}. Zudem existiert kein \acrshort{json}-Äquivalent von \emph{Mixed Content}, was eine Konversion erschwert.
 
-\subsubsection{Typinferenz bei der Konversion zu JSON}
+\subsubsection{Typinferenz bei der Konversion zu \acrshort{json}}
 
 Zwar ist es möglich, mittels einer \acrfull{xsd} die in einem \acrshort{xml}-Dokument enthaltenten Datentypen genauer festzulegen, direkte syntaktische Unterstützung für Zahlen bietet \acrshort{xml} jedoch im Gegensatz zur \acrlong{json} nicht.
 
@@ -281,8 +281,8 @@ Aufgrund des in dieser Arbeit zur Anwendung kommenden Prüfverfahrens konnten je
 \end{enumerate}
 \end{samepage}
 
-Da für viele XML-Strukturen kein Äquivalent in der JSON-Spezifikation existiert, gibt es meist verschiedene Möglichkeiten der Abbildung von XML-Inhalten in JSON.
-Die gebräuchlichsten Varianten haben sich in Form verschiedener Konvertierungskonventionen herausgebildet, die jeweils beschreiben, wie XML-Strukturen in JSON dargestellt werden~\cite{open311-conventions}. Dabei unterscheidet sich das anhand der verschiedenen Konventionen produzierte JSON zum Teil stark, beispielsweise darin, welcher JSON-Container\-typ zur Darstellung eines XML-Elements genutzt wird oder wie Attribute dargestellt werden. Die für die Analyse im Rahmen der vorliegenden Arbeit ausgewählten Konverter sollten daher nach Möglichkeit verschiedene Umwandlungsverfahren und Konventionen implementieren.
+Da für viele XML-Strukturen kein Äquivalent in der \acrshort{json}-Spezifikation existiert, gibt es meist verschiedene Möglichkeiten der Abbildung von XML-Inhalten in \acrshort{json}.
+Die gebräuchlichsten Varianten haben sich in Form verschiedener Konvertierungskonventionen herausgebildet, die jeweils beschreiben, wie XML-Strukturen in \acrshort{json} dargestellt werden~\cite{open311-conventions}. Dabei unterscheidet sich das anhand der verschiedenen Konventionen produzierte JSON zum Teil stark, beispielsweise darin, welcher JSON-Container\-typ zur Darstellung eines XML-Elements genutzt wird oder wie Attribute dargestellt werden. Die für die Analyse im Rahmen der vorliegenden Arbeit ausgewählten Konverter sollten daher nach Möglichkeit verschiedene Umwandlungsverfahren und Konventionen implementieren.
 
 Da die Formate insbesondere im Webbereich eingesetzt werden und Webservices sowie \acrshortpl{api} ein relevantes Einsatzfeld für \acrshort{xml}-\acrshort{json}-Konversion darstellen, wurde bei der Auswahl zudem darauf geachtet, ein breites Spektrum verschiedener populärer Programmiersprachen aus diesem Bereich abzudecken. Sowohl die klassischen Programmiersprachen für Web-Applikationen --  Java, PHP und JavaScript -- als auch C\#, Ruby und Python, die im Web in Form von ASP.NET, Ruby-on-Rails bzw. Django oder Flask zum Einsatz kommen, werden durch die Auswahl abgedeckt.
 
@@ -292,7 +292,7 @@ Da die Formate insbesondere im Webbereich eingesetzt werden und Webservices sowi
     \item[Json-lib] Die Java-Bibliothek \texttt{net.sf.json-lib} baut auf Software des \acrshort{json}-Entwicklers Douglas Crockford auf und wird in über 400 anderen Projekten eingesetzt~\cite{mvn-jsonlib}. Das Paket beinhaltet unter anderem auch eine Klasse zum (De-)Serialisieren von \acrshort{xml}-Daten.
     \item[{\acrshort{jsonml}}] Die \acrfull{jsonml} ist ein \acrshort{json}-basiertes Format zur Speicherung von \acrshort{xml}-Markup. Neben der JavaScript-Bibliothek existieren auch Implementierungen in anderen Programmiersprachen, z.B. in Java\footnote{Das \texttt{org.json}-Paket stellt eine entsprechende Klasse bereit.}  oder PHP\footnote{Als Teil des FluentDOM-Projekts, siehe: \url{https://github.com/FluentDOM/FluentDOM/blob/master/src/FluentDOM/Serializer/Json/JsonML.php}}.
     \item[{\acrshort{jxon}}] Bei dem JavaScript-Modul handelt es sich um eine bidirektionale Bibliothek für die \acrlong{jxon} und eine Weiterentwicklung der ursprünglich von Mozilla veröffentlichten Implementierung.
-    \item[Newtonsoft Json.NET] Das JSON-Framework für C\#.NET wurde insgesamt mehr als 64 Millionen Mal von Paket-Repository NuGet heruntergeladen~\cite{nugetjsonnet} und war zum Testzeitpunkt das am meisten heruntergeladene .NET-Paket~\cite{nugetstatistics}. Es ermöglicht unter anderem auch die Konversion von XML-Dokumenten in das JSON-Format.
+    \item[Newtonsoft Json.NET] Das \acrshort{json}-Framework für C\#.NET wurde insgesamt mehr als 64 Millionen Mal von Paket-Repository NuGet heruntergeladen~\cite{nugetjsonnet} und war zum Testzeitpunkt das am meisten heruntergeladene .NET-Paket~\cite{nugetstatistics}. Es ermöglicht unter anderem auch die Konversion von XML-Dokumenten in das JSON-Format.
     \item[org.json.XML] Das Paket \texttt{org.json} ist die Referenzimplementierung des \acrshort{json}-Formats für Java und bietet auch ein Konversionsverfahren in Form einer dedizierten \acrshort{xml}-Klasse. Es wird von mehr als 1\,600 Projekten eingesetzt, darunter auch die Google Android Library, das Google Web Toolkit (GWT) oder die Objektserialisierungs\hyp{}Bibliothek XStream~\cite{mvn-orgjsonxml}.
     \item[Pesterfish] Das Python-Modul Pesterfish konvertiert zwischen \acrshort{xml} und Python-\linebreak{}Dictionaries, die dann zu \acrshort{json} serialisiert werden können. Laut dem Autor wurde das Konversionsverfahren als \enquote{Reaktion auf die Badgerfish-Konvention} entwickelt\footnote{Der Autor schreibt dies in einem Kommentar im Quelltext des Moduls.}. Für die Verarbeitung der \acrshort{xml}-Daten baut das Modul auf die \texttt{ElementTree}-\acrshort{api} auf und erlaubt Entwicklern auch die Angabe eines eigenen Parsers, beispielsweise \texttt{defusedxml}.
     \item[x2js] Die JavaScript-Bibliothek ist mit 475 Sternen und 219 Forks auf GitHub recht populär~\cite{githubx2js} und erlaubt eine große Zahl von Einstellungsmöglichkeiten.
