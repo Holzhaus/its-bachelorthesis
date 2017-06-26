@@ -28,14 +28,14 @@ Ausgangsformat, d.~h.\ die Umwandlungsverfahren für die beiden Richtungen
 \end{enumerate}
 haben jeweils eigene Anforderungen und sind getrennt voneinander zu betrachten.
 
-Während Abbildung von beliebigen \acrshort{json}-Datenstrukturen in \acrshort{xml} -- zumindest bei
+Während die Abbildung beliebiger \acrshort{json}-Datenstrukturen in \acrshort{xml} -- zumindest bei
 oberflächlicher Betrachtung -- trivial erscheint, ist dies beim verlustlosen
 Transfer von \acrshort{xml}-Daten ins \acrshort{json}-Format keineswegs der Fall.
 
 Ziel der vorliegenden Arbeit ist es daher, ein sicheres und verlustloses
 Verfahren zur Konversion von XML-Dokumenten in das JSON-Format zu finden.
 
-Dazu wurden eine Reihe von bereits erhältlichen Programmbiliotheken analysiert,
+Dazu wird eine Reihe von bereits erhältlichen Programmbibliotheken analysiert,
 die \acrshort{xml}-Daten in \acrshort{json} abbilden und aus der resultierenden
 \acrshort{json}-Datenstruktur wieder \acrshort{xml}-Dokument erstellen können.
 
@@ -92,7 +92,7 @@ Programmiersprachen, Frameworks und Applikationen nicht immer gleich gut.
 
 \section{Verwandte Arbeiten}
 
-Muschett, Salz und Schenker schlugen 2011 ein Format zur Repräsentation beliebiger JSON-Daten in XML 1.0 names JSONx vor. In dem inzwischen ausgelaufenen \gls{idraft} werden eine Reihe von Regeln festgelegt um Instanzen der verschiedenen JSON-Daten in XML-Strukturen zu konvertieren.~\cite{jsonx} Die vorliegenden Arbeit untersucht hingegen die Konversion in umgekehrter Richtung, d.h. die Umwandlung beliebiger XML-Dokumente in das JSON-Format.
+Muschett, Salz und Schenker~\cite{jsonx} schlugen 2011 ein Format zur Repräsentation beliebiger JSON-Daten in XML 1.0 names JSONx vor. In dem inzwischen ausgelaufenen \gls{idraft} werden eine Reihe von Regeln festgelegt um Instanzen der verschiedenen JSON-Daten in XML-Strukturen zu konvertieren. Die vorliegenden Arbeit untersucht hingegen die Konversion in umgekehrter Richtung, d.h. die Umwandlung beliebiger XML-Dokumente in das JSON-Format.
 
 Ein weiteres XML-basiertes Format, dass das Datenmodell der \acrfull{json} in XML nachbildet und dadurch die verlustlose Abbildung beliebiger JSON-Daten in XML ermöglicht, ist JsonXML (JXML)~\cite{jxml}.
 
