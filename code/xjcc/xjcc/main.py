@@ -33,14 +33,14 @@ def parse_args(args=None):
         action='store_const',
         const=logging.INFO,
         default=logging.WARNING,
-        help='Be verbose',
+        help='be verbose',
     )
     loglevel.add_argument(
         '-vv', '--debug',
         dest='loglevel',
         action='store_const',
         const=logging.DEBUG,
-        help='Even show debug messages'
+        help='even show debug messages'
     )
 
     loglevel.add_argument(
@@ -48,7 +48,7 @@ def parse_args(args=None):
         dest='loglevel',
         action='store_const',
         const=100,
-        help='Be quiet',
+        help='be quiet',
     )
 
     subparsers = parser.add_subparsers(
@@ -76,7 +76,7 @@ def parse_args(args=None):
     # list-converters
     parser_list = subparsers.add_parser(
         'list-converters',
-        help='list database contents'
+        help='list available converters'
     )
     parser_list.add_argument('-f', '--format',
                                        choices=OUTPUT_FORMATS, default='text')
@@ -85,11 +85,11 @@ def parse_args(args=None):
     # list-tests
     parser_listtestcases = subparsers.add_parser(
         'list-testcases',
-        help='list tests'
+        help='list available testcases'
     )
     parser_listtestcases.add_argument('-c', '--category', default=None,
             action='store', choices=testcase.CATEGORIES.keys(),
-            help='Only use testcases from a single category')
+            help='only use testcases from a single category')
     parser_listtestcases.add_argument('-f', '--format',
                                        choices=OUTPUT_FORMATS, default='text')
     parser_listtestcases.set_defaults(func=cli.list_testcases)
@@ -102,10 +102,10 @@ def parse_args(args=None):
 
     limittestcases = parser_testconversion.add_mutually_exclusive_group()
     limittestcases.add_argument('-t', '--testcase', default=None,
-            action='store', help='Only use a single testcase')
+            action='store', help='only use a single testcase')
     limittestcases.add_argument('-c', '--category', default=None,
             action='store', choices=testcase.CATEGORIES.keys(),
-            help='Only use testcases from a single category')
+            help='only use testcases from a single category')
     parser_testconversion.add_argument('-f', '--format',
                                        choices=OUTPUT_FORMATS, default='text')
     parser_testconversion.add_argument('-w', '--write-data',
@@ -118,7 +118,7 @@ def parse_args(args=None):
     # canonicalize
     parser_canonicalize = subparsers.add_parser(
         'canonicalize',
-        help='Canonicalize an XML document'
+        help='canonicalize an XML document'
     )
     parser_canonicalize.add_argument('file', type=argparse.FileType('rb'))
     parser_canonicalize.set_defaults(func=cli.canonicalize)
