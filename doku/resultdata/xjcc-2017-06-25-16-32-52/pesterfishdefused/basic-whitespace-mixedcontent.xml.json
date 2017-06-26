@@ -1,0 +1,1 @@
+{"tag": "root", "children": [{"tag": "mixed", "tail": "\n", "children": [{"tag": "clean", "tail": "\n      B\n      ", "text": "   "}, {"tag": "dirty", "tail": "\n      C\n   ", "text": "   A   B   "}], "text": "\n      A\n      "}], "text": "\n   "}

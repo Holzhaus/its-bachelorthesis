@@ -1,0 +1,2215 @@
+Converter,Basename,Testcase,Result
+cobravsmongoose,basic-attribute-multiple.xml,Attribute (multiple),OK
+cobravsmongoose,basic-attribute.xml,Attribute,OK
+cobravsmongoose,basic-cdata-close-in-textnode.xml,CDATA close in Text Node,OK
+cobravsmongoose,basic-cdata-escaped.xml,Escaped CDATA section,OK
+cobravsmongoose,basic-cdata-with-markup.xml,CDATA section with Markup,OK
+cobravsmongoose,basic-cdata.xml,CDATA support,OK
+cobravsmongoose,basic-comments.xml,Comments [OPTIONAL],ERROR
+cobravsmongoose,basic-deepnesting.xml,Deep nesting,OK
+cobravsmongoose,basic-duplicate-childtags-order.xml,Duplicate Child tag Names (Alternating Order),FAILED
+cobravsmongoose,basic-duplicate-childtags-xmlnsprefix.xml,Duplicate child tag names (different NS prefix),OK
+cobravsmongoose,basic-duplicate-childtags.xml,Duplicate child tag names,OK
+cobravsmongoose,basic-element-order.xml,Element Order,FAILED
+cobravsmongoose,basic-emptyelement.xml,Empty Elements,OK
+cobravsmongoose,basic-mixedcontent.xml,Mixed Content,ERROR
+cobravsmongoose,basic-pi-attrdata.xml,Processing Instructions (Attibute Data),ERROR
+cobravsmongoose,basic-pi-markup.xml,Processing Instructions (Markup),ERROR
+cobravsmongoose,basic-pi-outside-root.xml,Processing Instructions outside root,ERROR
+cobravsmongoose,basic-pi-simpledata.xml,Processing Instructions (Arbitrary Data),ERROR
+cobravsmongoose,basic-pi-whitespace.xml,Processing Instructions (Whitespace),ERROR
+cobravsmongoose,basic-pi.xml,Processing Instructions (Basic),ERROR
+cobravsmongoose,basic-root-attr.xml,Root Element Attribute,OK
+cobravsmongoose,basic-root-tagname.xml,Root Element Tag Name,OK
+cobravsmongoose,basic-simple.xml,Simple Element List,OK
+cobravsmongoose,basic-typeinference-binary32-attr.xml,Type Inference with floats (Attr),OK
+cobravsmongoose,basic-typeinference-binary32.xml,Type Inference with floats,OK
+cobravsmongoose,basic-typeinference-binary64-attr.xml,Type Inference with doubles (Attr),OK
+cobravsmongoose,basic-typeinference-binary64.xml,Type Inference with doubles,OK
+cobravsmongoose,basic-typeinference-bool-attr.xml,Type Inference with Boolean values (Attr),OK
+cobravsmongoose,basic-typeinference-bool.xml,Type Inference with Boolean values,OK
+cobravsmongoose,basic-typeinference-integer-attr.xml,Type Inference with Big Integers (Attr),OK
+cobravsmongoose,basic-typeinference-integer.xml,Type Inference with Big Integers,OK
+cobravsmongoose,basic-whitespace-indentation.xml,Whitespace (Indentation),FAILED
+cobravsmongoose,basic-whitespace-mixedcontent.xml,Whitespace (Mixed Content),ERROR
+cobravsmongoose,basic-whitespace.xml,Whitespace (Clean/Dirty),FAILED
+cobravsmongoose,basic-xmlns-multiple.xml,Namespace declaration (multiple),FAILED
+cobravsmongoose,basic-xmlns-prefix.xml,Namespace declaration with prefix,OK
+cobravsmongoose,basic-xmlns.xml,Namespace declaration,OK
+cobravsmongoose,chars-u000009-u00000D.xml,"C0 set (u000009, 00000A & 00000D)",FAILED
+cobravsmongoose,chars-u000020.xml,Space Char (u000020),FAILED
+cobravsmongoose,chars-u000021-u00007E.xml,ASCII printable (u000021-00007E),OK
+cobravsmongoose,chars-u00007F-u000084.xml,Discouraged (u00007F-000084),ERROR
+cobravsmongoose,chars-u000085.xml,NEL Control Char (u000085),ERROR
+cobravsmongoose,chars-u000086-u00009F.xml,Discouraged (u000086-00009F),ERROR
+cobravsmongoose,chars-u0000A0-u000FFF.xml,BMP plane I (u0000A0-000FFF),ERROR
+cobravsmongoose,chars-u001000-u001FFF.xml,BMP plane II (u001000-001FFF),ERROR
+cobravsmongoose,chars-u002000-u002FFF.xml,BMP plane III (u002000-002FFF),ERROR
+cobravsmongoose,chars-u003000-u003FFF.xml,BMP plane IV (u003000-003FFF),ERROR
+cobravsmongoose,chars-u004000-u004FFF.xml,BMP plane V (u004000-004FFF),ERROR
+cobravsmongoose,chars-u005000-u005FFF.xml,BMP plane VI (u005000-005FFF),ERROR
+cobravsmongoose,chars-u006000-u006FFF.xml,BMP plane VII (u006000-006FFF),ERROR
+cobravsmongoose,chars-u007000-u007FFF.xml,BMP plane VIII (u007000-007FFF),ERROR
+cobravsmongoose,chars-u008000-u008FFF.xml,BMP plane IX (u008000-008FFF),ERROR
+cobravsmongoose,chars-u009000-u009FFF.xml,BMP plane X (u009000-009FFF),ERROR
+cobravsmongoose,chars-u00A000-u00AFFF.xml,BMP plane XI (u00A000-00AFFF),ERROR
+cobravsmongoose,chars-u00B000-u00BFFF.xml,BMP plane XII (u00B000-00BFFF),ERROR
+cobravsmongoose,chars-u00C000-u00CFFF.xml,BMP plane XIII (u00C000-00CFFF),ERROR
+cobravsmongoose,chars-u00D000-u00D7FF.xml,BMP plane XIV (u00D000-00D7FF),ERROR
+cobravsmongoose,chars-u00E000-u00EFFF.xml,BMP plane XV (u00E000-00EFFF),ERROR
+cobravsmongoose,chars-u00F000-u00FDCF.xml,BMP plane XVI (u00F000-00FDCF),ERROR
+cobravsmongoose,chars-u00FDD0-u00FDEF.xml,BMP plane Discouraged (u00FDD0-00FDEF),ERROR
+cobravsmongoose,chars-u00FDF0-u00FFFD.xml,BMP plane XVII (u00FDF0-00FFFD),ERROR
+cobravsmongoose,chars-u010000-u01FFFD.xml,SMP plane (u010000-01FFFD),ERROR
+cobravsmongoose,chars-u01FFFE-u01FFFF.xml,SMP plane Discouraged (u01FFFE-01FFFF),ERROR
+cobravsmongoose,chars-u020000-u02FFFD.xml,SIP plane (u020000-02FFFD),ERROR
+cobravsmongoose,chars-u02FFFE-u02FFFF.xml,SIP plane Discouraged (u02FFFE-02FFFF),ERROR
+cobravsmongoose,chars-u030000-u03FFFD.xml,Unassigned plane 3 (u030000-03FFFD),ERROR
+cobravsmongoose,chars-u03FFFE-u03FFFF.xml,Plane 3 Discouraged (u03FFFE-03FFFF),ERROR
+cobravsmongoose,chars-u040000-u04FFFD.xml,Unassigned plane 4 (u040000-04FFFD),ERROR
+cobravsmongoose,chars-u04FFFE-u04FFFF.xml,Plane 4 Discouraged (u04FFFE-04FFFF),ERROR
+cobravsmongoose,chars-u050000-u05FFFD.xml,Unassigned plane 5 (u050000-05FFFD),ERROR
+cobravsmongoose,chars-u05FFFE-u05FFFF.xml,Plane 5 Discouraged (u05FFFE-05FFFF),ERROR
+cobravsmongoose,chars-u060000-u06FFFD.xml,Unassigned plane 6 (u060000-06FFFD),ERROR
+cobravsmongoose,chars-u06FFFE-u06FFFF.xml,Plane 6 Discouraged (u06FFFE-06FFFF),ERROR
+cobravsmongoose,chars-u070000-u07FFFD.xml,Unassigned plane 7 (u070000-07FFFD),ERROR
+cobravsmongoose,chars-u07FFFE-u07FFFF.xml,Plane 7 Discouraged (u07FFFE-07FFFF),ERROR
+cobravsmongoose,chars-u080000-u08FFFD.xml,Unassigned plane 8 (u080000-08FFFD),ERROR
+cobravsmongoose,chars-u08FFFE-u08FFFF.xml,Plane 8 Discouraged (u08FFFE-08FFFF),ERROR
+cobravsmongoose,chars-u090000-u09FFFD.xml,Unassigned plane 9 (u090000-09FFFD),ERROR
+cobravsmongoose,chars-u09FFFE-u09FFFF.xml,Plane 9 Discouraged (u09FFFE-09FFFF),ERROR
+cobravsmongoose,chars-u0A0000-u0AFFFD.xml,Unassigned plane 10 (u0A0000-0AFFFD),ERROR
+cobravsmongoose,chars-u0AFFFE-u0AFFFF.xml,Plane 10 Discouraged (u0AFFFE-0AFFFF),ERROR
+cobravsmongoose,chars-u0B0000-u0BFFFD.xml,Unassigned plane 11 (u0B0000-0BFFFD),ERROR
+cobravsmongoose,chars-u0BFFFE-u0BFFFF.xml,Plane 11 Discouraged (u0BFFFE-0BFFFF),ERROR
+cobravsmongoose,chars-u0C0000-u0CFFFD.xml,Unassigned plane 12 (u0C0000-0CFFFD),ERROR
+cobravsmongoose,chars-u0CFFFE-u0CFFFF.xml,Plane 12 Discouraged (u0CFFFE-0CFFFF),ERROR
+cobravsmongoose,chars-u0D0000-u0DFFFD.xml,Unassigned plane 13 (u0D0000-0DFFFD),ERROR
+cobravsmongoose,chars-u0DFFFE-u0DFFFF.xml,Plane 13 Discouraged (u0DFFFE-0DFFFF),ERROR
+cobravsmongoose,chars-u0E0000-u0EFFFD.xml,SSP plane (u0E0000-0EFFFD),ERROR
+cobravsmongoose,chars-u0EFFFE-u0EFFFF.xml,SSP plane Discouraged (u0EFFFE-0EFFFF),ERROR
+cobravsmongoose,chars-u0F0000-u0FFFFD.xml,SPUA-A plane (u0F0000-0FFFFD),ERROR
+cobravsmongoose,chars-u0FFFFE-u0FFFFF.xml,SPUA-A plane Discouraged (u0FFFFE-0FFFFF),ERROR
+cobravsmongoose,chars-u100000-u10FFFD.xml,SPUA-B plane (u100000-10FFFD),ERROR
+cobravsmongoose,chars-u10FFFE-u10FFFF.xml,SPUA-B plane Discouraged (u10FFFE-10FFFF),ERROR
+cobravsmongoose,complex-Office-Open-XML-Part-1-Fundamentals-word2003xml.xml,MSWord 2003 XML file,ERROR
+cobravsmongoose,complex-Office-Open-XML-Part-1-Fundamentals-wordxml.xml,MSWord XML file,ERROR
+cobravsmongoose,complex-OpenDocument-v1.0ed2-cs1.fodt,OpenDocument sample file,ERROR
+cobravsmongoose,complex-REC-xml-20081126.xhtml,XML 1.0 5th Edition (XHTML version),ERROR
+cobravsmongoose,complex-REC-xml-20081126.xml,XML 1.0 5th Edition (XML version),ERROR
+cobravsmongoose,complex-car.svg,SVG Car Demo,ERROR
+cobravsmongoose,complex-docbook-docs-howto.xml,DocBook V5.0 transition guide,ERROR
+cobravsmongoose,complex-musicbrainz-ws-2-release-query-release-JSOP.xml,MusicBrainz.org API Response,ERROR
+cobravsmongoose,complex-photos.svg,SVG Photos Demo,FAILED
+cobravsmongoose,complex-sample-rss-091.xml,RSS 0.91 sample document,FAILED
+cobravsmongoose,complex-sample-rss-092.xml,RSS 0.92 sample document,ERROR
+cobravsmongoose,complex-sample-rss-2.xml,RSS 2.0 sample document,FAILED
+cobravsmongoose,complex-thesis-example-xmltree.xml,XML tree Example (Thesis),ERROR
+cobravsmongoose,dos-billion-laughs-pe.xml,Billion Laughs Attack (PE Version),OK
+cobravsmongoose,dos-billion-laughs.xml,Billion Laughs Attack,OK
+cobravsmongoose,dos-entity-recursion-pe.xml,Entity Recursion Attack (PE),OK
+cobravsmongoose,dos-entity-recursion.xml,Entity Recursion Attack,OK
+cobravsmongoose,dos-quadratic-blowup.xml,Quadratic Blowup Attack,OK
+cobravsmongoose,fsa-doctype-pe.xml,Doctype Parameter Entity FSA Attack,OK
+cobravsmongoose,fsa-external-pe-dtd.xml,External PE DTD FSA Attack,OK
+cobravsmongoose,fsa-xinclude.xml,XInclude FSA Attack,OK
+cobravsmongoose,fsa-xslt.xsl,XSLT FSA Attack,OK
+cobravsmongoose,fsa-xxe-pe.xml,XXE FSA Attack (PE),OK
+cobravsmongoose,fsa-xxe.xml,XXE FSA Attack,OK
+cobravsmongoose,ssrf-doctype.xml,DOCTYPE URL Invocation,OK
+cobravsmongoose,ssrf-schemalocation-nonamespace.xml,SchemaLocation NoNamespace URL Invocation,OK
+cobravsmongoose,ssrf-schemalocation.xml,SchemaLocation URL Invocation,OK
+cobravsmongoose,ssrf-xinclude.xml,XInclude URL Invocation,OK
+cobravsmongoose,ssrf-xxe-pe.xml,XXE URL Invocation (PE),OK
+cobravsmongoose,ssrf-xxe.xml,XXE URL Invocation,OK
+greencapexml,basic-attribute-multiple.xml,Attribute (multiple),OK
+greencapexml,basic-attribute.xml,Attribute,OK
+greencapexml,basic-cdata-close-in-textnode.xml,CDATA close in Text Node,OK
+greencapexml,basic-cdata-escaped.xml,Escaped CDATA section,OK
+greencapexml,basic-cdata-with-markup.xml,CDATA section with Markup,ERROR
+greencapexml,basic-cdata.xml,CDATA support,ERROR
+greencapexml,basic-comments.xml,Comments [OPTIONAL],FAILED
+greencapexml,basic-deepnesting.xml,Deep nesting,OK
+greencapexml,basic-duplicate-childtags-order.xml,Duplicate Child tag Names (Alternating Order),OK
+greencapexml,basic-duplicate-childtags-xmlnsprefix.xml,Duplicate child tag names (different NS prefix),OK
+greencapexml,basic-duplicate-childtags.xml,Duplicate child tag names,OK
+greencapexml,basic-element-order.xml,Element Order,OK
+greencapexml,basic-emptyelement.xml,Empty Elements,OK
+greencapexml,basic-mixedcontent.xml,Mixed Content,FAILED
+greencapexml,basic-pi-attrdata.xml,Processing Instructions (Attibute Data),FAILED
+greencapexml,basic-pi-markup.xml,Processing Instructions (Markup),FAILED
+greencapexml,basic-pi-outside-root.xml,Processing Instructions outside root,FAILED
+greencapexml,basic-pi-simpledata.xml,Processing Instructions (Arbitrary Data),FAILED
+greencapexml,basic-pi-whitespace.xml,Processing Instructions (Whitespace),FAILED
+greencapexml,basic-pi.xml,Processing Instructions (Basic),FAILED
+greencapexml,basic-root-attr.xml,Root Element Attribute,OK
+greencapexml,basic-root-tagname.xml,Root Element Tag Name,OK
+greencapexml,basic-simple.xml,Simple Element List,OK
+greencapexml,basic-typeinference-binary32-attr.xml,Type Inference with floats (Attr),OK
+greencapexml,basic-typeinference-binary32.xml,Type Inference with floats,OK
+greencapexml,basic-typeinference-binary64-attr.xml,Type Inference with doubles (Attr),OK
+greencapexml,basic-typeinference-binary64.xml,Type Inference with doubles,OK
+greencapexml,basic-typeinference-bool-attr.xml,Type Inference with Boolean values (Attr),OK
+greencapexml,basic-typeinference-bool.xml,Type Inference with Boolean values,OK
+greencapexml,basic-typeinference-integer-attr.xml,Type Inference with Big Integers (Attr),OK
+greencapexml,basic-typeinference-integer.xml,Type Inference with Big Integers,OK
+greencapexml,basic-whitespace-indentation.xml,Whitespace (Indentation),FAILED
+greencapexml,basic-whitespace-mixedcontent.xml,Whitespace (Mixed Content),FAILED
+greencapexml,basic-whitespace.xml,Whitespace (Clean/Dirty),FAILED
+greencapexml,basic-xmlns-multiple.xml,Namespace declaration (multiple),OK
+greencapexml,basic-xmlns-prefix.xml,Namespace declaration with prefix,OK
+greencapexml,basic-xmlns.xml,Namespace declaration,OK
+greencapexml,chars-u000009-u00000D.xml,"C0 set (u000009, 00000A & 00000D)",FAILED
+greencapexml,chars-u000020.xml,Space Char (u000020),FAILED
+greencapexml,chars-u000021-u00007E.xml,ASCII printable (u000021-00007E),OK
+greencapexml,chars-u00007F-u000084.xml,Discouraged (u00007F-000084),OK
+greencapexml,chars-u000085.xml,NEL Control Char (u000085),OK
+greencapexml,chars-u000086-u00009F.xml,Discouraged (u000086-00009F),OK
+greencapexml,chars-u0000A0-u000FFF.xml,BMP plane I (u0000A0-000FFF),OK
+greencapexml,chars-u001000-u001FFF.xml,BMP plane II (u001000-001FFF),OK
+greencapexml,chars-u002000-u002FFF.xml,BMP plane III (u002000-002FFF),OK
+greencapexml,chars-u003000-u003FFF.xml,BMP plane IV (u003000-003FFF),OK
+greencapexml,chars-u004000-u004FFF.xml,BMP plane V (u004000-004FFF),OK
+greencapexml,chars-u005000-u005FFF.xml,BMP plane VI (u005000-005FFF),OK
+greencapexml,chars-u006000-u006FFF.xml,BMP plane VII (u006000-006FFF),OK
+greencapexml,chars-u007000-u007FFF.xml,BMP plane VIII (u007000-007FFF),OK
+greencapexml,chars-u008000-u008FFF.xml,BMP plane IX (u008000-008FFF),OK
+greencapexml,chars-u009000-u009FFF.xml,BMP plane X (u009000-009FFF),OK
+greencapexml,chars-u00A000-u00AFFF.xml,BMP plane XI (u00A000-00AFFF),OK
+greencapexml,chars-u00B000-u00BFFF.xml,BMP plane XII (u00B000-00BFFF),OK
+greencapexml,chars-u00C000-u00CFFF.xml,BMP plane XIII (u00C000-00CFFF),OK
+greencapexml,chars-u00D000-u00D7FF.xml,BMP plane XIV (u00D000-00D7FF),OK
+greencapexml,chars-u00E000-u00EFFF.xml,BMP plane XV (u00E000-00EFFF),OK
+greencapexml,chars-u00F000-u00FDCF.xml,BMP plane XVI (u00F000-00FDCF),OK
+greencapexml,chars-u00FDD0-u00FDEF.xml,BMP plane Discouraged (u00FDD0-00FDEF),OK
+greencapexml,chars-u00FDF0-u00FFFD.xml,BMP plane XVII (u00FDF0-00FFFD),OK
+greencapexml,chars-u010000-u01FFFD.xml,SMP plane (u010000-01FFFD),OK
+greencapexml,chars-u01FFFE-u01FFFF.xml,SMP plane Discouraged (u01FFFE-01FFFF),OK
+greencapexml,chars-u020000-u02FFFD.xml,SIP plane (u020000-02FFFD),OK
+greencapexml,chars-u02FFFE-u02FFFF.xml,SIP plane Discouraged (u02FFFE-02FFFF),OK
+greencapexml,chars-u030000-u03FFFD.xml,Unassigned plane 3 (u030000-03FFFD),OK
+greencapexml,chars-u03FFFE-u03FFFF.xml,Plane 3 Discouraged (u03FFFE-03FFFF),OK
+greencapexml,chars-u040000-u04FFFD.xml,Unassigned plane 4 (u040000-04FFFD),OK
+greencapexml,chars-u04FFFE-u04FFFF.xml,Plane 4 Discouraged (u04FFFE-04FFFF),OK
+greencapexml,chars-u050000-u05FFFD.xml,Unassigned plane 5 (u050000-05FFFD),OK
+greencapexml,chars-u05FFFE-u05FFFF.xml,Plane 5 Discouraged (u05FFFE-05FFFF),OK
+greencapexml,chars-u060000-u06FFFD.xml,Unassigned plane 6 (u060000-06FFFD),OK
+greencapexml,chars-u06FFFE-u06FFFF.xml,Plane 6 Discouraged (u06FFFE-06FFFF),OK
+greencapexml,chars-u070000-u07FFFD.xml,Unassigned plane 7 (u070000-07FFFD),OK
+greencapexml,chars-u07FFFE-u07FFFF.xml,Plane 7 Discouraged (u07FFFE-07FFFF),OK
+greencapexml,chars-u080000-u08FFFD.xml,Unassigned plane 8 (u080000-08FFFD),OK
+greencapexml,chars-u08FFFE-u08FFFF.xml,Plane 8 Discouraged (u08FFFE-08FFFF),OK
+greencapexml,chars-u090000-u09FFFD.xml,Unassigned plane 9 (u090000-09FFFD),OK
+greencapexml,chars-u09FFFE-u09FFFF.xml,Plane 9 Discouraged (u09FFFE-09FFFF),OK
+greencapexml,chars-u0A0000-u0AFFFD.xml,Unassigned plane 10 (u0A0000-0AFFFD),OK
+greencapexml,chars-u0AFFFE-u0AFFFF.xml,Plane 10 Discouraged (u0AFFFE-0AFFFF),OK
+greencapexml,chars-u0B0000-u0BFFFD.xml,Unassigned plane 11 (u0B0000-0BFFFD),OK
+greencapexml,chars-u0BFFFE-u0BFFFF.xml,Plane 11 Discouraged (u0BFFFE-0BFFFF),OK
+greencapexml,chars-u0C0000-u0CFFFD.xml,Unassigned plane 12 (u0C0000-0CFFFD),OK
+greencapexml,chars-u0CFFFE-u0CFFFF.xml,Plane 12 Discouraged (u0CFFFE-0CFFFF),OK
+greencapexml,chars-u0D0000-u0DFFFD.xml,Unassigned plane 13 (u0D0000-0DFFFD),OK
+greencapexml,chars-u0DFFFE-u0DFFFF.xml,Plane 13 Discouraged (u0DFFFE-0DFFFF),OK
+greencapexml,chars-u0E0000-u0EFFFD.xml,SSP plane (u0E0000-0EFFFD),OK
+greencapexml,chars-u0EFFFE-u0EFFFF.xml,SSP plane Discouraged (u0EFFFE-0EFFFF),OK
+greencapexml,chars-u0F0000-u0FFFFD.xml,SPUA-A plane (u0F0000-0FFFFD),OK
+greencapexml,chars-u0FFFFE-u0FFFFF.xml,SPUA-A plane Discouraged (u0FFFFE-0FFFFF),OK
+greencapexml,chars-u100000-u10FFFD.xml,SPUA-B plane (u100000-10FFFD),OK
+greencapexml,chars-u10FFFE-u10FFFF.xml,SPUA-B plane Discouraged (u10FFFE-10FFFF),OK
+greencapexml,complex-Office-Open-XML-Part-1-Fundamentals-word2003xml.xml,MSWord 2003 XML file,FAILED
+greencapexml,complex-Office-Open-XML-Part-1-Fundamentals-wordxml.xml,MSWord XML file,FAILED
+greencapexml,complex-OpenDocument-v1.0ed2-cs1.fodt,OpenDocument sample file,ERROR
+greencapexml,complex-REC-xml-20081126.xhtml,XML 1.0 5th Edition (XHTML version),FAILED
+greencapexml,complex-REC-xml-20081126.xml,XML 1.0 5th Edition (XML version),ERROR
+greencapexml,complex-car.svg,SVG Car Demo,FAILED
+greencapexml,complex-docbook-docs-howto.xml,DocBook V5.0 transition guide,ERROR
+greencapexml,complex-musicbrainz-ws-2-release-query-release-JSOP.xml,MusicBrainz.org API Response,OK
+greencapexml,complex-photos.svg,SVG Photos Demo,ERROR
+greencapexml,complex-sample-rss-091.xml,RSS 0.91 sample document,FAILED
+greencapexml,complex-sample-rss-092.xml,RSS 0.92 sample document,FAILED
+greencapexml,complex-sample-rss-2.xml,RSS 2.0 sample document,FAILED
+greencapexml,complex-thesis-example-xmltree.xml,XML tree Example (Thesis),FAILED
+greencapexml,dos-billion-laughs-pe.xml,Billion Laughs Attack (PE Version),OK
+greencapexml,dos-billion-laughs.xml,Billion Laughs Attack,OK
+greencapexml,dos-entity-recursion-pe.xml,Entity Recursion Attack (PE),OK
+greencapexml,dos-entity-recursion.xml,Entity Recursion Attack,OK
+greencapexml,dos-quadratic-blowup.xml,Quadratic Blowup Attack,OK
+greencapexml,fsa-doctype-pe.xml,Doctype Parameter Entity FSA Attack,OK
+greencapexml,fsa-external-pe-dtd.xml,External PE DTD FSA Attack,OK
+greencapexml,fsa-xinclude.xml,XInclude FSA Attack,OK
+greencapexml,fsa-xslt.xsl,XSLT FSA Attack,OK
+greencapexml,fsa-xxe-pe.xml,XXE FSA Attack (PE),OK
+greencapexml,fsa-xxe.xml,XXE FSA Attack,OK
+greencapexml,ssrf-doctype.xml,DOCTYPE URL Invocation,OK
+greencapexml,ssrf-schemalocation-nonamespace.xml,SchemaLocation NoNamespace URL Invocation,OK
+greencapexml,ssrf-schemalocation.xml,SchemaLocation URL Invocation,OK
+greencapexml,ssrf-xinclude.xml,XInclude URL Invocation,OK
+greencapexml,ssrf-xxe-pe.xml,XXE URL Invocation (PE),OK
+greencapexml,ssrf-xxe.xml,XXE URL Invocation,OK
+jsonlib,basic-attribute-multiple.xml,Attribute (multiple),OK
+jsonlib,basic-attribute.xml,Attribute,OK
+jsonlib,basic-cdata-close-in-textnode.xml,CDATA close in Text Node,FAILED
+jsonlib,basic-cdata-escaped.xml,Escaped CDATA section,FAILED
+jsonlib,basic-cdata-with-markup.xml,CDATA section with Markup,FAILED
+jsonlib,basic-cdata.xml,CDATA support,FAILED
+jsonlib,basic-comments.xml,Comments [OPTIONAL],ERROR
+jsonlib,basic-deepnesting.xml,Deep nesting,OK
+jsonlib,basic-duplicate-childtags-order.xml,Duplicate Child tag Names (Alternating Order),FAILED
+jsonlib,basic-duplicate-childtags-xmlnsprefix.xml,Duplicate child tag names (different NS prefix),OK
+jsonlib,basic-duplicate-childtags.xml,Duplicate child tag names,FAILED
+jsonlib,basic-element-order.xml,Element Order,FAILED
+jsonlib,basic-emptyelement.xml,Empty Elements,OK
+jsonlib,basic-mixedcontent.xml,Mixed Content,FAILED
+jsonlib,basic-pi-attrdata.xml,Processing Instructions (Attibute Data),ERROR
+jsonlib,basic-pi-markup.xml,Processing Instructions (Markup),ERROR
+jsonlib,basic-pi-outside-root.xml,Processing Instructions outside root,FAILED
+jsonlib,basic-pi-simpledata.xml,Processing Instructions (Arbitrary Data),ERROR
+jsonlib,basic-pi-whitespace.xml,Processing Instructions (Whitespace),ERROR
+jsonlib,basic-pi.xml,Processing Instructions (Basic),ERROR
+jsonlib,basic-root-attr.xml,Root Element Attribute,OK
+jsonlib,basic-root-tagname.xml,Root Element Tag Name,FAILED
+jsonlib,basic-simple.xml,Simple Element List,OK
+jsonlib,basic-typeinference-binary32-attr.xml,Type Inference with floats (Attr),OK
+jsonlib,basic-typeinference-binary32.xml,Type Inference with floats,OK
+jsonlib,basic-typeinference-binary64-attr.xml,Type Inference with doubles (Attr),OK
+jsonlib,basic-typeinference-binary64.xml,Type Inference with doubles,OK
+jsonlib,basic-typeinference-bool-attr.xml,Type Inference with Boolean values (Attr),OK
+jsonlib,basic-typeinference-bool.xml,Type Inference with Boolean values,OK
+jsonlib,basic-typeinference-integer-attr.xml,Type Inference with Big Integers (Attr),OK
+jsonlib,basic-typeinference-integer.xml,Type Inference with Big Integers,OK
+jsonlib,basic-whitespace-indentation.xml,Whitespace (Indentation),FAILED
+jsonlib,basic-whitespace-mixedcontent.xml,Whitespace (Mixed Content),FAILED
+jsonlib,basic-whitespace.xml,Whitespace (Clean/Dirty),OK
+jsonlib,basic-xmlns-multiple.xml,Namespace declaration (multiple),OK
+jsonlib,basic-xmlns-prefix.xml,Namespace declaration with prefix,OK
+jsonlib,basic-xmlns.xml,Namespace declaration,OK
+jsonlib,chars-u000009-u00000D.xml,"C0 set (u000009, 00000A & 00000D)",FAILED
+jsonlib,chars-u000020.xml,Space Char (u000020),OK
+jsonlib,chars-u000021-u00007E.xml,ASCII printable (u000021-00007E),OK
+jsonlib,chars-u00007F-u000084.xml,Discouraged (u00007F-000084),FAILED
+jsonlib,chars-u000085.xml,NEL Control Char (u000085),FAILED
+jsonlib,chars-u000086-u00009F.xml,Discouraged (u000086-00009F),FAILED
+jsonlib,chars-u0000A0-u000FFF.xml,BMP plane I (u0000A0-000FFF),FAILED
+jsonlib,chars-u001000-u001FFF.xml,BMP plane II (u001000-001FFF),FAILED
+jsonlib,chars-u002000-u002FFF.xml,BMP plane III (u002000-002FFF),FAILED
+jsonlib,chars-u003000-u003FFF.xml,BMP plane IV (u003000-003FFF),FAILED
+jsonlib,chars-u004000-u004FFF.xml,BMP plane V (u004000-004FFF),FAILED
+jsonlib,chars-u005000-u005FFF.xml,BMP plane VI (u005000-005FFF),FAILED
+jsonlib,chars-u006000-u006FFF.xml,BMP plane VII (u006000-006FFF),FAILED
+jsonlib,chars-u007000-u007FFF.xml,BMP plane VIII (u007000-007FFF),FAILED
+jsonlib,chars-u008000-u008FFF.xml,BMP plane IX (u008000-008FFF),FAILED
+jsonlib,chars-u009000-u009FFF.xml,BMP plane X (u009000-009FFF),FAILED
+jsonlib,chars-u00A000-u00AFFF.xml,BMP plane XI (u00A000-00AFFF),FAILED
+jsonlib,chars-u00B000-u00BFFF.xml,BMP plane XII (u00B000-00BFFF),FAILED
+jsonlib,chars-u00C000-u00CFFF.xml,BMP plane XIII (u00C000-00CFFF),FAILED
+jsonlib,chars-u00D000-u00D7FF.xml,BMP plane XIV (u00D000-00D7FF),FAILED
+jsonlib,chars-u00E000-u00EFFF.xml,BMP plane XV (u00E000-00EFFF),FAILED
+jsonlib,chars-u00F000-u00FDCF.xml,BMP plane XVI (u00F000-00FDCF),FAILED
+jsonlib,chars-u00FDD0-u00FDEF.xml,BMP plane Discouraged (u00FDD0-00FDEF),FAILED
+jsonlib,chars-u00FDF0-u00FFFD.xml,BMP plane XVII (u00FDF0-00FFFD),FAILED
+jsonlib,chars-u010000-u01FFFD.xml,SMP plane (u010000-01FFFD),FAILED
+jsonlib,chars-u01FFFE-u01FFFF.xml,SMP plane Discouraged (u01FFFE-01FFFF),FAILED
+jsonlib,chars-u020000-u02FFFD.xml,SIP plane (u020000-02FFFD),FAILED
+jsonlib,chars-u02FFFE-u02FFFF.xml,SIP plane Discouraged (u02FFFE-02FFFF),FAILED
+jsonlib,chars-u030000-u03FFFD.xml,Unassigned plane 3 (u030000-03FFFD),FAILED
+jsonlib,chars-u03FFFE-u03FFFF.xml,Plane 3 Discouraged (u03FFFE-03FFFF),FAILED
+jsonlib,chars-u040000-u04FFFD.xml,Unassigned plane 4 (u040000-04FFFD),FAILED
+jsonlib,chars-u04FFFE-u04FFFF.xml,Plane 4 Discouraged (u04FFFE-04FFFF),FAILED
+jsonlib,chars-u050000-u05FFFD.xml,Unassigned plane 5 (u050000-05FFFD),FAILED
+jsonlib,chars-u05FFFE-u05FFFF.xml,Plane 5 Discouraged (u05FFFE-05FFFF),FAILED
+jsonlib,chars-u060000-u06FFFD.xml,Unassigned plane 6 (u060000-06FFFD),FAILED
+jsonlib,chars-u06FFFE-u06FFFF.xml,Plane 6 Discouraged (u06FFFE-06FFFF),FAILED
+jsonlib,chars-u070000-u07FFFD.xml,Unassigned plane 7 (u070000-07FFFD),FAILED
+jsonlib,chars-u07FFFE-u07FFFF.xml,Plane 7 Discouraged (u07FFFE-07FFFF),FAILED
+jsonlib,chars-u080000-u08FFFD.xml,Unassigned plane 8 (u080000-08FFFD),FAILED
+jsonlib,chars-u08FFFE-u08FFFF.xml,Plane 8 Discouraged (u08FFFE-08FFFF),FAILED
+jsonlib,chars-u090000-u09FFFD.xml,Unassigned plane 9 (u090000-09FFFD),FAILED
+jsonlib,chars-u09FFFE-u09FFFF.xml,Plane 9 Discouraged (u09FFFE-09FFFF),FAILED
+jsonlib,chars-u0A0000-u0AFFFD.xml,Unassigned plane 10 (u0A0000-0AFFFD),FAILED
+jsonlib,chars-u0AFFFE-u0AFFFF.xml,Plane 10 Discouraged (u0AFFFE-0AFFFF),FAILED
+jsonlib,chars-u0B0000-u0BFFFD.xml,Unassigned plane 11 (u0B0000-0BFFFD),FAILED
+jsonlib,chars-u0BFFFE-u0BFFFF.xml,Plane 11 Discouraged (u0BFFFE-0BFFFF),FAILED
+jsonlib,chars-u0C0000-u0CFFFD.xml,Unassigned plane 12 (u0C0000-0CFFFD),FAILED
+jsonlib,chars-u0CFFFE-u0CFFFF.xml,Plane 12 Discouraged (u0CFFFE-0CFFFF),FAILED
+jsonlib,chars-u0D0000-u0DFFFD.xml,Unassigned plane 13 (u0D0000-0DFFFD),FAILED
+jsonlib,chars-u0DFFFE-u0DFFFF.xml,Plane 13 Discouraged (u0DFFFE-0DFFFF),FAILED
+jsonlib,chars-u0E0000-u0EFFFD.xml,SSP plane (u0E0000-0EFFFD),FAILED
+jsonlib,chars-u0EFFFE-u0EFFFF.xml,SSP plane Discouraged (u0EFFFE-0EFFFF),FAILED
+jsonlib,chars-u0F0000-u0FFFFD.xml,SPUA-A plane (u0F0000-0FFFFD),FAILED
+jsonlib,chars-u0FFFFE-u0FFFFF.xml,SPUA-A plane Discouraged (u0FFFFE-0FFFFF),FAILED
+jsonlib,chars-u100000-u10FFFD.xml,SPUA-B plane (u100000-10FFFD),FAILED
+jsonlib,chars-u10FFFE-u10FFFF.xml,SPUA-B plane Discouraged (u10FFFE-10FFFF),FAILED
+jsonlib,complex-Office-Open-XML-Part-1-Fundamentals-word2003xml.xml,MSWord 2003 XML file,ERROR
+jsonlib,complex-Office-Open-XML-Part-1-Fundamentals-wordxml.xml,MSWord XML file,ERROR
+jsonlib,complex-OpenDocument-v1.0ed2-cs1.fodt,OpenDocument sample file,ERROR
+jsonlib,complex-REC-xml-20081126.xhtml,XML 1.0 5th Edition (XHTML version),ERROR
+jsonlib,complex-REC-xml-20081126.xml,XML 1.0 5th Edition (XML version),ERROR
+jsonlib,complex-car.svg,SVG Car Demo,ERROR
+jsonlib,complex-docbook-docs-howto.xml,DocBook V5.0 transition guide,ERROR
+jsonlib,complex-musicbrainz-ws-2-release-query-release-JSOP.xml,MusicBrainz.org API Response,ERROR
+jsonlib,complex-photos.svg,SVG Photos Demo,FAILED
+jsonlib,complex-sample-rss-091.xml,RSS 0.91 sample document,FAILED
+jsonlib,complex-sample-rss-092.xml,RSS 0.92 sample document,FAILED
+jsonlib,complex-sample-rss-2.xml,RSS 2.0 sample document,FAILED
+jsonlib,complex-thesis-example-xmltree.xml,XML tree Example (Thesis),FAILED
+jsonlib,dos-billion-laughs-pe.xml,Billion Laughs Attack (PE Version),OK
+jsonlib,dos-billion-laughs.xml,Billion Laughs Attack,OK
+jsonlib,dos-entity-recursion-pe.xml,Entity Recursion Attack (PE),OK
+jsonlib,dos-entity-recursion.xml,Entity Recursion Attack,OK
+jsonlib,dos-quadratic-blowup.xml,Quadratic Blowup Attack,OK
+jsonlib,fsa-doctype-pe.xml,Doctype Parameter Entity FSA Attack,FAILED
+jsonlib,fsa-external-pe-dtd.xml,External PE DTD FSA Attack,FAILED
+jsonlib,fsa-xinclude.xml,XInclude FSA Attack,OK
+jsonlib,fsa-xslt.xsl,XSLT FSA Attack,OK
+jsonlib,fsa-xxe-pe.xml,XXE FSA Attack (PE),OK
+jsonlib,fsa-xxe.xml,XXE FSA Attack,FAILED
+jsonlib,ssrf-doctype.xml,DOCTYPE URL Invocation,FAILED
+jsonlib,ssrf-schemalocation-nonamespace.xml,SchemaLocation NoNamespace URL Invocation,OK
+jsonlib,ssrf-schemalocation.xml,SchemaLocation URL Invocation,OK
+jsonlib,ssrf-xinclude.xml,XInclude URL Invocation,OK
+jsonlib,ssrf-xxe-pe.xml,XXE URL Invocation (PE),FAILED
+jsonlib,ssrf-xxe.xml,XXE URL Invocation,FAILED
+jsonml,basic-attribute-multiple.xml,Attribute (multiple),OK
+jsonml,basic-attribute.xml,Attribute,OK
+jsonml,basic-cdata-close-in-textnode.xml,CDATA close in Text Node,OK
+jsonml,basic-cdata-escaped.xml,Escaped CDATA section,OK
+jsonml,basic-cdata-with-markup.xml,CDATA section with Markup,OK
+jsonml,basic-cdata.xml,CDATA support,OK
+jsonml,basic-comments.xml,Comments [OPTIONAL],FAILED
+jsonml,basic-deepnesting.xml,Deep nesting,OK
+jsonml,basic-duplicate-childtags-order.xml,Duplicate Child tag Names (Alternating Order),OK
+jsonml,basic-duplicate-childtags-xmlnsprefix.xml,Duplicate child tag names (different NS prefix),OK
+jsonml,basic-duplicate-childtags.xml,Duplicate child tag names,OK
+jsonml,basic-element-order.xml,Element Order,OK
+jsonml,basic-emptyelement.xml,Empty Elements,OK
+jsonml,basic-mixedcontent.xml,Mixed Content,OK
+jsonml,basic-pi-attrdata.xml,Processing Instructions (Attibute Data),FAILED
+jsonml,basic-pi-markup.xml,Processing Instructions (Markup),FAILED
+jsonml,basic-pi-outside-root.xml,Processing Instructions outside root,FAILED
+jsonml,basic-pi-simpledata.xml,Processing Instructions (Arbitrary Data),FAILED
+jsonml,basic-pi-whitespace.xml,Processing Instructions (Whitespace),FAILED
+jsonml,basic-pi.xml,Processing Instructions (Basic),FAILED
+jsonml,basic-root-attr.xml,Root Element Attribute,OK
+jsonml,basic-root-tagname.xml,Root Element Tag Name,OK
+jsonml,basic-simple.xml,Simple Element List,OK
+jsonml,basic-typeinference-binary32-attr.xml,Type Inference with floats (Attr),OK
+jsonml,basic-typeinference-binary32.xml,Type Inference with floats,OK
+jsonml,basic-typeinference-binary64-attr.xml,Type Inference with doubles (Attr),OK
+jsonml,basic-typeinference-binary64.xml,Type Inference with doubles,OK
+jsonml,basic-typeinference-bool-attr.xml,Type Inference with Boolean values (Attr),OK
+jsonml,basic-typeinference-bool.xml,Type Inference with Boolean values,OK
+jsonml,basic-typeinference-integer-attr.xml,Type Inference with Big Integers (Attr),OK
+jsonml,basic-typeinference-integer.xml,Type Inference with Big Integers,OK
+jsonml,basic-whitespace-indentation.xml,Whitespace (Indentation),OK
+jsonml,basic-whitespace-mixedcontent.xml,Whitespace (Mixed Content),OK
+jsonml,basic-whitespace.xml,Whitespace (Clean/Dirty),OK
+jsonml,basic-xmlns-multiple.xml,Namespace declaration (multiple),OK
+jsonml,basic-xmlns-prefix.xml,Namespace declaration with prefix,OK
+jsonml,basic-xmlns.xml,Namespace declaration,OK
+jsonml,chars-u000009-u00000D.xml,"C0 set (u000009, 00000A & 00000D)",OK
+jsonml,chars-u000020.xml,Space Char (u000020),OK
+jsonml,chars-u000021-u00007E.xml,ASCII printable (u000021-00007E),OK
+jsonml,chars-u00007F-u000084.xml,Discouraged (u00007F-000084),OK
+jsonml,chars-u000085.xml,NEL Control Char (u000085),OK
+jsonml,chars-u000086-u00009F.xml,Discouraged (u000086-00009F),OK
+jsonml,chars-u0000A0-u000FFF.xml,BMP plane I (u0000A0-000FFF),OK
+jsonml,chars-u001000-u001FFF.xml,BMP plane II (u001000-001FFF),OK
+jsonml,chars-u002000-u002FFF.xml,BMP plane III (u002000-002FFF),OK
+jsonml,chars-u003000-u003FFF.xml,BMP plane IV (u003000-003FFF),OK
+jsonml,chars-u004000-u004FFF.xml,BMP plane V (u004000-004FFF),OK
+jsonml,chars-u005000-u005FFF.xml,BMP plane VI (u005000-005FFF),OK
+jsonml,chars-u006000-u006FFF.xml,BMP plane VII (u006000-006FFF),OK
+jsonml,chars-u007000-u007FFF.xml,BMP plane VIII (u007000-007FFF),OK
+jsonml,chars-u008000-u008FFF.xml,BMP plane IX (u008000-008FFF),OK
+jsonml,chars-u009000-u009FFF.xml,BMP plane X (u009000-009FFF),OK
+jsonml,chars-u00A000-u00AFFF.xml,BMP plane XI (u00A000-00AFFF),OK
+jsonml,chars-u00B000-u00BFFF.xml,BMP plane XII (u00B000-00BFFF),OK
+jsonml,chars-u00C000-u00CFFF.xml,BMP plane XIII (u00C000-00CFFF),OK
+jsonml,chars-u00D000-u00D7FF.xml,BMP plane XIV (u00D000-00D7FF),OK
+jsonml,chars-u00E000-u00EFFF.xml,BMP plane XV (u00E000-00EFFF),OK
+jsonml,chars-u00F000-u00FDCF.xml,BMP plane XVI (u00F000-00FDCF),OK
+jsonml,chars-u00FDD0-u00FDEF.xml,BMP plane Discouraged (u00FDD0-00FDEF),OK
+jsonml,chars-u00FDF0-u00FFFD.xml,BMP plane XVII (u00FDF0-00FFFD),OK
+jsonml,chars-u010000-u01FFFD.xml,SMP plane (u010000-01FFFD),OK
+jsonml,chars-u01FFFE-u01FFFF.xml,SMP plane Discouraged (u01FFFE-01FFFF),OK
+jsonml,chars-u020000-u02FFFD.xml,SIP plane (u020000-02FFFD),OK
+jsonml,chars-u02FFFE-u02FFFF.xml,SIP plane Discouraged (u02FFFE-02FFFF),OK
+jsonml,chars-u030000-u03FFFD.xml,Unassigned plane 3 (u030000-03FFFD),OK
+jsonml,chars-u03FFFE-u03FFFF.xml,Plane 3 Discouraged (u03FFFE-03FFFF),OK
+jsonml,chars-u040000-u04FFFD.xml,Unassigned plane 4 (u040000-04FFFD),OK
+jsonml,chars-u04FFFE-u04FFFF.xml,Plane 4 Discouraged (u04FFFE-04FFFF),OK
+jsonml,chars-u050000-u05FFFD.xml,Unassigned plane 5 (u050000-05FFFD),OK
+jsonml,chars-u05FFFE-u05FFFF.xml,Plane 5 Discouraged (u05FFFE-05FFFF),OK
+jsonml,chars-u060000-u06FFFD.xml,Unassigned plane 6 (u060000-06FFFD),OK
+jsonml,chars-u06FFFE-u06FFFF.xml,Plane 6 Discouraged (u06FFFE-06FFFF),OK
+jsonml,chars-u070000-u07FFFD.xml,Unassigned plane 7 (u070000-07FFFD),OK
+jsonml,chars-u07FFFE-u07FFFF.xml,Plane 7 Discouraged (u07FFFE-07FFFF),OK
+jsonml,chars-u080000-u08FFFD.xml,Unassigned plane 8 (u080000-08FFFD),OK
+jsonml,chars-u08FFFE-u08FFFF.xml,Plane 8 Discouraged (u08FFFE-08FFFF),OK
+jsonml,chars-u090000-u09FFFD.xml,Unassigned plane 9 (u090000-09FFFD),OK
+jsonml,chars-u09FFFE-u09FFFF.xml,Plane 9 Discouraged (u09FFFE-09FFFF),OK
+jsonml,chars-u0A0000-u0AFFFD.xml,Unassigned plane 10 (u0A0000-0AFFFD),OK
+jsonml,chars-u0AFFFE-u0AFFFF.xml,Plane 10 Discouraged (u0AFFFE-0AFFFF),OK
+jsonml,chars-u0B0000-u0BFFFD.xml,Unassigned plane 11 (u0B0000-0BFFFD),OK
+jsonml,chars-u0BFFFE-u0BFFFF.xml,Plane 11 Discouraged (u0BFFFE-0BFFFF),OK
+jsonml,chars-u0C0000-u0CFFFD.xml,Unassigned plane 12 (u0C0000-0CFFFD),OK
+jsonml,chars-u0CFFFE-u0CFFFF.xml,Plane 12 Discouraged (u0CFFFE-0CFFFF),OK
+jsonml,chars-u0D0000-u0DFFFD.xml,Unassigned plane 13 (u0D0000-0DFFFD),OK
+jsonml,chars-u0DFFFE-u0DFFFF.xml,Plane 13 Discouraged (u0DFFFE-0DFFFF),OK
+jsonml,chars-u0E0000-u0EFFFD.xml,SSP plane (u0E0000-0EFFFD),OK
+jsonml,chars-u0EFFFE-u0EFFFF.xml,SSP plane Discouraged (u0EFFFE-0EFFFF),OK
+jsonml,chars-u0F0000-u0FFFFD.xml,SPUA-A plane (u0F0000-0FFFFD),OK
+jsonml,chars-u0FFFFE-u0FFFFF.xml,SPUA-A plane Discouraged (u0FFFFE-0FFFFF),OK
+jsonml,chars-u100000-u10FFFD.xml,SPUA-B plane (u100000-10FFFD),OK
+jsonml,chars-u10FFFE-u10FFFF.xml,SPUA-B plane Discouraged (u10FFFE-10FFFF),OK
+jsonml,complex-Office-Open-XML-Part-1-Fundamentals-word2003xml.xml,MSWord 2003 XML file,FAILED
+jsonml,complex-Office-Open-XML-Part-1-Fundamentals-wordxml.xml,MSWord XML file,FAILED
+jsonml,complex-OpenDocument-v1.0ed2-cs1.fodt,OpenDocument sample file,OK
+jsonml,complex-REC-xml-20081126.xhtml,XML 1.0 5th Edition (XHTML version),OK
+jsonml,complex-REC-xml-20081126.xml,XML 1.0 5th Edition (XML version),FAILED
+jsonml,complex-car.svg,SVG Car Demo,OK
+jsonml,complex-docbook-docs-howto.xml,DocBook V5.0 transition guide,OK
+jsonml,complex-musicbrainz-ws-2-release-query-release-JSOP.xml,MusicBrainz.org API Response,OK
+jsonml,complex-photos.svg,SVG Photos Demo,OK
+jsonml,complex-sample-rss-091.xml,RSS 0.91 sample document,OK
+jsonml,complex-sample-rss-092.xml,RSS 0.92 sample document,OK
+jsonml,complex-sample-rss-2.xml,RSS 2.0 sample document,OK
+jsonml,complex-thesis-example-xmltree.xml,XML tree Example (Thesis),FAILED
+jsonml,dos-billion-laughs-pe.xml,Billion Laughs Attack (PE Version),OK
+jsonml,dos-billion-laughs.xml,Billion Laughs Attack,OK
+jsonml,dos-entity-recursion-pe.xml,Entity Recursion Attack (PE),OK
+jsonml,dos-entity-recursion.xml,Entity Recursion Attack,OK
+jsonml,dos-quadratic-blowup.xml,Quadratic Blowup Attack,OK
+jsonml,fsa-doctype-pe.xml,Doctype Parameter Entity FSA Attack,OK
+jsonml,fsa-external-pe-dtd.xml,External PE DTD FSA Attack,OK
+jsonml,fsa-xinclude.xml,XInclude FSA Attack,OK
+jsonml,fsa-xslt.xsl,XSLT FSA Attack,OK
+jsonml,fsa-xxe-pe.xml,XXE FSA Attack (PE),OK
+jsonml,fsa-xxe.xml,XXE FSA Attack,OK
+jsonml,ssrf-doctype.xml,DOCTYPE URL Invocation,OK
+jsonml,ssrf-schemalocation-nonamespace.xml,SchemaLocation NoNamespace URL Invocation,OK
+jsonml,ssrf-schemalocation.xml,SchemaLocation URL Invocation,OK
+jsonml,ssrf-xinclude.xml,XInclude URL Invocation,OK
+jsonml,ssrf-xxe-pe.xml,XXE URL Invocation (PE),OK
+jsonml,ssrf-xxe.xml,XXE URL Invocation,OK
+jsonmlpatched,basic-attribute-multiple.xml,Attribute (multiple),OK
+jsonmlpatched,basic-attribute.xml,Attribute,OK
+jsonmlpatched,basic-cdata-close-in-textnode.xml,CDATA close in Text Node,OK
+jsonmlpatched,basic-cdata-escaped.xml,Escaped CDATA section,OK
+jsonmlpatched,basic-cdata-with-markup.xml,CDATA section with Markup,OK
+jsonmlpatched,basic-cdata.xml,CDATA support,OK
+jsonmlpatched,basic-comments.xml,Comments [OPTIONAL],FAILED
+jsonmlpatched,basic-deepnesting.xml,Deep nesting,OK
+jsonmlpatched,basic-duplicate-childtags-order.xml,Duplicate Child tag Names (Alternating Order),OK
+jsonmlpatched,basic-duplicate-childtags-xmlnsprefix.xml,Duplicate child tag names (different NS prefix),OK
+jsonmlpatched,basic-duplicate-childtags.xml,Duplicate child tag names,OK
+jsonmlpatched,basic-element-order.xml,Element Order,OK
+jsonmlpatched,basic-emptyelement.xml,Empty Elements,OK
+jsonmlpatched,basic-mixedcontent.xml,Mixed Content,OK
+jsonmlpatched,basic-pi-attrdata.xml,Processing Instructions (Attibute Data),OK
+jsonmlpatched,basic-pi-markup.xml,Processing Instructions (Markup),OK
+jsonmlpatched,basic-pi-outside-root.xml,Processing Instructions outside root,OK
+jsonmlpatched,basic-pi-simpledata.xml,Processing Instructions (Arbitrary Data),OK
+jsonmlpatched,basic-pi-whitespace.xml,Processing Instructions (Whitespace),OK
+jsonmlpatched,basic-pi.xml,Processing Instructions (Basic),OK
+jsonmlpatched,basic-root-attr.xml,Root Element Attribute,OK
+jsonmlpatched,basic-root-tagname.xml,Root Element Tag Name,OK
+jsonmlpatched,basic-simple.xml,Simple Element List,OK
+jsonmlpatched,basic-typeinference-binary32-attr.xml,Type Inference with floats (Attr),OK
+jsonmlpatched,basic-typeinference-binary32.xml,Type Inference with floats,OK
+jsonmlpatched,basic-typeinference-binary64-attr.xml,Type Inference with doubles (Attr),OK
+jsonmlpatched,basic-typeinference-binary64.xml,Type Inference with doubles,OK
+jsonmlpatched,basic-typeinference-bool-attr.xml,Type Inference with Boolean values (Attr),OK
+jsonmlpatched,basic-typeinference-bool.xml,Type Inference with Boolean values,OK
+jsonmlpatched,basic-typeinference-integer-attr.xml,Type Inference with Big Integers (Attr),OK
+jsonmlpatched,basic-typeinference-integer.xml,Type Inference with Big Integers,OK
+jsonmlpatched,basic-whitespace-indentation.xml,Whitespace (Indentation),OK
+jsonmlpatched,basic-whitespace-mixedcontent.xml,Whitespace (Mixed Content),OK
+jsonmlpatched,basic-whitespace.xml,Whitespace (Clean/Dirty),OK
+jsonmlpatched,basic-xmlns-multiple.xml,Namespace declaration (multiple),OK
+jsonmlpatched,basic-xmlns-prefix.xml,Namespace declaration with prefix,OK
+jsonmlpatched,basic-xmlns.xml,Namespace declaration,OK
+jsonmlpatched,chars-u000009-u00000D.xml,"C0 set (u000009, 00000A & 00000D)",OK
+jsonmlpatched,chars-u000020.xml,Space Char (u000020),OK
+jsonmlpatched,chars-u000021-u00007E.xml,ASCII printable (u000021-00007E),OK
+jsonmlpatched,chars-u00007F-u000084.xml,Discouraged (u00007F-000084),OK
+jsonmlpatched,chars-u000085.xml,NEL Control Char (u000085),OK
+jsonmlpatched,chars-u000086-u00009F.xml,Discouraged (u000086-00009F),OK
+jsonmlpatched,chars-u0000A0-u000FFF.xml,BMP plane I (u0000A0-000FFF),OK
+jsonmlpatched,chars-u001000-u001FFF.xml,BMP plane II (u001000-001FFF),OK
+jsonmlpatched,chars-u002000-u002FFF.xml,BMP plane III (u002000-002FFF),OK
+jsonmlpatched,chars-u003000-u003FFF.xml,BMP plane IV (u003000-003FFF),OK
+jsonmlpatched,chars-u004000-u004FFF.xml,BMP plane V (u004000-004FFF),OK
+jsonmlpatched,chars-u005000-u005FFF.xml,BMP plane VI (u005000-005FFF),OK
+jsonmlpatched,chars-u006000-u006FFF.xml,BMP plane VII (u006000-006FFF),OK
+jsonmlpatched,chars-u007000-u007FFF.xml,BMP plane VIII (u007000-007FFF),OK
+jsonmlpatched,chars-u008000-u008FFF.xml,BMP plane IX (u008000-008FFF),OK
+jsonmlpatched,chars-u009000-u009FFF.xml,BMP plane X (u009000-009FFF),OK
+jsonmlpatched,chars-u00A000-u00AFFF.xml,BMP plane XI (u00A000-00AFFF),OK
+jsonmlpatched,chars-u00B000-u00BFFF.xml,BMP plane XII (u00B000-00BFFF),OK
+jsonmlpatched,chars-u00C000-u00CFFF.xml,BMP plane XIII (u00C000-00CFFF),OK
+jsonmlpatched,chars-u00D000-u00D7FF.xml,BMP plane XIV (u00D000-00D7FF),OK
+jsonmlpatched,chars-u00E000-u00EFFF.xml,BMP plane XV (u00E000-00EFFF),OK
+jsonmlpatched,chars-u00F000-u00FDCF.xml,BMP plane XVI (u00F000-00FDCF),OK
+jsonmlpatched,chars-u00FDD0-u00FDEF.xml,BMP plane Discouraged (u00FDD0-00FDEF),OK
+jsonmlpatched,chars-u00FDF0-u00FFFD.xml,BMP plane XVII (u00FDF0-00FFFD),OK
+jsonmlpatched,chars-u010000-u01FFFD.xml,SMP plane (u010000-01FFFD),OK
+jsonmlpatched,chars-u01FFFE-u01FFFF.xml,SMP plane Discouraged (u01FFFE-01FFFF),OK
+jsonmlpatched,chars-u020000-u02FFFD.xml,SIP plane (u020000-02FFFD),OK
+jsonmlpatched,chars-u02FFFE-u02FFFF.xml,SIP plane Discouraged (u02FFFE-02FFFF),OK
+jsonmlpatched,chars-u030000-u03FFFD.xml,Unassigned plane 3 (u030000-03FFFD),OK
+jsonmlpatched,chars-u03FFFE-u03FFFF.xml,Plane 3 Discouraged (u03FFFE-03FFFF),OK
+jsonmlpatched,chars-u040000-u04FFFD.xml,Unassigned plane 4 (u040000-04FFFD),OK
+jsonmlpatched,chars-u04FFFE-u04FFFF.xml,Plane 4 Discouraged (u04FFFE-04FFFF),OK
+jsonmlpatched,chars-u050000-u05FFFD.xml,Unassigned plane 5 (u050000-05FFFD),OK
+jsonmlpatched,chars-u05FFFE-u05FFFF.xml,Plane 5 Discouraged (u05FFFE-05FFFF),OK
+jsonmlpatched,chars-u060000-u06FFFD.xml,Unassigned plane 6 (u060000-06FFFD),OK
+jsonmlpatched,chars-u06FFFE-u06FFFF.xml,Plane 6 Discouraged (u06FFFE-06FFFF),OK
+jsonmlpatched,chars-u070000-u07FFFD.xml,Unassigned plane 7 (u070000-07FFFD),OK
+jsonmlpatched,chars-u07FFFE-u07FFFF.xml,Plane 7 Discouraged (u07FFFE-07FFFF),OK
+jsonmlpatched,chars-u080000-u08FFFD.xml,Unassigned plane 8 (u080000-08FFFD),OK
+jsonmlpatched,chars-u08FFFE-u08FFFF.xml,Plane 8 Discouraged (u08FFFE-08FFFF),OK
+jsonmlpatched,chars-u090000-u09FFFD.xml,Unassigned plane 9 (u090000-09FFFD),OK
+jsonmlpatched,chars-u09FFFE-u09FFFF.xml,Plane 9 Discouraged (u09FFFE-09FFFF),OK
+jsonmlpatched,chars-u0A0000-u0AFFFD.xml,Unassigned plane 10 (u0A0000-0AFFFD),OK
+jsonmlpatched,chars-u0AFFFE-u0AFFFF.xml,Plane 10 Discouraged (u0AFFFE-0AFFFF),OK
+jsonmlpatched,chars-u0B0000-u0BFFFD.xml,Unassigned plane 11 (u0B0000-0BFFFD),OK
+jsonmlpatched,chars-u0BFFFE-u0BFFFF.xml,Plane 11 Discouraged (u0BFFFE-0BFFFF),OK
+jsonmlpatched,chars-u0C0000-u0CFFFD.xml,Unassigned plane 12 (u0C0000-0CFFFD),OK
+jsonmlpatched,chars-u0CFFFE-u0CFFFF.xml,Plane 12 Discouraged (u0CFFFE-0CFFFF),OK
+jsonmlpatched,chars-u0D0000-u0DFFFD.xml,Unassigned plane 13 (u0D0000-0DFFFD),OK
+jsonmlpatched,chars-u0DFFFE-u0DFFFF.xml,Plane 13 Discouraged (u0DFFFE-0DFFFF),OK
+jsonmlpatched,chars-u0E0000-u0EFFFD.xml,SSP plane (u0E0000-0EFFFD),OK
+jsonmlpatched,chars-u0EFFFE-u0EFFFF.xml,SSP plane Discouraged (u0EFFFE-0EFFFF),OK
+jsonmlpatched,chars-u0F0000-u0FFFFD.xml,SPUA-A plane (u0F0000-0FFFFD),OK
+jsonmlpatched,chars-u0FFFFE-u0FFFFF.xml,SPUA-A plane Discouraged (u0FFFFE-0FFFFF),OK
+jsonmlpatched,chars-u100000-u10FFFD.xml,SPUA-B plane (u100000-10FFFD),OK
+jsonmlpatched,chars-u10FFFE-u10FFFF.xml,SPUA-B plane Discouraged (u10FFFE-10FFFF),OK
+jsonmlpatched,complex-Office-Open-XML-Part-1-Fundamentals-word2003xml.xml,MSWord 2003 XML file,OK
+jsonmlpatched,complex-Office-Open-XML-Part-1-Fundamentals-wordxml.xml,MSWord XML file,OK
+jsonmlpatched,complex-OpenDocument-v1.0ed2-cs1.fodt,OpenDocument sample file,OK
+jsonmlpatched,complex-REC-xml-20081126.xhtml,XML 1.0 5th Edition (XHTML version),OK
+jsonmlpatched,complex-REC-xml-20081126.xml,XML 1.0 5th Edition (XML version),OK
+jsonmlpatched,complex-car.svg,SVG Car Demo,OK
+jsonmlpatched,complex-docbook-docs-howto.xml,DocBook V5.0 transition guide,OK
+jsonmlpatched,complex-musicbrainz-ws-2-release-query-release-JSOP.xml,MusicBrainz.org API Response,OK
+jsonmlpatched,complex-photos.svg,SVG Photos Demo,OK
+jsonmlpatched,complex-sample-rss-091.xml,RSS 0.91 sample document,OK
+jsonmlpatched,complex-sample-rss-092.xml,RSS 0.92 sample document,OK
+jsonmlpatched,complex-sample-rss-2.xml,RSS 2.0 sample document,OK
+jsonmlpatched,complex-thesis-example-xmltree.xml,XML tree Example (Thesis),OK
+jsonmlpatched,dos-billion-laughs-pe.xml,Billion Laughs Attack (PE Version),OK
+jsonmlpatched,dos-billion-laughs.xml,Billion Laughs Attack,OK
+jsonmlpatched,dos-entity-recursion-pe.xml,Entity Recursion Attack (PE),OK
+jsonmlpatched,dos-entity-recursion.xml,Entity Recursion Attack,OK
+jsonmlpatched,dos-quadratic-blowup.xml,Quadratic Blowup Attack,OK
+jsonmlpatched,fsa-doctype-pe.xml,Doctype Parameter Entity FSA Attack,OK
+jsonmlpatched,fsa-external-pe-dtd.xml,External PE DTD FSA Attack,OK
+jsonmlpatched,fsa-xinclude.xml,XInclude FSA Attack,OK
+jsonmlpatched,fsa-xslt.xsl,XSLT FSA Attack,OK
+jsonmlpatched,fsa-xxe-pe.xml,XXE FSA Attack (PE),OK
+jsonmlpatched,fsa-xxe.xml,XXE FSA Attack,OK
+jsonmlpatched,ssrf-doctype.xml,DOCTYPE URL Invocation,OK
+jsonmlpatched,ssrf-schemalocation-nonamespace.xml,SchemaLocation NoNamespace URL Invocation,OK
+jsonmlpatched,ssrf-schemalocation.xml,SchemaLocation URL Invocation,OK
+jsonmlpatched,ssrf-xinclude.xml,XInclude URL Invocation,OK
+jsonmlpatched,ssrf-xxe-pe.xml,XXE URL Invocation (PE),OK
+jsonmlpatched,ssrf-xxe.xml,XXE URL Invocation,OK
+jxon,basic-attribute-multiple.xml,Attribute (multiple),OK
+jxon,basic-attribute.xml,Attribute,OK
+jxon,basic-cdata-close-in-textnode.xml,CDATA close in Text Node,OK
+jxon,basic-cdata-escaped.xml,Escaped CDATA section,OK
+jxon,basic-cdata-with-markup.xml,CDATA section with Markup,OK
+jxon,basic-cdata.xml,CDATA support,OK
+jxon,basic-comments.xml,Comments [OPTIONAL],FAILED
+jxon,basic-deepnesting.xml,Deep nesting,OK
+jxon,basic-duplicate-childtags-order.xml,Duplicate Child tag Names (Alternating Order),FAILED
+jxon,basic-duplicate-childtags-xmlnsprefix.xml,Duplicate child tag names (different NS prefix),OK
+jxon,basic-duplicate-childtags.xml,Duplicate child tag names,OK
+jxon,basic-element-order.xml,Element Order,FAILED
+jxon,basic-emptyelement.xml,Empty Elements,OK
+jxon,basic-mixedcontent.xml,Mixed Content,FAILED
+jxon,basic-pi-attrdata.xml,Processing Instructions (Attibute Data),FAILED
+jxon,basic-pi-markup.xml,Processing Instructions (Markup),FAILED
+jxon,basic-pi-outside-root.xml,Processing Instructions outside root,FAILED
+jxon,basic-pi-simpledata.xml,Processing Instructions (Arbitrary Data),FAILED
+jxon,basic-pi-whitespace.xml,Processing Instructions (Whitespace),FAILED
+jxon,basic-pi.xml,Processing Instructions (Basic),FAILED
+jxon,basic-root-attr.xml,Root Element Attribute,OK
+jxon,basic-root-tagname.xml,Root Element Tag Name,OK
+jxon,basic-simple.xml,Simple Element List,OK
+jxon,basic-typeinference-binary32-attr.xml,Type Inference with floats (Attr),OK
+jxon,basic-typeinference-binary32.xml,Type Inference with floats,OK
+jxon,basic-typeinference-binary64-attr.xml,Type Inference with doubles (Attr),OK
+jxon,basic-typeinference-binary64.xml,Type Inference with doubles,OK
+jxon,basic-typeinference-bool-attr.xml,Type Inference with Boolean values (Attr),OK
+jxon,basic-typeinference-bool.xml,Type Inference with Boolean values,OK
+jxon,basic-typeinference-integer-attr.xml,Type Inference with Big Integers (Attr),OK
+jxon,basic-typeinference-integer.xml,Type Inference with Big Integers,OK
+jxon,basic-whitespace-indentation.xml,Whitespace (Indentation),FAILED
+jxon,basic-whitespace-mixedcontent.xml,Whitespace (Mixed Content),FAILED
+jxon,basic-whitespace.xml,Whitespace (Clean/Dirty),FAILED
+jxon,basic-xmlns-multiple.xml,Namespace declaration (multiple),FAILED
+jxon,basic-xmlns-prefix.xml,Namespace declaration with prefix,OK
+jxon,basic-xmlns.xml,Namespace declaration,OK
+jxon,chars-u000009-u00000D.xml,"C0 set (u000009, 00000A & 00000D)",FAILED
+jxon,chars-u000020.xml,Space Char (u000020),FAILED
+jxon,chars-u000021-u00007E.xml,ASCII printable (u000021-00007E),OK
+jxon,chars-u00007F-u000084.xml,Discouraged (u00007F-000084),OK
+jxon,chars-u000085.xml,NEL Control Char (u000085),OK
+jxon,chars-u000086-u00009F.xml,Discouraged (u000086-00009F),OK
+jxon,chars-u0000A0-u000FFF.xml,BMP plane I (u0000A0-000FFF),FAILED
+jxon,chars-u001000-u001FFF.xml,BMP plane II (u001000-001FFF),FAILED
+jxon,chars-u002000-u002FFF.xml,BMP plane III (u002000-002FFF),FAILED
+jxon,chars-u003000-u003FFF.xml,BMP plane IV (u003000-003FFF),FAILED
+jxon,chars-u004000-u004FFF.xml,BMP plane V (u004000-004FFF),OK
+jxon,chars-u005000-u005FFF.xml,BMP plane VI (u005000-005FFF),OK
+jxon,chars-u006000-u006FFF.xml,BMP plane VII (u006000-006FFF),OK
+jxon,chars-u007000-u007FFF.xml,BMP plane VIII (u007000-007FFF),OK
+jxon,chars-u008000-u008FFF.xml,BMP plane IX (u008000-008FFF),OK
+jxon,chars-u009000-u009FFF.xml,BMP plane X (u009000-009FFF),OK
+jxon,chars-u00A000-u00AFFF.xml,BMP plane XI (u00A000-00AFFF),OK
+jxon,chars-u00B000-u00BFFF.xml,BMP plane XII (u00B000-00BFFF),OK
+jxon,chars-u00C000-u00CFFF.xml,BMP plane XIII (u00C000-00CFFF),OK
+jxon,chars-u00D000-u00D7FF.xml,BMP plane XIV (u00D000-00D7FF),OK
+jxon,chars-u00E000-u00EFFF.xml,BMP plane XV (u00E000-00EFFF),OK
+jxon,chars-u00F000-u00FDCF.xml,BMP plane XVI (u00F000-00FDCF),OK
+jxon,chars-u00FDD0-u00FDEF.xml,BMP plane Discouraged (u00FDD0-00FDEF),OK
+jxon,chars-u00FDF0-u00FFFD.xml,BMP plane XVII (u00FDF0-00FFFD),FAILED
+jxon,chars-u010000-u01FFFD.xml,SMP plane (u010000-01FFFD),OK
+jxon,chars-u01FFFE-u01FFFF.xml,SMP plane Discouraged (u01FFFE-01FFFF),OK
+jxon,chars-u020000-u02FFFD.xml,SIP plane (u020000-02FFFD),OK
+jxon,chars-u02FFFE-u02FFFF.xml,SIP plane Discouraged (u02FFFE-02FFFF),OK
+jxon,chars-u030000-u03FFFD.xml,Unassigned plane 3 (u030000-03FFFD),OK
+jxon,chars-u03FFFE-u03FFFF.xml,Plane 3 Discouraged (u03FFFE-03FFFF),OK
+jxon,chars-u040000-u04FFFD.xml,Unassigned plane 4 (u040000-04FFFD),OK
+jxon,chars-u04FFFE-u04FFFF.xml,Plane 4 Discouraged (u04FFFE-04FFFF),OK
+jxon,chars-u050000-u05FFFD.xml,Unassigned plane 5 (u050000-05FFFD),OK
+jxon,chars-u05FFFE-u05FFFF.xml,Plane 5 Discouraged (u05FFFE-05FFFF),OK
+jxon,chars-u060000-u06FFFD.xml,Unassigned plane 6 (u060000-06FFFD),OK
+jxon,chars-u06FFFE-u06FFFF.xml,Plane 6 Discouraged (u06FFFE-06FFFF),OK
+jxon,chars-u070000-u07FFFD.xml,Unassigned plane 7 (u070000-07FFFD),OK
+jxon,chars-u07FFFE-u07FFFF.xml,Plane 7 Discouraged (u07FFFE-07FFFF),OK
+jxon,chars-u080000-u08FFFD.xml,Unassigned plane 8 (u080000-08FFFD),OK
+jxon,chars-u08FFFE-u08FFFF.xml,Plane 8 Discouraged (u08FFFE-08FFFF),OK
+jxon,chars-u090000-u09FFFD.xml,Unassigned plane 9 (u090000-09FFFD),OK
+jxon,chars-u09FFFE-u09FFFF.xml,Plane 9 Discouraged (u09FFFE-09FFFF),OK
+jxon,chars-u0A0000-u0AFFFD.xml,Unassigned plane 10 (u0A0000-0AFFFD),OK
+jxon,chars-u0AFFFE-u0AFFFF.xml,Plane 10 Discouraged (u0AFFFE-0AFFFF),OK
+jxon,chars-u0B0000-u0BFFFD.xml,Unassigned plane 11 (u0B0000-0BFFFD),OK
+jxon,chars-u0BFFFE-u0BFFFF.xml,Plane 11 Discouraged (u0BFFFE-0BFFFF),OK
+jxon,chars-u0C0000-u0CFFFD.xml,Unassigned plane 12 (u0C0000-0CFFFD),OK
+jxon,chars-u0CFFFE-u0CFFFF.xml,Plane 12 Discouraged (u0CFFFE-0CFFFF),OK
+jxon,chars-u0D0000-u0DFFFD.xml,Unassigned plane 13 (u0D0000-0DFFFD),OK
+jxon,chars-u0DFFFE-u0DFFFF.xml,Plane 13 Discouraged (u0DFFFE-0DFFFF),OK
+jxon,chars-u0E0000-u0EFFFD.xml,SSP plane (u0E0000-0EFFFD),OK
+jxon,chars-u0EFFFE-u0EFFFF.xml,SSP plane Discouraged (u0EFFFE-0EFFFF),OK
+jxon,chars-u0F0000-u0FFFFD.xml,SPUA-A plane (u0F0000-0FFFFD),OK
+jxon,chars-u0FFFFE-u0FFFFF.xml,SPUA-A plane Discouraged (u0FFFFE-0FFFFF),OK
+jxon,chars-u100000-u10FFFD.xml,SPUA-B plane (u100000-10FFFD),OK
+jxon,chars-u10FFFE-u10FFFF.xml,SPUA-B plane Discouraged (u10FFFE-10FFFF),OK
+jxon,complex-Office-Open-XML-Part-1-Fundamentals-word2003xml.xml,MSWord 2003 XML file,FAILED
+jxon,complex-Office-Open-XML-Part-1-Fundamentals-wordxml.xml,MSWord XML file,FAILED
+jxon,complex-OpenDocument-v1.0ed2-cs1.fodt,OpenDocument sample file,FAILED
+jxon,complex-REC-xml-20081126.xhtml,XML 1.0 5th Edition (XHTML version),FAILED
+jxon,complex-REC-xml-20081126.xml,XML 1.0 5th Edition (XML version),FAILED
+jxon,complex-car.svg,SVG Car Demo,FAILED
+jxon,complex-docbook-docs-howto.xml,DocBook V5.0 transition guide,FAILED
+jxon,complex-musicbrainz-ws-2-release-query-release-JSOP.xml,MusicBrainz.org API Response,FAILED
+jxon,complex-photos.svg,SVG Photos Demo,FAILED
+jxon,complex-sample-rss-091.xml,RSS 0.91 sample document,FAILED
+jxon,complex-sample-rss-092.xml,RSS 0.92 sample document,FAILED
+jxon,complex-sample-rss-2.xml,RSS 2.0 sample document,FAILED
+jxon,complex-thesis-example-xmltree.xml,XML tree Example (Thesis),FAILED
+jxon,dos-billion-laughs-pe.xml,Billion Laughs Attack (PE Version),OK
+jxon,dos-billion-laughs.xml,Billion Laughs Attack,OK
+jxon,dos-entity-recursion-pe.xml,Entity Recursion Attack (PE),OK
+jxon,dos-entity-recursion.xml,Entity Recursion Attack,OK
+jxon,dos-quadratic-blowup.xml,Quadratic Blowup Attack,OK
+jxon,fsa-doctype-pe.xml,Doctype Parameter Entity FSA Attack,OK
+jxon,fsa-external-pe-dtd.xml,External PE DTD FSA Attack,OK
+jxon,fsa-xinclude.xml,XInclude FSA Attack,OK
+jxon,fsa-xslt.xsl,XSLT FSA Attack,OK
+jxon,fsa-xxe-pe.xml,XXE FSA Attack (PE),OK
+jxon,fsa-xxe.xml,XXE FSA Attack,OK
+jxon,ssrf-doctype.xml,DOCTYPE URL Invocation,OK
+jxon,ssrf-schemalocation-nonamespace.xml,SchemaLocation NoNamespace URL Invocation,OK
+jxon,ssrf-schemalocation.xml,SchemaLocation URL Invocation,OK
+jxon,ssrf-xinclude.xml,XInclude URL Invocation,OK
+jxon,ssrf-xxe-pe.xml,XXE URL Invocation (PE),OK
+jxon,ssrf-xxe.xml,XXE URL Invocation,OK
+newtonsoftjson,basic-attribute-multiple.xml,Attribute (multiple),OK
+newtonsoftjson,basic-attribute.xml,Attribute,OK
+newtonsoftjson,basic-cdata-close-in-textnode.xml,CDATA close in Text Node,OK
+newtonsoftjson,basic-cdata-escaped.xml,Escaped CDATA section,OK
+newtonsoftjson,basic-cdata-with-markup.xml,CDATA section with Markup,OK
+newtonsoftjson,basic-cdata.xml,CDATA support,OK
+newtonsoftjson,basic-comments.xml,Comments [OPTIONAL],FAILED
+newtonsoftjson,basic-deepnesting.xml,Deep nesting,OK
+newtonsoftjson,basic-duplicate-childtags-order.xml,Duplicate Child tag Names (Alternating Order),FAILED
+newtonsoftjson,basic-duplicate-childtags-xmlnsprefix.xml,Duplicate child tag names (different NS prefix),OK
+newtonsoftjson,basic-duplicate-childtags.xml,Duplicate child tag names,OK
+newtonsoftjson,basic-element-order.xml,Element Order,FAILED
+newtonsoftjson,basic-emptyelement.xml,Empty Elements,OK
+newtonsoftjson,basic-mixedcontent.xml,Mixed Content,FAILED
+newtonsoftjson,basic-pi-attrdata.xml,Processing Instructions (Attibute Data),OK
+newtonsoftjson,basic-pi-markup.xml,Processing Instructions (Markup),OK
+newtonsoftjson,basic-pi-outside-root.xml,Processing Instructions outside root,ERROR
+newtonsoftjson,basic-pi-simpledata.xml,Processing Instructions (Arbitrary Data),OK
+newtonsoftjson,basic-pi-whitespace.xml,Processing Instructions (Whitespace),FAILED
+newtonsoftjson,basic-pi.xml,Processing Instructions (Basic),OK
+newtonsoftjson,basic-root-attr.xml,Root Element Attribute,OK
+newtonsoftjson,basic-root-tagname.xml,Root Element Tag Name,OK
+newtonsoftjson,basic-simple.xml,Simple Element List,OK
+newtonsoftjson,basic-typeinference-binary32-attr.xml,Type Inference with floats (Attr),OK
+newtonsoftjson,basic-typeinference-binary32.xml,Type Inference with floats,OK
+newtonsoftjson,basic-typeinference-binary64-attr.xml,Type Inference with doubles (Attr),OK
+newtonsoftjson,basic-typeinference-binary64.xml,Type Inference with doubles,OK
+newtonsoftjson,basic-typeinference-bool-attr.xml,Type Inference with Boolean values (Attr),OK
+newtonsoftjson,basic-typeinference-bool.xml,Type Inference with Boolean values,OK
+newtonsoftjson,basic-typeinference-integer-attr.xml,Type Inference with Big Integers (Attr),OK
+newtonsoftjson,basic-typeinference-integer.xml,Type Inference with Big Integers,OK
+newtonsoftjson,basic-whitespace-indentation.xml,Whitespace (Indentation),FAILED
+newtonsoftjson,basic-whitespace-mixedcontent.xml,Whitespace (Mixed Content),FAILED
+newtonsoftjson,basic-whitespace.xml,Whitespace (Clean/Dirty),FAILED
+newtonsoftjson,basic-xmlns-multiple.xml,Namespace declaration (multiple),OK
+newtonsoftjson,basic-xmlns-prefix.xml,Namespace declaration with prefix,OK
+newtonsoftjson,basic-xmlns.xml,Namespace declaration,OK
+newtonsoftjson,chars-u000009-u00000D.xml,"C0 set (u000009, 00000A & 00000D)",FAILED
+newtonsoftjson,chars-u000020.xml,Space Char (u000020),FAILED
+newtonsoftjson,chars-u000021-u00007E.xml,ASCII printable (u000021-00007E),OK
+newtonsoftjson,chars-u00007F-u000084.xml,Discouraged (u00007F-000084),FAILED
+newtonsoftjson,chars-u000085.xml,NEL Control Char (u000085),FAILED
+newtonsoftjson,chars-u000086-u00009F.xml,Discouraged (u000086-00009F),FAILED
+newtonsoftjson,chars-u0000A0-u000FFF.xml,BMP plane I (u0000A0-000FFF),FAILED
+newtonsoftjson,chars-u001000-u001FFF.xml,BMP plane II (u001000-001FFF),FAILED
+newtonsoftjson,chars-u002000-u002FFF.xml,BMP plane III (u002000-002FFF),FAILED
+newtonsoftjson,chars-u003000-u003FFF.xml,BMP plane IV (u003000-003FFF),FAILED
+newtonsoftjson,chars-u004000-u004FFF.xml,BMP plane V (u004000-004FFF),FAILED
+newtonsoftjson,chars-u005000-u005FFF.xml,BMP plane VI (u005000-005FFF),FAILED
+newtonsoftjson,chars-u006000-u006FFF.xml,BMP plane VII (u006000-006FFF),FAILED
+newtonsoftjson,chars-u007000-u007FFF.xml,BMP plane VIII (u007000-007FFF),FAILED
+newtonsoftjson,chars-u008000-u008FFF.xml,BMP plane IX (u008000-008FFF),FAILED
+newtonsoftjson,chars-u009000-u009FFF.xml,BMP plane X (u009000-009FFF),FAILED
+newtonsoftjson,chars-u00A000-u00AFFF.xml,BMP plane XI (u00A000-00AFFF),FAILED
+newtonsoftjson,chars-u00B000-u00BFFF.xml,BMP plane XII (u00B000-00BFFF),FAILED
+newtonsoftjson,chars-u00C000-u00CFFF.xml,BMP plane XIII (u00C000-00CFFF),FAILED
+newtonsoftjson,chars-u00D000-u00D7FF.xml,BMP plane XIV (u00D000-00D7FF),FAILED
+newtonsoftjson,chars-u00E000-u00EFFF.xml,BMP plane XV (u00E000-00EFFF),FAILED
+newtonsoftjson,chars-u00F000-u00FDCF.xml,BMP plane XVI (u00F000-00FDCF),FAILED
+newtonsoftjson,chars-u00FDD0-u00FDEF.xml,BMP plane Discouraged (u00FDD0-00FDEF),FAILED
+newtonsoftjson,chars-u00FDF0-u00FFFD.xml,BMP plane XVII (u00FDF0-00FFFD),FAILED
+newtonsoftjson,chars-u010000-u01FFFD.xml,SMP plane (u010000-01FFFD),FAILED
+newtonsoftjson,chars-u01FFFE-u01FFFF.xml,SMP plane Discouraged (u01FFFE-01FFFF),FAILED
+newtonsoftjson,chars-u020000-u02FFFD.xml,SIP plane (u020000-02FFFD),FAILED
+newtonsoftjson,chars-u02FFFE-u02FFFF.xml,SIP plane Discouraged (u02FFFE-02FFFF),FAILED
+newtonsoftjson,chars-u030000-u03FFFD.xml,Unassigned plane 3 (u030000-03FFFD),FAILED
+newtonsoftjson,chars-u03FFFE-u03FFFF.xml,Plane 3 Discouraged (u03FFFE-03FFFF),FAILED
+newtonsoftjson,chars-u040000-u04FFFD.xml,Unassigned plane 4 (u040000-04FFFD),FAILED
+newtonsoftjson,chars-u04FFFE-u04FFFF.xml,Plane 4 Discouraged (u04FFFE-04FFFF),FAILED
+newtonsoftjson,chars-u050000-u05FFFD.xml,Unassigned plane 5 (u050000-05FFFD),FAILED
+newtonsoftjson,chars-u05FFFE-u05FFFF.xml,Plane 5 Discouraged (u05FFFE-05FFFF),FAILED
+newtonsoftjson,chars-u060000-u06FFFD.xml,Unassigned plane 6 (u060000-06FFFD),FAILED
+newtonsoftjson,chars-u06FFFE-u06FFFF.xml,Plane 6 Discouraged (u06FFFE-06FFFF),FAILED
+newtonsoftjson,chars-u070000-u07FFFD.xml,Unassigned plane 7 (u070000-07FFFD),FAILED
+newtonsoftjson,chars-u07FFFE-u07FFFF.xml,Plane 7 Discouraged (u07FFFE-07FFFF),FAILED
+newtonsoftjson,chars-u080000-u08FFFD.xml,Unassigned plane 8 (u080000-08FFFD),FAILED
+newtonsoftjson,chars-u08FFFE-u08FFFF.xml,Plane 8 Discouraged (u08FFFE-08FFFF),FAILED
+newtonsoftjson,chars-u090000-u09FFFD.xml,Unassigned plane 9 (u090000-09FFFD),FAILED
+newtonsoftjson,chars-u09FFFE-u09FFFF.xml,Plane 9 Discouraged (u09FFFE-09FFFF),FAILED
+newtonsoftjson,chars-u0A0000-u0AFFFD.xml,Unassigned plane 10 (u0A0000-0AFFFD),FAILED
+newtonsoftjson,chars-u0AFFFE-u0AFFFF.xml,Plane 10 Discouraged (u0AFFFE-0AFFFF),FAILED
+newtonsoftjson,chars-u0B0000-u0BFFFD.xml,Unassigned plane 11 (u0B0000-0BFFFD),FAILED
+newtonsoftjson,chars-u0BFFFE-u0BFFFF.xml,Plane 11 Discouraged (u0BFFFE-0BFFFF),FAILED
+newtonsoftjson,chars-u0C0000-u0CFFFD.xml,Unassigned plane 12 (u0C0000-0CFFFD),FAILED
+newtonsoftjson,chars-u0CFFFE-u0CFFFF.xml,Plane 12 Discouraged (u0CFFFE-0CFFFF),FAILED
+newtonsoftjson,chars-u0D0000-u0DFFFD.xml,Unassigned plane 13 (u0D0000-0DFFFD),FAILED
+newtonsoftjson,chars-u0DFFFE-u0DFFFF.xml,Plane 13 Discouraged (u0DFFFE-0DFFFF),FAILED
+newtonsoftjson,chars-u0E0000-u0EFFFD.xml,SSP plane (u0E0000-0EFFFD),FAILED
+newtonsoftjson,chars-u0EFFFE-u0EFFFF.xml,SSP plane Discouraged (u0EFFFE-0EFFFF),FAILED
+newtonsoftjson,chars-u0F0000-u0FFFFD.xml,SPUA-A plane (u0F0000-0FFFFD),FAILED
+newtonsoftjson,chars-u0FFFFE-u0FFFFF.xml,SPUA-A plane Discouraged (u0FFFFE-0FFFFF),FAILED
+newtonsoftjson,chars-u100000-u10FFFD.xml,SPUA-B plane (u100000-10FFFD),FAILED
+newtonsoftjson,chars-u10FFFE-u10FFFF.xml,SPUA-B plane Discouraged (u10FFFE-10FFFF),FAILED
+newtonsoftjson,complex-Office-Open-XML-Part-1-Fundamentals-word2003xml.xml,MSWord 2003 XML file,ERROR
+newtonsoftjson,complex-Office-Open-XML-Part-1-Fundamentals-wordxml.xml,MSWord XML file,ERROR
+newtonsoftjson,complex-OpenDocument-v1.0ed2-cs1.fodt,OpenDocument sample file,FAILED
+newtonsoftjson,complex-REC-xml-20081126.xhtml,XML 1.0 5th Edition (XHTML version),ERROR
+newtonsoftjson,complex-REC-xml-20081126.xml,XML 1.0 5th Edition (XML version),ERROR
+newtonsoftjson,complex-car.svg,SVG Car Demo,FAILED
+newtonsoftjson,complex-docbook-docs-howto.xml,DocBook V5.0 transition guide,ERROR
+newtonsoftjson,complex-musicbrainz-ws-2-release-query-release-JSOP.xml,MusicBrainz.org API Response,FAILED
+newtonsoftjson,complex-photos.svg,SVG Photos Demo,FAILED
+newtonsoftjson,complex-sample-rss-091.xml,RSS 0.91 sample document,FAILED
+newtonsoftjson,complex-sample-rss-092.xml,RSS 0.92 sample document,FAILED
+newtonsoftjson,complex-sample-rss-2.xml,RSS 2.0 sample document,FAILED
+newtonsoftjson,complex-thesis-example-xmltree.xml,XML tree Example (Thesis),FAILED
+newtonsoftjson,dos-billion-laughs-pe.xml,Billion Laughs Attack (PE Version),OK
+newtonsoftjson,dos-billion-laughs.xml,Billion Laughs Attack,OK
+newtonsoftjson,dos-entity-recursion-pe.xml,Entity Recursion Attack (PE),OK
+newtonsoftjson,dos-entity-recursion.xml,Entity Recursion Attack,OK
+newtonsoftjson,dos-quadratic-blowup.xml,Quadratic Blowup Attack,OK
+newtonsoftjson,fsa-doctype-pe.xml,Doctype Parameter Entity FSA Attack,OK
+newtonsoftjson,fsa-external-pe-dtd.xml,External PE DTD FSA Attack,OK
+newtonsoftjson,fsa-xinclude.xml,XInclude FSA Attack,OK
+newtonsoftjson,fsa-xslt.xsl,XSLT FSA Attack,OK
+newtonsoftjson,fsa-xxe-pe.xml,XXE FSA Attack (PE),OK
+newtonsoftjson,fsa-xxe.xml,XXE FSA Attack,OK
+newtonsoftjson,ssrf-doctype.xml,DOCTYPE URL Invocation,FAILED
+newtonsoftjson,ssrf-schemalocation-nonamespace.xml,SchemaLocation NoNamespace URL Invocation,OK
+newtonsoftjson,ssrf-schemalocation.xml,SchemaLocation URL Invocation,OK
+newtonsoftjson,ssrf-xinclude.xml,XInclude URL Invocation,OK
+newtonsoftjson,ssrf-xxe-pe.xml,XXE URL Invocation (PE),FAILED
+newtonsoftjson,ssrf-xxe.xml,XXE URL Invocation,FAILED
+orgjsonxml,basic-attribute-multiple.xml,Attribute (multiple),FAILED
+orgjsonxml,basic-attribute.xml,Attribute,FAILED
+orgjsonxml,basic-cdata-close-in-textnode.xml,CDATA close in Text Node,OK
+orgjsonxml,basic-cdata-escaped.xml,Escaped CDATA section,OK
+orgjsonxml,basic-cdata-with-markup.xml,CDATA section with Markup,OK
+orgjsonxml,basic-cdata.xml,CDATA support,OK
+orgjsonxml,basic-comments.xml,Comments [OPTIONAL],FAILED
+orgjsonxml,basic-deepnesting.xml,Deep nesting,OK
+orgjsonxml,basic-duplicate-childtags-order.xml,Duplicate Child tag Names (Alternating Order),FAILED
+orgjsonxml,basic-duplicate-childtags-xmlnsprefix.xml,Duplicate child tag names (different NS prefix),FAILED
+orgjsonxml,basic-duplicate-childtags.xml,Duplicate child tag names,OK
+orgjsonxml,basic-element-order.xml,Element Order,FAILED
+orgjsonxml,basic-emptyelement.xml,Empty Elements,OK
+orgjsonxml,basic-mixedcontent.xml,Mixed Content,FAILED
+orgjsonxml,basic-pi-attrdata.xml,Processing Instructions (Attibute Data),FAILED
+orgjsonxml,basic-pi-markup.xml,Processing Instructions (Markup),FAILED
+orgjsonxml,basic-pi-outside-root.xml,Processing Instructions outside root,FAILED
+orgjsonxml,basic-pi-simpledata.xml,Processing Instructions (Arbitrary Data),FAILED
+orgjsonxml,basic-pi-whitespace.xml,Processing Instructions (Whitespace),FAILED
+orgjsonxml,basic-pi.xml,Processing Instructions (Basic),FAILED
+orgjsonxml,basic-root-attr.xml,Root Element Attribute,FAILED
+orgjsonxml,basic-root-tagname.xml,Root Element Tag Name,OK
+orgjsonxml,basic-simple.xml,Simple Element List,OK
+orgjsonxml,basic-typeinference-binary32-attr.xml,Type Inference with floats (Attr),FAILED
+orgjsonxml,basic-typeinference-binary32.xml,Type Inference with floats,FAILED
+orgjsonxml,basic-typeinference-binary64-attr.xml,Type Inference with doubles (Attr),FAILED
+orgjsonxml,basic-typeinference-binary64.xml,Type Inference with doubles,FAILED
+orgjsonxml,basic-typeinference-bool-attr.xml,Type Inference with Boolean values (Attr),FAILED
+orgjsonxml,basic-typeinference-bool.xml,Type Inference with Boolean values,FAILED
+orgjsonxml,basic-typeinference-integer-attr.xml,Type Inference with Big Integers (Attr),FAILED
+orgjsonxml,basic-typeinference-integer.xml,Type Inference with Big Integers,FAILED
+orgjsonxml,basic-whitespace-indentation.xml,Whitespace (Indentation),FAILED
+orgjsonxml,basic-whitespace-mixedcontent.xml,Whitespace (Mixed Content),FAILED
+orgjsonxml,basic-whitespace.xml,Whitespace (Clean/Dirty),FAILED
+orgjsonxml,basic-xmlns-multiple.xml,Namespace declaration (multiple),FAILED
+orgjsonxml,basic-xmlns-prefix.xml,Namespace declaration with prefix,FAILED
+orgjsonxml,basic-xmlns.xml,Namespace declaration,FAILED
+orgjsonxml,chars-u000009-u00000D.xml,"C0 set (u000009, 00000A & 00000D)",FAILED
+orgjsonxml,chars-u000020.xml,Space Char (u000020),FAILED
+orgjsonxml,chars-u000021-u00007E.xml,ASCII printable (u000021-00007E),FAILED
+orgjsonxml,chars-u00007F-u000084.xml,Discouraged (u00007F-000084),FAILED
+orgjsonxml,chars-u000085.xml,NEL Control Char (u000085),FAILED
+orgjsonxml,chars-u000086-u00009F.xml,Discouraged (u000086-00009F),FAILED
+orgjsonxml,chars-u0000A0-u000FFF.xml,BMP plane I (u0000A0-000FFF),FAILED
+orgjsonxml,chars-u001000-u001FFF.xml,BMP plane II (u001000-001FFF),FAILED
+orgjsonxml,chars-u002000-u002FFF.xml,BMP plane III (u002000-002FFF),FAILED
+orgjsonxml,chars-u003000-u003FFF.xml,BMP plane IV (u003000-003FFF),FAILED
+orgjsonxml,chars-u004000-u004FFF.xml,BMP plane V (u004000-004FFF),FAILED
+orgjsonxml,chars-u005000-u005FFF.xml,BMP plane VI (u005000-005FFF),FAILED
+orgjsonxml,chars-u006000-u006FFF.xml,BMP plane VII (u006000-006FFF),FAILED
+orgjsonxml,chars-u007000-u007FFF.xml,BMP plane VIII (u007000-007FFF),FAILED
+orgjsonxml,chars-u008000-u008FFF.xml,BMP plane IX (u008000-008FFF),FAILED
+orgjsonxml,chars-u009000-u009FFF.xml,BMP plane X (u009000-009FFF),FAILED
+orgjsonxml,chars-u00A000-u00AFFF.xml,BMP plane XI (u00A000-00AFFF),FAILED
+orgjsonxml,chars-u00B000-u00BFFF.xml,BMP plane XII (u00B000-00BFFF),FAILED
+orgjsonxml,chars-u00C000-u00CFFF.xml,BMP plane XIII (u00C000-00CFFF),FAILED
+orgjsonxml,chars-u00D000-u00D7FF.xml,BMP plane XIV (u00D000-00D7FF),FAILED
+orgjsonxml,chars-u00E000-u00EFFF.xml,BMP plane XV (u00E000-00EFFF),FAILED
+orgjsonxml,chars-u00F000-u00FDCF.xml,BMP plane XVI (u00F000-00FDCF),FAILED
+orgjsonxml,chars-u00FDD0-u00FDEF.xml,BMP plane Discouraged (u00FDD0-00FDEF),FAILED
+orgjsonxml,chars-u00FDF0-u00FFFD.xml,BMP plane XVII (u00FDF0-00FFFD),FAILED
+orgjsonxml,chars-u010000-u01FFFD.xml,SMP plane (u010000-01FFFD),FAILED
+orgjsonxml,chars-u01FFFE-u01FFFF.xml,SMP plane Discouraged (u01FFFE-01FFFF),FAILED
+orgjsonxml,chars-u020000-u02FFFD.xml,SIP plane (u020000-02FFFD),FAILED
+orgjsonxml,chars-u02FFFE-u02FFFF.xml,SIP plane Discouraged (u02FFFE-02FFFF),FAILED
+orgjsonxml,chars-u030000-u03FFFD.xml,Unassigned plane 3 (u030000-03FFFD),FAILED
+orgjsonxml,chars-u03FFFE-u03FFFF.xml,Plane 3 Discouraged (u03FFFE-03FFFF),FAILED
+orgjsonxml,chars-u040000-u04FFFD.xml,Unassigned plane 4 (u040000-04FFFD),FAILED
+orgjsonxml,chars-u04FFFE-u04FFFF.xml,Plane 4 Discouraged (u04FFFE-04FFFF),FAILED
+orgjsonxml,chars-u050000-u05FFFD.xml,Unassigned plane 5 (u050000-05FFFD),FAILED
+orgjsonxml,chars-u05FFFE-u05FFFF.xml,Plane 5 Discouraged (u05FFFE-05FFFF),FAILED
+orgjsonxml,chars-u060000-u06FFFD.xml,Unassigned plane 6 (u060000-06FFFD),FAILED
+orgjsonxml,chars-u06FFFE-u06FFFF.xml,Plane 6 Discouraged (u06FFFE-06FFFF),FAILED
+orgjsonxml,chars-u070000-u07FFFD.xml,Unassigned plane 7 (u070000-07FFFD),FAILED
+orgjsonxml,chars-u07FFFE-u07FFFF.xml,Plane 7 Discouraged (u07FFFE-07FFFF),FAILED
+orgjsonxml,chars-u080000-u08FFFD.xml,Unassigned plane 8 (u080000-08FFFD),FAILED
+orgjsonxml,chars-u08FFFE-u08FFFF.xml,Plane 8 Discouraged (u08FFFE-08FFFF),FAILED
+orgjsonxml,chars-u090000-u09FFFD.xml,Unassigned plane 9 (u090000-09FFFD),FAILED
+orgjsonxml,chars-u09FFFE-u09FFFF.xml,Plane 9 Discouraged (u09FFFE-09FFFF),FAILED
+orgjsonxml,chars-u0A0000-u0AFFFD.xml,Unassigned plane 10 (u0A0000-0AFFFD),FAILED
+orgjsonxml,chars-u0AFFFE-u0AFFFF.xml,Plane 10 Discouraged (u0AFFFE-0AFFFF),FAILED
+orgjsonxml,chars-u0B0000-u0BFFFD.xml,Unassigned plane 11 (u0B0000-0BFFFD),FAILED
+orgjsonxml,chars-u0BFFFE-u0BFFFF.xml,Plane 11 Discouraged (u0BFFFE-0BFFFF),FAILED
+orgjsonxml,chars-u0C0000-u0CFFFD.xml,Unassigned plane 12 (u0C0000-0CFFFD),FAILED
+orgjsonxml,chars-u0CFFFE-u0CFFFF.xml,Plane 12 Discouraged (u0CFFFE-0CFFFF),FAILED
+orgjsonxml,chars-u0D0000-u0DFFFD.xml,Unassigned plane 13 (u0D0000-0DFFFD),FAILED
+orgjsonxml,chars-u0DFFFE-u0DFFFF.xml,Plane 13 Discouraged (u0DFFFE-0DFFFF),FAILED
+orgjsonxml,chars-u0E0000-u0EFFFD.xml,SSP plane (u0E0000-0EFFFD),FAILED
+orgjsonxml,chars-u0EFFFE-u0EFFFF.xml,SSP plane Discouraged (u0EFFFE-0EFFFF),FAILED
+orgjsonxml,chars-u0F0000-u0FFFFD.xml,SPUA-A plane (u0F0000-0FFFFD),FAILED
+orgjsonxml,chars-u0FFFFE-u0FFFFF.xml,SPUA-A plane Discouraged (u0FFFFE-0FFFFF),FAILED
+orgjsonxml,chars-u100000-u10FFFD.xml,SPUA-B plane (u100000-10FFFD),FAILED
+orgjsonxml,chars-u10FFFE-u10FFFF.xml,SPUA-B plane Discouraged (u10FFFE-10FFFF),FAILED
+orgjsonxml,complex-Office-Open-XML-Part-1-Fundamentals-word2003xml.xml,MSWord 2003 XML file,FAILED
+orgjsonxml,complex-Office-Open-XML-Part-1-Fundamentals-wordxml.xml,MSWord XML file,FAILED
+orgjsonxml,complex-OpenDocument-v1.0ed2-cs1.fodt,OpenDocument sample file,FAILED
+orgjsonxml,complex-REC-xml-20081126.xhtml,XML 1.0 5th Edition (XHTML version),FAILED
+orgjsonxml,complex-REC-xml-20081126.xml,XML 1.0 5th Edition (XML version),FAILED
+orgjsonxml,complex-car.svg,SVG Car Demo,FAILED
+orgjsonxml,complex-docbook-docs-howto.xml,DocBook V5.0 transition guide,FAILED
+orgjsonxml,complex-musicbrainz-ws-2-release-query-release-JSOP.xml,MusicBrainz.org API Response,FAILED
+orgjsonxml,complex-photos.svg,SVG Photos Demo,FAILED
+orgjsonxml,complex-sample-rss-091.xml,RSS 0.91 sample document,FAILED
+orgjsonxml,complex-sample-rss-092.xml,RSS 0.92 sample document,FAILED
+orgjsonxml,complex-sample-rss-2.xml,RSS 2.0 sample document,FAILED
+orgjsonxml,complex-thesis-example-xmltree.xml,XML tree Example (Thesis),FAILED
+orgjsonxml,dos-billion-laughs-pe.xml,Billion Laughs Attack (PE Version),OK
+orgjsonxml,dos-billion-laughs.xml,Billion Laughs Attack,OK
+orgjsonxml,dos-entity-recursion-pe.xml,Entity Recursion Attack (PE),OK
+orgjsonxml,dos-entity-recursion.xml,Entity Recursion Attack,OK
+orgjsonxml,dos-quadratic-blowup.xml,Quadratic Blowup Attack,OK
+orgjsonxml,fsa-doctype-pe.xml,Doctype Parameter Entity FSA Attack,OK
+orgjsonxml,fsa-external-pe-dtd.xml,External PE DTD FSA Attack,OK
+orgjsonxml,fsa-xinclude.xml,XInclude FSA Attack,OK
+orgjsonxml,fsa-xslt.xsl,XSLT FSA Attack,OK
+orgjsonxml,fsa-xxe-pe.xml,XXE FSA Attack (PE),OK
+orgjsonxml,fsa-xxe.xml,XXE FSA Attack,OK
+orgjsonxml,ssrf-doctype.xml,DOCTYPE URL Invocation,OK
+orgjsonxml,ssrf-schemalocation-nonamespace.xml,SchemaLocation NoNamespace URL Invocation,OK
+orgjsonxml,ssrf-schemalocation.xml,SchemaLocation URL Invocation,OK
+orgjsonxml,ssrf-xinclude.xml,XInclude URL Invocation,OK
+orgjsonxml,ssrf-xxe-pe.xml,XXE URL Invocation (PE),OK
+orgjsonxml,ssrf-xxe.xml,XXE URL Invocation,OK
+pesterfish,basic-attribute-multiple.xml,Attribute (multiple),OK
+pesterfish,basic-attribute.xml,Attribute,OK
+pesterfish,basic-cdata-close-in-textnode.xml,CDATA close in Text Node,OK
+pesterfish,basic-cdata-escaped.xml,Escaped CDATA section,OK
+pesterfish,basic-cdata-with-markup.xml,CDATA section with Markup,OK
+pesterfish,basic-cdata.xml,CDATA support,OK
+pesterfish,basic-comments.xml,Comments [OPTIONAL],FAILED
+pesterfish,basic-deepnesting.xml,Deep nesting,OK
+pesterfish,basic-duplicate-childtags-order.xml,Duplicate Child tag Names (Alternating Order),OK
+pesterfish,basic-duplicate-childtags-xmlnsprefix.xml,Duplicate child tag names (different NS prefix),FAILED
+pesterfish,basic-duplicate-childtags.xml,Duplicate child tag names,OK
+pesterfish,basic-element-order.xml,Element Order,OK
+pesterfish,basic-emptyelement.xml,Empty Elements,OK
+pesterfish,basic-mixedcontent.xml,Mixed Content,OK
+pesterfish,basic-pi-attrdata.xml,Processing Instructions (Attibute Data),FAILED
+pesterfish,basic-pi-markup.xml,Processing Instructions (Markup),FAILED
+pesterfish,basic-pi-outside-root.xml,Processing Instructions outside root,FAILED
+pesterfish,basic-pi-simpledata.xml,Processing Instructions (Arbitrary Data),FAILED
+pesterfish,basic-pi-whitespace.xml,Processing Instructions (Whitespace),FAILED
+pesterfish,basic-pi.xml,Processing Instructions (Basic),FAILED
+pesterfish,basic-root-attr.xml,Root Element Attribute,OK
+pesterfish,basic-root-tagname.xml,Root Element Tag Name,OK
+pesterfish,basic-simple.xml,Simple Element List,OK
+pesterfish,basic-typeinference-binary32-attr.xml,Type Inference with floats (Attr),OK
+pesterfish,basic-typeinference-binary32.xml,Type Inference with floats,OK
+pesterfish,basic-typeinference-binary64-attr.xml,Type Inference with doubles (Attr),OK
+pesterfish,basic-typeinference-binary64.xml,Type Inference with doubles,OK
+pesterfish,basic-typeinference-bool-attr.xml,Type Inference with Boolean values (Attr),OK
+pesterfish,basic-typeinference-bool.xml,Type Inference with Boolean values,OK
+pesterfish,basic-typeinference-integer-attr.xml,Type Inference with Big Integers (Attr),OK
+pesterfish,basic-typeinference-integer.xml,Type Inference with Big Integers,OK
+pesterfish,basic-whitespace-indentation.xml,Whitespace (Indentation),OK
+pesterfish,basic-whitespace-mixedcontent.xml,Whitespace (Mixed Content),OK
+pesterfish,basic-whitespace.xml,Whitespace (Clean/Dirty),OK
+pesterfish,basic-xmlns-multiple.xml,Namespace declaration (multiple),FAILED
+pesterfish,basic-xmlns-prefix.xml,Namespace declaration with prefix,FAILED
+pesterfish,basic-xmlns.xml,Namespace declaration,FAILED
+pesterfish,chars-u000009-u00000D.xml,"C0 set (u000009, 00000A & 00000D)",OK
+pesterfish,chars-u000020.xml,Space Char (u000020),OK
+pesterfish,chars-u000021-u00007E.xml,ASCII printable (u000021-00007E),OK
+pesterfish,chars-u00007F-u000084.xml,Discouraged (u00007F-000084),OK
+pesterfish,chars-u000085.xml,NEL Control Char (u000085),OK
+pesterfish,chars-u000086-u00009F.xml,Discouraged (u000086-00009F),OK
+pesterfish,chars-u0000A0-u000FFF.xml,BMP plane I (u0000A0-000FFF),OK
+pesterfish,chars-u001000-u001FFF.xml,BMP plane II (u001000-001FFF),OK
+pesterfish,chars-u002000-u002FFF.xml,BMP plane III (u002000-002FFF),OK
+pesterfish,chars-u003000-u003FFF.xml,BMP plane IV (u003000-003FFF),OK
+pesterfish,chars-u004000-u004FFF.xml,BMP plane V (u004000-004FFF),OK
+pesterfish,chars-u005000-u005FFF.xml,BMP plane VI (u005000-005FFF),OK
+pesterfish,chars-u006000-u006FFF.xml,BMP plane VII (u006000-006FFF),OK
+pesterfish,chars-u007000-u007FFF.xml,BMP plane VIII (u007000-007FFF),OK
+pesterfish,chars-u008000-u008FFF.xml,BMP plane IX (u008000-008FFF),OK
+pesterfish,chars-u009000-u009FFF.xml,BMP plane X (u009000-009FFF),OK
+pesterfish,chars-u00A000-u00AFFF.xml,BMP plane XI (u00A000-00AFFF),OK
+pesterfish,chars-u00B000-u00BFFF.xml,BMP plane XII (u00B000-00BFFF),OK
+pesterfish,chars-u00C000-u00CFFF.xml,BMP plane XIII (u00C000-00CFFF),OK
+pesterfish,chars-u00D000-u00D7FF.xml,BMP plane XIV (u00D000-00D7FF),OK
+pesterfish,chars-u00E000-u00EFFF.xml,BMP plane XV (u00E000-00EFFF),OK
+pesterfish,chars-u00F000-u00FDCF.xml,BMP plane XVI (u00F000-00FDCF),OK
+pesterfish,chars-u00FDD0-u00FDEF.xml,BMP plane Discouraged (u00FDD0-00FDEF),OK
+pesterfish,chars-u00FDF0-u00FFFD.xml,BMP plane XVII (u00FDF0-00FFFD),OK
+pesterfish,chars-u010000-u01FFFD.xml,SMP plane (u010000-01FFFD),OK
+pesterfish,chars-u01FFFE-u01FFFF.xml,SMP plane Discouraged (u01FFFE-01FFFF),OK
+pesterfish,chars-u020000-u02FFFD.xml,SIP plane (u020000-02FFFD),OK
+pesterfish,chars-u02FFFE-u02FFFF.xml,SIP plane Discouraged (u02FFFE-02FFFF),OK
+pesterfish,chars-u030000-u03FFFD.xml,Unassigned plane 3 (u030000-03FFFD),OK
+pesterfish,chars-u03FFFE-u03FFFF.xml,Plane 3 Discouraged (u03FFFE-03FFFF),OK
+pesterfish,chars-u040000-u04FFFD.xml,Unassigned plane 4 (u040000-04FFFD),OK
+pesterfish,chars-u04FFFE-u04FFFF.xml,Plane 4 Discouraged (u04FFFE-04FFFF),OK
+pesterfish,chars-u050000-u05FFFD.xml,Unassigned plane 5 (u050000-05FFFD),OK
+pesterfish,chars-u05FFFE-u05FFFF.xml,Plane 5 Discouraged (u05FFFE-05FFFF),OK
+pesterfish,chars-u060000-u06FFFD.xml,Unassigned plane 6 (u060000-06FFFD),OK
+pesterfish,chars-u06FFFE-u06FFFF.xml,Plane 6 Discouraged (u06FFFE-06FFFF),OK
+pesterfish,chars-u070000-u07FFFD.xml,Unassigned plane 7 (u070000-07FFFD),OK
+pesterfish,chars-u07FFFE-u07FFFF.xml,Plane 7 Discouraged (u07FFFE-07FFFF),OK
+pesterfish,chars-u080000-u08FFFD.xml,Unassigned plane 8 (u080000-08FFFD),OK
+pesterfish,chars-u08FFFE-u08FFFF.xml,Plane 8 Discouraged (u08FFFE-08FFFF),OK
+pesterfish,chars-u090000-u09FFFD.xml,Unassigned plane 9 (u090000-09FFFD),OK
+pesterfish,chars-u09FFFE-u09FFFF.xml,Plane 9 Discouraged (u09FFFE-09FFFF),OK
+pesterfish,chars-u0A0000-u0AFFFD.xml,Unassigned plane 10 (u0A0000-0AFFFD),OK
+pesterfish,chars-u0AFFFE-u0AFFFF.xml,Plane 10 Discouraged (u0AFFFE-0AFFFF),OK
+pesterfish,chars-u0B0000-u0BFFFD.xml,Unassigned plane 11 (u0B0000-0BFFFD),OK
+pesterfish,chars-u0BFFFE-u0BFFFF.xml,Plane 11 Discouraged (u0BFFFE-0BFFFF),OK
+pesterfish,chars-u0C0000-u0CFFFD.xml,Unassigned plane 12 (u0C0000-0CFFFD),OK
+pesterfish,chars-u0CFFFE-u0CFFFF.xml,Plane 12 Discouraged (u0CFFFE-0CFFFF),OK
+pesterfish,chars-u0D0000-u0DFFFD.xml,Unassigned plane 13 (u0D0000-0DFFFD),OK
+pesterfish,chars-u0DFFFE-u0DFFFF.xml,Plane 13 Discouraged (u0DFFFE-0DFFFF),OK
+pesterfish,chars-u0E0000-u0EFFFD.xml,SSP plane (u0E0000-0EFFFD),OK
+pesterfish,chars-u0EFFFE-u0EFFFF.xml,SSP plane Discouraged (u0EFFFE-0EFFFF),OK
+pesterfish,chars-u0F0000-u0FFFFD.xml,SPUA-A plane (u0F0000-0FFFFD),OK
+pesterfish,chars-u0FFFFE-u0FFFFF.xml,SPUA-A plane Discouraged (u0FFFFE-0FFFFF),OK
+pesterfish,chars-u100000-u10FFFD.xml,SPUA-B plane (u100000-10FFFD),OK
+pesterfish,chars-u10FFFE-u10FFFF.xml,SPUA-B plane Discouraged (u10FFFE-10FFFF),OK
+pesterfish,complex-Office-Open-XML-Part-1-Fundamentals-word2003xml.xml,MSWord 2003 XML file,FAILED
+pesterfish,complex-Office-Open-XML-Part-1-Fundamentals-wordxml.xml,MSWord XML file,FAILED
+pesterfish,complex-OpenDocument-v1.0ed2-cs1.fodt,OpenDocument sample file,FAILED
+pesterfish,complex-REC-xml-20081126.xhtml,XML 1.0 5th Edition (XHTML version),FAILED
+pesterfish,complex-REC-xml-20081126.xml,XML 1.0 5th Edition (XML version),FAILED
+pesterfish,complex-car.svg,SVG Car Demo,FAILED
+pesterfish,complex-docbook-docs-howto.xml,DocBook V5.0 transition guide,FAILED
+pesterfish,complex-musicbrainz-ws-2-release-query-release-JSOP.xml,MusicBrainz.org API Response,FAILED
+pesterfish,complex-photos.svg,SVG Photos Demo,FAILED
+pesterfish,complex-sample-rss-091.xml,RSS 0.91 sample document,OK
+pesterfish,complex-sample-rss-092.xml,RSS 0.92 sample document,OK
+pesterfish,complex-sample-rss-2.xml,RSS 2.0 sample document,OK
+pesterfish,complex-thesis-example-xmltree.xml,XML tree Example (Thesis),FAILED
+pesterfish,dos-billion-laughs-pe.xml,Billion Laughs Attack (PE Version),OK
+pesterfish,dos-billion-laughs.xml,Billion Laughs Attack,FAILED
+pesterfish,dos-entity-recursion-pe.xml,Entity Recursion Attack (PE),OK
+pesterfish,dos-entity-recursion.xml,Entity Recursion Attack,OK
+pesterfish,dos-quadratic-blowup.xml,Quadratic Blowup Attack,FAILED
+pesterfish,fsa-doctype-pe.xml,Doctype Parameter Entity FSA Attack,OK
+pesterfish,fsa-external-pe-dtd.xml,External PE DTD FSA Attack,OK
+pesterfish,fsa-xinclude.xml,XInclude FSA Attack,OK
+pesterfish,fsa-xslt.xsl,XSLT FSA Attack,OK
+pesterfish,fsa-xxe-pe.xml,XXE FSA Attack (PE),OK
+pesterfish,fsa-xxe.xml,XXE FSA Attack,OK
+pesterfish,ssrf-doctype.xml,DOCTYPE URL Invocation,OK
+pesterfish,ssrf-schemalocation-nonamespace.xml,SchemaLocation NoNamespace URL Invocation,OK
+pesterfish,ssrf-schemalocation.xml,SchemaLocation URL Invocation,OK
+pesterfish,ssrf-xinclude.xml,XInclude URL Invocation,OK
+pesterfish,ssrf-xxe-pe.xml,XXE URL Invocation (PE),OK
+pesterfish,ssrf-xxe.xml,XXE URL Invocation,OK
+pesterfishdefused,basic-attribute-multiple.xml,Attribute (multiple),OK
+pesterfishdefused,basic-attribute.xml,Attribute,OK
+pesterfishdefused,basic-cdata-close-in-textnode.xml,CDATA close in Text Node,OK
+pesterfishdefused,basic-cdata-escaped.xml,Escaped CDATA section,OK
+pesterfishdefused,basic-cdata-with-markup.xml,CDATA section with Markup,OK
+pesterfishdefused,basic-cdata.xml,CDATA support,OK
+pesterfishdefused,basic-comments.xml,Comments [OPTIONAL],FAILED
+pesterfishdefused,basic-deepnesting.xml,Deep nesting,OK
+pesterfishdefused,basic-duplicate-childtags-order.xml,Duplicate Child tag Names (Alternating Order),OK
+pesterfishdefused,basic-duplicate-childtags-xmlnsprefix.xml,Duplicate child tag names (different NS prefix),FAILED
+pesterfishdefused,basic-duplicate-childtags.xml,Duplicate child tag names,OK
+pesterfishdefused,basic-element-order.xml,Element Order,OK
+pesterfishdefused,basic-emptyelement.xml,Empty Elements,OK
+pesterfishdefused,basic-mixedcontent.xml,Mixed Content,OK
+pesterfishdefused,basic-pi-attrdata.xml,Processing Instructions (Attibute Data),FAILED
+pesterfishdefused,basic-pi-markup.xml,Processing Instructions (Markup),FAILED
+pesterfishdefused,basic-pi-outside-root.xml,Processing Instructions outside root,FAILED
+pesterfishdefused,basic-pi-simpledata.xml,Processing Instructions (Arbitrary Data),FAILED
+pesterfishdefused,basic-pi-whitespace.xml,Processing Instructions (Whitespace),FAILED
+pesterfishdefused,basic-pi.xml,Processing Instructions (Basic),FAILED
+pesterfishdefused,basic-root-attr.xml,Root Element Attribute,OK
+pesterfishdefused,basic-root-tagname.xml,Root Element Tag Name,OK
+pesterfishdefused,basic-simple.xml,Simple Element List,OK
+pesterfishdefused,basic-typeinference-binary32-attr.xml,Type Inference with floats (Attr),OK
+pesterfishdefused,basic-typeinference-binary32.xml,Type Inference with floats,OK
+pesterfishdefused,basic-typeinference-binary64-attr.xml,Type Inference with doubles (Attr),OK
+pesterfishdefused,basic-typeinference-binary64.xml,Type Inference with doubles,OK
+pesterfishdefused,basic-typeinference-bool-attr.xml,Type Inference with Boolean values (Attr),OK
+pesterfishdefused,basic-typeinference-bool.xml,Type Inference with Boolean values,OK
+pesterfishdefused,basic-typeinference-integer-attr.xml,Type Inference with Big Integers (Attr),OK
+pesterfishdefused,basic-typeinference-integer.xml,Type Inference with Big Integers,OK
+pesterfishdefused,basic-whitespace-indentation.xml,Whitespace (Indentation),OK
+pesterfishdefused,basic-whitespace-mixedcontent.xml,Whitespace (Mixed Content),OK
+pesterfishdefused,basic-whitespace.xml,Whitespace (Clean/Dirty),OK
+pesterfishdefused,basic-xmlns-multiple.xml,Namespace declaration (multiple),FAILED
+pesterfishdefused,basic-xmlns-prefix.xml,Namespace declaration with prefix,FAILED
+pesterfishdefused,basic-xmlns.xml,Namespace declaration,FAILED
+pesterfishdefused,chars-u000009-u00000D.xml,"C0 set (u000009, 00000A & 00000D)",OK
+pesterfishdefused,chars-u000020.xml,Space Char (u000020),OK
+pesterfishdefused,chars-u000021-u00007E.xml,ASCII printable (u000021-00007E),OK
+pesterfishdefused,chars-u00007F-u000084.xml,Discouraged (u00007F-000084),OK
+pesterfishdefused,chars-u000085.xml,NEL Control Char (u000085),OK
+pesterfishdefused,chars-u000086-u00009F.xml,Discouraged (u000086-00009F),OK
+pesterfishdefused,chars-u0000A0-u000FFF.xml,BMP plane I (u0000A0-000FFF),OK
+pesterfishdefused,chars-u001000-u001FFF.xml,BMP plane II (u001000-001FFF),OK
+pesterfishdefused,chars-u002000-u002FFF.xml,BMP plane III (u002000-002FFF),OK
+pesterfishdefused,chars-u003000-u003FFF.xml,BMP plane IV (u003000-003FFF),OK
+pesterfishdefused,chars-u004000-u004FFF.xml,BMP plane V (u004000-004FFF),OK
+pesterfishdefused,chars-u005000-u005FFF.xml,BMP plane VI (u005000-005FFF),OK
+pesterfishdefused,chars-u006000-u006FFF.xml,BMP plane VII (u006000-006FFF),OK
+pesterfishdefused,chars-u007000-u007FFF.xml,BMP plane VIII (u007000-007FFF),OK
+pesterfishdefused,chars-u008000-u008FFF.xml,BMP plane IX (u008000-008FFF),OK
+pesterfishdefused,chars-u009000-u009FFF.xml,BMP plane X (u009000-009FFF),OK
+pesterfishdefused,chars-u00A000-u00AFFF.xml,BMP plane XI (u00A000-00AFFF),OK
+pesterfishdefused,chars-u00B000-u00BFFF.xml,BMP plane XII (u00B000-00BFFF),OK
+pesterfishdefused,chars-u00C000-u00CFFF.xml,BMP plane XIII (u00C000-00CFFF),OK
+pesterfishdefused,chars-u00D000-u00D7FF.xml,BMP plane XIV (u00D000-00D7FF),OK
+pesterfishdefused,chars-u00E000-u00EFFF.xml,BMP plane XV (u00E000-00EFFF),OK
+pesterfishdefused,chars-u00F000-u00FDCF.xml,BMP plane XVI (u00F000-00FDCF),OK
+pesterfishdefused,chars-u00FDD0-u00FDEF.xml,BMP plane Discouraged (u00FDD0-00FDEF),OK
+pesterfishdefused,chars-u00FDF0-u00FFFD.xml,BMP plane XVII (u00FDF0-00FFFD),OK
+pesterfishdefused,chars-u010000-u01FFFD.xml,SMP plane (u010000-01FFFD),OK
+pesterfishdefused,chars-u01FFFE-u01FFFF.xml,SMP plane Discouraged (u01FFFE-01FFFF),OK
+pesterfishdefused,chars-u020000-u02FFFD.xml,SIP plane (u020000-02FFFD),OK
+pesterfishdefused,chars-u02FFFE-u02FFFF.xml,SIP plane Discouraged (u02FFFE-02FFFF),OK
+pesterfishdefused,chars-u030000-u03FFFD.xml,Unassigned plane 3 (u030000-03FFFD),OK
+pesterfishdefused,chars-u03FFFE-u03FFFF.xml,Plane 3 Discouraged (u03FFFE-03FFFF),OK
+pesterfishdefused,chars-u040000-u04FFFD.xml,Unassigned plane 4 (u040000-04FFFD),OK
+pesterfishdefused,chars-u04FFFE-u04FFFF.xml,Plane 4 Discouraged (u04FFFE-04FFFF),OK
+pesterfishdefused,chars-u050000-u05FFFD.xml,Unassigned plane 5 (u050000-05FFFD),OK
+pesterfishdefused,chars-u05FFFE-u05FFFF.xml,Plane 5 Discouraged (u05FFFE-05FFFF),OK
+pesterfishdefused,chars-u060000-u06FFFD.xml,Unassigned plane 6 (u060000-06FFFD),OK
+pesterfishdefused,chars-u06FFFE-u06FFFF.xml,Plane 6 Discouraged (u06FFFE-06FFFF),OK
+pesterfishdefused,chars-u070000-u07FFFD.xml,Unassigned plane 7 (u070000-07FFFD),OK
+pesterfishdefused,chars-u07FFFE-u07FFFF.xml,Plane 7 Discouraged (u07FFFE-07FFFF),OK
+pesterfishdefused,chars-u080000-u08FFFD.xml,Unassigned plane 8 (u080000-08FFFD),OK
+pesterfishdefused,chars-u08FFFE-u08FFFF.xml,Plane 8 Discouraged (u08FFFE-08FFFF),OK
+pesterfishdefused,chars-u090000-u09FFFD.xml,Unassigned plane 9 (u090000-09FFFD),OK
+pesterfishdefused,chars-u09FFFE-u09FFFF.xml,Plane 9 Discouraged (u09FFFE-09FFFF),OK
+pesterfishdefused,chars-u0A0000-u0AFFFD.xml,Unassigned plane 10 (u0A0000-0AFFFD),OK
+pesterfishdefused,chars-u0AFFFE-u0AFFFF.xml,Plane 10 Discouraged (u0AFFFE-0AFFFF),OK
+pesterfishdefused,chars-u0B0000-u0BFFFD.xml,Unassigned plane 11 (u0B0000-0BFFFD),OK
+pesterfishdefused,chars-u0BFFFE-u0BFFFF.xml,Plane 11 Discouraged (u0BFFFE-0BFFFF),OK
+pesterfishdefused,chars-u0C0000-u0CFFFD.xml,Unassigned plane 12 (u0C0000-0CFFFD),OK
+pesterfishdefused,chars-u0CFFFE-u0CFFFF.xml,Plane 12 Discouraged (u0CFFFE-0CFFFF),OK
+pesterfishdefused,chars-u0D0000-u0DFFFD.xml,Unassigned plane 13 (u0D0000-0DFFFD),OK
+pesterfishdefused,chars-u0DFFFE-u0DFFFF.xml,Plane 13 Discouraged (u0DFFFE-0DFFFF),OK
+pesterfishdefused,chars-u0E0000-u0EFFFD.xml,SSP plane (u0E0000-0EFFFD),OK
+pesterfishdefused,chars-u0EFFFE-u0EFFFF.xml,SSP plane Discouraged (u0EFFFE-0EFFFF),OK
+pesterfishdefused,chars-u0F0000-u0FFFFD.xml,SPUA-A plane (u0F0000-0FFFFD),OK
+pesterfishdefused,chars-u0FFFFE-u0FFFFF.xml,SPUA-A plane Discouraged (u0FFFFE-0FFFFF),OK
+pesterfishdefused,chars-u100000-u10FFFD.xml,SPUA-B plane (u100000-10FFFD),OK
+pesterfishdefused,chars-u10FFFE-u10FFFF.xml,SPUA-B plane Discouraged (u10FFFE-10FFFF),OK
+pesterfishdefused,complex-Office-Open-XML-Part-1-Fundamentals-word2003xml.xml,MSWord 2003 XML file,FAILED
+pesterfishdefused,complex-Office-Open-XML-Part-1-Fundamentals-wordxml.xml,MSWord XML file,FAILED
+pesterfishdefused,complex-OpenDocument-v1.0ed2-cs1.fodt,OpenDocument sample file,FAILED
+pesterfishdefused,complex-REC-xml-20081126.xhtml,XML 1.0 5th Edition (XHTML version),FAILED
+pesterfishdefused,complex-REC-xml-20081126.xml,XML 1.0 5th Edition (XML version),FAILED
+pesterfishdefused,complex-car.svg,SVG Car Demo,FAILED
+pesterfishdefused,complex-docbook-docs-howto.xml,DocBook V5.0 transition guide,FAILED
+pesterfishdefused,complex-musicbrainz-ws-2-release-query-release-JSOP.xml,MusicBrainz.org API Response,FAILED
+pesterfishdefused,complex-photos.svg,SVG Photos Demo,FAILED
+pesterfishdefused,complex-sample-rss-091.xml,RSS 0.91 sample document,OK
+pesterfishdefused,complex-sample-rss-092.xml,RSS 0.92 sample document,OK
+pesterfishdefused,complex-sample-rss-2.xml,RSS 2.0 sample document,OK
+pesterfishdefused,complex-thesis-example-xmltree.xml,XML tree Example (Thesis),FAILED
+pesterfishdefused,dos-billion-laughs-pe.xml,Billion Laughs Attack (PE Version),OK
+pesterfishdefused,dos-billion-laughs.xml,Billion Laughs Attack,OK
+pesterfishdefused,dos-entity-recursion-pe.xml,Entity Recursion Attack (PE),OK
+pesterfishdefused,dos-entity-recursion.xml,Entity Recursion Attack,OK
+pesterfishdefused,dos-quadratic-blowup.xml,Quadratic Blowup Attack,OK
+pesterfishdefused,fsa-doctype-pe.xml,Doctype Parameter Entity FSA Attack,OK
+pesterfishdefused,fsa-external-pe-dtd.xml,External PE DTD FSA Attack,OK
+pesterfishdefused,fsa-xinclude.xml,XInclude FSA Attack,OK
+pesterfishdefused,fsa-xslt.xsl,XSLT FSA Attack,OK
+pesterfishdefused,fsa-xxe-pe.xml,XXE FSA Attack (PE),OK
+pesterfishdefused,fsa-xxe.xml,XXE FSA Attack,OK
+pesterfishdefused,ssrf-doctype.xml,DOCTYPE URL Invocation,OK
+pesterfishdefused,ssrf-schemalocation-nonamespace.xml,SchemaLocation NoNamespace URL Invocation,OK
+pesterfishdefused,ssrf-schemalocation.xml,SchemaLocation URL Invocation,OK
+pesterfishdefused,ssrf-xinclude.xml,XInclude URL Invocation,OK
+pesterfishdefused,ssrf-xxe-pe.xml,XXE URL Invocation (PE),OK
+pesterfishdefused,ssrf-xxe.xml,XXE URL Invocation,OK
+x2js,basic-attribute-multiple.xml,Attribute (multiple),OK
+x2js,basic-attribute.xml,Attribute,OK
+x2js,basic-cdata-close-in-textnode.xml,CDATA close in Text Node,OK
+x2js,basic-cdata-escaped.xml,Escaped CDATA section,OK
+x2js,basic-cdata-with-markup.xml,CDATA section with Markup,OK
+x2js,basic-cdata.xml,CDATA support,OK
+x2js,basic-comments.xml,Comments [OPTIONAL],FAILED
+x2js,basic-deepnesting.xml,Deep nesting,OK
+x2js,basic-duplicate-childtags-order.xml,Duplicate Child tag Names (Alternating Order),FAILED
+x2js,basic-duplicate-childtags-xmlnsprefix.xml,Duplicate child tag names (different NS prefix),OK
+x2js,basic-duplicate-childtags.xml,Duplicate child tag names,OK
+x2js,basic-element-order.xml,Element Order,FAILED
+x2js,basic-emptyelement.xml,Empty Elements,OK
+x2js,basic-mixedcontent.xml,Mixed Content,FAILED
+x2js,basic-pi-attrdata.xml,Processing Instructions (Attibute Data),FAILED
+x2js,basic-pi-markup.xml,Processing Instructions (Markup),FAILED
+x2js,basic-pi-outside-root.xml,Processing Instructions outside root,FAILED
+x2js,basic-pi-simpledata.xml,Processing Instructions (Arbitrary Data),FAILED
+x2js,basic-pi-whitespace.xml,Processing Instructions (Whitespace),FAILED
+x2js,basic-pi.xml,Processing Instructions (Basic),FAILED
+x2js,basic-root-attr.xml,Root Element Attribute,OK
+x2js,basic-root-tagname.xml,Root Element Tag Name,OK
+x2js,basic-simple.xml,Simple Element List,OK
+x2js,basic-typeinference-binary32-attr.xml,Type Inference with floats (Attr),OK
+x2js,basic-typeinference-binary32.xml,Type Inference with floats,OK
+x2js,basic-typeinference-binary64-attr.xml,Type Inference with doubles (Attr),OK
+x2js,basic-typeinference-binary64.xml,Type Inference with doubles,OK
+x2js,basic-typeinference-bool-attr.xml,Type Inference with Boolean values (Attr),OK
+x2js,basic-typeinference-bool.xml,Type Inference with Boolean values,OK
+x2js,basic-typeinference-integer-attr.xml,Type Inference with Big Integers (Attr),OK
+x2js,basic-typeinference-integer.xml,Type Inference with Big Integers,OK
+x2js,basic-whitespace-indentation.xml,Whitespace (Indentation),FAILED
+x2js,basic-whitespace-mixedcontent.xml,Whitespace (Mixed Content),FAILED
+x2js,basic-whitespace.xml,Whitespace (Clean/Dirty),OK
+x2js,basic-xmlns-multiple.xml,Namespace declaration (multiple),OK
+x2js,basic-xmlns-prefix.xml,Namespace declaration with prefix,OK
+x2js,basic-xmlns.xml,Namespace declaration,OK
+x2js,chars-u000009-u00000D.xml,"C0 set (u000009, 00000A & 00000D)",OK
+x2js,chars-u000020.xml,Space Char (u000020),OK
+x2js,chars-u000021-u00007E.xml,ASCII printable (u000021-00007E),OK
+x2js,chars-u00007F-u000084.xml,Discouraged (u00007F-000084),OK
+x2js,chars-u000085.xml,NEL Control Char (u000085),OK
+x2js,chars-u000086-u00009F.xml,Discouraged (u000086-00009F),OK
+x2js,chars-u0000A0-u000FFF.xml,BMP plane I (u0000A0-000FFF),OK
+x2js,chars-u001000-u001FFF.xml,BMP plane II (u001000-001FFF),OK
+x2js,chars-u002000-u002FFF.xml,BMP plane III (u002000-002FFF),OK
+x2js,chars-u003000-u003FFF.xml,BMP plane IV (u003000-003FFF),OK
+x2js,chars-u004000-u004FFF.xml,BMP plane V (u004000-004FFF),OK
+x2js,chars-u005000-u005FFF.xml,BMP plane VI (u005000-005FFF),OK
+x2js,chars-u006000-u006FFF.xml,BMP plane VII (u006000-006FFF),OK
+x2js,chars-u007000-u007FFF.xml,BMP plane VIII (u007000-007FFF),OK
+x2js,chars-u008000-u008FFF.xml,BMP plane IX (u008000-008FFF),OK
+x2js,chars-u009000-u009FFF.xml,BMP plane X (u009000-009FFF),OK
+x2js,chars-u00A000-u00AFFF.xml,BMP plane XI (u00A000-00AFFF),OK
+x2js,chars-u00B000-u00BFFF.xml,BMP plane XII (u00B000-00BFFF),OK
+x2js,chars-u00C000-u00CFFF.xml,BMP plane XIII (u00C000-00CFFF),OK
+x2js,chars-u00D000-u00D7FF.xml,BMP plane XIV (u00D000-00D7FF),OK
+x2js,chars-u00E000-u00EFFF.xml,BMP plane XV (u00E000-00EFFF),OK
+x2js,chars-u00F000-u00FDCF.xml,BMP plane XVI (u00F000-00FDCF),OK
+x2js,chars-u00FDD0-u00FDEF.xml,BMP plane Discouraged (u00FDD0-00FDEF),OK
+x2js,chars-u00FDF0-u00FFFD.xml,BMP plane XVII (u00FDF0-00FFFD),OK
+x2js,chars-u010000-u01FFFD.xml,SMP plane (u010000-01FFFD),OK
+x2js,chars-u01FFFE-u01FFFF.xml,SMP plane Discouraged (u01FFFE-01FFFF),OK
+x2js,chars-u020000-u02FFFD.xml,SIP plane (u020000-02FFFD),OK
+x2js,chars-u02FFFE-u02FFFF.xml,SIP plane Discouraged (u02FFFE-02FFFF),OK
+x2js,chars-u030000-u03FFFD.xml,Unassigned plane 3 (u030000-03FFFD),OK
+x2js,chars-u03FFFE-u03FFFF.xml,Plane 3 Discouraged (u03FFFE-03FFFF),OK
+x2js,chars-u040000-u04FFFD.xml,Unassigned plane 4 (u040000-04FFFD),OK
+x2js,chars-u04FFFE-u04FFFF.xml,Plane 4 Discouraged (u04FFFE-04FFFF),OK
+x2js,chars-u050000-u05FFFD.xml,Unassigned plane 5 (u050000-05FFFD),OK
+x2js,chars-u05FFFE-u05FFFF.xml,Plane 5 Discouraged (u05FFFE-05FFFF),OK
+x2js,chars-u060000-u06FFFD.xml,Unassigned plane 6 (u060000-06FFFD),OK
+x2js,chars-u06FFFE-u06FFFF.xml,Plane 6 Discouraged (u06FFFE-06FFFF),OK
+x2js,chars-u070000-u07FFFD.xml,Unassigned plane 7 (u070000-07FFFD),OK
+x2js,chars-u07FFFE-u07FFFF.xml,Plane 7 Discouraged (u07FFFE-07FFFF),OK
+x2js,chars-u080000-u08FFFD.xml,Unassigned plane 8 (u080000-08FFFD),OK
+x2js,chars-u08FFFE-u08FFFF.xml,Plane 8 Discouraged (u08FFFE-08FFFF),OK
+x2js,chars-u090000-u09FFFD.xml,Unassigned plane 9 (u090000-09FFFD),OK
+x2js,chars-u09FFFE-u09FFFF.xml,Plane 9 Discouraged (u09FFFE-09FFFF),OK
+x2js,chars-u0A0000-u0AFFFD.xml,Unassigned plane 10 (u0A0000-0AFFFD),OK
+x2js,chars-u0AFFFE-u0AFFFF.xml,Plane 10 Discouraged (u0AFFFE-0AFFFF),OK
+x2js,chars-u0B0000-u0BFFFD.xml,Unassigned plane 11 (u0B0000-0BFFFD),OK
+x2js,chars-u0BFFFE-u0BFFFF.xml,Plane 11 Discouraged (u0BFFFE-0BFFFF),OK
+x2js,chars-u0C0000-u0CFFFD.xml,Unassigned plane 12 (u0C0000-0CFFFD),OK
+x2js,chars-u0CFFFE-u0CFFFF.xml,Plane 12 Discouraged (u0CFFFE-0CFFFF),OK
+x2js,chars-u0D0000-u0DFFFD.xml,Unassigned plane 13 (u0D0000-0DFFFD),OK
+x2js,chars-u0DFFFE-u0DFFFF.xml,Plane 13 Discouraged (u0DFFFE-0DFFFF),OK
+x2js,chars-u0E0000-u0EFFFD.xml,SSP plane (u0E0000-0EFFFD),OK
+x2js,chars-u0EFFFE-u0EFFFF.xml,SSP plane Discouraged (u0EFFFE-0EFFFF),OK
+x2js,chars-u0F0000-u0FFFFD.xml,SPUA-A plane (u0F0000-0FFFFD),OK
+x2js,chars-u0FFFFE-u0FFFFF.xml,SPUA-A plane Discouraged (u0FFFFE-0FFFFF),OK
+x2js,chars-u100000-u10FFFD.xml,SPUA-B plane (u100000-10FFFD),OK
+x2js,chars-u10FFFE-u10FFFF.xml,SPUA-B plane Discouraged (u10FFFE-10FFFF),OK
+x2js,complex-Office-Open-XML-Part-1-Fundamentals-word2003xml.xml,MSWord 2003 XML file,FAILED
+x2js,complex-Office-Open-XML-Part-1-Fundamentals-wordxml.xml,MSWord XML file,FAILED
+x2js,complex-OpenDocument-v1.0ed2-cs1.fodt,OpenDocument sample file,FAILED
+x2js,complex-REC-xml-20081126.xhtml,XML 1.0 5th Edition (XHTML version),FAILED
+x2js,complex-REC-xml-20081126.xml,XML 1.0 5th Edition (XML version),FAILED
+x2js,complex-car.svg,SVG Car Demo,FAILED
+x2js,complex-docbook-docs-howto.xml,DocBook V5.0 transition guide,FAILED
+x2js,complex-musicbrainz-ws-2-release-query-release-JSOP.xml,MusicBrainz.org API Response,FAILED
+x2js,complex-photos.svg,SVG Photos Demo,FAILED
+x2js,complex-sample-rss-091.xml,RSS 0.91 sample document,FAILED
+x2js,complex-sample-rss-092.xml,RSS 0.92 sample document,FAILED
+x2js,complex-sample-rss-2.xml,RSS 2.0 sample document,FAILED
+x2js,complex-thesis-example-xmltree.xml,XML tree Example (Thesis),FAILED
+x2js,dos-billion-laughs-pe.xml,Billion Laughs Attack (PE Version),OK
+x2js,dos-billion-laughs.xml,Billion Laughs Attack,OK
+x2js,dos-entity-recursion-pe.xml,Entity Recursion Attack (PE),OK
+x2js,dos-entity-recursion.xml,Entity Recursion Attack,OK
+x2js,dos-quadratic-blowup.xml,Quadratic Blowup Attack,OK
+x2js,fsa-doctype-pe.xml,Doctype Parameter Entity FSA Attack,OK
+x2js,fsa-external-pe-dtd.xml,External PE DTD FSA Attack,OK
+x2js,fsa-xinclude.xml,XInclude FSA Attack,OK
+x2js,fsa-xslt.xsl,XSLT FSA Attack,OK
+x2js,fsa-xxe-pe.xml,XXE FSA Attack (PE),OK
+x2js,fsa-xxe.xml,XXE FSA Attack,OK
+x2js,ssrf-doctype.xml,DOCTYPE URL Invocation,OK
+x2js,ssrf-schemalocation-nonamespace.xml,SchemaLocation NoNamespace URL Invocation,OK
+x2js,ssrf-schemalocation.xml,SchemaLocation URL Invocation,OK
+x2js,ssrf-xinclude.xml,XInclude URL Invocation,OK
+x2js,ssrf-xxe-pe.xml,XXE URL Invocation (PE),OK
+x2js,ssrf-xxe.xml,XXE URL Invocation,OK
+x2jsabdmob,basic-attribute-multiple.xml,Attribute (multiple),OK
+x2jsabdmob,basic-attribute.xml,Attribute,OK
+x2jsabdmob,basic-cdata-close-in-textnode.xml,CDATA close in Text Node,OK
+x2jsabdmob,basic-cdata-escaped.xml,Escaped CDATA section,OK
+x2jsabdmob,basic-cdata-with-markup.xml,CDATA section with Markup,OK
+x2jsabdmob,basic-cdata.xml,CDATA support,OK
+x2jsabdmob,basic-comments.xml,Comments [OPTIONAL],FAILED
+x2jsabdmob,basic-deepnesting.xml,Deep nesting,OK
+x2jsabdmob,basic-duplicate-childtags-order.xml,Duplicate Child tag Names (Alternating Order),FAILED
+x2jsabdmob,basic-duplicate-childtags-xmlnsprefix.xml,Duplicate child tag names (different NS prefix),FAILED
+x2jsabdmob,basic-duplicate-childtags.xml,Duplicate child tag names,FAILED
+x2jsabdmob,basic-element-order.xml,Element Order,FAILED
+x2jsabdmob,basic-emptyelement.xml,Empty Elements,OK
+x2jsabdmob,basic-mixedcontent.xml,Mixed Content,ERROR
+x2jsabdmob,basic-pi-attrdata.xml,Processing Instructions (Attibute Data),FAILED
+x2jsabdmob,basic-pi-markup.xml,Processing Instructions (Markup),FAILED
+x2jsabdmob,basic-pi-outside-root.xml,Processing Instructions outside root,FAILED
+x2jsabdmob,basic-pi-simpledata.xml,Processing Instructions (Arbitrary Data),FAILED
+x2jsabdmob,basic-pi-whitespace.xml,Processing Instructions (Whitespace),FAILED
+x2jsabdmob,basic-pi.xml,Processing Instructions (Basic),FAILED
+x2jsabdmob,basic-root-attr.xml,Root Element Attribute,OK
+x2jsabdmob,basic-root-tagname.xml,Root Element Tag Name,OK
+x2jsabdmob,basic-simple.xml,Simple Element List,OK
+x2jsabdmob,basic-typeinference-binary32-attr.xml,Type Inference with floats (Attr),OK
+x2jsabdmob,basic-typeinference-binary32.xml,Type Inference with floats,OK
+x2jsabdmob,basic-typeinference-binary64-attr.xml,Type Inference with doubles (Attr),OK
+x2jsabdmob,basic-typeinference-binary64.xml,Type Inference with doubles,OK
+x2jsabdmob,basic-typeinference-bool-attr.xml,Type Inference with Boolean values (Attr),OK
+x2jsabdmob,basic-typeinference-bool.xml,Type Inference with Boolean values,OK
+x2jsabdmob,basic-typeinference-integer-attr.xml,Type Inference with Big Integers (Attr),OK
+x2jsabdmob,basic-typeinference-integer.xml,Type Inference with Big Integers,OK
+x2jsabdmob,basic-whitespace-indentation.xml,Whitespace (Indentation),ERROR
+x2jsabdmob,basic-whitespace-mixedcontent.xml,Whitespace (Mixed Content),ERROR
+x2jsabdmob,basic-whitespace.xml,Whitespace (Clean/Dirty),OK
+x2jsabdmob,basic-xmlns-multiple.xml,Namespace declaration (multiple),OK
+x2jsabdmob,basic-xmlns-prefix.xml,Namespace declaration with prefix,OK
+x2jsabdmob,basic-xmlns.xml,Namespace declaration,OK
+x2jsabdmob,chars-u000009-u00000D.xml,"C0 set (u000009, 00000A & 00000D)",OK
+x2jsabdmob,chars-u000020.xml,Space Char (u000020),OK
+x2jsabdmob,chars-u000021-u00007E.xml,ASCII printable (u000021-00007E),OK
+x2jsabdmob,chars-u00007F-u000084.xml,Discouraged (u00007F-000084),OK
+x2jsabdmob,chars-u000085.xml,NEL Control Char (u000085),OK
+x2jsabdmob,chars-u000086-u00009F.xml,Discouraged (u000086-00009F),OK
+x2jsabdmob,chars-u0000A0-u000FFF.xml,BMP plane I (u0000A0-000FFF),OK
+x2jsabdmob,chars-u001000-u001FFF.xml,BMP plane II (u001000-001FFF),OK
+x2jsabdmob,chars-u002000-u002FFF.xml,BMP plane III (u002000-002FFF),OK
+x2jsabdmob,chars-u003000-u003FFF.xml,BMP plane IV (u003000-003FFF),OK
+x2jsabdmob,chars-u004000-u004FFF.xml,BMP plane V (u004000-004FFF),OK
+x2jsabdmob,chars-u005000-u005FFF.xml,BMP plane VI (u005000-005FFF),OK
+x2jsabdmob,chars-u006000-u006FFF.xml,BMP plane VII (u006000-006FFF),OK
+x2jsabdmob,chars-u007000-u007FFF.xml,BMP plane VIII (u007000-007FFF),OK
+x2jsabdmob,chars-u008000-u008FFF.xml,BMP plane IX (u008000-008FFF),OK
+x2jsabdmob,chars-u009000-u009FFF.xml,BMP plane X (u009000-009FFF),OK
+x2jsabdmob,chars-u00A000-u00AFFF.xml,BMP plane XI (u00A000-00AFFF),OK
+x2jsabdmob,chars-u00B000-u00BFFF.xml,BMP plane XII (u00B000-00BFFF),OK
+x2jsabdmob,chars-u00C000-u00CFFF.xml,BMP plane XIII (u00C000-00CFFF),OK
+x2jsabdmob,chars-u00D000-u00D7FF.xml,BMP plane XIV (u00D000-00D7FF),OK
+x2jsabdmob,chars-u00E000-u00EFFF.xml,BMP plane XV (u00E000-00EFFF),OK
+x2jsabdmob,chars-u00F000-u00FDCF.xml,BMP plane XVI (u00F000-00FDCF),OK
+x2jsabdmob,chars-u00FDD0-u00FDEF.xml,BMP plane Discouraged (u00FDD0-00FDEF),OK
+x2jsabdmob,chars-u00FDF0-u00FFFD.xml,BMP plane XVII (u00FDF0-00FFFD),OK
+x2jsabdmob,chars-u010000-u01FFFD.xml,SMP plane (u010000-01FFFD),OK
+x2jsabdmob,chars-u01FFFE-u01FFFF.xml,SMP plane Discouraged (u01FFFE-01FFFF),OK
+x2jsabdmob,chars-u020000-u02FFFD.xml,SIP plane (u020000-02FFFD),OK
+x2jsabdmob,chars-u02FFFE-u02FFFF.xml,SIP plane Discouraged (u02FFFE-02FFFF),OK
+x2jsabdmob,chars-u030000-u03FFFD.xml,Unassigned plane 3 (u030000-03FFFD),OK
+x2jsabdmob,chars-u03FFFE-u03FFFF.xml,Plane 3 Discouraged (u03FFFE-03FFFF),OK
+x2jsabdmob,chars-u040000-u04FFFD.xml,Unassigned plane 4 (u040000-04FFFD),OK
+x2jsabdmob,chars-u04FFFE-u04FFFF.xml,Plane 4 Discouraged (u04FFFE-04FFFF),OK
+x2jsabdmob,chars-u050000-u05FFFD.xml,Unassigned plane 5 (u050000-05FFFD),OK
+x2jsabdmob,chars-u05FFFE-u05FFFF.xml,Plane 5 Discouraged (u05FFFE-05FFFF),OK
+x2jsabdmob,chars-u060000-u06FFFD.xml,Unassigned plane 6 (u060000-06FFFD),OK
+x2jsabdmob,chars-u06FFFE-u06FFFF.xml,Plane 6 Discouraged (u06FFFE-06FFFF),OK
+x2jsabdmob,chars-u070000-u07FFFD.xml,Unassigned plane 7 (u070000-07FFFD),OK
+x2jsabdmob,chars-u07FFFE-u07FFFF.xml,Plane 7 Discouraged (u07FFFE-07FFFF),OK
+x2jsabdmob,chars-u080000-u08FFFD.xml,Unassigned plane 8 (u080000-08FFFD),OK
+x2jsabdmob,chars-u08FFFE-u08FFFF.xml,Plane 8 Discouraged (u08FFFE-08FFFF),OK
+x2jsabdmob,chars-u090000-u09FFFD.xml,Unassigned plane 9 (u090000-09FFFD),OK
+x2jsabdmob,chars-u09FFFE-u09FFFF.xml,Plane 9 Discouraged (u09FFFE-09FFFF),OK
+x2jsabdmob,chars-u0A0000-u0AFFFD.xml,Unassigned plane 10 (u0A0000-0AFFFD),OK
+x2jsabdmob,chars-u0AFFFE-u0AFFFF.xml,Plane 10 Discouraged (u0AFFFE-0AFFFF),OK
+x2jsabdmob,chars-u0B0000-u0BFFFD.xml,Unassigned plane 11 (u0B0000-0BFFFD),OK
+x2jsabdmob,chars-u0BFFFE-u0BFFFF.xml,Plane 11 Discouraged (u0BFFFE-0BFFFF),OK
+x2jsabdmob,chars-u0C0000-u0CFFFD.xml,Unassigned plane 12 (u0C0000-0CFFFD),OK
+x2jsabdmob,chars-u0CFFFE-u0CFFFF.xml,Plane 12 Discouraged (u0CFFFE-0CFFFF),OK
+x2jsabdmob,chars-u0D0000-u0DFFFD.xml,Unassigned plane 13 (u0D0000-0DFFFD),OK
+x2jsabdmob,chars-u0DFFFE-u0DFFFF.xml,Plane 13 Discouraged (u0DFFFE-0DFFFF),OK
+x2jsabdmob,chars-u0E0000-u0EFFFD.xml,SSP plane (u0E0000-0EFFFD),OK
+x2jsabdmob,chars-u0EFFFE-u0EFFFF.xml,SSP plane Discouraged (u0EFFFE-0EFFFF),OK
+x2jsabdmob,chars-u0F0000-u0FFFFD.xml,SPUA-A plane (u0F0000-0FFFFD),OK
+x2jsabdmob,chars-u0FFFFE-u0FFFFF.xml,SPUA-A plane Discouraged (u0FFFFE-0FFFFF),OK
+x2jsabdmob,chars-u100000-u10FFFD.xml,SPUA-B plane (u100000-10FFFD),OK
+x2jsabdmob,chars-u10FFFE-u10FFFF.xml,SPUA-B plane Discouraged (u10FFFE-10FFFF),OK
+x2jsabdmob,complex-Office-Open-XML-Part-1-Fundamentals-word2003xml.xml,MSWord 2003 XML file,ERROR
+x2jsabdmob,complex-Office-Open-XML-Part-1-Fundamentals-wordxml.xml,MSWord XML file,ERROR
+x2jsabdmob,complex-OpenDocument-v1.0ed2-cs1.fodt,OpenDocument sample file,ERROR
+x2jsabdmob,complex-REC-xml-20081126.xhtml,XML 1.0 5th Edition (XHTML version),ERROR
+x2jsabdmob,complex-REC-xml-20081126.xml,XML 1.0 5th Edition (XML version),ERROR
+x2jsabdmob,complex-car.svg,SVG Car Demo,ERROR
+x2jsabdmob,complex-docbook-docs-howto.xml,DocBook V5.0 transition guide,ERROR
+x2jsabdmob,complex-musicbrainz-ws-2-release-query-release-JSOP.xml,MusicBrainz.org API Response,FAILED
+x2jsabdmob,complex-photos.svg,SVG Photos Demo,ERROR
+x2jsabdmob,complex-sample-rss-091.xml,RSS 0.91 sample document,ERROR
+x2jsabdmob,complex-sample-rss-092.xml,RSS 0.92 sample document,ERROR
+x2jsabdmob,complex-sample-rss-2.xml,RSS 2.0 sample document,ERROR
+x2jsabdmob,complex-thesis-example-xmltree.xml,XML tree Example (Thesis),ERROR
+x2jsabdmob,dos-billion-laughs-pe.xml,Billion Laughs Attack (PE Version),OK
+x2jsabdmob,dos-billion-laughs.xml,Billion Laughs Attack,OK
+x2jsabdmob,dos-entity-recursion-pe.xml,Entity Recursion Attack (PE),OK
+x2jsabdmob,dos-entity-recursion.xml,Entity Recursion Attack,OK
+x2jsabdmob,dos-quadratic-blowup.xml,Quadratic Blowup Attack,OK
+x2jsabdmob,fsa-doctype-pe.xml,Doctype Parameter Entity FSA Attack,OK
+x2jsabdmob,fsa-external-pe-dtd.xml,External PE DTD FSA Attack,OK
+x2jsabdmob,fsa-xinclude.xml,XInclude FSA Attack,OK
+x2jsabdmob,fsa-xslt.xsl,XSLT FSA Attack,OK
+x2jsabdmob,fsa-xxe-pe.xml,XXE FSA Attack (PE),OK
+x2jsabdmob,fsa-xxe.xml,XXE FSA Attack,OK
+x2jsabdmob,ssrf-doctype.xml,DOCTYPE URL Invocation,OK
+x2jsabdmob,ssrf-schemalocation-nonamespace.xml,SchemaLocation NoNamespace URL Invocation,OK
+x2jsabdmob,ssrf-schemalocation.xml,SchemaLocation URL Invocation,OK
+x2jsabdmob,ssrf-xinclude.xml,XInclude URL Invocation,OK
+x2jsabdmob,ssrf-xxe-pe.xml,XXE URL Invocation (PE),OK
+x2jsabdmob,ssrf-xxe.xml,XXE URL Invocation,OK
+xmljson-abdera,basic-attribute-multiple.xml,Attribute (multiple),FAILED
+xmljson-abdera,basic-attribute.xml,Attribute,FAILED
+xmljson-abdera,basic-cdata-close-in-textnode.xml,CDATA close in Text Node,OK
+xmljson-abdera,basic-cdata-escaped.xml,Escaped CDATA section,OK
+xmljson-abdera,basic-cdata-with-markup.xml,CDATA section with Markup,OK
+xmljson-abdera,basic-cdata.xml,CDATA support,OK
+xmljson-abdera,basic-comments.xml,Comments [OPTIONAL],FAILED
+xmljson-abdera,basic-deepnesting.xml,Deep nesting,FAILED
+xmljson-abdera,basic-duplicate-childtags-order.xml,Duplicate Child tag Names (Alternating Order),FAILED
+xmljson-abdera,basic-duplicate-childtags-xmlnsprefix.xml,Duplicate child tag names (different NS prefix),FAILED
+xmljson-abdera,basic-duplicate-childtags.xml,Duplicate child tag names,FAILED
+xmljson-abdera,basic-element-order.xml,Element Order,FAILED
+xmljson-abdera,basic-emptyelement.xml,Empty Elements,FAILED
+xmljson-abdera,basic-mixedcontent.xml,Mixed Content,FAILED
+xmljson-abdera,basic-pi-attrdata.xml,Processing Instructions (Attibute Data),FAILED
+xmljson-abdera,basic-pi-markup.xml,Processing Instructions (Markup),FAILED
+xmljson-abdera,basic-pi-outside-root.xml,Processing Instructions outside root,FAILED
+xmljson-abdera,basic-pi-simpledata.xml,Processing Instructions (Arbitrary Data),FAILED
+xmljson-abdera,basic-pi-whitespace.xml,Processing Instructions (Whitespace),FAILED
+xmljson-abdera,basic-pi.xml,Processing Instructions (Basic),FAILED
+xmljson-abdera,basic-root-attr.xml,Root Element Attribute,FAILED
+xmljson-abdera,basic-root-tagname.xml,Root Element Tag Name,FAILED
+xmljson-abdera,basic-simple.xml,Simple Element List,FAILED
+xmljson-abdera,basic-typeinference-binary32-attr.xml,Type Inference with floats (Attr),FAILED
+xmljson-abdera,basic-typeinference-binary32.xml,Type Inference with floats,FAILED
+xmljson-abdera,basic-typeinference-binary64-attr.xml,Type Inference with doubles (Attr),FAILED
+xmljson-abdera,basic-typeinference-binary64.xml,Type Inference with doubles,FAILED
+xmljson-abdera,basic-typeinference-bool-attr.xml,Type Inference with Boolean values (Attr),FAILED
+xmljson-abdera,basic-typeinference-bool.xml,Type Inference with Boolean values,FAILED
+xmljson-abdera,basic-typeinference-integer-attr.xml,Type Inference with Big Integers (Attr),FAILED
+xmljson-abdera,basic-typeinference-integer.xml,Type Inference with Big Integers,FAILED
+xmljson-abdera,basic-whitespace-indentation.xml,Whitespace (Indentation),FAILED
+xmljson-abdera,basic-whitespace-mixedcontent.xml,Whitespace (Mixed Content),FAILED
+xmljson-abdera,basic-whitespace.xml,Whitespace (Clean/Dirty),FAILED
+xmljson-abdera,basic-xmlns-multiple.xml,Namespace declaration (multiple),FAILED
+xmljson-abdera,basic-xmlns-prefix.xml,Namespace declaration with prefix,FAILED
+xmljson-abdera,basic-xmlns.xml,Namespace declaration,FAILED
+xmljson-abdera,chars-u000009-u00000D.xml,"C0 set (u000009, 00000A & 00000D)",FAILED
+xmljson-abdera,chars-u000020.xml,Space Char (u000020),FAILED
+xmljson-abdera,chars-u000021-u00007E.xml,ASCII printable (u000021-00007E),FAILED
+xmljson-abdera,chars-u00007F-u000084.xml,Discouraged (u00007F-000084),FAILED
+xmljson-abdera,chars-u000085.xml,NEL Control Char (u000085),FAILED
+xmljson-abdera,chars-u000086-u00009F.xml,Discouraged (u000086-00009F),FAILED
+xmljson-abdera,chars-u0000A0-u000FFF.xml,BMP plane I (u0000A0-000FFF),FAILED
+xmljson-abdera,chars-u001000-u001FFF.xml,BMP plane II (u001000-001FFF),FAILED
+xmljson-abdera,chars-u002000-u002FFF.xml,BMP plane III (u002000-002FFF),FAILED
+xmljson-abdera,chars-u003000-u003FFF.xml,BMP plane IV (u003000-003FFF),FAILED
+xmljson-abdera,chars-u004000-u004FFF.xml,BMP plane V (u004000-004FFF),FAILED
+xmljson-abdera,chars-u005000-u005FFF.xml,BMP plane VI (u005000-005FFF),FAILED
+xmljson-abdera,chars-u006000-u006FFF.xml,BMP plane VII (u006000-006FFF),FAILED
+xmljson-abdera,chars-u007000-u007FFF.xml,BMP plane VIII (u007000-007FFF),FAILED
+xmljson-abdera,chars-u008000-u008FFF.xml,BMP plane IX (u008000-008FFF),FAILED
+xmljson-abdera,chars-u009000-u009FFF.xml,BMP plane X (u009000-009FFF),FAILED
+xmljson-abdera,chars-u00A000-u00AFFF.xml,BMP plane XI (u00A000-00AFFF),FAILED
+xmljson-abdera,chars-u00B000-u00BFFF.xml,BMP plane XII (u00B000-00BFFF),FAILED
+xmljson-abdera,chars-u00C000-u00CFFF.xml,BMP plane XIII (u00C000-00CFFF),FAILED
+xmljson-abdera,chars-u00D000-u00D7FF.xml,BMP plane XIV (u00D000-00D7FF),FAILED
+xmljson-abdera,chars-u00E000-u00EFFF.xml,BMP plane XV (u00E000-00EFFF),FAILED
+xmljson-abdera,chars-u00F000-u00FDCF.xml,BMP plane XVI (u00F000-00FDCF),FAILED
+xmljson-abdera,chars-u00FDD0-u00FDEF.xml,BMP plane Discouraged (u00FDD0-00FDEF),FAILED
+xmljson-abdera,chars-u00FDF0-u00FFFD.xml,BMP plane XVII (u00FDF0-00FFFD),FAILED
+xmljson-abdera,chars-u010000-u01FFFD.xml,SMP plane (u010000-01FFFD),FAILED
+xmljson-abdera,chars-u01FFFE-u01FFFF.xml,SMP plane Discouraged (u01FFFE-01FFFF),FAILED
+xmljson-abdera,chars-u020000-u02FFFD.xml,SIP plane (u020000-02FFFD),FAILED
+xmljson-abdera,chars-u02FFFE-u02FFFF.xml,SIP plane Discouraged (u02FFFE-02FFFF),FAILED
+xmljson-abdera,chars-u030000-u03FFFD.xml,Unassigned plane 3 (u030000-03FFFD),FAILED
+xmljson-abdera,chars-u03FFFE-u03FFFF.xml,Plane 3 Discouraged (u03FFFE-03FFFF),FAILED
+xmljson-abdera,chars-u040000-u04FFFD.xml,Unassigned plane 4 (u040000-04FFFD),FAILED
+xmljson-abdera,chars-u04FFFE-u04FFFF.xml,Plane 4 Discouraged (u04FFFE-04FFFF),FAILED
+xmljson-abdera,chars-u050000-u05FFFD.xml,Unassigned plane 5 (u050000-05FFFD),FAILED
+xmljson-abdera,chars-u05FFFE-u05FFFF.xml,Plane 5 Discouraged (u05FFFE-05FFFF),FAILED
+xmljson-abdera,chars-u060000-u06FFFD.xml,Unassigned plane 6 (u060000-06FFFD),FAILED
+xmljson-abdera,chars-u06FFFE-u06FFFF.xml,Plane 6 Discouraged (u06FFFE-06FFFF),FAILED
+xmljson-abdera,chars-u070000-u07FFFD.xml,Unassigned plane 7 (u070000-07FFFD),FAILED
+xmljson-abdera,chars-u07FFFE-u07FFFF.xml,Plane 7 Discouraged (u07FFFE-07FFFF),FAILED
+xmljson-abdera,chars-u080000-u08FFFD.xml,Unassigned plane 8 (u080000-08FFFD),FAILED
+xmljson-abdera,chars-u08FFFE-u08FFFF.xml,Plane 8 Discouraged (u08FFFE-08FFFF),FAILED
+xmljson-abdera,chars-u090000-u09FFFD.xml,Unassigned plane 9 (u090000-09FFFD),FAILED
+xmljson-abdera,chars-u09FFFE-u09FFFF.xml,Plane 9 Discouraged (u09FFFE-09FFFF),FAILED
+xmljson-abdera,chars-u0A0000-u0AFFFD.xml,Unassigned plane 10 (u0A0000-0AFFFD),FAILED
+xmljson-abdera,chars-u0AFFFE-u0AFFFF.xml,Plane 10 Discouraged (u0AFFFE-0AFFFF),FAILED
+xmljson-abdera,chars-u0B0000-u0BFFFD.xml,Unassigned plane 11 (u0B0000-0BFFFD),FAILED
+xmljson-abdera,chars-u0BFFFE-u0BFFFF.xml,Plane 11 Discouraged (u0BFFFE-0BFFFF),FAILED
+xmljson-abdera,chars-u0C0000-u0CFFFD.xml,Unassigned plane 12 (u0C0000-0CFFFD),FAILED
+xmljson-abdera,chars-u0CFFFE-u0CFFFF.xml,Plane 12 Discouraged (u0CFFFE-0CFFFF),FAILED
+xmljson-abdera,chars-u0D0000-u0DFFFD.xml,Unassigned plane 13 (u0D0000-0DFFFD),FAILED
+xmljson-abdera,chars-u0DFFFE-u0DFFFF.xml,Plane 13 Discouraged (u0DFFFE-0DFFFF),FAILED
+xmljson-abdera,chars-u0E0000-u0EFFFD.xml,SSP plane (u0E0000-0EFFFD),FAILED
+xmljson-abdera,chars-u0EFFFE-u0EFFFF.xml,SSP plane Discouraged (u0EFFFE-0EFFFF),FAILED
+xmljson-abdera,chars-u0F0000-u0FFFFD.xml,SPUA-A plane (u0F0000-0FFFFD),FAILED
+xmljson-abdera,chars-u0FFFFE-u0FFFFF.xml,SPUA-A plane Discouraged (u0FFFFE-0FFFFF),FAILED
+xmljson-abdera,chars-u100000-u10FFFD.xml,SPUA-B plane (u100000-10FFFD),FAILED
+xmljson-abdera,chars-u10FFFE-u10FFFF.xml,SPUA-B plane Discouraged (u10FFFE-10FFFF),FAILED
+xmljson-abdera,complex-Office-Open-XML-Part-1-Fundamentals-word2003xml.xml,MSWord 2003 XML file,FAILED
+xmljson-abdera,complex-Office-Open-XML-Part-1-Fundamentals-wordxml.xml,MSWord XML file,FAILED
+xmljson-abdera,complex-OpenDocument-v1.0ed2-cs1.fodt,OpenDocument sample file,FAILED
+xmljson-abdera,complex-REC-xml-20081126.xhtml,XML 1.0 5th Edition (XHTML version),FAILED
+xmljson-abdera,complex-REC-xml-20081126.xml,XML 1.0 5th Edition (XML version),FAILED
+xmljson-abdera,complex-car.svg,SVG Car Demo,FAILED
+xmljson-abdera,complex-docbook-docs-howto.xml,DocBook V5.0 transition guide,FAILED
+xmljson-abdera,complex-musicbrainz-ws-2-release-query-release-JSOP.xml,MusicBrainz.org API Response,FAILED
+xmljson-abdera,complex-photos.svg,SVG Photos Demo,FAILED
+xmljson-abdera,complex-sample-rss-091.xml,RSS 0.91 sample document,FAILED
+xmljson-abdera,complex-sample-rss-092.xml,RSS 0.92 sample document,FAILED
+xmljson-abdera,complex-sample-rss-2.xml,RSS 2.0 sample document,FAILED
+xmljson-abdera,complex-thesis-example-xmltree.xml,XML tree Example (Thesis),FAILED
+xmljson-abdera,dos-billion-laughs-pe.xml,Billion Laughs Attack (PE Version),OK
+xmljson-abdera,dos-billion-laughs.xml,Billion Laughs Attack,OK
+xmljson-abdera,dos-entity-recursion-pe.xml,Entity Recursion Attack (PE),OK
+xmljson-abdera,dos-entity-recursion.xml,Entity Recursion Attack,OK
+xmljson-abdera,dos-quadratic-blowup.xml,Quadratic Blowup Attack,OK
+xmljson-abdera,fsa-doctype-pe.xml,Doctype Parameter Entity FSA Attack,OK
+xmljson-abdera,fsa-external-pe-dtd.xml,External PE DTD FSA Attack,OK
+xmljson-abdera,fsa-xinclude.xml,XInclude FSA Attack,OK
+xmljson-abdera,fsa-xslt.xsl,XSLT FSA Attack,OK
+xmljson-abdera,fsa-xxe-pe.xml,XXE FSA Attack (PE),OK
+xmljson-abdera,fsa-xxe.xml,XXE FSA Attack,OK
+xmljson-abdera,ssrf-doctype.xml,DOCTYPE URL Invocation,OK
+xmljson-abdera,ssrf-schemalocation-nonamespace.xml,SchemaLocation NoNamespace URL Invocation,OK
+xmljson-abdera,ssrf-schemalocation.xml,SchemaLocation URL Invocation,OK
+xmljson-abdera,ssrf-xinclude.xml,XInclude URL Invocation,OK
+xmljson-abdera,ssrf-xxe-pe.xml,XXE URL Invocation (PE),OK
+xmljson-abdera,ssrf-xxe.xml,XXE URL Invocation,OK
+xmljson-badgerfish,basic-attribute-multiple.xml,Attribute (multiple),OK
+xmljson-badgerfish,basic-attribute.xml,Attribute,OK
+xmljson-badgerfish,basic-cdata-close-in-textnode.xml,CDATA close in Text Node,OK
+xmljson-badgerfish,basic-cdata-escaped.xml,Escaped CDATA section,OK
+xmljson-badgerfish,basic-cdata-with-markup.xml,CDATA section with Markup,OK
+xmljson-badgerfish,basic-cdata.xml,CDATA support,OK
+xmljson-badgerfish,basic-comments.xml,Comments [OPTIONAL],FAILED
+xmljson-badgerfish,basic-deepnesting.xml,Deep nesting,OK
+xmljson-badgerfish,basic-duplicate-childtags-order.xml,Duplicate Child tag Names (Alternating Order),FAILED
+xmljson-badgerfish,basic-duplicate-childtags-xmlnsprefix.xml,Duplicate child tag names (different NS prefix),FAILED
+xmljson-badgerfish,basic-duplicate-childtags.xml,Duplicate child tag names,OK
+xmljson-badgerfish,basic-element-order.xml,Element Order,FAILED
+xmljson-badgerfish,basic-emptyelement.xml,Empty Elements,OK
+xmljson-badgerfish,basic-mixedcontent.xml,Mixed Content,FAILED
+xmljson-badgerfish,basic-pi-attrdata.xml,Processing Instructions (Attibute Data),FAILED
+xmljson-badgerfish,basic-pi-markup.xml,Processing Instructions (Markup),FAILED
+xmljson-badgerfish,basic-pi-outside-root.xml,Processing Instructions outside root,FAILED
+xmljson-badgerfish,basic-pi-simpledata.xml,Processing Instructions (Arbitrary Data),FAILED
+xmljson-badgerfish,basic-pi-whitespace.xml,Processing Instructions (Whitespace),FAILED
+xmljson-badgerfish,basic-pi.xml,Processing Instructions (Basic),FAILED
+xmljson-badgerfish,basic-root-attr.xml,Root Element Attribute,OK
+xmljson-badgerfish,basic-root-tagname.xml,Root Element Tag Name,OK
+xmljson-badgerfish,basic-simple.xml,Simple Element List,OK
+xmljson-badgerfish,basic-typeinference-binary32-attr.xml,Type Inference with floats (Attr),FAILED
+xmljson-badgerfish,basic-typeinference-binary32.xml,Type Inference with floats,FAILED
+xmljson-badgerfish,basic-typeinference-binary64-attr.xml,Type Inference with doubles (Attr),FAILED
+xmljson-badgerfish,basic-typeinference-binary64.xml,Type Inference with doubles,FAILED
+xmljson-badgerfish,basic-typeinference-bool-attr.xml,Type Inference with Boolean values (Attr),OK
+xmljson-badgerfish,basic-typeinference-bool.xml,Type Inference with Boolean values,OK
+xmljson-badgerfish,basic-typeinference-integer-attr.xml,Type Inference with Big Integers (Attr),OK
+xmljson-badgerfish,basic-typeinference-integer.xml,Type Inference with Big Integers,OK
+xmljson-badgerfish,basic-whitespace-indentation.xml,Whitespace (Indentation),FAILED
+xmljson-badgerfish,basic-whitespace-mixedcontent.xml,Whitespace (Mixed Content),FAILED
+xmljson-badgerfish,basic-whitespace.xml,Whitespace (Clean/Dirty),FAILED
+xmljson-badgerfish,basic-xmlns-multiple.xml,Namespace declaration (multiple),FAILED
+xmljson-badgerfish,basic-xmlns-prefix.xml,Namespace declaration with prefix,FAILED
+xmljson-badgerfish,basic-xmlns.xml,Namespace declaration,FAILED
+xmljson-badgerfish,chars-u000009-u00000D.xml,"C0 set (u000009, 00000A & 00000D)",FAILED
+xmljson-badgerfish,chars-u000020.xml,Space Char (u000020),FAILED
+xmljson-badgerfish,chars-u000021-u00007E.xml,ASCII printable (u000021-00007E),OK
+xmljson-badgerfish,chars-u00007F-u000084.xml,Discouraged (u00007F-000084),OK
+xmljson-badgerfish,chars-u000085.xml,NEL Control Char (u000085),FAILED
+xmljson-badgerfish,chars-u000086-u00009F.xml,Discouraged (u000086-00009F),OK
+xmljson-badgerfish,chars-u0000A0-u000FFF.xml,BMP plane I (u0000A0-000FFF),FAILED
+xmljson-badgerfish,chars-u001000-u001FFF.xml,BMP plane II (u001000-001FFF),FAILED
+xmljson-badgerfish,chars-u002000-u002FFF.xml,BMP plane III (u002000-002FFF),FAILED
+xmljson-badgerfish,chars-u003000-u003FFF.xml,BMP plane IV (u003000-003FFF),FAILED
+xmljson-badgerfish,chars-u004000-u004FFF.xml,BMP plane V (u004000-004FFF),OK
+xmljson-badgerfish,chars-u005000-u005FFF.xml,BMP plane VI (u005000-005FFF),OK
+xmljson-badgerfish,chars-u006000-u006FFF.xml,BMP plane VII (u006000-006FFF),OK
+xmljson-badgerfish,chars-u007000-u007FFF.xml,BMP plane VIII (u007000-007FFF),OK
+xmljson-badgerfish,chars-u008000-u008FFF.xml,BMP plane IX (u008000-008FFF),OK
+xmljson-badgerfish,chars-u009000-u009FFF.xml,BMP plane X (u009000-009FFF),OK
+xmljson-badgerfish,chars-u00A000-u00AFFF.xml,BMP plane XI (u00A000-00AFFF),FAILED
+xmljson-badgerfish,chars-u00B000-u00BFFF.xml,BMP plane XII (u00B000-00BFFF),OK
+xmljson-badgerfish,chars-u00C000-u00CFFF.xml,BMP plane XIII (u00C000-00CFFF),OK
+xmljson-badgerfish,chars-u00D000-u00D7FF.xml,BMP plane XIV (u00D000-00D7FF),OK
+xmljson-badgerfish,chars-u00E000-u00EFFF.xml,BMP plane XV (u00E000-00EFFF),OK
+xmljson-badgerfish,chars-u00F000-u00FDCF.xml,BMP plane XVI (u00F000-00FDCF),OK
+xmljson-badgerfish,chars-u00FDD0-u00FDEF.xml,BMP plane Discouraged (u00FDD0-00FDEF),OK
+xmljson-badgerfish,chars-u00FDF0-u00FFFD.xml,BMP plane XVII (u00FDF0-00FFFD),FAILED
+xmljson-badgerfish,chars-u010000-u01FFFD.xml,SMP plane (u010000-01FFFD),OK
+xmljson-badgerfish,chars-u01FFFE-u01FFFF.xml,SMP plane Discouraged (u01FFFE-01FFFF),OK
+xmljson-badgerfish,chars-u020000-u02FFFD.xml,SIP plane (u020000-02FFFD),OK
+xmljson-badgerfish,chars-u02FFFE-u02FFFF.xml,SIP plane Discouraged (u02FFFE-02FFFF),OK
+xmljson-badgerfish,chars-u030000-u03FFFD.xml,Unassigned plane 3 (u030000-03FFFD),OK
+xmljson-badgerfish,chars-u03FFFE-u03FFFF.xml,Plane 3 Discouraged (u03FFFE-03FFFF),OK
+xmljson-badgerfish,chars-u040000-u04FFFD.xml,Unassigned plane 4 (u040000-04FFFD),OK
+xmljson-badgerfish,chars-u04FFFE-u04FFFF.xml,Plane 4 Discouraged (u04FFFE-04FFFF),OK
+xmljson-badgerfish,chars-u050000-u05FFFD.xml,Unassigned plane 5 (u050000-05FFFD),OK
+xmljson-badgerfish,chars-u05FFFE-u05FFFF.xml,Plane 5 Discouraged (u05FFFE-05FFFF),OK
+xmljson-badgerfish,chars-u060000-u06FFFD.xml,Unassigned plane 6 (u060000-06FFFD),OK
+xmljson-badgerfish,chars-u06FFFE-u06FFFF.xml,Plane 6 Discouraged (u06FFFE-06FFFF),OK
+xmljson-badgerfish,chars-u070000-u07FFFD.xml,Unassigned plane 7 (u070000-07FFFD),OK
+xmljson-badgerfish,chars-u07FFFE-u07FFFF.xml,Plane 7 Discouraged (u07FFFE-07FFFF),OK
+xmljson-badgerfish,chars-u080000-u08FFFD.xml,Unassigned plane 8 (u080000-08FFFD),OK
+xmljson-badgerfish,chars-u08FFFE-u08FFFF.xml,Plane 8 Discouraged (u08FFFE-08FFFF),OK
+xmljson-badgerfish,chars-u090000-u09FFFD.xml,Unassigned plane 9 (u090000-09FFFD),OK
+xmljson-badgerfish,chars-u09FFFE-u09FFFF.xml,Plane 9 Discouraged (u09FFFE-09FFFF),OK
+xmljson-badgerfish,chars-u0A0000-u0AFFFD.xml,Unassigned plane 10 (u0A0000-0AFFFD),OK
+xmljson-badgerfish,chars-u0AFFFE-u0AFFFF.xml,Plane 10 Discouraged (u0AFFFE-0AFFFF),OK
+xmljson-badgerfish,chars-u0B0000-u0BFFFD.xml,Unassigned plane 11 (u0B0000-0BFFFD),OK
+xmljson-badgerfish,chars-u0BFFFE-u0BFFFF.xml,Plane 11 Discouraged (u0BFFFE-0BFFFF),OK
+xmljson-badgerfish,chars-u0C0000-u0CFFFD.xml,Unassigned plane 12 (u0C0000-0CFFFD),OK
+xmljson-badgerfish,chars-u0CFFFE-u0CFFFF.xml,Plane 12 Discouraged (u0CFFFE-0CFFFF),OK
+xmljson-badgerfish,chars-u0D0000-u0DFFFD.xml,Unassigned plane 13 (u0D0000-0DFFFD),OK
+xmljson-badgerfish,chars-u0DFFFE-u0DFFFF.xml,Plane 13 Discouraged (u0DFFFE-0DFFFF),OK
+xmljson-badgerfish,chars-u0E0000-u0EFFFD.xml,SSP plane (u0E0000-0EFFFD),OK
+xmljson-badgerfish,chars-u0EFFFE-u0EFFFF.xml,SSP plane Discouraged (u0EFFFE-0EFFFF),OK
+xmljson-badgerfish,chars-u0F0000-u0FFFFD.xml,SPUA-A plane (u0F0000-0FFFFD),OK
+xmljson-badgerfish,chars-u0FFFFE-u0FFFFF.xml,SPUA-A plane Discouraged (u0FFFFE-0FFFFF),OK
+xmljson-badgerfish,chars-u100000-u10FFFD.xml,SPUA-B plane (u100000-10FFFD),OK
+xmljson-badgerfish,chars-u10FFFE-u10FFFF.xml,SPUA-B plane Discouraged (u10FFFE-10FFFF),OK
+xmljson-badgerfish,complex-Office-Open-XML-Part-1-Fundamentals-word2003xml.xml,MSWord 2003 XML file,FAILED
+xmljson-badgerfish,complex-Office-Open-XML-Part-1-Fundamentals-wordxml.xml,MSWord XML file,FAILED
+xmljson-badgerfish,complex-OpenDocument-v1.0ed2-cs1.fodt,OpenDocument sample file,FAILED
+xmljson-badgerfish,complex-REC-xml-20081126.xhtml,XML 1.0 5th Edition (XHTML version),FAILED
+xmljson-badgerfish,complex-REC-xml-20081126.xml,XML 1.0 5th Edition (XML version),FAILED
+xmljson-badgerfish,complex-car.svg,SVG Car Demo,FAILED
+xmljson-badgerfish,complex-docbook-docs-howto.xml,DocBook V5.0 transition guide,FAILED
+xmljson-badgerfish,complex-musicbrainz-ws-2-release-query-release-JSOP.xml,MusicBrainz.org API Response,FAILED
+xmljson-badgerfish,complex-photos.svg,SVG Photos Demo,FAILED
+xmljson-badgerfish,complex-sample-rss-091.xml,RSS 0.91 sample document,FAILED
+xmljson-badgerfish,complex-sample-rss-092.xml,RSS 0.92 sample document,FAILED
+xmljson-badgerfish,complex-sample-rss-2.xml,RSS 2.0 sample document,FAILED
+xmljson-badgerfish,complex-thesis-example-xmltree.xml,XML tree Example (Thesis),FAILED
+xmljson-badgerfish,dos-billion-laughs-pe.xml,Billion Laughs Attack (PE Version),OK
+xmljson-badgerfish,dos-billion-laughs.xml,Billion Laughs Attack,OK
+xmljson-badgerfish,dos-entity-recursion-pe.xml,Entity Recursion Attack (PE),OK
+xmljson-badgerfish,dos-entity-recursion.xml,Entity Recursion Attack,OK
+xmljson-badgerfish,dos-quadratic-blowup.xml,Quadratic Blowup Attack,OK
+xmljson-badgerfish,fsa-doctype-pe.xml,Doctype Parameter Entity FSA Attack,OK
+xmljson-badgerfish,fsa-external-pe-dtd.xml,External PE DTD FSA Attack,OK
+xmljson-badgerfish,fsa-xinclude.xml,XInclude FSA Attack,OK
+xmljson-badgerfish,fsa-xslt.xsl,XSLT FSA Attack,OK
+xmljson-badgerfish,fsa-xxe-pe.xml,XXE FSA Attack (PE),OK
+xmljson-badgerfish,fsa-xxe.xml,XXE FSA Attack,OK
+xmljson-badgerfish,ssrf-doctype.xml,DOCTYPE URL Invocation,OK
+xmljson-badgerfish,ssrf-schemalocation-nonamespace.xml,SchemaLocation NoNamespace URL Invocation,OK
+xmljson-badgerfish,ssrf-schemalocation.xml,SchemaLocation URL Invocation,OK
+xmljson-badgerfish,ssrf-xinclude.xml,XInclude URL Invocation,OK
+xmljson-badgerfish,ssrf-xxe-pe.xml,XXE URL Invocation (PE),OK
+xmljson-badgerfish,ssrf-xxe.xml,XXE URL Invocation,OK
+xmljson-cobra,basic-attribute-multiple.xml,Attribute (multiple),FAILED
+xmljson-cobra,basic-attribute.xml,Attribute,FAILED
+xmljson-cobra,basic-cdata-close-in-textnode.xml,CDATA close in Text Node,OK
+xmljson-cobra,basic-cdata-escaped.xml,Escaped CDATA section,OK
+xmljson-cobra,basic-cdata-with-markup.xml,CDATA section with Markup,OK
+xmljson-cobra,basic-cdata.xml,CDATA support,OK
+xmljson-cobra,basic-comments.xml,Comments [OPTIONAL],FAILED
+xmljson-cobra,basic-deepnesting.xml,Deep nesting,FAILED
+xmljson-cobra,basic-duplicate-childtags-order.xml,Duplicate Child tag Names (Alternating Order),FAILED
+xmljson-cobra,basic-duplicate-childtags-xmlnsprefix.xml,Duplicate child tag names (different NS prefix),FAILED
+xmljson-cobra,basic-duplicate-childtags.xml,Duplicate child tag names,FAILED
+xmljson-cobra,basic-element-order.xml,Element Order,FAILED
+xmljson-cobra,basic-emptyelement.xml,Empty Elements,FAILED
+xmljson-cobra,basic-mixedcontent.xml,Mixed Content,FAILED
+xmljson-cobra,basic-pi-attrdata.xml,Processing Instructions (Attibute Data),FAILED
+xmljson-cobra,basic-pi-markup.xml,Processing Instructions (Markup),FAILED
+xmljson-cobra,basic-pi-outside-root.xml,Processing Instructions outside root,FAILED
+xmljson-cobra,basic-pi-simpledata.xml,Processing Instructions (Arbitrary Data),FAILED
+xmljson-cobra,basic-pi-whitespace.xml,Processing Instructions (Whitespace),FAILED
+xmljson-cobra,basic-pi.xml,Processing Instructions (Basic),FAILED
+xmljson-cobra,basic-root-attr.xml,Root Element Attribute,FAILED
+xmljson-cobra,basic-root-tagname.xml,Root Element Tag Name,FAILED
+xmljson-cobra,basic-simple.xml,Simple Element List,FAILED
+xmljson-cobra,basic-typeinference-binary32-attr.xml,Type Inference with floats (Attr),FAILED
+xmljson-cobra,basic-typeinference-binary32.xml,Type Inference with floats,FAILED
+xmljson-cobra,basic-typeinference-binary64-attr.xml,Type Inference with doubles (Attr),FAILED
+xmljson-cobra,basic-typeinference-binary64.xml,Type Inference with doubles,FAILED
+xmljson-cobra,basic-typeinference-bool-attr.xml,Type Inference with Boolean values (Attr),FAILED
+xmljson-cobra,basic-typeinference-bool.xml,Type Inference with Boolean values,FAILED
+xmljson-cobra,basic-typeinference-integer-attr.xml,Type Inference with Big Integers (Attr),FAILED
+xmljson-cobra,basic-typeinference-integer.xml,Type Inference with Big Integers,FAILED
+xmljson-cobra,basic-whitespace-indentation.xml,Whitespace (Indentation),FAILED
+xmljson-cobra,basic-whitespace-mixedcontent.xml,Whitespace (Mixed Content),FAILED
+xmljson-cobra,basic-whitespace.xml,Whitespace (Clean/Dirty),FAILED
+xmljson-cobra,basic-xmlns-multiple.xml,Namespace declaration (multiple),FAILED
+xmljson-cobra,basic-xmlns-prefix.xml,Namespace declaration with prefix,FAILED
+xmljson-cobra,basic-xmlns.xml,Namespace declaration,FAILED
+xmljson-cobra,chars-u000009-u00000D.xml,"C0 set (u000009, 00000A & 00000D)",FAILED
+xmljson-cobra,chars-u000020.xml,Space Char (u000020),FAILED
+xmljson-cobra,chars-u000021-u00007E.xml,ASCII printable (u000021-00007E),FAILED
+xmljson-cobra,chars-u00007F-u000084.xml,Discouraged (u00007F-000084),FAILED
+xmljson-cobra,chars-u000085.xml,NEL Control Char (u000085),FAILED
+xmljson-cobra,chars-u000086-u00009F.xml,Discouraged (u000086-00009F),FAILED
+xmljson-cobra,chars-u0000A0-u000FFF.xml,BMP plane I (u0000A0-000FFF),FAILED
+xmljson-cobra,chars-u001000-u001FFF.xml,BMP plane II (u001000-001FFF),FAILED
+xmljson-cobra,chars-u002000-u002FFF.xml,BMP plane III (u002000-002FFF),FAILED
+xmljson-cobra,chars-u003000-u003FFF.xml,BMP plane IV (u003000-003FFF),FAILED
+xmljson-cobra,chars-u004000-u004FFF.xml,BMP plane V (u004000-004FFF),FAILED
+xmljson-cobra,chars-u005000-u005FFF.xml,BMP plane VI (u005000-005FFF),FAILED
+xmljson-cobra,chars-u006000-u006FFF.xml,BMP plane VII (u006000-006FFF),FAILED
+xmljson-cobra,chars-u007000-u007FFF.xml,BMP plane VIII (u007000-007FFF),FAILED
+xmljson-cobra,chars-u008000-u008FFF.xml,BMP plane IX (u008000-008FFF),FAILED
+xmljson-cobra,chars-u009000-u009FFF.xml,BMP plane X (u009000-009FFF),FAILED
+xmljson-cobra,chars-u00A000-u00AFFF.xml,BMP plane XI (u00A000-00AFFF),FAILED
+xmljson-cobra,chars-u00B000-u00BFFF.xml,BMP plane XII (u00B000-00BFFF),FAILED
+xmljson-cobra,chars-u00C000-u00CFFF.xml,BMP plane XIII (u00C000-00CFFF),FAILED
+xmljson-cobra,chars-u00D000-u00D7FF.xml,BMP plane XIV (u00D000-00D7FF),FAILED
+xmljson-cobra,chars-u00E000-u00EFFF.xml,BMP plane XV (u00E000-00EFFF),FAILED
+xmljson-cobra,chars-u00F000-u00FDCF.xml,BMP plane XVI (u00F000-00FDCF),FAILED
+xmljson-cobra,chars-u00FDD0-u00FDEF.xml,BMP plane Discouraged (u00FDD0-00FDEF),FAILED
+xmljson-cobra,chars-u00FDF0-u00FFFD.xml,BMP plane XVII (u00FDF0-00FFFD),FAILED
+xmljson-cobra,chars-u010000-u01FFFD.xml,SMP plane (u010000-01FFFD),FAILED
+xmljson-cobra,chars-u01FFFE-u01FFFF.xml,SMP plane Discouraged (u01FFFE-01FFFF),FAILED
+xmljson-cobra,chars-u020000-u02FFFD.xml,SIP plane (u020000-02FFFD),FAILED
+xmljson-cobra,chars-u02FFFE-u02FFFF.xml,SIP plane Discouraged (u02FFFE-02FFFF),FAILED
+xmljson-cobra,chars-u030000-u03FFFD.xml,Unassigned plane 3 (u030000-03FFFD),FAILED
+xmljson-cobra,chars-u03FFFE-u03FFFF.xml,Plane 3 Discouraged (u03FFFE-03FFFF),FAILED
+xmljson-cobra,chars-u040000-u04FFFD.xml,Unassigned plane 4 (u040000-04FFFD),FAILED
+xmljson-cobra,chars-u04FFFE-u04FFFF.xml,Plane 4 Discouraged (u04FFFE-04FFFF),FAILED
+xmljson-cobra,chars-u050000-u05FFFD.xml,Unassigned plane 5 (u050000-05FFFD),FAILED
+xmljson-cobra,chars-u05FFFE-u05FFFF.xml,Plane 5 Discouraged (u05FFFE-05FFFF),FAILED
+xmljson-cobra,chars-u060000-u06FFFD.xml,Unassigned plane 6 (u060000-06FFFD),FAILED
+xmljson-cobra,chars-u06FFFE-u06FFFF.xml,Plane 6 Discouraged (u06FFFE-06FFFF),FAILED
+xmljson-cobra,chars-u070000-u07FFFD.xml,Unassigned plane 7 (u070000-07FFFD),FAILED
+xmljson-cobra,chars-u07FFFE-u07FFFF.xml,Plane 7 Discouraged (u07FFFE-07FFFF),FAILED
+xmljson-cobra,chars-u080000-u08FFFD.xml,Unassigned plane 8 (u080000-08FFFD),FAILED
+xmljson-cobra,chars-u08FFFE-u08FFFF.xml,Plane 8 Discouraged (u08FFFE-08FFFF),FAILED
+xmljson-cobra,chars-u090000-u09FFFD.xml,Unassigned plane 9 (u090000-09FFFD),FAILED
+xmljson-cobra,chars-u09FFFE-u09FFFF.xml,Plane 9 Discouraged (u09FFFE-09FFFF),FAILED
+xmljson-cobra,chars-u0A0000-u0AFFFD.xml,Unassigned plane 10 (u0A0000-0AFFFD),FAILED
+xmljson-cobra,chars-u0AFFFE-u0AFFFF.xml,Plane 10 Discouraged (u0AFFFE-0AFFFF),FAILED
+xmljson-cobra,chars-u0B0000-u0BFFFD.xml,Unassigned plane 11 (u0B0000-0BFFFD),FAILED
+xmljson-cobra,chars-u0BFFFE-u0BFFFF.xml,Plane 11 Discouraged (u0BFFFE-0BFFFF),FAILED
+xmljson-cobra,chars-u0C0000-u0CFFFD.xml,Unassigned plane 12 (u0C0000-0CFFFD),FAILED
+xmljson-cobra,chars-u0CFFFE-u0CFFFF.xml,Plane 12 Discouraged (u0CFFFE-0CFFFF),FAILED
+xmljson-cobra,chars-u0D0000-u0DFFFD.xml,Unassigned plane 13 (u0D0000-0DFFFD),FAILED
+xmljson-cobra,chars-u0DFFFE-u0DFFFF.xml,Plane 13 Discouraged (u0DFFFE-0DFFFF),FAILED
+xmljson-cobra,chars-u0E0000-u0EFFFD.xml,SSP plane (u0E0000-0EFFFD),FAILED
+xmljson-cobra,chars-u0EFFFE-u0EFFFF.xml,SSP plane Discouraged (u0EFFFE-0EFFFF),FAILED
+xmljson-cobra,chars-u0F0000-u0FFFFD.xml,SPUA-A plane (u0F0000-0FFFFD),FAILED
+xmljson-cobra,chars-u0FFFFE-u0FFFFF.xml,SPUA-A plane Discouraged (u0FFFFE-0FFFFF),FAILED
+xmljson-cobra,chars-u100000-u10FFFD.xml,SPUA-B plane (u100000-10FFFD),FAILED
+xmljson-cobra,chars-u10FFFE-u10FFFF.xml,SPUA-B plane Discouraged (u10FFFE-10FFFF),FAILED
+xmljson-cobra,complex-Office-Open-XML-Part-1-Fundamentals-word2003xml.xml,MSWord 2003 XML file,FAILED
+xmljson-cobra,complex-Office-Open-XML-Part-1-Fundamentals-wordxml.xml,MSWord XML file,FAILED
+xmljson-cobra,complex-OpenDocument-v1.0ed2-cs1.fodt,OpenDocument sample file,FAILED
+xmljson-cobra,complex-REC-xml-20081126.xhtml,XML 1.0 5th Edition (XHTML version),FAILED
+xmljson-cobra,complex-REC-xml-20081126.xml,XML 1.0 5th Edition (XML version),FAILED
+xmljson-cobra,complex-car.svg,SVG Car Demo,FAILED
+xmljson-cobra,complex-docbook-docs-howto.xml,DocBook V5.0 transition guide,FAILED
+xmljson-cobra,complex-musicbrainz-ws-2-release-query-release-JSOP.xml,MusicBrainz.org API Response,FAILED
+xmljson-cobra,complex-photos.svg,SVG Photos Demo,FAILED
+xmljson-cobra,complex-sample-rss-091.xml,RSS 0.91 sample document,FAILED
+xmljson-cobra,complex-sample-rss-092.xml,RSS 0.92 sample document,FAILED
+xmljson-cobra,complex-sample-rss-2.xml,RSS 2.0 sample document,FAILED
+xmljson-cobra,complex-thesis-example-xmltree.xml,XML tree Example (Thesis),FAILED
+xmljson-cobra,dos-billion-laughs-pe.xml,Billion Laughs Attack (PE Version),OK
+xmljson-cobra,dos-billion-laughs.xml,Billion Laughs Attack,OK
+xmljson-cobra,dos-entity-recursion-pe.xml,Entity Recursion Attack (PE),OK
+xmljson-cobra,dos-entity-recursion.xml,Entity Recursion Attack,OK
+xmljson-cobra,dos-quadratic-blowup.xml,Quadratic Blowup Attack,OK
+xmljson-cobra,fsa-doctype-pe.xml,Doctype Parameter Entity FSA Attack,OK
+xmljson-cobra,fsa-external-pe-dtd.xml,External PE DTD FSA Attack,OK
+xmljson-cobra,fsa-xinclude.xml,XInclude FSA Attack,OK
+xmljson-cobra,fsa-xslt.xsl,XSLT FSA Attack,OK
+xmljson-cobra,fsa-xxe-pe.xml,XXE FSA Attack (PE),OK
+xmljson-cobra,fsa-xxe.xml,XXE FSA Attack,OK
+xmljson-cobra,ssrf-doctype.xml,DOCTYPE URL Invocation,OK
+xmljson-cobra,ssrf-schemalocation-nonamespace.xml,SchemaLocation NoNamespace URL Invocation,OK
+xmljson-cobra,ssrf-schemalocation.xml,SchemaLocation URL Invocation,OK
+xmljson-cobra,ssrf-xinclude.xml,XInclude URL Invocation,OK
+xmljson-cobra,ssrf-xxe-pe.xml,XXE URL Invocation (PE),OK
+xmljson-cobra,ssrf-xxe.xml,XXE URL Invocation,OK
+xmljson-gdata,basic-attribute-multiple.xml,Attribute (multiple),OK
+xmljson-gdata,basic-attribute.xml,Attribute,OK
+xmljson-gdata,basic-cdata-close-in-textnode.xml,CDATA close in Text Node,OK
+xmljson-gdata,basic-cdata-escaped.xml,Escaped CDATA section,OK
+xmljson-gdata,basic-cdata-with-markup.xml,CDATA section with Markup,OK
+xmljson-gdata,basic-cdata.xml,CDATA support,OK
+xmljson-gdata,basic-comments.xml,Comments [OPTIONAL],FAILED
+xmljson-gdata,basic-deepnesting.xml,Deep nesting,OK
+xmljson-gdata,basic-duplicate-childtags-order.xml,Duplicate Child tag Names (Alternating Order),FAILED
+xmljson-gdata,basic-duplicate-childtags-xmlnsprefix.xml,Duplicate child tag names (different NS prefix),FAILED
+xmljson-gdata,basic-duplicate-childtags.xml,Duplicate child tag names,OK
+xmljson-gdata,basic-element-order.xml,Element Order,FAILED
+xmljson-gdata,basic-emptyelement.xml,Empty Elements,OK
+xmljson-gdata,basic-mixedcontent.xml,Mixed Content,FAILED
+xmljson-gdata,basic-pi-attrdata.xml,Processing Instructions (Attibute Data),FAILED
+xmljson-gdata,basic-pi-markup.xml,Processing Instructions (Markup),FAILED
+xmljson-gdata,basic-pi-outside-root.xml,Processing Instructions outside root,FAILED
+xmljson-gdata,basic-pi-simpledata.xml,Processing Instructions (Arbitrary Data),FAILED
+xmljson-gdata,basic-pi-whitespace.xml,Processing Instructions (Whitespace),FAILED
+xmljson-gdata,basic-pi.xml,Processing Instructions (Basic),FAILED
+xmljson-gdata,basic-root-attr.xml,Root Element Attribute,OK
+xmljson-gdata,basic-root-tagname.xml,Root Element Tag Name,OK
+xmljson-gdata,basic-simple.xml,Simple Element List,OK
+xmljson-gdata,basic-typeinference-binary32-attr.xml,Type Inference with floats (Attr),FAILED
+xmljson-gdata,basic-typeinference-binary32.xml,Type Inference with floats,FAILED
+xmljson-gdata,basic-typeinference-binary64-attr.xml,Type Inference with doubles (Attr),FAILED
+xmljson-gdata,basic-typeinference-binary64.xml,Type Inference with doubles,FAILED
+xmljson-gdata,basic-typeinference-bool-attr.xml,Type Inference with Boolean values (Attr),OK
+xmljson-gdata,basic-typeinference-bool.xml,Type Inference with Boolean values,OK
+xmljson-gdata,basic-typeinference-integer-attr.xml,Type Inference with Big Integers (Attr),OK
+xmljson-gdata,basic-typeinference-integer.xml,Type Inference with Big Integers,OK
+xmljson-gdata,basic-whitespace-indentation.xml,Whitespace (Indentation),FAILED
+xmljson-gdata,basic-whitespace-mixedcontent.xml,Whitespace (Mixed Content),FAILED
+xmljson-gdata,basic-whitespace.xml,Whitespace (Clean/Dirty),FAILED
+xmljson-gdata,basic-xmlns-multiple.xml,Namespace declaration (multiple),FAILED
+xmljson-gdata,basic-xmlns-prefix.xml,Namespace declaration with prefix,FAILED
+xmljson-gdata,basic-xmlns.xml,Namespace declaration,FAILED
+xmljson-gdata,chars-u000009-u00000D.xml,"C0 set (u000009, 00000A & 00000D)",FAILED
+xmljson-gdata,chars-u000020.xml,Space Char (u000020),FAILED
+xmljson-gdata,chars-u000021-u00007E.xml,ASCII printable (u000021-00007E),OK
+xmljson-gdata,chars-u00007F-u000084.xml,Discouraged (u00007F-000084),OK
+xmljson-gdata,chars-u000085.xml,NEL Control Char (u000085),FAILED
+xmljson-gdata,chars-u000086-u00009F.xml,Discouraged (u000086-00009F),OK
+xmljson-gdata,chars-u0000A0-u000FFF.xml,BMP plane I (u0000A0-000FFF),FAILED
+xmljson-gdata,chars-u001000-u001FFF.xml,BMP plane II (u001000-001FFF),FAILED
+xmljson-gdata,chars-u002000-u002FFF.xml,BMP plane III (u002000-002FFF),FAILED
+xmljson-gdata,chars-u003000-u003FFF.xml,BMP plane IV (u003000-003FFF),FAILED
+xmljson-gdata,chars-u004000-u004FFF.xml,BMP plane V (u004000-004FFF),OK
+xmljson-gdata,chars-u005000-u005FFF.xml,BMP plane VI (u005000-005FFF),OK
+xmljson-gdata,chars-u006000-u006FFF.xml,BMP plane VII (u006000-006FFF),OK
+xmljson-gdata,chars-u007000-u007FFF.xml,BMP plane VIII (u007000-007FFF),OK
+xmljson-gdata,chars-u008000-u008FFF.xml,BMP plane IX (u008000-008FFF),OK
+xmljson-gdata,chars-u009000-u009FFF.xml,BMP plane X (u009000-009FFF),OK
+xmljson-gdata,chars-u00A000-u00AFFF.xml,BMP plane XI (u00A000-00AFFF),FAILED
+xmljson-gdata,chars-u00B000-u00BFFF.xml,BMP plane XII (u00B000-00BFFF),OK
+xmljson-gdata,chars-u00C000-u00CFFF.xml,BMP plane XIII (u00C000-00CFFF),OK
+xmljson-gdata,chars-u00D000-u00D7FF.xml,BMP plane XIV (u00D000-00D7FF),OK
+xmljson-gdata,chars-u00E000-u00EFFF.xml,BMP plane XV (u00E000-00EFFF),OK
+xmljson-gdata,chars-u00F000-u00FDCF.xml,BMP plane XVI (u00F000-00FDCF),OK
+xmljson-gdata,chars-u00FDD0-u00FDEF.xml,BMP plane Discouraged (u00FDD0-00FDEF),OK
+xmljson-gdata,chars-u00FDF0-u00FFFD.xml,BMP plane XVII (u00FDF0-00FFFD),FAILED
+xmljson-gdata,chars-u010000-u01FFFD.xml,SMP plane (u010000-01FFFD),OK
+xmljson-gdata,chars-u01FFFE-u01FFFF.xml,SMP plane Discouraged (u01FFFE-01FFFF),OK
+xmljson-gdata,chars-u020000-u02FFFD.xml,SIP plane (u020000-02FFFD),OK
+xmljson-gdata,chars-u02FFFE-u02FFFF.xml,SIP plane Discouraged (u02FFFE-02FFFF),OK
+xmljson-gdata,chars-u030000-u03FFFD.xml,Unassigned plane 3 (u030000-03FFFD),OK
+xmljson-gdata,chars-u03FFFE-u03FFFF.xml,Plane 3 Discouraged (u03FFFE-03FFFF),OK
+xmljson-gdata,chars-u040000-u04FFFD.xml,Unassigned plane 4 (u040000-04FFFD),OK
+xmljson-gdata,chars-u04FFFE-u04FFFF.xml,Plane 4 Discouraged (u04FFFE-04FFFF),OK
+xmljson-gdata,chars-u050000-u05FFFD.xml,Unassigned plane 5 (u050000-05FFFD),OK
+xmljson-gdata,chars-u05FFFE-u05FFFF.xml,Plane 5 Discouraged (u05FFFE-05FFFF),OK
+xmljson-gdata,chars-u060000-u06FFFD.xml,Unassigned plane 6 (u060000-06FFFD),OK
+xmljson-gdata,chars-u06FFFE-u06FFFF.xml,Plane 6 Discouraged (u06FFFE-06FFFF),OK
+xmljson-gdata,chars-u070000-u07FFFD.xml,Unassigned plane 7 (u070000-07FFFD),OK
+xmljson-gdata,chars-u07FFFE-u07FFFF.xml,Plane 7 Discouraged (u07FFFE-07FFFF),OK
+xmljson-gdata,chars-u080000-u08FFFD.xml,Unassigned plane 8 (u080000-08FFFD),OK
+xmljson-gdata,chars-u08FFFE-u08FFFF.xml,Plane 8 Discouraged (u08FFFE-08FFFF),OK
+xmljson-gdata,chars-u090000-u09FFFD.xml,Unassigned plane 9 (u090000-09FFFD),OK
+xmljson-gdata,chars-u09FFFE-u09FFFF.xml,Plane 9 Discouraged (u09FFFE-09FFFF),OK
+xmljson-gdata,chars-u0A0000-u0AFFFD.xml,Unassigned plane 10 (u0A0000-0AFFFD),OK
+xmljson-gdata,chars-u0AFFFE-u0AFFFF.xml,Plane 10 Discouraged (u0AFFFE-0AFFFF),OK
+xmljson-gdata,chars-u0B0000-u0BFFFD.xml,Unassigned plane 11 (u0B0000-0BFFFD),OK
+xmljson-gdata,chars-u0BFFFE-u0BFFFF.xml,Plane 11 Discouraged (u0BFFFE-0BFFFF),OK
+xmljson-gdata,chars-u0C0000-u0CFFFD.xml,Unassigned plane 12 (u0C0000-0CFFFD),OK
+xmljson-gdata,chars-u0CFFFE-u0CFFFF.xml,Plane 12 Discouraged (u0CFFFE-0CFFFF),OK
+xmljson-gdata,chars-u0D0000-u0DFFFD.xml,Unassigned plane 13 (u0D0000-0DFFFD),OK
+xmljson-gdata,chars-u0DFFFE-u0DFFFF.xml,Plane 13 Discouraged (u0DFFFE-0DFFFF),OK
+xmljson-gdata,chars-u0E0000-u0EFFFD.xml,SSP plane (u0E0000-0EFFFD),OK
+xmljson-gdata,chars-u0EFFFE-u0EFFFF.xml,SSP plane Discouraged (u0EFFFE-0EFFFF),OK
+xmljson-gdata,chars-u0F0000-u0FFFFD.xml,SPUA-A plane (u0F0000-0FFFFD),OK
+xmljson-gdata,chars-u0FFFFE-u0FFFFF.xml,SPUA-A plane Discouraged (u0FFFFE-0FFFFF),OK
+xmljson-gdata,chars-u100000-u10FFFD.xml,SPUA-B plane (u100000-10FFFD),OK
+xmljson-gdata,chars-u10FFFE-u10FFFF.xml,SPUA-B plane Discouraged (u10FFFE-10FFFF),OK
+xmljson-gdata,complex-Office-Open-XML-Part-1-Fundamentals-word2003xml.xml,MSWord 2003 XML file,FAILED
+xmljson-gdata,complex-Office-Open-XML-Part-1-Fundamentals-wordxml.xml,MSWord XML file,FAILED
+xmljson-gdata,complex-OpenDocument-v1.0ed2-cs1.fodt,OpenDocument sample file,FAILED
+xmljson-gdata,complex-REC-xml-20081126.xhtml,XML 1.0 5th Edition (XHTML version),FAILED
+xmljson-gdata,complex-REC-xml-20081126.xml,XML 1.0 5th Edition (XML version),ERROR
+xmljson-gdata,complex-car.svg,SVG Car Demo,FAILED
+xmljson-gdata,complex-docbook-docs-howto.xml,DocBook V5.0 transition guide,FAILED
+xmljson-gdata,complex-musicbrainz-ws-2-release-query-release-JSOP.xml,MusicBrainz.org API Response,FAILED
+xmljson-gdata,complex-photos.svg,SVG Photos Demo,FAILED
+xmljson-gdata,complex-sample-rss-091.xml,RSS 0.91 sample document,FAILED
+xmljson-gdata,complex-sample-rss-092.xml,RSS 0.92 sample document,FAILED
+xmljson-gdata,complex-sample-rss-2.xml,RSS 2.0 sample document,FAILED
+xmljson-gdata,complex-thesis-example-xmltree.xml,XML tree Example (Thesis),FAILED
+xmljson-gdata,dos-billion-laughs-pe.xml,Billion Laughs Attack (PE Version),OK
+xmljson-gdata,dos-billion-laughs.xml,Billion Laughs Attack,OK
+xmljson-gdata,dos-entity-recursion-pe.xml,Entity Recursion Attack (PE),OK
+xmljson-gdata,dos-entity-recursion.xml,Entity Recursion Attack,OK
+xmljson-gdata,dos-quadratic-blowup.xml,Quadratic Blowup Attack,OK
+xmljson-gdata,fsa-doctype-pe.xml,Doctype Parameter Entity FSA Attack,OK
+xmljson-gdata,fsa-external-pe-dtd.xml,External PE DTD FSA Attack,OK
+xmljson-gdata,fsa-xinclude.xml,XInclude FSA Attack,OK
+xmljson-gdata,fsa-xslt.xsl,XSLT FSA Attack,OK
+xmljson-gdata,fsa-xxe-pe.xml,XXE FSA Attack (PE),OK
+xmljson-gdata,fsa-xxe.xml,XXE FSA Attack,OK
+xmljson-gdata,ssrf-doctype.xml,DOCTYPE URL Invocation,OK
+xmljson-gdata,ssrf-schemalocation-nonamespace.xml,SchemaLocation NoNamespace URL Invocation,OK
+xmljson-gdata,ssrf-schemalocation.xml,SchemaLocation URL Invocation,OK
+xmljson-gdata,ssrf-xinclude.xml,XInclude URL Invocation,OK
+xmljson-gdata,ssrf-xxe-pe.xml,XXE URL Invocation (PE),OK
+xmljson-gdata,ssrf-xxe.xml,XXE URL Invocation,OK
+xmljson-parker,basic-attribute-multiple.xml,Attribute (multiple),FAILED
+xmljson-parker,basic-attribute.xml,Attribute,FAILED
+xmljson-parker,basic-cdata-close-in-textnode.xml,CDATA close in Text Node,OK
+xmljson-parker,basic-cdata-escaped.xml,Escaped CDATA section,OK
+xmljson-parker,basic-cdata-with-markup.xml,CDATA section with Markup,OK
+xmljson-parker,basic-cdata.xml,CDATA support,OK
+xmljson-parker,basic-comments.xml,Comments [OPTIONAL],FAILED
+xmljson-parker,basic-deepnesting.xml,Deep nesting,OK
+xmljson-parker,basic-duplicate-childtags-order.xml,Duplicate Child tag Names (Alternating Order),FAILED
+xmljson-parker,basic-duplicate-childtags-xmlnsprefix.xml,Duplicate child tag names (different NS prefix),FAILED
+xmljson-parker,basic-duplicate-childtags.xml,Duplicate child tag names,OK
+xmljson-parker,basic-element-order.xml,Element Order,FAILED
+xmljson-parker,basic-emptyelement.xml,Empty Elements,FAILED
+xmljson-parker,basic-mixedcontent.xml,Mixed Content,FAILED
+xmljson-parker,basic-pi-attrdata.xml,Processing Instructions (Attibute Data),FAILED
+xmljson-parker,basic-pi-markup.xml,Processing Instructions (Markup),FAILED
+xmljson-parker,basic-pi-outside-root.xml,Processing Instructions outside root,FAILED
+xmljson-parker,basic-pi-simpledata.xml,Processing Instructions (Arbitrary Data),FAILED
+xmljson-parker,basic-pi-whitespace.xml,Processing Instructions (Whitespace),FAILED
+xmljson-parker,basic-pi.xml,Processing Instructions (Basic),FAILED
+xmljson-parker,basic-root-attr.xml,Root Element Attribute,FAILED
+xmljson-parker,basic-root-tagname.xml,Root Element Tag Name,OK
+xmljson-parker,basic-simple.xml,Simple Element List,OK
+xmljson-parker,basic-typeinference-binary32-attr.xml,Type Inference with floats (Attr),FAILED
+xmljson-parker,basic-typeinference-binary32.xml,Type Inference with floats,FAILED
+xmljson-parker,basic-typeinference-binary64-attr.xml,Type Inference with doubles (Attr),FAILED
+xmljson-parker,basic-typeinference-binary64.xml,Type Inference with doubles,FAILED
+xmljson-parker,basic-typeinference-bool-attr.xml,Type Inference with Boolean values (Attr),FAILED
+xmljson-parker,basic-typeinference-bool.xml,Type Inference with Boolean values,OK
+xmljson-parker,basic-typeinference-integer-attr.xml,Type Inference with Big Integers (Attr),FAILED
+xmljson-parker,basic-typeinference-integer.xml,Type Inference with Big Integers,OK
+xmljson-parker,basic-whitespace-indentation.xml,Whitespace (Indentation),FAILED
+xmljson-parker,basic-whitespace-mixedcontent.xml,Whitespace (Mixed Content),FAILED
+xmljson-parker,basic-whitespace.xml,Whitespace (Clean/Dirty),OK
+xmljson-parker,basic-xmlns-multiple.xml,Namespace declaration (multiple),FAILED
+xmljson-parker,basic-xmlns-prefix.xml,Namespace declaration with prefix,FAILED
+xmljson-parker,basic-xmlns.xml,Namespace declaration,FAILED
+xmljson-parker,chars-u000009-u00000D.xml,"C0 set (u000009, 00000A & 00000D)",OK
+xmljson-parker,chars-u000020.xml,Space Char (u000020),OK
+xmljson-parker,chars-u000021-u00007E.xml,ASCII printable (u000021-00007E),OK
+xmljson-parker,chars-u00007F-u000084.xml,Discouraged (u00007F-000084),OK
+xmljson-parker,chars-u000085.xml,NEL Control Char (u000085),OK
+xmljson-parker,chars-u000086-u00009F.xml,Discouraged (u000086-00009F),OK
+xmljson-parker,chars-u0000A0-u000FFF.xml,BMP plane I (u0000A0-000FFF),FAILED
+xmljson-parker,chars-u001000-u001FFF.xml,BMP plane II (u001000-001FFF),FAILED
+xmljson-parker,chars-u002000-u002FFF.xml,BMP plane III (u002000-002FFF),OK
+xmljson-parker,chars-u003000-u003FFF.xml,BMP plane IV (u003000-003FFF),OK
+xmljson-parker,chars-u004000-u004FFF.xml,BMP plane V (u004000-004FFF),OK
+xmljson-parker,chars-u005000-u005FFF.xml,BMP plane VI (u005000-005FFF),OK
+xmljson-parker,chars-u006000-u006FFF.xml,BMP plane VII (u006000-006FFF),OK
+xmljson-parker,chars-u007000-u007FFF.xml,BMP plane VIII (u007000-007FFF),OK
+xmljson-parker,chars-u008000-u008FFF.xml,BMP plane IX (u008000-008FFF),OK
+xmljson-parker,chars-u009000-u009FFF.xml,BMP plane X (u009000-009FFF),OK
+xmljson-parker,chars-u00A000-u00AFFF.xml,BMP plane XI (u00A000-00AFFF),FAILED
+xmljson-parker,chars-u00B000-u00BFFF.xml,BMP plane XII (u00B000-00BFFF),OK
+xmljson-parker,chars-u00C000-u00CFFF.xml,BMP plane XIII (u00C000-00CFFF),OK
+xmljson-parker,chars-u00D000-u00D7FF.xml,BMP plane XIV (u00D000-00D7FF),OK
+xmljson-parker,chars-u00E000-u00EFFF.xml,BMP plane XV (u00E000-00EFFF),OK
+xmljson-parker,chars-u00F000-u00FDCF.xml,BMP plane XVI (u00F000-00FDCF),OK
+xmljson-parker,chars-u00FDD0-u00FDEF.xml,BMP plane Discouraged (u00FDD0-00FDEF),OK
+xmljson-parker,chars-u00FDF0-u00FFFD.xml,BMP plane XVII (u00FDF0-00FFFD),FAILED
+xmljson-parker,chars-u010000-u01FFFD.xml,SMP plane (u010000-01FFFD),OK
+xmljson-parker,chars-u01FFFE-u01FFFF.xml,SMP plane Discouraged (u01FFFE-01FFFF),OK
+xmljson-parker,chars-u020000-u02FFFD.xml,SIP plane (u020000-02FFFD),OK
+xmljson-parker,chars-u02FFFE-u02FFFF.xml,SIP plane Discouraged (u02FFFE-02FFFF),OK
+xmljson-parker,chars-u030000-u03FFFD.xml,Unassigned plane 3 (u030000-03FFFD),OK
+xmljson-parker,chars-u03FFFE-u03FFFF.xml,Plane 3 Discouraged (u03FFFE-03FFFF),OK
+xmljson-parker,chars-u040000-u04FFFD.xml,Unassigned plane 4 (u040000-04FFFD),OK
+xmljson-parker,chars-u04FFFE-u04FFFF.xml,Plane 4 Discouraged (u04FFFE-04FFFF),OK
+xmljson-parker,chars-u050000-u05FFFD.xml,Unassigned plane 5 (u050000-05FFFD),OK
+xmljson-parker,chars-u05FFFE-u05FFFF.xml,Plane 5 Discouraged (u05FFFE-05FFFF),OK
+xmljson-parker,chars-u060000-u06FFFD.xml,Unassigned plane 6 (u060000-06FFFD),OK
+xmljson-parker,chars-u06FFFE-u06FFFF.xml,Plane 6 Discouraged (u06FFFE-06FFFF),OK
+xmljson-parker,chars-u070000-u07FFFD.xml,Unassigned plane 7 (u070000-07FFFD),OK
+xmljson-parker,chars-u07FFFE-u07FFFF.xml,Plane 7 Discouraged (u07FFFE-07FFFF),OK
+xmljson-parker,chars-u080000-u08FFFD.xml,Unassigned plane 8 (u080000-08FFFD),OK
+xmljson-parker,chars-u08FFFE-u08FFFF.xml,Plane 8 Discouraged (u08FFFE-08FFFF),OK
+xmljson-parker,chars-u090000-u09FFFD.xml,Unassigned plane 9 (u090000-09FFFD),OK
+xmljson-parker,chars-u09FFFE-u09FFFF.xml,Plane 9 Discouraged (u09FFFE-09FFFF),OK
+xmljson-parker,chars-u0A0000-u0AFFFD.xml,Unassigned plane 10 (u0A0000-0AFFFD),OK
+xmljson-parker,chars-u0AFFFE-u0AFFFF.xml,Plane 10 Discouraged (u0AFFFE-0AFFFF),OK
+xmljson-parker,chars-u0B0000-u0BFFFD.xml,Unassigned plane 11 (u0B0000-0BFFFD),OK
+xmljson-parker,chars-u0BFFFE-u0BFFFF.xml,Plane 11 Discouraged (u0BFFFE-0BFFFF),OK
+xmljson-parker,chars-u0C0000-u0CFFFD.xml,Unassigned plane 12 (u0C0000-0CFFFD),OK
+xmljson-parker,chars-u0CFFFE-u0CFFFF.xml,Plane 12 Discouraged (u0CFFFE-0CFFFF),OK
+xmljson-parker,chars-u0D0000-u0DFFFD.xml,Unassigned plane 13 (u0D0000-0DFFFD),OK
+xmljson-parker,chars-u0DFFFE-u0DFFFF.xml,Plane 13 Discouraged (u0DFFFE-0DFFFF),OK
+xmljson-parker,chars-u0E0000-u0EFFFD.xml,SSP plane (u0E0000-0EFFFD),OK
+xmljson-parker,chars-u0EFFFE-u0EFFFF.xml,SSP plane Discouraged (u0EFFFE-0EFFFF),OK
+xmljson-parker,chars-u0F0000-u0FFFFD.xml,SPUA-A plane (u0F0000-0FFFFD),OK
+xmljson-parker,chars-u0FFFFE-u0FFFFF.xml,SPUA-A plane Discouraged (u0FFFFE-0FFFFF),OK
+xmljson-parker,chars-u100000-u10FFFD.xml,SPUA-B plane (u100000-10FFFD),OK
+xmljson-parker,chars-u10FFFE-u10FFFF.xml,SPUA-B plane Discouraged (u10FFFE-10FFFF),OK
+xmljson-parker,complex-Office-Open-XML-Part-1-Fundamentals-word2003xml.xml,MSWord 2003 XML file,FAILED
+xmljson-parker,complex-Office-Open-XML-Part-1-Fundamentals-wordxml.xml,MSWord XML file,FAILED
+xmljson-parker,complex-OpenDocument-v1.0ed2-cs1.fodt,OpenDocument sample file,FAILED
+xmljson-parker,complex-REC-xml-20081126.xhtml,XML 1.0 5th Edition (XHTML version),FAILED
+xmljson-parker,complex-REC-xml-20081126.xml,XML 1.0 5th Edition (XML version),FAILED
+xmljson-parker,complex-car.svg,SVG Car Demo,FAILED
+xmljson-parker,complex-docbook-docs-howto.xml,DocBook V5.0 transition guide,FAILED
+xmljson-parker,complex-musicbrainz-ws-2-release-query-release-JSOP.xml,MusicBrainz.org API Response,FAILED
+xmljson-parker,complex-photos.svg,SVG Photos Demo,FAILED
+xmljson-parker,complex-sample-rss-091.xml,RSS 0.91 sample document,FAILED
+xmljson-parker,complex-sample-rss-092.xml,RSS 0.92 sample document,FAILED
+xmljson-parker,complex-sample-rss-2.xml,RSS 2.0 sample document,FAILED
+xmljson-parker,complex-thesis-example-xmltree.xml,XML tree Example (Thesis),FAILED
+xmljson-parker,dos-billion-laughs-pe.xml,Billion Laughs Attack (PE Version),OK
+xmljson-parker,dos-billion-laughs.xml,Billion Laughs Attack,OK
+xmljson-parker,dos-entity-recursion-pe.xml,Entity Recursion Attack (PE),OK
+xmljson-parker,dos-entity-recursion.xml,Entity Recursion Attack,OK
+xmljson-parker,dos-quadratic-blowup.xml,Quadratic Blowup Attack,OK
+xmljson-parker,fsa-doctype-pe.xml,Doctype Parameter Entity FSA Attack,OK
+xmljson-parker,fsa-external-pe-dtd.xml,External PE DTD FSA Attack,OK
+xmljson-parker,fsa-xinclude.xml,XInclude FSA Attack,OK
+xmljson-parker,fsa-xslt.xsl,XSLT FSA Attack,OK
+xmljson-parker,fsa-xxe-pe.xml,XXE FSA Attack (PE),OK
+xmljson-parker,fsa-xxe.xml,XXE FSA Attack,OK
+xmljson-parker,ssrf-doctype.xml,DOCTYPE URL Invocation,OK
+xmljson-parker,ssrf-schemalocation-nonamespace.xml,SchemaLocation NoNamespace URL Invocation,OK
+xmljson-parker,ssrf-schemalocation.xml,SchemaLocation URL Invocation,OK
+xmljson-parker,ssrf-xinclude.xml,XInclude URL Invocation,OK
+xmljson-parker,ssrf-xxe-pe.xml,XXE URL Invocation (PE),OK
+xmljson-parker,ssrf-xxe.xml,XXE URL Invocation,OK
+xmljson-yahoo,basic-attribute-multiple.xml,Attribute (multiple),OK
+xmljson-yahoo,basic-attribute.xml,Attribute,OK
+xmljson-yahoo,basic-cdata-close-in-textnode.xml,CDATA close in Text Node,OK
+xmljson-yahoo,basic-cdata-escaped.xml,Escaped CDATA section,OK
+xmljson-yahoo,basic-cdata-with-markup.xml,CDATA section with Markup,OK
+xmljson-yahoo,basic-cdata.xml,CDATA support,OK
+xmljson-yahoo,basic-comments.xml,Comments [OPTIONAL],FAILED
+xmljson-yahoo,basic-deepnesting.xml,Deep nesting,FAILED
+xmljson-yahoo,basic-duplicate-childtags-order.xml,Duplicate Child tag Names (Alternating Order),FAILED
+xmljson-yahoo,basic-duplicate-childtags-xmlnsprefix.xml,Duplicate child tag names (different NS prefix),FAILED
+xmljson-yahoo,basic-duplicate-childtags.xml,Duplicate child tag names,OK
+xmljson-yahoo,basic-element-order.xml,Element Order,FAILED
+xmljson-yahoo,basic-emptyelement.xml,Empty Elements,OK
+xmljson-yahoo,basic-mixedcontent.xml,Mixed Content,FAILED
+xmljson-yahoo,basic-pi-attrdata.xml,Processing Instructions (Attibute Data),FAILED
+xmljson-yahoo,basic-pi-markup.xml,Processing Instructions (Markup),FAILED
+xmljson-yahoo,basic-pi-outside-root.xml,Processing Instructions outside root,FAILED
+xmljson-yahoo,basic-pi-simpledata.xml,Processing Instructions (Arbitrary Data),FAILED
+xmljson-yahoo,basic-pi-whitespace.xml,Processing Instructions (Whitespace),FAILED
+xmljson-yahoo,basic-pi.xml,Processing Instructions (Basic),FAILED
+xmljson-yahoo,basic-root-attr.xml,Root Element Attribute,FAILED
+xmljson-yahoo,basic-root-tagname.xml,Root Element Tag Name,FAILED
+xmljson-yahoo,basic-simple.xml,Simple Element List,FAILED
+xmljson-yahoo,basic-typeinference-binary32-attr.xml,Type Inference with floats (Attr),OK
+xmljson-yahoo,basic-typeinference-binary32.xml,Type Inference with floats,FAILED
+xmljson-yahoo,basic-typeinference-binary64-attr.xml,Type Inference with doubles (Attr),OK
+xmljson-yahoo,basic-typeinference-binary64.xml,Type Inference with doubles,FAILED
+xmljson-yahoo,basic-typeinference-bool-attr.xml,Type Inference with Boolean values (Attr),OK
+xmljson-yahoo,basic-typeinference-bool.xml,Type Inference with Boolean values,FAILED
+xmljson-yahoo,basic-typeinference-integer-attr.xml,Type Inference with Big Integers (Attr),OK
+xmljson-yahoo,basic-typeinference-integer.xml,Type Inference with Big Integers,FAILED
+xmljson-yahoo,basic-whitespace-indentation.xml,Whitespace (Indentation),FAILED
+xmljson-yahoo,basic-whitespace-mixedcontent.xml,Whitespace (Mixed Content),FAILED
+xmljson-yahoo,basic-whitespace.xml,Whitespace (Clean/Dirty),FAILED
+xmljson-yahoo,basic-xmlns-multiple.xml,Namespace declaration (multiple),FAILED
+xmljson-yahoo,basic-xmlns-prefix.xml,Namespace declaration with prefix,FAILED
+xmljson-yahoo,basic-xmlns.xml,Namespace declaration,FAILED
+xmljson-yahoo,chars-u000009-u00000D.xml,"C0 set (u000009, 00000A & 00000D)",FAILED
+xmljson-yahoo,chars-u000020.xml,Space Char (u000020),FAILED
+xmljson-yahoo,chars-u000021-u00007E.xml,ASCII printable (u000021-00007E),FAILED
+xmljson-yahoo,chars-u00007F-u000084.xml,Discouraged (u00007F-000084),FAILED
+xmljson-yahoo,chars-u000085.xml,NEL Control Char (u000085),FAILED
+xmljson-yahoo,chars-u000086-u00009F.xml,Discouraged (u000086-00009F),FAILED
+xmljson-yahoo,chars-u0000A0-u000FFF.xml,BMP plane I (u0000A0-000FFF),FAILED
+xmljson-yahoo,chars-u001000-u001FFF.xml,BMP plane II (u001000-001FFF),FAILED
+xmljson-yahoo,chars-u002000-u002FFF.xml,BMP plane III (u002000-002FFF),FAILED
+xmljson-yahoo,chars-u003000-u003FFF.xml,BMP plane IV (u003000-003FFF),FAILED
+xmljson-yahoo,chars-u004000-u004FFF.xml,BMP plane V (u004000-004FFF),FAILED
+xmljson-yahoo,chars-u005000-u005FFF.xml,BMP plane VI (u005000-005FFF),FAILED
+xmljson-yahoo,chars-u006000-u006FFF.xml,BMP plane VII (u006000-006FFF),FAILED
+xmljson-yahoo,chars-u007000-u007FFF.xml,BMP plane VIII (u007000-007FFF),FAILED
+xmljson-yahoo,chars-u008000-u008FFF.xml,BMP plane IX (u008000-008FFF),FAILED
+xmljson-yahoo,chars-u009000-u009FFF.xml,BMP plane X (u009000-009FFF),FAILED
+xmljson-yahoo,chars-u00A000-u00AFFF.xml,BMP plane XI (u00A000-00AFFF),FAILED
+xmljson-yahoo,chars-u00B000-u00BFFF.xml,BMP plane XII (u00B000-00BFFF),FAILED
+xmljson-yahoo,chars-u00C000-u00CFFF.xml,BMP plane XIII (u00C000-00CFFF),FAILED
+xmljson-yahoo,chars-u00D000-u00D7FF.xml,BMP plane XIV (u00D000-00D7FF),FAILED
+xmljson-yahoo,chars-u00E000-u00EFFF.xml,BMP plane XV (u00E000-00EFFF),FAILED
+xmljson-yahoo,chars-u00F000-u00FDCF.xml,BMP plane XVI (u00F000-00FDCF),FAILED
+xmljson-yahoo,chars-u00FDD0-u00FDEF.xml,BMP plane Discouraged (u00FDD0-00FDEF),FAILED
+xmljson-yahoo,chars-u00FDF0-u00FFFD.xml,BMP plane XVII (u00FDF0-00FFFD),FAILED
+xmljson-yahoo,chars-u010000-u01FFFD.xml,SMP plane (u010000-01FFFD),FAILED
+xmljson-yahoo,chars-u01FFFE-u01FFFF.xml,SMP plane Discouraged (u01FFFE-01FFFF),FAILED
+xmljson-yahoo,chars-u020000-u02FFFD.xml,SIP plane (u020000-02FFFD),FAILED
+xmljson-yahoo,chars-u02FFFE-u02FFFF.xml,SIP plane Discouraged (u02FFFE-02FFFF),FAILED
+xmljson-yahoo,chars-u030000-u03FFFD.xml,Unassigned plane 3 (u030000-03FFFD),FAILED
+xmljson-yahoo,chars-u03FFFE-u03FFFF.xml,Plane 3 Discouraged (u03FFFE-03FFFF),FAILED
+xmljson-yahoo,chars-u040000-u04FFFD.xml,Unassigned plane 4 (u040000-04FFFD),FAILED
+xmljson-yahoo,chars-u04FFFE-u04FFFF.xml,Plane 4 Discouraged (u04FFFE-04FFFF),FAILED
+xmljson-yahoo,chars-u050000-u05FFFD.xml,Unassigned plane 5 (u050000-05FFFD),FAILED
+xmljson-yahoo,chars-u05FFFE-u05FFFF.xml,Plane 5 Discouraged (u05FFFE-05FFFF),FAILED
+xmljson-yahoo,chars-u060000-u06FFFD.xml,Unassigned plane 6 (u060000-06FFFD),FAILED
+xmljson-yahoo,chars-u06FFFE-u06FFFF.xml,Plane 6 Discouraged (u06FFFE-06FFFF),FAILED
+xmljson-yahoo,chars-u070000-u07FFFD.xml,Unassigned plane 7 (u070000-07FFFD),FAILED
+xmljson-yahoo,chars-u07FFFE-u07FFFF.xml,Plane 7 Discouraged (u07FFFE-07FFFF),FAILED
+xmljson-yahoo,chars-u080000-u08FFFD.xml,Unassigned plane 8 (u080000-08FFFD),FAILED
+xmljson-yahoo,chars-u08FFFE-u08FFFF.xml,Plane 8 Discouraged (u08FFFE-08FFFF),FAILED
+xmljson-yahoo,chars-u090000-u09FFFD.xml,Unassigned plane 9 (u090000-09FFFD),FAILED
+xmljson-yahoo,chars-u09FFFE-u09FFFF.xml,Plane 9 Discouraged (u09FFFE-09FFFF),FAILED
+xmljson-yahoo,chars-u0A0000-u0AFFFD.xml,Unassigned plane 10 (u0A0000-0AFFFD),FAILED
+xmljson-yahoo,chars-u0AFFFE-u0AFFFF.xml,Plane 10 Discouraged (u0AFFFE-0AFFFF),FAILED
+xmljson-yahoo,chars-u0B0000-u0BFFFD.xml,Unassigned plane 11 (u0B0000-0BFFFD),FAILED
+xmljson-yahoo,chars-u0BFFFE-u0BFFFF.xml,Plane 11 Discouraged (u0BFFFE-0BFFFF),FAILED
+xmljson-yahoo,chars-u0C0000-u0CFFFD.xml,Unassigned plane 12 (u0C0000-0CFFFD),FAILED
+xmljson-yahoo,chars-u0CFFFE-u0CFFFF.xml,Plane 12 Discouraged (u0CFFFE-0CFFFF),FAILED
+xmljson-yahoo,chars-u0D0000-u0DFFFD.xml,Unassigned plane 13 (u0D0000-0DFFFD),FAILED
+xmljson-yahoo,chars-u0DFFFE-u0DFFFF.xml,Plane 13 Discouraged (u0DFFFE-0DFFFF),FAILED
+xmljson-yahoo,chars-u0E0000-u0EFFFD.xml,SSP plane (u0E0000-0EFFFD),FAILED
+xmljson-yahoo,chars-u0EFFFE-u0EFFFF.xml,SSP plane Discouraged (u0EFFFE-0EFFFF),FAILED
+xmljson-yahoo,chars-u0F0000-u0FFFFD.xml,SPUA-A plane (u0F0000-0FFFFD),FAILED
+xmljson-yahoo,chars-u0FFFFE-u0FFFFF.xml,SPUA-A plane Discouraged (u0FFFFE-0FFFFF),FAILED
+xmljson-yahoo,chars-u100000-u10FFFD.xml,SPUA-B plane (u100000-10FFFD),FAILED
+xmljson-yahoo,chars-u10FFFE-u10FFFF.xml,SPUA-B plane Discouraged (u10FFFE-10FFFF),FAILED
+xmljson-yahoo,complex-Office-Open-XML-Part-1-Fundamentals-word2003xml.xml,MSWord 2003 XML file,FAILED
+xmljson-yahoo,complex-Office-Open-XML-Part-1-Fundamentals-wordxml.xml,MSWord XML file,FAILED
+xmljson-yahoo,complex-OpenDocument-v1.0ed2-cs1.fodt,OpenDocument sample file,FAILED
+xmljson-yahoo,complex-REC-xml-20081126.xhtml,XML 1.0 5th Edition (XHTML version),FAILED
+xmljson-yahoo,complex-REC-xml-20081126.xml,XML 1.0 5th Edition (XML version),ERROR
+xmljson-yahoo,complex-car.svg,SVG Car Demo,FAILED
+xmljson-yahoo,complex-docbook-docs-howto.xml,DocBook V5.0 transition guide,FAILED
+xmljson-yahoo,complex-musicbrainz-ws-2-release-query-release-JSOP.xml,MusicBrainz.org API Response,FAILED
+xmljson-yahoo,complex-photos.svg,SVG Photos Demo,FAILED
+xmljson-yahoo,complex-sample-rss-091.xml,RSS 0.91 sample document,FAILED
+xmljson-yahoo,complex-sample-rss-092.xml,RSS 0.92 sample document,FAILED
+xmljson-yahoo,complex-sample-rss-2.xml,RSS 2.0 sample document,FAILED
+xmljson-yahoo,complex-thesis-example-xmltree.xml,XML tree Example (Thesis),FAILED
+xmljson-yahoo,dos-billion-laughs-pe.xml,Billion Laughs Attack (PE Version),OK
+xmljson-yahoo,dos-billion-laughs.xml,Billion Laughs Attack,OK
+xmljson-yahoo,dos-entity-recursion-pe.xml,Entity Recursion Attack (PE),OK
+xmljson-yahoo,dos-entity-recursion.xml,Entity Recursion Attack,OK
+xmljson-yahoo,dos-quadratic-blowup.xml,Quadratic Blowup Attack,OK
+xmljson-yahoo,fsa-doctype-pe.xml,Doctype Parameter Entity FSA Attack,OK
+xmljson-yahoo,fsa-external-pe-dtd.xml,External PE DTD FSA Attack,OK
+xmljson-yahoo,fsa-xinclude.xml,XInclude FSA Attack,OK
+xmljson-yahoo,fsa-xslt.xsl,XSLT FSA Attack,OK
+xmljson-yahoo,fsa-xxe-pe.xml,XXE FSA Attack (PE),OK
+xmljson-yahoo,fsa-xxe.xml,XXE FSA Attack,OK
+xmljson-yahoo,ssrf-doctype.xml,DOCTYPE URL Invocation,OK
+xmljson-yahoo,ssrf-schemalocation-nonamespace.xml,SchemaLocation NoNamespace URL Invocation,OK
+xmljson-yahoo,ssrf-schemalocation.xml,SchemaLocation URL Invocation,OK
+xmljson-yahoo,ssrf-xinclude.xml,XInclude URL Invocation,OK
+xmljson-yahoo,ssrf-xxe-pe.xml,XXE URL Invocation (PE),OK
+xmljson-yahoo,ssrf-xxe.xml,XXE URL Invocation,OK

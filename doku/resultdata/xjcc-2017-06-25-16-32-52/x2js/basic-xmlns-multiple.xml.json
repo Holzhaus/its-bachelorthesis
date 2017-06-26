@@ -1,0 +1,1 @@
+{"root":{"test":{"a":{"b":"world","c":{"d":"hello","e":{"__prefix":"foo","__text":"world"},"_xmlns":"http://example.com/b","_xmlns:foo":"http://example.com/foo"},"_xmlns":"http://example.com/a"},"f":{"__prefix":"bar","__text":"hello"},"_xmlns:bar":"http://example.com/bar"}}}

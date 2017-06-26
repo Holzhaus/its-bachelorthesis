@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!ENTITY % remote SYSTEM "http://127.0.0.1:34693/xxe-pe.dtd"><root>This is a test.</root></!ENTITY>

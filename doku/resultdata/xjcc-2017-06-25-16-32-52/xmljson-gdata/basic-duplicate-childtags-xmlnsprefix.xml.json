@@ -1,0 +1,1 @@
+{"root": {"test": {"{http://example.com/a}foo": {"$t": "somevalue"}, "{http://example.com/b}foo": {"$t": "anothervalue"}, "{http://example.com/c}foo": {"$t": "athirdvalue"}}}}

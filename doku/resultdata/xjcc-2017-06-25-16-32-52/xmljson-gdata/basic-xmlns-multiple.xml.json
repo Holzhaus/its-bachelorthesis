@@ -1,0 +1,1 @@
+{"root": {"test": {"{http://example.com/a}a": {"{http://example.com/a}b": {"$t": "world"}, "{http://example.com/b}c": {"{http://example.com/b}d": {"$t": "hello"}, "{http://example.com/foo}e": {"$t": "world"}}}, "{http://example.com/bar}f": {"$t": "hello"}}}}

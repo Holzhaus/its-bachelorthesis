@@ -1,0 +1,1 @@
+{"root": {"attributes": {}, "children": [{"test": {"attributes": {}, "children": [{"{http://example.com/a}a": {"attributes": {}, "children": [{"{http://example.com/a}b": "world"}, {"{http://example.com/b}c": {"attributes": {}, "children": [{"{http://example.com/b}d": "hello"}, {"{http://example.com/foo}e": "world"}]}}]}}, {"{http://example.com/bar}f": "hello"}]}}]}}

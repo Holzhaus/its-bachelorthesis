@@ -1,0 +1,1 @@
+{"root":{"test":{"foo":[{"__prefix":"a","__text":"somevalue"},{"__prefix":"b","__text":"anothervalue"},{"__prefix":"c","__text":"athirdvalue"}],"_xmlns:a":"http://example.com/a","_xmlns:b":"http://example.com/b","_xmlns:c":"http://example.com/c"}}}

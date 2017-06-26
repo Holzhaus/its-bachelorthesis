@@ -1,0 +1,1 @@
+{"root":{"test":{"c:foo":"athirdvalue","xmlns:a":"http://example.com/a","xmlns:c":"http://example.com/c","xmlns:b":"http://example.com/b","b:foo":"anothervalue","a:foo":"somevalue"}}}

@@ -1,0 +1,1 @@
+{"tag": "root", "children": [{"tag": "test", "children": [{"tag": "{http://example.com/a}foo", "text": "somevalue"}, {"tag": "{http://example.com/b}foo", "text": "anothervalue"}, {"tag": "{http://example.com/c}foo", "text": "athirdvalue"}]}]}

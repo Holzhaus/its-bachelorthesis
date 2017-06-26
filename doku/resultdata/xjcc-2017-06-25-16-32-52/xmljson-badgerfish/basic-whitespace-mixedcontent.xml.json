@@ -1,0 +1,1 @@
+{"root": {"mixed": {"$": "A", "clean": {}, "dirty": {"$": "A   B"}}}}

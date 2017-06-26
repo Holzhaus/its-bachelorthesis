@@ -1,0 +1,1 @@
+{"tag": "root", "children": [{"tag": "test", "children": [{"tag": "{http://example.com/a}a", "children": [{"tag": "{http://example.com/a}b", "text": "world"}, {"tag": "{http://example.com/b}c", "children": [{"tag": "{http://example.com/b}d", "text": "hello"}, {"tag": "{http://example.com/foo}e", "text": "world"}]}]}, {"tag": "{http://example.com/bar}f", "text": "hello"}]}]}
