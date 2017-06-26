@@ -33,7 +33,7 @@ oberflächlicher Betrachtung -- trivial erscheint, ist dies beim verlustlosen
 Transfer von \acrshort{xml}-Daten ins \acrshort{json}-Format keineswegs der Fall.
 
 Ziel der vorliegenden Arbeit ist es daher, ein sicheres und verlustloses
-Verfahren zur Konversion von XML-Dokumenten in das \acrshort{json}-Format zu finden.
+Verfahren zur Konversion von \acrshort{xml}-Dokumenten in das \acrshort{json}-Format zu finden.
 
 Dazu wird eine Reihe von bereits erhältlichen Programmbibliotheken analysiert,
 die \acrshort{xml}-Daten in \acrshort{json} abbilden und aus der resultierenden
@@ -72,7 +72,7 @@ unterstützt wurde.~\cite{duvander2013convergence}
     \begin{center}
         \includestandalone[width=\textwidth]{xml-json-apis-2005-to-2013}
     \end{center}
-    \caption{Sowohl \acrshort{json} als auch XML wurden 2013 von jeweils mehr als 45 Prozent der Web-\acrshortpl{api} unterstützt.}
+    \caption{Sowohl \acrshort{json} als auch \acrshort{xml} wurden 2013 von jeweils mehr als 45 Prozent der Web-\acrshortpl{api} unterstützt.}
     \label{fig:xmljsonapis}
 \end{figure}
 
@@ -92,24 +92,24 @@ Programmiersprachen, Frameworks und Applikationen nicht immer gleich gut.
 
 \section{Verwandte Arbeiten}
 
-Muschett, Salz und Schenker~\cite{jsonx} schlugen 2011 ein Format zur Repräsentation beliebiger \acrshort{json}-Daten in XML 1.0 names JSONx vor. In dem inzwischen ausgelaufenen \gls{idraft} werden eine Reihe von Regeln festgelegt um Instanzen der verschiedenen JSON-Daten in XML-Strukturen zu konvertieren. Die vorliegenden Arbeit untersucht hingegen die Konversion in umgekehrter Richtung, d.h. die Umwandlung beliebiger XML-Dokumente in das JSON-Format.
+Muschett, Salz und Schenker~\cite{jsonx} schlugen 2011 ein Format zur Repräsentation beliebiger \acrshort{json}-Daten in \acrshort{xml} 1.0 names JSONx vor. In dem inzwischen ausgelaufenen \gls{idraft} werden eine Reihe von Regeln festgelegt um Instanzen der verschiedenen \acrshort{json}-Daten in \acrshort{xml}-Strukturen zu konvertieren. Die vorliegenden Arbeit untersucht hingegen die Konversion in umgekehrter Richtung, d.h. die Umwandlung beliebiger \acrshort{xml}-Dokumente in das \acrshort{json}-Format.
 
-Ein weiteres XML-basiertes Format, dass das Datenmodell der \acrfull{json} in XML nachbildet und dadurch die verlustlose Abbildung beliebiger \acrshort{json}-Daten in XML ermöglicht, ist JsonXML (JXML)~\cite{jxml}.
+Ein weiteres \acrshort{xml}-basiertes Format, dass das Datenmodell der \acrfull{json} in \acrshort{xml} nachbildet und dadurch die verlustlose Abbildung beliebiger \acrshort{json}-Daten in \acrshort{xml} ermöglicht, ist \gls{jxml}~\cite{jxml}.
 
-Christensen \emph{et.\,al.}~\cite{US7761484} halten ein US-Patent an der Übersetzung zwischen XML und \enquote{dynamic language data expressions}, womit unter anderem auch \acrshort{json} gemeint ist. Es nennt mehrere verschiedene denkbare Ausführungen, beispielsweise die Konversion von \acrshort{json} in typannotiertes XML mittels Attributen oder Element-Namen, aber auch die Round-Trip-Umwandlung von XML zu JSON und zurück, ohne diese jedoch im Detail zu beschreiben.
+Christensen \emph{et.\,al.}~\cite{US7761484} halten ein US-Patent an der Übersetzung zwischen \acrshort{xml} und \enquote{dynamic language data expressions}, womit unter anderem auch \acrshort{json} gemeint ist. Es nennt mehrere verschiedene denkbare Ausführungen, beispielsweise die Konversion von \acrshort{json} in typannotiertes \acrshort{xml} mittels Attributen oder Element-Namen, aber auch die Round-Trip-Umwandlung von \acrshort{xml} zu \acrshort{json} und zurück, ohne diese jedoch im Detail zu beschreiben.
 
-David Lee~\cite{lee2011jxon} entwickelte 2011 ein Verfahren, um anhand annotierter XSD-Schemata XSLT-Dateien zu erzeugen, die in der Lage sind, bidirektional zwischen XML und JXML zu konvertieren.  Damit ist also -- mit einem Umweg über JXML -- die verlustlose Umwandlung von XML in \acrshort{json} und wieder zurück möglich.
-Durch die Nutzung des jeweiligen XSD-Schema der zu konvertierenden XML-Dokumente sind bei der Umwandlung die im XML-Dokument genutzten Datentypen bekannt, wodurch ein zuverlässigen Mapping auf die nativen \acrshort{json}-Typen möglich wird.
+David Lee~\cite{lee2011jxon} entwickelte 2011 ein Verfahren, um anhand annotierter \acrshort{xsd}-Schemata \acrshort{xslt}-Dateien zu erzeugen, die in der Lage sind, bidirektional zwischen \acrshort{xml} und \gls{jxml} zu konvertieren.  Damit ist also -- mit einem Umweg über \gls{jxml} -- die verlustlose Umwandlung von \acrshort{xml} in \acrshort{json} und wieder zurück möglich.
+Durch die Nutzung des jeweiligen \acrshort{xsd}-Schemas der zu konvertierenden \acrshort{xml}-Dokumente sind bei der Umwandlung die verwendeten Datentypen bekannt, wodurch ein zuverlässigen Mapping auf die nativen \acrshort{json}-Typen möglich wird.
 
-Im Gegensatz dazu beschränkt sich die vorliegende Arbeit jedoch auf Konverter, die beliebige XML-Dokumente auch ohne Zuhilfenahme weiterer Metadaten wie XSD-Schemata umwandeln können.
+Im Gegensatz dazu beschränkt sich die vorliegende Arbeit jedoch auf Konverter, die beliebige \acrshort{xml}-Dokumente auch ohne Zuhilfenahme weiterer Metadaten wie XSD-Schemata umwandeln können.
 
-Goessner schlägt ein Mapping zwischen strukturierten XML-Daten und \acrshort{json} vor, dass möglichst kompakt und simpel sein soll. Dafür werden jedoch Abstriche im Bereich Verlustlosigkeit und Umkehrbarkeit der Konversion hingenommen, d.h. in bestimmten Fällen wie dem Auftreten mehrerer Kindelemente gleichen Namens kann ein Verlust (\emph{hier:} Verlust der Elementreihenfolge) auftreten.~\cite{goessner2006converting}
+Goessner schlägt ein Mapping zwischen strukturierten \acrshort{xml}-Daten und \acrshort{json} vor, dass möglichst kompakt und simpel sein soll. Dafür werden jedoch Abstriche im Bereich Verlustlosigkeit und Umkehrbarkeit der Konversion hingenommen, d.h. in bestimmten Fällen wie dem Auftreten mehrerer Kindelemente gleichen Namens kann ein Verlust (\emph{hier:} Verlust der Elementreihenfolge) auftreten.~\cite{goessner2006converting}
 
-Ein US-Patent von Williamson~\cite{US20140244692} beschreibt die Überführung von Daten aus einem XML-Dokument in eine \acrshort{json}-Struktur, indem bestimmte Teile des XML-Baums selektiert (z.\,B. mittels \acrshort{xpath}-artigen Ausdrücken) und einem Ziel-Schlüssel im resultierenden JSON-Objekt zugeordnet werden. Dadurch werden jedoch lediglich Teile der im XML-Dokument enthaltenen Informationen in die Ausgabe übernommen, sodass verlustloses Round-Tripping unmöglich wird.
+Ein US-Patent von Williamson~\cite{US20140244692} beschreibt die Überführung von Daten aus einem \acrshort{xml}-Dokument in eine \acrshort{json}-Struktur, indem bestimmte Teile des \acrshort{xml}-Baums selektiert (z.\,B. mittels \acrshort{xpath}-artigen Ausdrücken) und einem Ziel-Schlüssel im resultierenden \acrshort{json}-Objekt zugeordnet werden. Dadurch werden jedoch lediglich Teile der im \acrshort{xml}-Dokument enthaltenen Informationen in die Ausgabe übernommen, sodass verlustloses Round-Tripping unmöglich wird.
 
-In einem Paper vergleicht Wang~\cite{wang2011improving} die beiden Formate und entwickelt einen Übersetzungsalgorithmus zwischen den beiden Formaten. Allerdings wird dabei von datenorientiertem XML ausgegangen und somit keine Probleme betrachtet, die bei der Umwandlung von spezfischen Strukturen einer dokumentorientierten Auszeichnungssprache wie XML in das \acrshort{json}-Format entstehen können, beispielsweise die korrekte Abbildung von Mixed Content (vgl. Abschn.~\ref{sec:mixedcontent}). Der von Wang vorgeschlagene Algorithmus ist zudem auch bei datenorientierem XML unter Umständen verlustbehaftet.\cite[S.~184]{wang2011improving}.
+In einem Paper vergleicht Wang~\cite{wang2011improving} die beiden Formate und entwickelt einen Übersetzungsalgorithmus zwischen den beiden Formaten. Allerdings wird dabei von datenorientiertem \acrshort{xml} ausgegangen und somit keine Probleme betrachtet, die bei der Umwandlung von spezfischen Strukturen einer dokumentorientierten Auszeichnungssprache wie \acrshort{xml} in das \acrshort{json}-Format entstehen können, beispielsweise die korrekte Abbildung von Mixed Content (vgl. Abschn.~\ref{sec:mixedcontent}). Der von Wang vorgeschlagene Algorithmus ist zudem auch bei datenorientierem \acrshort{xml} unter Umständen verlustbehaftet.\cite[S.~184]{wang2011improving}.
 
-Ein System zur Umstellung des von einer Webapplikation auf JavaScript-Basis genutzten Datenformats wird von Ying und Miller~\cite{ying2013refactoring} vorgeschlagen. Neben der Automatischen Konversion von XML in \acrshort{json} wird dabei auch der JavaScript-Quelltext der Applikation automatisch an das neue Format angepasst. Der Fokus der Arbeit liegt dabei auf dem Code-Refactoring -- einer genauere Evaluation des eingesetzten Konversionsverfahrens im Bezug auf Sicherheit und Verlustlosgkeit findet nicht statt.
+Ein System zur Umstellung des von einer Webapplikation auf JavaScript-Basis genutzten Datenformats wird von Ying und Miller~\cite{ying2013refactoring} vorgeschlagen. Neben der Automatischen Konversion von \acrshort{xml} in \acrshort{json} wird dabei auch der JavaScript-Quelltext der Applikation automatisch an das neue Format angepasst. Der Fokus der Arbeit liegt dabei auf dem Code-Refactoring -- einer genauere Evaluation des eingesetzten Konversionsverfahrens im Bezug auf Sicherheit und Verlustlosgkeit findet nicht statt.
 
 \section{Aufbau der Arbeit}
 \label{sec:structure}
@@ -119,7 +119,7 @@ Im zweiten Kapitel wird zunächst eine kurze Einführung in die Struktur der For
 Im Anschluss daran wird der Versuchsbau beschrieben. Zunächst werden die Anforderungen konkret definiert, d.~h.\ es werden
 überprüfbare Kriterien aufgestellt, denen ein Konversionsverfahren genügen
 muss. Dazu gehört auch, Verlustlosigkeit genauer zu definieren, d.h.
-es wird die Relevanz der durch verschiedene XML-Strukturen dargestellten
+es wird die Relevanz der durch verschiedene \acrshort{xml}-Strukturen dargestellten
 Informationen untersucht sowie möglicherweise zu Datenverlust führende
 Probleme bei der Umwandlung beschrieben.
 
@@ -129,7 +129,7 @@ Kapitel~\ref{chap:results} stellt die Ergebnisse der Tests vor und diskutiert di
 Dabei wird erörtert, ob und welche Verfahren die zuvor genannten Bedingungen
 erfüllen.
 
-Das Konversionsverfahren, das bei der Überprüfung die XML-Strukturen am besten abgebildet hat, wird im folgenden Kapitel dann zu einem vollständig verlustlosen Verfahren weiterentwickelt. Das so verbesserte Verfahren wird mithilfe der Kriterien aus Kapitel~\ref{sec:criteria} einer erneuten Überprüfung unterzogen.
+Das Konversionsverfahren, das bei der Überprüfung die \acrshort{xml}-Strukturen am besten abgebildet hat, wird im folgenden Kapitel dann zu einem vollständig verlustlosen Verfahren weiterentwickelt. Das so verbesserte Verfahren wird mithilfe der Kriterien aus Kapitel~\ref{sec:criteria} einer erneuten Überprüfung unterzogen.
 
 Im Fazit werden die aktuellen Möglichkeiten zur Umwandlung
 von \acrshort{xml} in \acrshort{json} und wieder zurück abschließend eingeschätzt und bewertet sowie ein Ausblick auf weitere Forschungfelder gegeben.

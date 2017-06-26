@@ -20,7 +20,7 @@ Aktuell steht \acrshort{xml} in zwei unterschiedlichen Versionen zu Verfügung:
 
 Als Metasprache bildet \acrshort{xml} die Grundlage für eine große Anzahl von Dateiformaten, beispielsweise die verbreiteten Office-Formate \gls{odf} und \gls{ooxml} ebenso wie das Vektorgrafikformat \gls{svg}.
 
-Im Web wird XML z.B. in Form von \acrshort{xhtml} oder \gls{rss} für die Darstellung von Inhalten eingesetzt, vor allem aber für den Datenaustausch mit dynamischen AJAX-Applikationen und Webservices genutzt.
+Im Web wird \acrshort{xml} z.B. in Form von \acrshort{xhtml} oder \gls{rss} für die Darstellung von Inhalten eingesetzt, vor allem aber für den Datenaustausch mit dynamischen AJAX-Applikationen und Webservices genutzt.
 
 \subsection{Grundlagen}
 \label{sec:xmlbasics}
@@ -181,14 +181,14 @@ Einen Sonderfall stellt die Exklusive \acrlong{c14n} dar, die in einer separaten
 
 Einige der Features des \acrshort{xml}-Ökosystems können für Angriffe auf Parser missbraucht werden und insbesondere \glspl{dtd} haben sich in der Vergangenheit als potentiell gefährlich herausgestellt.~\cite[S.~4]{morgan2014xml}
 
-Obwohl Angriffe zum Teil seit Jahren bekannt sind, sind viele XML-Parser weiterhin verwundbar -- Forscher der Ruhr-Universität Bochum fanden Sicherheitslücken in den Standardkonfigurationen von 25 der 33 gestesteten \acrshort{xml}-Parser~\cite{spaeth2016sok}.
+Obwohl Angriffe zum Teil seit Jahren bekannt sind, sind viele \acrshort{xml}-Parser weiterhin verwundbar -- Forscher der Ruhr-Universität Bochum fanden Sicherheitslücken in den Standardkonfigurationen von 25 der 33 gestesteten \acrshort{xml}-Parser~\cite{spaeth2016sok}.
 
 \subsubsection{\acrlong{fsa}}
 \label{sec:xmlattacks-fsa}
 Bei dem Angriffen aus dem Bereich \acrlong{fsa} soll der \acrshort{xml}-Parser dazu gebracht werden, eine normalerweise nicht zugängliche Datei auf dem lokalen Dateisystem in ein \acrshort{xml}-Dokument einzubetten. Kann der Angreifer die Zielapplikation dazu bringen, ihm Zugriff auf das Dokument zu gewähren, erlangt er Kenntnis vom Inhalt der Datei.
 
 \paragraph{\acrfull{xxe}}
-\acrshort{xxe}-Angriffe sind bereits seit 2002 bekannt~\cite{steuck2002xxe}. Der Angreifer gibt dabei den Pfad zu einer lokalen Datei auf dem Server in Form einer File-URL in einer External Entity an und refenziert diese Entity dann im Dokument. Enthält der eingebette Inhalt jedoch Zeichen, die von XML als Markup interpretiert werden, kann dies unter Umständen dazu führen, dass das resultierende Dokument nicht mehr wohlgeformt ist und der Angriff fehlschlägt.~\cite[Abschnitt 5.1]{spaeth2016sok}
+\acrshort{xxe}-Angriffe sind bereits seit 2002 bekannt~\cite{steuck2002xxe}. Der Angreifer gibt dabei den Pfad zu einer lokalen Datei auf dem Server in Form einer File-URL in einer External Entity an und refenziert diese Entity dann im Dokument. Enthält der eingebette Inhalt jedoch Zeichen, die von \acrshort{xml} als Markup interpretiert werden, kann dies unter Umständen dazu führen, dass das resultierende Dokument nicht mehr wohlgeformt ist und der Angriff fehlschlägt.~\cite[Abschnitt 5.1]{spaeth2016sok}
 
 \begin{figure}[h!]
 \begin{example}[Klassischer \acrshort{xxe}-Angriff] Der \acrshort{xml}-Parser wird angewiesen, den Inhalt der Datei \texttt{/etc/passwd} in das Dokument einzubetten.
@@ -318,7 +318,7 @@ Das ursprünglich Anfang der 2000er Jahre von Douglas Crockford spezifizierte Fo
     \item{} RFC7159 der \acrfull{ietf}, veröffentlicht im März 2014~\cite{rfc7159}.
 \end{itemize}
 
-ECMA-404 beschränkt sich vor allem auf die JSON-Syntax, während bei der Konzeption von RFC7159 auch Interoperabilität eine Rolle spielte~\cite{bray2014jsonredux}.
+ECMA-404 beschränkt sich vor allem auf die \acrshort{json}-Syntax, während bei der Konzeption von RFC7159 auch Interoperabilität eine Rolle spielte~\cite{bray2014jsonredux}.
 
 \subsection{Datenmodell und Syntax}
 \label{sec:jsontypes}

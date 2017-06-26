@@ -56,11 +56,11 @@ Logisch äquivalent (vgl. Bed. \ref{item:ioequal}) heißt nicht, dass das \acrsh
 \end{definition}
 \end{figure}
 
-Für die Feststellung, dass ein ein Konversionsverfahren verlustbehaftet ist, ist es ausreichend \emph{ein einzelnes} wohlgeformtes XML-Dokument zu finden, das das Verfahren nicht verlustlos konvertiert. Um jedoch hinreichend zu beweisen, dass ein Konversionsverfahren vollständig verlustlos arbeitet und somit die Bedingungen aus Def.~\ref{def:lossless} erfüllt, müsste die Umwandlung für \emph{alle} wohlgeformten XML-Dokumente überprüft werden. Da die Menge der möglichen wohlgeformten XML-Dokumente  -- auch bei Beachtung der Einschränkungen aus Abschnitt~\ref{sec:criteria-security} -- unendlich ist, ist eine deduktive Art der Beweisführung jedoch nicht möglich.
+Für die Feststellung, dass ein ein Konversionsverfahren verlustbehaftet ist, ist es ausreichend \emph{ein einzelnes} wohlgeformtes \acrshort{xml}-Dokument zu finden, das das Verfahren nicht verlustlos konvertiert. Um jedoch hinreichend zu beweisen, dass ein Konversionsverfahren vollständig verlustlos arbeitet und somit die Bedingungen aus Def.~\ref{def:lossless} erfüllt, müsste die Umwandlung für \emph{alle} wohlgeformten \acrshort{xml}-Dokumente überprüft werden. Da die Menge der möglichen wohlgeformten \acrshort{xml}-Dokumente  -- auch bei Beachtung der Einschränkungen aus Abschnitt~\ref{sec:criteria-security} -- unendlich ist, ist eine deduktive Art der Beweisführung jedoch nicht möglich.
 
-Um zu entscheiden, ob ein Konversionsverfahren verlustlos ist, verfolgt die vorliegende Arbeit daher einen empirisch-induktiven Ansatz: Wenn für eine ausreichend große Anzahl verschiedener Fälle gezeigt wird, dass die Bedingung erfüllt ist\footnote{\emph{hier:} die XML-Dokumente vor und nach der Konversion sind logisch Äquivalent}, kann eine allgemeine Erfüllung der Bedingung induziert werden~\cite[S.~2]{rudner1953judgments}.
+Um zu entscheiden, ob ein Konversionsverfahren verlustlos ist, verfolgt die vorliegende Arbeit daher einen empirisch-induktiven Ansatz: Wenn für eine ausreichend große Anzahl verschiedener Fälle gezeigt wird, dass die Bedingung erfüllt ist\footnote{\emph{hier:} die \acrshort{xml}-Dokumente vor und nach der Konversion sind logisch Äquivalent}, kann eine allgemeine Erfüllung der Bedingung induziert werden~\cite[S.~2]{rudner1953judgments}.
 
-Daher wird die Verlustlosigkeit einer Konversion im Folgenden anhand konkreter XML-Strukturen und Problemstellungen erläutert. Diese bilden die Grundlage für die anschließende Erstellung konkreter Testfälle in Form von XML-Dokumenten (vgl.~Abschn.~\ref{sec:method-conv}).
+Daher wird die Verlustlosigkeit einer Konversion im Folgenden anhand konkreter \acrshort{xml}-Strukturen und Problemstellungen erläutert. Diese bilden die Grundlage für die anschließende Erstellung konkreter Testfälle in Form von \acrshort{xml}-Dokumenten (vgl.~Abschn.~\ref{sec:method-conv}).
 
 \subsubsection{Elemente und Attribute}
 
@@ -101,7 +101,7 @@ In der Praxis werden \glspl{pi} eher selten eingesetzt. Genutzt werden sie unter
 
 Ein weiteres prominentes Beispiel für eine Praxisanwendung ist die Microsoft Office Suite, die seit der Version 2003 Office-Dokumente als einzelne \acrshort{xml}-Dateien speichern kann. Diese setzen die unspezifische Dateiendung \texttt{*.xml} ein und würden daher mit einem generisch \acrshort{xml}-Anzeigeprogramm geöffnet werden. Mithilfe der Processing Instruction \enquote{\mintinline{xml}{<?mso-application progid="Word.Document"?>}} werden Windows- bzw. Internet Explorer angewiesen, diese als Microsoft Word-Document zu behandeln.~\cite[Abschnitt 3.2]{tverskov2008understandingpi}
 
-Auch die XSLT-Stylesheets des DocBook-Formats nutzen Processing Instructions, um spezielle Formatierungen für die verschiedenen Ausgabeformate festzulegen.~\cite[{Kapitel \enquote{User Reference: PIs}}]{docbookxsl}
+Auch die \acrshort{xslt}-Stylesheets des DocBook-Formats nutzen Processing Instructions, um spezielle Formatierungen für die verschiedenen Ausgabeformate festzulegen.~\cite[{Kapitel \enquote{User Reference: PIs}}]{docbookxsl}
 
 Wie auch Kommentare sind sie nicht Teil der Zeichendaten eines \acrshort{xml}-Dokuments, die Unterstützung durch \acrshort{xml}-Parser ist laut Spezifikation jedoch zwingend vorgeschrieben.
 
@@ -129,7 +129,7 @@ Die Reihenfolge der Attribute eines Elements nach einem $\text{\acrshort{xml}}\r
 
 \subsubsection{Whitespace}
 
-XML-Parser müssen grundsätzlich jeglichen Whitespace -- also Leerzeichen, Tabs und Zeilenumbrüche --  innerhalb des Wurzelelements eines Dokuments an die verarbeitende Applikation weiterreichen~\cite[Abschn.~2.10]{maler2008xml}, während Whitespace außerhalb des Wurzelelements keine Bedeutung zukommt~\cite[Abschnitt~2.1]{boyer2001c14n}.
+\acrshort{xml}-Parser müssen grundsätzlich jeglichen Whitespace -- also Leerzeichen, Tabs und Zeilenumbrüche --  innerhalb des Wurzelelements eines Dokuments an die verarbeitende Applikation weiterreichen~\cite[Abschn.~2.10]{maler2008xml}, während Whitespace außerhalb des Wurzelelements keine Bedeutung zukommt~\cite[Abschnitt~2.1]{boyer2001c14n}.
 
 \begin{samepage}
     Ausgenommen hiervon sind jedoch bestimmte Sonderfälle, in denen Whitespace durch den \acrshort{xml}-Prozessor \emph{normalisiert} wird:
@@ -139,7 +139,7 @@ XML-Parser müssen grundsätzlich jeglichen Whitespace -- also Leerzeichen, Tabs
     \end{enumerate}
 \end{samepage}
 
-Zwar kann Whitespace durch \glspl{dtd} oder \acrshort{xsd}-Schemata auch als unsignifikant markiert werden~\cite{page2005whitespace}, dies wird jedoch nur von \emph{validierenden} XML-Prozessoren beachtet und geht somit über den Rahmen der vorliegenden Arbeit hinaus.
+Zwar kann Whitespace durch \glspl{dtd} oder \acrshort{xsd}-Schemata auch als unsignifikant markiert werden~\cite{page2005whitespace}, dies wird jedoch nur von \emph{validierenden} \acrshort{xml}-Prozessoren beachtet und geht somit über den Rahmen der vorliegenden Arbeit hinaus.
 
 \subsubsection{Mixed Content}
 \label{sec:mixedcontent}
@@ -281,8 +281,8 @@ Aufgrund des in dieser Arbeit zur Anwendung kommenden Prüfverfahrens konnten je
 \end{enumerate}
 \end{samepage}
 
-Da für viele XML-Strukturen kein Äquivalent in der \acrshort{json}-Spezifikation existiert, gibt es meist verschiedene Möglichkeiten der Abbildung von XML-Inhalten in \acrshort{json}.
-Die gebräuchlichsten Varianten haben sich in Form verschiedener Konvertierungskonventionen herausgebildet, die jeweils beschreiben, wie XML-Strukturen in \acrshort{json} dargestellt werden~\cite{open311-conventions}. Dabei unterscheidet sich das anhand der verschiedenen Konventionen produzierte JSON zum Teil stark, beispielsweise darin, welcher JSON-Container\-typ zur Darstellung eines XML-Elements genutzt wird oder wie Attribute dargestellt werden. Die für die Analyse im Rahmen der vorliegenden Arbeit ausgewählten Konverter sollten daher nach Möglichkeit verschiedene Umwandlungsverfahren und Konventionen implementieren.
+Da für viele \acrshort{xml}-Strukturen kein Äquivalent in der \acrshort{json}-Spezifikation existiert, gibt es meist verschiedene Möglichkeiten der Abbildung von \acrshort{xml}-Inhalten in \acrshort{json}.
+Die gebräuchlichsten Varianten haben sich in Form verschiedener Konvertierungskonventionen herausgebildet, die jeweils beschreiben, wie \acrshort{xml}-Strukturen in \acrshort{json} dargestellt werden~\cite{open311-conventions}. Dabei unterscheidet sich das anhand der verschiedenen Konventionen produzierte \acrshort{json} zum Teil stark, beispielsweise darin, welcher \acrshort{json}-Container\-typ zur Darstellung eines \acrshort{xml}-Elements genutzt wird oder wie Attribute dargestellt werden. Die für die Analyse im Rahmen der vorliegenden Arbeit ausgewählten Konverter sollten daher nach Möglichkeit verschiedene Umwandlungsverfahren und Konventionen implementieren.
 
 Da die Formate insbesondere im Webbereich eingesetzt werden und Webservices sowie \acrshortpl{api} ein relevantes Einsatzfeld für \acrshort{xml}-\acrshort{json}-Konversion darstellen, wurde bei der Auswahl zudem darauf geachtet, ein breites Spektrum verschiedener populärer Programmiersprachen aus diesem Bereich abzudecken. Sowohl die klassischen Programmiersprachen für Web-Applikationen --  Java, PHP und JavaScript -- als auch C\#, Ruby und Python, die im Web in Form von ASP.NET, Ruby-on-Rails bzw. Django oder Flask zum Einsatz kommen, werden durch die Auswahl abgedeckt.
 
@@ -292,7 +292,7 @@ Da die Formate insbesondere im Webbereich eingesetzt werden und Webservices sowi
     \item[Json-lib] Die Java-Bibliothek \texttt{net.sf.json-lib} baut auf Software des \acrshort{json}-Entwicklers Douglas Crockford auf und wird in über 400 anderen Projekten eingesetzt~\cite{mvn-jsonlib}. Das Paket beinhaltet unter anderem auch eine Klasse zum (De-)Serialisieren von \acrshort{xml}-Daten.
     \item[{\acrshort{jsonml}}] Die \acrfull{jsonml} ist ein \acrshort{json}-basiertes Format zur Speicherung von \acrshort{xml}-Markup. Neben der JavaScript-Bibliothek existieren auch Implementierungen in anderen Programmiersprachen, z.B. in Java\footnote{Das \texttt{org.json}-Paket stellt eine entsprechende Klasse bereit.}  oder PHP\footnote{Als Teil des FluentDOM-Projekts, siehe: \url{https://github.com/FluentDOM/FluentDOM/blob/master/src/FluentDOM/Serializer/Json/JsonML.php}}.
     \item[{\acrshort{jxon}}] Bei dem JavaScript-Modul handelt es sich um eine bidirektionale Bibliothek für die \acrlong{jxon} und eine Weiterentwicklung der ursprünglich von Mozilla veröffentlichten Implementierung.
-    \item[Newtonsoft Json.NET] Das \acrshort{json}-Framework für C\#.NET wurde insgesamt mehr als 64 Millionen Mal von Paket-Repository NuGet heruntergeladen~\cite{nugetjsonnet} und war zum Testzeitpunkt das am meisten heruntergeladene .NET-Paket~\cite{nugetstatistics}. Es ermöglicht unter anderem auch die Konversion von XML-Dokumenten in das JSON-Format.
+    \item[Newtonsoft Json.NET] Das \acrshort{json}-Framework für C\#.NET wurde insgesamt mehr als 64 Millionen Mal von Paket-Repository NuGet heruntergeladen~\cite{nugetjsonnet} und war zum Testzeitpunkt das am meisten heruntergeladene .NET-Paket~\cite{nugetstatistics}. Es ermöglicht unter anderem auch die Konversion von \acrshort{xml}-Dokumenten in das \acrshort{json}-Format.
     \item[org.json.XML] Das Paket \texttt{org.json} ist die Referenzimplementierung des \acrshort{json}-Formats für Java und bietet auch ein Konversionsverfahren in Form einer dedizierten \acrshort{xml}-Klasse. Es wird von mehr als 1\,600 Projekten eingesetzt, darunter auch die Google Android Library, das Google Web Toolkit (GWT) oder die Objektserialisierungs\hyp{}Bibliothek XStream~\cite{mvn-orgjsonxml}.
     \item[Pesterfish] Das Python-Modul Pesterfish konvertiert zwischen \acrshort{xml} und Python-\linebreak{}Dictionaries, die dann zu \acrshort{json} serialisiert werden können. Laut dem Autor wurde das Konversionsverfahren als \enquote{Reaktion auf die Badgerfish-Konvention} entwickelt\footnote{Der Autor schreibt dies in einem Kommentar im Quelltext des Moduls.}. Für die Verarbeitung der \acrshort{xml}-Daten baut das Modul auf die \texttt{ElementTree}-\acrshort{api} auf und erlaubt Entwicklern auch die Angabe eines eigenen Parsers, beispielsweise \texttt{defusedxml}.
     \item[x2js] Die JavaScript-Bibliothek ist mit 475 Sternen und 219 Forks auf GitHub recht populär~\cite{githubx2js} und erlaubt eine große Zahl von Einstellungsmöglichkeiten.
