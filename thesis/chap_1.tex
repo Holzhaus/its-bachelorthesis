@@ -37,7 +37,7 @@ Verfahren zur Konversion von \acrshort{xml}-Dokumenten in das \acrshort{json}-Fo
 
 Dazu wird eine Reihe von bereits erhältlichen Programmbibliotheken analysiert,
 die \acrshort{xml}-Daten in \acrshort{json} abbilden und aus der resultierenden
-\acrshort{json}-Datenstruktur wieder \acrshort{xml}-Dokument erstellen können.
+\acrshort{json}-Datenstruktur wieder ein \acrshort{xml}-Dokument erstellen können.
 
 % FIXME: Does this belong here?
 \todo[inline]{FIXME: Gehört das hier hin?}
@@ -62,7 +62,7 @@ Office-Dateiformate -- das \acrfull{odf}, Microsofts % chktex 8
 \acrfull{ooxml} und Apples iWorks -- bauen auf \acrshort{xml} auf. % chktex 8
 
 Inzwischen gewinnt jedoch \acrshort{json} vor allem im Mobile-
-und Web-Bereich immer mehr an Bedeutung (Vgl. Abb.~\ref{fig:xmljsonapis}). Laut dem \acrshort{api}-Verzeichnis
+und Web-Bereich immer mehr an Bedeutung (vgl. Abb.~\ref{fig:xmljsonapis}). Laut dem \acrshort{api}-Verzeichnis
 \emph{ProgrammableWeb}\footnote{\url{https://www.programmableweb.com/}} unterstützten im Jahr 2013 ca. 60 Prozent aller neu
 hinzugefügten \acrshortpl{api} das \acrshort{json}-Format, während
 \acrshort{xml} im selben Zeitraum lediglich von 37 Prozent der neuen \acrshortpl{api}
@@ -77,7 +77,7 @@ unterstützt wurde.~\cite{duvander2013convergence}
 \end{figure}
 
 
-\acrshort{json} ist bei bestimmten Aufgaben im Bezug auf Geschwindigkeit und
+\acrshort{json} ist bei bestimmten Aufgaben in Bezug auf Geschwindigkeit und
 Ressourcenauslastung deutlich effizienter als \acrshort{xml}~\cite{nurseitov2009comparison}\@.
 Inzwischen setzen auch einige populäre NoSQL-Datenbanken wie
 \emph{CouchDB} oder \emph{MongoDB} auf \acrshort{json} zur Datenspeicherung. Auch
@@ -109,14 +109,14 @@ Ein US-Patent von Williamson~\cite{US20140244692} beschreibt die Überführung v
 
 In einem Paper vergleicht Wang~\cite{wang2011improving} die beiden Formate und entwickelt einen Übersetzungsalgorithmus zwischen den beiden Formaten. Allerdings wird dabei von datenorientiertem \acrshort{xml} ausgegangen und somit keine Probleme betrachtet, die bei der Umwandlung von spezfischen Strukturen einer dokumentorientierten Auszeichnungssprache wie \acrshort{xml} in das \acrshort{json}-Format entstehen können, beispielsweise die korrekte Abbildung von Mixed Content (vgl. Abschn.~\ref{sec:mixedcontent}). Der von Wang vorgeschlagene Algorithmus ist zudem auch bei datenorientierem \acrshort{xml} unter Umständen verlustbehaftet.\cite[S.~184]{wang2011improving}.
 
-Ein System zur Umstellung des von einer Webapplikation auf JavaScript-Basis genutzten Datenformats wird von Ying und Miller~\cite{ying2013refactoring} vorgeschlagen. Neben der Automatischen Konversion von \acrshort{xml} in \acrshort{json} wird dabei auch der JavaScript-Quelltext der Applikation automatisch an das neue Format angepasst. Der Fokus der Arbeit liegt dabei auf dem Code-Refactoring -- einer genauere Evaluation des eingesetzten Konversionsverfahrens im Bezug auf Sicherheit und Verlustlosgkeit findet nicht statt.
+Ein System zur Umstellung des von einer Webapplikation auf JavaScript-Basis genutzten Datenformats wird von Ying und Miller~\cite{ying2013refactoring} vorgeschlagen. Neben der Automatischen Konversion von \acrshort{xml} in \acrshort{json} wird dabei auch der JavaScript-Quelltext der Applikation automatisch an das neue Format angepasst. Der Fokus der Arbeit liegt dabei auf dem Code-Refactoring -- einer genauere Evaluation des eingesetzten Konversionsverfahrens in Bezug auf Sicherheit und Verlustlosgkeit findet nicht statt.
 
 \section{Aufbau der Arbeit}
 \label{sec:structure}
 
 Im zweiten Kapitel wird zunächst eine kurze Einführung in die Struktur der Formate \acrshort{xml} und \acrshort{json} gegeben. Zudem werden auch relevante Technologien aus dem Umfeld der Formate beschrieben und die bekannten Angriffe gegen \acrshort{xml}- und \acrshort{json}-Parser erläutert.
 
-Im Anschluss daran wird der Versuchsbau beschrieben. Zunächst werden die Anforderungen konkret definiert, d.~h.\ es werden
+Im Anschluss daran wird der Versuchsaufbau beschrieben. Zunächst werden die Anforderungen konkret definiert, d.~h.\ es werden
 überprüfbare Kriterien aufgestellt, denen ein Konversionsverfahren genügen
 muss. Dazu gehört auch, Verlustlosigkeit genauer zu definieren, d.h.
 es wird die Relevanz der durch verschiedene \acrshort{xml}-Strukturen dargestellten
