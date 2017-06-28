@@ -27,7 +27,7 @@ Das \acrfull{owasp} empfiehlt daher, die Unterstützung für \acrfullpl{dtd} kom
 
 Aus Sicherheitsgründen ist die Verarbeitung von \glspl{dtd} für die in der vorliegenden Arbeit überprüften Konverter daher nicht erforderlich.
 
-Dies gilt jedoch nicht für die vordefinierten General Entities \enquote{\mintinline{xml}{&amp;}}, \enquote{\mintinline{xml}{&lt;}}, \enquote{\mintinline{xml}{&gt;}}, \enquote{\mintinline{xml}{&apos;}} und \enquote{\mintinline{xml}{&quot;}}~\cite[Abschn.~4.6]{maler2008xml} bzw. Character References~\cite[Abschn.~4.1]{maler2008xml}, da diese nicht innerhalb einer \gls{dtd} angegeben werden müssen und sie zum Quotieren von Markup in Text-Knoten und Attributen nötig sind.
+Dies gilt jedoch nicht für die vordefinierten General Entities \enquote{\mintinline{xml}{&amp;}}, \enquote{\mintinline{xml}{&lt;}}, \enquote{\mintinline{xml}{&gt;}}, \enquote{\mintinline{xml}{&apos;}} und \enquote{\mintinline{xml}{&quot;}}~\cite[Abschn.~4.6]{xml} bzw. Character References~\cite[Abschn.~4.1]{xml}, da diese nicht innerhalb einer \gls{dtd} angegeben werden müssen und sie zum Quotieren von Markup in Text-Knoten und Attributen nötig sind.
 
 \subsection{Verlustlosigkeit}
 \label{sec:criteria-lossless}
@@ -70,7 +70,7 @@ Als Kerninhalt jedes \acrshort{xml}\hyp{}Dokuments müssen Elemente und deren Be
 
 Namespaces bieten eine Möglichkeit, Teilen eines \acrshort{xml}-Dokuments eine bestimmte Semantik zuzuweisen. Die Zuordnung zwischen Elementen und Namespaces im Dokument darf daher nicht verändert werden.
 
-Obwohl Namespace\hyp{}Prefixe eigentlich frei gewählt werden können, ist es möglich, dass auch sie wichtige Informationen enthalten. Dies wäre beispielsweise dann der Fall, wenn ein im Dokument vorhandener \acrshort{xpath}\hyp{}Ausdruck ein Namenraumprefix referenziert~\cite[Abschn. 4.4]{boyer2001c14n}. Bei einer Umbenennung von Prefixen wäre die korrekte Evaluation des \acrshort{xpath}\hyp{}Ausdrucks nicht mehr möglich. Die Prefix-Bezeichner müssen also erhalten bleiben.
+Obwohl Namespace\hyp{}Prefixe eigentlich frei gewählt werden können, ist es möglich, dass auch sie wichtige Informationen enthalten. Dies wäre beispielsweise dann der Fall, wenn ein im Dokument vorhandener \acrshort{xpath}\hyp{}Ausdruck ein Namenraumprefix referenziert~\cite[Abschn. 4.4]{c14n}. Bei einer Umbenennung von Prefixen wäre die korrekte Evaluation des \acrshort{xpath}\hyp{}Ausdrucks nicht mehr möglich. Die Prefix-Bezeichner müssen also erhalten bleiben.
 
 \subsubsection{Character Data}
 \label{sec:cdata}
@@ -79,9 +79,9 @@ Obwohl Namespace\hyp{}Prefixe eigentlich frei gewählt werden können, ist es m�
 
 Mithilfe von CDATA-Abschnitten lässt sich Text, der Markup-Zeichen wie beispielsweise das Kleiner-als-Zeichen\footnote{Unicode-Codepoint \texttt{U+003C}: \texttt{LESS-THAN SIGN}} enthält, direkt in ein \acrshort{xml}-Dokument einbetten, ohne dass diese Zeichen als Markup interpretiert werden.
 
-Dies ist vor allem dann sinnvoll, wenn es unpraktikabel ist, alle Markup-Zeichen im Text einzeln durch die jeweilige Zeichen- oder Entity-Referenz zu ersetzen. CDATA stellt somit eine weitere Möglichkeit dar, Zeichendaten in einem \acrshort{xml}-Dokument anzugeben.~\cite[Abschnitt~2.4]{maler2008xml}
+Dies ist vor allem dann sinnvoll, wenn es unpraktikabel ist, alle Markup-Zeichen im Text einzeln durch die jeweilige Zeichen- oder Entity-Referenz zu ersetzen. CDATA stellt somit eine weitere Möglichkeit dar, Zeichendaten in einem \acrshort{xml}-Dokument anzugeben.~\cite[Abschnitt~2.4]{xml}
 
-Der Unterschied zwischen Zeichendaten aus CDATA-Abschnitten und solchen, bei denen dies nicht der Fall ist, ist jedoch lediglich ein syntaktischer. Daher werden bei der \acrlong{c14n} alle CDATA-Abschnitte im Eingabedokument durch den entsprechenden \emph{Character Content} ersetzt~\cite[Abschnitt~2.1]{boyer2001c14n}.
+Der Unterschied zwischen Zeichendaten aus CDATA-Abschnitten und solchen, bei denen dies nicht der Fall ist, ist jedoch lediglich ein syntaktischer. Daher werden bei der \acrlong{c14n} alle CDATA-Abschnitte im Eingabedokument durch den entsprechenden \emph{Character Content} ersetzt~\cite[Abschnitt~2.1]{c14n}.
 
 Für die Verlustlosigkeit der Konversion ist es somit unerheblich, ob die CDATA-Abschnitte im Ursprungsdokument als solche erhalten bleiben, oder lediglich die Zeichendaten beibehalten werden.
 
@@ -89,7 +89,7 @@ Für die Verlustlosigkeit der Konversion ist es somit unerheblich, ob die CDATA-
 
 \acrshort{xml} verfügt über die Möglichkeit, Dokumente mit Kommentaren zu versehen. Diese sind jedoch nicht Teil der Zeichendaten des \acrshort{xml}-Dokuments. Die Möglichkeit, Kommentare programmatisch auszuwerten, können \acrshort{xml}-Parser zwar bereitstellen, dies ist jedoch optional.
 
-Zudem ist auch bei der Implementierung der \acrlong{c14n} die Unterstützung von \emph{Kanonischem \acrshort{xml} mit Kommentaren} lediglich empfohlen, während die Möglichkeit der Umwandlung in \emph{Kanonisches \acrshort{xml}} ausschließlich aller Kommentare zwingend erforderlich ist.~\cite[Abschnitt~2.1]{boyer2001c14n}
+Zudem ist auch bei der Implementierung der \acrlong{c14n} die Unterstützung von \emph{Kanonischem \acrshort{xml} mit Kommentaren} lediglich empfohlen, während die Möglichkeit der Umwandlung in \emph{Kanonisches \acrshort{xml}} ausschließlich aller Kommentare zwingend erforderlich ist.~\cite[Abschnitt~2.1]{c14n}
 
 Folglich ist es nicht nötig, dass sich die Kommentare im \acrshort{xml}-Eingabedokument nach dem \acrshort{xml}$\rightarrow$\acrshort{json}$\rightarrow$\acrshort{xml} Roundtrip auch in der Ausgabe wiederfinden.
 
@@ -103,17 +103,17 @@ Ein weiteres prominentes Beispiel für eine Praxisanwendung ist die Microsoft Of
 
 Auch die \acrshort{xslt}-Stylesheets des DocBook-Formats nutzen Processing Instructions, um spezielle Formatierungen für die verschiedenen Ausgabeformate festzulegen.~\cite[{Kapitel \enquote{User Reference: PIs}}]{docbookxsl}
 
-Ebenso wie Kommentare sind sie nicht Teil der Zeichendaten eines \acrshort{xml}-Dokuments, müssen jedoch laut Spezifikation zwingend vom \acrshort{xml}-Parser an die verarbeitende Applikation weitergereicht werden~\cite[Abschn.~2.6]{maler2008xml}.
+Ebenso wie Kommentare sind sie nicht Teil der Zeichendaten eines \acrshort{xml}-Dokuments, müssen jedoch laut Spezifikation zwingend vom \acrshort{xml}-Parser an die verarbeitende Applikation weitergereicht werden~\cite[Abschn.~2.6]{xml}.
 
-Auch bei der \acrlong{c14n} bleiben die \glspl{pi} erhalten.~\cite[Abschnitt 2.3]{boyer2001c14n}
+Auch bei der \acrlong{c14n} bleiben die \glspl{pi} erhalten.~\cite[Abschnitt 2.3]{c14n}
 
 \subsubsection{Dokumentordnung}
 
 \paragraph{Elementordnung}
 
-Die Spezifikation der \acrshort{c14n} bezieht sich bezüglich der Ordnung auf die \acrshort{w3c}-Empfehlung zur \acrfull{xpath}~\cite[Abschnitt~2.2]{boyer2001c14n}.
+Die Spezifikation der \acrshort{c14n} bezieht sich bezüglich der Ordnung auf die \acrshort{w3c}-Empfehlung zur \acrfull{xpath}~\cite[Abschnitt~2.2]{c14n}.
 
-\begin{foreigndisplayquote}{english}[{~\cite[Abschnitt~5]{clark1999xpath1}}]
+\begin{foreigndisplayquote}{english}[{~\cite[Abschnitt~5]{xpath}}]
     There is an ordering, document order, defined on all the nodes in the document corresponding to the order in which the first character of the \acrshort{xml} representation of each node occurs in the \acrshort{xml} representation of the document after expansion of general entities. Thus, the root node will be the first node. Element nodes occur before their children. Thus, document order orders element nodes in order of the occurrence of their start-tag in the \acrshort{xml} (after expansion of entities).
 \end{foreigndisplayquote}
 
@@ -121,21 +121,21 @@ Folglich muss die Reihenfolge der Element-Nodes bei der Konversion beibehalten w
 
 \paragraph{Ordnung von Attributen und Namespaces}
 
-Der Reihenfolge, in der die Attribute eines Elements im Start-Tag bzw. Leeres-Element-Tag angegeben wurden, kommt laut \acrshort{xml}-Spezi\-fikation keine Bedeutung zu.~\cite[Abschnitt~3.1]{maler2008xml}
+Der Reihenfolge, in der die Attribute eines Elements im Start-Tag bzw. Leeres-Element-Tag angegeben wurden, kommt laut \acrshort{xml}-Spezi\-fikation keine Bedeutung zu.~\cite[Abschnitt~3.1]{xml}
 
-Dies wird auch von der \acrshort{xpath}-Spezifikation untermauert, die die Reihenfolge von Name\-space-Deklarationen und Attributen als implementierungsabhängig festlegt.~\cite[Abschnitt~5]{clark1999xpath1}
+Dies wird auch von der \acrshort{xpath}-Spezifikation untermauert, die die Reihenfolge von Name\-space-Deklarationen und Attributen als implementierungsabhängig festlegt.~\cite[Abschnitt~5]{xpath}
 
 Die Reihenfolge der Attribute eines Elements nach einem \acrshort{xml}$\rightarrow$\acrshort{json}$\rightarrow$\acrshort{xml}-Roundtrip ist daher beliebig und muss nicht mit der Reihenfolge vor der Umwandlung identisch sein.
 
 \subsubsection{Whitespace}
 
-\acrshort{xml}-Parser müssen grundsätzlich jeglichen Whitespace -- also Leerzeichen, Tabs und Zeilenumbrüche --  innerhalb des Wurzelelements eines Dokuments an die verarbeitende Applikation weiterreichen~\cite[Abschn.~2.10]{maler2008xml}, während Whitespace außerhalb des Wurzelelements keine Bedeutung zukommt~\cite[Abschnitt~2.1]{boyer2001c14n}.
+\acrshort{xml}-Parser müssen grundsätzlich jeglichen Whitespace -- also Leerzeichen, Tabs und Zeilenumbrüche --  innerhalb des Wurzelelements eines Dokuments an die verarbeitende Applikation weiterreichen~\cite[Abschn.~2.10]{xml}, während Whitespace außerhalb des Wurzelelements keine Bedeutung zukommt~\cite[Abschnitt~2.1]{c14n}.
 
 \begin{samepage}
     Ausgenommen hiervon sind jedoch bestimmte Sonderfälle, in denen Whitespace durch den \acrshort{xml}-Prozessor \emph{normalisiert} wird:
     \begin{enumerate}
-        \item{} Zeilenenden, d.h. die verschiedenen Kombinationen der Wagenrücklauf- und \linebreak{}Zeilenvorschub-Zeichen, werden zu einem einfachen Zeilenvorschub umgewandelt ~\cite[Abschn.~2.11]{maler2008xml}.
-        \item{} In Attributen vorkommende Whitespace-Zeichen (keine Character References) werden zu Leerzeichen umgewandelt~\cite[Abschn.~3.3.3]{maler2008xml}
+        \item{} Zeilenenden, d.h. die verschiedenen Kombinationen der Wagenrücklauf- und \linebreak{}Zeilenvorschub-Zeichen, werden zu einem einfachen Zeilenvorschub umgewandelt ~\cite[Abschn.~2.11]{xml}.
+        \item{} In Attributen vorkommende Whitespace-Zeichen (keine Character References) werden zu Leerzeichen umgewandelt~\cite[Abschn.~3.3.3]{xml}
     \end{enumerate}
 \end{samepage}
 
@@ -144,7 +144,7 @@ Zwar kann Whitespace durch \glspl{dtd} oder \acrshort{xsd}-Schemata auch als uns
 \subsubsection{Mixed Content}
 \label{sec:mixedcontent}
 
-Eine Besonderheit von \acrshort{xml} und auch \acrshort{sgml} ist, dass die Spezifikation sogenannten \emph{Mixed Content} erlaubt. Dieser liegt vor, wenn ein Element sowohl Character Data als auch Kindelemente enthält~\cite[Abschnitt 3.2.2]{maler2008xml}.
+Eine Besonderheit von \acrshort{xml} und auch \acrshort{sgml} ist, dass die Spezifikation sogenannten \emph{Mixed Content} erlaubt. Dieser liegt vor, wenn ein Element sowohl Character Data als auch Kindelemente enthält~\cite[Abschnitt 3.2.2]{xml}.
 
 \begin{example}[Mixed Content]~
     \begin{minted}{xml}
@@ -214,9 +214,9 @@ Zahlen außerhalb dieses Wertebereichs können nicht mehr fehlerfrei eingesetzt 
 
 \subsubsection{Unterstützung des Zeichenbereichs}
 
-Die \acrshort{xml}-Spezifikation erlaubt eine große Anzahl verschiedener Unicode-Zeichen weit über den ASCII-Raum hinaus ~\cite[Regel~2]{maler2008xml}. Da bei der Konvertierung keine Zeichendaten verloren gehen dürfen (vgl. Abschn.~\ref{sec:cdata}), müssen Konverter in der Lage sein, diese Zeichen zu \acrshort{json} zu übersetzen und ggf. korrekt zu quotieren.
+Die \acrshort{xml}-Spezifikation erlaubt eine große Anzahl verschiedener Unicode-Zeichen weit über den ASCII-Raum hinaus ~\cite[Regel~2]{xml}. Da bei der Konvertierung keine Zeichendaten verloren gehen dürfen (vgl. Abschn.~\ref{sec:cdata}), müssen Konverter in der Lage sein, diese Zeichen zu \acrshort{json} zu übersetzen und ggf. korrekt zu quotieren.
 
-Dies gilt auch für die Zeichen, von deren Einsatz \acrshort{xml}-Spezifikation ausdrücklich abgeraten wird~\cite[Abschn.~2.2]{maler2008xml}, da es sich dennoch um wohlgeformtes \acrshort{xml} handelt.
+Dies gilt auch für die Zeichen, von deren Einsatz \acrshort{xml}-Spezifikation ausdrücklich abgeraten wird~\cite[Abschn.~2.2]{xml}, da es sich dennoch um wohlgeformtes \acrshort{xml} handelt.
 
 \section{Auswahl der \acrshort{xml}-\acrshort{json}-Konverter}
 \label{sec:converters}
