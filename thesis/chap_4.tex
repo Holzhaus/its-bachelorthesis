@@ -302,7 +302,7 @@ Probleme hatte der Konverter jedoch mit der Umwandlung von \acrfullpl{pi}. Diese
 
 Zwar bietet \acrshort{json} tatsächlich keinen vergleichbaren Mechanismus, eine Unterstützung von \glspl{pi} kann für bestimmte Einsatzzwecke aber sinnvoll sein, beispielsweise wenn sonst die Verknüpfung mit \acrshort{xml}-Stylesheets oder Formatierungsinformationen in DocBook\hyp{}Dateien verloren gehen könnte. Im Rahmen der vorliegenden Arbeit wurde die \acrshort{jsonml}-Syntax daher um Unterstützung von \acrlongpl{pi} ergänzt.
 
-\glspl{pi} bestehen aus einem \emph{Ziel} und \emph{Daten} (Vgl. Abschn. \ref{sec:xmlbasics}), bilden also das 2-Tupel $P \coloneqq \langle target, data \rangle$. Der Datenteil kann dabei auch leer sein.
+\glspl{pi} bestehen aus einem \emph{Ziel} und \emph{Daten} (Vgl. Abschn. \ref{sec:xmlbasics}), bilden also das 2-Tupel\linebreak{}$P \coloneqq \langle target, data \rangle$. Der Datenteil kann dabei auch leer sein.
 
 Das Ziel muss ein gültiger Name im Sinne der \acrshort{xml}-Spezifikation sein~\cite[{Regel~[17]}]{xml}. Das heißt, dass der Name einer \gls{pi}\ ebenso wie auch der Tag-Name von Elementen~\cite[{Regel~[40]}]{xml} mit einem sog. \texttt{NameStartChar} beginnen muss. Dadurch wird ausgeschlossen, dass Tag-Namen mit bestimmten Zeichen beginnen -- darunter auch das Fragezeichen, da dies dazu führen würde, dass Start-Tags mit \glspl{pi} verwechselt werden könnten. Insbesondere in \acrshort{sgml} -- zu dem \acrshort{xml} vollständig kompatibel sein soll -- wären solche Tags nicht mehr von \glspl{pi} zu unterscheiden, da laut \acrshort{sgml}-Spezifikation lediglich ein einfaches Größerzeichen anstatt der Kombination aus Fragezeichen und Größerzeichen (\enquote{\texttt{?>}}) zum Schließen der \gls{pi} ausreicht.
 
