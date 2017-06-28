@@ -128,11 +128,14 @@ Die Reihenfolge der Attribute eines Elements nach einem \acrshort{xml}$\rightarr
 
 \subsubsection{Whitespace}
 
-\acrshort{xml}-Parser müssen grundsätzlich jeglichen Whitespace -- also Leerzeichen, Tabs und Zeilenumbrüche --  innerhalb des Wurzelelements eines Dokuments an die verarbeitende Applikation weiterreichen~\cite[Abschn.~2.10]{xml}. Tim Bray, einer der Autoren des \acrshort{xml}-Standards, schreibt dazu:
+\acrshort{xml}-Parser müssen grundsätzlich jeglichen Whitespace -- also Leerzeichen, Tabs und Zeilenumbrüche --  innerhalb des Wurzelelements eines Dokuments an die verarbeitende Applikation weiterreichen~\cite[Abschn.~2.10]{xml}.
 
+\begin{samepage}
+Tim Bray, einer der Autoren des \acrshort{xml}-Standards, schreibt dazu:
 \begin{foreigndisplayquote}{english}[{\cite[Abschn.~2.1 T-2]{bray1998axml}}]
     \acrshort{xml} has an incredibly simple rule about how to handle white space, that is contained in this one sentence: \enquote{If it ain't markup, it's data.} Under no circumstances will an \acrshort{xml} processor discard some white space because, in the processor's opinion, it is not \enquote{significant}.
 \end{foreigndisplayquote}
+\end{samepage}
 
 Ausgenommen hiervon ist jedoch Whitespace außerhalb des Wurzelelements, dem keine Bedeutung zukommt~\cite[Abschn.~2.1]{c14n}.
 
