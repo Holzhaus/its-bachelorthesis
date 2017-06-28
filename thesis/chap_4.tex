@@ -20,7 +20,7 @@
 
 \begin{figure}[t!]
     \includestandalone[width=\textwidth]{resulttable-sec}
-    \captionof{table}{Ergebnisse der Tests auf Sicherheitlücken}
+    \captionof{table}{Ergebnisse der Tests auf Sicherheitslücken}
     \label{tbl:results-sec}
 \end{figure}
 
@@ -31,20 +31,20 @@ Im Folgenden werden die Ergebnisse der verschiedenenen Konverter vorgestellt.
 \section{Cobra vs Mongoose}
 \label{sec:cobravsmongoose}
 
-Die Reihenfolge der Elemente sowie Whitespace werden von \emph{Cobra vs Mongoose} verworfen. Das Auftreten vom Mixed Content, \glspl{pi} und Kommentaren im Urspungsdokument führt zu Fehlern bei der Rückkonvertierung von \acrshort{json} zu \acrshort{xml}.
+Die Reihenfolge der Elemente sowie Whitespace werden von \emph{Cobra vs Mongoose} verworfen. Das Auftreten von Mixed Content, \glspl{pi} und Kommentaren im Urspungsdokument führt zu Fehlern bei der Rückkonvertierung von \acrshort{json} zu \acrshort{xml}.
 
 Enthält ein XML-Dokument Zeichen außerhalb des \acrshort{ascii}-Bereichs, führt dies zum Absturz des Programms.
 
-Bei mehreren verschiedenen Default Namespaces innerhalb eines Dokuments werden diese zusammengefasst und lediglich die zuletzt genannte Namespace-Deklaration beibehalten. Die Position der Namespace-Prefix-Deklarationen im Dokument wird ebenfalls nicht beibehalten.
+Bei mehreren verschiedenen Default Namespaces innerhalb eines Dokuments werden diese zusammengefasst und lediglich die zuletzt genannte Namespace-Deklaration beibehalten. Zudem geht die Position der Namespace-Prefix-Deklarationen im Dokument verloren.
 
 Der von \emph{Cobra vs Mongoose} eingesetzte \acrshort{xml}-Parser \emph{REXML} aus der Ruby\hyp{}Standardbibliothek war für keinen der überprüften Angriffe verwundbar.
 
 \section{GreenCape \acrshort{xml} Converter}
 \label{sec:greencapexml}
 
-Bei der Umwandlung von \acrshort{json} zu \acrshort{xml}-Daten fügt der Konverter automatisch Zeilen\-umbrüche hinter allen Elementen und Einrückungen mit einer Breite von vier Leerzeichen ein. Dies führte dazu, dass der Konverter keinen der Tests bestand. Um die Überprüfung der anderen, davon unabhängigen Aspekte des Konverters gewährleisten zu können, musste dieses Verhalten durch einen Patch entfernt werden (siehe Anhang~\ref{appx:greencapexml}).
+Bei der Umwandlung von \acrshort{json} zu \acrshort{xml}-Daten fügt der Konverter hinter allen Elementen automatisch Zeilen\-umbrüche und Einrückungen mit einer Breite von vier Leerzeichen ein. Dies führt dazu, dass der Konverter in unmodifizierter Form keinen der Tests besteht. Um die Überprüfung der anderen, davon unabhängigen Aspekte des Konverters gewährleisten zu können, wird dieses Verhalten durch einen Patch entfernt (siehe Anhang~\ref{appx:greencapexml}).
 
-Die Konversion der umfangreichen \acrshort{odf}-Spezifikation in Form einer \texttt{*.fodt}-Datei mithilfe des \emph{GreenCape \acrshort{xml} Converters} schug fehl. Der Versuch wurde abgebrochen, nachdem der PHP-Prozess seit rund 3 Stunden bei voll ausgelasteter \acrshort{cpu} eingefroren war. Eine Analyse mithilfe des Tools \mintinline{shell}{strace} zeigte, dass sich der PHP-Interpreter in einer Endlosschleife aus aufeinanderfolgenden \mintinline{c}{mmap()}- und \mintinline{c}{mummap()}-Syscalls befand (siehe Abb.~\ref{fig:greencapeloop}).
+Die Konversion der umfangreichen \acrshort{odf}-Spezifikation in Form einer \texttt{*.fodt}-Datei mithilfe des \emph{GreenCape \acrshort{xml} Converters} schlägt fehl. Der entsprechende Versuch wurde abgebrochen, nachdem der PHP-Prozess seit rund 3 Stunden bei voll ausgelasteter \acrshort{cpu} eingefroren war. Eine Analyse mithilfe des Tools \mintinline{shell}{strace} zeigte, dass sich der PHP-Interpreter in einer Endlosschleife aus aufeinanderfolgenden \mintinline{c}{mmap()}- und \mintinline{c}{mummap()}-Syscalls befand (siehe Abb.~\ref{fig:greencapeloop}).
 
 \begin{figure}[bp!]
     \inputminted{shell-session}{greencapexml-strace.txt}
@@ -56,7 +56,7 @@ Abgesehen von diesem möglicherweise für \acrshort{dos}-Attacken ausnutzbaren V
 
 CDATA-Sektionen in \acrshort{xml}-Dokumenten führen zu Fehlern im von der PHP-Bibliothek selbst implementierten \acrshort{xml}-Parser und bringen das Programm zum Absturz.
 
-Bei der Konversion von Mixed Content wird sämtlicher Textinhalt außerhalb der Kindelemente verworfen. Whitespace geht ebenso verloren. \glspl{pi} werden ignoriert. Abgesehen von Whitespace bleiben alle Sonderzeichen bei der Umwandlung jedoch erhalten.
+Bei der Konversion von Mixed Content wird sämtlicher Textinhalt außerhalb der Kind\-elemente verworfen. Whitespace geht ebenso verloren. \glspl{pi} werden ignoriert. Abgesehen von Whitespace bleiben alle Sonderzeichen bei der Umwandlung jedoch erhalten.
 
 Der \emph{GreenCape \acrshort{xml} Converter} konnte -- nach Deaktivierung der automatischen Einrückung -- als einziges Programm neben \acrshort{jsonml} (vgl. Abschn.~\ref{sec:jsonml}) die \acrshort{xml}-Antwort auf eine Anfrage an die MusicBrainz-\acrshort{api} verlustlos umwandeln.
 
@@ -83,7 +83,7 @@ Ein Blick in den Quellcode der Klasse \texttt{net.sf.json.XMLSerializer} zeigt, 
 \section{\acrshort{jsonml}}
 \label{sec:jsonml}
 
-Das Konversionverfahren \acrshort{jsonml} ist vergleichsweise vollständig. Lediglich die in Ursprungsdokumenten enthaltenen \glspl{pi} werden vom Konverter ignoriert und nicht in die \acrshort{json}-Ausgabe übernommen.
+Das Konversionverfahren \acrshort{jsonml} ist vergleichsweise vollständig. Lediglich die in den Ursprungsdokumenten enthaltenen \glspl{pi} werden vom Konverter ignoriert und nicht in die \acrshort{json}-Ausgabe übernommen.
 
 \acrshort{jsonml} ist von allen getesten Konvertern als einziger in der Lage, alle Test-Dokumente verlustlos zu konvertieren, solange diese keine \glspl{pi} enhielten.
 
@@ -111,19 +111,19 @@ Auch Whitespace geht bei der Konversion verloren -- neben Tab, Zeilenvorschub, W
 
 Zudem geht die Reihenfolge der Elemente verloren. \acrlongpl{pi} werden bei der Konversion ignoriert.
 
-Eine Verwundbarkeit für die gesteten Angriffe auf \acrshort{xml}-Parser wurde bei der Überprüfung nicht gefunden.
+Eine Verwundbarkeit für die getesteten Angriffe auf \acrshort{xml}-Parser wurde bei der Überprüfung nicht gefunden.
 
 \section{org.json.XML}
 \label{sec:orgjsonxml}
 
-Da es sich bei \texttt{org.json.XML} um ein Java-Package handelt, ist die Untersuchung von \acrshort{dos}-Angriffen wegen der Beschränkungen der \acrlong{jvm} ebenso problematisch wie bei \emph{Json-lib}~(vgl. Abschn.~\ref{sec:jsonlib}). Auch bei org.json.\acrshort{xml} musste die Verwundbarkeit gegenüber solchen Angriffen daher manuell verifiziert werden. Der \acrshort{xml}-Parser wird von dem Paket selbst implementiert und ist für keine der überprüften Angriffe verwundbar.
+Da es sich bei \texttt{org.json.XML} um ein Java-Package handelt, ist die Untersuchung von \acrshort{dos}-Angriffen wegen der Beschränkungen der \acrlong{jvm} ebenso problematisch wie bei \emph{Json-lib}~(vgl. Abschn.~\ref{sec:jsonlib}). Auch bei org.json.\acrshort{xml} musste die Verwundbarkeit gegenüber solchen Angriffen daher manuell verifiziert werden. Der \acrshort{xml}-Parser wird von dem Paket selbst implementiert und ist für keinen der überprüften Angriffe verwundbar.
 
-Attribute gehen bei der Konvertierung von \acrshort{xml}-Daten in \acrshort{json} zwar nicht verloren -- bei der Rückkonvertierung kann der Konverter jedoch nicht mehr erkennen, dass es sich um Attribute handelt und interpretiert diese stattdessen als Elemente.
+Attribute gehen bei der Konvertierung von \acrshort{xml}-Daten in \acrshort{json} zwar nicht verloren, bei der Rückkonvertierung kann der Konverter jedoch nicht mehr erkennen, dass es sich um Attribute handelt und interpretiert diese stattdessen als Elemente.
 
 \acrshort{xml}-Namespace-Prefixes für Tag-Namen werden zwar grundsätzlich unterstützt, Namespaces können aber aufgrund der fehlerhaften Behandlung von Attributen dennoch nicht genutzt werden.
  Mixed Content wird nicht unterstützt -- enthält ein Element neben einem Kindelement auch Text, wird dieser verworfen.
 
-Ebenfalls gehen bei der Konversion \glspl{pi} und die Ordung der Dokumentr verloren. Die Elementreihenfolge ist dabei anscheinend zufällig: Bei der Rückkonvertierung werden Elemente weder in alphabetischer noch in der Reihenfolge ausgegeben, in der sie in der JSON-Datei angeordnet sind.
+Ebenfalls gehen bei der Konversion \glspl{pi} und die Ordung der Dokumente verloren. Die Elementreihenfolge ist dabei anscheinend zufällig: Bei der Rückkonvertierung werden Elemente weder in alphabetischer noch in der Reihenfolge ausgegeben, in der sie in der JSON-Datei angeordnet sind.
 
 Der Konverter unterstützt lediglich die Konversion von druckbaren \acrshort{ascii}-Zeichen. Unicode-Zeichen außerhalb dieses Bereichs werden bei der Umwandlung in das \acrshort{json}-Format in eine der Byteanzahl ihrer \acrshort{utf8}-Kodierung entsprechnde Menge von Fragezeichen umgewandelt.
 
@@ -132,7 +132,7 @@ Zudem werden Zahlenwerte sowie die Zeichenketten \enquote{\mintinline{json}{true
 \section{Pesterfish}
 \label{sec:pesterfish}
 
-Bei der Konversion gehen die Namen der Namesprace-Prefixe verloren und werden durch generische Bezeichnungen (\texttt{ns0}, \texttt{ns1}, \dots{}) ersetzt. Dies werden auch dann verwendet, wenn im Ursprungsdokument keinerlei Namespace-Prefixes verwendet wurden, sondern ein eigener Default-Namespace genutzt wurde. Grund dafür ist die \texttt{Element}\-\texttt{Tree}-\acrshort{api}, die Namespace-Prefixes beim Parsen von \acrshort{xml} automatisch zur vollen URI expandiert und den ursprünglichen Prefixnamen verwirft~\cite[Abschn.~20.5.1.7]{pythonetreexmlns}.
+Bei der Konversion gehen die Namen der Namespace-Prefixe verloren und werden durch generische Bezeichnungen (\texttt{ns0}, \texttt{ns1}, \dots{}) ersetzt. Diese werden auch dann verwendet, wenn im Ursprungsdokument keinerlei Namespace-Prefixes verwendet wurden, sondern ein eigener Default-Namespace genutzt wurde. Grund dafür ist die \texttt{Element}\-\texttt{Tree}-\acrshort{api}, die Namespace-Prefixes beim Parsen von \acrshort{xml} automatisch zur vollen URI expandiert und den ursprünglichen Prefixnamen verwirft~\cite[Abschn.~20.5.1.7]{pythonetreexmlns}.
 Zudem gehen bei der Konvertierung auch \glspl{pi} verloren.
 
 Dennoch ist es mit Pesterfish-Konverter möglich, komplette \acrshort{rss}-Dateien verlustlos in das \acrshort{json}-Format und wieder zurück zu konvertieren.
@@ -148,9 +148,7 @@ Verfügt ein Element über mehrere Kindelemente mit dem gleichen Tag-Namen, trit
 
 Mixed Content -- auch durch Einrückungen verursachter -- führt zum Absturz von \emph{x2js}. Sonderzeichen stellen für den Konverter jedoch kein Problem dar.
 
-Bei komplexeren Dokumenten entstehen durch die Konversion mittels \emph{xjs} extrem tief verschachtelte JSON-Strukturen mit mehr als 2\,200 Ebenen (vgl. Abb.~\ref{fig:jsondepth} in Abschn.~\ref{sec:jsonml-syntax}). Dies kann bei Parsern zu Problemen und Abstürzen führen, was auch dem zur Reformatierung der JSON-Daten eingesetzten Parser der Fall war. Die entsprechenden Testfälle mussten daher manuell wiederholt werden.
-
-%TODO: Add manual test results
+Bei komplexeren Dokumenten entstehen durch die Konversion mittels \emph{xjs} extrem tief verschachtelte JSON-Strukturen mit mehr als 2\,200 Ebenen (vgl. Abb.~\ref{fig:jsondepth} in Abschn.~\ref{sec:jsonml-syntax}). Dies kann bei Parsern zu Problemen und Abstürzen führen, was auch bei dem zur Reformatierung der JSON-Daten eingesetzten Parser der Fall war. Die entsprechenden Testfälle mussten daher manuell wiederholt werden.
 
 \section{x2js (Fork)}
 \label{sec:x2js-fork}
@@ -186,7 +184,7 @@ Attribute werden bei der \acrshort{json}-Konvertierung mithilfe der \emph{Abdera
 
 Außerdem werden teilweise Elemente und Textknoten zu Attributwerten umgedeutet. So wird aus \enquote{\mintinline{xml}{<a><b>hello</b></a>}} durch einen Round-Trip \enquote{\mintinline{xml}{<a b="hello" />}}
 
-Da der Konverters nicht in der Lage ist, anhand der \acrshort{json}-Daten verlässlich zwischen Elementen und Attributen zu unterscheiden und diese dadurch später nicht mehr korrekt rekonstruieren kann, schlagen auch Tests fehl, die der Konverter eigentlich bestehen könnte. So nutzt der Konverter bei mehreren Kindelementen \acrshort{json}-Arrays, d.h. die Elementreihenfolge ist auch nach der Konversion noch ersichtlich.
+Da der Konverter nicht in der Lage ist, anhand der \acrshort{json}-Daten verlässlich zwischen Elementen und Attributen zu unterscheiden und diese dadurch später nicht mehr korrekt rekonstruieren kann, schlagen auch Tests fehl, die der Konverter eigentlich bestehen könnte. So nutzt der Konverter bei mehreren Kindelementen \acrshort{json}-Arrays, d.h. die Elementreihenfolge ist auch nach der Konversion noch ersichtlich.
 Auch Tag-Name und Attribute des Wurzelelements gehen eigentlich nicht verloren.
 
 Mixed Content wird nicht unterstützt, es ist lediglich der erste Textknoten im Dokument auffindbar.
@@ -195,12 +193,12 @@ Führender oder anhängender Whitespace wird bei der Konversion verworfen.
 \subsection{Badgerfish}
 \label{sec:xmljson-badgerfish}
 
-Die Ergebnisse stimmen im Wesentlichen mit denen  denen des \emph{Cobra-vs-Mongoose}-Konverters (vgl.~Abschn.~\ref{sec:cobravsmongoose}) überein, der ebenfalls auf die sogenannte Badgerfish-Konvention zur Darstellung von \acrshort{xml}-Strukturen in \acrshort{json} setzt. Nicht unterstützte Features wie Mixed Content, \glspl{pi} oder Kommentare führten bei \emph{xmljson} jedoch nicht zu eineme Absturz des Programms. Zudem kommt es zu Problemen durch den Einsatz von Typinferenz und den Verlust der Prefixnamen von Namespaces.
+Die Ergebnisse stimmen im Wesentlichen mit denen des \emph{Cobra-vs-Mongoose}-Konverters (vgl.~Abschn.~\ref{sec:cobravsmongoose}) überein, der ebenfalls auf die sogenannte Badgerfish-Konvention zur Darstellung von \acrshort{xml}-Strukturen in \acrshort{json} setzt. Nicht unterstützte Features wie Mixed Content, \glspl{pi} oder Kommentare führten bei \emph{xmljson} jedoch nicht zu einem Absturz des Programms. Zudem kommt es zu Problemen durch den Einsatz von Typinferenz und den Verlust der Prefixnamen von Namespaces.
 
 \subsection{Cobra}
 \label{sec:xmljson-cobra}
 
-Bei \emph{Cobra} handelt es sich um eine modifizierte Variante von \emph{Abdera}, die sich hauptsächlich darin unterscheiden, welche Schlüssel in der \acrshort{json}-Objekt-Repräsentation eines \acrshort{xml}-Dokuments optional sind. Daher hat auch \emph{Cobra} große Probleme mit der Rückkonvertierung zu \acrshort{xml} und der Unterscheidung zwischen Elementen und Attributen.
+Bei \emph{Cobra} handelt es sich um eine modifizierte Variante der \emph{Abdera}-Konvention, die sich hauptsächlich in der Frage, welche Schlüssel in der \acrshort{json}-Objekt-Repräsentation eines \acrshort{xml}-Dokuments optional sind, von \emph{Abdera} unterscheidet. Daher hat auch \emph{Cobra} große Probleme mit der Rückkonvertierung zu \acrshort{xml} und der Unterscheidung zwischen Elementen und Attributen.
 
 Ein weiterer Unterschied ist, dass bei Cobra keine Datentypen erraten werden, sondern alles als String behandelt wird.
 
