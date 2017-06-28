@@ -24,7 +24,7 @@
     \label{tbl:results-sec}
 \end{figure}
 
-Es wurden insgesamt 101 Testfälle verwendet und 11 verschiedene Konverter überprüft. Allerdings konnte keiner der Konverter alle Anforderungen aus Abschnitt~\ref{sec:criteria} erfüllen.
+Es wurden insgesamt 123 Testfälle verwendet und 11 verschiedene Konverter überprüft. Allerdings konnte keiner der Konverter alle Anforderungen aus Abschnitt~\ref{sec:criteria} erfüllen.
 
 Im Folgenden werden die Ergebnisse der verschiedenenen Konverter vorgestellt.
 
@@ -36,6 +36,10 @@ Im Folgenden werden die Ergebnisse der verschiedenenen Konverter vorgestellt.
 
 Die Reihenfolge der Elemente sowie Whitespace werden von \emph{Cobra vs Mongoose} verworfen. Das Auftreten vom Mixed Content, \glspl{pi} und Kommentaren im Urspungsdokument führt zu Fehlern bei der Rückkonvertierung von \acrshort{json} zu \acrshort{xml}.
 
+Enthält ein XML-Dokument Zeichen außerhalb des \acrshort{ascii}-Bereichs, führt dies zum Absturz des Programms.
+
+Bei mehreren verschiedenen Default Namespaces innerhalb eines Dokuments werden diese zusammengefasst und lediglich die zuletzt genannte Namespace-Deklaration beibehalten. Die Position der Namespace-Prefix-Deklarationen im Dokument wird ebenfalls nicht beibehalten.
+
 Der von \emph{Cobra vs Mongoose} eingesetzte \acrshort{xml}-Parser \emph{REXML} aus der Ruby\hyp{}Standardbibliothek war für keinen der überprüften Angriffe verwundbar.
 
 \section{GreenCape \acrshort{xml} Converter}
@@ -45,7 +49,7 @@ Bei der Umwandlung von \acrshort{json} zu \acrshort{xml}-Daten fügt der Konvert
 
 Die Konversion der umfangreichen \acrshort{odf}-Spezifikation in Form einer \texttt{*.fodt}-Datei mithilfe des \emph{GreenCape \acrshort{xml} Converters} schug fehl. Der Versuch wurde abgebrochen, nachdem der PHP-Prozess seit rund 3 Stunden bei voll ausgelasteter \acrshort{cpu} eingefroren war. Eine Analyse mithilfe des Tools \mintinline{shell}{strace} zeigte, dass sich der PHP-Interpreter in einer Endlosschleife aus aufeinanderfolgenden \mintinline{c}{mmap()}- und \mintinline{c}{mummap()}-Syscalls befand (siehe Abb.~\ref{fig:greencapeloop}).
 
-\begin{figure}[h!]
+\begin{figure}[bp!]
     \inputminted{shell-session}{greencapexml-strace.txt}
     \captionof{figure}{Eine Endlosschleife im \emph{GreenCape \acrshort{xml} Converter} musste mittels \texttt{SIGTERM} unterbrochen werden.}
     \label{fig:greencapeloop}
@@ -63,6 +67,8 @@ Der \emph{GreenCape \acrshort{xml} Converter} konnte als einziges Programm neben
 \label{sec:jsonlib}
 
 Bei Kommentaren oder \glspl{pi} innerhalb des Wurzelelements eines \acrshort{xml}-Dokuments stürzt der Konverter ab. \glspl{pi} außerhalb des Wurzelelements werden von \emph{Json-lib} ignoriert. Bei der Konversion geht zudem der Tag-Name des Wurzelelements verloren. Tritt Mixed Content auf, werden bei der Rückkonversion alle Text-Knoten zusammengefasst.
+
+Druckbare \acrshort{ascii}-Zeichen sowie Leerzeichen werden korrekt umgewandelt, alle andere Zeichen werden von \emph{Json-lib} verworfen.
 
 Mehrere aufeinanderfolgende Elemente selben Namens werden von \emph{Json-lib} in ein \acrshort{json}-Array konvertiert. Dabei wird jedoch lediglich der Inhalt der Elemente übernommen, während der Tag-Name verloren geht.
 
@@ -82,7 +88,7 @@ Ein Blick in den Quellcode der Klasse \texttt{net.sf.json.XMLSerializer} zeigt, 
 
 Das Konversionverfahren \acrshort{jsonml} ist vergleichsweise vollständig. Lediglich die in Ursprungsdokumenten enthaltenen \glspl{pi} werden vom Konverter ignoriert und nicht in die \acrshort{json}-Ausgabe übernommen.
 
-\acrshort{jsonml} ist von allen getesten Konvertern als einziger in der Lage, alle Test-Dokumente verlustlos zu konvertieren, solange sie keine \glspl{pi} enhielten.
+\acrshort{jsonml} ist von allen getesten Konvertern als einziger in der Lage, alle Test-Dokumente verlustlos zu konvertieren, solange diese keine \glspl{pi} enhielten.
 
 \section{Json.NET}
 \label{sec:jsondotnet}
@@ -134,6 +140,10 @@ Bei der Umwandlung mittels \emph{x2js} geht die Reihenfolge der Elemente verlore
 Verfügt ein Element über mehrere Kindelemente mit dem gleichen Tag-Namen, tritt bei der Konversion ein Fehler auf, wodurch mehrere \acrshort{json}-Arrays ineinander geschachtelt werden. Bei der Rückkonversion enstehen dann zusätzliche Kindelemente, bei denen die Array-Indizes als Tag-Name verwendet werden.
 
 Mixed Content -- auch Einrückungen -- führen zum Absturz von \emph{x2js}. Sonderzeichen stellen für den Konverter jedoch kein Problem dar.
+
+Bei komplexeren Dokumenten entstehen durch die Konversion mittels \emph{xjs} extrem tief verschachtelte JSON-Strukturen mit mehr als 2\,200 Ebenen (vgl. Abb.~\ref{fig:jsondepth} in Abschn.~\ref{sec:json-syntax}). Dies kann bei Parsern zu Problemen und Abstürzen führen, was auch dem zur Reformatierung der JSON-Daten eingesetzten Parser der Fall war. Die entsprechenden Testfälle mussten daher manuell wiederholt werden.
+
+%TODO: Add manual test results
 
 \section{x2js (Fork)}
 \label{sec:x2js-fork}
@@ -217,6 +227,7 @@ In diesem Kapitel wird daher zunächst ein Überblick über die von \acrshort{js
 Darauf aufbauend werden dann die notwendigen Modifikationen am \acrshort{jsonml}-Verfahren beschrieben, die im Zuge dieser Arbeit entwickelt wurden, um das Ziel eines vollständig verlustlosen Konversionsverfahrens zu erreichen.
 
 \section{Syntax}
+\label{sec:jsonml-syntax}
 
 Im Gegensatz zu anderen Konvertern nutzt \acrshort{jsonml} ungeordnete \acrshort{json}-Objekte ausschließlich für Attributlisten~\cite{jsonmlsyntax}. Die Baumstruktur eines \acrshort{xml}-Dokuments wird mittels \acrshort{json}-Arrays dargestellt, wobei ein Array immer genau ein Element repräsentiert. Textknoten bzw. CDATA-Sektionen werden zu einfachen \acrshort{json}-Strings umgewandelt.
 
