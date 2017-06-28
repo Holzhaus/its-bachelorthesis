@@ -151,11 +151,11 @@ Zwar kann Whitespace durch \glspl{dtd} oder \acrshort{xsd}-Schemata auch als uns
 
 Eine Besonderheit von \acrshort{xml} und auch \acrshort{sgml} ist, dass die Spezifikation sogenannten \emph{Mixed Content} erlaubt. Dieser liegt vor, wenn ein Element sowohl Character Data als auch Kindelemente enthält~\cite[Abschn.~3.2.2]{xml}.
 
-\begin{example}[Mixed Content]~
-    \begin{minted}{xml}
+\begin{example}[Mixed Content]
+     Ist \emph{Character Data} mit Elementen durchsetzt, wird dies \emph{Mixed Content} genannt.
+    \begin{minted}[linenos=false]{xml}
 <mixed>This is an element<br /> containing <emph>mixed content</emph>.<mixed>
     \end{minted}
-    \captionof{figure}{Ist \emph{Character Data} mit Elementen durchsetzt, wird dies \emph{Mixed Content} genannt.}
 \end{example}
 
 \emph{Mixed Content} stellt \acrshort{xml}-Parser vor besondere Herausforderungen~\cite{mcgrath2002mixedcontent}. Zudem existiert kein \acrshort{json}-Äquivalent von \emph{Mixed Content}, was eine Konversion erschwert.
