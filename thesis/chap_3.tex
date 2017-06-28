@@ -128,10 +128,10 @@ Die Reihenfolge der Attribute eines Elements nach einem \acrshort{xml}$\rightarr
 
 \subsubsection{Whitespace}
 
-\acrshort{xml}-Parser müssen grundsätzlich jeglichen Whitespace -- also Leerzeichen, Tabs und Zeilenumbrüche --  innerhalb des Wurzelelements eines Dokuments an die verarbeitende Applikation weiterreichen~\cite[Abschn.~2.10]{xml}. Tim Bray, einer der Autoren des XML-Standards, schreibt dazu:
+\acrshort{xml}-Parser müssen grundsätzlich jeglichen Whitespace -- also Leerzeichen, Tabs und Zeilenumbrüche --  innerhalb des Wurzelelements eines Dokuments an die verarbeitende Applikation weiterreichen~\cite[Abschn.~2.10]{xml}. Tim Bray, einer der Autoren des \acrshort{xml}-Standards, schreibt dazu:
 
 \begin{foreigndisplayquote}{english}[{\cite[Abschn.~2.1 T-2]{bray1998axml}}]
-    XML has an incredibly simple rule about how to handle white space, that is contained in this one sentence: \enquote{If it ain't markup, it's data.} Under no circumstances will an XML processor discard some white space because, in the processor's opinion, it is not \enquote{significant}.
+    \acrshort{xml} has an incredibly simple rule about how to handle white space, that is contained in this one sentence: \enquote{If it ain't markup, it's data.} Under no circumstances will an \acrshort{xml} processor discard some white space because, in the processor's opinion, it is not \enquote{significant}.
 \end{foreigndisplayquote}
 
 Ausgenommen hiervon ist jedoch Whitespace außerhalb des Wurzelelements, dem keine Bedeutung zukommt~\cite[Abschn.~2.1]{c14n}.
@@ -363,7 +363,7 @@ Alle eingesetzen Sicherheits-Testfälle basieren auf den \acrshort{xml}-Testdoku
 
 Zur einfacheren Durchführung der Testreihen wurde ein Evaluations-Framework auf Basis von Python 3.5 implementiert, das ca. 2600 Zeilen Programmcode (LOC) umfasst. Der Testprozess wird dabei weitestgehend automatisiert.
 
-Um die \acrlong{c14n} durchzuführen, nutzt das Framework die~\mintinline{python}{write_c14n()}-Methode aus der \emph{lxml}-Bibliothek\footnote{http://lxml.de/}. Die Umwandlung in kanonisches XML erfolgt dabei nicht-exklusiv (vgl. Abschn.~\ref{sec:excc14n}) und ohne Kommentare -- davon ausgenommen ist aber ein Testfall, der die Unterstützung für Kommentare überprüft.
+Um die \acrlong{c14n} durchzuführen, nutzt das Framework die~\mintinline{python}{write_c14n()}-Methode aus der \emph{lxml}-Bibliothek\footnote{http://lxml.de/}. Die Umwandlung in kanonisches \acrshort{xml} erfolgt dabei nicht-exklusiv (vgl. Abschn.~\ref{sec:excc14n}) und ohne Kommentare -- davon ausgenommen ist aber ein Testfall, der die Unterstützung für Kommentare überprüft.
 
 Für das \acrshort{xml}-Parsing selbst kommt \emph{defusedxml}\footnote{https://pypi.python.org/pypi/defusedxml} zum Einsatz, das die gängigen Python-APIs zum Parsen von \acrshort{xml}-Dokumenten einem Security-Hardening unterzieht und daher nicht anfällig gegenüber fast allen Angriffsvektoren ist~\cite[Abschn.~9.5]{spaeth2016sok}.
 

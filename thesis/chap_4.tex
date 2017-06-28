@@ -32,7 +32,7 @@ Im Folgenden werden die Ergebnisse der verschiedenenen Konverter vorgestellt. Au
 
 Die Reihenfolge der Elemente sowie Whitespace werden von \emph{Cobra vs Mongoose} verworfen. Das Auftreten von Mixed Content, \glspl{pi} und Kommentaren im Urspungsdokument führt zu Fehlern bei der Rückkonvertierung von \acrshort{json} zu \acrshort{xml}.
 
-Enthält ein XML-Dokument Zeichen außerhalb des \acrshort{ascii}-Bereichs, führt dies zum Absturz des Programms.
+Enthält ein \acrshort{xml}-Dokument Zeichen außerhalb des \acrshort{ascii}-Bereichs, führt dies zum Absturz des Programms.
 
 Bei mehreren verschiedenen Default Namespaces innerhalb eines Dokuments werden diese zusammengefasst und lediglich die zuletzt genannte Namespace-Deklaration beibehalten. Zudem geht die Position der Namespace-Prefix-Deklarationen im Dokument verloren.
 
@@ -95,7 +95,7 @@ Probleme hat der Konverter mit der Beibehaltung der ursprünglichen Elementreihe
 
 \emph{Json.NET} ist als einziger Konverter im Test in der Lage, \glspl{pi} korrekt umzuwandeln -- zumindest solange sie keinen Whitespace enthalten, da dieser verloren geht. Treten \glspl{pi} außerhalb des Wurzelelements auf, führt dies bei der Rückkonvertierung der \acrshort{json}-Daten zu einem Absturz des Programms.
 
-Im Gegensatz zu allen anderen überprüften Konvertern wandelt \emph{Json.NET} auch \acrshort{xml}-Kommentare um. Der Konverter fügt diese als JavaScript-Blockkommentare, d.h. in der Form \enquote{\mintinline{javascript}{/* Comment */}}, in die JSON-Ausgabe ein. Da Kommentare jedoch nicht Teil der \acrshort{json}-Syntax sind (vgl. Def.~\ref{def:json} in Abschn.~\ref{sec:jsontypes}), ist die von \emph{Json.NET} in diesem Fall produzierte Ausgabe kein gültiges \acrshort{json}~\cite{ecma404,rfc7159} und führt bei den meisten Parsern zu Problemen~\cite[Abschn.~2.1,~4.1]{seriot2016minefield}.
+Im Gegensatz zu allen anderen überprüften Konvertern wandelt \emph{Json.NET} auch \acrshort{xml}-Kommentare um. Der Konverter fügt diese als JavaScript-Blockkommentare, d.h. in der Form \enquote{\mintinline{javascript}{/* Comment */}}, in die \acrshort{json}-Ausgabe ein. Da Kommentare jedoch nicht Teil der \acrshort{json}-Syntax sind (vgl. Def.~\ref{def:json} in Abschn.~\ref{sec:jsontypes}), ist die von \emph{Json.NET} in diesem Fall produzierte Ausgabe kein gültiges \acrshort{json}~\cite{ecma404,rfc7159} und führt bei den meisten Parsern zu Problemen~\cite[Abschn.~2.1,~4.1]{seriot2016minefield}.
 
 Alle Zeichen, die nicht mittels 7-Bit-\acrshort{ascii}-Kodierung darstellbar sind (d.\,h. alle Zeichen, deren Unicode-Codepoint hinter U+00007F liegt) werden von \emph{Json.NET} bereits bei der Konversion in \acrshort{json} durch Fragezeichen ersetzt, deren Anzahl sich an der Anzahl der Bytes bemisst, die für die Kodierung des Zeichens in \acrshort{utf8} nötig sind.
 
@@ -120,7 +120,7 @@ Attribute gehen bei der Konvertierung von \acrshort{xml}-Daten in \acrshort{json
 \acrshort{xml}-Namespace-Prefixes für Tag-Namen werden zwar grundsätzlich unterstützt, Namespaces können aber aufgrund der fehlerhaften Behandlung von Attributen dennoch nicht genutzt werden.
  Mixed Content wird nicht unterstützt -- enthält ein Element neben einem Kindelement auch Text, wird dieser verworfen.
 
-Ebenfalls gehen bei der Konversion \glspl{pi} und die Ordung der Dokumente verloren. Die Elementreihenfolge ist dabei anscheinend zufällig: Bei der Rückkonvertierung werden Elemente weder in alphabetischer noch in der Reihenfolge ausgegeben, in der sie in der JSON-Datei angeordnet sind.
+Ebenfalls gehen bei der Konversion \glspl{pi} und die Ordung der Dokumente verloren. Die Elementreihenfolge ist dabei anscheinend zufällig: Bei der Rückkonvertierung werden Elemente weder in alphabetischer noch in der Reihenfolge ausgegeben, in der sie in der \acrshort{json}-Datei angeordnet sind.
 
 Der Konverter unterstützt lediglich die Konversion von druckbaren \acrshort{ascii}-Zeichen. Unicode-Zeichen außerhalb dieses Bereichs werden bei der Umwandlung in das \acrshort{json}-Format in eine der Byteanzahl ihrer \acrshort{utf8}-Kodierung entsprechnde Menge von Fragezeichen umgewandelt.
 
@@ -145,7 +145,7 @@ Verfügt ein Element über mehrere Kindelemente mit dem gleichen Tag-Namen, trit
 
 Mixed Content -- auch durch Einrückungen verursachter -- führt zum Absturz von \emph{x2js}. Sonderzeichen stellen für den Konverter jedoch kein Problem dar.
 
-Bei komplexeren Dokumenten entstehen durch die Konversion mittels \emph{x2js} extrem tief verschachtelte JSON-Strukturen mit mehr als 2\,200 Ebenen (vgl. Abb.~\ref{fig:jsondepth} in Abschn.~\ref{sec:jsonml-syntax}). Dies kann bei Parsern zu Problemen und Abstürzen führen, was auch bei dem zur Reformatierung der JSON-Daten eingesetzten Parser der Fall war. Die entsprechenden Testfälle mussten daher manuell wiederholt werden.
+Bei komplexeren Dokumenten entstehen durch die Konversion mittels \emph{x2js} extrem tief verschachtelte \acrshort{json}-Strukturen mit mehr als 2\,200 Ebenen (vgl. Abb.~\ref{fig:jsondepth} in Abschn.~\ref{sec:jsonml-syntax}). Dies kann bei Parsern zu Problemen und Abstürzen führen, was auch bei dem zur Reformatierung der \acrshort{json}-Daten eingesetzten Parser der Fall war. Die entsprechenden Testfälle mussten daher manuell wiederholt werden.
 
 \section{x2js (Fork)}
 \label{sec:x2js-fork}
@@ -211,7 +211,7 @@ Bei der Konversion kann es zu Informationsverlust durch Typinferenz kommen.
 
 In der Standardeinstellung verwirft diese Konvention das Wurzelelement -- dieses Verhalten ist jedoch über einen Parameter abschaltbar.
 
-Alle Attribute gehen bei der Konversion verloren, ebenso wie \glspl{pi}. Als einzige Konvention des XMLJSON-Konverters wurde bei ausschließlich Text enhaltenden Elementen führender oder nachfolgender Whitespace nicht verworfen -- Mixed Content wird jedoch trotzdem nicht unterstützt.
+Alle Attribute gehen bei der Konversion verloren, ebenso wie \glspl{pi}. Als einzige Konvention des \emph{xmljson}-Konverters wurde bei ausschließlich Text enhaltenden Elementen führender oder nachfolgender Whitespace nicht verworfen -- Mixed Content wird jedoch trotzdem nicht unterstützt.
 
 \subsection{Yahoo}
 \label{sec:xmljson-yahoo}
