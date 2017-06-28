@@ -3,7 +3,7 @@
 Für den implementationsunabhängigen Austausch von zugleich menschen- als auch
 maschinenlesbaren Daten hat sich die \gls{xml}
 bewährt. In bestimmten Bereichen wie Web-\acrshortpl{api} hat die \gls{json}
-das bewährte \acrshort{xml}-Format inzwischen jedoch überflügelt.
+das bewährte \acrshort{xml}-Format jedoch inzwischen überflügelt.
 
 Dabei kann neben der spezifischen Situation auch die eingesetzte
 Programmiersprache, die Unterstützung durch das zugrundeliegende Framework
@@ -35,7 +35,7 @@ Transfer von \acrshort{xml}-Daten ins \acrshort{json}-Format keineswegs der Fall
 Ziel der vorliegenden Arbeit ist es daher, ein sicheres und verlustloses
 Verfahren zur Konversion von \acrshort{xml}-Dokumenten in das \acrshort{json}-Format zu finden.
 
-Dazu wird eine Reihe von bereits erhältlichen Programmbibliotheken analysiert,
+Dazu wird eine Reihe von bereits verfügbaren Programmbibliotheken analysiert,
 die \acrshort{xml}-Daten in \acrshort{json} abbilden und aus der resultierenden
 \acrshort{json}-Datenstruktur wieder ein \acrshort{xml}-Dokument erstellen können.
 
@@ -57,14 +57,7 @@ Einsatzbereiche eingesetzt. So dient \acrshort{xml} den Dateiformaten \acrshort{
 Office-Dateiformate -- das \acrfull{odf}, Microsofts % chktex 8
 \acrfull{ooxml} und Apples iWorks -- bauen auf \acrshort{xml} auf. % chktex 8
 
-Inzwischen gewinnt jedoch \acrshort{json} vor allem im Mobile-
-und Web-Bereich immer mehr an Bedeutung (vgl. Abb.~\ref{fig:xmljsonapis}). Laut dem \acrshort{api}-Verzeichnis
-\emph{ProgrammableWeb}\footnote{\url{https://www.programmableweb.com/}} unterstützten im Jahr 2013 ca. 60 Prozent aller neu
-hinzugefügten \acrshortpl{api} das \acrshort{json}-Format, während
-\acrshort{xml} im selben Zeitraum lediglich von 37 Prozent der neuen \acrshortpl{api}
-unterstützt wurde.~\cite{duvander2013convergence}
-
-\begin{figure}[h!]
+\begin{figure}[hbp!]
     \begin{center}
         \includestandalone[width=\textwidth]{xml-json-apis-2005-to-2013}
     \end{center}
@@ -72,6 +65,12 @@ unterstützt wurde.~\cite{duvander2013convergence}
     \label{fig:xmljsonapis}
 \end{figure}
 
+Inzwischen gewinnt jedoch \acrshort{json} vor allem im Mobile-
+und Web-Bereich immer mehr an Bedeutung (vgl. Abb.~\ref{fig:xmljsonapis}). Laut dem \acrshort{api}-Verzeichnis
+\emph{ProgrammableWeb}\footnote{\url{https://www.programmableweb.com/}} unterstützten im Jahr 2013 ca. 60 Prozent aller neu
+hinzugefügten \acrshortpl{api} das \acrshort{json}-Format, während
+\acrshort{xml} im selben Zeitraum lediglich von 37 Prozent der neuen \acrshortpl{api}
+unterstützt wurde.~\cite{duvander2013convergence}
 
 \acrshort{json} ist bei bestimmten Aufgaben in Bezug auf Geschwindigkeit und
 Ressourcenauslastung deutlich effizienter als \acrshort{xml}~\cite{nurseitov2009comparison}\@.
@@ -103,9 +102,9 @@ Goessner schlägt ein Mapping zwischen strukturierten \acrshort{xml}-Daten und \
 
 Ein US-Patent von Williamson~\cite{US20140244692} beschreibt die Überführung von Daten aus einem \acrshort{xml}-Dokument in eine \acrshort{json}-Struktur, indem bestimmte Teile des \acrshort{xml}-Baums selektiert (z.\,B. mittels \acrshort{xpath}-artigen Ausdrücken) und einem Ziel-Schlüssel im resultierenden \acrshort{json}-Objekt zugeordnet werden. Dadurch werden jedoch lediglich Teile der im \acrshort{xml}-Dokument enthaltenen Informationen in die Ausgabe übernommen, sodass verlustloses Round-Tripping unmöglich wird.
 
-In einem Paper vergleicht Wang~\cite{wang2011improving} die beiden Formate und entwickelt einen Übersetzungsalgorithmus zwischen den beiden Formaten. Allerdings wird dabei von datenorientiertem \acrshort{xml} ausgegangen und somit keine Probleme betrachtet, die bei der Umwandlung von spezfischen Strukturen einer dokumentorientierten Auszeichnungssprache wie \acrshort{xml} in das \acrshort{json}-Format entstehen können, beispielsweise die korrekte Abbildung von Mixed Content (vgl. Abschn.~\ref{sec:mixedcontent}). Der von Wang vorgeschlagene Algorithmus ist zudem auch bei datenorientierem \acrshort{xml} unter Umständen verlustbehaftet.\cite[S.~184]{wang2011improving}.
+In einem Paper vergleicht Wang~\cite{wang2011improving} die beiden Formate und entwickelt einen Übersetzungsalgorithmus zwischen den beiden Formaten. Allerdings wird dabei von datenorientiertem \acrshort{xml} ausgegangen und somit keine Probleme betrachtet, die bei der Umwandlung von spezfischen Strukturen einer dokumentorientierten Auszeichnungssprache wie \acrshort{xml} in das \acrshort{json}-Format entstehen können, beispielsweise die korrekte Abbildung von Mixed Content (vgl. Abschn.~\ref{sec:mixedcontent}). Der von Wang vorgeschlagene Algorithmus ist zudem auch bei datenorientierem \acrshort{xml} unter Umständen verlustbehaftet~\cite[S.~184]{wang2011improving}.
 
-Ein System zur Umstellung des von einer Webapplikation auf JavaScript-Basis genutzten Datenformats wird von Ying und Miller~\cite{ying2013refactoring} vorgeschlagen. Neben der Automatischen Konversion von \acrshort{xml} in \acrshort{json} wird dabei auch der JavaScript-Quelltext der Applikation automatisch an das neue Format angepasst. Der Fokus der Arbeit liegt dabei auf dem Code-Refactoring -- einer genauere Evaluation des eingesetzten Konversionsverfahrens in Bezug auf Sicherheit und Verlustlosgkeit findet nicht statt.
+Ein System zur Umstellung des von einer Webapplikation auf JavaScript-Basis genutzten Datenformats wird von Ying und Miller~\cite{ying2013refactoring} vorgeschlagen. Neben der Konversion von \acrshort{xml} in \acrshort{json} wird dabei auch der JavaScript-Quelltext der Applikation automatisch an das neue Format angepasst. Der Fokus der Arbeit liegt dabei auf dem Code-Refactoring -- einer genauere Evaluation des eingesetzten Konversionsverfahrens in Bezug auf Sicherheit und Verlustlosgkeit findet nicht statt.
 
 \section{Aufbau der Arbeit}
 \label{sec:structure}
@@ -128,4 +127,4 @@ erfüllen.
 Das Konversionsverfahren, das bei der Überprüfung die \acrshort{xml}-Strukturen am besten abgebildet hat, wird im folgenden Kapitel dann zu einem vollständig verlustlosen Verfahren weiterentwickelt. Das so verbesserte Verfahren wird mithilfe der Kriterien aus Kapitel~\ref{sec:criteria} einer erneuten Überprüfung unterzogen.
 
 Im Fazit werden die aktuellen Möglichkeiten zur Umwandlung
-von \acrshort{xml} in \acrshort{json} und wieder zurück abschließend eingeschätzt und bewertet sowie ein Ausblick auf weitere Forschungfelder gegeben.
+von \acrshort{xml} in \acrshort{json} und wieder zurück abschließend eingeschätzt und bewertet sowie ein Ausblick auf weitere mögliche Forschungfelder gegeben.
