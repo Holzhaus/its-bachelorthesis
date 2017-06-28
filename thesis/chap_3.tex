@@ -5,7 +5,7 @@
 Im Folgenden wird der Versuchsaufbau, bestehend aus
 \begin{enumerate}
     \item{} der Erstellung einer Reihe von Kriterien zur Bewertung der Verlustlosigkeit und Sicherheit von Konversionverfahren,
-    \item{} einer Auswahl von zu überprüfenden Konverter, und
+    \item{} einer Auswahl von zu überprüfenden Konvertern, und
     \item{} der Methodik zur Überprüfung der Konversionsverfahren auf Einhaltung der zuvor festgelegten Kriterien
 \end{enumerate}
 vorgestellt.
@@ -21,13 +21,13 @@ Ziel ist das Finden eines Konversionsverfahrens, welches sowohl \emph{sicher} al
 
 Die Sicherheit eines Konverters hängt in erster Linie von der Sicherheit des eingesetzten \acrshort{xml}-Prozessors ab. Dieser darf gegen keinen der im Abschnitt~\ref{sec:xmlattacks} beschriebenen Angriffe auf \acrshort{xml}-Parser verwundbar sein.
 
-Im Bezug auf Sicherheit stellt die Unterstützung eines \acrshort{xml}-Parsers für Entities das größte Einfallstor für Angriffe dar. Viele der Angriffsvektoren sind nur dann möglich, wenn der Parser General bzw. Parameter Entities auswertet und expandiert.
+In Bezug auf Sicherheit stellt die Unterstützung eines \acrshort{xml}-Parsers für Entities das größte Einfallstor für Angriffe dar. Viele der Angriffsvektoren sind nur dann möglich, wenn der Parser General bzw. Parameter Entities auswertet und expandiert.
 
 Das \acrfull{owasp} empfiehlt daher, die Unterstützung für \acrfullpl{dtd} komplett zu deaktivieren, da dies sowohl \acrshort{xxe}-Angriffe als auch \acrshort{dos}-Attacken wie \emph{Billion Laughs} oder \emph{Quadratic Blowup} wirksam verhindert~\cite[Abschn.~1.1]{owasp2017xxeprevention}. Diese Gegenmaßnahme empfiehlt auch Nazim Lala von Microsofts IIS Security Team~\cite{lala2013handlinguntrustedxml}.
 
 Aus Sicherheitsgründen ist die Verarbeitung von \glspl{dtd} für die in der vorliegenden Arbeit überprüften Konverter daher nicht erforderlich.
 
-Dies gilt jedoch nicht für die vordefinierten General Entities \enquote{\mintinline{xml}{&amp;}}, \enquote{\mintinline{xml}{&lt;}}, \enquote{\mintinline{xml}{&gt;}}, \enquote{\mintinline{xml}{&apos;}} und \enquote{\mintinline{xml}{&quot;}}~\cite[Abschn.~4.6]{xml} bzw. Character References~\cite[Abschn.~4.1]{xml}, da diese nicht innerhalb einer \gls{dtd} angegeben werden müssen und sie zum Quotieren von Markup in Text-Knoten und Attributen nötig sind.
+Dies gilt jedoch weder für die vordefinierten General Entities \enquote{\mintinline{xml}{&amp;}}, \enquote{\mintinline{xml}{&lt;}}, \enquote{\mintinline{xml}{&gt;}}, \enquote{\mintinline{xml}{&apos;}} und \enquote{\mintinline{xml}{&quot;}}~\cite[Abschn.~4.6]{xml}, noch für numerische Character\linebreak{}References~\cite[Abschn.~4.1]{xml}, da diese nicht innerhalb einer \gls{dtd} angegeben werden müssen und sie zum Quotieren von Markup in Text-Knoten und Attributen nötig sind.
 
 \subsection{Verlustlosigkeit}
 \label{sec:criteria-lossless}
@@ -56,15 +56,15 @@ Logisch äquivalent (vgl. Bed. \ref{item:ioequal}) heißt nicht, dass das \acrsh
 \end{definition}
 \end{figure}
 
-Für die Feststellung, dass ein ein Konversionsverfahren verlustbehaftet ist, ist es ausreichend \emph{ein einzelnes} wohlgeformtes \acrshort{xml}-Dokument zu finden, das das Verfahren nicht verlustlos konvertiert. Um jedoch hinreichend zu beweisen, dass ein Konversionsverfahren vollständig verlustlos arbeitet und somit die Bedingungen aus Def.~\ref{def:lossless} erfüllt, müsste die Umwandlung für \emph{alle} wohlgeformten \acrshort{xml}-Dokumente überprüft werden. Da die Menge der möglichen wohlgeformten \acrshort{xml}-Dokumente  -- auch bei Beachtung der Einschränkungen aus Abschnitt~\ref{sec:criteria-security} -- unendlich ist, ist eine deduktive Art der Beweisführung jedoch nicht möglich.
+Für die Feststellung, dass ein ein Konversionsverfahren verlustbehaftet ist, ist es ausreichend, \emph{ein einzelnes} wohlgeformtes \acrshort{xml}-Dokument zu finden, das das Verfahren nicht verlustlos konvertiert. Um jedoch hinreichend zu beweisen, dass ein Konversionsverfahren vollständig verlustlos arbeitet und somit die Bedingungen aus Def.~\ref{def:lossless} erfüllt, müsste die Umwandlung für \emph{alle} wohlgeformten \acrshort{xml}-Dokumente überprüft werden. Da die Menge der möglichen wohlgeformten \acrshort{xml}-Dokumente  -- auch bei Beachtung der Einschränkungen aus Abschnitt~\ref{sec:criteria-security} -- unendlich ist, ist eine deduktive Art der Beweisführung jedoch nicht möglich.
 
 Um zu entscheiden, ob ein Konversionsverfahren verlustlos ist, verfolgt die vorliegende Arbeit daher einen empirisch-induktiven Ansatz: Wenn für eine ausreichend große Anzahl verschiedener Fälle gezeigt wird, dass die Bedingung erfüllt ist\footnote{\emph{hier:} die \acrshort{xml}-Dokumente vor und nach der Konversion sind logisch äquivalent}, kann eine allgemeine Erfüllung der Bedingung induziert werden~\cite[S.~2]{rudner1953judgments}.
 
-Daher wird die Verlustlosigkeit einer Konversion im Folgenden anhand konkreter \acrshort{xml}-Strukturen und Problemstellungen erläutert. Diese bilden die Grundlage für die anschließende Erstellung konkreter Testfälle in Form von \acrshort{xml}-Dokumenten (vgl.~Abschn.~\ref{sec:method-conv}).
+Daher wird die Verlustlosigkeit einer Konversion im Folgenden anhand einzelner \acrshort{xml}-Strukturen und Problemstellungen erläutert. Diese bilden die Grundlage für die anschließende Erstellung konkreter Testfälle in Form von \acrshort{xml}-Dokumenten (vgl.\linebreak{}Abschn.~\ref{sec:method-conv}).
 
 \subsubsection{Elemente und Attribute}
 
-Als Kerninhalt jedes \acrshort{xml}\hyp{}Dokuments müssen Elemente und deren Beziehung zueinander erhalten bleiben. Ebenso dürfen Attribute bei der Konversion nicht verloren gehen. Auch die Tag\hyp{}Namen der Elemente transportieren relevante Information, daher müssen sie beibehalten werden -- dies gilt auch für den Tag\hyp{}Namen des Wurzelelements.
+Als Kerninhalt einee jeden \acrshort{xml}\hyp{}Dokuments müssen Elemente und deren Beziehung zueinander erhalten bleiben. Ebenso dürfen Attribute bei der Konversion nicht verloren gehen. Auch die Tag\hyp{}Namen der Elemente transportieren relevante Information, daher müssen sie beibehalten werden -- dies gilt auch für den Tag\hyp{}Namen des Wurzelelements.
 
 \subsubsection{Namespaces}
 
@@ -75,21 +75,21 @@ Obwohl Namespace\hyp{}Prefixe eigentlich frei gewählt werden können, ist es m�
 \subsubsection{Character Data}
 \label{sec:cdata}
 
-\emph{Character Data} ist in \acrshort{xml}-Dokumente ein ebenso wichtiger Träger von Information wie Elemente. Dabei kann er im Inhaltsteil von Elementen in zwei Varianten vorkommen: Als normaler Text-Knoten oder als CDATA-Abschnitt.
+\emph{Character Data} ist in \acrshort{xml}-Dokumente ein ebenso wichtiger Träger von Information wie Elemente. Dabei kann er im Inhaltsteil von Elementen in zwei Varianten vorkommen: Als normaler Text-Knoten oder als CDATA\hyp{}Abschnitt.
 
-Mithilfe von CDATA-Abschnitten lässt sich Text, der Markup-Zeichen wie beispielsweise das Kleiner-als-Zeichen\footnote{Unicode-Codepoint \texttt{U+003C}: \texttt{LESS-THAN SIGN}} enthält, direkt in ein \acrshort{xml}-Dokument einbetten, ohne dass diese Zeichen als Markup interpretiert werden.
+Mithilfe von CDATA\hyp{}Abschnitten lässt sich Text, der Markup-Zeichen wie beispielsweise das Kleiner-Zeichen\footnote{Unicode-Codepoint \texttt{U+003C}: \texttt{LESS-THAN SIGN}} enthält, direkt in ein \acrshort{xml}-Dokument einbetten, ohne dass diese Zeichen als Markup interpretiert werden.
 
-Dies ist vor allem dann sinnvoll, wenn es unpraktikabel ist, alle Markup-Zeichen im Text einzeln durch die jeweilige Zeichen- oder Entity-Referenz zu ersetzen. CDATA stellt somit eine weitere Möglichkeit dar, Zeichendaten in einem \acrshort{xml}-Dokument anzugeben.~\cite[Abschnitt~2.4]{xml}
+Dies ist vor allem dann sinnvoll, wenn es unpraktikabel ist, alle Markup-Zeichen im Text einzeln durch die jeweilige Zeichen- oder Entity-Referenz zu ersetzen. CDATA stellt somit eine weitere Möglichkeit dar, Zeichendaten in einem \acrshort{xml}-Dokument anzugeben.~\cite[Abschn.~2.4]{xml}
 
-Der Unterschied zwischen Zeichendaten aus CDATA-Abschnitten und solchen, bei denen dies nicht der Fall ist, ist jedoch lediglich ein syntaktischer. Daher werden bei der \acrlong{c14n} alle CDATA-Abschnitte im Eingabedokument durch den entsprechenden \emph{Character Content} ersetzt~\cite[Abschnitt~2.1]{c14n}.
+Der Unterschied zwischen Zeichendaten aus CDATA\hyp{}Abschnitten und solchen, bei denen dies nicht der Fall ist, ist jedoch lediglich ein syntaktischer. Daher werden bei der \acrlong{c14n} alle CDATA\hyp{}Abschnitte im Eingabedokument durch den entsprechenden \emph{Character Content} ersetzt~\cite[Abschn.~2.1]{c14n}.
 
-Für die Verlustlosigkeit der Konversion ist es somit unerheblich, ob die CDATA-Abschnitte im Ursprungsdokument als solche erhalten bleiben, oder lediglich die Zeichendaten beibehalten werden.
+Für die Verlustlosigkeit der Konversion ist es somit unerheblich, ob die CDATA\hyp{}Abschnitte im Ursprungsdokument als solche erhalten bleiben, oder lediglich die Zeichendaten beibehalten werden.
 
 \subsubsection{Kommentare}
 
 \acrshort{xml} verfügt über die Möglichkeit, Dokumente mit Kommentaren zu versehen. Diese sind jedoch nicht Teil der Zeichendaten des \acrshort{xml}-Dokuments. Die Möglichkeit, Kommentare programmatisch auszuwerten, können \acrshort{xml}-Parser zwar bereitstellen, dies ist jedoch optional.
 
-Zudem ist auch bei der Implementierung der \acrlong{c14n} die Unterstützung von \emph{Kanonischem \acrshort{xml} mit Kommentaren} lediglich empfohlen, während die Möglichkeit der Umwandlung in \emph{Kanonisches \acrshort{xml}} ausschließlich aller Kommentare zwingend erforderlich ist.~\cite[Abschnitt~2.1]{c14n}
+Zudem ist auch bei der Implementierung der \acrlong{c14n} die Unterstützung von \emph{Kanonischem \acrshort{xml} mit Kommentaren} lediglich empfohlen, während die Möglichkeit der Umwandlung in \emph{Kanonisches \acrshort{xml}} ausschließlich aller Kommentare zwingend erforderlich ist.~\cite[Abschn.~2.1]{c14n}
 
 Folglich ist es nicht nötig, dass sich die Kommentare im \acrshort{xml}-Eingabedokument nach dem \acrshort{xml}$\rightarrow$\acrshort{json}$\rightarrow$\acrshort{xml} Roundtrip auch in der Ausgabe wiederfinden.
 
@@ -97,23 +97,23 @@ Folglich ist es nicht nötig, dass sich die Kommentare im \acrshort{xml}-Eingabe
 
 Wie bereits \acrshort{sgml} unterstützt \acrshort{xml} die Einbettung von Anweisungen, die für die verarbeitetende Applikation bestimmt sind. Diese werden \acrfull{pi} genannt (vgl. Abschn.~\ref{sec:xmlbasics}).
 
-In der Praxis werden \glspl{pi} eher selten eingesetzt. Genutzt werden sie unter anderem um Darstellungsinformationen in Form von Stylesheets mit \acrshort{xml}-Dokumenten zu verknüpfen~\cite[Abschnitt 4]{xmlstylesheet}.
+In der Praxis werden \glspl{pi} eher selten eingesetzt. Genutzt werden sie unter anderem um Darstellungsinformationen in Form von Stylesheets mit \acrshort{xml}-Dokumenten zu verknüpfen~\cite[Abschn.~4]{xmlstylesheet}.
 
-Ein weiteres prominentes Beispiel für eine Praxisanwendung ist die Microsoft Office Suite, die seit der Version 2003 Office-Dokumente als einzelne \acrshort{xml}-Dateien speichern kann. Diese setzen die unspezifische Dateiendung \texttt{*.xml} ein und würden daher mit einem generisch \acrshort{xml}-Anzeigeprogramm geöffnet werden. Mithilfe der Processing Instruction \enquote{\mintinline{xml}{<?mso-application progid="Word.Document"?>}} werden Windows- bzw. Internet Explorer angewiesen, diese als Microsoft Word-Document zu behandeln.~\cite[Abschnitt 3.2]{tverskov2008understandingpi}
+Ein weiteres prominentes Beispiel für eine Praxisanwendung ist die Microsoft Office Suite, die seit der Version 2003 Office-Dokumente als einzelne \acrshort{xml}-Dateien speichern kann. Diese setzen die unspezifische Dateiendung \texttt{*.xml} ein und würden daher mit einem generischem \acrshort{xml}-Anzeigeprogramm geöffnet werden. Mithilfe der Processing Instruction \enquote{\mintinline{xml}{<?mso-application progid="Word.Document"?>}} werden Windows- bzw. Internet Explorer angewiesen, diese als Microsoft Word-Document zu behandeln.~\cite[Abschn.~3.2]{tverskov2008understandingpi}
 
 Auch die \acrshort{xslt}-Stylesheets des DocBook-Formats nutzen Processing Instructions, um spezielle Formatierungen für die verschiedenen Ausgabeformate festzulegen.~\cite[{Kapitel \enquote{User Reference: PIs}}]{docbookxsl}
 
 Ebenso wie Kommentare sind sie nicht Teil der Zeichendaten eines \acrshort{xml}-Dokuments, müssen jedoch laut Spezifikation zwingend vom \acrshort{xml}-Parser an die verarbeitende Applikation weitergereicht werden~\cite[Abschn.~2.6]{xml}.
 
-Auch bei der \acrlong{c14n} bleiben die \glspl{pi} erhalten.~\cite[Abschnitt 2.3]{c14n}
+Auch bei der \acrlong{c14n} bleiben die \glspl{pi} erhalten.~\cite[Anschn.~2.3]{c14n}
 
 \subsubsection{Dokumentordnung}
 
 \paragraph{Elementordnung}
 
-Die Spezifikation der \acrshort{c14n} bezieht sich bezüglich der Ordnung auf die \acrshort{w3c}-Empfehlung zur \acrfull{xpath}~\cite[Abschnitt~2.2]{c14n}.
+Die Spezifikation der \acrshort{c14n} bezieht sich bezüglich der Ordnung auf die \acrshort{w3c}-Empfehlung zur \acrfull{xpath}~\cite[Anschn.~2.2]{c14n}.
 
-\begin{foreigndisplayquote}{english}[{\cite[Abschnitt~5]{xpath}}]
+\begin{foreigndisplayquote}{english}[{\cite[Anschn.~5]{xpath}}]
     There is an ordering, document order, defined on all the nodes in the document corresponding to the order in which the first character of the \acrshort{xml} representation of each node occurs in the \acrshort{xml} representation of the document after expansion of general entities. Thus, the root node will be the first node. Element nodes occur before their children. Thus, document order orders element nodes in order of the occurrence of their start-tag in the \acrshort{xml} (after expansion of entities).
 \end{foreigndisplayquote}
 
@@ -121,26 +121,25 @@ Folglich muss die Reihenfolge der Element-Nodes bei der Konversion beibehalten w
 
 \paragraph{Ordnung von Attributen und Namespaces}
 
-Der Reihenfolge, in der die Attribute eines Elements im Start-Tag bzw. Leeres-Element-Tag angegeben wurden, kommt laut \acrshort{xml}-Spezi\-fikation keine Bedeutung zu.~\cite[Abschnitt~3.1]{xml}
+Der Reihenfolge, in der die Attribute eines Elements im Start-Tag bzw. Leeres-Element-Tag angegeben wurden, kommt laut \acrshort{xml}-Spezi\-fikation keine Bedeutung zu~\cite[Abschn.~3.1]{xml}.
 
-Dies wird auch von der \acrshort{xpath}-Spezifikation untermauert, die die Reihenfolge von Name\-space-Deklarationen und Attributen als implementierungsabhängig festlegt.~\cite[Abschnitt~5]{xpath}
-
+Dies wird auch von der \acrshort{xpath}-Spezifikation untermauert, die die Reihenfolge von Name\-space-Deklarationen und Attributen als implementierungsabhängig festlegt und somit keine feste Ordnung garantiert~\cite[Abschn.~5]{xpath}.
 Die Reihenfolge der Attribute eines Elements nach einem \acrshort{xml}$\rightarrow$\acrshort{json}$\rightarrow$\acrshort{xml}-Roundtrip ist daher beliebig und muss nicht mit der Reihenfolge vor der Umwandlung identisch sein.
 
 \subsubsection{Whitespace}
 
 \acrshort{xml}-Parser müssen grundsätzlich jeglichen Whitespace -- also Leerzeichen, Tabs und Zeilenumbrüche --  innerhalb des Wurzelelements eines Dokuments an die verarbeitende Applikation weiterreichen~\cite[Abschn.~2.10]{xml}. Tim Bray, einer der Autoren des XML-Standards, schreibt dazu:
 
-\begin{foreigndisplayquote}{english}[{\cite[Abschnitt~2.1 T-2]{bray1998axml}}]
+\begin{foreigndisplayquote}{english}[{\cite[Abschn.~2.1 T-2]{bray1998axml}}]
     XML has an incredibly simple rule about how to handle white space, that is contained in this one sentence: \enquote{If it ain't markup, it's data.} Under no circumstances will an XML processor discard some white space because, in the processor's opinion, it is not \enquote{significant}.
 \end{foreigndisplayquote}
 
-Ausgenommen hiervon ist jedoch Whitespace außerhalb des Wurzelelements, dem keine Bedeutung zukommt~\cite[Abschnitt~2.1]{c14n}.
+Ausgenommen hiervon ist jedoch Whitespace außerhalb des Wurzelelements, dem keine Bedeutung zukommt~\cite[Abschn.~2.1]{c14n}.
 
 \begin{samepage}
     Zudem wird Whitespace in bestimmten Fällen vor der Weiterverarbeitung durch den \acrshort{xml}-Prozessor \emph{normalisiert}:
     \begin{enumerate}
-        \item{} Zeilenenden, d.h. die verschiedenen Kombinationen der Wagenrücklauf- und \linebreak{}Zeilenvorschub-Zeichen, werden zu einem einfachen Zeilenvorschub umgewandelt ~\cite[Abschn.~2.11]{xml}.
+        \item{} Zeilenenden, d.h. die verschiedenen Kombinationen der Wagenrücklauf- und \linebreak{}Zeilenvorschub-Zeichen, werden zu einem einfachen Zeilenvorschub umgewandelt ~\cite[Abschn..~2.11]{xml}.
         \item{} In Attributen vorkommende Whitespace-Zeichen (keine Character References) werden zu Leerzeichen umgewandelt~\cite[Abschn.~3.3.3]{xml}
     \end{enumerate}
 \end{samepage}
@@ -150,13 +149,13 @@ Zwar kann Whitespace durch \glspl{dtd} oder \acrshort{xsd}-Schemata auch als uns
 \subsubsection{Mixed Content}
 \label{sec:mixedcontent}
 
-Eine Besonderheit von \acrshort{xml} und auch \acrshort{sgml} ist, dass die Spezifikation sogenannten \emph{Mixed Content} erlaubt. Dieser liegt vor, wenn ein Element sowohl Character Data als auch Kindelemente enthält~\cite[Abschnitt 3.2.2]{xml}.
+Eine Besonderheit von \acrshort{xml} und auch \acrshort{sgml} ist, dass die Spezifikation sogenannten \emph{Mixed Content} erlaubt. Dieser liegt vor, wenn ein Element sowohl Character Data als auch Kindelemente enthält~\cite[Abschn.~3.2.2]{xml}.
 
 \begin{example}[Mixed Content]~
     \begin{minted}{xml}
 <mixed>This is an element<br /> containing <emph>mixed content</emph>.<mixed>
     \end{minted}
-    \captionof{figure}{Mit Elementen durchsetzte \emph{Character Data} wird \emph{Mixed Content} genannt.}
+    \captionof{figure}{Ist \emph{Character Data} mit Elementen durchsetzt, wird dies \emph{Mixed Content} genannt.}
 \end{example}
 
 \emph{Mixed Content} stellt \acrshort{xml}-Parser vor besondere Herausforderungen~\cite{mcgrath2002mixedcontent}. Zudem existiert kein \acrshort{json}-Äquivalent von \emph{Mixed Content}, was eine Konversion erschwert.
@@ -167,15 +166,15 @@ Zwar ist es möglich, mittels einer \acrfull{xsd} die in einem \acrshort{xml}-Do
 
 \begin{samepage}
 Wird kein Schema verwendet bzw. legt ein Schema den Datentyp eines Elements nicht anderweitig fest, so ist es standardmäßig vom Typ \texttt{xsd:anyType}:
-\begin{foreigndisplayquote}{english}[{\cite[Abschnitt 2.2.1.1]{xmlschema11-1}}]
-    A special complex type definition, (referred to in earlier versions of this specification as `the ur-type definition') whose name is \textbf{anyType} in the XSD namespace, is present in each ·\emph{XSD schema}·. The \textbf{definition of anyType} serves as default type definition for element declarations whose \acrshort{xml} representation does not specify one.
+\begin{foreigndisplayquote}{english}[{\cite[Abschn.~2.2.1.1]{xmlschema11-1}}]
+    A special complex type definition, (referred to in earlier versions of this specification as `the ur-type definition') whose name is \textbf{anyType} in the XSD namespace, is present in each ·\emph{XSD schema}·. The \textbf{definition of anyType} serves as default type definition for element declarations whose \acrshort{xml} represen\-tation does not specify one.
 \end{foreigndisplayquote}
 \end{samepage}
 
-Elemente dieses Typs unterliegen keinen Beschänkungen. Daher ist es ohne Zuhilfenahme eines Schemas nicht möglich, Aussagen über den Wertebereich eines Elements, eines Attributs oder einer Text Node zu treffen.
+Elemente dieses Typs unterliegen keinen Beschänkungen. Daher ist es ohne Zuhilfenahme eines Schemas nicht möglich, Aussagen über den Wertebereich eines Elements, eines Attributs oder eines Text-Knotens zu treffen.
 
 \begin{example}[Type Inference]~
-    Das folgende \acrshort{xml}-Dokument, enthält einen numerischen Wert, wobei in \acrshort{xml} kein syntaktischer Unterschied zwischen Strings und Zahlen besteht.
+    Das folgende \acrshort{xml}-Dokument enthält einen numerischen Wert, wobei in \acrshort{xml} kein syntaktischer Unterschied zwischen Strings und Zahlen besteht.
     \begin{center}
         \mintinline{xml}{<price>5.99</price>}
     \end{center}
@@ -183,13 +182,13 @@ Die \acrshort{json}-Entsprechung des \acrshort{xml}-Dokuments \emph{ohne} Typinf
     \begin{center}
         \mintinline{json}{{ "price": "5.99" }}
     \end{center}
-Wird jedoch Typinferenz verwendet, enthält die \acrshort{json}-Struktur den Zahlenwert als \texttt{Number}:
+Wird jedoch Typinferenz verwendet, enthält die \acrshort{json}-Struktur die Daten als Wert vom Typ \texttt{Number}:
     \begin{center}
         \mintinline{json}{{ "price":  5.99  }}
     \end{center}
 \end{example}
 
-Ist das Schema eines \acrshort{xml}-Dokuments nicht bekannt, scheint es daher naheliegend, die Datentypen aus den im Dokument enthaltenen Werten abzuleiten. Enthält eine Text Node oder ein Attribut beispielsweise die Zeichenkette \mintinline{text}{123}, könnte daraus auf einen numerischer Datentyp geschlossen werden. Dieses Prinzip der \emph{Type Inference} nutzt beispielweise Microsoft im Rahmen des \emph{.NET Frameworks} um das \acrshort{xml}-Schema auf Basis von einem oder mehreren \acrshort{xml}-Dokumenten zu \enquote{erraten}.~\cite{msdn2017inferxmlschema}
+Ist das Schema eines \acrshort{xml}-Dokuments nicht bekannt, scheint es daher naheliegend, die Datentypen aus den im Dokument enthaltenen Werten abzuleiten. Enthält ein Text-Knoten oder ein Attribut beispielsweise die Zeichenkette \mintinline{text}{123}, könnte daraus auf einen numerischer Datentyp geschlossen werden. Dieses Prinzip der \emph{Type Inference} nutzt beispielweise Microsoft im Rahmen des \emph{.NET Frameworks} um das \acrshort{xml}-Schema auf Basis von einem oder mehreren \acrshort{xml}-Dokumenten zu \enquote{erraten}.~\cite{msdn2017inferxmlschema}
 
 Im Rahmen der \acrshort{xml} zu \acrshort{json}-Konversion ist es zwar wünschenswert, die nativen Datentypen der \acrshort{json}-Spezifikation voll auszunutzen, ein solches Vorgehen bringt jedoch mehrere Probleme mit sich:
 
@@ -203,11 +202,11 @@ Darf eine Text Node beispielsweise eigentlich beliebige Zeichen enthalten, enth�
 
 Ein weiteres Problem bei der \emph{Type Inference} kann durch die unterschiedlichen Wertebereichsgrenzen der verschiedenen Datentypen entstehen.  Während Zeichenketten in vielen Programmiersprachen mehrere tausend Zeichen lang sein dürfen, ist der Wertebereich von numerischen Datentypen in der Regel deutlich eingeschränkter. Wird ein Zahlenwert vom Konversionsprogramm also in einen nativen Datentyp umgewandelt, für den ein kleinerer Wertebereich gilt als durch Strings darstellbar sind, führt dies zu Fehlern oder Informationsverlust.
 
-Die Programmiersprache \emph{JavaScript} erlaubt beispielsweise Strings mit einer Länge von bis zu $n=2^{53}-1 \approx 9 \cdot 10^{15}$ Zeichen, d.h. als Strings abgelegte Zahlen können rund 9 Billarden Stellen haben.~\cite[Abschnitt 6.1.4]{ecma262} Für Zahlen im Dezimalsystem entspräche dies dem Wertebereich $\left\{x \in \mathbb{Z} \mid -\left(10^{n-1}-1\right) \leq x \leq 10^{n}-1\right\}$.
+Die Programmiersprache \emph{JavaScript} erlaubt beispielsweise Strings mit einer Länge von bis zu $n=2^{53}-1 \approx 9 \cdot 10^{15}$ Zeichen, d.h. als Strings abgelegte Zahlen können rund 9 Billarden Stellen haben~\cite[Abschn.~6.1.4]{ecma262}. Für Zahlen im Dezimalsystem entspräche dies dem Wertebereich $\left\{x \in \mathbb{Z} \mid -\left(10^{n-1}-1\right) \leq x \leq 10^{n}-1\right\}$.
 
-Für den Datentyp \texttt{Number} nutzt JavaScript 64-bit-Fließkommazahlen nach dem \acrshort{ieee}-754-Standard\footnote{Fließkommazahlen mit doppelter Genauigkeit (\texttt{binary64}-Typ nach \acrshort{ieee}-754)}~\cite[Abschnitt 4.3.20]{ieee754,ecma262}. Für Ganzzahlen gilt daher der \enquote{sichere} Wertebereich $\left\{x \in \mathbb{Z} \mid \abs{x} \leq 2^{53}-1\right\}$~\cite[Abschnitt 20.1.2.5]{ecma262}. Dies entspricht einer Zahl mit lediglich $\floor{\log_{10}\left(2^{53}-1\right)}+1 = 16$ Ziffern im Dezimalsystem.
+Für den Datentyp \texttt{Number} nutzt JavaScript 64-bit-Fließkommazahlen nach dem \acrshort{ieee}-754-Standard\footnote{Fließkommazahlen mit doppelter Genauigkeit (\texttt{binary64}-Typ nach \acrshort{ieee}-754)}~\cite[Abschn.~4.3.20]{ieee754,ecma262}. Für Ganzzahlen gilt daher der \enquote{sichere} Wertebereich $\left\{x \in \mathbb{Z} \mid \abs{x} \leq 2^{53}-1\right\}$~\cite[Abschn.~20.1.2.5]{ecma262}. Dies entspricht einer Zahl mit lediglich $\floor{\log_{10}\left(2^{53}-1\right)}+1 = 16$ Ziffern im Dezimalsystem.
 
-Zahlen außerhalb dieses Wertebereichs können nicht mehr fehlerfrei eingesetzt werden. Auf den möglicher Informationsverlust bei dem Einsatz von Zahlentypen in \acrshort{json} wird in der \acrshort{ietf}-Spezifikation daher explizit hingewiesen~\cite[Abschn.~6]{rfc7159}.
+Zahlen außerhalb dieses Wertebereichs können nicht mehr fehlerfrei eingesetzt werden. Auf den möglichen Informationsverlust bei dem Einsatz von Zahlentypen in \acrshort{json} wird in der \acrshort{ietf}-Spezifikation daher explizit hingewiesen~\cite[Abschn.~6]{rfc7159}.
 
 \begin{figure}[b!]
 \begin{example}[Informationsverlust durch Typumwandlung in JavaScript]
@@ -216,7 +215,7 @@ Zahlen außerhalb dieses Wertebereichs können nicht mehr fehlerfrei eingesetzt 
 \end{example}
 \end{figure}
 
-Ähnliches gilt für Konversionsverfahren, die aus Werten wie \enquote{\mintinline{text}{yes}} und \enquote{\mintinline{text}{true}} den Boole'schen Datentyp ableiten: Nach dem Konversion ist nicht mehr feststellbar, ob der Ursprungswert nun \enquote{\mintinline{text}{yes}} oder \enquote{\mintinline{text}{true}} lautete.
+Ähnliches gilt für Konversionsverfahren, die aus Werten wie \enquote{\mintinline{text}{yes}} und \enquote{\mintinline{text}{true}} den Boole'schen Datentyp ableiten: Nach der Konversion ist nicht mehr feststellbar, ob der Ursprungswert nun \enquote{\mintinline{text}{yes}} oder \enquote{\mintinline{text}{true}} lautete.
 
 \subsubsection{Unterstützung des Zeichenbereichs}
 
@@ -322,9 +321,9 @@ Da die Formate insbesondere im Webbereich eingesetzt werden und Webservices sowi
 
 Zur Überprüfung der Konversionsqualität wurden für alle der in Abschnitt~\ref{sec:criteria-lossless} festgelegten Kriterien und diskutierten Probleme ein oder mehrere Testfälle erstellt. Jeder Testfall besteht aus einer \acrshort{xml}-Datei, anhand der bestimmte \acrshort{xml}-Features oder Problemstellungen nachvollzogen werden können. Die Dateien werden dazu zunächst mit einem Konverter in das \acrshort{json}-Format umgewandelt. Die daraus resultierenden \acrshort{json}-Daten werden im Anschluss wieder zurück in das \acrshort{xml}-Format konvertiert, d.h. es wird ein kompletter Round-Trip vollzogen.
 
-Gemäß Definiton~\ref{def:lossless} in Abschnitt~\ref{sec:criteria-lossless} gibt ein Abgleich zwischen den resultierenden \acrshort{xml}-Daten und dem ursprünglichen \acrshort{xml}-Dokument dann Aufschluss über den eventuellen Verlust signifikanter Informationen. Dazu wird überprüft, ob beide Dokumente logisch äquivalent sind, indem beide in \emph{kanonisches \acrshort{xml}} umgewandelt werden. Ob Informationsverlust aufgetreten ist, kann dann mit simplen Vergleich geprüft werden.
+Gemäß Definiton~\ref{def:lossless} in Abschnitt~\ref{sec:criteria-lossless} gibt ein Abgleich zwischen den resultierenden \acrshort{xml}-Daten und dem ursprünglichen \acrshort{xml}-Dokument dann Aufschluss über den eventuellen Verlust signifikanter Informationen. Dazu wird überprüft, ob beide Dokumente logisch äquivalent sind, indem beide in \emph{kanonisches \acrshort{xml}} umgewandelt werden. Ob Informationsverlust aufgetreten ist, kann dann mit einem simplen Vergleich geprüft werden.
 
-Es muss zudem sichergestellt sein, dass bei der Konversion auch tatsächlich valides \acrshort{json} bzw. wohlgeformtes \acrshort{xml} zurückgegeben wird. Da das von Konverter zurückgelieferte Dokument im Zuge der \acrlong{c14n} geparst wird, werden Verstöße gegen die Wohlgeformtheitsanforderungen der \acrshort{xml}-Spezifikation erkannt und führen zum Nichtbestehen des Tests.
+Es muss zudem sichergestellt sein, dass bei der Konversion auch tatsächlich valides \acrshort{json} bzw. wohlgeformtes \acrshort{xml} zurückgegeben wird. Da das vom Konverter zurückgelieferte Dokument im Zuge der \acrlong{c14n} geparst wird, werden Verstöße gegen die Wohlgeformtheitsanforderungen der \acrshort{xml}-Spezifikation erkannt und führen zum Nichtbestehen des Tests.
 
 Die \acrshort{json}-Zwischendaten werden ebenfalls geparst und auf Verstöße gegen die \acrshort{json}-Spezifikation untersucht. Zudem werden die Daten vor der Rückkonvertierung neu formatiert, sodass nur Informationen weitergegeben werden, die auch tatsächlich signifikant im Sinne der Spezifikation sind, d.h. dass beispielsweise Whitespace außerhalb von Zeichenketten oder die Reihenfolge von Wertpaaren innerhalb eines \acrshort{json}-Objekts verloren gehen.
 
@@ -338,10 +337,10 @@ Die \acrshort{json}-Zwischendaten werden ebenfalls geparst und auf Verstöße ge
 \subsection{Überprüfung der Sicherheit}
 \label{sec:method-sec}
 
-Um die Sicherheit der Konversion zu überprüfen, wird eine modifizierte Vorgehensweise genutzt. Die auf Sicherheitslücken in \acrshort{xml}-Parsern abzielenden Test-Dokumente werden ebenfalls zunächst in das \acrshort{json}-Format und im Anschluss wieder zurück in \acrshort{xml} konvertiert. Allerdings ist dabei ausschließlich von Belang, dass keine der in Abschnitt~\ref{sec:xmlattacks} beschriebenen Angriffe ausgelöst wird -- die Korrektheit der Konversion wird hierbei nicht überprüft.
+Um die Sicherheit der Konversion zu überprüfen, wird eine modifizierte Vorgehensweise genutzt. Die auf Sicherheitslücken in \acrshort{xml}-Parsern abzielenden Test-Dokumente werden ebenfalls zunächst in das \acrshort{json}-Format und im Anschluss wieder zurück in \acrshort{xml} konvertiert. Allerdings ist dabei ausschließlich von Belang, dass keiner der in Abschnitt~\ref{sec:xmlattacks} beschriebenen Angriffe ausgelöst wird -- die Korrektheit der Konversion wird hierbei nicht überprüft. Auch ein Abbruch des Programms hierbei gilt als Erfolg.
 
 \begin{samepage}
-Stattdessen wird ein Sicherheitstest als Fehlschlag gewerten, wenn eine oder mehrere der folgenden Bedingungen zutrifft:
+Stattdessen wird ein Sicherheitstest als Fehlschlag gewertet, wenn eine oder mehrere der folgenden Bedingungen zutrifft:
 \begin{enumerate}
     \item{} Der Konversionsvorgang überschreitet zuvor festgelege Obergrenzen für die Allozierung von Arbeitsspeicher, verbraucht zuviel CPU-Zeit oder dauert zu lange.\label{itm:cond-dos}
     \item{} Während der Konversion sendet der Konverter Anfragen an einen Webserver.\label{itm:cond-ssrf}
@@ -351,7 +350,7 @@ Stattdessen wird ein Sicherheitstest als Fehlschlag gewerten, wenn eine oder meh
 
 Ist der eingesetzte \acrshort{xml}-Parser verwundbar gegenüber Angriffen aus dem Bereich \acrfull{dos}, führt das Parsen der Testdateien zu einem erhöhten Verbrauch an Systemressourcen. Die Obergrenzen für Arbeitsspeicherbelegung, \acrshort{cpu}-Auslastung und Zeitdauer sind so angelegt, dass ein erfolgreicher Angriff zwangsläufig gegen die erste Bedingung verstößt und damit zum Nichtbestehen des Tests führt.
 
-Um zu Prüfen, ob \acrfull{ssrf} möglich ist, wird ein \acrshort{http}-Server gestartet, der von den entsprechenden Testfällen referenziert wird. Ruft ein Konverter während des Parsings eine der URLs auf, wird die Anfrage vom Server aufgezeichnet. Sind bei dem Server bis zum Abschluss der Konversion keine Anfragen eingegangen (Bed.~\ref{itm:cond-ssrf}), ist der Konverter offenbar nicht anfällig für solche Angriffe.
+Um zu prüfen, ob \acrfull{ssrf} möglich ist, wird ein \acrshort{http}-Server gestartet, der von den entsprechenden Testfällen referenziert wird. Ruft ein Konverter während des Parsings eine der URLs auf, wird die Anfrage vom Server aufgezeichnet. Sind bei dem Server bis zum Abschluss der Konversion keine Anfragen eingegangen (Bed.~\ref{itm:cond-ssrf}), ist der Konverter offenbar nicht anfällig für solche Angriffe.
 
 Die Testfälle für die Suche nach Schwachstellen der Kategorie \acrlong{fsa} verweisen auf Dateien, die eine bestimmte Zeichenkette enthalten. Ist diese Zeichenkette in den vom Konverter ausgegebenen \acrshort{json}- oder \acrshort{xml}-Daten enthalten, wurde vom Parser auf das Dateisystem zugegriffen und der Konverter ist verwundbar.
 
@@ -364,10 +363,10 @@ Alle eingesetzen Sicherheits-Testfälle basieren auf den \acrshort{xml}-Testdoku
 
 Zur einfacheren Durchführung der Testreihen wurde ein Evaluations-Framework auf Basis von Python 3.5 implementiert, das ca. 2200 SLOC umfasst. Der Testprozess wird dabei weitestgehend automatisiert.
 
-Um die \acrlong{c14n} durchzuführen, nutzt das Framework die~\mintinline{python}{write_c14n()}-Methode aus der \emph{lxml}-Bibliothek\footnote{http://lxml.de/}. Die Kanonisierung erfolgt nicht-exklusiv (vgl. Abschn.~\ref{sec:excc14n}) und ohne Kommentare -- ausgenommen ist dabei ein Testfall, der die Unterstützung für Kommentare überprüft.
+Um die \acrlong{c14n} durchzuführen, nutzt das Framework die~\mintinline{python}{write_c14n()}-Methode aus der \emph{lxml}-Bibliothek\footnote{http://lxml.de/}. Die Umwandlung in kanonisches XML erfolgt dabei nicht-exklusiv (vgl. Abschn.~\ref{sec:excc14n}) und ohne Kommentare -- davon ausgenommen ist aber ein Testfall, der die Unterstützung für Kommentare überprüft.
 
-Für das \acrshort{xml}-Parsing selbst kommt \emph{defusedxml}\footnote{https://pypi.python.org/pypi/defusedxml} zum Einsatz, das die gängigen Python-APIs zum Parsen von \acrshort{xml}-Dokumenten einem Security-Hardening unterzieht und daher nicht anfällig gegenüber fast allen Angriffsvektoren ist~\cite[Abschn. 9.5]{spaeth2016sok}.
+Für das \acrshort{xml}-Parsing selbst kommt \emph{defusedxml}\footnote{https://pypi.python.org/pypi/defusedxml} zum Einsatz, das die gängigen Python-APIs zum Parsen von \acrshort{xml}-Dokumenten einem Security-Hardening unterzieht und daher nicht anfällig gegenüber fast allen Angriffsvektoren ist~\cite[Abschn.~9.5]{spaeth2016sok}.
 
 Zur Prüfung und Formatierung der \acrshort{json}-Daten wird das Python-Modul \emph{demjson}\footnote{http://deron.meranda.us/python/demjson/} eingesetzt, das über umfangreiche Möglichkeiten zum Finden von Verstößen gegen die \acrshort{json} (einen sogenannten \emph{Linter}) verfügt. Zusätzlich zum \texttt{strict}-Modus wurden einige besondere Einstellungen vorgenommen: Byte-Order-Marks wurden in Übereinstimmung mit der \acrshort{json}-Spezifikation explizit verboten. Null-Bytes und andere von der Spezifikation nicht verbotene, aber möglicherweise Kompatibilitätsprobleme verursachende Zeichen wurden erlaubt, da es sich hierbei um korrektes \acrshort{json} handelt.
 
-Für die Sicherheitstests wird ein eigener Prozess gestartet. Da als Host-System Linux zum Einsatz kommt, wurde die Begrenzung der Systemressourcen mithilfe des \texttt{setrlimit()}-Syscalls umgesetzt. Werden die so festgelegten Obergrenzen für die zur Verfügung stehende CPU-Zeit und Größe des adressierbaren Speichers des Prozesses überschritten, wird der Prozess vom Kernel durch das Signale \texttt{SIGXCPU} bzw. \texttt{SIGKILL} oder \texttt{SIGSEGV} beendet. Das Framework prüft nach Beendigung des Prozesses, ob der Exitcode auf die Terminierung durch ein Signal hinweist oder ob der Prozess normal beendet wurde.
+Für die Sicherheitstests wird ein eigener Prozess gestartet. Da als Host-System Linux zum Einsatz kommt, wurde die Begrenzung der Systemressourcen mithilfe des \texttt{setrlimit()}-Syscalls umgesetzt. Werden die so festgelegten Obergrenzen für die zur Verfügung stehende CPU-Zeit und Größe des adressierbaren Speichers des Prozesses überschritten, wird der Prozess vom Kernel durch das Signal \texttt{SIGXCPU} bzw. \texttt{SIGKILL} oder \texttt{SIGSEGV} beendet. Das Framework prüft nach Beendigung des Prozesses, ob der Exitcode auf die Terminierung durch ein Signal hinweist oder ob der Prozess normal beendet wurde.
