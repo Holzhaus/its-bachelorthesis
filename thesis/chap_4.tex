@@ -28,9 +28,6 @@ Es wurden insgesamt 123 Testfälle verwendet und 11 verschiedene Konverter über
 
 Im Folgenden werden die Ergebnisse der verschiedenenen Konverter vorgestellt.
 
-\todo[inline]{TODO: Im ganzen Kapitel nochmal checken, ob alles wichtige erwähnt wurde}
-% TODO: Check if anything misses
-
 \section{Cobra vs Mongoose}
 \label{sec:cobravsmongoose}
 
@@ -101,7 +98,7 @@ Json.NET ist als einziger Konverter im Test in der Lage, \glspl{pi} korrekt umzu
 
 Im Gegensatz zu allen anderen überprüften Konvertern wandelt Json.NET auch \acrshort{xml}-Kommentare um. Der Konverter fügt diese als JavaScript-Blockkommentare, d.h. in der Form \enquote{\mintinline{javascript}{/* Comment */}}, in die JSON-Ausgabe ein. Da Kommentare jedoch nicht Teil der \acrshort{json}-Syntax sind (vgl. Def.~\ref{def:json} in Abschn.~\ref{sec:jsontypes}), ist die von Json.NET in diesem Fall produzierte Ausgabe kein gültiges \acrshort{json}~\cite{ecma404,rfc7159} und führt bei den meisten Parsern zu Problemen~\cite[Abschn.~2.1,~4.1]{seriot2016minefield}.
 
-Alle Zeichen, die nicht mittels 7-Bit-\acrshort{ascii}-Kodierung darstellbar sind (d.\,h. alle Zeichen, deren Unicode-Codepoint hinter U+00007F liegt) werden von Json.NET bereits bei der Konversion in \acrshort{json} durch zwei Fragezeichen ersetzt.
+Alle Zeichen, die nicht mittels 7-Bit-\acrshort{ascii}-Kodierung darstellbar sind (d.\,h. alle Zeichen, deren Unicode-Codepoint hinter U+00007F liegt) werden von Json.NET bereits bei der Konversion in \acrshort{json} durch Fragezeichen ersetzt, deren Anzahl sich an der Anzahl der Bytes bemisst, die für die Kodierung des Zeichens in \acrshort{utf8} nötig sind.
 
 Der Konverter ist anfällig für \acrshort{ssrf}-Angriffe mittels \acrshort{xxe}, sowohl mit General Entities als auch mit Parameter Entities. Ebenso ruft der Konverter externe \glspl{dtd} über den im \texttt{SYSTEM}-Identifiktator angegebene \acrshort{uri} ab.
 
@@ -126,7 +123,9 @@ Attribute gehen bei der Konvertierung von \acrshort{xml}-Daten in \acrshort{json
 \acrshort{xml}-Namespace-Prefixes für Tag-Namen werden zwar grundsätzlich unterstützt, Namespaces können aber aufgrund der fehlerhaften Behandlung von Attributen dennoch nicht genutzt werden.
  Mixed Content wird nicht unterstützt -- enthält ein Element neben einem Kindelement auch Text, wird dieser verworfen.
 
-Ebenfalls gehen bei der Konversion \glspl{pi} und die Reihenfolge der Dokumenteninhalte verloren.
+Ebenfalls gehen bei der Konversion \glspl{pi} und die Ordung der Dokumentr verloren. Die Elementreihenfolge ist dabei anscheinend zufällig: Bei der Rückkonvertierung werden Elemente weder in alphabetischer noch in der Reihenfolge ausgegeben, in der sie in der JSON-Datei angeordnet sind.
+
+Der Konverter unterstützt lediglich die Konversion von druckbaren \acrshort{ascii}-Zeichen. Unicode-Zeichen außerhalb dieses Bereichs werden bei der Umwandlung in das \acrshort{json}-Format in eine der Byteanzahl ihrer \acrshort{utf8}-Kodierung entsprechnde Menge von Fragezeichen umgewandelt.
 
 Zudem werden Zahlenwerte sowie die Zeichenketten \enquote{\mintinline{json}{true}} und \enquote{\mintinline{json}{false}} in die nativen Java-Datentypen konvertiert, wobei Informationsverlust auftreten kann. Die Zeichenkette \enquote{\texttt{1e-324}} wird beispielweise bei der Übersetzung zu \acrshort{json} als Zahl interpretiert und erscheint daher in der Ausgabe gerundet als \enquote{\texttt{0}}.
 
