@@ -1,0 +1,97 @@
+DEBUG:xjcc.plugins:Trying to load entrypoint 'jsonlib'...
+DEBUG:xjcc.plugins:Requested file path: '/data/.cache/Python-Eggs/xjcc_jsonlib-0.1.0-py3.5.egg-tmp/xjcc_jsonlib/jsonlib/target/jsonlib.jar'
+INFO:xjcc.plugins:Entrypoint 'jsonlib' loaded.
+DEBUG:xjcc.plugins:Trying to load entrypoint 'jsonml'...
+DEBUG:xjcc.plugins:Requested file path: '/data/.cache/Python-Eggs/xjcc_jsonml-0.1.0-py3.5.egg-tmp/xjcc_jsonml/converter.js'
+DEBUG:xjcc_jsonml:NODE_PATH = '/usr/local/lib/node_modules'
+INFO:xjcc.plugins:Entrypoint 'jsonml' loaded.
+DEBUG:xjcc.plugins:Trying to load entrypoint 'jsonmlpatched'...
+DEBUG:xjcc.plugins:Requested file path: '/data/.cache/Python-Eggs/xjcc_jsonml-0.1.0-py3.5.egg-tmp/xjcc_jsonml/converter.js'
+DEBUG:xjcc_jsonml:NODE_PATH = '/usr/local/lib/node_modules'
+INFO:xjcc.plugins:Entrypoint 'jsonmlpatched' loaded.
+DEBUG:xjcc.plugins:Trying to load entrypoint 'jxon'...
+DEBUG:xjcc.plugins:Requested file path: '/data/.cache/Python-Eggs/xjcc_jxon-0.1.0-py3.5.egg-tmp/xjcc_jxon/converter.js'
+DEBUG:xjcc_jxon:NODE_PATH = '/usr/local/lib/node_modules'
+INFO:xjcc.plugins:Entrypoint 'jxon' loaded.
+DEBUG:xjcc.plugins:Trying to load entrypoint 'orgjsonxml'...
+DEBUG:xjcc.plugins:Requested file path: '/data/.cache/Python-Eggs/xjcc_orgjsonxml-0.1.0-py3.5.egg-tmp/xjcc_orgjsonxml/orgjsonxml/target/orgjsonxml.jar'
+INFO:xjcc.plugins:Entrypoint 'orgjsonxml' loaded.
+DEBUG:xjcc.plugins:Trying to load entrypoint 'pesterfishdefused'...
+INFO:xjcc.plugins:Entrypoint 'pesterfishdefused' loaded.
+DEBUG:xjcc.plugins:Trying to load entrypoint 'pesterfish'...
+INFO:xjcc.plugins:Entrypoint 'pesterfish' loaded.
+DEBUG:xjcc.plugins:Trying to load entrypoint 'x2js'...
+DEBUG:xjcc.plugins:Requested file path: '/data/.cache/Python-Eggs/xjcc_x2js-0.1.0-py3.5.egg-tmp/xjcc_x2js/converter.js'
+DEBUG:xjcc_x2js:NODE_PATH = '/usr/local/lib/node_modules'
+INFO:xjcc.plugins:Entrypoint 'x2js' loaded.
+DEBUG:xjcc.plugins:Trying to load entrypoint 'x2jsabdmob'...
+DEBUG:xjcc.plugins:Requested file path: '/data/.cache/Python-Eggs/xjcc_x2jsabdmob-0.1.0-py3.5.egg-tmp/xjcc_x2jsabdmob/converter.js'
+DEBUG:xjcc_x2jsabdmob:NODE_PATH = '/usr/local/lib/node_modules'
+INFO:xjcc.plugins:Entrypoint 'x2jsabdmob' loaded.
+DEBUG:xjcc.plugins:Trying to load entrypoint 'xmljson-badgerfish'...
+INFO:xjcc.plugins:Entrypoint 'xmljson-badgerfish' loaded.
+DEBUG:xjcc.plugins:Trying to load entrypoint 'xmljson-parker'...
+INFO:xjcc.plugins:Entrypoint 'xmljson-parker' loaded.
+DEBUG:xjcc.plugins:Trying to load entrypoint 'xmljson-cobra'...
+INFO:xjcc.plugins:Entrypoint 'xmljson-cobra' loaded.
+DEBUG:xjcc.plugins:Trying to load entrypoint 'xmljson-abdera'...
+INFO:xjcc.plugins:Entrypoint 'xmljson-abdera' loaded.
+DEBUG:xjcc.plugins:Trying to load entrypoint 'xmljson-yahoo'...
+INFO:xjcc.plugins:Entrypoint 'xmljson-yahoo' loaded.
+DEBUG:xjcc.plugins:Trying to load entrypoint 'xmljson-gdata'...
+INFO:xjcc.plugins:Entrypoint 'xmljson-gdata' loaded.
+DEBUG:xjcc.plugins:Trying to load entrypoint 'cobravsmongoose'...
+DEBUG:xjcc.plugins:Requested file path: '/data/.cache/Python-Eggs/xjcc_cobravsmongoose-0.1.0-py3.5.egg-tmp/xjcc_cobravsmongoose/converter.rb'
+INFO:xjcc.plugins:Entrypoint 'cobravsmongoose' loaded.
+DEBUG:xjcc.plugins:Trying to load entrypoint 'greencapexml'...
+DEBUG:xjcc.plugins:Requested file path: '/data/.cache/Python-Eggs/xjcc_greencapexml-0.1.0-py3.5.egg-tmp/xjcc_greencapexml/converter.php'
+DEBUG:xjcc_greencapexml:COMPOSER_HOME = '/user/local/share/composer_home'
+INFO:xjcc.plugins:Entrypoint 'greencapexml' loaded.
+DEBUG:xjcc.plugins:Trying to load entrypoint 'newtonsoftjson'...
+DEBUG:xjcc.plugins:Requested file path: '/data/.cache/Python-Eggs/xjcc_newtonsoftjson-0.1.0-py3.5.egg-tmp/xjcc_newtonsoftjson/converter.exe'
+INFO:xjcc.plugins:Entrypoint 'newtonsoftjson' loaded.
+DEBUG:xjcc.plugins:Invoking: node /data/.cache/Python-Eggs/xjcc_x2jsabdmob-0.1.0-py3.5.egg-tmp/xjcc_x2jsabdmob/converter.js
+DEBUG:xjcc.plugins:Input read: 65350 chars / 65536 bytes (last chunk: 65350 chars / 65536 bytes)
+DEBUG:xjcc.plugins:Input read: 130863 chars / 131072 bytes (last chunk: 65513 chars / 65536 bytes)
+DEBUG:xjcc.plugins:Input read: 196398 chars / 196608 bytes (last chunk: 65535 chars / 65536 bytes)
+DEBUG:xjcc.plugins:Input read: 261934 chars / 262144 bytes (last chunk: 65536 chars / 65536 bytes)
+DEBUG:xjcc.plugins:Input read: 327470 chars / 327680 bytes (last chunk: 65536 chars / 65536 bytes)
+DEBUG:xjcc.plugins:Input read: 393006 chars / 393216 bytes (last chunk: 65536 chars / 65536 bytes)
+DEBUG:xjcc.plugins:Input read: 458542 chars / 458752 bytes (last chunk: 65536 chars / 65536 bytes)
+DEBUG:xjcc.plugins:Input read: 524078 chars / 524288 bytes (last chunk: 65536 chars / 65536 bytes)
+DEBUG:xjcc.plugins:Input read: 589614 chars / 589824 bytes (last chunk: 65536 chars / 65536 bytes)
+DEBUG:xjcc.plugins:Input read: 655150 chars / 655360 bytes (last chunk: 65536 chars / 65536 bytes)
+DEBUG:xjcc.plugins:Input read: 720651 chars / 720896 bytes (last chunk: 65501 chars / 65536 bytes)
+DEBUG:xjcc.plugins:Input read: 786064 chars / 786432 bytes (last chunk: 65413 chars / 65536 bytes)
+DEBUG:xjcc.plugins:Input read: 851530 chars / 851968 bytes (last chunk: 65466 chars / 65536 bytes)
+DEBUG:xjcc.plugins:Input read: 916992 chars / 917504 bytes (last chunk: 65462 chars / 65536 bytes)
+DEBUG:xjcc.plugins:Input read: 982466 chars / 983040 bytes (last chunk: 65474 chars / 65536 bytes)
+DEBUG:xjcc.plugins:Input read: 1047878 chars / 1048576 bytes (last chunk: 65412 chars / 65536 bytes)
+DEBUG:xjcc.plugins:Input read: 1113306 chars / 1114112 bytes (last chunk: 65428 chars / 65536 bytes)
+DEBUG:xjcc.plugins:Input read: 1178746 chars / 1179648 bytes (last chunk: 65440 chars / 65536 bytes)
+DEBUG:xjcc.plugins:Input read: 1244204 chars / 1245184 bytes (last chunk: 65458 chars / 65536 bytes)
+DEBUG:xjcc.plugins:Input read: 1309590 chars / 1310720 bytes (last chunk: 65386 chars / 65536 bytes)
+DEBUG:xjcc.plugins:Input read: 1375080 chars / 1376256 bytes (last chunk: 65490 chars / 65536 bytes)
+DEBUG:xjcc.plugins:Input read: 1440548 chars / 1441792 bytes (last chunk: 65468 chars / 65536 bytes)
+DEBUG:xjcc.plugins:Input read: 1505982 chars / 1507328 bytes (last chunk: 65434 chars / 65536 bytes)
+DEBUG:xjcc.plugins:Input read: 1571429 chars / 1572864 bytes (last chunk: 65447 chars / 65536 bytes)
+DEBUG:xjcc.plugins:Input read: 1636891 chars / 1638400 bytes (last chunk: 65462 chars / 65536 bytes)
+DEBUG:xjcc.plugins:Input read: 1702311 chars / 1703936 bytes (last chunk: 65420 chars / 65536 bytes)
+DEBUG:xjcc.plugins:Input read: 1767776 chars / 1769472 bytes (last chunk: 65465 chars / 65536 bytes)
+DEBUG:xjcc.plugins:Input read: 1833180 chars / 1835008 bytes (last chunk: 65404 chars / 65536 bytes)
+DEBUG:xjcc.plugins:Input read: 1898585 chars / 1900544 bytes (last chunk: 65405 chars / 65536 bytes)
+DEBUG:xjcc.plugins:Input read: 1964020 chars / 1966080 bytes (last chunk: 65435 chars / 65536 bytes)
+DEBUG:xjcc.plugins:Input read: 2029479 chars / 2031616 bytes (last chunk: 65459 chars / 65536 bytes)
+DEBUG:xjcc.plugins:Input read: 2094897 chars / 2097152 bytes (last chunk: 65418 chars / 65536 bytes)
+DEBUG:xjcc.plugins:Input read: 2160369 chars / 2162688 bytes (last chunk: 65472 chars / 65536 bytes)
+DEBUG:xjcc.plugins:Input read: 2225860 chars / 2228224 bytes (last chunk: 65491 chars / 65536 bytes)
+DEBUG:xjcc.plugins:Input read: 2291343 chars / 2293760 bytes (last chunk: 65483 chars / 65536 bytes)
+DEBUG:xjcc.plugins:Input read: 2356814 chars / 2359296 bytes (last chunk: 65471 chars / 65536 bytes)
+DEBUG:xjcc.plugins:Input read: 2422282 chars / 2424832 bytes (last chunk: 65468 chars / 65536 bytes)
+DEBUG:xjcc.plugins:Input read: 2487784 chars / 2490368 bytes (last chunk: 65502 chars / 65536 bytes)
+DEBUG:xjcc.plugins:Input read: 2553245 chars / 2555904 bytes (last chunk: 65461 chars / 65536 bytes)
+DEBUG:xjcc.plugins:Input read: 2618781 chars / 2621440 bytes (last chunk: 65536 chars / 65536 bytes)
+DEBUG:xjcc.plugins:Input read: 2621707 chars / 2624366 bytes (last chunk: 2926 chars / 2926 bytes)
+DEBUG:xjcc.plugins:Total input read: 2621707 chars / 2624366 bytes
+DEBUG:xjcc.plugins:Input is quite big, this may take a while...
+DEBUG:xjcc.plugins:Process ended with status 0
