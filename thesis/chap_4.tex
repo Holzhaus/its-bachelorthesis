@@ -58,7 +58,7 @@ CDATA-Sektionen in \acrshort{xml}-Dokumenten führen zu Fehlern im von der PHP-B
 
 Bei der Konversion von Mixed Content wird sämtlicher Textinhalt außerhalb der Kindelemente verworfen. Whitespace geht ebenso verloren. \glspl{pi} werden ignoriert. Abgesehen von Whitespace bleiben alle Sonderzeichen bei der Umwandlung jedoch erhalten.
 
-Der \emph{GreenCape \acrshort{xml} Converter} konnte als einziges Programm neben \acrshort{jsonml} (vgl. Abschn.~\ref{sec:jsonml}) die \acrshort{xml}-Antwort auf eine Anfrage an die MusicBrainz-\acrshort{api} verlustlos umwandeln.
+Der \emph{GreenCape \acrshort{xml} Converter} konnte -- nach Deaktivierung der automatischen Einrückung -- als einziges Programm neben \acrshort{jsonml} (vgl. Abschn.~\ref{sec:jsonml}) die \acrshort{xml}-Antwort auf eine Anfrage an die MusicBrainz-\acrshort{api} verlustlos umwandeln.
 
 \section{Json-lib}
 \label{sec:jsonlib}
@@ -134,6 +134,8 @@ Zudem werden Zahlenwerte sowie die Zeichenketten \enquote{\mintinline{json}{true
 
 Bei der Konversion gehen die Namen der Namesprace-Prefixe verloren und werden durch generische Bezeichnungen (\texttt{ns0}, \texttt{ns1}, \dots{}) ersetzt. Dies werden auch dann verwendet, wenn im Ursprungsdokument keinerlei Namespace-Prefixes verwendet wurden, sondern ein eigener Default-Namespace genutzt wurde. Grund dafür ist die \texttt{Element}\-\texttt{Tree}-\acrshort{api}, die Namespace-Prefixes beim Parsen von \acrshort{xml} automatisch zur vollen URI expandiert und den ursprünglichen Prefixnamen verwirft~\cite[Abschn.~20.5.1.7]{pythonetreexmlns}.
 Zudem gehen bei der Konvertierung auch \glspl{pi} verloren.
+
+Dennoch ist es mit Pesterfish-Konverter möglich, komplette \acrshort{rss}-Dateien verlustlos in das \acrshort{json}-Format und wieder zurück zu konvertieren.
 
 Bei den Sicherheitstests zeigte sich, dass \emph{Pesterfish} bei Nutzung der Vorgabeeinstellungen verwundbar für die \acrshort{dos}-Angriffe \emph{Billion Laughs} und \emph{Quadratic Blowup} ist. Da die Bibliothek jedoch die Verwendung einer eigenen \texttt{ElementTree}-Implementierung erlaubt, kann diesem Problem durch den Einsatz eines sicheren Ersatzes -- beispielsweise aus der \emph{defusedxml}-Bibliothek -- entgegengewirkt werden.
 
