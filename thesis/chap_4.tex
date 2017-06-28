@@ -108,7 +108,13 @@ Der Konverter ist anfällig für \acrshort{ssrf}-Angriffe mittels \acrshort{xxe}
 \section{JXON}
 \label{sec:jxon}
 
-JXON fehlt die Unterstützung von Whitespace und Mixed Content. Zudem geht die Reihenfolge der Elemente verloren. \acrlongpl{pi} werden bei der Konversion ignoriert.
+JXON fehlt die Unterstützung von Mixed Content.
+
+Auch Whitespace geht bei der Konversion verloren -- neben Tab, Zeilenvorschub, Wagenrücklauf und Leerzeichen umfasst das jedoch auch Unicode-Whitespace wie Ogham-Leerzeichen, mongolische Volkaltrennzeichen oder ideographische Leerzeichen. Eine komplette Liste ist in Anhang~\label{appx:unicode-whitespace}.
+
+Zudem geht die Reihenfolge der Elemente verloren. \acrlongpl{pi} werden bei der Konversion ignoriert.
+
+Eine Verwundbarkeit für die gesteten Angriffe auf \acrshort{xml}-Parser wurde bei der Überprüfung nicht gefunden.
 
 \section{org.json.XML}
 \label{sec:orgjsonxml}
@@ -169,6 +175,8 @@ Durch den Einsatz der \texttt{ElementTree}-\acrshort{api} hat \emph{xmljson} kei
 \glspl{pi} werden von allen Konventionen ignoriert.
 
 Lediglich die \emph{Cobra}- und \emph{Yahoo}-Konventionen (Abschn.~\ref{sec:xmljson-cobra} und~\ref{sec:xmljson-yahoo}) nutzen keine Typinferenz. Alle anderen Konverter wandeln die Zeichenketten \texttt{true} und \texttt{false} in boolsche Werte um. Auch Zahlenwerte werden als numerische Datentypen interpretiert, wodurch beispielsweise Rundungsfehler auftreten können oder Formatierung verloren geht (z.B. \mintinline{json}{1e+39} anstatt \mintinline{json}{"1E39"}). Sehr große Zahlen werden als \mintinline{js}{Infinity}-Literal dargestellt, der zwar valides JavaScript wäre, von der \acrshort{json}-Spezifikation jedoch nicht erlaubt ist.
+
+Ähnlich wie auch \emph{JXON} (vgl.~\ref{sec:jxon}) entfernt die \emph{Badgerfish}- bzw. \emph{GData}-Konvention bei der Konversion Unicode-Whitespace-Zeichen (vgl. Anhang~\ref{appx:unicode-whitespace}). Zudem werden bei den Konventionen \emph{Badgerfish}, \emph{GData} und \emph{Parker} einige dezimale Zahlzeichen aus der BMP-Ebene des Unicode-Standards~\cite[S.~49]{unicode9} in ihr ASCII-Äquivalenta umgewandelt -- aus einer bengalischen Ziffer Acht\footnote{Unicode-Codepoint \texttt{U+09EE}: \texttt{BENGALI DIGIT EIGHT}} wird so beispielsweise die lateinische \enquote{\texttt{8}}\footnote{Unicode-Codepoint \texttt{U+0038}: \texttt{DIGIT EIGHT}}. Die vollständige Liste der veränderten Zahlzeichen befindet sich in Anhang~\ref{appx:unicode-digits}.
 
 \subsection{Abdera}
 \label{sec:xmljson-abdera}
