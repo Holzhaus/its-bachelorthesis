@@ -76,6 +76,9 @@ ins JSON-Format
 %\loadglsentries{glossary}
 \loadglsentries{acronyms}
 
+% Remove parentheses from citations
+\renewcommand{\mkcitation}[1]{ #1}
+
 \makeatletter
 \define@key{convtool}{url}{\def\conv@url{#1}}
 \define@key{convtool}{license}{\def\conv@license{#1}}
