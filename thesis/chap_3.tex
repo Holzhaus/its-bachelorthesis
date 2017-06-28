@@ -129,10 +129,16 @@ Die Reihenfolge der Attribute eines Elements nach einem \acrshort{xml}$\rightarr
 
 \subsubsection{Whitespace}
 
-\acrshort{xml}-Parser müssen grundsätzlich jeglichen Whitespace -- also Leerzeichen, Tabs und Zeilenumbrüche --  innerhalb des Wurzelelements eines Dokuments an die verarbeitende Applikation weiterreichen~\cite[Abschn.~2.10]{xml}, während Whitespace außerhalb des Wurzelelements keine Bedeutung zukommt~\cite[Abschnitt~2.1]{c14n}.
+\acrshort{xml}-Parser müssen grundsätzlich jeglichen Whitespace -- also Leerzeichen, Tabs und Zeilenumbrüche --  innerhalb des Wurzelelements eines Dokuments an die verarbeitende Applikation weiterreichen~\cite[Abschn.~2.10]{xml}. Tim Bray, einer der Autoren des XML-Standards, schreibt dazu:
+
+\begin{foreigndisplayquote}{english}[{\cite[Abschnitt~2.1 T-2]{bray1998axml}}]
+    XML has an incredibly simple rule about how to handle white space, that is contained in this one sentence: \enquote{If it ain't markup, it's data.} Under no circumstances will an XML processor discard some white space because, in the processor's opinion, it is not \enquote{significant}.
+\end{foreigndisplayquote}
+
+Ausgenommen hiervon ist jedoch Whitespace außerhalb des Wurzelelements, dem keine Bedeutung zukommt~\cite[Abschnitt~2.1]{c14n}.
 
 \begin{samepage}
-    Ausgenommen hiervon sind jedoch bestimmte Sonderfälle, in denen Whitespace durch den \acrshort{xml}-Prozessor \emph{normalisiert} wird:
+    Zudem wird Whitespace in bestimmten Fällen vor der Weiterverarbeitung durch den \acrshort{xml}-Prozessor \emph{normalisiert}:
     \begin{enumerate}
         \item{} Zeilenenden, d.h. die verschiedenen Kombinationen der Wagenrücklauf- und \linebreak{}Zeilenvorschub-Zeichen, werden zu einem einfachen Zeilenvorschub umgewandelt ~\cite[Abschn.~2.11]{xml}.
         \item{} In Attributen vorkommende Whitespace-Zeichen (keine Character References) werden zu Leerzeichen umgewandelt~\cite[Abschn.~3.3.3]{xml}
