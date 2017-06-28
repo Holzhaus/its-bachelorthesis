@@ -4,7 +4,7 @@
 \section{\acrfull{xml}}
 \label{sec:xml}
 
-Bei der \acrfull{xml} handelt es sich um eine weit verbreitete Auszeichnungssprache. Die Entwicklung von \acrshort{xml} begann im Jahr 1996, zwei Jahre später wurde die Spezifikation erstmals als Empfehlung des \acrfull{w3c} veröffentlicht.
+Bei der \acrfull{xml} handelt es sich um eine weit verbreitete Auszeichnungssprache. Die Entwicklung von \acrshort{xml} begann im Jahr 1996, zwei Jahre später wurde die Spezifikation erstmals als Empfehlung des \acrfull{w3c} veröffentlicht.~\cite[Abschn.~1.1]{bray1998axml}
 
 \acrshort{xml} ist eine plattformunabhängige Metasprache, die für den Einsatz im Internet und den Datenaustausch zwischen Anwendungen konzipiert wurde und als Basis für neue Datenformate genutzt werden kann.
 
@@ -27,7 +27,7 @@ Im Web wird \acrshort{xml} z.B. in Form von \acrshort{xhtml} oder \gls{rss} für
 
 \begin{figure}[h!]
     \begin{example}[\acrshort{xml}-Dokument]
-        Ein  einfaches \acrshort{xml}-Dokument, das verschiedene Knoten-Typen enthält.
+        Dieses einfache \acrshort{xml}-Dokument enthält verschiedene Knoten-Typen.
         \label{ex:xmldoc}
         \inputminted{xml}{xmltree.xml}
         \end{example}
@@ -47,7 +47,7 @@ Im Web wird \acrshort{xml} z.B. in Form von \acrshort{xhtml} oder \gls{rss} für
 
 Beispielsweise sind in Zeile 8 des in Beispiel~\ref{ex:xmldoc} gezeigten \acrshort{xml}-Dokuments \linebreak{}\enquote{\mintinline{xml}{<recording>}}, \enquote{\mintinline{xml}{<date>}}, \enquote{\mintinline{xml}{</date>}} und \enquote{\mintinline{xml}{</recording>}} \emph{Markup}, während \linebreak{}\enquote{\mintinline[showspaces,stripall=false,escapeinside=||]{xml}{Recorded| |}}, \enquote{\mintinline[showspaces]{xml}{January 16, 1958}} und \enquote{\mintinline[showspaces]{xml}{.}} \emph{Character Data} ist.
 
-Auf die in \acrshort{xml}-Dokumenten enthaltenen Informationen wird in der Regel über Schnittstellen zugegriffen, die das Markup auswerten und das Dokument in Form einer baumartigen Datenstruktur darstellen. Ein prominentes Beispiel dafür ist das \acrfull{dom}, das u.a. von \emph{JavaScript}-Programmen in Webbrowsern eingesetzt wird, um  \acrshort{html}-Seiten auszuwerten und zu manipulieren.
+Auf die in \acrshort{xml}-Dokumenten enthaltenen Informationen wird in der Regel über Schnittstellen zugegriffen, die das Markup auswerten und das Dokument in Form einer baum\-artigen Datenstruktur darstellen. Ein prominentes Beispiel dafür ist das \acrlong{dom}~\cite{dom}, das u.\,a. von \emph{JavaScript}-Programmen in Webbrowsern eingesetzt wird, um  \acrshort{html}-Seiten auszuwerten und zu manipulieren.
 
 Das Beispiel \ref{ex:xmldoc} zeigt ein \acrshort{xml}-Dokument, das aus mehreren verschiedenen Knotentypen besteht:
 
@@ -57,20 +57,20 @@ Das Beispiel \ref{ex:xmldoc} zeigt ein \acrshort{xml}-Dokument, das aus mehreren
     \item[Attribute] sind Schlüssel-Wert-Paare, die einem einzelnen Element-Knoten zugeordnet sind. Sie werden im Start-Tag eines Elements angegeben. So enthält das \enquote{\mintinline{xml}{<album>}}-Tag im Beispiel~\ref{ex:xmldoc} das Attribut \enquote{\mintinline{xml}{catno="ARGO LP 628"}}.
     \item[Kommentare] können Text (z.B. Beschreibungen zu Teilen des \acrshort{xml}-Dokuments) enthalten, sind jedoch nicht Teil der \emph{Character Data} des Dokuments. Sie werden mit der Zeichenfolge \enquote{\mintinline{xml}{<!--}} eingeleitet und mit \enquote{\mintinline[gobble=5]{xml}{<!--x-->}} beendet. Um die Rückwärtskompatibilität mit \acrshort{sgml} sicherzustellen, dürfen sie die Zeichenfolge \enquote{\texttt{--}} nicht enthalten.~\cite[Abschnitt 2.5]{xml}
     \item[\glspl{pi}] sind Steueranweisungen an ein bestimmtes, das \acrshort{xml}-Dokument verarbeitendes Programm. Sie bestehen aus einem \emph{Ziel} (einer Zeichenkette, die nicht \enquote{\texttt{xml}} sein darf) und \emph{Daten}, die häufig in einer Attributen nachempfundenen Form angegeben sind. \glspl{pi} werden mit der Zeichenfolge \enquote{\texttt{<?}} eingeleitet und mit \enquote{\texttt{?>}} beendet.~\cite[Abschnitt 2.6]{xml}
-    \item[Text] sind Blattknoten, die Character Data enthalten. Im Beispiel \ref{ex:xmldoc} enthält das \linebreak{}\enquote{\mintinline{xml}{<artist>}}-Element einen Textknoten, der den Text \enquote{Ahmad Jamal Trio} repräsentiert.
+    \item[Text] sind Blattknoten, die Character Data enthalten. Im Beispiel \ref{ex:xmldoc} enthält das \linebreak{}\enquote{\mintinline{xml}{<artist>}}-Element einen Textknoten, der den Text \enquote{\texttt{Ahmad Jamal Trio}} repräsentiert.
 \end{description}
 
-Es existieren jedoch auch abweichende Datenmodelle um die logische Strukur von \acrshort{xml}-Daten zu beschreiben, beispielsweise das \acrfull{xdm} oder das \acrshort{xml} Information Set~\cite{xmlinfoset}. Die verschiedenenen Modelle unterscheidenen sich dabei vor allem im Abstraktionsgrad -- so stellt das \gls{dom} Textknoten und CDATA-Sektionen als separate Knotentypen dar, während das \acrshort{xml} Information Set beide Knotentypen unter \emph{Character Information Data} subsumiert~\cite[Abschnitt 2.6]{xmlinfoset}.
+Es existieren jedoch auch abweichende Datenmodelle um die logische Strukur von \acrshort{xml}-Daten zu beschreiben, beispielsweise das \acrlong{xdm}~\cite{xdm} oder das \acrshort{xml} Information Set~\cite{xmlinfoset}. Die verschiedenenen Modelle unterscheidenen sich dabei vor allem im Abstraktionsgrad -- so stellt das \gls{dom} Textknoten und CDATA-Sektionen als separate Knotentypen dar, während das \acrshort{xml} Information Set beide Knotentypen unter \emph{Character Information Data} subsumiert~\cite[Abschnitt 2.6]{xmlinfoset}.
 
 \begin{description}
     \item[CDATA-Abschnitte] kennzeichnen größere Bereiche von Text, die Markup-Zeichen wie \enquote{\texttt{<}} oder \enquote{\texttt{\&}} enthalten dürfen, ohne dass diese quotiert werden müssten. Sie werden mit der Zeichenkette \enquote{\texttt{<![CDATA[}} eingeleitet und mit \enquote{\texttt{]]>}} beendet.~\cite[Abschnitt 2.7]{xml}
 \end{description}
 
-\gls{dom}, \acrshort{xdm} und \acrshort{xml} Information Set kennen noch eine Vielzahl weiterer Konstrukte, die Teil eines \acrshort{xml}-Dokuments sein können, beispielsweise \acrfullpl{dtd}, Notation-Knoten, etc. Detaillierte Beschreibungen können in den jeweiligen Spezifikationen gefunden werden.~\cite{dom,xmlinfoset,xdm,xml}
+\gls{dom}, \acrshort{xdm} und \acrshort{xml} Information Set kennen noch eine Vielzahl weiterer Konstrukte, die Teil eines \acrshort{xml}-Dokuments sein können, z.B. Notation-Knoten. Detaillierte Beschreibungen können in den jeweiligen Spezifikationen gefunden werden.~\cite{dom,xmlinfoset,xdm,xml}
 
 \subsection{\acrfullpl{dtd}}
 
-\glspl{dtd} sind eine einfache Möglichkeit, um den Aufbau eines \acrshort{xml}-Dokuments genauer zu definieren. Innerhalb einer \acrshort{dtd} wird dann beispielsweise festgelegt, ob ein Element Zeichen oder Elemente enthalten darf und ob es einfach oder mehrfach in einem Dokument auftreten kann. Ein Dokument, das über eine \gls{dtd} verfügt und deren Regeln vollständig erfüllt, wird als \emph{valide} bezeichnet.
+\glspl{dtd} sind eine einfache Möglichkeit, um den Aufbau eines \acrshort{xml}-Dokuments genauer zu definieren. Innerhalb einer \acrshort{dtd} wird dann beispielsweise festgelegt, ob ein Element Zeichen oder weitere Elemente enthalten darf und ob es einfach oder mehrfach in einem Dokument auftreten kann. Ein Dokument, das über eine \gls{dtd} verfügt und deren Regeln vollständig erfüllt, wird als \emph{valide} bezeichnet.
 
 Eine weitere Funktion von \glspl{dtd} ist die Möglichkeit zum Festlegen von Platzhaltern, sogenannten \emph{Entities}.  Wird eine Entity-Referenz im \acrshort{xml}-Dokument verwendet, fügt der \acrshort{xml}-Parser an dieser Stelle stattdessen die ihr zugewiesenen Daten ein.
 
@@ -121,7 +121,7 @@ Um in einem \acrshort{xml}-Dokument zu deklarieren, kann das \mintinline{xml}{xm
 
 Logisch äquivalente \acrshort{xml}-Dokumente können sich in der konkreten Darstellung
 stark unterscheiden. Das \gls{w3c} hat daher Richtlinien zur Umwandlung in eine
-einheitliche Darstellungsweise---die sogenannte \emph{Kanonische Form}---
+einheitliche Darstellungsweise -- die sogenannte \emph{Kanonische Form} --
 festgelegt. Der Umwandlungprozess wird \acrfull{c14n} genannt.~\cite{c14n}
 
 \begin{figure}[h!]
@@ -132,7 +132,7 @@ festgelegt. Der Umwandlungprozess wird \acrfull{c14n} genannt.~\cite{c14n}
 
     Das unkanonisierte \acrshort{xml}-Dokument enthält überflüssigen Whitespace und z.T. einfache Hochkommata als Attributwert-Trennzeichen.
     \inputminted{xml}{ex-c14n-pre.xml}
-    Durch die Kanonisierung des Dokuments wurde überflüssiger Whitespace entfernt, durchgehend das Anführungszeichen als Attributtrennzeichen verwendet und lediglich aus einem Start-Tag bestehende leere Elemente durch das entsprechende Start-End-Tag-Paar ersetzt.
+    Durch die Kanonisierung des Dokuments wurde insignifikanter Whitespace entfernt, durchgehend das Anführungszeichen als Attributtrennzeichen verwendet und lediglich aus einem Start-Tag bestehende leere Elemente durch das entsprechende Start-End-Tag-Paar ersetzt.
     \inputminted{xml}{ex-c14n-post.xml}
 \end{example}
 \end{figure}
