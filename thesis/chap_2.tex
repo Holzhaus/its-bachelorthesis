@@ -68,13 +68,29 @@ Es existieren jedoch auch abweichende Datenmodelle um die logische Strukur von \
 
 \gls{dom}, \acrshort{xdm} und \acrshort{xml} Information Set kennen noch eine Vielzahl weiterer Konstrukte, die Teil eines \acrshort{xml}-Dokuments sein können, beispielseweise \acrfullpl{dtd}, Notation-Knoten, etc. Detaillierte Beschreibungen können in den jeweiligen Spezifikationen gefunden werden.~\cite{dom,xmlinfoset,xdm,xml}
 
-\todo[inline]{TODO: Hier evtl. noch was zu DTDs und Entities einfügen (?)}
-% TODO: Possibly explain DTDs and entities
+\subsection{\acrfullpl{dtd}}
+
+\glspl{dtd} sind eine einfache Möglichkeit, um den Aufbau eines \acrshort{xml}-Dokuments genauer zu definieren. Innerhalb einer \acrshort{dtd} wird dann beispielsweise festgelegt, ob ein Element Zeichen oder Elemente enthalten darf und ob es einfach oder mehrfach in einem Dokument auftreten können soll. Ein Dokument das über eine \gls{dtd} verfügt und dessen Regeln vollständig erfüllt, nennt man \emph{valide}.
+
+Eine weitere Funktion von \glspl{dtd} ist die Möglichkeit zum Festlegen von Platzhaltern, sogenannten \emph{Entities}.  Wird eine Entity-Referenz im \acrshort{xml}-Dokument verwendet, fügt der \acrshort{xml}-Parser an dieser Stelle stattdessen die ihnen zugewiesenen Daten ein.
+
+\begin{samepage}
+    Es existieren mehrere Arten von Entities:
+    \begin{description}
+        \item[General Entities] können innerhalb des Wurzelelements eines \acrshort{xml}-Dokuments referenziert werden. Sie können genutzt werden, um z.\,B. häufig im Dokument vorkommende Zeichenfolgen einfacher anpassbar zu machen, da diese dadurch nur in der Entitiy-Defintion verändert werden müssen.
+        \item[Parameter Entities] sind hingegen nur innerhalb der \gls{dtd} des Dokuments verfügbar und werden beispielsweise eingesetzt, um Mehrfachnennungen bei Element-Deklarationen zu vermeiden.
+    \end{description}
+\end{samepage}
+
+Neben internen Entity-Deklarationen können sowohl General Entities als auch Parameter Entities die ihnen zugewiesenen Daten auch aus einer Datei bzw. einer \gls{url} nachladen.
+Zudem verfügt in \acrshort{xml} auch über eine Reihe vordefinierter General Entities, die für die Quotierung von Markup-Trennzeichen wie z.B. dem Größerzeichen verwendet werden können.
+
+Die \gls{dtd} selbst kann entweder direkt in das \acrshort{xml}-Dokument eingebettet oder aus einer externen Resource nachgeladen werden.
 
 \subsection{\acrfull{xsd}}
 \label{sec:xsd}
 
-Um die Struktur von \acrshort{xml}-Dokumenten zu beschreiben und festzulegen, können sogenannte Schemata eingesetzt werden. Diese legen fest, welche Elemente in einem Dokument vorhanden sein dürfen oder müssen. Ebenso definieren sie Anzahl und Reihenfolge von Elementen, aber auch die Datentypen von Attributwerten und Textknoten. Attributen eines Elements können mithilfe eines Schemas auch Standardwerte zugewiesen werden. Zudem können Attributwerte als unveränderbar deklariert werden.
+Anstelle von \glspl{dtd} können auch sogenannte Schemata eingesetzt werden, um die Struktur von \acrshort{xml}-Dokumenten zu beschreiben und festzulegen. Diese legen fest, welche Elemente in einem Dokument vorhanden sein dürfen oder müssen. Ebenso definieren sie Anzahl und Reihenfolge von Elementen, aber auch die Datentypen von Attributwerten und Textknoten. Attributen eines Elements können mithilfe eines Schemas auch Standardwerte zugewiesen werden. Zudem können Attributwerte als unveränderbar deklariert werden.
 
 Neben der vom \gls{w3c} spezifizierten \acrfull{xsd} gibt es noch eine Reihe ähnlicher Technologien wie \acrshort{relaxng}, Schematron, \gls{dsd}, etc.
 
