@@ -178,6 +178,7 @@ BCOR=1cm, % Bindekorrektur: Change this accordingly, also read the KomaScript Gu
    framerule=2pt,
    framesep=2mm,
    rulecolor=\color{black!50},
+   spacecolor=rubgreen,
 }
 
 
