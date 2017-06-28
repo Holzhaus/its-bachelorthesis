@@ -117,7 +117,7 @@ Die Spezifikation der \acrshort{c14n} bezieht sich bezüglich der Ordnung auf di
     There is an ordering, document order, defined on all the nodes in the document corresponding to the order in which the first character of the \acrshort{xml} representation of each node occurs in the \acrshort{xml} representation of the document after expansion of general entities. Thus, the root node will be the first node. Element nodes occur before their children. Thus, document order orders element nodes in order of the occurrence of their start-tag in the \acrshort{xml} (after expansion of entities).
 \end{foreigndisplayquote}
 
-Folglich muss die Reihenfolge der Element-Nodes bei der Konversion beibehalten werden.
+Folglich muss die Reihenfolge der Elemente bei der Konversion beibehalten werden.
 
 \paragraph{Ordnung von Attributen und Namespaces}
 
@@ -196,7 +196,7 @@ Im Rahmen der \acrshort{xml} zu \acrshort{json}-Konversion ist es zwar wünschen
 
 Die oben beschriebene Vorgehensweise zur Typableitung kann zur Fehlerkennung von Datentypen führen.
 
-Darf eine Text Node beispielsweise eigentlich beliebige Zeichen enthalten, enthält aber \emph{zufälligerweise} ausschließlich Ziffern, würde fälschlicherweise ein Zahlentyp erkannt werden. Dies könnte zu Problemen mit der verarbeitetenden Applikation führen, die stattdessen eine Zeichenkette erwartet.
+Darf ein Text-Knoten beispielsweise eigentlich beliebige Zeichen enthalten, enthält aber \emph{zufälligerweise} ausschließlich Ziffern, würde fälschlicherweise ein Zahlentyp erkannt werden. Dies könnte zu Problemen mit der verarbeitetenden Applikation führen, die stattdessen eine Zeichenkette erwartet.
 
 \paragraph{Einschränkungen durch Wertebereiche}
 

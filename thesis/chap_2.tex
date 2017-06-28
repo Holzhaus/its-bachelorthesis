@@ -34,7 +34,7 @@ Im Web wird \acrshort{xml} z.B. in Form von \acrshort{xhtml} oder \gls{rss} für
 \end{figure}
 
 \begin{figure}[b!]
-    \begin{example}[\acrshort{xml}-Nodes]
+    \begin{example}[\acrshort{xml}-Baumstruktur]
         Das \acrshort{xml}-Dokument aus Beispiel \ref{ex:xmldoc} kann als Baumstruktur dargestellt werden. Die durch Einrückung entstandenen Whitespace-Textknoten wurden zwecks Übersichtlichkeit nicht miteinbezogen.
         \begin{center}
             \includestandalone[width=0.8\textwidth]{xmltree}
@@ -170,7 +170,7 @@ Bei der \acrlong{c14n} werden grob folgende Änderungen am
     \item{} {Normalisieren der Attributwerte}\\\\
         Dabei werden einzelne oder mehrere aufeinanderfolgende Whitespace-Zeichen wie Leerzeichen, Tabulatoren und Zeilenumbrüche in Attributwerten zu einem einzelnen Leerzeichen zusammengefasst.
     \item{} {Zeichen- und Entity-Referenzen werden ersetzt}
-    \item{} \texttt{CDATA}-Abschnitte werden in normale Text-Nodes umgewandelt
+    \item{} \texttt{CDATA}-Abschnitte werden in normale Text-Knoten umgewandelt
     \item{} \acrshort{xml}-Deklaration und \gls{dtd} werden entfernt
     \item{} Leere Elemente werden in Paare, bestehend aus Start- und End-Tags umgewandelt
     \item{} Whitespace außerhalb des Wurzelelements und innerhalb von Start- und End-Tags wird normalisiert
