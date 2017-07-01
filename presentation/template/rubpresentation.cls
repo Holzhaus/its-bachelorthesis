@@ -8,7 +8,7 @@
 \RequirePackage{pgfpages}
 \RequirePackage[babel,english=american, german=quotes]{csquotes}
 \RequirePackage[skip=2pt]{caption}
-\RequirePackage[subpreambles]{standalone}
+\RequirePackage[subpreambles,mode=buildnew]{standalone}
 \RequirePackage{relsize}
 \RequirePackage{listings}
 \RequirePackage{droidmono}
