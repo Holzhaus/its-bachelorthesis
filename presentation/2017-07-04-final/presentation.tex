@@ -47,12 +47,133 @@ Advisors: Dennis Felsch \& Paul Rösler
 
 %\note[enumerate]{\item foo \item bar \item baz \item foobar}
 
-\section{Section}
+\section{Introduction}
 
 \begin{frame}
   \frametitle{}
   \framesubtitle{}
 \end{frame}
+
+\section{Approach}
+
+\begin{frame}
+  \frametitle{Finding a lossless/secure method}
+  \framesubtitle{}
+  \begin{itemize}
+    \item{} Define verifiable criteria for lossless conversion
+    \item{} Check available conversion tools
+    \item{} If no sufficient solution exists:
+      \begin{itemize}
+        \item{} Develop custom solution or extend existing one
+      \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begingroup
+  \setbeamercolor{background canvas}{bg=white}
+  \begin{frame}[fragile]
+    \vspace{-1cm}
+    \begin{center}
+      \includestandalone[height=0.9\textheight]{thesis/flowchart_conversiontest}
+    \end{center}
+  \end{frame}
+\endgroup
+
+\begingroup
+  \setbeamercolor{background canvas}{bg=white}
+  \begin{frame}[fragile]
+    \vspace{-1cm}
+    \begin{center}
+      \includestandalone[height=0.9\textheight]{thesis/flowchart_securitytest}
+    \end{center}
+  \end{frame}
+\endgroup
+
+\begin{frame}
+  \frametitle{Converters tested}
+  \framesubtitle{}
+  \begin{itemize}
+    \item{} \textbf{Cobra vs Mongoose} Paul Battley, MIT, Ruby
+    \item{} \textbf{GreenCape XML Converter} Niels Braczek, MIT, PHP
+    \item{} \textbf{Json-lib} Andres Almiray, Apache~2.0, Java
+    \item{} \textbf{JsonML} Stephen M. McKamey, MIT, JavaScript
+    \item{} \textbf{JXON} Martin Raifer, Mozilla, GNU GPL~3.0, JavaScript
+    \item{} \textbf{Json.NET} James Newton-King, MIT, C\#
+    \item{} \textbf{org.json.XML} Sean Leary / JSON.org, MIT, Java
+    \item{} \textbf{Pesterfish} Jacob Smullya, MIT, Python
+    \item{} \textbf{x2js} Abdulla G. Abdurakhmanov, Apache~2.0, JavaScript
+    \item{} \textbf{x2js (Fork)} Sander Saares / Axinom, Apache~2.0, JavaScript
+    \item{} \textbf{xmljson} S. Anand, MIT, Python
+  \end{itemize}
+\end{frame}
+
+\section{Evaluation}
+
+\begin{frame}
+  \frametitle{Test results}
+  \framesubtitle{}
+  \begin{itemize}
+    \item{} Tested 11 converters
+    \item{} Some support multiple modes
+    \item{} Used 123 test documents
+    \item[$\Rightarrow$]{} more than 2000 (!) tests
+  \end{itemize}
+\end{frame}
+
+\subsection{General XML support}
+
+\begingroup
+  \setbeamercolor{background canvas}{bg=white}
+  \begin{frame}[fragile]
+    \vspace{-1.15cm}
+    \begin{center}
+      \includestandalone[width=0.8\textwidth]{thesis/resulttable-basic}
+    \end{center}
+  \end{frame}
+\endgroup
+
+\begin{frame}
+  \frametitle{General XML support}
+  \framesubtitle{}
+  \begin{itemize}
+    \item{} Mixed Content support is sketchy
+    \item{} Leading/Trailing Whitespace and indentation is often discarded
+    \item{} Only few converters support Element Order
+    \item{} Processing Instructions are not supported at all
+  \end{itemize}
+\end{frame}
+
+\begingroup
+  \setbeamercolor{background canvas}{bg=white}
+  \begin{frame}[fragile]
+    \vspace{-1.15cm}
+    \begin{center}
+      \includestandalone[width=0.8\textwidth]{thesis/resulttable-chars}
+    \end{center}
+  \end{frame}
+\endgroup
+
+\begingroup
+  \setbeamercolor{background canvas}{bg=white}
+  \begin{frame}[fragile]
+    \vspace{-1.15cm}
+    \begin{center}
+      \includestandalone[width=0.8\textwidth]{thesis/resulttable-complex}
+    \end{center}
+  \end{frame}
+\endgroup
+
+\begingroup
+  \setbeamercolor{background canvas}{bg=white}
+  \begin{frame}[fragile]
+    \vspace{-1.15cm}
+    \begin{center}
+      \includestandalone[width=0.8\textwidth]{thesis/resulttable-sec}
+    \end{center}
+  \end{frame}
+\endgroup
+
+\section{Conclusions}
 
 %%% Finally the last slide
 
