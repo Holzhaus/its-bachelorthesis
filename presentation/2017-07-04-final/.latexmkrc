@@ -9,7 +9,7 @@ $jobname = '2017-07-04-holthuis-xml-json-conversion-ABSCHLUSS';
 
 # Add template folder to the search path
 $ENV{'TEXINPUTS'} = '' unless defined $ENV{'TEXINPUTS'};
-$ENV{'TEXINPUTS'} = $ENV{'TEXINPUTS'} . $search_path_separator . '../template/';
+$ENV{'TEXINPUTS'} = $ENV{'TEXINPUTS'} . $search_path_separator . '../template/' . $search_path_separator . './thesis/';
 
 # Add more generated extensions
 push @generated_exts, "cb";
