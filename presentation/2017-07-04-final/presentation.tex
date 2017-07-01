@@ -1,0 +1,91 @@
+\documentclass[
+    alternativetitlepage=alternativ,
+    cornerlogo=hgi_nds_logo2,
+    sectionoverview,
+]{rubpresentation}
+\setbeamercovered{invisible}
+
+\title[XML/JSON conversions]
+{Bridging the Gap: Secure and lossless conversion\\ of XML data structures to the JSON format}
+\subtitle{\small Bachelor thesis \hspace{3mm}{\scriptsize $\blacksquare$}\hspace{3mm} March 30, 2017 -- June 29, 2017}
+
+\author[Holthuis]{Jan~Holthuis}
+
+\institute[Advisors]
+{%\inst{1}%
+Advisors: Dennis Felsch \& Paul Rösler
+}
+\date{July 4, 2017}
+\subject{Computer Science}
+
+\titlegraphic{datacenter.jpg}
+\sponsorlogo[height=7.6mm,interpolate=true]{hgi_nds_logo}
+
+\definecolor{rubblue}{HTML}{003660}
+\definecolor{rubgreen}{HTML}{8dae10}
+\definecolor{rubgray}{HTML}{e7e7e7}
+
+\usepackage{minted}
+\usemintedstyle{rub}
+
+\usepackage{tikzsymbols}
+\setbeamercovered{invisible}
+
+\begin{document}
+
+\frame[plain]{\titlepage}
+
+%\begin{frame}{The \texttt{\textbackslash note}-Macro}
+%\begin{itemize}[<+->]
+%\item normal text for the presentation.
+%\note<1-2>[item]{Say something to the audience!}
+%\item and text for the presentation.
+%\item foo
+%\end{itemize}
+%\note<2>{Another note for you!}
+%\end{frame}
+
+%\note[enumerate]{\item foo \item bar \item baz \item foobar}
+
+\section{Section}
+
+\begin{frame}
+  \frametitle{}
+  \framesubtitle{}
+\end{frame}
+
+%%% Finally the last slide
+
+\begin{frame}[plain]
+\frametitle{Thanks!}
+  \begin{center}
+    {\bfseries\fontsize{30pt}{1.2em}\selectfont Questions?}
+  \end{center}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \begin{center}
+        \vbox to 0.54\textheight {
+        %\font\endfont = cmss10 at 25.40mm
+        %\color{Brown}
+        %\endfont
+        %\baselineskip 20.0mm
+        Reach out via email:
+        \begin{itemize}
+        \item \textbf{Jan Holthuis}\\
+              jan.holthuis@rub.de
+        \end{itemize}
+        \vfill{}
+        {\tiny Title image: Bob Mical, \emph{\enquote{Data Center}} (flickr.com, CC
+        BY-NC 2.0)}
+      }
+      \end{center}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \begin{center}
+        \pgfimage[width=\textwidth]{questions.jpg}
+      \end{center}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\end{document}
