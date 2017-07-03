@@ -1,6 +1,8 @@
 # Custom stuff
 thesis/*.pdf
 doku/resultdata/*
+presentation/*/*.pdf
+!presentation/*/2017-??-??-holthuis-xml-json-conversion*.pdf
 
 ###############################################################################
 ## LaTeX
