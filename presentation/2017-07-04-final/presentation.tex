@@ -298,9 +298,9 @@ Advisors: Dennis Felsch \& Paul Rösler
   \frametitle{Character Support}
   \framesubtitle{}
   \begin{itemize}
-    \item{} Json-lib and org.json.XML only support ASCII characters
-    \item{} All other characters are converted to question marks (\texttt{?})
-    \item{} The number of question marks depends on the number of bytes used to encode the char in UTF-8
+    \item{} CobraVsMongoose, Json-lib and org.json.XML only support ASCII characters
+    \item{} The latter two convert all other characters converted to question marks (\texttt{?})
+    \item{} Number of question marks depends on the number of bytes used to encode the char in UTF-8
     \item{} Example:
       \begin{itemize}
           \item{} \texttt{FOR ALL} (U+2200, \enquote{$\forall$})
