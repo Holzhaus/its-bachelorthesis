@@ -1,0 +1,5 @@
+\documentclass{standalone}
+\usepackage{pgfplotstable}
+\pgfplotstableread[col sep=semicolon]{results-basic.csv}\loadedtable
+\def\hasfootnote{1}
+\input{resulttable}
