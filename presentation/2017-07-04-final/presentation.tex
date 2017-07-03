@@ -338,6 +338,23 @@ Advisors: Dennis Felsch \& Paul Rösler
   \end{frame}
 \endgroup
 
+\subsection{Security}
+
+\begin{frame}
+  \frametitle{Security}
+  \framesubtitle{}
+  \begin{itemize}
+    \item{} Json-lib is vulnerable to more than 50\% of the attacks tested (DoS, FSA, SSRF)
+    \item{} Pesterfish, xmljson and are vulnerable to DoS attacks
+      \begin{itemize}
+        \item{} Python converters (Pesterfish, xmljson) are insecure if \texttt{ElementTree} parser from the standard
+          library is used
+        \item{} Alternative: Use hardened \texttt{defusedxml} libary
+      \end{itemize}
+    \item{} Json.NET is vulnerable for SSRF attacks
+  \end{itemize}
+\end{frame}
+
 \begingroup
   \setbeamercolor{background canvas}{bg=white}
   \begin{frame}[fragile]
@@ -347,6 +364,8 @@ Advisors: Dennis Felsch \& Paul Rösler
     \end{center}
   \end{frame}
 \endgroup
+
+\subsection{Complex XML Documents}
 
 \begingroup
   \setbeamercolor{background canvas}{bg=white}
