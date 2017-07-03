@@ -261,7 +261,54 @@ Advisors: Dennis Felsch \& Paul Rösler
   \end{itemize}
 \end{frame}
 
+\begin{frame}
+  \frametitle{XML Comments}
+  \framesubtitle{}
+  \begin{itemize}
+    \item{} Retaining XML comments is not necessary
+    \item{} All converters ignore comments except Json.NET
+    \item{} Json.NET converts them to \emph{JavaScript}-style block comments (\mintinline{javascript}{/* Comment */})
+    \item{} \dots{}but this violates the JSON specification (ECMA-404, RFC~7149)
+  \end{itemize}
+\end{frame}
+
 \subsection{Character Support}
+
+\begingroup
+  \setbeamercolor{background canvas}{bg=white}
+  \begin{frame}[fragile]
+    \vspace{-1.15cm}
+    \begin{center}
+      \includestandalone[width=0.8\textwidth]{resulttable-chars-a}
+    \end{center}
+  \end{frame}
+\endgroup
+
+\begingroup
+  \setbeamercolor{background canvas}{bg=white}
+  \begin{frame}[fragile]
+    \vspace{-1.15cm}
+    \begin{center}
+      \includestandalone[width=0.8\textwidth]{resulttable-chars-b}
+    \end{center}
+  \end{frame}
+\endgroup
+
+\begin{frame}
+  \frametitle{Character Support}
+  \framesubtitle{}
+  \begin{itemize}
+    \item{} Json-lib and org.json.XML only support ASCII characters
+    \item{} All other characters are converted to question marks (\texttt{?})
+    \item{} The number of question marks depends on the number of bytes used to encode the char in UTF-8
+    \item{} Example:
+      \begin{itemize}
+          \item{} \texttt{FOR ALL} (U+2200, \enquote{$\forall$})
+          \item[$\rightarrow$] 3 bytes in UTF-8 (\texttt{0xE2 0x88 0x80})
+          \item[$\rightarrow$] 3 question marks in JSON (\mintinline{json}{"???"})
+      \end{itemize}
+  \end{itemize}
+\end{frame}
 
 \begin{frame}
   \frametitle{Character Support}
@@ -387,26 +434,6 @@ Advisors: Dennis Felsch \& Paul Rösler
       \endgroup
   \end{itemize}
 \end{frame}
-
-\begingroup
-  \setbeamercolor{background canvas}{bg=white}
-  \begin{frame}[fragile]
-    \vspace{-1.15cm}
-    \begin{center}
-      \includestandalone[width=0.8\textwidth]{resulttable-chars-a}
-    \end{center}
-  \end{frame}
-\endgroup
-
-\begingroup
-  \setbeamercolor{background canvas}{bg=white}
-  \begin{frame}[fragile]
-    \vspace{-1.15cm}
-    \begin{center}
-      \includestandalone[width=0.8\textwidth]{resulttable-chars-b}
-    \end{center}
-  \end{frame}
-\endgroup
 
 \subsection{Complex XML Documents}
 
