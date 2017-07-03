@@ -50,11 +50,59 @@ Advisors: Dennis Felsch \& Paul Rösler
 \section{Introduction}
 
 \begin{frame}
-  \frametitle{}
-  \framesubtitle{}
+    \frametitle{Usage of JSON and XML}
+    \framesubtitle{}
+    \begin{itemize}
+        \item{} Web APIs are booming since \emph{Web 2.0} and \emph{IoT} hype
+            \begin{itemize}
+                \item{} most of them use XML, JSON or both as data format
+            \end{itemize}
+        \item{} Some \enquote{normal} websites are now based on these formats (e.g. \emph{AngularJS})\\
+        \item{} Lots of file formats are XML-based (e.g. RSF/ASF, MathML, SVG, XHTML, ODT, OOXML, \ldots{})\\
+        \item{} There are even JSON-based databases like \emph{CouchDB} and \emph{MongoDB}\\
+        \item{} Countless industry standards in all sectors use XML
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Why convert between XML and JSON?}
+    \framesubtitle{}
+    \begin{itemize}
+        \item{} Parsing JSON is usually faster and less resource heavy than XML\\
+        \item{} XML has more features and is widely used by the industry\\
+        \item{} \dots{} but the complexity makes it harder for humans to read and adds more overhead\\
+        \item{} Support by programming languages, frameworks and libraries is inconsistent\\
+    \end{itemize}
+    \begin{center}
+        \bf $\Rightarrow$ plenty of reasons for converting between XML and JSON!
+    \end{center}
 \end{frame}
 
 \section{Approach}
+
+\begin{frame}
+    \frametitle{Scope of thesis}
+    \framesubtitle{}
+    \begin{itemize}
+        \item{} Find a way to convert arbitrary XML documents to JSON\\
+        \item{} Be able to convert the JSON documents back to XML\\
+        \item{} The conversion should \ldots\
+            \begin{itemize}
+                \item{} result in \textbf{well-formed JSON/XML},
+                \item{} \textbf{require no additional metadata} (type hints, etc.),\\
+                \item{} be \textbf{lossless} and
+                    \begin{itemize}
+                        \item{} XML documents before and after %
+                                $\text{XML}\rightarrow\text{JSON}\rightarrow\text{XML}$ %
+                                round-trip should be (logically) equivalent\\
+                    \end{itemize}
+                \item{} be \textbf{secure}.
+                    \begin{itemize}
+                        \item{} Not vulnerable to known attacks against parsers\\
+                    \end{itemize}
+            \end{itemize}
+    \end{itemize}
+\end{frame}
 
 \begin{frame}
   \frametitle{Finding a lossless/secure method}
@@ -66,6 +114,16 @@ Advisors: Dennis Felsch \& Paul Rösler
       \begin{itemize}
         \item{} Develop custom solution or extend existing one
       \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{How to check losslessness?}
+  \framesubtitle{}
+  \begin{itemize}
+    \item{} Checking every conceivable XML document is impossible
+    \item{} Instead, devise a set of test cases that cover all parts of XML spec
+    \item{} Also test conversion of complex real-world XML documents
   \end{itemize}
 \end{frame}
 
