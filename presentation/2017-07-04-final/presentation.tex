@@ -28,6 +28,7 @@ Advisors: Dennis Felsch \& Paul Rösler
 \usepackage{minted}
 \usemintedstyle{rub}
 
+\usepackage{threeparttable}
 \usepackage{mathtools}
 \usepackage{tikzsymbols}
 \setbeamercovered{invisible}
@@ -493,6 +494,40 @@ Advisors: Dennis Felsch \& Paul Rösler
       \end{minted}
     \end{column}
   \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{JsonML}
+  \framesubtitle{Efficiency I}
+    Size comparison of JsonML, Pesterfish and XML at the example of a Flat OpenDocument Text (*.odt):
+  \begin{center}
+    \begin{threeparttable}
+      \begin{tabular}{lrrr}
+        \toprule
+                               & \multicolumn{1}{c}{\fontfamily{rubflama}\selectfont\textbf{Size (in bytes)}} & \multicolumn{2}{c}{\fontfamily{rubflama}\selectfont\textbf{Compared to XML (in \%)}}\\
+                             &                  & \multicolumn{1}{c}{\fontfamily{rubflama}\selectfont\textbf{Size}}   & \multicolumn{1}{c}{\fontfamily{rubflama}\selectfont\textbf{Change}}\\
+        \midrule
+                            Canonical XML       &  $5787196$ & $100.0$ &      $0$ \\
+                            JsonML\tnote{a}     &  $5405329$ &  $93.4$ &   $-6.6$ \\
+                            Pesterfish\tnote{a} & $15061634$ & $260.3$ & $+160.3$ \\
+                            Pesterfish\tnote{b} & $14480612$ & $250.2$ & $+150.2$ \\
+        \bottomrule
+      \end{tabular}
+      \begin{tablenotes}
+        \item[a] JSON unchanged
+        \item[b] insignificant JSON whitespace removed
+      \end{tablenotes}
+    \end{threeparttable}
+  \end{center}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{JsonML}
+  \framesubtitle{Efficiency II}
+  Nesting Depth comparison at the example of a Microsoft Word XML Document:
+  \begin{center}
+    \includestandalone[height=0.8\textheight]{nestingdepth}
+  \end{center}
 \end{frame}
 
 \begin{frame}
