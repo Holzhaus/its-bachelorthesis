@@ -1,0 +1,53 @@
+\documentclass[border=10pt]{standalone}
+\usepackage{pgfplotstable}
+\usepackage{colortbl}
+\usepackage{makecell}
+\usepackage{booktabs}
+\usepackage{threeparttable}
+\usepackage{pifont}
+\newcommand{\cmark}{\ding{51}}%
+\newcommand{\xmark}{\ding{55}}%
+\usepackage[T1]{fontenc}
+\usepackage{rubfonts2009}
+% FIXME: Blue should be #003560, but that'd conflict with the front page colors
+\definecolor{rubblue}{HTML}{003660}
+\definecolor{rubgreen}{HTML}{8dae10}
+\definecolor{rubgray}{HTML}{e7e7e7}
+\definecolor{bggray}{HTML}{e2e0df}
+\pgfplotstableread[col sep=comma,comment chars={\#},header=false]{thesis/nestingdepth.csv}\datatable
+\begin{document}
+\begin{tikzpicture}
+    \begin{axis}[
+            xbar,
+            y=0.5cm,
+            xmin=0,
+            xmax=80,
+            ytick=data,
+            xlabel={Nesting depth of JSON containers},
+            yticklabel style={
+                font={\fontfamily{rubflama}\selectfont\color{rubblue}},
+            },
+            xticklabel style={
+                font={\fontfamily{rubflama}\selectfont},
+            },
+            yticklabels from table={\datatable}{0},
+            restrict x to domain*=0:90,
+            visualization depends on=rawx\as\rawx, % Save the unclipped values
+            after end axis/.code={ % Draw line indicating break
+                \draw [line width=3pt, bggray, decoration={snake, amplitude=1pt}, decorate] (rel axis cs:1.05,0) -- (rel axis cs:1.05,1.05);
+            },
+            nodes near coords={%
+                \pgfmathprintnumber{\rawx}% Print unclipped values
+            },
+            /pgf/number format/.cd,
+            use comma,
+            1000 sep={\,},
+            axis x line=bottom,
+            y axis line style={draw=none},
+            y tick style={draw=none},
+            clip=false,
+        ]
+        \addplot[rubblue,fill=rubblue] table[y expr=\coordindex, x=1] {\datatable};
+  \end{axis}
+\end{tikzpicture}
+\end{document}
