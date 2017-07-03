@@ -117,21 +117,72 @@ Advisors: Dennis Felsch \& Paul Rösler
   \framesubtitle{}
   \begin{itemize}
     \item{} Define verifiable criteria for lossless conversion
-    \item{} Check available conversion tools
-    \item{} If no sufficient solution exists:
+    \item{} Check conversion tools that are already available
+    \item{} If no sufficient converter exists:
       \begin{itemize}
         \item{} Develop custom solution or extend existing one
+        \item{} Evaluate that custom tool, too!
       \end{itemize}
   \end{itemize}
 \end{frame}
 
 \begin{frame}
-  \frametitle{How to check losslessness?}
+  \frametitle{Security}
+  \framesubtitle{}
+  The converter should be secure against known XML attacks.
+  \begin{itemize}
+    \item{} Denial of Service (DoS)
+      \begin{itemize}
+        \item{Billion Laughs}
+        \item{Quadratic Blowup}
+        \item{Entity Recursion}
+      \end{itemize}
+    \item{} File System Access (FSA)
+      \begin{itemize}
+        \item{External DTD}
+        \item{XXE}
+        \item{XSLT}
+        \item{XInclude}
+      \end{itemize}
+    \item{} Server-Side Request Forgery (SSRF)
+      \begin{itemize}
+        \item{External DTD}
+        \item{XXE}
+        \item{\texttt{SchemaLocation}/\texttt{noNamespaceSchemaLocation}}
+        \item{XInclude}
+      \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Losslessness}
+  \framesubtitle{}
+  \begin{definition}[Lossless conversion]
+      Let $V \coloneqq \{x \mid x\text{ is a valid } \text{JSON value}\}$ and $W \coloneqq \{x \mid x\text{ is a well-formed XML document}\}$.
+
+      A conversion method $K = (f_{enc}, f_{dec})$ is \emph{lossless} if and only if
+      \begin{align}
+          (f_{dec}\mathrel{\circ} f_{enc})(x) \; &\mathbin{\stackrel{\mathmakebox[\widthof{=}]{\mathrm{c14n}}}{=}} \; x\\
+          f_{enc}: W &\mapsto V\\
+          f_{dec}: V &\mapsto W
+      \end{align}
+      for all $x \in W$.
+  \end{definition}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Testing method}
   \framesubtitle{}
   \begin{itemize}
     \item{} Checking every conceivable XML document is impossible
     \item{} Instead, devise a set of test cases that cover all parts of XML spec
     \item{} Also test conversion of complex real-world XML documents
+    \item{} Use Testing framework to automate evaluation
+      \begin{itemize}
+        \item{} Implemented using Python 3.5, defusedxml, demjson
+        \item{} Runs inside a Docker container
+        \item{} 2600 Lines of Code (LoC)
+      \end{itemize}
   \end{itemize}
 \end{frame}
 
