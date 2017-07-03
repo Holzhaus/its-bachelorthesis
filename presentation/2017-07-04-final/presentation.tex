@@ -32,6 +32,13 @@ Advisors: Dennis Felsch \& Paul Rösler
 \usepackage{tikzsymbols}
 \setbeamercovered{invisible}
 
+\AtBeginSubsection[]{%
+  \begin{frame}%
+    \frametitle{\iflanguage{english}{Overview}{Überblick}}%
+    \tableofcontents[currentsubsection]%
+  \end{frame}%
+}%
+
 \begin{document}
 
 \frame[plain]{\titlepage}
