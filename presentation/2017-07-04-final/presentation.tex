@@ -428,27 +428,30 @@ Advisors: Dennis Felsch \& Paul Rösler
 \end{frame}
 
 \begin{frame}
-  \frametitle{Processing Instructions}
+  \frametitle{JsonML + Processing Instructions}
+  \framesubtitle{Adding Support}
   \begin{itemize}
+    \item{} JsonML is missing support for Processing Instructions (PIs)
     \item{} Example PI: \mintinline{xml}{<?my-target plus some data?>}
     \item{} Can be described via tuple $P \coloneqq \langle target, data \rangle$
     \item{} JSON representation: \mintinline{json}{["?my-target", "plus some data"]}
     \item{} Tag names may not start with \enquote{\texttt{?}}, so it can't be
       mistaken for an element containing text node
     \item{} If PIs appear outside root element as top level constructs -- Use
-      am empty string as parent tag name
+      an empty string as parent tag name
   \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{Processing Instructions}
+  \frametitle{JsonML + Processing Instructions}
+  \framesubtitle{Syntax Extension}
   \begin{center}
     \includestandalone[width=\textwidth]{syntax_jsonmlpi}
   \end{center}
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{Processing Instructions}
+  \frametitle{JsonML + Processing Instructions}
   \framesubtitle{Example}
   \begin{columns}[t]
     \begin{column}{0.45\textwidth}
