@@ -28,6 +28,7 @@ Advisors: Dennis Felsch \& Paul Rösler
 \usepackage{minted}
 \usemintedstyle{rub}
 
+\usepackage{mathtools}
 \usepackage{tikzsymbols}
 \setbeamercovered{invisible}
 
@@ -360,22 +361,104 @@ Advisors: Dennis Felsch \& Paul Rösler
   \begin{frame}[fragile]
     \vspace{-1.15cm}
     \begin{center}
-      \includestandalone[width=0.8\textwidth]{thesis/resulttable-complex}
-    \end{center}
-  \end{frame}
-\endgroup
-
-\subsection{Complex XML Documents}
-
-\begingroup
-  \setbeamercolor{background canvas}{bg=white}
-  \begin{frame}[fragile]
-    \vspace{-1.15cm}
-    \begin{center}
       \includestandalone[width=0.8\textwidth]{thesis/resulttable-sec}
     \end{center}
   \end{frame}
 \endgroup
+
+\section{Lossless and secure conversion}
+
+\begin{frame}[fragile]
+  \frametitle{JsonML}
+  \framesubtitle{JSON Markup Language}
+  \begin{itemize}
+    \item{} Originally written in JavaScript, but there are also other implementations (e.g. Java: \texttt{org.json.JSONML})
+    \item{} Fairly mature: Github repo dates back to November 2006
+    \item{} Nicely documented grammar (Backus-Naur form)
+    \item{} Downsides:
+      \begin{itemize}
+        \item{} Resulting \emph{JSON} is not really \enquote{friendly}
+        \item{} No support for XML Processing Instructions (no tested solution supports them)
+      \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{JsonML}
+  \framesubtitle{Syntax}
+  \begin{center}
+    \includestandalone[width=\textwidth]{syntax_jsonml}
+  \end{center}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{JsonML}
+  \framesubtitle{Example}
+  \begin{columns}[t]
+    \begin{column}{0.45\textwidth}
+      \inputminted[breaklines,autogobble,fontsize=\tiny]{xml}{thesis/xmltree.xml}
+    \end{column}
+    \begin{column}{0.55\textwidth}
+      \begin{minted}[breaklines,autogobble,fontsize=\tiny,stripnl=false]{json}
+
+
+
+        [ "albums", "\n  ",
+          [ "album", { "catno": "ARGO LP-628" }, "\n    ",
+            [ "artist", "Ahmad Jamal Trio" ], "\n    ",
+            [ "title", "At The Pershing" ], "\n    ",
+            [ "recording", "Recorded ", [ "date", "January 16, 1958" ], "." ], "\n  "
+          ], "\n"
+        ]
+      \end{minted}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Processing Instructions}
+  \begin{itemize}
+    \item{} Example PI: \mintinline{xml}{<?my-target plus some data?>}
+    \item{} Can be described via tuple $P \coloneqq \langle target, data \rangle$
+    \item{} JSON representation: \mintinline{json}{["?my-target", "plus some data"]}
+    \item{} Tag names may not start with \enquote{\texttt{?}}, so it can't be
+      mistaken for an element containing text node
+    \item{} If PIs appear outside root element as top level constructs -- Use
+      am empty string as parent tag name
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Processing Instructions}
+  \begin{center}
+    \includestandalone[width=\textwidth]{syntax_jsonmlpi}
+  \end{center}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Processing Instructions}
+  \framesubtitle{Example}
+  \begin{columns}[t]
+    \begin{column}{0.45\textwidth}
+      \inputminted[breaklines,autogobble,fontsize=\tiny]{xml}{thesis/xmltree.xml}
+    \end{column}
+    \begin{column}{0.55\textwidth}
+      \begin{minted}[breaklines,autogobble,fontsize=\tiny,stripnl=false]{json}
+        ["", "\n",
+          [ "?xml-stylesheet", "href=\"style.css\"" ],"\n","\n",
+
+          [ "albums", "\n  ",
+            [ "album", { "catno": "ARGO LP-628" }, "\n    ",
+              [ "artist", "Ahmad Jamal Trio" ], "\n    ",
+              [ "title", "At The Pershing" ], "\n    ",
+              [ "recording", "Recorded ", [ "date", "January 16, 1958" ], "." ], "\n  "
+            ], "\n"
+          ]
+        ]
+      \end{minted}
+    \end{column}
+  \end{columns}
+\end{frame}
 
 \section{Conclusions}
 
