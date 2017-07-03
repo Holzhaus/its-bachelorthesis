@@ -1,0 +1,32 @@
+\documentclass{standalone}
+\usepackage{xcolor}
+\usepackage[T1]{fontenc}
+\usepackage{rubfonts2009}
+\usepackage{droidmono}
+\definecolor{rubblue}{HTML}{003660}
+\definecolor{rubgreen}{HTML}{8dae10}
+\definecolor{rubgray}{HTML}{e7e7e7}
+\usepackage[nounderscore,rounded]{syntax}
+\renewcommand{\sdsize}{\scriptsize\color{rubgreen}}
+\renewcommand{\syntleft}{\color{rubblue}$\langle$\normalfont\itshape}
+\renewcommand{\litleft}{\color{black}"\bgroup\ulitleft}
+\renewcommand{\litright}{\ulitright\egroup"}
+\renewcommand{\sdlengths}{%
+  \setlength{\sdstartspace}{1em}%
+  \setlength{\sdendspace}{1em}%
+  \setlength{\sdmidskip}{0.5em}%
+  \setlength{\sdtokskip}{0.25em}%
+  \setlength{\sdfinalskip}{0.5em plus 10000fil}%
+  \setlength{\sdrulewidth}{0.2pt}%
+  \setlength{\sdcirclediam}{12pt}%
+  \setlength{\sdindent}{0pt}%
+}
+\newcommand{\acrshort}[1]{JSON} % stub
+
+\begin{document}
+  \begin{minipage}[c][5.5cm][c]{14cm}
+    \begin{grammar}
+      \input{thesis/grammar_jsonml}
+    \end{grammar}
+  \end{minipage}
+\end{document}
