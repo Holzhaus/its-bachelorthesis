@@ -477,6 +477,45 @@ Advisors: Dennis Felsch \& Paul Rösler
 
 \section{Conclusions}
 
+\begin{frame}
+  \frametitle{Conclusions}
+  \begin{itemize}
+    \item{} Converting XML to JSON is not trivial
+    \item{} No converter could fully fullfill all requirements out of the box
+    \item{} JsonML with added PI support can convert XML in a secure and
+      lossless manner
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Limitations}
+  \begin{itemize}
+    \item{} Focus on XML$\rightarrow$JSON$\rightarrow$XML conversion
+    \item{} Parsing DTDs, Entities and Schemas were out of scope
+    \item{} Only bi-directional converters (i.e. those that implement inverse
+      conversion, too) could be tested
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Future Research}
+  \begin{itemize}
+    \item{} Look at conversion that uses additional DTD/Schema information
+    \begin{itemize}
+      \item{} Improve usage of native JSON types
+      \item{} Ability to collapse or replace insignificant whitespace
+      \item{} Use arrays/objects depending on Schema's \texttt{maxOccurs}
+    \end{itemize}
+  \item{} Evaluate JSON$\rightarrow$XML$\rightarrow$JSON converters and their
+    security
+  \item{} Newer technologies like JSON Schema, JSON Include, etc. will probably
+    increase attack surface of JSON parsers
+    \begin{itemize}
+      \item[$\Rightarrow$] closer look might be worthwhile
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
 %%% Finally the last slide
 
 \begin{frame}[plain]
